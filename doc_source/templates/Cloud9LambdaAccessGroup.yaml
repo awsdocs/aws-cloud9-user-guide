@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Enables an existing group in AWS Identity and Access Management (IAM) to begin using AWS Cloud9 to work with AWS Lambda functions."
+Parameters:
+  GroupName:
+    Description: "The name of the existing group."
+    Type: "String"
+Resources:  
+  Policy:
+    Type: "AWS::IAM::Policy"
+    Properties:
+      PolicyName: "AWSCloud9LambdaGroupAccess"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          -
+            Effect: "Allow"
+            Action:
+              - "cloudformation:CreateChangeSet"
+              - "cloudformation:CreateStack"
+              - "cloudformation:DescribeChangeSet"
+              - "cloudformation:DescribeStackEvents"
+              - "cloudformation:DescribeStacks"
+              - "cloudformation:ExecuteChangeSet"
+              - "cloudformation:ListStackResources"
+              - "cloudformation:UpdateStack"
+              - "iam:AttachRolePolicy"
+              - "iam:DetachRolePolicy"
+              - "iam:GetRole"
+              - "iam:GetUser"
+              - "iam:PassRole"
+            Resource: "*"
+          -
+            Effect: "Allow"
+            Action:
+              - "iam:CreateRole"
+              - "iam:DeleteRole"
+            Resource: !Join [ "", [ "arn:aws:iam::", !Ref "AWS::AccountId", ":role/cloud9-*" ] ]
+      Groups:
+        - 
+          !Ref GroupName

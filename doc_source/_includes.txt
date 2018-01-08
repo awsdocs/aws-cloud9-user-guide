@@ -1,0 +1,85 @@
+.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+   International License (the "License"). You may not use this file except in compliance with the
+   License. A copy of the License is located at http://creativecommons.org/licenses/by-nc-sa/4.0/.
+
+   This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+   either express or implied. See the License for the specific language governing permissions and
+   limitations under the License.
+   
+.. Console URL
+   -----------
+.. |AC9Console_link| replace:: https://console.aws.amazon.com/cloud9/
+
+.. IDE phrases
+   -----------
+.. |AC9IDElongtitle| replace:: |AC9long| Integrated Development Environment (IDE)
+.. |AC9IDElong| replace:: |AC9long| integrated development environment (IDE)
+.. |AC9IDE| replace:: |AC9| IDE
+.. |IDElongtitle| replace:: Integrated Development Environment (IDE)
+.. |IDElong| replace:: integrated development environment (IDE)
+.. |IDE| replace:: IDE
+
+.. Environment phrases
+   -------------------
+.. |envfirstlongtitle| replace:: |AC9long| Development Environment
+.. |envfirstlongtitleplural| replace:: |AC9long| Development Environments
+.. |envfirsttitle| replace:: |AC9| Development Environment
+.. |envfirsttitleplural| replace:: |AC9| Development Environments
+.. |envfirstlong| replace:: |AC9long| development environment
+.. |envfirstlongplural| replace:: |AC9long| development environments
+.. |envfirst| replace:: |AC9| development environment
+.. |envfirstplural| replace:: |AC9| development environments
+.. |envtitle| replace:: Environment
+.. |envtitleplural| replace:: Environments
+.. |env| replace:: environment
+.. |envplural| replace:: environments
+.. |envfirstlongec2title| replace:: |AC9long| EC2 Development Environment
+.. |envfirstlongec2titleplural| replace:: |AC9long| EC2 Development Environments
+.. |envfirstec2title| replace:: |AC9| EC2 Development Environment
+.. |envfirstec2titleplural| replace:: |AC9| EC2 Development Environments
+.. |envfirstlongec2| replace:: |AC9long| EC2 development environment
+.. |envfirstlongec2plural| replace:: |AC9long| EC2 development environments
+.. |envfirstec2| replace:: |AC9| EC2 development environment
+.. |envfirstec2plural| replace:: |AC9| EC2 development environments
+.. |envec2title| replace:: EC2 Environment
+.. |envec2titleplural| replace:: EC2 Environments
+.. |envec2| replace:: EC2 environment
+.. |envec2plural| replace:: EC2 environments
+.. |envfirstlongsshtitle| replace:: |AC9long| SSH Development Environment
+.. |envfirstlongsshtitleplural| replace:: |AC9long| SSH Development Environments
+.. |envfirstsshtitle| replace:: |AC9| SSH Development Environment
+.. |envfirstsshtitleplural| replace:: |AC9| SSH Development Environments
+.. |envfirstlongssh| replace:: |AC9long| SSH development environment
+.. |envfirstlongsshplural| replace:: |AC9long| SSH development environments
+.. |envfirstssh| replace:: |AC9| SSH development environment
+.. |envfirstsshplural| replace:: |AC9| SSH development environments
+.. |envsshtitle| replace:: SSH Environment
+.. |envsshtitleplural| replace:: SSH Environments
+.. |envssh| replace:: SSH environment
+.. |envsshplural| replace:: SSH environments
+
+.. AWS managed temporary credentials phrases 
+   -----------------------------------------
+.. |AC9tempcredstitle| replace:: AWS Managed Temporary Credentials
+.. |AC9tempcreds| replace:: AWS managed temporary credentials
+.. |tempcredstitle| replace:: Temporary Credentials
+.. |tempcreds| replace:: temporary credentials
+
+.. Environment member roles
+   ------------------------
+.. |memowntitle| replace:: Owner
+.. |memown| replace:: owner
+.. |memrotitle| replace:: Read-Only
+.. |memro| replace:: read-only
+.. |memrwtitle| replace:: Read/Write
+.. |memrw| replace:: read/write
+.. |memlongtitle| replace:: |envtitle| Member
+.. |memlong| replace:: |env| member
+.. |memtitle| replace:: Member
+.. |mem| replace:: member
+.. |memslongtitle| replace:: |envtitle| Members
+.. |memslong| replace:: |env| members
+.. |memstitle| replace:: Members
+.. |mems| replace:: members
