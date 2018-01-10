@@ -45,7 +45,7 @@ show_lang_selector = True
 
 # The link to the top of the doc source tree on GitHub. This allows generation
 # of per-page "Edit on GitHub" links.
-#github_doc_url = 'https://github.com/awsdocs/aws-cloud9-ug/tree/master/doc_source'
+github_doc_url = 'https://github.com/awsdocs/aws-cloud9-user-guide/tree/master/doc_source'
 
 # This allows the "Feedback" button to create a new issue on GitHub.
 #doc_feedback_url = 'https://github.com/awsdocs/aws-java-developer-guide/issues/new'

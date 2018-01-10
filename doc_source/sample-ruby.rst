@@ -157,8 +157,8 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    require 'aws-sdk'
 
    bucket_name = ARGV[0]
-
-   s3 = Aws::S3::Client.new(region: 'YOUR_REGION')
+   region = 'YOUR_REGION'
+   s3 = Aws::S3::Client.new(region: region)
 
    # Lists all of your available buckets in this AWS Region.
    def list_my_buckets(s3)
@@ -176,7 +176,12 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    # Create a new bucket.
    begin
      puts "\nCreating a new bucket named '#{bucket_name}'...\n\n"
-     s3.create_bucket(bucket: bucket_name)
+     s3.create_bucket({
+       bucket: bucket_name,
+       create_bucket_configuration: {
+         location_constraint: region
+       }
+     })
    rescue Aws::S3::Errors::BucketAlreadyExists
      puts "Cannot create the bucket. " +
        "A bucket with the name '#{bucket_name}' already exists. Exiting."

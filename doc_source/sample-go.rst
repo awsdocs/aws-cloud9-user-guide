@@ -180,7 +180,7 @@ you must set up credentials management in your |env|. The |sdk-go| needs these c
          . ~/.bashrc
 
    #. Confirm that the :code:`GOPATH` environment variable is successfully set by running the :command:`echo
-   $GOPATH` command. If successful, :code:`/home/ec2-user/environment/go` should be output.
+      $GOPATH` command. If successful, :code:`/home/ec2-user/environment/go` should be output.
 
 .. topic:: To install the |sdk-go|
 
@@ -229,13 +229,13 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
      sess := session.Must(session.NewSessionWithOptions(session.Options{
        SharedConfigState: session.SharedConfigEnable,
      }))
-
+     region := "YOUR_REGION"
      svc := s3.New(sess, &aws.Config{
-       Region: aws.String("YOUR_REGION"),
+       Region: aws.String(region),
      })
 
      listMyBuckets(svc)
-     createMyBucket(svc, os.Args[1])
+     createMyBucket(svc, os.Args[1], region)
      listMyBuckets(svc)
      deleteMyBucket(svc, os.Args[1])
      listMyBuckets(svc)
@@ -259,12 +259,15 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    }
 
    // Create a bucket in this AWS Region.
-   func createMyBucket(svc *s3.S3, bucketName string) {
+   func createMyBucket(svc *s3.S3, bucketName string, region string) {
      fmt.Printf("\nCreating a new bucket named '" + bucketName + "'...\n\n")
 
      _, err := svc.CreateBucket(&s3.CreateBucketInput{
-       Bucket: aws.String(bucketName),
-     })
+      Bucket: aws.String(bucketName),
+      CreateBucketConfiguration: &s3.CreateBucketConfiguration{
+        LocationConstraint: aws.String(region),
+      },
+    })
 
      if err != nil {
        exitErrorf("Unable to create bucket, %v", err)

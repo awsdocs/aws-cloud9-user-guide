@@ -164,15 +164,22 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
 
    var AWS = require('aws-sdk'); // To set the AWS credentials and region.
    var async = require('async'); // To call AWS operations asynchronously.
+   var region = 'YOUR_REGION';
 
    AWS.config.update({
-     region: 'YOUR_REGION'
+     region: region
    });
 
    var s3 = new AWS.S3({apiVersion: '2006-03-01'});
 
    var bucket_name = process.argv[2];
-   var params = {Bucket: bucket_name};
+   var create_bucket_params = {
+     Bucket: bucket_name,
+     CreateBucketConfiguration: {
+       LocationConstraint: region
+     }
+   };
+   var delete_bucket_params = {Bucket: bucket_name};
 
    // List all of your available buckets in this AWS Region.
    function listMyBuckets(callback) {
@@ -195,7 +202,7 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    function createMyBucket(callback) {
      console.log('\nCreating a bucket named ' + bucket_name + '...\n');
 
-     s3.createBucket(params, function(err, data) {
+     s3.createBucket(create_bucket_params, function(err, data) {
        if (err) {
          console.log(err.code + ": " + err.message);
        }
@@ -208,7 +215,7 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    function deleteMyBucket(callback) {
      console.log('\nDeleting the bucket named ' + bucket_name + '...\n');
 
-     s3.deleteBucket(params, function(err, data) {
+     s3.deleteBucket(delete_bucket_params, function(err, data) {
        if (err) {
          console.log(err.code + ": " + err.message);
        }

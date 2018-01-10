@@ -1,3 +1,4 @@
+eifjccfvciuhdbchfggrcldbkkrhlrndvheelieckhfr
 .. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
@@ -184,7 +185,8 @@ you must set up credentials management in your |env|. The |sdk-cpp| needs these 
 
 .. topic:: To build the |sdk-cpp|
 
-   .. note:: This step could take up to one or more hours to complete, depending on the computing resources available to your |EC2| instance or your own server.
+   .. note:: This step could take up to one or more hours to complete, depending on the computing resources available to your |EC2| instance or your own server and 
+      how much of the |sdk-cpp| you choose to build.
 
    #. Create a folder to build the |sdk-cpp| into.
 
@@ -203,6 +205,12 @@ you must set up credentials management in your |env|. The |sdk-cpp| needs these 
       .. code-block:: sh
 
          cmake3 ../aws-sdk-cpp-master
+
+      .. note:: To build only the |S3| portion of the |sdk-cpp| and its dependencies, run this command instead:
+
+         .. code-block:: sh
+
+            cmake3 ../aws-sdk-cpp-master -DBUILD_ONLY="s3"
 
    #. Build the |sdk-cpp| into this folder.
 
@@ -234,7 +242,7 @@ Step 5: Add AWS SDK Code
 In this step, you add some more code, this time to interact with |s3| to create a bucket, list your available buckets, and then delete the bucket you just created. You
 will run this code later.
 
-#. In the |AC9IDE|, create a file with this content, and save the file with the name :file:`s3.cpp` at the root (:file:`/`) of your |env|.
+#. In the |AC9IDE|, create a file with this content, and save the file with the name :file:`s3-demo.cpp` at the root (:file:`/`) of your |env|.
 
    .. code-block:: cpp
 
@@ -391,7 +399,7 @@ Step 6: Build and Run the AWS SDK Code
 
    .. code-block:: sh
 
-      cmake -Daws-sdk-cpp_DIR=sdk_build .
+      cmake3 -Daws-sdk-cpp_DIR=sdk_build .
 
 #. Build your source code.
 

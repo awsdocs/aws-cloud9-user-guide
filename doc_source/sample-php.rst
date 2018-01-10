@@ -168,9 +168,9 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
      date_default_timezone_set('YOUR_TIME_ZONE');
 
      $bucketName = $argv[1];
-
+     $region = 'YOUR_REGION';
      $s3 = new Aws\S3\S3Client([
-       'region' => 'YOUR_REGION',
+       'region' => $region,
        'version' => '2006-03-01'
      ]);
 
@@ -195,7 +195,10 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
 
      try {
        $promise = $s3->createBucketAsync([
-         'Bucket' => $bucketName
+         'Bucket' => $bucketName,
+         'CreateBucketConfiguration' => [
+           'LocationConstraint' => $region
+         ]
        ]);
 
        $promise->wait();

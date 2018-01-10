@@ -51,11 +51,17 @@ In this step, you install Python, which is required to run this sample.
 
       sudo yum -y update
 
-#. Install Python by running the :command:`install` command.
+#. Install Python by running one or more of these :command:`install` commands.
 
    .. code-block:: sh
 
       sudo yum -y install python27 # Installs Python 2.7.
+      sudo yum -y install python36 # Installs Python 3.6.
+
+   .. note:: If you have Python 2 and 3 installed, and you want to use Python 3 but running the :command:`python --version` command outputs a version of Python 2, you can
+      use Python 3 in one or more of the following ways: 
+
+      * Instead of running  
 
    For more information, see `Download Python <https://www.python.org/downloads/>`_ on the Python website and `Installing Packages <https://packaging.python.org/installing/>`_
    in the :title:`Python Packaging User Guide`.
@@ -93,9 +99,11 @@ Step 3: Run the Code
 ====================
 
 #. In the |AC9IDE|, on the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
-#. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Python`.
+#. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Python 2` or :guilabel:`Python 3`, depending 
+   on which version of Python you want to use.
 
-   .. note:: If :guilabel:`Python` isn't available, you can create a custom runner for Python.
+   .. note:: If :guilabel:`Python 2` or :guilabel:`Python 3` isn't available, you can create a custom runner for the version of Python that is installed in 
+      your |env|.
 
       #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`New Runner`.
       #. On the :guilabel:`My Runner.run` tab, replace the tab's contents with this code.
@@ -111,6 +119,9 @@ Step 3: Run the Code
       #. Choose :menuselection:`File, Save As` on the menu bar, and save the file as :file:`Python.run` in the :file:`/.c9/runners` folder.
       #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Python`.
       #. Choose the :guilabel:`hello.py` tab to make it active.
+
+      To use a specific version of Python that is installed in your |env|, change :code:`python` to the path to the Python executable in the preceding custom runner 
+      definition (for example, :code:`/usr/bin/python27`, :code:`/usr/bin/python36`, or similar).
 
 #. For :guilabel:`Command`, type :kbd:`hello.py 5 9`. In the code, :code:`5` represents :code:`sys.argv[1]`,
    and :code:`9` represents :code:`sys.argv[2]`.
@@ -183,9 +194,10 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    import sys
    import botocore
 
+   region = 'YOUR_REGION'
    s3 = boto3.client(
      's3',
-     region_name = 'YOUR_REGION'
+     region_name = region
    )
 
    bucket_name = sys.argv[1]
@@ -206,7 +218,11 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    # Create a new bucket.
    try:
      print("\nCreating a new bucket named '" + bucket_name + "'...\n")
-     s3.create_bucket(Bucket = bucket_name)
+     s3.create_bucket(Bucket = bucket_name,
+       CreateBucketConfiguration = {
+         'LocationConstraint': region
+       }
+     )
    except botocore.exceptions.ClientError as e:
      if e.response['Error']['Code'] == 'BucketAlreadyExists':
        print("Cannot create the bucket. A bucket with the name '" +
@@ -230,7 +246,8 @@ Step 6: Run the AWS SDK Code
 ============================
 
 #. On the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
-#. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Python`.
+#. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Python 2` or :guilabel:`Python 3`, depending 
+   on which version of Python you want to use and is installed in your |env|.
 #. For :guilabel:`Command`, type :samp:`s3.py {YOUR_BUCKET_NAME}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create and then delete.
 
    .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
