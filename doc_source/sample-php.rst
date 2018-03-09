@@ -68,7 +68,7 @@ Step 2: Add Code
 ================
 
 In the |AC9IDE|, create a file with this content, and save the file with the name :file:`hello.php`.
-(To create a file, on the menu bar, choose :menuselection:`File, New File`. To save the file, choose :menuselection:`File, Save`.)
+(To create a file, on the menu bar, choose :menuselection:`File, New File`. To save the file, choose :menuselection:`File, Save`, and enter hello.php for :guilabel:`FileName`.)
 
 .. code-block:: php
 
