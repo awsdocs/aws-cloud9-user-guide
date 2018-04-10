@@ -494,7 +494,7 @@ Step 2.14: Preferences
 
 :dfn:`Preferences` include the following settings:
 
-* Settings for the current |env| only, such as such as whether to use soft tabs in the editor, the file types to ignore, and code completion behaviors for languages such as PHP and Python.
+* Settings for the current |env| only, such as whether to use soft tabs in the editor, the file types to ignore, and code completion behaviors for languages such as PHP and Python.
 * Your user settings across each of your environments, such as colors, fonts, and editor behaviors.
 * Your keybindings, such as which shortcut key combinations you prefer to use to work with files and the editor.
 * Which IDE plugins to load.
