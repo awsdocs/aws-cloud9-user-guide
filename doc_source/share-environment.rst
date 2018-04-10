@@ -88,7 +88,7 @@ A shared |env| in |AC9| offers three |memlong| access roles: :dfn:`owner`, :dfn:
 
   In the |AC9IDE|, |memro| members are displayed with :guilabel:`Read Only` access.
 
-Before an |IAM| user can become a |env| owner or |mem|, that user must meet one of the following criteria:
+Before an |IAM| user can become an |env| owner or |mem|, that user must meet one of the following criteria:
 
 * The user is an |IAM| administrator user in your AWS account. 
   For more information, see :IAM-ug:`Creating Your First IAM Admin User and Group <getting-started_create-admin-group>` in the |IAM-ug|.
@@ -314,7 +314,7 @@ Change the Access Role of an |memlongtitle|
 Remove Your User From a Shared |envtitle|
 =========================================
 
-.. note:: You cannot remove your user from a |env| if you are the |env| owner.
+.. note:: You cannot remove your user from an |env| if you are the |env| owner.
 
    Removing your user from a |mem| does not remove your user from |IAM|.
    
