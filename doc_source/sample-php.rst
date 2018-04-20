@@ -20,6 +20,10 @@ PHP Sample for |AC9long|
 
 This sample enables you to run some PHP scripts in an |envfirst|.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+
+* :ref:`sample-php-prereqs`
 * :ref:`sample-php-install`
 * :ref:`sample-php-code`
 * :ref:`sample-php-run`
@@ -28,12 +32,12 @@ This sample enables you to run some PHP scripts in an |envfirst|.
 * :ref:`sample-php-sdk-run`
 * :ref:`sample-php-clean-up`
 
-.. note::
+.. _sample-php-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 .. _sample-php-install:
 
@@ -68,7 +72,7 @@ Step 2: Add Code
 ================
 
 In the |AC9IDE|, create a file with this content, and save the file with the name :file:`hello.php`.
-(To create a file, on the menu bar, choose :menuselection:`File, New File`. To save the file, choose :menuselection:`File, Save`, and enter hello.php for :guilabel:`FileName`.)
+(To create a file, on the menu bar, choose :menuselection:`File, New File`. To save the file, choose :menuselection:`File, Save`, type :code:`hello.php` for :guilabel:`Filename`, and then choose :guilabel:`Save`.)
 
 .. code-block:: php
 
@@ -165,10 +169,17 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    <?php
      require './vendor/autoload.php';
 
-     date_default_timezone_set('YOUR_TIME_ZONE');
+     if ($argc < 4) {
+       exit("Usage: php s3.php <the time zone> <the bucket name> <the AWS Region to use>\n" .
+         "Example: php s3.php America/Los_Angeles my-test-bucket us-east-2");
+     }
+     
+     $timeZone = $argv[1];
+     $bucketName = $argv[2];
+     $region = $argv[3];
+     
+     date_default_timezone_set($timeZone);
 
-     $bucketName = $argv[1];
-     $region = 'YOUR_REGION';
      $s3 = new Aws\S3\S3Client([
        'region' => $region,
        'version' => '2006-03-01'
@@ -224,13 +235,6 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
      listMyBuckets($s3);
    ?>
 
-In the preceding code, replace these placeholders.
-
-* Replace :samp:`YOUR_TIME_ZONE` with your default time zone ID. For example, for the Pacific Time Zone, use :code:`America/Los_Angeles`.
-  For more IDs, see `List of Supported Timezones <http://php.net/manual/en/timezones.php>`_ on the PHP website.
-* Replace :samp:`YOUR_REGION` with the ID of an AWS Region. For example, for the US East (Ohio) Region, use :code:`us-east-2`.
-  For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
-
 .. _sample-php-sdk-run:
 
 Step 6: Run the AWS SDK Code
@@ -238,11 +242,15 @@ Step 6: Run the AWS SDK Code
 
 #. In the |AC9IDE|, on the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
 #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`PHP (cli)`.
-#. For :guilabel:`Command`, type :samp:`s3.php {YOUR-BUCKET-NAME}`, where :samp:`{YOUR-BUCKET-NAME}` is the name of the bucket you want to create and then delete.
+#. For :guilabel:`Command`, type :samp:`s3.php {YOUR_TIME_ZONE} {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where:
 
-   .. image:: images/ide-php-sdk.png
-      :width: 100%
-      :alt: Running the AWS SDK for PHP code in the AWS Cloud9 IDE
+   * :samp:`{YOUR_TIME_ZONE}` is your default time zone ID. For example, for the Pacific Time Zone, use :code:`America/Los_Angeles`.
+     For more IDs, see `List of Supported Timezones <http://php.net/manual/en/timezones.php>`_ on the PHP website.
+   * :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create and then delete.
+   * :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US East (Ohio) Region, 
+     use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|. 
+
+   .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
 
 #. Choose the :guilabel:`Run` button, and compare your output.
 

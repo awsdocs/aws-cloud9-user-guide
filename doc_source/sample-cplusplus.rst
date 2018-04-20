@@ -21,6 +21,11 @@ C++ Sample for |AC9long|
 
 This sample enables you to run some C++ code in an |envfirst|.
 
+
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+
+* :ref:`sample-cplusplus-prereqs`
 * :ref:`sample-cplusplus-install`
 * :ref:`sample-cplusplus-code`
 * :ref:`sample-cplusplus-run`
@@ -29,12 +34,12 @@ This sample enables you to run some C++ code in an |envfirst|.
 * :ref:`sample-cplusplus-sdk-run`
 * :ref:`sample-cplusplus-clean-up`
 
-.. note::
+.. _sample-cplusplus-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 .. _sample-cplusplus-install:
 
@@ -249,27 +254,79 @@ will run this code later.
       #include <aws/core/Aws.h>
       #include <aws/s3/S3Client.h>
       #include <aws/s3/model/Bucket.h>
+      #include <aws/s3/model/CreateBucketConfiguration.h>
       #include <aws/s3/model/CreateBucketRequest.h>
       #include <aws/s3/model/DeleteBucketRequest.h>
+      #include <string>
 
       bool ListMyBuckets(Aws::S3::S3Client s3_client);
-      bool CreateMyBucket(Aws::S3::S3Client s3_client, Aws::String bucket_name);
+      bool CreateMyBucket(Aws::S3::S3Client s3_client, Aws::String bucket_name, 
+        Aws::S3::Model::BucketLocationConstraint region);
       bool DeleteMyBucket(Aws::S3::S3Client s3_client, Aws::String bucket_name);
       void Cleanup(Aws::SDKOptions options);
 
       int main(int argc, char** argv) {
+
+        if (argc < 3) {
+          std::cout << "Usage: ./s3-demo <the bucket name> <the AWS Region to use>" << std::endl
+                    << "Example: ./s3-demo my-test-bucket us-west-1" << std::endl;
+          return false;
+        }
+
         Aws::String bucket_name = argv[1];
+        Aws::Client::ClientConfiguration client_configuration;
+        Aws::S3::Model::BucketLocationConstraint region;
+        
+        // Set the AWS Region to use, based on the user's AWS Region input ID.
+        if (strcmp(argv[2], "ap-northeast-1") == 0) {
+          client_configuration.region = Aws::Region::AP_NORTHEAST_1;
+          region = Aws::S3::Model::BucketLocationConstraint::ap_northeast_1;
+        } else if (strcmp(argv[2], "ap-northeast-2") == 0) {
+          client_configuration.region = Aws::Region::AP_NORTHEAST_2;
+          region = Aws::S3::Model::BucketLocationConstraint::ap_northeast_2;
+        } else if (strcmp(argv[2], "ap-south-1") == 0) {
+          client_configuration.region = Aws::Region::AP_SOUTH_1;
+          region = Aws::S3::Model::BucketLocationConstraint::ap_south_1;
+        } else if (strcmp(argv[2], "ap-southeast-1") == 0) {
+          client_configuration.region = Aws::Region::AP_SOUTHEAST_1;
+          region = Aws::S3::Model::BucketLocationConstraint::ap_southeast_1;
+        } else if (strcmp(argv[2], "ap-southeast-2") == 0) {
+          client_configuration.region = Aws::Region::AP_SOUTHEAST_2;
+          region = Aws::S3::Model::BucketLocationConstraint::ap_southeast_2;
+        } else if (strcmp(argv[2], "cn-north-1") == 0) {
+          client_configuration.region = Aws::Region::CN_NORTH_1;
+          region = Aws::S3::Model::BucketLocationConstraint::cn_north_1;
+        } else if (strcmp(argv[2], "eu-central-1") == 0) {
+          client_configuration.region = Aws::Region::EU_CENTRAL_1;
+          region = Aws::S3::Model::BucketLocationConstraint::eu_central_1;
+        } else if (strcmp(argv[2], "eu-west-1") == 0) {
+          client_configuration.region = Aws::Region::EU_WEST_1;
+          region = Aws::S3::Model::BucketLocationConstraint::eu_west_1;
+        } else if (strcmp(argv[2], "sa-east-1") == 0) {
+          client_configuration.region = Aws::Region::SA_EAST_1;
+          region = Aws::S3::Model::BucketLocationConstraint::sa_east_1;
+        } else if (strcmp(argv[2], "us-west-1") == 0) {
+          client_configuration.region = Aws::Region::US_WEST_1;
+          region = Aws::S3::Model::BucketLocationConstraint::us_west_1;
+        } else if (strcmp(argv[2], "us-west-2") == 0) {
+          client_configuration.region = Aws::Region::US_WEST_2;
+          region = Aws::S3::Model::BucketLocationConstraint::us_west_2;
+        } else {
+          std::cout << "Unrecognized AWS Region ID '" << argv[2] << "'" << std::endl;
+          return false;
+        }
+        
         Aws::SDKOptions options;
 
         Aws::InitAPI(options);
         {
-          Aws::S3::S3Client s3_client;
+          Aws::S3::S3Client s3_client(client_configuration);
 
           if (!ListMyBuckets(s3_client)) {
             Cleanup(options);
           }
 
-          if (!CreateMyBucket(s3_client, bucket_name)) {
+          if (!CreateMyBucket(s3_client, bucket_name, region)) {
             Cleanup(options);
           }
 
@@ -288,7 +345,7 @@ will run this code later.
         Cleanup(options);
       }
 
-      // List all of your available buckets in this AWS Region.
+      // List all of your available buckets.
       bool ListMyBuckets(Aws::S3::S3Client s3_client) {
         auto outcome = s3_client.ListBuckets();
 
@@ -306,7 +363,7 @@ will run this code later.
           return true;
         } else {
           std::cout << "ListBuckets error: "
-                    << outcome.GetError().GetExceptionName() << std::endl;
+                    << outcome.GetError().GetExceptionName() << std::endl
                     << outcome.GetError().GetMessage() << std::endl;
 
           return false;
@@ -314,13 +371,17 @@ will run this code later.
       }
 
       // Create a bucket in this AWS Region.
-      bool CreateMyBucket(Aws::S3::S3Client s3_client, Aws::String bucket_name) {
+      bool CreateMyBucket(Aws::S3::S3Client s3_client, Aws::String bucket_name, 
+          Aws::S3::Model::BucketLocationConstraint region) {
         std::cout << "Creating a new bucket named '"
                   << bucket_name
                   << "'..." << std::endl << std::endl;
 
+        Aws::S3::Model::CreateBucketConfiguration bucket_configuration;
+        bucket_configuration.WithLocationConstraint(region);
+
         Aws::S3::Model::CreateBucketRequest bucket_request;
-        bucket_request.WithBucket(bucket_name);
+        bucket_request.WithBucket(bucket_name).WithCreateBucketConfiguration(bucket_configuration);
 
         auto outcome = s3_client.CreateBucket(bucket_request);
 
@@ -409,7 +470,12 @@ Step 6: Build and Run the AWS SDK Code
 
 #. Run the code by choosing :menuselection:`Run, Run Configurations, New Run Configuration` on the menu bar.
 #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`C++`.
-#. For :guilabel:`Command`, type :samp:`s3-demo {YOUR-BUCKET-NAME}`, where :samp:`{YOUR-BUCKET-NAME}` is the name of the bucket you want to create and then delete.
+#. For :guilabel:`Command`, type :samp:`s3-demo {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create 
+   and then delete, and :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US West (N. California) Region, 
+   use :code:`us-west-1`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
+
+   .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
+
 #. Choose the :guilabel:`Run` button, and compare your output.
 
    .. code-block:: text

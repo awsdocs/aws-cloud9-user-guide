@@ -18,17 +18,83 @@ Document History for the |AC9-ug|
     :description:
         Lists the history of significant changes to the AWS Cloud9 User Guide. 
         
-Here is a list of significant changes to the |AC9-ug|.
+Here is a list of significant changes to the *AWS Cloud9 User Guide*.
 
-**Latest documentation update:** November 30, 2017
+**Latest documentation update:** April 19, 2018
 
 .. list-table::
-   :widths: 1 2 1
+   :widths: 2 3 2
    :header-rows: 1
 
    * - **Change**
      - **Description**
      - **Date Changed**
+   * - New topics
+     - Added new tutorials demonstrating how to create |LAM| functions with |AC9|. For more information, see the 
+       :ref:`AWS Lambda Tutorial <tutorial-lambda>` and :ref:`Advanced AWS Lambda Tutorial <tutorial-lambda-advanced>`.
+     - April 19, 2018
+   * - New topic
+     - Added information about how to restrict incoming traffic to just the IP address ranges that |AC9| uses to connect to hosts over SSH. 
+       For more information, see :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
+     - April 19, 2018
+   * - New content
+     - Added information about how to use the AWS Serverless Application Repository with |AC9|. For more information, see :ref:`lambda-functions-create-repo`.
+     - April 19, 2018
+   * - New content
+     - Added new troubleshooters for previewing applications and sharing running applications. For more information, see 
+       :ref:`troubleshooting-app-preview` and :ref:`troubleshooting-app-sharing`.
+     - April 19, 2018
+   * - New topic
+     - Added information about how to use the :guilabel:`File Revision History` pane in the |IDE|. For more information, see :ref:`Working with File Revisions <file-revisions>`.
+     - April 19, 2018
+   * - New content
+     - Added information about how to debug |LAM| functions that use Python. 
+       For more information, see :ref:`Debug the Local Version of a Lambda Function or Its Related API Gateway API <lambda-functions-debug>`.
+     - March 22, 2018
+   * - New content
+     - Added a new troubleshooter for opening |envfirstlongplural|. For more information, see :ref:`troubleshooting-env-loading`.
+     - March 19, 2018
+   * - New content
+     - Added a new troubleshooter for the |AC9| Installer. For more information, see :ref:`troubleshooting-ssh-installer`.
+     - March 19, 2018
+   * - New topic
+     - Added information about how to use |AC9| with |ACPlong|. 
+       For more information, see :ref:`Working with AWS CodePipeline <codepipeline-repos>`.
+     - February 13, 2018
+   * - New content
+     - Added information about how to share |envfirstplural| across AWS accounts. 
+       For more information, see :ref:`Invite an IAM User in Another Account to Your Environment <share-environment-invite-user-cross-account>`.
+     - February 5, 2018
+   * - New content
+     - Added information about how to use |AC9| with the aws-shell. 
+       For more information, see the :ref:`AWS CLI and aws-shell Sample <sample-aws-cli>`.
+     - January 19, 2018
+   * - GitHub availability
+     - This guide is now available on GitHub. You can also use GitHub to submit feedback and change requests for this guide's content. 
+       For more information, choose the :guilabel:`Edit on GitHub` icon in the guide's navigation bar, 
+       or see the `awsdocs/aws-cloud9-user-guide <https://github.com/awsdocs/aws-cloud9-user-guide>`_ repository on the GitHub website.
+     - January 10, 2018
+   * - Kindle format availability
+     - This guide is now available in Amazon Kindle format. 
+       For more information, choose the :guilabel:`Open Kindle` icon in the guide's navigation bar, 
+       or see `AWS Cloud9: User Guide Kindle Edition <https://www.amazon.com/AWS-Cloud9-Amazon-Web-Services-ebook/dp/B078XBZMWS>`_ on the Amazon website.
+     - January 2, 2018
+   * - New topic
+     - Added information about how to use |AC9| with |lightsaillong|. 
+       For more information, see :ref:`Working with Amazon Lightsail Instances <lightsail-instances>`.
+     - December 19, 2017
+   * - New topic
+     - Added descriptions of specific AWS settings for |envfirstplural|. 
+       For more information, see :ref:`Working with AWS Project and User Settings <settings-aws>`.
+     - December 7, 2017
+   * - New topics
+     - Added setup steps for using |AC9| with an AWS account root user. Added advanced setup steps for using |AC9| with teams.
+       For more information, see :ref:`Getting Started <get-started>`.
+     - December 5, 2017
+   * - New topic
+     - Expanded coverage of requirements for an |EC2| instance or your own server to connect to an |envfirstlongssh|. 
+       For more information, see :ref:`SSH Environment Host Requirements <ssh-settings>`.
+     - December 4, 2017
    * - Initial release
      - This is the initial release of the *AWS Cloud9 User Guide*.
      - November 30, 2017

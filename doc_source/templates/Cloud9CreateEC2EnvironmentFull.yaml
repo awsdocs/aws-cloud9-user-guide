@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Creates an AWS Cloud9 development environment, launches an Amazon EC2 instance running Amazon Linux, connects the new instance to the new environment, and clones the specified Git repository into the environment."
+Parameters:
+  Name:
+    Description: "A name for the new environment."
+    Type: "String"
+  Description:
+    Description: "A description for the new AWS Cloud9 development environment."
+    Type: "String"
+  Owner:
+    Description: "The existing Amazon Resource Name (ARN) of the new environment's owner (for example, 'arn:aws:iam::123456789012:user/MyDemoUser')."
+    Type: "String"
+  StopTime:
+    Description: "After all web browser sessions connected to the environment are closed, the number of minutes that must elapse before the Amazon EC2 instance can shut down (for example, '60')."
+    Type: "Number"
+  InstanceType:
+    Description: "The instance type of the new Amazon EC2 instance that AWS Cloud9 will launch for the development environment (for example, 't2.micro')."
+    Type: "String"
+    Default: "t2.micro"
+    AllowedValues:
+      - "t2.micro"
+      - "t2.small"
+      - "m4.large"
+      - "t2.nano"
+      - "c4.large"
+      - "t2.medium"
+      - "t2.large"
+      - "m4.xlarge"
+      - "t2.xlarge"
+      - "c4.xlarge"
+      - "c4.2xlarge"
+      - "m4.2xlarge"
+      - "t2.2xlarge"
+      - "c4.4xlarge"
+      - "m4.4xlarge"
+      - "c4.8xlarge"
+      - "m4.10xlarge"
+      - "m4.16xlarge"
+  Subnet:
+    Description: "The ID of the existing subnet in Amazon VPC for AWS Cloud9 to use to communicate with the new Amazon EC2 instance (for example, 'subnet-12345678')."
+    Type: "String"
+  CloneLocalPath:
+    Description: "The directory within the new AWS Cloud9 development environment's file system into which AWS Cloud9 will clone the Git repository that contains the source code (for example, '/my-repository-name' would clone the repository into the '/home/ec2-user/environment/my-repository-name' directory)."
+    Type: "String"
+  CloneUrl:
+    Description: "The clone URL for the Git repository that contains source code for AWS Cloud9 to clone into the new environment (for example, 'https://git-codecommit.us-east-2.amazonaws.com/v1/repos/my-repository-name')."
+    Type: "String"
+Resources:  
+  Environment:
+    Type: "AWS::Cloud9::EnvironmentEC2"
+    Properties:
+      Repositories:
+        -
+          PathComponent: !Ref CloneLocalPath
+          RepositoryUrl: !Ref CloneUrl
+      OwnerArn: !Ref Owner
+      Description: !Ref Description
+      AutomaticStopTimeMinutes: !Ref StopTime
+      InstanceType: !Ref InstanceType
+      Name: !Ref Name
+      SubnetId: !Ref Subnet

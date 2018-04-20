@@ -76,9 +76,9 @@ release = '1.0'
 
 forum_id = '268'
 
-# Whether to build a Kindle version of the content. 
+# Whether to build a Kindle version of the content (and, if so, the Kindle ASIN). 
 # Comment out the next line to not build a Kindle version.
-build_mobi = True 
+build_mobi = 'B078XBZMWS' 
 
 #
 # Extra Navlinks
@@ -97,7 +97,7 @@ extra_navlinks = [
 
 build_html = True
 build_pdf = True #Or False if you don't build a pdf
-build_mobi = True #Or the Kindle ASIN if you need a Kindle build
+# build_mobi = True #Or the Kindle ASIN if you need a Kindle build
 
 # Route customer feedback internally to AWS, using the following SIM folder ID.
 feedback_folder_id = 'ea85bca2-658d-40f4-900f-65193653578a'
@@ -127,6 +127,7 @@ extlinks['api-gateway-dev-guide'] = ('https://docs.aws.amazon.com/apigateway/lat
 extlinks['aws-gen-ref'] = ('https://docs.aws.amazon.com/general/latest/gr/%s', '')
 extlinks['cli-user-guide'] = ('https://docs.aws.amazon.com/cli/latest/userguide/%s', '')
 extlinks['codecommit-user-guide'] = ('https://docs.aws.amazon.com/codecommit/latest/userguide/%s', '')
+extlinks['codepipeline-user-guide'] = ('https://docs.aws.amazon.com/codepipeline/latest/userguide/%s', '')
 extlinks['codestar-user-guide'] = ('https://docs.aws.amazon.com/codestar/latest/userguide/%s', '')
 extlinks['console-getting-started'] = ('https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/%s', '')
 extlinks['dynamodb-cli-ref'] = ('https://docs.aws.amazon.com/cli/latest/reference/dynamodb/%s', '')
@@ -135,7 +136,13 @@ extlinks['ec2-user-guide'] = ('https://docs.aws.amazon.com/AWSEC2/latest/UserGui
 extlinks['iam-user-guide'] = ('https://docs.aws.amazon.com/IAM/latest/UserGuide/%s', '')
 extlinks['lambda-dev-guide'] = ('https://docs.aws.amazon.com/lambda/latest/dg/%s', '')
 extlinks['lightsail-docs'] = ('https://lightsail.aws.amazon.com/ls/docs/%s', '')
+extlinks['s3-getting-started-guide'] = ('https://docs.aws.amazon.com/AmazonS3/latest/gsg/%s', '')
+extlinks['sdk-for-go-api-ref'] = ('https://docs.aws.amazon.com/sdk-for-go/api/%s', '')
 extlinks['sdk-for-go-dev-guide-v1'] = ('https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/%s', '')
+extlinks['sdk-for-javascript-api-ref'] = ('https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/%s', '')
 extlinks['sdk-for-javascript-dev-guide-v2'] = ('https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/%s', '')
+extlinks['sdk-for-php-api-ref'] = ("https://docs.aws.amazon.com/aws-sdk-php/v3/api/%s", '')
+extlinks['sdk-for-python-api-ref'] = ("https://boto3.readthedocs.io/en/latest/reference/%s", '')
+extlinks['sdk-for-ruby-api-ref'] = ("https://docs.aws.amazon.com/sdk-for-ruby/v3/api/%s", '')
 extlinks['sdk-for-ruby-dev-guide-v3'] = ("https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/%s", '')
 extlinks['vpc-user-guide'] = ('https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/%s', '')

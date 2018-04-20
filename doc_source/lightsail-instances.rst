@@ -37,7 +37,7 @@ In this topic, you create and set up a Linux-based |lightsail| instance that is 
    To create and set up a more advanced solution that includes a toolchain with the |AC9IDE|, source control, build, deployment, virtual servers or serverless resources, and more,
    skip the rest of this topic, and see :ref:`Working with AWS CodeStar Projects <codestar-projects>` instead.
 
-   To use the |AC9IDE| to work with an |EC2| instance running Amazon Linux that contains no sample code, skip the rest of this topic, and see the :ref:`Tutorial <tutorial>` instead.
+   To use the |AC9IDE| to work with an |EC2| instance running Amazon Linux that contains no sample code, skip the rest of this topic, and see the :ref:`IDE Tutorial <tutorial>` instead.
 
 * :ref:`lightsail-instances-create`
 * :ref:`lightsail-instances-setup`
@@ -86,7 +86,7 @@ The |lightsail| console enables you to back up, reboot, stop, or delete the inst
 
       To learn about the available choices, see :lightsail-docs:`Choosing an Amazon Lightsail instance image <getting-started/article/compare-options-choose-lightsail-instance-image>` on the |lightsail| website.
 
-#. For :guilabel:`Choose your instance plan`, choose a plan, or leave the selected default plan.
+#. For :guilabel:`Choose your instance plan`, choose a plan, or leave the selected default plan.        
 #. For :guilabel:`Name your instance`, type a name for the instance, or leave the suggested default name.
 #. For the number of instances, type the number of instances you want to create, or leave the default of a single instance (:guilabel:`x 1`).
 #. Choose :guilabel:`Create`.
@@ -123,16 +123,23 @@ In this step, you connect to the running instance and then set it up so that |AC
 #. Check to see if Node.js is installed, and if it is, check that the version is 0.6.16 or
    later. To check the version, run the command :command:`node --version`, and note the
    version number that appears. If no version number appears, or the version is not 0.6.16 or later,
-   install Node.js on the instance by running the command :command:`sudo apt-get install node`.
+   we recommend you use Node Version Manager (nvm) to install Node.js on the instance. 
+   
+   To do this, run the following commands one at a time, in the following order, to update the instance, install Node Version Manager (nvm) on the instance, 
+   activate nvm on the instance, and then install the latest version of Node.js on the instance.
 
-   If you install Node.js, run the command :command:`node --version` again. If no version appears, you
-   might need to install Node.js in a different way. For possible solutions, see one of the following:
+   .. code-block:: sh
 
-   * :ref:`sample-nodejs-install` in the :title:`Node.js Sample`
-   * `Installing Node.js via package manager <https://nodejs.org/en/download/package-manager/>`_ on the Node.js website
-   * `Node Version Manager <http://nvm.sh>`_ on GitHub
+      sudo apt-get update
+      curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+      . ~/.bashrc
+      nvm install node
 
 #. Run the command :command:`which node`, and note the value that appears. You will need it later.
+
+   .. note:: If the output of the command :command:`which node` is something like :code:`/usr/sbin/node`, |AC9| won't be able to find Node.js in that 
+      path. Instead, use nvm to install Node.js, as described in the previous step in this procedure. Then run the command :code:`which node` again and 
+      note the new value that appears.
 
 .. _lightsail-instances-environment:
 
@@ -208,7 +215,7 @@ Now that the |IDE| appears for the new |env|, you can use the terminal session i
 a rich code editing experience with support for several programming languages and runtime debuggers, as well as color themes,
 shortcut keybindings, programming language-specific syntax coloring and code formatting, and more.
 
-To learn how to use the |IDE|, see :ref:`Tour the IDE <tutorial-tour-ide>` in the *Tutorial*.
+To learn how to use the |IDE|, see :ref:`Tour the IDE <tutorial-tour-ide>` in the *IDE Tutorial*.
 
 To learn how to change the code on your instance, we recommend the following resources.
 

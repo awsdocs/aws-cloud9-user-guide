@@ -22,6 +22,10 @@ This sample enables you to set up an |envfirst| to interact with a remote code r
 a source code control service that enables you to privately store and manage Git repositories in the AWS Cloud.
 For more information about |ACC|, see the |ACC-ug|_.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |ACC|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `AWS CodeCommit Pricing <https://aws.amazon.com/codecommit/pricing/>`_.
+
+* :ref:`sample-codecommit-prereqs`
 * :ref:`sample-codecommit-permissions`
 * :ref:`sample-codecommit-create-repo`
 * :ref:`sample-codecommit-connect-repo`
@@ -29,19 +33,26 @@ For more information about |ACC|, see the |ACC-ug|_.
 * :ref:`sample-codecommit-add-files`
 * :ref:`sample-codecommit-clean-up`
 
-.. note::
+.. _sample-codecommit-prereqs:
 
-   .. include:: _sample-prereqs-cc.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |ACC|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `AWS CodeCommit Pricing <https://aws.amazon.com/codecommit/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 .. _sample-codecommit-permissions:
 
-Step 1: Set Up Your |IAM| Group with Required Access permissions
+Step 1: Set Up Your |IAM| Group with Required Access Permissions
 ================================================================
 
 If your AWS credentials are associated with an |IAM| administrator user in your AWS account, and you want to use that user to work with |ACC|, skip ahead to :ref:`sample-codecommit-create-repo`.
+
+You can complete this step using the :ref:`AWS Management Console <sample-codecommit-permissions-console>` or the :ref:`AWS Command Line Interface (AWS CLI) <sample-codecommit-permissions-cli>`.
+
+.. _sample-codecommit-permissions-console:
+
+Set Up Your |IAM| Group with Required Access Permissions Using the Console
+--------------------------------------------------------------------------
 
 #. Sign in to the AWS Management Console, if you are not already signed in.
 
@@ -65,6 +76,28 @@ If your AWS credentials are associated with an |IAM| administrator user in your 
 To see the list of access permissions that these AWS managed policies give to a group, see 
 :codecommit-user-guide:`AWS Managed (Predefined) Policies for AWS CodeCommit <auth-and-access-control-iam-identity-based-access-control.html#managed-policies>` in the |ACC-ug|.
 
+Skip ahead to :ref:`sample-codecommit-create-repo`.
+
+.. _sample-codecommit-permissions-cli:
+
+Set Up Your |IAM| Group with Required Access Permissions Using the |cli|
+------------------------------------------------------------------------
+
+Run the IAM :code:`attach-group-policy` command, specifying the group's name and the Amazon Resource Name (ARN) of the AWS managed policy that describes the required access permissions, for example:
+
+.. code-block:: sh
+
+   aws iam attach-group-policy --group-name GROUP_NAME --policy-arn POLICY_ARN
+
+In the preceding command, replace :code:`GROUP_NAME` with the name of the group. Replace :code:`POLICY_ARN` with the ARN of the AWS managed policy, as follows:
+
+* :code:`arn:aws:iam::aws:policy/AWSCodeCommitPowerUser` for access to all of the functionality of |ACC| and repository-related resources, 
+  except it does not allow deletion of |ACC| repositories or create or delete repository-related resources in other AWS services, such as |CWElong|.
+* :code:`arn:aws:iam::aws:policy/AWSCodeCommitFullAccess` for full control over |ACC| repositories and related resources in the AWS account, including the ability to delete repositories.
+
+To see the list of access permissions that these AWS managed policies give to a group, see 
+:codecommit-user-guide:`AWS Managed (Predefined) Policies for AWS CodeCommit <auth-and-access-control-iam-identity-based-access-control.html#managed-policies>` in the |ACC-ug|. 
+
 .. _sample-codecommit-create-repo:
 
 Step 2: Create a Repository in |ACC|
@@ -74,7 +107,12 @@ In this step, you create a remote code repository in |ACC| by using the |ACC| co
 
 If you already have an |ACC| repository, skip ahead to :ref:`sample-codecommit-connect-repo`.
 
-.. topic:: To create the repository
+You can complete this step using the :ref:`AWS Management Console <sample-codecommit-create-repo-console>` or the :ref:`AWS Command Line Interface (AWS CLI) <sample-codecommit-create-repo-cli>`.
+
+.. _sample-codecommit-create-repo-console:
+
+Create a Repository in |ACC| Using the Console
+----------------------------------------------
 
    #. If you are signed in to the AWS Management Console as an |IAM| administrator user from the previous step, and you do not want to use the |IAM| administrator user to create 
       the repository, sign out of the AWS Management Console.
@@ -87,6 +125,24 @@ If you already have an |ACC| repository, skip ahead to :ref:`sample-codecommit-c
    #. Choose :guilabel:`Create repository`. A :guilabel:`Connect to your repository` pane is displayed.
       Choose :guilabel:`Close`, as you will connect to
       your repository in a different way later in this topic.
+
+Skip ahead to :ref:`sample-codecommit-connect-repo`.
+
+.. _sample-codecommit-create-repo-cli:
+
+Create a Repository in |ACC| Using the |cli|
+--------------------------------------------
+
+Run the AWS CodeCommit :code:`create-repository` command, specifying the repository's name, an optional description, and the AWS Region to create the repository in, for example:
+
+.. code-block:: sh
+
+   aws codecommit create-repository --repository-name MyDemoCloud9Repo --repository-description "This is a demonstration repository for the AWS Cloud9 sample." --region REGION_ID
+
+In the preceding command, replace :code:`REGION_ID` with the ID of the AWS Region to create the repository in. For a list of supported regions, see 
+:aws-gen-ref:`AWS CodeCommit <rande.html#codecommit_region>` in the |AWS-gr|.
+
+If you choose to use a different repository name, substitute it throughout this sample.
 
 .. _sample-codecommit-connect-repo:
 

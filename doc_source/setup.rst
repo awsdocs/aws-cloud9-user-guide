@@ -91,68 +91,157 @@ If you already have an |IAM| group and user, skip ahead to :ref:`setup-give-user
 .. note:: Your organization might already have an |IAM| group and user set up for you. If your organization has an AWS account
    administrator, check with that person before starting the following procedures.
 
-To watch a 9-minute video related to the following procedures, see `How do I set up an IAM user and sign in to the AWS Management Console using IAM credentials <https://www.youtube.com/watch?v=XMi5fXL2Hes>`_ on the YouTube website.
+You can complete these tasks using the :ref:`AWS Management Console <setup-create-iam-resources-group-console>` or the :ref:`AWS Command Line Interface (AWS CLI) <setup-create-iam-resources-group-cli>`.
 
-.. topic:: Step 2.1: Create an |IAM| Group
+To watch a 9-minute video related to the following console procedures, see `How do I set up an IAM user and sign in to the AWS Management Console using IAM credentials <https://www.youtube.com/watch?v=XMi5fXL2Hes>`_ on the YouTube website.
 
-   #. Sign in to the AWS Management Console, if you are not already signed in.
+.. _setup-create-iam-resources-group-console:
 
-      We recommend you sign in using credentials for an |IAM| administrator user in your AWS account. An |IAM| administrator user has similar AWS access permissions to
-      an AWS account root user and avoids some of the associated security risks. If you cannot
-      sign in as an |IAM| administrator user, check with your AWS account administrator. For more information, see the following in the |IAM-ug|:
+Step 2.1: Create an |IAM| Group with the Console
+------------------------------------------------
 
-      * :IAM-ug:`Creating Your First IAM Admin User and Group <getting-started_create-admin-group>`
-      * :iam-user-guide:`The IAM User Sign-in Page <console.html#user-sign-in-page>`
+#. Sign in to the AWS Management Console, if you are not already signed in.
 
-   #. Open the |IAM| console. To do this, in the console's navigation bar, choose :guilabel:`Services`. Then choose :guilabel:`IAM`.
-   #. In the |IAM| console's navigation pane, choose :guilabel:`Groups`.
-   #. Choose :guilabel:`Create New Group`.
-   #. On the :guilabel:`Set Group Name` page, for :guilabel:`Group Name`, type a name for the new group.
-   #. Choose :guilabel:`Next Step`.
-   #. On the :guilabel:`Attach Policy` page, choose :guilabel:`Next Step` without attaching any policies. (You will attach a policy in :ref:`setup-give-user-access`.)
-   #. Choose :guilabel:`Create Group`.
+   We recommend you sign in using credentials for an |IAM| administrator user in your AWS account. An |IAM| administrator user has similar AWS access permissions to
+   an AWS account root user and avoids some of the associated security risks. If you cannot
+   sign in as an |IAM| administrator user, check with your AWS account administrator. For more information, see the following in the |IAM-ug|:
 
-      .. note:: We recommend that you create a separate |AC9| users group and |AC9| administrators group.
-         This AWS security best practice can help you better control, track, 
-         and troubleshoot issues with AWS resource access.
+   * :IAM-ug:`Creating Your First IAM Admin User and Group <getting-started_create-admin-group>`
+   * :iam-user-guide:`The IAM User Sign-in Page <console.html#user-sign-in-page>`
 
-.. topic:: Step 2.2: Create an |IAM| User, and Add the User to the Group
+#. Open the |IAM| console. To do this, in the console's navigation bar, choose :guilabel:`Services`. Then choose :guilabel:`IAM`.
+#. In the |IAM| console's navigation pane, choose :guilabel:`Groups`.
+#. Choose :guilabel:`Create New Group`.
+#. On the :guilabel:`Set Group Name` page, for :guilabel:`Group Name`, type a name for the new group.
+#. Choose :guilabel:`Next Step`.
+#. On the :guilabel:`Attach Policy` page, choose :guilabel:`Next Step` without attaching any policies. (You will attach a policy in :ref:`setup-give-user-access`.)
+#. Choose :guilabel:`Create Group`.
 
-   #. With the |IAM| console open from the previous procedure, in the navigation pane, choose :guilabel:`Users`.
-   #. Choose :guilabel:`Add user`.
-   #. On the :guilabel:`Details` page, for :guilabel:`User name`, type a name for the new user.
+   .. note:: We recommend that you create a separate |AC9| users group and |AC9| administrators group.
+      This AWS security best practice can help you better control, track, 
+      and troubleshoot issues with AWS resource access.
 
-      .. note:: You can create multiple users at the same time by choosing :guilabel:`Add another user`. The other settings in this procedure apply to each of these new users.
+Skip ahead to :ref:`setup-create-iam-resources-user-console`.
 
-   #. Select :guilabel:`Programmatic access` and :guilabel:`AWS Management Console access`. This allows the new user to use the AWS API, |CLI|, AWS SDKs, other AWS development tools, and AWS service consoles.
-   #. Leave the default choice of :guilabel:`Autogenerated password`, which creates a random password for the new user to sign in to the console. Or choose :guilabel:`Custom password`
-      and type a specific password for the new user.
-   #. Leave the default choice of :guilabel:`Require password reset`, which allows the new user to change their password after they sign in to the console for the first time.
-   #. Choose :guilabel:`Next: Permissions`.
-   #. On the :guilabel:`Permissions` page, leave the default choice of :guilabel:`Add user to group` (or :guilabel:`Add users to group` for multiple users).
-   #. In the list of groups, select the box (not the name) next to the group you want to add the user to.
-   #. Choose :guilabel:`Next: Review`. (You will set permissions in :ref:`setup-give-user-access`.)
-   #. On the :guilabel:`Review` page, choose :guilabel:`Create user` (or :guilabel:`Create users` for multiple users).
-   #. On the :guilabel:`Complete` page, do one of the following:
+.. _setup-create-iam-resources-group-cli:
 
-      * Next to each new user, choose :guilabel:`Send email`, and follow the on-screen directions to email the new user their console sign in URL and user name. Then communicate to
-        each new user their console sign in password, AWS access key ID, and AWS secret access key separately.
-      * Choose :guilabel:`Download .csv`. Then communicate to each new user their console sign in URL, console sign in password, AWS access key ID, and AWS secret access key that is in the downloaded file.
-      * Next to each new user, choose :guilabel:`Show` for both :guilabel:`Secret access key` and :guilabel:`Password`. Then communicate to each new user their console sign in URL, console sign in
-        password, AWS access key ID, and AWS secret access key.
+Step 2.1: Create an |IAM| Group with the |CLI|
+----------------------------------------------
 
-      .. note:: If you do not choose :guilabel:`Download .csv`, this is the only time you can view the new user's AWS secret access key and console sign in
-         password. To generate a new AWS secret access key or console sign in password for the new user, see the following in the |IAM-ug|:
+#. Install and configure the |CLI|, if you have not done so already. To do this, see the following in the |cli-ug|:
 
-         * :iam-user-guide:`Creating, Modifying, and Viewing Access Keys (Console) <id_credentials_access-keys.html#Using_CreateAccessKey>`
-         * :iam-user-guide:`Creating, Changing, or Deleting an IAM User Password (Console) <id_credentials_passwords_admin-change-user.html#id_credentials_passwords_admin-change-user_console>`
+   * :cli-ug:`Installing the AWS Command Line Interface <installing>`
+   * :cli-user-guide:`Quick Configuration <cli-chap-getting-started.html#cli-quick-configuration>`
+   
+   We recommend you configure the |CLI| using credentials for an |IAM| administrator user in your AWS account. An |IAM| administrator user has similar AWS access permissions to
+   an AWS account root user and avoids some of the associated security risks. If you cannot
+   configure the |CLI| as an |IAM| administrator user, check with your AWS account administrator. For more information, see the following in the |IAM-ug|:
+
+   * :IAM-ug:`Creating Your First IAM Admin User and Group <getting-started_create-admin-group>`
+   * :iam-user-guide:`The IAM User Sign-in Page <console.html#user-sign-in-page>`
+
+#. Run the IAM :code:`create-group` command, specifying the new group's name, as follows:
+
+   .. code-block:: sh
+
+      aws iam create-group --group-name MyCloud9Group
+
+   In the preceding command, you can replace :code:`MyCloud9Group` with a different name. If you do, substitute it throughout the rest of this topic's examples.
+
+   .. note:: We recommend that you create a separate |AC9| users group and |AC9| administrators group.
+      This AWS security best practice can help you better control, track, 
+      and troubleshoot issues with AWS resource access.
+
+Skip ahead to :ref:`setup-create-iam-resources-user-cli`.
+
+.. _setup-create-iam-resources-user-console:
+
+Step 2.2: Create an |IAM| User and Add the User to the Group with the Console
+-----------------------------------------------------------------------------
+
+#. With the |IAM| console open from the previous procedure, in the navigation pane, choose :guilabel:`Users`.
+#. Choose :guilabel:`Add user`.
+#. On the :guilabel:`Details` page, for :guilabel:`User name`, type a name for the new user.
+
+   .. note:: You can create multiple users at the same time by choosing :guilabel:`Add another user`. The other settings in this procedure apply to each of these new users.
+
+#. Select :guilabel:`Programmatic access` and :guilabel:`AWS Management Console access`. This allows the new user to use the AWS API, |CLI|, aws-shell, AWS SDKs, other AWS development tools, and AWS service consoles.
+#. Leave the default choice of :guilabel:`Autogenerated password`, which creates a random password for the new user to sign in to the console. Or choose :guilabel:`Custom password`
+   and type a specific password for the new user.
+#. Leave the default choice of :guilabel:`Require password reset`, which prompts the new user to change their password after they sign in to the console for the first time.
+#. Choose :guilabel:`Next: Permissions`.
+#. On the :guilabel:`Permissions` page, leave the default choice of :guilabel:`Add user to group` (or :guilabel:`Add users to group` for multiple users).
+#. In the list of groups, select the box (not the name) next to the group you want to add the user to.
+#. Choose :guilabel:`Next: Review`. (You will set permissions in :ref:`setup-give-user-access`.)
+#. On the :guilabel:`Review` page, choose :guilabel:`Create user` (or :guilabel:`Create users` for multiple users).
+#. On the :guilabel:`Complete` page, do one of the following:
+
+   * Next to each new user, choose :guilabel:`Send email`, and follow the on-screen directions to email the new user their console sign in URL and user name. Then communicate to
+     each new user their console sign in password, AWS access key ID, and AWS secret access key separately.
+   * Choose :guilabel:`Download .csv`. Then communicate to each new user their console sign in URL, console sign in password, AWS access key ID, and AWS secret access key that is in the downloaded file.
+   * Next to each new user, choose :guilabel:`Show` for both :guilabel:`Secret access key` and :guilabel:`Password`. Then communicate to each new user their console sign in URL, console sign in
+     password, AWS access key ID, and AWS secret access key.
+
+   .. note:: If you do not choose :guilabel:`Download .csv`, this is the only time you can view the new user's AWS secret access key and console sign in
+      password. To generate a new AWS secret access key or console sign in password for the new user, see the following in the |IAM-ug|:
+
+      * :iam-user-guide:`Creating, Modifying, and Viewing Access Keys (Console) <id_credentials_access-keys.html#Using_CreateAccessKey>`
+      * :iam-user-guide:`Creating, Changing, or Deleting an IAM User Password (Console) <id_credentials_passwords_admin-change-user.html#id_credentials_passwords_admin-change-user_console>`
+
+Skip ahead to :ref:`setup-give-user-access`.
+
+.. _setup-create-iam-resources-user-cli:
+
+Step 2.2: Create an |IAM| User and Add the User to the Group with the |CLI|
+---------------------------------------------------------------------------
+
+#. Run the IAM :code:`create-user` command to create the user, specifying the new user's name, as follows:
+
+   .. code-block:: sh
+
+      aws iam create-user --user-name MyCloud9User
+
+   In the preceding command, you can replace :code:`MyCloud9User` with a different name. If you do, substitute it throughout the rest of this topic's examples.
+
+#. Run the IAM :code:`create-login-profile` command to create a new console sign in password for the user, specifying the user's name and 
+   initial sign in password, as follows. After the user signs in, AWS asks the user to change their sign in password.
+
+   .. code-block:: sh
+   
+      aws iam create-login-profile --user-name MyCloud9User --password MyC10ud9Us3r! --password-reset-required
+
+   In the preceding command, we recommend you replace :code:`MyC10ud9Us3r!` with a different password.
+
+   To generate a replacement console sign in password for the user later if needed, see 
+   :iam-user-guide:`Creating, Changing, or Deleting an IAM User Password (API, CLI, PowerShell) <id_credentials_passwords_admin-change-user.html#Using_ManagingPasswordsCLIAPI>` 
+   in the |IAM-ug|.
+
+#. Run the IAM :code:`create-access-key` command to create a new AWS access key and corresponding AWS secret access key for the user.
+
+   .. code-block:: sh
+   
+      aws iam create-access-key --user-name MyCloud9User
+
+   Make a note of the :code:`AccessKeyId` and :code:`SecretAccessKey` values that are displayed. 
+   After you run the IAM :code:`create-access-key` command, this is the only time you can view the user's AWS secret access key. 
+   To generate a new AWS secret access key for the user later if needed, see 
+   :iam-user-guide:`Creating, Modifying, and Viewing Access Keys (API, CLI, PowerShell) <id_credentials_access-keys.html#Using_CreateAccessKey_CLIAPI>` 
+   in the |IAM-ug|.
+
+#. Run the IAM :code:`add-user-to-group` command to add the user to the group, specifying the group's and user's names, as follows:
+
+   .. code-block:: sh
+
+      aws iam add-user-to-group --group-name MyCloud9Group --user-name MyCloud9User
+
+#. Communicate to the user their console sign in URL, initial console sign in password, AWS access key ID, and AWS secret access key.
 
 .. _setup-give-user-access:
 
 Step 3: Add |AC9| Access Permissions to the Group
 =================================================
 
-By default, most |IAM| groups and users do not have access to |AC9|. (An exception is |IAM| groups and |IAM| administrator users, which have access to all AWS services in their AWS account by default.)
+By default, most |IAM| groups and users do not have access to |AC9|. (An exception is |IAM| administrator groups and |IAM| administrator users, which have access to all AWS services in their AWS account by default.)
 In this step, you use the |IAM| console to add |AC9| access permissions directly to an |IAM| group to which one or more users belong, so that you can ensure
 those users can access |AC9|.
 
@@ -161,6 +250,13 @@ skip ahead to :ref:`setup-sign-in-ide`.
 
 .. note:: Your organization might already have a group set up for you with the appropriate access permissions.
    If your organization has an AWS account administrator, check with that person before starting the following procedure.
+
+You can complete this task using the :ref:`AWS Management Console <setup-give-user-access-console>` or the :ref:`AWS CLI <setup-give-user-access-cli>`.
+
+.. _setup-give-user-access-console:
+
+Add |AC9| Access Permissions to the Group with the Console
+----------------------------------------------------------
 
 #. Sign in to the AWS Management Console, if you are not already signed in.
 
@@ -198,6 +294,49 @@ skip ahead to :ref:`setup-sign-in-ide`.
 
 To see the list of access permissions that these AWS managed policies give to a group, see :ref:`AWS Managed (Predefined) Policies <auth-and-access-control-managed-policies>`.
 
+Skip ahead to :ref:`setup-sign-in-ide`.
+
+.. _setup-give-user-access-cli:
+
+Add |AC9| Access Permissions to the Group with the |CLI|
+--------------------------------------------------------
+
+#. Decide whether you want to add |AC9| user or |AC9| administrator access permissions to the group. These permissions will apply to each user in the group.
+
+   |AC9| user access permissions allow each user in the group to do the following things within their AWS account:
+
+   * Create their own |envfirstplural|.
+   * Get information about their own |envplural|.
+   * Change the settings for their own |envplural|.
+
+   |AC9| administrator access permissions allow each user in the group to do additional things within their AWS account, such as:
+
+      * Create |envplural| for themselves or others.
+      * Get information about |envplural| for themselves or others.
+      * Delete |envplural| for themselves or others.
+      * Change the settings of |envplural| for themselves or others.
+
+   .. note:: We recommend that you add only a limited number of users to the |AC9| administrators group.
+      This AWS security best practice can help you better control, track,
+      and troubleshoot issues with AWS resource access.
+
+#. Run the IAM :code:`attach-group-policy` command, specifying the group's name and the Amazon Resource Name (ARN) for the |AC9| access permissions policy 
+   to add, as follows:
+
+   For |AC9| user access permissions:
+
+   .. code-block:: sh
+
+      aws iam attach-group-policy --group-name MyCloud9Group --policy-arn arn:aws:iam::aws:policy/AWSCloud9User
+
+   For |AC9| administrator access permissions:
+   
+   .. code-block:: sh
+
+      aws iam attach-group-policy --group-name MyCloud9Group --policy-arn arn:aws:iam::aws:policy/AWSCloud9Administrator
+
+To see the list of access permissions that these AWS managed policies give to a group, see :ref:`AWS Managed (Predefined) Policies <auth-and-access-control-managed-policies>`.
+
 .. _setup-sign-in-ide:
 
 Step 4: Sign in to the |AC9| Console
@@ -214,4 +353,4 @@ After you complete the previous steps in this topic, you are ready to sign in to
 #. If prompted, type the user name and password of the |IAM| user you created or identified earlier, and then choose :guilabel:`Sign In`.
 #. If prompted, follow the on-screen directions to change your user's initial sign-in password. Save your new sign-in password in a secure location.
 
-You have now successfully signed in, and the |AC9| console is displayed. You can begin experimenting with |AC9| by following the steps in the :doc:`Tutorial <tutorial>`.
+You have now successfully signed in, and the |AC9| console is displayed. You can begin experimenting with |AC9| by following the steps in the :doc:`IDE Tutorial <tutorial>`.

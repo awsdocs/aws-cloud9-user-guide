@@ -26,27 +26,40 @@ To create an |envfirstlong|, follow one of these sets of procedures, depending o
 
    * - **Usage pattern**
      - **Follow these procedures**
-   * - I want |AC9| to create a development |env|, launch a new |EC2| instance running Amazon Linux with no sample code, connect the |env| to the new instance, and then open the |AC9IDE|.
+   * - I want |AC9| to create a development |env|, launch a new |EC2| instance running Amazon Linux with no sample code, 
+       connect the |env| to the new instance, and then open the |AC9IDE|.
+       
+       (When |AC9| launches a new |EC2| instance this way, we call the |env| an *EC2 environment*.)
      - **This topic**
    * - I want |AC9| to create an |env|, connect it to an existing |EC2| instance or my own server, and then open the |IDE|. 
+       
+       (When |AC9| connects an |env| to an existing |EC2| instance or your own server, we call the |env| an *SSH environment*.)
      - **This topic**
    * - I want to launch a new |EC2| instance preconfigured with a popular app or framework such as WordPress, MySQL, PHP, Node.js, Nginx, Drupal, or Joomla, 
-       or a Linux distribution such as Ubuntu, Debian, FreeBSD, or openSUSE. Then I want |AC9| to create an |env|, connect it to the new instance, and then open the |IDE|.
+       or a Linux distribution such as Ubuntu, Debian, FreeBSD, or openSUSE. Then I want |AC9| to create an |envssh|, connect it to the new instance, and then open the |IDE|.
      - :ref:`Working with Amazon Lightsail Instances <lightsail-instances>`
    * - I want to create a software development project that includes a toolchain with source control, build, deployment, and virtual servers or serverless resources. Then I want 
-       |AC9| to create an |env|, connect it to the project, and then open the |IDE|.
+       |AC9| to create an |envec2|, connect it to the project, and then open the |IDE|.
      - :ref:`Working with AWS CodeStar Projects <codestar-projects>`
+   * - I want to create a continuous delivery pipeline that models, visualizes, and automates the steps required to release my software. Then I want 
+       |AC9| to create an |env|, open the |IDE|, and connect it to the repository that contains my software's source code to be sent through the pipeline.
+     - :ref:`Working with AWS CodePipeline <codepipeline-repos>`
 
-Before you start this procedure, you must already be signed in to |AC9|. To sign in to |AC9|,
-see one of the following:
-   
-* :ref:`setup-express-sign-in-ide` in :title:`Express Setup`.
-* :ref:`setup-sign-in-ide` in :title:`Team Setup`.
-
-.. note:: Completing this procedure might result in charges to your AWS account. These include possible charges for |EC2|. For more information, see
+.. note:: Completing these procedures might result in charges to your AWS account. These include possible charges for |EC2|. For more information, see
    `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_.
 
-To create an |env|, do the following:
+* :ref:`create-environment-console`
+* :ref:`create-environment-code`
+
+.. _create-environment-console:
+
+Creating an |envtitle| with the Console
+=======================================
+
+#. Sign in to |AC9|, if you are not signed in already. To sign in to |AC9|, see one of the following:
+   
+   * :ref:`setup-express-sign-in-ide` in :title:`Express Setup`.
+   * :ref:`setup-sign-in-ide` in :title:`Team Setup`.
 
 #. After you sign in to the |AC9| console, in the top navigation bar, choose an AWS Region to create the |env| in. For a list of available AWS Regions, see 
    :aws-gen-ref:`AWS Cloud9 <rande.html#cloud9_region>` in the |AWS-gr|.
@@ -79,18 +92,18 @@ To create an |env|, do the following:
    * To connect to the new |env| from an existing |EC2| instance or your own server, choose :guilabel:`Connect and run in remote server (SSH)`. (We call this an :dfn:`SSH environment`.) 
      For more information, see :ref:`SSH Environment Host Requirements <ssh-settings>`.
 
-     .. note:: To choose :guilabel:`Connect and run in remote server (SSH)`, you must be able to reach the existing instace or your own server over the public internet using SSH. For example,
+     .. note:: To choose :guilabel:`Connect and run in remote server (SSH)`, you must be able to reach the existing instance or your own server over the public internet using SSH. For example,
         you cannot choose :guilabel:`Connect and run in remote server (SSH)` if you
         can only reach the instance or your own server through a virtual private cloud (VPC) or virtual private network
         (VPN) and that VPC or VPN doesn't have access to the public internet.
 
-#. Depending on the environment type you chose in step 6 of this procedure, do one of the following:
+#. Depending on the environment type you chose in step 7 of this procedure, do one of the following:
 
    * If you chose :guilabel:`Create a new instance for environment (EC2)`, then for :guilabel:`Instance type`, choose an instance type with the amount of RAM and vCPUs you think you need for the kinds of tasks you want to do. Or leave the default choice.
 
      .. note:: Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for |EC2|.
 
-   * If you chose :guilabel:`Connect and run in remote server (SSH)`, skip ahead to step 10 in this procedure. It shows you how to set up an existing |EC2| instance or your own server and specify |envssh| settings.
+   * If you chose :guilabel:`Connect and run in remote server (SSH)`, skip ahead to step 11 in this procedure. It shows you how to set up an existing |EC2| instance or your own server and specify |envssh| settings.
 
 #. |AC9| uses |VPClong| (|VPC|) in your AWS account to communicate with the newly-launched |EC2| instance. Depending on how |VPC| is set up in your AWS account, do one of the following.
 
@@ -126,11 +139,12 @@ To create an |env|, do the following:
 
    For more information, see :doc:`Amazon VPC Settings <vpc-settings>`.
 
-#. For :guilabel:`Cost-saving setting`, choose the amount of time that |AC9| will stop the |env| after the |IDE| has not been used. Or leave the default choice.
+#. For :guilabel:`Cost-saving setting`, choose the amount of time until |AC9| shuts down the |EC2| instance for the 
+   |env| after all web browser instances that are connect to the |IDE| for the |env| have been closed. Or leave the default choice.
 
    .. note:: Choosing a shorter time period might result in fewer charges to your AWS account. Likewise, choosing a longer time might result in more charges.
 
-   Skip ahead to step 11 in this procedure.
+   Skip ahead to step 12 in this procedure.
 
 #. If you chose :guilabel:`Connect and run in remote server (SSH)`, do the following:
 
@@ -190,3 +204,46 @@ To create an |env|, do the following:
    This can take several minutes. Please be patient.
 
    .. note:: If you chose :guilabel:`Connect and run in remote server (SSH)` previously, you'll will be prompted to confirm whether |AC9| can set up the new |env| on the existing instance or server. You'll also be given a choice to install some optional components. Simply choose :guilabel:`Next` on each of these confirmation pages.
+
+.. _create-environment-code:
+
+Creating an |envtitle| with Code
+================================
+
+To use code to create an |envec2| in |AC9|, call the |AC9| create |envec2| operation, as follows.
+
+.. note:: 
+
+   You cannot create an |envssh| with code.
+
+.. list-table::
+   :widths: 1 1
+   :header-rows: 0
+
+   * - |cli|
+     - :AC9-cli:`create-environment-ec2 <create-environment-ec2>`
+   * - |sdk-cpp|
+     - :sdk-cpp-ref:`CreateEnvironmentEC2Request <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_e_c2_request>`, 
+       :sdk-cpp-ref:`CreateEnvironmentEC2Result <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_e_c2_result>`
+   * - |sdk-go|
+     - :sdk-for-go-api-ref:`CreateEnvironmentEC2 <service/cloud9/#Cloud9.CreateEnvironmentEC2>`, 
+       :sdk-for-go-api-ref:`CreateEnvironmentEC2Request <service/cloud9/#Cloud9.CreateEnvironmentEC2Request>`, 
+       :sdk-for-go-api-ref:`CreateEnvironmentEC2WithContext <service/cloud9/#Cloud9.CreateEnvironmentEC2WithContext>`
+   * - |sdk-java|
+     - :sdk-java-api:`CreateEnvironmentEC2Request <com/amazonaws/services/cloud9/model/CreateEnvironmentEC2Request>`, 
+       :sdk-java-api:`CreateEnvironmentEC2Result <com/amazonaws/services/cloud9/model/CreateEnvironmentEC2Result>`
+   * - |sdk-js|
+     - :sdk-for-javascript-api-ref:`createEnvironmentEC2 <AWS/Cloud9.html#createEnvironmentEC2-property>`
+   * - |sdk-net|
+     - :sdk-net-api-v3:`CreateEnvironmentEC2Request <items/Cloud9/TCreateEnvironmentEC2Request>`, 
+       :sdk-net-api-v3:`CreateEnvironmentEC2Response <items/Cloud9/TCreateEnvironmentEC2Response>`
+   * - |sdk-php|
+     - :sdk-for-php-api-ref:`createEnvironmentEC2 <api-cloud9-2017-09-23.html#createenvironmentec2>`
+   * - |sdk-python|
+     - :sdk-for-python-api-ref:`create_environment_ec2 <services/cloud9.html#Cloud9.Client.create_environment_ec2>`
+   * - |sdk-ruby|
+     - :sdk-for-ruby-api-ref:`create_environment_ec2 <Aws/Cloud9/Client.html#create_environment_ec2-instance_method>`
+   * - |TWPlong|
+     - :TWP-ref:`New-C9EnvironmentEC2 <items/New-C9EnvironmentEC2>`
+   * - |AC9| API
+     - :AC9-api:`CreateEnvironmentEC2 <API_CreateEnvironmentEC2>`

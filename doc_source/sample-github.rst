@@ -21,6 +21,10 @@ GitHub Sample for |AC9long|
 This sample enables you to set up an |envfirst| to interact with a remote code repository in GitHub. For more information about
 GitHub, see the `GitHub <https://github.com/>`_ and `GitHub Help <https://help.github.com/>`_ websites.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_.
+
+* :ref:`sample-github-prereqs`
 * :ref:`sample-github-create-account`
 * :ref:`sample-github-create-repo`
 * :ref:`sample-github-install-git`
@@ -29,12 +33,12 @@ GitHub, see the `GitHub <https://github.com/>`_ and `GitHub Help <https://help.g
 * :ref:`sample-github-explore`
 * :ref:`sample-github-clean-up`
 
-.. note::
+.. _sample-github-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 Start with the following step, depending on what you already have.
 
@@ -245,7 +249,7 @@ Step 6: Keep Working with the |IDE| and GitHub
 Use the |AC9IDE| and GitHub to keep working with your code. Here are some things to try.
 
 * Use the :guilabel:`Environment` window and editor tabs in the |IDE| to view, change, and save code. For more information, see :ref:`tutorial-environment` and
-  :ref:`tutorial-editor` in the *Tutorial for AWS Cloud9*.
+  :ref:`tutorial-editor` in the *IDE Tutorial for AWS Cloud9*.
 * Use the |IDE| to run, debug, and build your code. For more information, see :ref:`Working with Builders, Runners, and Debuggers <build-run-debug>`.
 * Use Git in the terminal session in the |IDE| to continue pushing more code changes to the
   GitHub repository, as well as periodically pull code changes from others from the repository.

@@ -68,7 +68,7 @@ to sign in to secure AWS webpages like the |AC9| console, |console|,
 AWS Discussion Forums, and |SUPlong| Support Center.
 
 In addition to a user name and password, you can also generate access keys for each user. You can use these keys when you access AWS services
-programmatically, either through one of the several AWS SDKs or by using the |clilong| (|cli|). The AWS SDKs and the |cli| use these access keys to
+programmatically, either through one of the several AWS SDKs or by using the |clilong| (|cli|) or the aws-shell. The AWS SDKs, the |cli|, and the aws-shell use these access keys to
 cryptographically sign your request. If you don't use these tools, you must sign the request yourself. |AC9| supports Signature Version 4, a protocol
 for authenticating inbound API requests. For more information about authenticating requests, see :AWS-gr:`Signature Version 4 Signing Process <signature-version-4>` in the |AWS-gr|.
 

@@ -22,8 +22,9 @@ When you create an |envec2|, |AC9| creates a new |env|, requests |EC2| to launch
 |envec2| has the following benefits:
 
 * **Automatic instance launching.** When you create an |envec2|, |AC9| requests |EC2| to launch a new instance at the same time. In an |envssh|, you must launch a new |EC2| instance yourself.
-* **Automatic instance hibernation.** By default, |AC9| auto-hibernates the |envec2| 30 minutes after your |env| has not been used. (You can change this behavior at any time.) This helps reduce additional charges to your AWS account for using |EC2|.
-  In an |envssh|, auto-hibernation might not work as expected when connected to an existing |EC2| instance,
+* **Automatic instance shutdown.** By default, |AC9| automatically shuts down the |envec2| 30 minutes after all web browser instances that are connected to the IDE for the |envec2| are closed. 
+  (You can change this behavior at any time.) This helps reduce additional charges to your AWS account for using |EC2|. 
+  In an |envssh|, automatic shutdown might not work as expected when connected to an existing |EC2| instance, 
   and is turned off completely when connected to your own server.
 * **Automatic instance cleanup.** When you delete an |envec2|, the connected |EC2| instance is automatically deleted. This also helps reduce additional charges to your AWS account for using |EC2|. In an |envssh|, you must remember to
   delete the |EC2| instance yourself.
@@ -123,6 +124,11 @@ The existing |EC2| instance or your own server must meet the following requireme
   .. code-block:: sh
 
      sudo chmod u=rwx,g=rx,o=rx ~
+
+* Optionally, you can restrict inbound traffic over SSH to only the IP addresses that |AC9| uses. To do this, set inbound SSH traffic to the IP ranges as described 
+  in :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
+
+* If the |envssh| will be associated with an |EC2| instance that runs within an |VPClong| (|VPC|), there are additional requirements. See :ref:`vpc-settings`.
 
 After you are sure your instance or server meets the preceding requirements, :ref:`create an SSH environment
 <create-environment>` for |AC9| to connect it to.

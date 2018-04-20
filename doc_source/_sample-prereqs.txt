@@ -8,10 +8,10 @@
    either express or implied. See the License for the specific language governing permissions and
    limitations under the License.
 
-This sample assumes you already have the |AC9IDE| for your |envfirst| open in your web browser, and that you're using an |envfirstec2| that is connected to an |EC2| instance running Amazon Linux. 
-If you're using a different operating system or using an |envfirstssh|, you might need to adapt this sample's instructions to correctly 
-install and configure this sample's required tools. To create 
-an |env|, see :ref:`Creating an Environment <create-environment>`.
+Before you use this sample, be sure to meet the following requirements.
 
-When you're using this sample, be sure you're signed in to AWS with the AWS account ID and name and password of the 
-user you created or identified in :doc:`Team Setup <setup>`.
+* **You must have an existing AWS Cloud9 development environment.** This sample assumes you already have an |envfirstec2| that is connected to an |EC2| instance running Amazon Linux. 
+  If you have a different type of |env| or 
+  operating system, you might need to adapt this sample's instructions to set up related tools. See :ref:`Creating an Environment <create-environment>` for details.
+* **You have the AWS Cloud IDE for the existing environment already open.** When you open an |env|, |AC9| opens the |IDE| for that |env| in your web browser. 
+  See :ref:`Opening an Environment <open-environment>` for details.

@@ -10,15 +10,17 @@
 
 .. _vpc-settings:
 
-########################################################
-|VPClong| (|VPC|) Settings for an |envfirstlongec2title|
-########################################################
+######################################
+VPC Settings for |envfirsttitleplural|
+######################################
 
 .. meta::
     :description:
-        Describes Amazon Virtual Private Cloud (Amazon VPC) requirements for use by an AWS Cloud9 EC2 development environment in an AWS account.
+        Describes Amazon Virtual Private Cloud (Amazon VPC) requirements for use by certain AWS Cloud9 development environments in an AWS account.
 
-To create an |envec2| in an AWS account, |AC9| must use |VPClong| (|VPC|) in the account to communicate with the |EC2| instance that connects to the |env|.
+Every |envfirstlong| associated with an |VPClong| (|VPC|) must meet specific 
+VPC requirements. These |envplural| include |envec2plural|, as well as |envsshplural| associated with an |EC2| instance that runs 
+within a VPC.
 
 * :ref:`vpc-settings-requirements`
 * :ref:`vpc-settings-create-vpc`
@@ -43,7 +45,7 @@ a compatible VPC, skip ahead to :ref:`vpc-settings-create-vpc`.
    * **Get the list of VPCs that are available for AWS Cloud9 to use in the account for an AWS Region**: 
      In
      the navigation
-     bar of the |VPC| console, choose the AWS Region that |AC9| will create the |envec2| in. Then choose
+     bar of the |VPC| console, choose the AWS Region that |AC9| will create the |env| in. Then choose
      :guilabel:`Your VPCs` in the navigation pane.
    * **Create a VPC for AWS Cloud9 to use**: See :ref:`vpc-settings-create-vpc`.
 
@@ -69,7 +71,7 @@ a compatible VPC, skip ahead to :ref:`vpc-settings-create-vpc`.
      Gateways` in the navigation pane. Select the box next to the internet gateway. Choose :guilabel:`Attach to
      VPC`, and then follow the on-screen directions.
 
-#. **The VPC's public subnet must have a route table, and that route table must have the following minimum settings.**
+#. **The VPC's public subnet must have a route table, and we recommend that the route table have the following minimum settings.**
 
    .. list-table::
       :widths: 1 1 1 1
@@ -102,9 +104,59 @@ a compatible VPC, skip ahead to :ref:`vpc-settings-create-vpc`.
    * **Create a route table**: In the |VPC| console, choose :guilabel:`Route Tables` in the navigation
      pane. Choose :guilabel:`Create Route Table`, and then follow the on-screen directions.
 
-#. **The VPC's public subnet must have a network ACL, and that network ACL must have the following inbound and outbound rule settings.**
+#. **The VPC must allow specific inbound and outbound traffic.**
 
-   Inbound rules must have the following minimum settings.
+   At a minimum, the VPC must allow the following inbound and outbound traffic.
+
+   * **Inbound**: All IP addresses using SSH over port 22. However, you can restrict these IP addresses to only those that |AC9| uses. For more information, see 
+     :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
+   * **Inbound**: For |envec2plural|, and for |envsshplural| associated with |EC2| instances running Amazon Linux, all IP addresses using TCP over ports 32768-61000. 
+     For more information, and for port ranges for other |EC2| instance types, see :vpc-user-guide:`Ephemeral Ports <VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports>` in the |VPC-ug|.
+   * **Outbound**: All traffic sources using any protocol and port.
+
+   You can set this behavior at the security group level. For an additional level of security, you can also use a network ACL.
+
+   For example, to add inbound and outbound rules to a security group, you could set up those rules as follows.
+   
+   Inbound rules:
+
+   .. list-table::
+      :widths: 1 1 1 1
+      :header-rows: 1
+
+      * - **Type**
+        - **Protocol**
+        - **Port Range**
+        - **Source**
+      * - SSH (22)
+        - TCP (6)
+        - 22
+        - 0.0.0.0 
+          (But see :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.)
+      * - Custom TCP Rule
+        - TCP (6)
+        - 32768-61000
+          (For Amazon Linux instances. For other instance types, see :vpc-user-guide:`Ephemeral Ports <VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports>`.)
+        - 0.0.0.0/0
+
+   Outbound rules:
+
+   .. list-table::
+      :widths: 1 1 1 1
+      :header-rows: 1
+
+      * - **Type**
+        - **Protocol**
+        - **Port Range**
+        - **Source**
+      * - ALL Traffic
+        - ALL
+        - ALL
+        - 0.0.0.0/0
+   
+   If you also choose to add inbound and outbound rules to a network ACL, you could set up those rules as follows.
+
+   Inbound rules:
 
    .. list-table::
       :widths: 1 1 1 1 1 1
@@ -113,15 +165,23 @@ a compatible VPC, skip ahead to :ref:`vpc-settings-create-vpc`.
       * - **Rule #**
         - **Type**
         - **Protocol**
-        - **Port Range / ICMP Type**
+        - **Port Range**
         - **Source**
         - **Allow / Deny**
       * - 100
         - SSH (22)
         - TCP (6)
         - 22
-        - 0.0.0.0/0
+        - 0.0.0.0 
+          (But see :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.)
         - ALLOW
+      * - 200
+        - Custom TCP Rule
+        - TCP (6)
+        - 32768-61000
+          (For Amazon Linux instances. For other instance types, see :vpc-user-guide:`Ephemeral Ports <VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports>`.)
+        - 0.0.0.0/0
+        - ALLOW  
       * - :code:`*`
         - ALL Traffic
         - ALL
@@ -129,13 +189,7 @@ a compatible VPC, skip ahead to :ref:`vpc-settings-create-vpc`.
         - 0.0.0.0/0
         - DENY
 
-   .. note:: We don't recommend restricting inbound traffic from :AWS-gr:`published AWS IP address ranges <aws-ip-ranges>`, 
-      as these IP ranges frequently change. Also, AWS limits the number of 
-      IP ranges that can be specified in network ACLs. We understand that you might have concerns about this behavior. 
-      We are working to improve the functionality of |AC9| in this area. We will update this documentation when we have 
-      additional information to share.
-
-   Outbound rules must have the following minimum settings.
+   Outbound rules:
 
    .. list-table::
       :widths: 1 1 1 1 1 1
@@ -144,7 +198,7 @@ a compatible VPC, skip ahead to :ref:`vpc-settings-create-vpc`.
       * - **Rule #**
         - **Type**
         - **Protocol**
-        - **Port Range / ICMP Type**
+        - **Port Range**
         - **Source**
         - **Allow / Deny**
       * - 100
@@ -159,32 +213,46 @@ a compatible VPC, skip ahead to :ref:`vpc-settings-create-vpc`.
         - ALL
         - 0.0.0.0/0
         - DENY
+   
+   For more information about security groups and network ACLs, see the following in the |VPC-ug|.
 
-   Note that the preceding are the minimum inbound and outbound rule settings. For example, to allow inbound traffic other than SSH, you must add more inbound rules.
+   * :VPC-ug:`Security <VPC_Security>`
+   * :VPC-ug:`Security Groups for your VPC <VPC_SecurityGroups>`
+   * :VPC-ug:`Network ACLs <VPC_ACLs>`
 
    *Related tasks*
 
-   * **See whether the VPC's public subnet has a network ACL**: In the |VPC| console, choose
-     :guilabel:`Subnets` in the navigation pane. Select the box next to the public subnet that you want |AC9| to use. On the :guilabel:`Network ACL` tab, if there is a value for
-     :guilabel:`Network ACL`, the public subnet has a network ACL.
+   * **See whether the VPC has at least one network ACL**: In the |VPC| console, choose
+     :guilabel:`Your VPCs` in the navigation pane. Select the box next to the VPC you want |AC9| to use. On the :guilabel:`Summary` tab, if there is a value for
+     :guilabel:`Network ACL`, the VPC has at least one network ACL.
+   * **See all network ACLs for a VPC**: In the |VPC| console, choose
+     :guilabel:`Network ACLs` in the navigation pane. In the :guilabel:`Search Network ACLs` box, 
+     type the VPC's ID or name. Network ACLs for that VPC appear in the list of search results.
    * **See or change the settings for a network ACL**: In the |VPC| console, choose :guilabel:`Network
      ACLs` in the navigation pane. Select the box next to the network ACL. To see the settings, look at
      each of the tabs. To change a setting on a tab, choose :guilabel:`Edit`, and then follow the on-screen directions.
    * **Create a network ACL**: In the |VPC| console, choose :guilabel:`Network ACLs` in the navigation
      pane. Choose :guilabel:`Create Network ACL`, and then follow the on-screen directions.
+   * **See all security groups for a VPC**: In the |VPC| console, choose :guilabel:`Security Groups` in the navigation pane. In the :guilabel:`Search Security Groups` box, 
+     type the VPC's ID or name. Security groups for that VPC appear in the list of search results.
+   * **See or change the settings for a security group**: In the |VPC| console, choose :guilabel:`Security Groups` in the navigation pane. Select the box next to the security group. 
+     To see the settings, look at each of the tabs. To change a setting on a tab, choose :guilabel:`Edit`, and then follow the on-screen directions.
+   * **Create a security group**: In the |VPC| console, choose :guilabel:`Security Groups` in the navigation pane. Choose :guilabel:`Create Security Group`, and then follow the on-screen directions.
 
 .. _vpc-settings-create-vpc:
 
 Create an |VPC| for |AC9|
 =========================
 
-You can use the |VPC| console to create an |VPC| that is compatible with an |envfirstlongec2|.
+You can use the |VPC| console to create an |VPC| that is compatible with |AC9|.
 
 .. note:: For this procedure, we recommend you sign in to the |console| and open the |VPC| console using credentials for an |IAM|
    administrator user in your AWS account. If you can't do this, check with your AWS account administrator.
 
+   Some organizations may not allow you to create VPCs on your own. If you cannot create a VPC, check with your AWS account administrator or network administrator.
+
 #. If the |VPC| console isn't already open, sign in to the |console| and open the |VPC| console at https://console.aws.amazon.com/vpc.
-#. In the navigation bar, if the AWS Region isn't the same as the AWS Region for the |envec2|, choose
+#. In the navigation bar, if the AWS Region isn't the same as the |env|, choose
    the correct AWS Region.
 #. Choose :guilabel:`VPC Dashboard` in
    the navigation pane, if the :guilabel:`VPC Dashboard` page isn't already displayed.
@@ -204,54 +272,61 @@ You can use the |VPC| console to create an |VPC| that is compatible with an |env
 #. For :guilabel:`Subnet name`, type a name for the subnet in the VPC.
 #. Choose :guilabel:`Create new VPC`.
 
-|VPC| creates the following resources that are compatible with |AC9|:
+   |VPC| creates the following resources that are compatible with |AC9|:
 
-* A VPC
-* A public subnet for the VPC
-* A route table for the public subnet with the minimum required settings
-* An internet gateway for the public subnet
-* A network ACL for the public subnet with the minimum required settings
+   * A VPC.
+   * A public subnet for the VPC.
+   * A route table for the public subnet with the minimum required settings.
+   * An internet gateway for the public subnet.
+   * A network ACL for the public subnet with the minimum required settings.
 
-  .. note:: We recommend you change the default network ACL's inbound rule 100 to
-     the following settings to allow only SSH traffic:
+#. By default, the VPC allows incoming traffic from all types, protocols, ports, and IP addresses. 
+   You can restrict this behavior to allow only IP addresses coming from |AC9| using SSH over port 22. One approach is to 
+   set incoming rules on the VPC's default network ACL, as follows.
 
-     * :guilabel:`Type`: :guilabel:`SSH (22)`
-     * :guilabel:`Protocol`: :guilabel:`TCP (6)`
-     * :guilabel:`Port Range`: :guilabel:`22`
-
-     To make this change, do the following:
-
-     #. In the navigation pane of the |VPC| console, choose :guilabel:`Your VPCs`.
-     #. Select the box for the VPC you just created.
-     #. On the :guilabel:`Summary` tab, choose the link next to :guilabel:`Network ACL`.
-     #. Select the box next to the network ACL that is displayed.
-     #. On the :guilabel:`Inbound Rules` tab, choose :guilabel:`Edit`.
-     #. For :guilabel:`Rule # 100`, for :guilabel:`Type`, choose :guilabel:`SSH (22)`.
-     #. Choose :guilabel:`Save`.
-
-     We don't recommend restricting inbound traffic from :AWS-gr:`published AWS IP address ranges <aws-ip-ranges>`, 
-     as these IP ranges frequently change. Also, AWS limits the number of 
-     IP ranges that can be specified in network ACLs. We understand that you might have concerns about this behavior. 
-     We are working to improve the functionality of |AC9| in this area. We will update this documentation when we have 
-     additional information to share.
+   #. In the navigation pane of the |VPC| console, choose :guilabel:`Your VPCs`.
+   #. Select the box for the VPC you just created.
+   #. On the :guilabel:`Summary` tab, choose the link next to :guilabel:`Network ACL`.
+   #. Select the box next to the network ACL that is displayed.
+   #. On the :guilabel:`Inbound Rules` tab, choose :guilabel:`Edit`.
+   #. For :guilabel:`Rule # 100`, for :guilabel:`Type`, choose :guilabel:`SSH (22)`.
+   #. For :guilabel:`Source`, type one of the CIDR blocks in the :ref:`Inbound SSH IP Address Ranges <ip-ranges>` list that matches the AWS Region for this VPC.
+   #. Choose :guilabel:`Add another rule`.
+   #. For :guilabel:`Rule #`, type :code:`200`.
+   #. For :guilabel:`Type`, choose :guilabel:`SSH (22)`. 
+   #. For :guilabel:`Source`, type the other CIDR block in the :ref:`Inbound SSH IP Address Ranges <ip-ranges>` list that matches the AWS Region for this VPC.
+   #. At minimum, you must also allow incoming traffic from all IP addresses using TCP over ports 32768-61000 for Amazon Linux instance types. 
+      (For background, and for port ranges for other |EC2| instance types, see :vpc-user-guide:`Ephemeral Ports <VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports>` in the |VPC-ug|). To do this, choose :guilabel:`Add another rule`.
+   #. For :guilabel:`Rule #`, type :code:`300`.
+   #. For :guilabel:`Type`, choose :guilabel:`Custom TCP Rule`.
+   #. For :guilabel:`Port Range`, type :code:`32768-61000` (for Amazon Linux instance types).
+   #. For :guilabel:`Source`, type :code:`0.0.0.0/0`.
+   #. Choose :guilabel:`Save`.
+   #. You might need to add more inbound or outbound rules to the network ACL, depending on how you plan to use |AC9|. See the documentation for the 
+      web services or APIs you want to allow to communicate into or out of the VPC for the :guilabel:`Type`, :guilabel:`Protocol`, :guilabel:`Port Range`, 
+      and :guilabel:`Source` values to specify for these rules.
 
 .. _vpc-settings-create-subnet:
 
 Create a Subnet for |AC9|
 =========================
 
-You can use the |VPC| console to create a subnet for a VPC that is compatible with an |envfirstlongec2|.
+You can use the |VPC| console to create a subnet for a VPC that is compatible with |AC9|.
+
+If you followed the previous procedure, you do not also need to follow this procedure. This is because the :guilabel:`Create new VPC` wizard creates a subnet for you 
+automatically.
 
 .. important::
 
-   * The AWS account must already have a compatible VPC in the same AWS Region for the |envec2|. For
+   * The AWS account must already have a compatible VPC in the same AWS Region for the |env|. For
      more information, see the VPC requirements in :ref:`vpc-settings-requirements`.
    * For this procedure, we recommend you sign in to the |console|, and then open the |VPC| console using
      credentials for an |IAM|
      administrator user in your AWS account. If you can't do this, check with your AWS account administrator.
+   * Some organizations may not allow you to create subnets on your own. If you cannot create a subnet, check with your AWS account administrator or network administrator.
 
 #. If the |VPC| console isn't already open, sign in to the |console| and open the |VPC| console at https://console.aws.amazon.com/vpc.
-#. In the navigation bar, if the AWS Region isn't the same as the AWS Region for the |envec2|, choose
+#. In the navigation bar, if the AWS Region isn't the same as the AWS Region for the |env|, choose
    the correct AWS Region.
 #. Choose :guilabel:`Subnets` in the navigation
    pane, if the :guilabel:`Subnets` page isn't already displayed.
@@ -265,4 +340,4 @@ You can use the |VPC| console to create a subnet for a VPC that is compatible wi
    See also `3.1. Basic Concept and Prefix Notation <http://tools.ietf.org/html/rfc4632#section-3.1>`_ in RFC 4632 or
    `IPv4 CIDR blocks <http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks>`_ in Wikipedia.
 
-#. After you create the subnet, be sure to associate it with a compatible route table, internet gateway, and network ACL. For more information, see the public subnet requirements in :ref:`vpc-settings-requirements`.
+#. After you create the subnet, be sure to associate it with a compatible route table and an internet gateway, as well as security groups, a network ACL, or both. For more information, see the requirements in :ref:`vpc-settings-requirements`.

@@ -36,6 +36,7 @@ This topic provides instructions for sharing an |env| in |AC9| and how to partic
 
 * :ref:`share-environment-member-roles`
 * :ref:`share-environment-invite-user`
+* :ref:`share-environment-invite-user-cross-account`
 * :ref:`share-environment-open`
 * :ref:`share-environment-members-list`
 * :ref:`share-environment-active-file`
@@ -95,7 +96,13 @@ Before an |IAM| user can become an |env| owner or |mem|, that user must meet one
 * The user belongs to an |IAM| group in your AWS account, and that group has the AWS managed policy :code:`AWSCloud9Administrator` or :code:`AWSCloud9User` (or :code:`AWSCloud9EnvironmentMember`, to be a |mem| only) attached. 
   For more information, see :ref:`AWS Managed (Predefined) Policies <auth-and-access-control-managed-policies>`.
 
-To attach one of the preceding managed policies to a group, you can use the |IAM| console as follows.
+To attach one of the preceding managed policies to a group, you can use the :ref:`AWS Management Console <share-environment-member-roles-console>` 
+or the :ref:`AWS Command Line Interface (AWS CLI) <share-environment-member-roles-cli>`.
+
+.. _share-environment-member-roles-console:
+
+Attach an AWS Managed Policy for |AC9| to a Group Using the Console
+-------------------------------------------------------------------
 
 #. Sign in to the AWS Management Console, if you are not already signed in.
 
@@ -116,14 +123,32 @@ To attach one of the preceding managed policies to a group, you can use the |IAM
 
 #. Choose :guilabel:`Attach policy`.
 
+.. _share-environment-member-roles-cli:
+
+Attach an AWS Managed Policy for |AC9| to a Group Using the |cli|
+-----------------------------------------------------------------
+
+Run the IAM :code:`attach-group-policy` command to attach the AWS managed policy for |AC9| to the group, specifying the group's name and the Amazon Resource Name (ARN) of the policy, for example:
+
+.. code-block:: sh
+
+   aws iam attach-group-policy --group-name GROUP_NAME --policy-arn POLICY_ARN
+
+In the preceding command, replace :code:`GROUP_NAME` with the name of the group. Replace :code:`POLICY_ARN` with the ARN of the AWS managed policy, as follows:
+
+* :code:`arn:aws:iam::aws:policy/AWSCloud9User` (preferred) or :code:`arn:aws:iam::aws:policy/AWSCloud9Administrator` to enable each user in the group to be an |env| owner
+* :code:`arn:aws:iam::aws:policy/AWSCloud9EnvironmentMember` to enable each user in the group to be a member only
+
 .. _share-environment-invite-user:
 
-Invite an |IAM| User to Your |envtitle|
-=======================================
+Invite an |IAM| User in Your Account to Your |envtitle|
+=======================================================
 
-To invite an |IAM| user to your |env|:
+Use the instructions in this section to share an |envfirstlong| in your AWS account with an |IAM| entity in the same account. 
 
-#. Be sure the corresponding access policy is attached to the group containing the user you want to invite. For more information,
+To share an |env| in your account with an |IAM| user in another account, see :ref:`share-environment-invite-user-cross-account`.
+
+#. Be sure the corresponding access policy is attached to the |IAM| group containing the user you want to invite. For more information,
    see :ref:`share-environment-member-roles`.
 #. Sign in to |AC9| using the credentials of the |env| owner, if you are not already signed in. For more information, see :ref:`setup-sign-in-ide` in *Team Setup*.
 #. Open the |env| that you own and want to invite the user to, if the |env| is not already open. For more information, see :doc:`open-environment`.
@@ -155,7 +180,7 @@ To invite an |IAM| user to your |env|:
 
       You should share an |env| only with those you trust.
 
-      A |memrw| member may be able to use the |cli| or AWS SDK code in your
+      A |memrw| member may be able to use the |cli|, the aws-shell, or AWS SDK code in your
       |env| to take actions in AWS on your behalf. Furthermore, if you store your permanent AWS access credentials within the |env|,
       that |mem| could potentially copy those credentials and use them
       outside of the |env|.
@@ -173,7 +198,7 @@ To invite an |IAM| user to your |env|:
    * An |IAM| administrator user (or user belonging to an |IAM| administrator group) or equivalent in their AWS account.
    * An |IAM| user (or user belonging to an |IAM| group) in their AWS account that has the AWS managed policy :code:`AWSCloud9Administrator` or equivalent attached. 
 
-   To invite themselves (or other |IAM| users or federated users in their AWS account), these entities can use the |CLI| to run the 
+   To invite themselves (or other |IAM| users or federated users in their AWS account), these entities can use the |cli| or the aws-shell to run the 
    AWS Cloud9 :code:`create-environment-membership` command, specifying the ID of the |env| (represented here as :samp:`{ENVIRONMENT_ID}`) 
    and the Amazon Resource Name (ARN) (represented here as :samp:`{ENTITY_ARN}`) of the entity to invite. For example:
    
@@ -186,6 +211,164 @@ To invite an |IAM| user to your |env|:
    .. code-block:: sh
      
       aws cloud9 create-environment-membership --environment-id 0c00a6ff0e8244698d33fdab581ea3EX --user-arn arn:aws:iam::123456789012:root --permissions read-write
+
+   .. note:: If you're using the aws-shell, omit the :code:`aws` prefix from the preceding commands.
+
+To use code to invite an |IAM| entity in your AWS account with an |IAM| entity in the same account, call the |AC9| create |env| membership operation, as follows.
+
+.. list-table::
+   :widths: 1 1
+   :header-rows: 0
+
+   * - |cli|
+     - :AC9-cli:`create-environment-membership <create-environment-membership>`
+   * - |sdk-cpp|
+     - :sdk-cpp-ref:`CreateEnvironmentMembershipRequest <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_membership_request>`, 
+       :sdk-cpp-ref:`CreateEnvironmentMembershipResult <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_membership_result>`
+   * - |sdk-go|
+     - :sdk-for-go-api-ref:`CreateEnvironmentMembership <service/cloud9/#Cloud9.CreateEnvironmentMembership>`, 
+       :sdk-for-go-api-ref:`CreateEnvironmentMembershipRequest <service/cloud9/#Cloud9.CreateEnvironmentMembershipRequest>`, 
+       :sdk-for-go-api-ref:`CreateEnvironmentMembershipWithContext <service/cloud9/#Cloud9.CreateEnvironmentMembershipWithContext>`
+   * - |sdk-java|
+     - :sdk-java-api:`CreateEnvironmentMembershipRequest <com/amazonaws/services/cloud9/model/CreateEnvironmentMembershipRequest>`, 
+       :sdk-java-api:`CreateEnvironmentMembershipResult <com/amazonaws/services/cloud9/model/CreateEnvironmentMembershipResult>`
+   * - |sdk-js|
+     - :sdk-for-javascript-api-ref:`createEnvironmentMembership <AWS/Cloud9.html#createEnvironmentMembership-property>`
+   * - |sdk-net|
+     - :sdk-net-api-v3:`CreateEnvironmentMembershipRequest <items/Cloud9/TCreateEnvironmentMembershipRequest>`, 
+       :sdk-net-api-v3:`CreateEnvironmentMembershipResponse <items/Cloud9/TCreateEnvironmentMembershipResponse>`
+   * - |sdk-php|
+     - :sdk-for-php-api-ref:`createEnvironmentMembership <api-cloud9-2017-09-23.html#createenvironmentmembership>`
+   * - |sdk-python|
+     - :sdk-for-python-api-ref:`create_environment_membership <services/cloud9.html#Cloud9.Client.create_environment_membership>`
+   * - |sdk-ruby|
+     - :sdk-for-ruby-api-ref:`create_environment_membership <Aws/Cloud9/Client.html#create_environment_membership-instance_method>`
+   * - |TWPlong|
+     - :TWP-ref:`New-C9EnvironmentMembership <items/New-C9EnvironmentMembership>`
+   * - |AC9| API
+     - :AC9-api:`CreateEnvironmentMembership <API_CreateEnvironmentMembership>`
+
+.. _share-environment-invite-user-cross-account:
+
+Invite an |IAM| User in Another Account to Your |envtitle|
+==========================================================
+
+Use the instructions in this section to share an |envfirstlong| in your AWS account with an |IAM| user in a separate AWS account. 
+
+To share an |env| in your account with other |IAM| entities within your same account, see :ref:`share-environment-invite-user`.
+
+Prerequisites
+-------------
+
+Before you complete the steps in the section, be sure you have the following:
+
+* Two AWS accounts. One account contains the |env| you want to share. To reduce confusion, we refer to this account as "your account" and as "account :code:`111111111111`" in this section's examples. 
+  A separate account contains the |IAM| user you want to share the |env| with. To reduce confusion, we refer to this account as "the other account" and as "account :code:`999999999999`" in this section's examples.
+* An |IAM| group in the other account :code:`999999999999`, which we refer to as :code:`AWSCloud9CrossAccountGroup` in this section's examples. 
+  (To use a different group in that account, substitute its name throughout this section's examples).
+* An |IAM| user named in the other account :code:`999999999999`, which we refer to as :code:`AWSCloud9CrossAccountUser` in this section's examples. This user is a member of the 
+  :code:`AWSCloud9CrossAccountGroup` group in the other account. (To use a different user in that account, substitute its name throughout this section's examples).
+* An |env| in your account :code:`111111111111` that you want to allow the user in the other account :code:`999999999999` to access. 
+
+Step 1: Create an |IAM| Role in Your Account to Allow Access from the Other Account
+-----------------------------------------------------------------------------------
+
+In this step, you create an |IAM| role in your account :code:`111111111111`. This role allows users in the other account :code:`999999999999` to access your account using the permissions you specify.
+
+#. Sign in to the AWS Management Console using your AWS account :code:`111111111111`.
+
+   We recommend you sign in using credentials for an |IAM| administrator user in your AWS account. If you can't
+   do this, check with your AWS account administrator.
+
+#. Open the |IAM| console. To do this, on the global navigation bar, choose :guilabel:`Services`, and then choose :guilabel:`IAM`.
+#. In the service navigation pane, choose :guilabel:`Roles`.
+#. On the :guilabel:`Roles` page, choose :guilabel:`Create role`.
+#. On the :guilabel:`Select type of trusted entity` page, choose the :guilabel:`Another AWS account` tile.
+#. In :guilabel:`Specify accounts that can use this role`, for :guilabel:`Account ID`, type the ID of the other AWS account: :code:`999999999999`. (Leave the :guilabel:`Options` boxes cleared.)
+#. Choose :guilabel:`Next: Permissions`.
+#. On the :guilabel:`Attach permissions policies` page, select the box next to the policy (or policies) that contain the permissions you want the other AWS account to have in your account. 
+   For this example, choose :guilabel:`AWSCloud9EnvironmentMember`. (If you can't find it, type :code:`AWSCloud9EnvironmentMember` in the :guilabel:`Search` box to display it.) This particular 
+   policy allows users in the other account to become |memro| or |memrw| members in shared |envplural| in your account after you invite them. 
+#. Choose :guilabel:`Review`.
+#. On the :guilabel:`Review` page, for :guilabel:`Role name`, type a name for the role. For this example, type :guilabel:`AWSCloud9EnvironmentMemberCrossAccountRole`. 
+   (To use a different name for the role, substitute it throughout this section's examples).
+#. Choose :guilabel:`Create role`.
+#. In the list of roles that is displayed, choose :guilabel:`AWSCloud9EnvironmentMemberCrossAccountRole`. 
+#. On the :guilabel:`Summary` page, copy the value of :guilabel:`Role ARN`, for example, :guilabel:`arn:aws:iam::111111111111:role/AWSCloud9EnvironmentMemberCrossAccountRole`. 
+   You need this value for Step 3 in this section.
+
+Step 2: Add the User in the Other Account as a |memtitle| of Your |envtitle|
+----------------------------------------------------------------------------
+
+Now that you have an |IAM| role in your account :code:`111111111111`, and know the name of the user in other account :code:`999999999999`, you can add the user as a |mem| of the |env|.
+
+#. If you're not already signed in to the AWS Management Console as the owner of the |env| in your account :code:`111111111111`, sign in now.
+#. Open the |IDE| for the |env|. (If you're not sure how to do this, see :ref:`Opening an Environment <open-environment>`.)
+#. On the menu bar, choose :guilabel:`Share`.
+#. In the :guilabel:`Share this environment` dialog box, for :guilabel:`Invite Members`, type 
+   :code:`arn:aws:sts::111111111111:assumed-role/AWSCloud9EnvironmentMemberCrossAccountRole/AWSCloud9CrossAccountUser`, where:
+
+   * :code:`111111111111` is the actual ID of your AWS account. 
+   * :code:`AWSCloud9EnvironmentMemberCrossAccountRole` is the name of the |IAM| role in your account :code:`111111111111`, as specified earlier in Step 1 of this section. 
+   * :code:`AWSCloud9CrossAccountUser` is the name of the user in the other account :code:`999999999999`.
+
+#. Choose :guilabel:`Invite`, and follow the onscreen instructions to complete the invitation process.
+
+Step 3: Grant Access in the Other Account to Use the |IAM| Role in Your Account
+-------------------------------------------------------------------------------
+
+In this step, you allow the user in the other account :code:`999999999999` to use the |IAM| role you created in your account :code:`111111111111`.
+
+#. If you're still signed in to the AWS Management Console using your AWS account :code:`111111111111`, sign out now.
+#. Sign in to the AWS Management Console using the other AWS account :code:`999999999999`.
+
+   We recommend you sign in using credentials for an |IAM| administrator user in the other account. If you can't
+   do this, check with your AWS account administrator.
+
+#. Open the |IAM| console. To do this, on the global navigation bar, choose :guilabel:`Services`, and then choose :guilabel:`IAM`.
+#. In the service navigation pane, choose :guilabel:`Groups`.
+#. In the list of groups that is displayed, choose :guilabel:`AWSCloud9CrossAccountGroup`.
+#. On the :guilabel:`Permissions` tab, expand :guilabel:`Inline Policies`, and then choose the link at the end of "To create one, click here."
+#. On the :guilabel:`Set Permissions` page, choose :guilabel:`Custom Policy`, and then choose :guilabel:`Select`.
+#. On the :guilabel:`Review Policy` page, for :guilabel:`Policy Name`, type a name for the policy. For this example, we suggest typing :guilabel:`AWSCloud9CrossAccountGroupPolicy`.
+   (You can use a different name for the policy).
+#. For :guilabel:`Policy Document`, type the following, substituting :code:`111111111111` for the actual ID of your AWS account.
+
+   .. code-block:: json
+
+      {
+        "Version": "2012-10-17",
+        "Statement": {
+          "Effect": "Allow",
+          "Action": "sts:AssumeRole",
+          "Resource": "arn:aws:iam::111111111111:role/AWSCloud9EnvironmentMemberCrossAccountRole"
+        }
+      }
+
+#. Choose :guilabel:`Apply Policy`.
+
+Step 4: Use the Other Account to Open the Shared |envtitle| in Your Account
+---------------------------------------------------------------------------
+
+In this step, the user in the other account :code:`999999999999` uses the |IAM| role in your account :code:`111111111111` to open the shared |env| that's also in your account.
+
+#. If you're not already signed in to the AWS Management Console as the |IAM| user named :guilabel:`AWSCloud9CrossAccountUser` in the other AWS account :code:`999999999999`, sign in now. 
+#. On the global navigation bar, choose :guilabel:`AWSCloud9CrossAccountUser`, and then choose :guilabel:`Switch Role`.
+#. On the :guilabel:`Switch role` page, choose :guilabel:`Switch Role`.
+#. For :guilabel:`Account`, type your AWS account ID: :code:`111111111111`.
+#. For :guilabel:`Role`, type :code:`AWSCloud9EnvironmentMemberCrossAccountRole`.
+#. For :guilabel:`Display Name`, type a name that helps you more easily identify this role for later use, or leave the suggested display name.
+#. Choose :guilabel:`Switch Role`. In the global navigation bar, :guilabel:`AWSCloud9CrossAccountUser` is replaced with the :guilabel:`Display Name` value and also changes its background color.
+#. On the global navigation bar, choose :guilabel:`Services`, and then choose :guilabel:`Cloud9`.
+#. On the global navigation bar, choose the AWS Region that contains the |env|.
+#. In the service navigation pane, choose :guilabel:`Shared with you`.
+#. In the card for the |env| that you want to open, choose :guilabel:`Open IDE`.
+
+You can switch back to using the original user identity :code:`AWSCloud9CrossAccountUser`. With the AWS Management Console still open for this step, 
+on the global navigation bar choose the :guilabel:`Display Name` value from earlier in this step. Then choose :guilabel:`Back to AWSCloud9CrossAccountUser`.
+
+To use the :guilabel:`AWSCloud9EnvironmentMemberCrossAccountRole` role again, with the AWS Management Console still open for this step, on the global navigation bar 
+choose :guilabel:`AWSCloud9CrossAccountUser`. For :guilabel:`Role History`, choose the :guilabel:`Display Name` value from earlier in this step.
 
 .. _share-environment-open:
 
@@ -223,6 +406,40 @@ A circle next to each |mem| indicates their online status, as follows:
 
 .. image:: images/ide-collaborate-status.png
    :alt: Member online status in the AWS Cloud9 IDE
+
+To use code to get a list of |memslong|, call the |AC9| describe |env| memberships operation, as follows.
+
+.. list-table::
+   :widths: 1 1
+   :header-rows: 0
+
+   * - |cli|
+     - :AC9-cli:`describe-environment-memberships <describe-environment-memberships>`
+   * - |sdk-cpp|
+     - :sdk-cpp-ref:`DescribeEnvironmentMembershipsRequest <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_describe_environment_memberships_request>`, 
+       :sdk-cpp-ref:`DescribeEnvironmentMembershipsResult <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_describe_environment_memberships_result>`
+   * - |sdk-go|
+     - :sdk-for-go-api-ref:`DescribeEnvironmentMemberships <service/cloud9/#Cloud9.DescribeEnvironmentMemberships>`, 
+       :sdk-for-go-api-ref:`DescribeEnvironmentMembershipsRequest <service/cloud9/#Cloud9.DescribeEnvironmentMembershipsRequest>`, 
+       :sdk-for-go-api-ref:`DescribeEnvironmentMembershipsWithContext <service/cloud9/#Cloud9.DescribeEnvironmentMembershipsWithContext>`
+   * - |sdk-java|
+     - :sdk-java-api:`DescribeEnvironmentMembershipsRequest <com/amazonaws/services/cloud9/model/DescribeEnvironmentMembershipsRequest>`, 
+       :sdk-java-api:`DescribeEnvironmentMembershipsResult <com/amazonaws/services/cloud9/model/DescribeEnvironmentMembershipsResult>`
+   * - |sdk-js|
+     - :sdk-for-javascript-api-ref:`describeEnvironmentMemberships <AWS/Cloud9.html#describeEnvironmentMemberships-property>`
+   * - |sdk-net|
+     - :sdk-net-api-v3:`DescribeEnvironmentMembershipsRequest <items/Cloud9/TDescribeEnvironmentMembershipsRequest>`, 
+       :sdk-net-api-v3:`DescribeEnvironmentMembershipsResponse <items/Cloud9/TDescribeEnvironmentMembershipsResponse>`
+   * - |sdk-php|
+     - :sdk-for-php-api-ref:`describeEnvironmentMemberships <api-cloud9-2017-09-23.html#describeenvironmentmemberships>`
+   * - |sdk-python|
+     - :sdk-for-python-api-ref:`describe_environment_memberships <services/cloud9.html#Cloud9.Client.describe_environment_memberships>`
+   * - |sdk-ruby|
+     - :sdk-for-ruby-api-ref:`describe_environment_memberships <Aws/Cloud9/Client.html#describe_environment_memberships-instance_method>`
+   * - |TWPlong|
+     - :TWP-ref:`Get-C9EnvironmentMembershipList <items/Get-C9EnvironmentMembershipList>`
+   * - |AC9| API
+     - :AC9-api:`DescribeEnvironmentMemberships <API_DescribeEnvironmentMemberships>`
 
 .. _share-environment-active-file:
 
@@ -309,6 +526,40 @@ Change the Access Role of an |memlongtitle|
         AWS security credentials at risk. Do not make a user a |memrw| member unless you trust that user to take actions in AWS
         on your behalf. For more information, see the related note in :ref:`share-environment-invite-user`.
 
+To use code to change the access role of a |memlong|, call the |AC9| update |env| membership operation, as follows.
+
+.. list-table::
+   :widths: 1 1
+   :header-rows: 0
+
+   * - |cli|
+     - :AC9-cli:`update-environment-membership <update-environment-membership>`
+   * - |sdk-cpp|
+     - :sdk-cpp-ref:`UpdateEnvironmentMembershipRequest <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_update_environment_membership_request>`, 
+       :sdk-cpp-ref:`UpdateEnvironmentMembershipResult <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_update_environment_membership_result>`
+   * - |sdk-go|
+     - :sdk-for-go-api-ref:`UpdateEnvironmentMembership <service/cloud9/#Cloud9.UpdateEnvironmentMembership>`, 
+       :sdk-for-go-api-ref:`UpdateEnvironmentMembershipRequest <service/cloud9/#Cloud9.UpdateEnvironmentMembershipRequest>`, 
+       :sdk-for-go-api-ref:`UpdateEnvironmentMembershipWithContext <service/cloud9/#Cloud9.UpdateEnvironmentMembershipWithContext>`
+   * - |sdk-java|
+     - :sdk-java-api:`UpdateEnvironmentMembershipRequest <com/amazonaws/services/cloud9/model/UpdateEnvironmentMembershipRequest>`, 
+       :sdk-java-api:`UpdateEnvironmentMembershipResult <com/amazonaws/services/cloud9/model/UpdateEnvironmentMembershipResult>`
+   * - |sdk-js|
+     - :sdk-for-javascript-api-ref:`updateEnvironmentMembership <AWS/Cloud9.html#updateEnvironmentMembership-property>`
+   * - |sdk-net|
+     - :sdk-net-api-v3:`UpdateEnvironmentMembershipRequest <items/Cloud9/TUpdateEnvironmentMembershipRequest>`, 
+       :sdk-net-api-v3:`UpdateEnvironmentMembershipResponse <items/Cloud9/TUpdateEnvironmentMembershipResponse>`
+   * - |sdk-php|
+     - :sdk-for-php-api-ref:`updateEnvironmentMembership <api-cloud9-2017-09-23.html#updateenvironmentmembership>`
+   * - |sdk-python|
+     - :sdk-for-python-api-ref:`update_environment_membership <services/cloud9.html#Cloud9.Client.update_environment_membership>`
+   * - |sdk-ruby|
+     - :sdk-for-ruby-api-ref:`update_environment_membership <Aws/Cloud9/Client.html#update_environment_membership-instance_method>`
+   * - |TWPlong|
+     - :TWP-ref:`Update-C9EnvironmentMembership <items/Update-C9EnvironmentMembership>`
+   * - |AC9| API
+     - :AC9-api:`UpdateEnvironmentMembership <API_UpdateEnvironmentMembership>`
+
 .. _share-environment-delete-you:
 
 Remove Your User From a Shared |envtitle|
@@ -325,6 +576,40 @@ Remove Your User From a Shared |envtitle|
    * Right-click :guilabel:`You`, and then choose :guilabel:`Leave environment`.
 
 #. When prompted, choose :guilabel:`Leave`.
+
+To use code to remove your user from a shared |env|, call the |AC9| delete |env| membership operation, as follows.
+
+.. list-table::
+   :widths: 1 1
+   :header-rows: 0
+
+   * - |cli|
+     - :AC9-cli:`delete-environment-membership <delete-environment-membership>`
+   * - |sdk-cpp|
+     - :sdk-cpp-ref:`DeleteEnvironmentMembershipRequest <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_delete_environment_membership_request>`, 
+       :sdk-cpp-ref:`DeleteEnvironmentMembershipResult <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_delete_environment_membership_result>`
+   * - |sdk-go|
+     - :sdk-for-go-api-ref:`DeleteEnvironmentMembership <service/cloud9/#Cloud9.DeleteEnvironmentMembership>`, 
+       :sdk-for-go-api-ref:`DeleteEnvironmentMembershipRequest <service/cloud9/#Cloud9.DeleteEnvironmentMembershipRequest>`, 
+       :sdk-for-go-api-ref:`DeleteEnvironmentMembershipWithContext <service/cloud9/#Cloud9.DeleteEnvironmentMembershipWithContext>`
+   * - |sdk-java|
+     - :sdk-java-api:`DeleteEnvironmentMembershipRequest <com/amazonaws/services/cloud9/model/DeleteEnvironmentMembershipRequest>`, 
+       :sdk-java-api:`DeleteEnvironmentMembershipResult <com/amazonaws/services/cloud9/model/DeleteEnvironmentMembershipResult>`
+   * - |sdk-js|
+     - :sdk-for-javascript-api-ref:`deleteEnvironmentMembership <AWS/Cloud9.html#deleteEnvironmentMembership-property>`
+   * - |sdk-net|
+     - :sdk-net-api-v3:`DeleteEnvironmentMembershipRequest <items/Cloud9/TDeleteEnvironmentMembershipRequest>`, 
+       :sdk-net-api-v3:`DeleteEnvironmentMembershipResponse <items/Cloud9/TDeleteEnvironmentMembershipResponse>`
+   * - |sdk-php|
+     - :sdk-for-php-api-ref:`deleteEnvironmentMembership <api-cloud9-2017-09-23.html#deleteenvironmentmembership>`
+   * - |sdk-python|
+     - :sdk-for-python-api-ref:`delete_environment_membership <services/cloud9.html#Cloud9.Client.delete_environment_membership>`
+   * - |sdk-ruby|
+     - :sdk-for-ruby-api-ref:`delete_environment_membership <Aws/Cloud9/Client.html#delete_environment_membership-instance_method>`
+   * - |TWPlong|
+     - :TWP-ref:`Remove-C9EnvironmentMembership <items/Remove-C9EnvironmentMembership>`
+   * - |AC9| API
+     - :AC9-api:`DeleteEnvironmentMembership <API_DeleteEnvironmentMembership>`
 
 .. _share-environment-delete-member:
 
@@ -343,6 +628,40 @@ Remove Another |memlongtitle|
    * Right-click the name of the |mem| you want to delete, and then choose :guilabel:`Revoke Access`.
 
 #. When prompted, choose :guilabel:`Remove Member`.
+
+To use code to remove a |mem| from an |env|, call the |AC9| delete |env| membership operation, as follows.
+
+.. list-table::
+   :widths: 1 1
+   :header-rows: 0
+
+   * - |cli|
+     - :AC9-cli:`delete-environment-membership <delete-environment-membership>`
+   * - |sdk-cpp|
+     - :sdk-cpp-ref:`DeleteEnvironmentMembershipRequest <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_delete_environment_membership_request>`, 
+       :sdk-cpp-ref:`DeleteEnvironmentMembershipResult <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_delete_environment_membership_result>`
+   * - |sdk-go|
+     - :sdk-for-go-api-ref:`DeleteEnvironmentMembership <service/cloud9/#Cloud9.DeleteEnvironmentMembership>`, 
+       :sdk-for-go-api-ref:`DeleteEnvironmentMembershipRequest <service/cloud9/#Cloud9.DeleteEnvironmentMembershipRequest>`, 
+       :sdk-for-go-api-ref:`DeleteEnvironmentMembershipWithContext <service/cloud9/#Cloud9.DeleteEnvironmentMembershipWithContext>`
+   * - |sdk-java|
+     - :sdk-java-api:`DeleteEnvironmentMembershipRequest <com/amazonaws/services/cloud9/model/DeleteEnvironmentMembershipRequest>`, 
+       :sdk-java-api:`DeleteEnvironmentMembershipResult <com/amazonaws/services/cloud9/model/DeleteEnvironmentMembershipResult>`
+   * - |sdk-js|
+     - :sdk-for-javascript-api-ref:`deleteEnvironmentMembership <AWS/Cloud9.html#deleteEnvironmentMembership-property>`
+   * - |sdk-net|
+     - :sdk-net-api-v3:`DeleteEnvironmentMembershipRequest <items/Cloud9/TDeleteEnvironmentMembershipRequest>`, 
+       :sdk-net-api-v3:`DeleteEnvironmentMembershipResponse <items/Cloud9/TDeleteEnvironmentMembershipResponse>`
+   * - |sdk-php|
+     - :sdk-for-php-api-ref:`deleteEnvironmentMembership <api-cloud9-2017-09-23.html#deleteenvironmentmembership>`
+   * - |sdk-python|
+     - :sdk-for-python-api-ref:`delete_environment_membership <services/cloud9.html#Cloud9.Client.delete_environment_membership>`
+   * - |sdk-ruby|
+     - :sdk-for-ruby-api-ref:`delete_environment_membership <Aws/Cloud9/Client.html#delete_environment_membership-instance_method>`
+   * - |TWPlong|
+     - :TWP-ref:`Remove-C9EnvironmentMembership <items/Remove-C9EnvironmentMembership>`
+   * - |AC9| API
+     - :AC9-api:`DeleteEnvironmentMembership <API_DeleteEnvironmentMembership>`
 
 .. _share-environment-best-practices:
 

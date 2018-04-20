@@ -24,7 +24,7 @@ Experiment with these samples to increase your knowledge and confidence using |A
    :titlesonly:
    :maxdepth: 1
 
-   AWS CLI Sample <sample-aws-cli>
+   AWS CLI and aws-shell Sample <sample-aws-cli>
    AWS CodeCommit Sample <sample-codecommit>
    GitHub Sample <sample-github>
    Amazon DynamoDB sample <sample-dynamodb>

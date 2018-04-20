@@ -20,6 +20,10 @@ Changing Environment Settings in |AC9long|
 
 You can change the preferences or settings for an |envfirst|.
 
+* :ref:`change-environment-single`
+* :ref:`change-environment-description`
+* :ref:`change-environment-description-code`
+
 .. _change-environment-single:
 
 Change |envtitle| Preferences
@@ -34,8 +38,8 @@ Change |envtitle| Preferences
 
 .. _change-environment-description:
 
-Change |envtitle| Settings
-==========================
+Change |envtitle| Settings with the Console
+===========================================
 
 #. Open the |AC9| console, if it isn't already open, at |AC9Console_link|.
 #. In the top navigation bar, choose the AWS Region where the |env| is located.
@@ -81,3 +85,42 @@ Change |envtitle| Settings
        :ref:`share-environment-delete-member`.
 
 .. include:: _find-environment.txt
+
+.. _change-environment-description-code:
+
+Change |envtitle| Settings with Code
+====================================
+
+To use code to change the settings of an |env| in |AC9|, call the |AC9| update |env| operation, as follows.
+
+.. list-table::
+   :widths: 1 1
+   :header-rows: 0
+
+   * - |cli|
+     - :AC9-cli:`update-environment <update-environment>`
+   * - |sdk-cpp|
+     - :sdk-cpp-ref:`UpdateEnvironmentRequest <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_update_environment_request>`, 
+       :sdk-cpp-ref:`UpdateEnvironmentResult <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_update_environment_result>`
+   * - |sdk-go|
+     - :sdk-for-go-api-ref:`UpdateEnvironment <service/cloud9/#Cloud9.UpdateEnvironment>`, 
+       :sdk-for-go-api-ref:`UpdateEnvironmentRequest <service/cloud9/#Cloud9.UpdateEnvironmentRequest>`, 
+       :sdk-for-go-api-ref:`UpdateEnvironmentWithContext <service/cloud9/#Cloud9.UpdateEnvironmentWithContext>`
+   * - |sdk-java|
+     - :sdk-java-api:`UpdateEnvironmentRequest <com/amazonaws/services/cloud9/model/UpdateEnvironmentRequest>`, 
+       :sdk-java-api:`UpdateEnvironmentResult <com/amazonaws/services/cloud9/model/UpdateEnvironmentResult>`
+   * - |sdk-js|
+     - :sdk-for-javascript-api-ref:`updateEnvironment <AWS/Cloud9.html#updateEnvironment-property>`
+   * - |sdk-net|
+     - :sdk-net-api-v3:`UpdateEnvironmentRequest <items/Cloud9/TUpdateEnvironmentRequest>`, 
+       :sdk-net-api-v3:`UpdateEnvironmentResponse <items/Cloud9/TUpdateEnvironmentResponse>`
+   * - |sdk-php|
+     - :sdk-for-php-api-ref:`updateEnvironment <api-cloud9-2017-09-23.html#updateenvironment>`
+   * - |sdk-python|
+     - :sdk-for-python-api-ref:`update_environment <services/cloud9.html#Cloud9.Client.update_environment>`
+   * - |sdk-ruby|
+     - :sdk-for-ruby-api-ref:`update_environment <Aws/Cloud9/Client.html#update_environment-instance_method>`
+   * - |TWPlong|
+     - :TWP-ref:`Update-C9Environment <items/Update-C9Environment>`
+   * - |AC9| API
+     - :AC9-api:`UpdateEnvironment <API_UpdateEnvironment>`

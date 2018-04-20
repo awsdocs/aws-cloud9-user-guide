@@ -31,9 +31,11 @@ Welcome to the |AC9-ug|. Use this guide to help you get started with and use |AC
    Working with Amazon Lightsail Instances <lightsail-instances>
    Working with AWS CodeStar Projects <codestar-projects>
    Working with AWS Lambda Functions <lambda-functions>
+   Working with AWS CodePipeline <codepipeline-repos>
    Samples <samples>
    Amazon VPC Settings <vpc-settings>
    SSH Environment Host Requirements <ssh-settings>
+   Inbound SSH IP Address Ranges <ip-ranges>
    AMI Contents <ami-contents>
    Authentication and Access Control <auth-and-access-control>
    Using Service-Linked Roles <using-service-linked-roles>

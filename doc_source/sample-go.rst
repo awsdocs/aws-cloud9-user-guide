@@ -20,6 +20,10 @@ Go Sample for |AC9long|
 
 This sample enables you to run some Go code in an |envfirst|.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+
+* :ref:`sample-go-prereqs`
 * :ref:`sample-go-install`
 * :ref:`sample-go-code`
 * :ref:`sample-go-run`
@@ -28,12 +32,12 @@ This sample enables you to run some Go code in an |envfirst|.
 * :ref:`sample-go-sdk-run`
 * :ref:`sample-go-clean-up`
 
-.. note::
+.. _sample-go-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 .. _sample-go-install:
 
@@ -55,10 +59,11 @@ In this step, you install and configure Go, which is required to run this sample
 
    .. code-block:: sh
 
-      wget https://storage.googleapis.com/golang/go1.7.5.linux-amd64.tar.gz # Download Go.
-      sudo tar -C /usr/local -xzf ./go1.7.5.linux-amd64.tar.gz # Install Go.
-      rm ./go1.7.5.linux-amd64.tar.gz # Delete the installer.
+      wget https://storage.googleapis.com/golang/go1.9.3.linux-amd64.tar.gz # Download the Go installer.
+      sudo tar -C /usr/local -xzf ./go1.9.3.linux-amd64.tar.gz              # Install Go.
+      rm ./go1.9.3.linux-amd64.tar.gz                                       # Delete the installer.
 
+   The preceding commands assume the latest stable version of Go at the time this topic was written. 
    For more information, see `Downloads <https://golang.org/dl/>`_ on The Go Programming Language website.
 #. Add the path to the Go binary to your :code:`PATH` environment variable, like this.
 
@@ -226,16 +231,22 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    )
 
    func main() {
+
+     if len(os.Args) < 3 {
+       fmt.Printf("Usage: go run s3.go <the bucket name> <the AWS Region to use>\n" +
+         "Example: go run s3.go my-test-bucket us-east-2\n")
+       os.Exit(1)
+     }
+
      sess := session.Must(session.NewSessionWithOptions(session.Options{
        SharedConfigState: session.SharedConfigEnable,
      }))
-     region := "YOUR_REGION"
      svc := s3.New(sess, &aws.Config{
-       Region: aws.String(region),
+       Region: aws.String(os.Args[2]),
      })
 
      listMyBuckets(svc)
-     createMyBucket(svc, os.Args[1], region)
+     createMyBucket(svc, os.Args[1], os.Args[2])
      listMyBuckets(svc)
      deleteMyBucket(svc, os.Args[1])
      listMyBuckets(svc)
@@ -293,9 +304,6 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
      os.Exit(1)
    }
 
-In the preceding code, replace :samp:`YOUR_REGION` with the ID of an AWS Region. For example,
-for the US East (Ohio) Region, use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
-
 .. _sample-go-sdk-run:
 
 Step 6: Run the AWS SDK Code
@@ -303,12 +311,11 @@ Step 6: Run the AWS SDK Code
 
 #. In the |AC9IDE|, on the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
 #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Go`.
-#. For :guilabel:`Command`, type :samp:`s3.go {YOUR-BUCKET-NAME}`, where :samp:`{YOUR-BUCKET-NAME}` is the name of the bucket you want to create and then delete.
+#. For :guilabel:`Command`, type :samp:`s3.go {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create 
+   and then delete, and :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US East (Ohio) Region, 
+   use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
 
    .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
-
-   .. image:: images/ide-go-sdk.png
-      :alt: Running the AWS SDK for Go code in the AWS Cloud9 IDE
 
 #. Choose the :guilabel:`Run` button, and compare your output.
 

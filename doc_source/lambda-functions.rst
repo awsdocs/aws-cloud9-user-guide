@@ -28,16 +28,18 @@ You can use the |AC9IDE| to work with |LAMlong| functions and their related |ABP
 
 This topic assumes you already know about |LAM|. For more information, see the |LAM-dg|_.
 
-.. note:: Completing these procedures might result in charges to your AWS account. These include possible charges for services such as |LAM|, |ABP|, and AWS services supported by the 
-   AWS Serverless Application Model (SAM). For more information, see `AWS Lambda Pricing <https://aws.amazon.com/lambda/pricing/>`_, `Amazon API Gateway Pricing <https://aws.amazon.com/api-gateway/pricing/>`_, and 
+.. note:: Completing these procedures might result in charges to your AWS account. These include possible charges for services such as |LAM|, |ABP|, and AWS services supported by the
+   AWS Serverless Application Model (SAM). For more information, see `AWS Lambda Pricing <https://aws.amazon.com/lambda/pricing/>`_, `Amazon API Gateway Pricing <https://aws.amazon.com/api-gateway/pricing/>`_, and
    `Cloud Services Pricing <https://aws.amazon.com/pricing/services/>`_.
 
 * :ref:`lambda-functions-prepare`
 * :ref:`lambda-functions-create`
+* :ref:`lambda-functions-create-repo`
 * :ref:`lambda-functions-import`
 * :ref:`lambda-functions-invoke`
 * :ref:`lambda-functions-api`
 * :ref:`lambda-functions-vs-api-gateway`
+* :ref:`lambda-functions-adding-packages`
 * :ref:`lambda-functions-debug`
 * :ref:`lambda-functions-change-code`
 * :ref:`lambda-functions-upload-code`
@@ -78,7 +80,7 @@ Otherwise, complete the following instructions to:
 #. Choose :guilabel:`Groups`.
 #. Choose the group's name.
 #. On the :guilabel:`Permissions` tab, for :guilabel:`Managed Policies`, choose :guilabel:`Attach Policy`.
-#. In the list of policy names, choose the boxes next to :guilabel:`AWSLambdaFullAccess`, :guilabel:`AmazonAPIGatewayAdministrator`, 
+#. In the list of policy names, choose the boxes next to :guilabel:`AWSLambdaFullAccess`, :guilabel:`AmazonAPIGatewayAdministrator`,
    and :guilabel:`AmazonAPIGatewayInvokeFullAccess`.
    (If you don't see any of these policy names in the list, type the policy name in
    the :guilabel:`Search` box to display it.)
@@ -103,7 +105,7 @@ Otherwise, complete the following instructions to:
 
 Wait until the :guilabel:`AWSCloud9LambdaAccessStack` stack shows :guilabel:`CREATE_COMPLETE`. This might take a few moments. Please be patient.
 
-.. note:: The access policy that |CFN| attaches to the group is named :code:`AWSCloud9LambdaGroupAccess` and has the following definition, where :samp:`{ACCOUNT_ID}` is your 
+.. note:: The access policy that |CFN| attaches to the group is named :code:`AWSCloud9LambdaGroupAccess` and has the following definition, where :samp:`{ACCOUNT_ID}` is your
    AWS account ID.
 
    .. code-block:: json
@@ -211,11 +213,16 @@ menu bar to show it.
 
 .. _lambda-functions-create:
 
-Create a |LAM| Function
-=======================
+Create a |LAM| Function With the Create Serverless Application Wizard
+=====================================================================
 
 You can use the |AC9IDE| to create a new |LAM| function. If you already have a |LAM| function in your
 AWS account for the AWS Region you set earlier, skip ahead to :ref:`lambda-functions-import`.
+
+.. note:: This procedure describes how to use the :guilabel:`Create serverless application` wizard to create a single |LAM| function based on
+   function blueprints that are owned by AWS. To create multiple |LAM| functions at the same time, |LAM| functions along with supporting components at the same time,
+   or |LAM| functions that are owned by entities other than AWS,
+   skip ahead to :ref:`lambda-functions-create-repo`.
 
 #. In the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, choose where you want to create the function:
 
@@ -232,7 +239,7 @@ AWS account for the AWS Region you set earlier, skip ahead to :ref:`lambda-funct
    .. image:: images/console-lambda-create.png
       :alt: Creating a new Lambda function using the Lambda section of the AWS Resources window
 
-#. In the :guilabel:`Create Serverless Application` dialog box, specify the following settings for the function:
+#. In the :guilabel:`Create serverless application` dialog box, specify the following settings for the function:
 
    * :guilabel:`Function Name`: A name for the function.
    * :guilabel:`Application Name`: The name of the new serverless application to be associated with the new function.
@@ -276,6 +283,11 @@ AWS account for the AWS Region you set earlier, skip ahead to :ref:`lambda-funct
 #. Choose :guilabel:`Next`.
 #. Choose :guilabel:`Finish`.
 
+Compare your results to the following:
+
+.. image:: images/ide-lambda-create.gif
+   :alt: Creating a Lambda function
+
 In the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, |AC9| does the following:
 
 * If you chose to create a single function by itself:
@@ -289,6 +301,10 @@ In the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, |AC9|
      name of your function would be
      :code:`cloud9-myDemoServerlessApplication-myDemoFunction-RANDOM_ID`,
      where :code:`RANDOM_ID` is a randomly determined ID.
+
+     .. image:: images/console-lambda-ide.png
+        :alt: Both the local and remote functions refer to the same function
+
   #. If you chose to have |ABP| automatically trigger the function, |AC9| creates an API in |ABP| with a name that corresponds to the function. For example, if you named the function :code:`myDemoFunction`,
      the API name would be :code:`cloud9-myDemoFunction`. |AC9| uses the value you specified
      in :guilabel:`Resource Path` to map the function to the API using the :code:`ANY` method.
@@ -321,23 +337,103 @@ In the :guilabel:`Environment` window, |AC9| does the following:
   * :file:`template.yaml`: An AWS SAM template file that contains information about the |LAM|
     function and any other related supported AWS resources. Whenever you update
     the local version of your function and then upload it to |LAM|, |AC9| calls AWS SAM to use this template file to do the upload.
-    For more information, see the :lambda-dev-guide:`Using the AWS Serverless Application Model (AWS SAM) <deploying-lambda-apps.html#serverless_app>` in the |LAM-dg|.
+    For more information, see :lambda-dev-guide:`Using the AWS Serverless Application Model (AWS SAM) <deploying-lambda-apps.html#serverless_app>` in the |LAM-dg|.
 
     .. note:: You can edit this file to create additional supporting AWS resources for your function. For more information, see the
        `AWS Serverless Application Model (AWS SAM) <https://github.com/awslabs/serverless-application-model>`_ repository on GitHub.
 
-  * A subfolder with the same name as the function, containing a code file representing the function logic. 
+  * A subfolder with the same name as the function, containing a code file representing the function logic.
+  * If the function uses Python, additional subfolders and files are added to the preceding subfolder to enable Python debugging:
+
+    * :file:`.debug`: A subfolder that contains Python modules and files for debugging purposes.
+    * :file:`venv`: A standard Python virtualenv folder. This includes a module named ikpdb, which |AC9| uses to debug Python applications.
+    * :file:`__init__.py`: A standard Python package initialization file.
+    * :file:`requirements.txt`: A standard file for installing Python modules.
+    * |AC9| also adds a :code:`CodeUri` property to the :file:`template.yaml` file and sets this property to reference the :code:`.debug/` folder.
 
 * If you chose to create a single function and then add it to an existing serverless application, |AC9| does the following to the folder that represents the serverless application:
 
   * Updates the :file:`template.yaml` file previously described to include information about the |LAM| function and any other related supported AWS resources.
   * A subfolder with the same name as the function, containing a code file representing the function logic.
+  * If the function uses Python, additional subfolders and files are added to the preceding subfolder to enable Python debugging:
 
-The :file:`.application.json` and :file:`.gitignore` files are hidden. To show hidden files or hide
+    * :file:`.debug`: A subfolder that contains Python modules and files for debugging purposes.
+    * :file:`venv`: A standard Python virtualenv folder. This includes a module named ikpdb, which |AC9| uses to debug Python applications.
+    * :file:`__init__.py`: A standard Python package initialization file.
+    * :file:`requirements.txt`: A standard file for installing Python modules.
+    * |AC9| also adds a :code:`CodeUri` property to the :file:`template.yaml` file and sets this property to reference the :code:`.debug/` folder.
+
+The :file:`.application.json` and :file:`.gitignore` files (and the :file:`.debug` folder for Python) are hidden. To show hidden files or hide
 them if they're shown, in the :guilabel:`Environment` window,
 choose the gear icon, and then choose :guilabel:`Show Hidden Files`.
 
-To invoke the function, see :ref:`lambda-functions-invoke`.
+.. image:: images/console-lambda-files.png
+   :alt: Showing the hidden Lambda files
+
+To invoke the function, see :ref:`lambda-functions-invoke`. If the function has a related API in |ABP|, to invoke the API, see :ref:`lambda-functions-api`.
+
+.. _lambda-functions-create-repo:
+
+Create and Deploy |LAM| Functions with the AWS Serverless Application Repository
+================================================================================
+
+You can use the |AC9IDE| and the `AWS Serverless Application Repository <https://aws.amazon.com/serverless/serverlessrepo/>`_ to create multiple |LAM| functions at the same time,
+|LAM| functions along with supporting components at the same time, or |LAM| functions that are owned by entities other than AWS. If you already have |LAM| functions in your
+AWS account for the AWS Region you set earlier, skip ahead to :ref:`lambda-functions-import`.
+
+#. In a separate web browser tab, open the `AWS Serverless Application Repository <https://serverlessrepo.aws.amazon.com>`_.
+#. Find the serverless application you want to create, and then choose the title of the serverless application that you want inside of its card.
+   (If the card isn't visible, begin typing information about the serverless application that you want in the :guilabel:`Search applications by name, description, or labels` box to show it.)
+#. On the :guilabel:`Application details` page that appears, if a URL for a Git-based repository is displayed, copy that URL (for example, :code:`https://github.com/USER_NAME/REPOSITORY_NAME`).
+
+   .. note:: If a URL isn't displayed, try choosing the
+      :guilabel:`Deploy` button on the :guilabel:`Application details` page, and then look for a :guilabel:`Source code URL` value.
+
+#. Back in the |AC9IDE|, open a terminal, if one isn't already open. (To open a terminal, on the menu bar, choose :guilabel:`Window, New Terminal`.)
+#. In the terminal, change to the directory in your environment where you want to copy the serverless application's starter files (for example, by running the command :code:`cd ~/environment`).
+#. Run the command :code:`git clone`, followed by the Git URL you copied earlier (for example, :code:`git clone https://github.com/USER_NAME/REPOSITORY_NAME`).
+   The |IDE| then adds the serverless application's functions to the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window.
+
+   .. note:: Running the :code:`git clone` command with some of the URLs in the :guilabel:`Application details` pages or :guilabel:`Source code URL` values might not work as expected
+      or might produce unexpected results.
+      Alternatively, you can manually download the files you want from the desired repository to your local workstation. Then manually upload those files to the |IDE| by running
+      :guilabel:`File, Upload Local Files` on the menu bar.
+
+      When you clone the GitHub repository, the |IDE| uses the AWS Serverless Application Model (AWS SAM) template file in the repository to determine which of the serverless
+      application's functions to display in the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window. The AWS SAM template file must follow the
+      `AWS Serverless Application Model (AWS SAM) <https://github.com/awslabs/serverless-application-model>`_
+      file format. If the repository doesn't contain an AWS SAM template file, or if the file doesn't follow the AWS SAM file format, the |IDE| won't display those functions.
+      You also won't be able to run, debug, or deploy those functions or any of their associated |ABP| resources from the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window.
+
+#. You might need to complete some setup before you can run, debug, or deploy the serverless application from the |IDE| as expected. For setup instructions, see the
+   :guilabel:`Application details` page that you opened earlier. Or look for any setup instructions within the serverless application's files that you cloned to your |IDE|.
+
+To invoke the functions, see :ref:`lambda-functions-invoke`. If the functions have related APIs in |ABP|, to invoke the APIs, see :ref:`lambda-functions-api`. When you invoke a
+function or API this way for the first time, |AC9| adds a hidden :file:`.application.json` file to the serverless application's component files. This file contains JSON-formatted settings that are specific to
+the serverless application. |AC9| uses these settings for its internal use. Do not edit this file.
+
+If the serverless application requires parameters to be specified during deployment, you can deploy it from the |IDE| only by using the terminal.
+To see if parameters are required, on the :guilabel:`Application details` page you opened earlier,
+choose the :guilabel:`Deploy` button, and then see the :guilabel:`Configure application parameters` card for any parameters.
+If there are any parameters, deploy the serverless application from the terminal in the |IDE| by running the |CFNlong| :code:`deploy` command, for example:
+
+.. code-block:: sh
+
+   aws cloudformation deploy --template-file TEMPLATE_FILE_PATH --parameter-overrides "PARAMETER_KEY_1=PARAMETER_VALUE_1" "PARAMETER_KEY_N=PARAMETER_VALUE_N" --region REGION_ID
+
+In the preceding command:
+
+* :code:`TEMPLATE_FILE_PATH` represents the path to the AWS SAM template file.
+* :code:`PARAMETER_KEY_1` represents the name of the first parameter.
+* :code:`PARAMETER_VALUE_1` represents the value of the first parameter.
+* :code:`PARAMETER_KEY_N` represents the names of any additional parameters.
+* :code:`PARAMETER_VALUE_1` represents the values of any additional parameters.
+* :code:`REGION_ID` represents the ID of the AWS Region where you want to deploy the serverless application (for example, :code:`us-east-2`).
+* Additonal options might need to be specified, depending on the serverless application's requirements. For more information, see the :guilabel:`Application details` page that you opened earlier,
+  or look for any setup instructions within the serverless application's files that you cloned to your |IDE|.
+
+If you try to use the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window to deploy a serverless application that requires parameters, a message is displayed that required parameters are missing,
+and the serverless application is not deployed.
 
 .. _lambda-functions-import:
 
@@ -346,6 +442,23 @@ Import a |LAM| Function
 
 If you have an existing |LAM| function in your AWS account but not in your |envfirst|, you must
 import it before you can work with it in your |env|.
+
+.. note:: If the |LAM| function is part of an existing |ACSlong| project, and the |env| was created from within the project in the |ACSlong| console,
+   the function is already imported, so you do not need to import it again.
+
+   To confirm this behavior, look in the :guilabel:`Local Functions` list in the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window
+   for a serverless application (represented by a |LAM| icon inside of a folder) with the same name as the |ACSlong| project, containing a |LAM| function
+   (represented by a |LAM| icon by itself) with the function's base name. Look also in the :guilabel:`Remote Functions` list
+   for a |LAM| function with a name in the format :code:`awscodestar-PROJECT_NAME-lambda-BASE_FUNCTION_NAME-RANDOM_ID`,
+   where :code:`PROJECT_NAME` is the |ACSlong| project name, :code:`BASE_FUNCTION_NAME` is the function's base name, and :code:`RANDOM_ID` is a randomly determined ID.
+
+   .. image:: images/console-lambda-codestar.png
+      :alt: Both the local and remote functions refer to the same function
+
+   Since the function is already imported, we do not recommend that you import the remote version of the function in the |ACSlong| project.
+   Otherwise, you will have two versions of the same function code in your :guilabel:`Environment` window but with different folder names, which could be confusing.
+
+To import a |LAM| function, do the following:
 
 #. In the :guilabel:`Environment` window, choose where you want to import the function.
 #. In the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, choose the function's name in the :guilabel:`Remote Functions` list.
@@ -425,14 +538,19 @@ To invoke an existing |LAM| function, you must first import the remote version o
    .. note:: After you run the function for the first time, a :file:`lambda-payloads.json`: file is added to the function's related serverless application folder in the :guilabel:`Environment` window. This file
       contains the contents of the custom input data.
 
-      If you invoke an existing |LAM| function and then try to invoke the same function code for its related API in |ABP|, you might get an error or the code might not run as expected. For more information, see 
-      :ref:`lambda-functions-vs-api-gateway`.
+      If you invoke an existing |LAM| function and then try to invoke the same function code for its related API in |ABP| with the same custom input data, you might get an error or the code might not run as expected.
+      For more information, see :ref:`lambda-functions-vs-api-gateway`.
 
 The invoke tab contains two panes:
 
 * The :guilabel:`Test payload` pane displays any custom input data that was supplied for the function.
 * The :guilabel:`Execution results` pane displays any output from the function and some information from
   the related |CWLlong| for the function.
+
+Compare your results to the following:
+
+.. image:: images/ide-lambda-run.gif
+   :alt: Invoking a Lambda function
 
 For more information, see :LAM-dg:`Step 2.2: Invoke the Lambda Function Manually and Verify Results, Logs, and Metrics <get-started-invoke-manually>` in the |LAM-dg|.
 
@@ -478,114 +596,282 @@ version of the function into your |envfirst|, if the function isn't already ther
       `AWS Serverless Application Model (AWS SAM) <https://github.com/awslabs/serverless-application-model>`_
       repository on GitHub.
 
-      If you invoke an API in |ABP| and then try to invoke the same code for its related function in |LAM|, you might get an error or the code might not run as expected. For more information, see 
-      :ref:`lambda-functions-vs-api-gateway`.
+      If you invoke an API in |ABP| and then try to invoke the same code for its related function in |LAM| with the same custom input data, you might get an error or the code might not run as expected.
+      For more information, see :ref:`lambda-functions-vs-api-gateway`.
 
 The invoke tab contains two panes:
 
 * The :guilabel:`Test payload` pane displays settings and any custom input data that was supplied for the API.
 * The :guilabel:`Execution results` pane displays information such as the body, headers, and logs of the API response.
 
-.. _lambda-functions-vs-api-gateway: 
+Compare your results to the following:
 
-Coding Differences When Invoking a |LAM| Function and Its Related |ABP| API
-===========================================================================
+.. image:: images/ide-lambda-api.gif
+   :alt: Invoking an API in API Gateway
 
-When you invoke a |LAM| function and then try to invoke the same code for a related API in |ABP|, you might get an error or the code might not run as expected. Likewise, when you invoke an 
-|ABP| API and then try to invoke the same code for a related |LAM| function, you might get an error or the code might not run as expected. This is because 
-|LAM| and |ABP| use different event data formats. Therefore, you might not be able to 
-successfully invoke the same code in both |LAM| and |ABP|.
+.. _lambda-functions-vs-api-gateway:
 
-For example, the following Node.js code invoked with |ABP| returns output in the expected JSON format:
+Response Differences When Invoking a |LAM| Function from |ABP|
+==============================================================
+
+When you invoke a |LAM| function from an API in |ABP| and then try to parse the response, you might get an error or the code might not run as expected. This is because
+|LAM| and |ABP| use slightly different response formats. Specifically, |ABP| wraps its response in a parent :code:`body` object. To address this issue, you can add code to a function
+that checks to see if a parent :code:`body` exists in the response. If it does, you can then extract the data from that :code:`body` object.
+
+For example, given the following Node.js function code:
 
 .. code-block:: javascript
 
    'use strict';
 
-   /* 
-   Assume the following payload is input:
-
-   {
-     "fruit": "apple",
-     "vegetable": "carrot"
-   }
-
-   The expected response is:
-
-   {
-     "statusCode": 200, 
-     "headers": {
-       "Content-type": "application/json"
-     },
-     "body": {
-       "message": "Your favorite fruit is apple. Your favorite vegetable is carrot."
-     }
-   }
-   */
-
    exports.handler = function(event, context, callback) {
 
-     var body = JSON.parse(event.body);
-    
-     const message = "Your favorite fruit is " + body.fruit + ". " + 
-       "Your favorite vegetable is " + body.vegetable + ".";
+     if (event.body) {
+       event = JSON.parse(event.body);
+     }
+
+     const message = "Your favorite fruit is " + event.fruit + ". " +
+       "Your favorite vegetable is " + event.vegetable + ".";
 
      const response = {
        statusCode: 200,
        headers: { "Content-type": "application/json" },
        body: JSON.stringify( { "message": message } )
      };
-    
+
      callback(null, response);
    };
 
-To invoke the preceding Node.js code with |LAM|, you must remove the line :code:`var body = JSON.parse(event.body)` as well as substitute :code:`body.fruit` and 
-:code:`body.vegetable` with :code:`event.fruit` and :code:`event.vegetable`.
+And given the following equivalent Python function code:
 
-As another example, the following Python code invoked with |ABP| returns output in the expected JSON format:
+.. code-block:: python
 
-.. code-block:: python 
+   import json
 
-   ''' 
-   Assume the following payload is input:
+   def lambda_handler(event, context):
+
+     if 'body' in event:
+       event = json.loads(event["body"])
+
+     message = ("Your favorite fruit is " + event["fruit"] + ". " +
+       "Your favorite vegetable is " + event["vegetable"] + ".")
+
+     response = {
+       "statusCode": "200",
+       "headers": { "Content-type": "application/json" },
+       "body": json.dumps({"message": message})
+     }
+
+     return response
+
+To invoke the preceding code, you use the following input payload (for |LAM|) or input body (for |ABP|):
+
+.. code-block:: json
 
    {
      "fruit": "apple",
      "vegetable": "carrot"
    }
 
+Which returns the following response for |LAM|:
+
+.. code-block:: json
+
+   {
+     "statusCode": 200,
+     "headers": {
+       "Content-type": "application/json"
+     },
+     "body": "{\"message\":\"Your favorite fruit is apple. Your favorite vegetable is carrot.\"}"
+   }
+
+And returns the following response for |ABP| (assuming a :guilabel:`Path` of :guilabel:`/` and a :guilabel:`Method` of :guilabel:`POST`):
+
+.. code-block:: json
+
+   {
+     "message": "Your favorite fruit is apple. Your favorite vegetable is carrot."
+   }
+
+If you do not include the :code:`if (event.body)` check for Node.js or the :code:`if 'body' in event` check for Python, then calling this function from |ABP|
+might return an error or the API might not run as expected.
+
+.. _lambda-functions-adding-packages:
+
+Add Dependent Code to a |LAM| Function
+===========================================
+
+For Node.js, we support using Node Package Manager (npm) to add dependent packages to |LAM| functions in your |env|. For Python, we support pip. For general information about npm and pip, see
+the `npm <https://www.npmjs.com/>`_ and `pip <https://pip.pypa.io>`_ websites.
+
+To depend on an npm package from a Node.js |LAM| function, use for example the Node.js :code:`require` statement. Then use npm to install the related npm package in the |env| within the
+same directory as the function code. When you deploy the |LAM| function as described in :ref:`lambda-functions-upload-code`, |AC9| deploys both the function and its related packages to |LAM|.
+
+To demonstrate, the following example Node.js |LAM| function code depends on the :code:`lodash` package to sort the specified JSON input payload.
+
+.. code-block:: javascript
+
+   'use strict';
+
+   /*
+   Assume the following payload is input:
+
+   [
+     {
+       "firstName": "Shirley",
+       "lastName": "Rodriguez"
+     },
+     {
+       "firstName": "Jane",
+       "lastName": "Doe"
+     },
+     {
+       "firstName": "Arnav",
+       "lastName": "Desai"
+     }
+   ]
+
    The expected response is:
 
    {
-     "statusCode": 200, 
+     "statusCode": 200,
      "headers": {
        "Content-type": "application/json"
      },
      "body": {
-       "message": "Your favorite fruit is apple. Your favorite vegetable is carrot."
+       "result": [
+         {
+           "firstName": "Arnav",
+           "lastName": "Desai"
+         },
+         {
+           "firstName": "Jane",
+           "lastName": "Doe"
+         },
+         {
+           "firstName": "Shirley",
+           "lastName": "Rodriguez"
+         }
+       ]
+     }
+   }
+   */
+
+   exports.handler = (event, context, callback) => {
+
+     var lodash = require('lodash');
+     var result = lodash.orderBy(event, ['firstName'], ['asc']);
+
+     const response = {
+       statusCode: 200,
+       headers: { "Content-type": "application/json" },
+       body: JSON.stringify( { "result": result } )
+     };
+
+     callback(null, response);
+   };
+
+To install the :code:`lodash` package in the |env|, use a terminal session in the |IDE| to change to the directory containing the function code.
+Then run the following two commands, in the following order. The first command creates and configure a :file:`package.json` file in that directory to make sure when you
+deploy the function to |LAM|, the :code:`lodash` package is also deployed.
+The second command installs the :code:`lodash` package in the same directory in the |env|
+as the function code and then updates the :file:`package.json` file in that directory accordingly.
+
+.. code-block:: sh
+
+   npm init
+   npm install lodash --save
+
+For help with the :code:`npm init` command and the :file:`package.json` file, see
+`Working with package.json <https://docs.npmjs.com/getting-started/using-a-package.json>`_ on the npm website.
+
+From the |IDE|, invoke the local version of the |LAM| function, as described in :ref:`lambda-functions-invoke`.
+Deploy the function as described in :ref:`lambda-functions-upload-code`, and then invoke the remote version of the function.
+The local and remote versions of the function should work as expected.
+
+To depend on a pip package from a Python |LAM| function, use for example the Python :code:`import` statement. Then use pip to install the related pip package in the environment **one directory above** the
+directory that contains the function code. When you deploy the |LAM| function as described in :ref:`lambda-functions-upload-code`, |AC9| deploys both the function and its related packages to |LAM|.
+
+To demonstrate, the following example Python |LAM| function code depends on the :code:`requests` package to make an HTTP request and then return information about the related HTTP response.
+
+.. code-block:: python
+
+   '''
+   Assume the following payload is input:
+
+   {
+     "url": "https://aws.amazon.com"
+   }
+
+   The expected response is similar to the following:
+
+   {
+     "statusCode": "200",
+     "headers": {
+       "Content-type": "application/json"
+     },
+     "body": {
+       "statusCode": 200,
+       "date": "Fri, 19 Jan 2018 17:57:48 GMT",
+       "lastModified": "Thu, 18 Jan 2018 18:08:23 GMT"
      }
    }
    '''
 
+   import requests
    import json
 
    def lambda_handler(event, context):
-    
-     body = json.loads(event["body"])
 
-     message = ("Your favorite fruit is " + body["fruit"] + ". " +
-       "Your favorite vegetable is " + body["vegetable"] + ".") 
-  
+     result = requests.get(event["url"])
+
      response = {
-       "statusCode": "200", 
+       "statusCode": "200",
        "headers": { "Content-type": "application/json" },
-       "body": json.dumps({"message": message})
+       "body": json.dumps( { "statusCode": result.status_code,
+         "date": result.headers["Date"],
+         "lastModified": result.headers["Last-Modified"] } )
      }
-  
-     return response
 
-To invoke the preceding Python code with |LAM|, you must remove the line :code:`body = json.loads(event["body"])` as well as substitute :code:`body["fruit"]` and 
-:code:`body["vegetable"]` with :code:`event["fruit"]` and :code:`event["vegetable"]`.
+    return response
+
+To install the :code:`requests` package in the |env|, use a terminal session in the |IDE| to change to the directory containing the function code.
+Then run the following command. This command installs the :code:`requests` package in the directory in the |env| that is **one directory above**
+the function code.
+
+.. code-block:: sh
+
+   pip install requests --target ../
+
+From the |IDE|, invoke the local version of the |LAM| function, as described in :ref:`lambda-functions-invoke`.
+Deploy the function as described in :ref:`lambda-functions-upload-code`, and then invoke the remote version of the function.
+The local and remote versions of the function should work as expected.
+
+For a Python |LAM| function, to depend on code in a separate Python code file that is in the same directory as the function, use the :code:`from` and :code:`import` statements.
+When you deploy the |LAM| function as described in :ref:`lambda-functions-upload-code`, |AC9| deploys to |LAM| both the function and the separate Python code files in the same directory as the function.
+
+To demonstrate, take for example the following directory structure in the |AC9IDE| for a Python |LAM| function:
+
+.. code-block:: text
+
+   myDemoServerlessApplication
+     `- myDemoFunction
+          |- lambda-payloads.json
+          |- lambda_function.py
+          `- myClasses.py
+
+If the :file:`myClasses.py` file contains the definition of a class named :code:`MyClass1`, for example:
+
+.. code-block:: python
+
+   class MyClass1:
+     # Class definition...
+
+To reference the :code:`MyClass1` class from the :file:`lambda_function.py` file, add the following statement to the file:
+
+.. code-block:: python
+
+   from myDemoFunction.myClasses import MyClass1
 
 .. _lambda-functions-debug:
 
@@ -596,10 +882,45 @@ You can debug local |LAM| function code or its related |ABP| API in your |env| u
 
 .. note:: You cannot debug the remote version of a |LAM| function or its related |ABP| API in your |env|. You can only invoke it.
 
-   You cannot debug local |LAM| function code that uses Python.
-
 To debug the local version of an existing |LAM| function or its related |ABP| API, you must first import the remote version of
 the function into your |envfirst|, if the function isn't already there. See :ref:`lambda-functions-import`.
+
+.. important:: If you import the remote version of a Python function into your |env|, you must choose one of the following options before you can debug it:
+
+   **Option 1: If the Python function doesn't use venv, use pip to install IKPdb into the same directory as the function's template.yaml file.**
+
+   Use a terminal session in the |IDE| to change to the directory containing the function's :file:`template.yaml` file. Then run one of the following commands. This
+   command installs the Python debugger IKPdb in the same directory as the function's :file:`template.yaml` file:
+
+   .. code-block:: sh
+
+      pip install ikpdb --target .      # For a function that uses Python 2.7.
+      pip-3.6 install ikp3db --target . # For a function that uses Python 3.6.
+
+   **Option 2: If the Python function uses venv, use pip in venv to install IKPdb into the function's venv directory, and then add the CodeUri property to the function's template.yaml file.**
+
+   #. Use a terminal session in the |IDE| to change to the directory containing the function's :file:`template.yaml` file. From that folder, run one of the following commands.
+      This command uses pip in the function's :file:`venv/bin` directory to install the Python debugger IKPdb into the function's :file:`venv/lib/pythonMAJOR.MINOR/dist-packages` directory:
+
+      .. code-block:: sh
+
+         venv/bin/pip install ikpdb       # For a function that uses Python 2.7.
+         venv/bin/pip3.6 install ikp3db   # For a function that uses Python 3.6.
+
+   #. In the :guilabel:`Environment` window, open the function's :file:`template.yaml` file for editing. In the :code:`Properties` section for the function, add the :code:`CodeUri` property,
+      set its value to :code:`.debug/`, and then save the file. For example:
+
+      .. code-block:: yaml
+
+         AWSTemplateFormatVersion: '2010-09-09'
+         Transform: 'AWS::Serverless-2016-10-31'
+         Description: An AWS Serverless Specification template describing your function.
+         Resources:
+           myDemoFunction:
+             Type: 'AWS::Serverless::Function'
+             Properties:
+               CodeUri: .debug/
+               # ...
 
 #. In the :guilabel:`Environment` window, open the file that contains the |LAM| function's code you want to debug.
 #. Set any breakpoints and watch expressions for your code. See :ref:`build-run-debug-debug`.
@@ -613,7 +934,7 @@ the function into your |envfirst|, if the function isn't already there. See :ref
 #. For a |LAM| function, in the :guilabel:`Test payload` pane of the invoke tab that is displayed, confirm any custom input
    data you want your function to use when you test it.
    For information about the input data format, see :LAM-dg:`Step 2.2: Invoke the Lambda Function Manually and Verify Results, Logs, and Metrics <get-started-invoke-manually>` in the |LAM-dg|.
-#. For an |ABP| API, in the :guilabel:`Test payload` pane of the invoke tab that is displayed, confirm the 
+#. For an |ABP| API, in the :guilabel:`Test payload` pane of the invoke tab that is displayed, confirm the
    :guilabel:`Path`, :guilabel:`Method`, :guilabel:`Query String`, and :guilabel:`Body` you want the API
    to use when you test it.
 
@@ -626,6 +947,11 @@ the function into your |envfirst|, if the function isn't already there. See :ref
 
 .. image:: images/console-lambda-debug.png
    :alt: Choose what happens when your function execution pauses at a breakpoint
+
+Compare your results to the following:
+
+.. image:: images/ide-lambda-debug.gif
+   :alt: Debugging a Lambda function
 
 .. _lambda-functions-change-code:
 
@@ -654,6 +980,16 @@ Upload Code for a |LAM| Function
 ================================
 
 To upload the local version of a |LAM| function in your |env| to the related remote version of the function in |LAM|, do the following.
+
+.. note:: Do not follow this procedure if the |LAM| function is part of an |ACSlong| project. Otherwise, the error
+   "Parameters: [ProjectId] must have values" will display, and the function will not deploy. Instead, use a terminal session in the |IDE| to run the
+   :code:`git push` command to push committed code changes to the repository for the |ACSlong| project. This instructs |ACSlong| to upload
+   the local version of the |LAM| function in your |env| to the related remote version of the function in |LAM|.
+
+   Also, do not follow this procedure if the |LAM| function was created from a serverless application in the AWS Serverless Application Repository, and that
+   serverless application requires parameters to be specified during deployment. Otherwise, an error will display that required parameters are missing,
+   and the serverless application is not deployed. For an alternative procedure, see coverage of the |CFN| :code:`deploy` command
+   in :ref:`lambda-functions-create-repo`.
 
 #. In the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, expand the :guilabel:`Local
    Functions` list, if it isn't already expanded.
@@ -737,11 +1073,11 @@ Then do the following.
 
 #. Make changes to the configuration settings, and then save the file.
 
-   .. note:: By default, configuration settings are displayed in plain text. To change this behavior to display configuration settings in a visual editor by default, 
-      choose :guilabel:`AWS Cloud9, Preferences` on the menu bar. Choose :guilabel:`AWS Settings`, and then turn on :guilabel:`Use AWS SAM visual editor`. 
-      To use the visual editor, close the function's :file:`template.yaml` file, and then right-click the function and choose :guilabel:`Edit Config` again. 
-      To switch back to using plain text by default, turn off the :guilabel:`Use AWS SAM visual editor` setting. To temporarily edit plain text, choose :guilabel:`View with text editor (Ace)` 
-      in the visual editor, and then choose :guilabel:`View, Editors, Ace` on the menu bar. 
+   .. note:: By default, configuration settings are displayed in plain text. To change this behavior to display configuration settings in a visual editor by default,
+      choose :guilabel:`AWS Cloud9, Preferences` on the menu bar. Choose :guilabel:`AWS Settings`, and then turn on :guilabel:`Use AWS SAM visual editor`.
+      To use the visual editor, close the function's :file:`template.yaml` file, and then right-click the function and choose :guilabel:`Edit Config` again.
+      To switch back to using plain text by default, turn off the :guilabel:`Use AWS SAM visual editor` setting. To temporarily edit plain text, choose :guilabel:`View with text editor (Ace)`
+      in the visual editor, and then choose :guilabel:`View, Editors, Ace` on the menu bar.
 
 #. Do one of the following:
 

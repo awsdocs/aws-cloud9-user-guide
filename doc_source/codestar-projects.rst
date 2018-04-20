@@ -31,7 +31,7 @@ For more information, see the :codestar-user-guide:`AWS CodeStar User Guide <wel
    To use the |AC9IDE| to work with a newly-launched |EC2| instance preconfigured with a popular app or framework such as WordPress, MySQL, PHP, Node.js, Nginx, Drupal, or Joomla, or a Linux distribution such as 
    Ubuntu, Debian, FreeBSD, or openSUSE, you can use |lightsaillong| along with |AC9|. To do this, skip the rest of this topic, and see :ref:`Working with Amazon Lightsail Instances <lightsail-instances>` instead. 
 
-   To use the |AC9IDE| to work with a newly-launched |EC2| instance running Amazon Linux that contains no sample code, skip the rest of this topic, and see the :ref:`Tutorial <tutorial>` instead.
+   To use the |AC9IDE| to work with a newly-launched |EC2| instance running Amazon Linux that contains no sample code, skip the rest of this topic, and see the :ref:`IDE Tutorial <tutorial>` instead.
 
 * :ref:`codestar-projects-setup`
 * :ref:`codestar-projects-create-project`

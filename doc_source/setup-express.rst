@@ -78,4 +78,4 @@ After you complete the previous step, you're ready to sign in to the |AC9| conso
 
    You have now successfully signed in, and the |AC9| console is displayed.
 
-Start experimenting with |AC9| by following the steps in the :doc:`Tutorial <tutorial>`.
+Start experimenting with |AC9| by following the steps in the :doc:`IDE Tutorial <tutorial>`.

@@ -18,7 +18,7 @@ Getting Started with |AC9long|
     :description:
         Provides topics that show how to get started with AWS Cloud9.
 
-To start using |AC9|, follow one of the sets of procedures, depending on how you plan to use |AC9|.
+To start using |AC9|, follow one of these sets of procedures, depending on how you plan to use |AC9|.
 
 .. list-table::
    :widths: 2 1
@@ -33,7 +33,7 @@ To start using |AC9|, follow one of the sets of procedures, depending on how you
    * - Multiple people will be using a single AWS account, and I need to restrict creating |envplural| within that account to control costs.
      - :ref:`Advanced Setup for Teams <setup-teams>`
 
-After you finish setting up, follow the steps in the :doc:`Tutorial <tutorial>` to begin experimenting with |AC9|.
+After you finish setting up, follow the steps in the :doc:`IDE Tutorial <tutorial>` to begin experimenting with |AC9|.
 
 See :doc:`welcome` for general information about |AC9|.
 
@@ -44,5 +44,7 @@ See :doc:`welcome` for general information about |AC9|.
    Express Setup <setup-express>
    Team Setup <setup>
    Advanced Team Setup <setup-teams>
-   Tutorial <tutorial>
+   IDE Tutorial <tutorial>
+   AWS Lambda Tutorial <tutorial-lambda>
+   Advanced AWS Lambda Tutorial <tutorial-lambda-advanced>
 

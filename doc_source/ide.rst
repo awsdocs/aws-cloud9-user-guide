@@ -31,6 +31,7 @@ Learn how to work with the |AC9IDE| by reading one or more of these topics.
    Finding and Replacing Text <find-replace-text>
    Previewing Files <file-preview>
    Previewing Running Applications <app-preview>
+   Working with File Revisions <file-revisions>
    Working with Image Files <images>
    Working with Builders, Runners, and Debuggers <build-run-debug>
    Working with Custom Environment Variables <env-vars>

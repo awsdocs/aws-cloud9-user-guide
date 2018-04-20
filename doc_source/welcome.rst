@@ -38,13 +38,17 @@ with each |env| set up for a specific development project. By storing the |env|
 in the cloud, your projects no longer need to be tied to a single computer or server setup. This
 enables you to do things such as easily switch between computers and more quickly onboard developers to your team.
 
-To watch related videos, see the 9-minute video `AWS re:Invent 2017 - Introducing AWS Cloud9: Werner Vogels Keynote <https://www.youtube.com/watch?v=fwFoU_Wb-fU>`_ and 
-the 15-minute video `AWS re:Invent Launchpad 2017 - AWS Cloud9 <https://www.youtube.com/watch?v=NNqVBo9k8n4>`_, both on the YouTube website.
-
 * :ref:`how-does-it-work`
 * :ref:`pricing`
 * :ref:`how-to-get-started`
 * :ref:`versions`
+
+To watch related videos, see the following:
+
+* `AWS re:Invent 2017 - Introducing AWS Cloud9: Werner Vogels Keynote <https://www.youtube.com/watch?v=fwFoU_Wb-fU>`_ (9 minutes, YouTube website)
+* `AWS re:Invent Launchpad 2017 - AWS Cloud9 <https://www.youtube.com/watch?v=NNqVBo9k8n4>`_, (15 minutes, YouTube website)
+* `Introducing AWS Cloud9 - AWS Online Tech Talks <https://www.youtube.com/watch?v=FvclLeg2vEQ>`_ (33 minutes, YouTube website)
+* `AWS re:Invent 2017 - Introducing AWS Cloud9, a cloud IDE to write, run & debug your code <https://www.portal.reinvent.awsevents.com/connect/sessionDetail.ww?SESSION_ID=14987>`_ (1 hour, 4 minutes; AWS re:Invent website)
 
 .. _how-does-it-work:
 
@@ -81,7 +85,7 @@ How Do I Get Started with |AC9|?
 
 Set up to start using |AC9| by following one of the sets of setup steps in :doc:`Getting Started <get-started>`.
 
-After you get set up, follow the steps in the :doc:`Tutorial <tutorial>` to begin experimenting with |AC9|.
+After you get set up, follow the steps in the :doc:`IDE Tutorial <tutorial>` to begin experimenting with |AC9|.
 
 .. _versions:
 

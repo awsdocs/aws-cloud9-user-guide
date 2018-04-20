@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Creates a blank AWS Cloud9 development environment with default settings, launches an Amazon EC2 instance running Amazon Linux, and connects the new instance to the new environment."
+Parameters:
+  Name:
+    Description: "A name for the new AWS Cloud9 development environment."
+    Type: "String"
+  InstanceType:
+    Type: "String"
+    Default: "t2.micro"
+    AllowedValues:
+      - "t2.micro"
+      - "t2.small"
+      - "m4.large"
+      - "t2.nano"
+      - "c4.large"
+      - "t2.medium"
+      - "t2.large"
+      - "m4.xlarge"
+      - "t2.xlarge"
+      - "c4.xlarge"
+      - "c4.2xlarge"
+      - "m4.2xlarge"
+      - "t2.2xlarge"
+      - "c4.4xlarge"
+      - "m4.4xlarge"
+      - "c4.8xlarge"
+      - "m4.10xlarge"
+      - "m4.16xlarge"
+    Description: "The instance type of the new Amazon EC2 instance that AWS Cloud9 will launch for the development environment (for example, 't2.micro')."
+  Subnet:
+    Description: "The ID of the existing subnet in Amazon VPC for AWS Cloud9 to use to communicate with the new Amazon EC2 instance (for example, 'subnet-12345678')."
+    Type: "String"
+Resources:  
+  Environment:
+    Type: "AWS::Cloud9::EnvironmentEC2"
+    Properties:
+      InstanceType: !Ref InstanceType
+      Name: !Ref Name
+      SubnetId: !Ref Subnet

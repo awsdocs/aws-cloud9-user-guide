@@ -20,6 +20,10 @@ Python Sample for |AC9long|
 
 This sample enables you to run some Python scripts in an |envfirst|.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+
+* :ref:`sample-python-prereqs`
 * :ref:`sample-python-install`
 * :ref:`sample-python-code`
 * :ref:`sample-python-run`
@@ -28,12 +32,12 @@ This sample enables you to run some Python scripts in an |envfirst|.
 * :ref:`sample-python-sdk-run`
 * :ref:`sample-python-clean-up`
 
-.. note::
+.. _sample-python-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 .. _sample-python-install:
 
@@ -61,7 +65,29 @@ In this step, you install Python, which is required to run this sample.
    .. note:: If you have Python 2 and 3 installed, and you want to use Python 3 but running the :command:`python --version` command outputs a version of Python 2, you can
       use Python 3 in one or more of the following ways: 
 
-      * Instead of running  
+      * Instead of using the built-in Python 2 runner in the |IDE|, use the built-in Python 3 runner. For more information, see :ref:`sample-python-run`.
+      * Instead of running the :code:`python` command in a terminal session in the |IDE|, run the :code:`python3` command instead.
+      * To set up the :code:`python` command to use Python 3, use a tool such as virtualenv to create a virtual environment for Python 3, 
+        and then activate the new virtual environment. For example, you can run 
+        commands similar to the following to create and then activate the virtual environment: 
+        
+        .. code-block:: sh
+
+           virtualenv --version                  # If a version number is not output, see https://virtualenv.pypa.io/en/stable/installation/.
+           which python                          # If the 'python' command is aliased to something like '/usr/bin/python27', prepare to unalias it.
+           unalias python                        # If the 'python' command is aliased to something like '/usr/bin/python27', unalias it.
+           python --version                      # Output the current Python version, for example 'Python 2.7.12'.
+           python3 --version                     # Output the current version of Python 3, for example 'Python 3.6.2'.
+           which python36                        # Output the path to the python36 binary, for example '/usr/bin/python36'.
+           cd ~/environment/                     # Prepare to create a virtual environment in this path.
+           virtualenv -p /usr/bin/python36 vpy36 # Create a virtual environment for Python 3.6 in this path.
+           source vpy36/bin/activate             # Switch to use Python 3.6 instead of Python 2.7.12 when you run the 'python --version' command.
+           python --version                      # Output the current Python version, for example 'Python 3.6.2'.
+           deactivate                            # If and when you are done using Python 3.6, prepare to make Python 2.7.12 active again.
+           alias python=/usr/bin/python27        # Switch back to outputting '/usr/bin/python27' when you run the 'which python' command.
+        
+        For more information, see `Installation <https://virtualenv.pypa.io/en/stable/installation/>`_ and 
+        `Usage <https://virtualenv.pypa.io/en/stable/userguide/>`_ on the virtualenv website.
 
    For more information, see `Download Python <https://www.python.org/downloads/>`_ on the Python website and `Installing Packages <https://packaging.python.org/installing/>`_
    in the :title:`Python Packaging User Guide`.
@@ -88,7 +114,7 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
 
 .. note:: The preceding code doesn't rely on any custom Python modules or packages. However, if you ever import custom 
    Python modules or packages, and you want |AC9| to use 
-   those modules or pacakges to do code completion as you type, 
+   those modules or packages to do code completion as you type, 
    turn on the :guilabel:`Project, Python Support, Enable Python code completion` setting in :guilabel:`Preferences`, 
    and then add the paths to those modules or packages to the :guilabel:`Project, Python Support, PYTHONPATH` setting. 
    (To view and change your preferences, choose :guilabel:`AWS Cloud9, Preferences` on the menu bar.)
@@ -148,7 +174,7 @@ In this step, you install and configure the |sdk-python|, which provides a conve
 
    #. In the |AC9IDE|, confirm whether pip is already installed by running the :command:`pip --version` command. If successful, the
       output contains the pip version number. Otherwise, an error message should be output. If pip is
-      installed, skip ahead to the next procedure, **To install the |sdk-python|**.
+      installed, skip ahead to the next procedure, "To install the |sdk-python|."
    #. To install pip, run these commands, one at a time.
 
       .. code-block:: sh
@@ -194,13 +220,18 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
    import sys
    import botocore
 
-   region = 'YOUR_REGION'
+   if len(sys.argv) < 3:
+     print('Usage: python s3.py <the bucket name> <the AWS Region to use>\n' + 
+       'Example: python s3.py my-test-bucket us-east-2')
+     sys.exit()
+
+   bucket_name = sys.argv[1]
+   region = sys.argv[2]
+
    s3 = boto3.client(
      's3',
      region_name = region
    )
-
-   bucket_name = sys.argv[1]
 
    # Lists all of your available buckets in this AWS Region.
    def list_my_buckets(s3):
@@ -237,9 +268,6 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
 
    list_my_buckets(s3)
 
-In the preceding code, replace :samp:`YOUR_REGION` with the ID of an AWS Region. For example, for the US East (Ohio) Region, use :code:`us-east-2`.
-For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
-
 .. _sample-python-sdk-run:
 
 Step 6: Run the AWS SDK Code
@@ -248,7 +276,9 @@ Step 6: Run the AWS SDK Code
 #. On the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
 #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Python 2` or :guilabel:`Python 3`, depending 
    on which version of Python you want to use and is installed in your |env|.
-#. For :guilabel:`Command`, type :samp:`s3.py {YOUR_BUCKET_NAME}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create and then delete.
+#. For :guilabel:`Command`, type :samp:`s3.py {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create 
+   and then delete, and :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US East (Ohio) Region, 
+   use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
 
    .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
 

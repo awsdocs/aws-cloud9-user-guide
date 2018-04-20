@@ -20,6 +20,10 @@ Ruby Sample for |AC9long|
 
 This sample enables you to run some Ruby scripts in an |envfirst|.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+
+* :ref:`sample-ruby-prereqs`
 * :ref:`sample-ruby-install`
 * :ref:`sample-ruby-code`
 * :ref:`sample-ruby-run`
@@ -28,12 +32,12 @@ This sample enables you to run some Ruby scripts in an |envfirst|.
 * :ref:`sample-ruby-sdk-run`
 * :ref:`sample-ruby-clean-up`
 
-.. note::
+.. _sample-ruby-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 .. _sample-ruby-install:
 
@@ -156,8 +160,13 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
 
    require 'aws-sdk'
 
+   if ARGV.length < 2
+     puts "Usage: ruby s3.rb <the bucket name> <the AWS Region to use>\n" +
+       "Example: ruby s3.rb my-test-bucket us-east-2"
+   end
+   
    bucket_name = ARGV[0]
-   region = 'YOUR_REGION'
+   region = ARGV[1]
    s3 = Aws::S3::Client.new(region: region)
 
    # Lists all of your available buckets in this AWS Region.
@@ -196,9 +205,6 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
 
    list_my_buckets(s3)
 
-In the preceding code, replace :samp:`YOUR_REGION` with the ID of an AWS Region. For example, for the US East (Ohio) Region, use :code:`us-east-2`.
-For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
-
 .. _sample-ruby-sdk-run:
 
 Step 6: Run the AWS SDK Code
@@ -206,13 +212,11 @@ Step 6: Run the AWS SDK Code
 
 #. In the |AC9IDE|, on the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
 #. In the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Ruby`.
-#. For :guilabel:`Command`, type :samp:`s3.rb {YOUR-BUCKET-NAME}`, where :samp:`{YOUR-BUCKET-NAME}` is the name of the bucket you want to create and then delete.
+#. For :guilabel:`Command`, type :samp:`s3.rb {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create 
+   and then delete, and :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US East (Ohio) Region, 
+   use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
 
    .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
-
-   .. image:: images/ide-ruby-sdk.png
-      :width: 100%
-      :alt: Running the AWS SDK for Ruby code in the AWS Cloud9 IDE
 
 #. Choose the :guilabel:`Run` button, and compare your output.
 

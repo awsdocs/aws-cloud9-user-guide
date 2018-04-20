@@ -20,6 +20,10 @@ Node.js Sample for |AC9long|
 
 This sample enables you to run some Node.js scripts in an |envfirst|.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+
+* :ref:`sample-nodejs-prereqs`
 * :ref:`sample-nodejs-install`
 * :ref:`sample-nodejs-code`
 * :ref:`sample-nodejs-run`
@@ -28,12 +32,12 @@ This sample enables you to run some Node.js scripts in an |envfirst|.
 * :ref:`sample-nodejs-sdk-run`
 * :ref:`sample-nodejs-clean-up`
 
-.. note::
+.. _sample-nodejs-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |S3|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon S3 Pricing <https://aws.amazon.com/s3/pricing/>`_.
+.. include:: _sample-prereqs.txt
 
 .. _sample-nodejs-install:
 
@@ -59,14 +63,7 @@ In this step, you install Node.js, which is required to run this sample.
 
       curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 
-#. Use a text editor to update your :file:`~/.bashrc` file to enable nvm to be loaded. Type or paste the following code at the end of the file, and then save the file.
-
-   .. code-block:: sh
-
-      export NVM_DIR="/home/ec2-user/.nvm"
-      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm.
-
-#. Source the :file:`~/.bashrc` file you just saved.
+#. To start using nvm, either close the terminal session and start it again, or source the :file:`~/.bashrc` file that contains the commands to load nvm.
 
    .. code-block:: sh
 
@@ -162,23 +159,30 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
 
 .. code-block:: javascript
 
+   if (process.argv.length < 4) {
+     console.log('Usage: node s3.js <the bucket name> <the AWS Region to use>\n' + 
+       'Example: node s3.js my-test-bucket us-east-2');
+     process.exit(1);
+   }
+
    var AWS = require('aws-sdk'); // To set the AWS credentials and region.
    var async = require('async'); // To call AWS operations asynchronously.
-   var region = 'YOUR_REGION';
 
    AWS.config.update({
      region: region
    });
 
    var s3 = new AWS.S3({apiVersion: '2006-03-01'});
-
    var bucket_name = process.argv[2];
+   var region = process.argv[3];
+   
    var create_bucket_params = {
      Bucket: bucket_name,
      CreateBucketConfiguration: {
        LocationConstraint: region
      }
    };
+
    var delete_bucket_params = {Bucket: bucket_name};
 
    // List all of your available buckets in this AWS Region.
@@ -233,9 +237,6 @@ In the |AC9IDE|, create a file with this content, and save the file with the nam
      listMyBuckets
    ]);
 
-In the preceding code, replace :samp:`YOUR_REGION` with the ID of an AWS Region. For example, for the US East (Ohio) Region, use :code:`us-east-2`.
-For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
-
 .. _sample-nodejs-sdk-run:
 
 Step 6: Run the AWS SDK Code
@@ -249,11 +250,11 @@ Step 6: Run the AWS SDK Code
 
 #. In the |AC9IDE|, on the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
 #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Node.js`.
-#. For :guilabel:`Command`, type :samp:`s3.js {YOUR-BUCKET-NAME}`, where :samp:`{YOUR-BUCKET-NAME}` is the name of the bucket you want to create and then delete.
+#. For :guilabel:`Command`, type :samp:`s3.js {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create 
+   and then delete, and :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US East (Ohio) Region, 
+   use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
 
-   .. image:: images/ide-nodejs-sdk.png
-      :width: 100%
-      :alt: Running the AWS SDK for Node.js code in the AWS Cloud9 IDE
+   .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
 
 #. Choose the :guilabel:`Run` button, and compare your output.
 

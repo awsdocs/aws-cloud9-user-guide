@@ -24,36 +24,42 @@ Use the following information to help you identify and address issues with |AC9|
 * :ref:`troubleshooting-access-not-authorized`
 * :ref:`troubleshooting-federated-service-role`
 * :ref:`troubleshooting-env-loading`
+* :ref:`troubleshooting-ssh-installer`
 * :ref:`troubleshooting-python-ssh`
 * :ref:`troubleshooting-rhel`
-* :ref:`troubleshooting-update-ami`
+* :ref:`troubleshooting-app-preview`
+* :ref:`troubleshooting-app-sharing`
 * :ref:`troubleshooting-app-preview-refresh`
 * :ref:`troubleshooting-app-preview-http`
+* :ref:`troubleshooting-cli-invalid-token`
+* :ref:`troubleshooting-update-ami`
+* :ref:`troubleshooting-install-sam-local`
 
 .. _troubleshooting-sts-assume-role:
 
-Error: "Not authorized to perform sts:AssumeRole" When Creating an |envfirsttitle|
-===================================================================================
+|envtitle| Creation Error: "Not authorized to perform sts:AssumeRole"
+=====================================================================
 
 **Issue:** When you try to create a new |env|, you see this error: "Not authorized to perform
 sts:AssumeRole," and the |env| is not created.
 
 **Possible causes:** An |AC9| service-linked role doesn't exist in your AWS account.
 
-**Recommended solutions:** Create an |AC9| service-linked role in your AWS account by running the following command with the |CLIlong| (|CLI|).
+**Recommended solutions:** Create an |AC9| service-linked role in your AWS account by running the following command with the |clilong| (|cli|) or the aws-shell.
 
 .. code-block:: sh
 
-   aws iam create-service-linked-role --aws-service-name cloud9.amazonaws.com
+   aws iam create-service-linked-role --aws-service-name cloud9.amazonaws.com # For the AWS CLI.
+   iam create-service-linked-role --aws-service-name cloud9.amazonaws.com     # For the aws-shell.
 
 If you cannot do this, check with your AWS account administrator.
 
-After you run this command, try creating the |env| again. 
+After you run this command, try creating the |env| again.
 
 .. _troubleshooting-access-not-authorized:
 
-Error: "User is not authorized to perform action on resource" When Using the |AC9| Console
-==========================================================================================
+Console Error: "User is not authorized to perform action on resource"
+=====================================================================
 
 **Issue:** When you try to use the |AC9| console to create or manage an |envfirst|, you see this error: "User USER-ARN is not authorized to perform ACTION on resource RESOURCE-ARN," where:
 
@@ -75,61 +81,120 @@ action again. For more information, see the following:
 Federated Identities Cannot Create |envtitleplural|
 ===================================================
 
-**Issue:** When you try to use an AWS federated identity to create an |envfirst|, an access error message is displayed, and the environment isn't created. 
+**Issue:** When you try to use an AWS federated identity to create an |envfirst|, an access error message is displayed, and the environment isn't created.
 
-**Cause:** : |AC9| uses service-linked roles. The service-linked role is created the first time an |env| is created in an account using the :code:`iam:CreateServiceLinkedRole` call. 
+**Cause:** : |AC9| uses service-linked roles. The service-linked role is created the first time an |env| is created in an account using the :code:`iam:CreateServiceLinkedRole` call.
 However, federated users can't call |IAM| APIs. For more information, see :STS-api:`GetFederationToken <API_GetFederationToken>` in the |STS-api|.
 
-**Solution:** Ask an AWS account administrator to create the service-linked role for |AC9| either in the |IAM| console or by running the command 
-:code:`aws iam create-service-linked-role --aws-service-name cloud9.amazonaws.com` from the |CLIlong| (|CLI|). For more information, see 
+**Solution:** Ask an AWS account administrator to create the service-linked role for |AC9| either in the |IAM| console or by running the command
+:code:`aws iam create-service-linked-role --aws-service-name cloud9.amazonaws.com` from the |clilong| (|cli|) or the command
+:code:`iam create-service-linked-role --aws-service-name cloud9.amazonaws.com` from the aws-shell. For more information, see
 :IAM-ug:`Using Service-Linked Roles <using-service-linked-roles>` in the |IAM-ug|.
 
 .. _troubleshooting-env-loading:
 
-|envtitle| Loading Screen Displays for a Long Time
-==================================================
+Cannot Open an |envtitle|
+=========================
 
-**Issue:** When you try to open an |env|, the |IDE| does not display after five minutes or longer. 
+**Issue:** When you try to open an |env|, the |IDE| does not display for a long time (after at least five minutes).
 
-**Possible cause:** Your web browser does not have third-party cookies enabled. 
+**Possible causes:**
 
-**Recommended solution:** Enable third-party cookies in your web browser, and then try opening the environment again. To enable third-party cookies: 
- 
-*	For Apple Safari, see `Manage cookies and website data using Safari <https://support.apple.com/kb/PH21411>`_ on the Apple Support website.
-*	For Google Chrome, see **Change your cookie settings** in `Clear, enable, and manage cookies in Chrome <https://support.google.com/chrome/answer/95647>`_ on the Google Chrome Help website. 
-*	For Internet Explorer, see **To block or allow all cookies** in `Description of Cookies <https://support.microsoft.com/help/260971/description-of-cookies>`_ on the Microsoft Support website.
-*	For Mozilla Firefox, see the **Accept third party cookies** setting in `Enable and disable cookies that websites use to track your preferences <https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences>`_ on the Mozilla Support website.
-*	For other web browsers, see their web browser's documentation.
+* Your web browser does not have third-party cookies enabled.
+* The |IAM| user that is signed in to the |AC9| console does not have the required AWS access permissions to open the |env|.
+* If the |env| is associated with an |EC2| instance, the instance's associated VPC is not set to the correct settings for |AC9|.
+* If the |env| is associated with an |EC2| instance, the instance is transitioning between states or is failing automated status checks, during the time when |AC9| is trying to connect to the instance.
+* If the |env| is an |envssh|, the associated |EC2| instance or your own server is not set up correctly to allow |AC9| to access it.
 
-If you want to restrict enabling third-party cookies only for |AC9| and your web browser allows this, specify the following domains, depending on the supported AWS Regions where 
-you want to use |AC9|.
+**Recommended solution:**
 
-.. list-table::
-   :widths: 1 2
-   :header-rows: 1
+* Enable third-party cookies in your web browser, and then try opening the |env| again. To enable third-party cookies:
 
-   * - **AWS Region**
-     - **Domains**
-   * - Asia Pacific (Singapore)
-     - :code:`*.vfs.cloud9.ap-southeast-1.amazonaws.com`
-       
-       :code:`vfs.cloud9.ap-southeast-1.amazonaws.com`
-   * - EU (Ireland)
-     - :code:`*.vfs.cloud9.eu-west-1.amazonaws.com`
-       
-       :code:`vfs.cloud9.eu-west-1.amazonaws.com`
-   * - US East (N. Virginia)
-     - :code:`*.vfs.cloud9.us-east-1.amazonaws.com`
-       
-       :code:`vfs.cloud9.us-east-1.amazonaws.com`
-   * - US East (Ohio)
-     - :code:`*.vfs.cloud9.us-east-2.amazonaws.com`
-       
-       :code:`vfs.cloud9.us-east-2.amazonaws.com`
-   * - US West (Oregon)
-     - :code:`*.vfs.cloud9.us-west-2.amazonaws.com`
-       
-       :code:`vfs.cloud9.us-west-2.amazonaws.com`
+  * For Apple Safari, see `Manage cookies and website data using Safari <https://support.apple.com/kb/PH21411>`_ on the Apple Support website.
+  * For Google Chrome, see **Change your cookie settings** in `Clear, enable, and manage cookies in Chrome <https://support.google.com/chrome/answer/95647>`_ on the Google Chrome Help website.
+  * For Internet Explorer, see **To block or allow all cookies** in `Description of Cookies <https://support.microsoft.com/help/260971/description-of-cookies>`_ on the Microsoft Support website.
+  * For Mozilla Firefox, see the **Accept third party cookies** setting in `Enable and disable cookies that websites use to track your preferences <https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences>`_ on the Mozilla Support website.
+  * For other web browsers, see their web browser's documentation.
+
+  If you want to restrict enabling third-party cookies only for |AC9| and your web browser allows this, specify the following domains, depending on the supported AWS Regions where
+  you want to use |AC9|.
+
+  .. list-table::
+     :widths: 1 2
+     :header-rows: 1
+
+     * - **AWS Region**
+       - **Domains**
+     * - Asia Pacific (Singapore)
+       - :code:`*.vfs.cloud9.ap-southeast-1.amazonaws.com`
+
+         :code:`vfs.cloud9.ap-southeast-1.amazonaws.com`
+     * - EU (Ireland)
+       - :code:`*.vfs.cloud9.eu-west-1.amazonaws.com`
+
+         :code:`vfs.cloud9.eu-west-1.amazonaws.com`
+     * - US East (N. Virginia)
+       - :code:`*.vfs.cloud9.us-east-1.amazonaws.com`
+
+         :code:`vfs.cloud9.us-east-1.amazonaws.com`
+     * - US East (Ohio)
+       - :code:`*.vfs.cloud9.us-east-2.amazonaws.com`
+
+         :code:`vfs.cloud9.us-east-2.amazonaws.com`
+     * - US West (Oregon)
+       - :code:`*.vfs.cloud9.us-west-2.amazonaws.com`
+
+         :code:`vfs.cloud9.us-west-2.amazonaws.com`
+
+* Make sure the |IAM| user that is signed in to the |AC9| console has the required AWS access permissions to open the |env|, and then try opening the |env| again. For more information see the following,
+  or check with your AWS account administrator:
+
+  * :ref:`Step 3: Add AWS Cloud9 Access Permissions to the Group <setup-give-user-access>` in *Team Setup*
+  * :ref:`AWS Managed (Predefined) Policies for AWS Cloud9 <auth-and-access-control-managed-policies>` in *Authentication and Access Control*
+  * :ref:`Customer-Managed Policy Examples for Teams <setup-teams-policy-examples>` in *Advanced Team Setup*
+  * :ref:`Customer-Managed Policy Examples <auth-and-access-control-customer-policies-examples>` in *Authentication and Access Control*
+  * :IAM-ug:`Changing Permissions for an IAM User <id_users_change-permissions>` in the |IAM-ug|
+  * :IAM-ug:`Troubleshoot IAM Policies <troubleshoot_policies>` in the |IAM-ug|
+
+  If the signed-in |IAM| user still cannot open the |env|, you could try signing out and then signing back in as either the AWS account root user or an |IAM| administrator user in the account. Then try opening
+  the |env| again. If you are able to open the |env| in this way, then there is most likely a problem with the |IAM| user's access permissions.
+
+* If the |env| is associated with an |EC2| instance, make sure the instance's associated VPC is set to the correct settings for |AC9|, and then try opening the |env| again. For details, see
+  :ref:`vpc-settings-requirements`.
+
+  If the instance's associated VPC is set to the correct settings for |AC9| and you still cannot open the |env|, the instance's |EC2| security group might be preventing access to |AC9|. Check the security group
+  to make sure that at minimum, inbound SSH traffic is allowed over port 22 for all IP addresses (:code:`Anywhere` or :code:`0.0.0.0/0`). For instructions,
+  see :ec2-user-guide:`Describing Your Security Groups <using-network-security.html#describing-security-group>` and
+  :ec2-user-guide:`Updating Security Group Rules <using-network-security.html#updating-security-group-rules>` in the |EC2-ug|.
+
+* If the |env| is associated with an |EC2| instance, restart the instance, make sure the instance is running and has passed all system checks, and then try opening the |env| again.
+  For details, see :EC2-ug:`Reboot Your Instance <ec2-instance-reboot>` and :ec2-user-guide:`Viewing Status Checks <monitoring-system-instance-status-check.html#viewing_status>` in the |EC2-ug|.
+* If the |env| is an |envssh|, make sure the associated |EC2| instance or your own server is set up correctly to allow |AC9| to access it, and then try opening the |env| again.
+  For details, see :ref:`SSH Environment Host Requirements <ssh-settings>`.
+
+.. _troubleshooting-ssh-installer:
+
+The |AC9| Installer Hangs or Fails
+==================================
+
+**Issue:** When you open an |envfirstssh|, you are prompted to run the :guilabel:`AWS Cloud9 Installer`. When you try to run it, it either hangs or displays errors, and you cannot use the |AC9IDE| for
+the |env| as expected. (In some cases, a message might display before you are prompted to run the :guilabel:`AWS Cloud9 Installer`. The message states that opening the |env| is taking longer than expected.)
+
+**Cause:** The :guilabel:`AWS Cloud9 Installer` cannot run a required setup script to properly set up the |env|.
+
+**Solution:** Manually run the :file:`install.sh` script that the :guilabel:`AWS Cloud9 Installer` unsuccessfully tried to run, as follows:
+
+#. Close the web browser tab for the |env|, which stops the :guilabel:`AWS Cloud9 Installer`.
+#. Connect to the |EC2| instance or your own server using an SSH connection client outside of |AC9|, for example by using the :code:`ssh` command or PuTTY.
+#. Run one of the following commands on the |EC2| instance or your own server:
+
+   .. code-block:: sh
+
+      curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
+      wget -O - https://raw.githubusercontent.com/c9/install/master/install.sh | bash
+
+#. Try opening the |env| again. You might be prompted to run the :guilabel:`AWS Cloud9 Installer` again. When you try to run it this time though, it should run without hangs or errors.
+   However, depending on your Linux distribution and build, you might need to repeat this process to successfully set up the |env|.
 
 .. _troubleshooting-python-ssh:
 
@@ -148,37 +213,80 @@ see one of the following:
 * `Download Python <https://www.python.org/downloads/>`_ on the Python website and `Installing Packages <https://packaging.python.org/installing/>`_
   in the :title:`Python Packaging User Guide`.
 
-.. _troubleshooting-rhel:
+.. _troubleshooting-app-preview:
 
-Cannot Run Some Commands or Scripts in an |envec2title|
-=======================================================
+Application Preview Tab Displays an Error or is Blank
+=========================================================
 
-**Issue:** After you open an |envfirstlongec2|, you cannot install some types of packages, run commands such as :code:`apt`, or run scripts containing commands
-that typically work with Linux operating systems such as Ubuntu.
+**Issue:** On the menu bar in the |IDE|, when you choose :guilabel:`Preview, Preview Running Application` or :guilabel:`Tools, Preview, Preview Running Application`
+to try to display your application in a preview tab in the |IDE|, the tab displays an error, or the tab is blank.
 
-**Cause:** The |EC2| instance that |AC9| uses for an |envec2| relies on Amazon Linux, which is based on Red Hat Enterprise Linux (RHEL).
+**Possible causes:**
 
-**Solution:** If you install or manage packages or run commands or scripts in the |IDE| for an |envec2|,
-ensure they are compatible with RHEL.
-
-.. _troubleshooting-update-ami:
-
-|EC2| Instances Are Not Automatically Updated
-=============================================
-
-**Issue:** Recent system updates are not automatically applied to an |EC2| instance that connects to an |envfirst|.
-
-**Cause:** Automatically applying recent system updates could cause your code or the |EC2| instance to behave in unexpected ways, without your prior knowledge or approval.
+* Your application is not running in the |IDE|.
+* Your application is not running using HTTP.
+* Your application is running over more than one port.
+* Your application is running over a port other than :code:`8080`, :code:`8081`, or :code:`8082`.
+* Your application is running with an IP other than :code:`127.0.0.1`, :code:`localhost`, or :code:`0.0.0.0`.
+* The port (:code:`8080`, :code:`8081`, or :code:`8082`) is not specified in the URL on the preview tab.
+* Your network blocks inbound traffic to ports :code:`8080`, :code:`8081`, or :code:`8082`.
 
 **Recommended solutions:**
 
-Apply system updates to the |EC2| instance on a regular basis by following the instructions in :EC2-ug:`Updating Instance Software <install-updates>` in the |EC2-ug|.
+* Ensure that the application is running in the |IDE|.
+* Ensure that the application is running using HTTP. For some examples in Node.js and Python, see :ref:`Run an Application <app-preview-run-app>`.
+* Ensure that the application is running over only one port. For some examples in Node.js and Python, see :ref:`Run an Application <app-preview-run-app>`.
+* Ensure that the application is running over port :code:`8080`, :code:`8081`, or :code:`8082`. For some examples in Node.js and Python, see :ref:`Run an Application <app-preview-run-app>`.
+* Ensure that the application is running with an IP of :code:`127.0.0.1`, :code:`localhost`, or :code:`0.0.0.0`. For some examples in Node.js and Python, see :ref:`Run an Application <app-preview-run-app>`.
+* Add :code:`:8080`, :code:`:8081`, or :code:`:8082` to the URL on the preview tab.
+* Ensure that your network allows inbound traffic over ports :code:`8080`, :code:`8081`, or :code:`8082`. If you cannot make changes to your network, see your network administrator. 
+* After you are sure that all of the preceding conditions are met, try stopping the application and then starting it again.
+* If you stopped the application and then started it again, try choosing :guilabel:`Preview, Preview Running Application` or :guilabel:`Tools, Preview, Preview Running Application`
+  on the menu bar again. Or try choosing the :guilabel:`Refresh` button (the circular arrow) on the corresponding application preview tab, if the tab is already visible.
 
-To run commands on the instance, you can use a terminal session in the |AC9IDE| from the |env| that is connected to the instance. 
+.. _troubleshooting-app-sharing:
 
-Alternatively, you can use an SSH remote access utility such as **ssh** or PuTTY to connect to the instance. To do this, from your local computer, use an SSH key pair 
-creation utility such as **ssh-keygen** or PuTTYgen. Use the |AC9IDE| from the |env| that is connected to the instance to store the generated public key on the instance. 
-Then use the SSH remote access utility along with the generate private key to access the instance. For more information, see your utility's documentation.
+Cannot Display Your Running Application outside of the |IDE|
+============================================================
+
+**Issue:** When you or others try to display your running application in a web browser tab outside of the |IDE|, that web browser tab displays an error, or the tab is blank.
+
+**Possible causes:**
+
+* The application is not running in the |IDE|.
+* The application is running with an IP of :code:`127.0.0.1` or :code:`localhost`.
+* The application is running in an |envfirstlongec2|, and one or more security groups that are associated with the corresponding |EC2| instance do not allow inbound traffic over the protocols,
+  ports, or IP addresses that the application requires.
+* The application is running in an |envec2|, and the network ACL for the subnet in the virtual private cloud (VPC) that is associated with the corresponding |EC2| instance does not allow inbound traffic over the
+  protocols, ports, or IP addresses that the application requires.
+* The URL is incorrect.
+* The URL in the application preview tab is being requested instead of the instance's public IP address.
+* The instance's public IP address has changed.
+* The web request originates from a virtual private network (VPN) that blocks traffic over the protocols, ports, or IP addresses that the application requires.
+* The application is running in an |envfirstlongssh|, and your server or the associated network does not allow traffic over the protocols, ports, or IP addresses that the application requires.
+
+**Recommended solutions:**
+
+* Ensure that the application is running in the |IDE|.
+* Ensure that the application is not running with an IP of :code:`127.0.01` or :code:`localhost`. For some examples in Node.js and Python, see :ref:`Run an Application <app-preview-run-app>`.
+* If the application is running in an |envec2|, ensure all security groups that are associated with the corresponding |EC2| instance allow inbound traffic over the protocols, ports,
+  and IP addresses that the application requires. For instructions, see :ref:`app-preview-share-security-group` in
+  *Share a Running Application over the Internet*. See also :VPC-ug:`Security Groups for Your VPC <VPC_SecurityGroups>` in the |VPC-ug|.
+* If the application is running in an |envec2|, and a network ACL exists for the subnet in the VPC that is associated with the corresponding |EC2| instance, ensure that
+  network ACL allows inbound traffic over the protocols, ports, and IP addresses that the application requires. For instructions, see
+  :ref:`app-preview-share-subnet` in *Share a Running Application over the Internet*. See also :VPC-ug:`Network ACLs <VPC_ACLs>` in the |VPC-ug|.
+* Ensure that the requesting URL, including the protocol (and port, if it must be specified), is correct. For more information, see
+  :ref:`app-preview-share-url` in *Share a Running Application over the Internet*.
+* We do not recommend requesting a URL with the format :code:`https://ENVIRONMENT_ID.vfs.cloud9.REGION_ID.amazonaws.com/`. This URL works only when the |IDE| for the |env| is open and the
+  application is running in the same web browser.
+* Determine whether the instance's public IP address has changed. The instance's public IP address might change anytime the instance restarts. To prevent this IP address from changing,
+  you can allocate an Elastic IP address and assign it to the running instance. For more information, see :ref:`app-preview-share-url` in *Share a Running Application over the Internet*.
+* If the web request originates from a VPN, ensure that VPN allows traffic over the protocols, ports, and IP addresses that the application requires.
+  If you cannot make changes to your VPN, see your network administrator. Or make the web request from a different network if possible.
+* If the application is running in an |envssh|, ensure your server and the associated network allow traffic over the protocols, ports, and IP addresses that the
+  application requires. If you cannot make changes to your server or the associated network, see your server or network administrator.
+* Try running the application from a terminal in the |env| by running the :code:`curl` command, followed by the URL. If this command displays an error message, there might be some other issue that is not related
+  to |AC9|.
 
 .. _troubleshooting-app-preview-refresh:
 
@@ -210,6 +318,84 @@ preview.
 **Solution:** To view an application preview with an address starting with :code:`http` instead of :code:`https`, change
 :code:`https` in the address box of the tab to :code:`http` and then press :kbd:`Enter`. Then choose the :code:`Open your page in a new tab` button. This
 displays the application preview in a separate web browser tab using HTTP.
+
+.. _troubleshooting-rhel:
+
+Cannot Run Some Commands or Scripts in an |envec2title|
+=======================================================
+
+**Issue:** After you open an |envfirstlongec2|, you cannot install some types of packages, run commands such as :code:`apt`, or run scripts containing commands
+that typically work with Linux operating systems such as Ubuntu.
+
+**Cause:** The |EC2| instance that |AC9| uses for an |envec2| relies on Amazon Linux, which is based on Red Hat Enterprise Linux (RHEL).
+
+**Solution:** If you install or manage packages or run commands or scripts in the |IDE| for an |envec2|,
+ensure they are compatible with RHEL.
+
+.. _troubleshooting-cli-invalid-token:
+
+|cli| / aws-shell Error: "The security token included in the request is invalid" in an |envec2|
+===============================================================================================
+
+**Issue:** When you try to use the |clilong| (|cli|) or the aws-shell to run a command in the |AC9IDE| for an |envec2|, an error displays: "The security token included in the request is invalid."
+
+**Possible causes:**
+
+* If you have |AC9tempcreds| enabled, you are trying to run a command that is not allowed with those |tempcreds|. For a list of allowed commands, see :ref:`auth-and-access-control-temporary-managed-credentials-supported`.
+* If you have |AC9tempcreds| enabled and the |env| is a shared |env|, the |env| owner has not opened the |env| within the past 12 hours so that |AC9| can refresh |AC9tempcreds| in the |env|.
+  (|AC9| sets this 12-hour limit as an AWS security best practice.)
+
+**Recommended solutions:**
+
+* If you have |AC9tempcreds| enabled, run allowed commands only. If you must run a command that is not allowed by |AC9tempcreds|, one approach would be to configure the
+  |cli| or aws-shell in the |env| with a set of permanent credentials, which removes this limitation. For instructions, see :ref:`credentials-permanent-create`.
+* Have the |env| owner open the |env| so that |AC9| can refresh temporary credentials in the |env|.
+
+For more information, see :ref:`auth-and-access-control-temporary-managed-credentials`.
+
+.. _troubleshooting-update-ami:
+
+|EC2| Instances Are Not Automatically Updated
+=============================================
+
+**Issue:** Recent system updates are not automatically applied to an |EC2| instance that connects to an |envfirst|.
+
+**Cause:** Automatically applying recent system updates could cause your code or the |EC2| instance to behave in unexpected ways, without your prior knowledge or approval.
+
+**Recommended solutions:**
+
+Apply system updates to the |EC2| instance on a regular basis by following the instructions in :EC2-ug:`Updating Instance Software <install-updates>` in the |EC2-ug|.
+
+To run commands on the instance, you can use a terminal session in the |AC9IDE| from the |env| that is connected to the instance.
+
+Alternatively, you can use an SSH remote access utility such as **ssh** or PuTTY to connect to the instance. To do this, from your local computer, use an SSH key pair
+creation utility such as **ssh-keygen** or PuTTYgen. Use the |AC9IDE| from the |env| that is connected to the instance to store the generated public key on the instance.
+Then use the SSH remote access utility along with the generate private key to access the instance. For more information, see your utility's documentation.
+
+.. _troubleshooting-install-sam-local:
+
+Lambda Local Function Run Error: Cannot Install SAM Local
+=========================================================
+
+**Issue:** After you try to run the local version of an |LAMlong| function in the |AC9IDE|, a dialog box is displayed, stating that |AC9| is having trouble installing SAM Local.
+|AC9| needs SAM Local to run local versions of |LAMlong| functions in the |IDE|. Until SAM Local is installed, you cannot run local versions of
+|LAM| functions in the |IDE|.
+
+**Cause:** AWS Cloud9 can't find SAM Local at the expected path in the |env|, which is :file:`~/.c9/bin/sam`. This is because SAM Local is not yet
+installed, or if it is installed, |AC9| can't find it at that location.
+
+**Recommended solutions:** You can wait for |AC9| to try to finish installing SAM Local, or you can install it yourself.
+
+To see how |AC9| is doing with attempting to install SAM Local, choose :guilabel:`Window, Installer` on the menu bar.
+
+To install SAM Local yourself, run the following commands, one at a time in the following order, from a terminal session in the |IDE|.
+
+.. code-block:: sh
+
+   npm install -g aws-sam-local        # Use Node Package Manager (npm) to install SAM Local as a global package in the environment.
+   ln -sfn $(which sam) ~/.c9/bin/sam  # Create a symbolic link (a shortcut) from the path that AWS Cloud9 expects to where SAM Local is installed.
+
+For more information, see the `awslabs/aws-sam-local <https://github.com/awslabs/aws-sam-local/blob/develop/README.md>`_ repository on the GitHub website.
 
 .. Troubleshooting template
 

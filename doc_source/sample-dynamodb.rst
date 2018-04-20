@@ -26,6 +26,14 @@ You can use |DDB| to create a database table that can store and retrieve any amo
 specified and the amount of data stored, while maintaining consistent and fast performance. For more information, see
 `Amazon DynamoDB <https://aws.amazon.com/dynamodb/>`_ on the AWS website.
 
+Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |DDB|. For more information, see
+`Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon DynamoDB Pricing <https://aws.amazon.com/dynamodb/pricing/>`_.
+
+For information about additional AWS database offerings, see `Amazon Relational Database Service (RDS) <https://aws.amazon.com/rds/>`_,
+`Amazon ElastiCache <https://aws.amazon.com/elasticache/>`_, and `Amazon Redshift <https://aws.amazon.com/redshift/>`_ on the AWS website. See also
+`AWS Database Migration Service <https://aws.amazon.com/dms/>`_ on the AWS website.
+
+* :ref:`sample-dynamodb-prereqs`
 * :ref:`sample-dynamodb-cli-setup`
 * :ref:`sample-dynamodb-create-table`
 * :ref:`sample-dynamodb-add-item`
@@ -34,35 +42,33 @@ specified and the amount of data stored, while maintaining consistent and fast p
 * :ref:`sample-dynamodb-get-items`
 * :ref:`sample-dynamodb-clean-up`
 
-.. note::
+.. _sample-dynamodb-prereqs:
 
-   .. include:: _sample-prereqs.txt
+Prerequisites
+=============
 
-   Creating this sample might result in charges to your AWS account. These include possible charges for services such as |EC2| and |DDB|. For more information, see
-   `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_ and `Amazon DynamoDB Pricing <https://aws.amazon.com/dynamodb/pricing/>`_.
-
-   For information about additional AWS database offerings, see `Amazon Relational Database Service (RDS) <https://aws.amazon.com/rds/>`_,
-   `Amazon ElastiCache <https://aws.amazon.com/elasticache/>`_, and `Amazon Redshift <https://aws.amazon.com/redshift/>`_ on the AWS website. See also
-   `AWS Database Migration Service <https://aws.amazon.com/dms/>`_ on the AWS website.
+.. include:: _sample-prereqs.txt
 
 .. _sample-dynamodb-cli-setup:
 
-Step 1: Install and Configure the |cli| in Your |envtitle|
-==========================================================
+Step 1: Install and Configure the |cli|, the aws-shell, or Both in Your |envtitle|
+==================================================================================
 
-In this step, you use the |AC9IDE| to install and configure the |cli| in your |env| so you can run commands
-to interact with |DDB|. Then you use the |cli| to run a basic |DDB| command to test your installation
-and
-configuration.
+In this step, you use the |AC9IDE| to install and configure the |cli|, the aws-shell, or both in your |env| so you can run commands
+to interact with |DDB|. Then you use the |cli| to run a basic |DDB| command to test your installation and configuration.
 
-#. To set up credentials management for the |cli| and to install the |cli| in your |env|, follow Steps 1 and 2 in the :doc:`AWS CLI Sample <sample-aws-cli>`, and then return to this topic.
-   If you already installed and configured the |cli| in your |env|, you don't need to do it again.
-#. Test your |cli| installation and configuration by running the |DDB| :command:`list-tables` command from a terminal session in your |env| to list your existing |DDB| tables, if there are any.
+#. To set up credentials management for the |cli| or the aws-shell and to install the |cli|, the aws-shell, or both in your |env|, follow Steps 1 and 2 in the :doc:`AWS CLI and aws-shell Sample <sample-aws-cli>`, and then return to this topic.
+   If you already installed and configured the |cli|, the aws-shell, or both in your |env|, you don't need to do it again.
+#. Test the installation and configuration of the |cli|, the aws-shell, or both by running the |DDB| :command:`list-tables` command from a terminal session in your |env| to list your existing |DDB| tables, if there are any.
    To start a new terminal session, on the menu bar, choose :menuselection:`Windows, New Terminal`.
 
    .. code-block:: sh
 
-      aws dynamodb list-tables
+      aws dynamodb list-tables # For the AWS CLI.
+      dynamodb list-tables     # For the aws-shell.
+
+   .. note:: Throughout this sample, if you're using the aws-shell, omit :code:`aws` from each command that starts with :code:`aws`. To start the aws-shell, run the :command:`aws-shell` command. To 
+      stop using the aws-shell, run the :command:`.exit` or :command:`.quit` command.
 
    If this command succeeds, it outputs a :code:`TableNames` array containing a list of existing
    |DDB|

@@ -40,13 +40,14 @@ Project-Level Settings
 ======================
 
 :guilabel:`Stop my environment`
-   If the |env| is an |envec2|, shuts down the connected |EC2| instance if the specified amount of time has gone by without any |env| activity.
+   If the |env| is an |envec2|, after all web browser instances that are connected to the |IDE| for the |env| are closed, the amount of time until 
+   |AC9| shuts down the |EC2| instance for the |env|.
 
 :guilabel:`AWS Region`
    Which AWS Region to use for the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window.
 
 :guilabel:`AWS managed temporary credentials`
-   If turned on, uses |AC9tempcreds| when calling AWS services from the |CLI| or AWS SDK code from an |env|. For more information, 
+   If turned on, uses |AC9tempcreds| when calling AWS services from the |cli|, the aws-shell, or AWS SDK code from an |env|. For more information, 
    see :ref:`auth-and-access-control-temporary-managed-credentials`.
 
 .. _settings-aws-user:

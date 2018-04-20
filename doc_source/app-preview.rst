@@ -34,9 +34,14 @@ Run an Application
 ==================
 
 Before you can preview your application from within the |IDE|, it must be running in the |envfirst| using 
-HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` with the IP of :code:`127.0.0.1` or :code:`localhost`.
+HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` with the IP of :code:`127.0.0.1`, :code:`localhost`, or :code:`0.0.0.0`.
 
-.. note:: You don't have to run using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` with the IP of :code:`127.0.0.1` or :code:`localhost`. However, you won't be able to preview your running application from within the |IDE|.
+.. note:: You don't have to run using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` with the IP of :code:`127.0.0.1`, :code:`localhost`, or :code:`0.0.0.0`. However, you won't be able to preview your running application from within the |IDE|.
+
+   If you run with the IP of :code:`0.0.0.0`, anyone can potentially access your running application. For approaches to address this issue, see the following: 
+
+   * :ref:`app-preview-share-security-group` in *Share a Running Application over the Internet*
+   * :ref:`app-preview-share-subnet` in *Share a Running Application over the Internet*
 
 To write the code to run your application on a specific port and IP, see your application's documentation.
 
@@ -105,7 +110,7 @@ Then follow the instructions in the next procedure to preview it. On the applica
 Preview a Running Application
 =============================
 
-With your application already running using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` with the IP of :code:`127.0.0.1` or :code:`localhost` in the |env|, 
+With your application already running using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` with the IP of :code:`127.0.0.1`, :code:`localhost`, or :code:`0.0.0.0` in the |env|, 
 and with the corresponding application code file open and active in the |AC9IDE|, choose one of the following on the menu bar:
 
 * :guilabel:`Preview, Preview Running Application`
@@ -116,6 +121,10 @@ This opens an application preview tab within the |env|, and then displays the ap
 To enable others to preview the running application outside of the |IDE|, see :ref:`app-preview-share`. 
 
 .. note:: If the application is not already running, you will see an error on the application preview tab. Run or restart the application, and then choose the menu bar command again.
+
+   If your application cannot run on any of the preceding ports or IPs, or if your application must run on more than one of these ports at the same time (for example, your application must 
+   run on ports :code:`8080` and :code:`3000` at the same time), the application preview tab might display an error or might be blank. This is because the application preview tab 
+   within the |env| works only with the preceding ports and IPs, and it works with only a single port at a time.
    
    We don't recommend sharing the URL in the application preview tab with others. (The URL displays using the format 
    :code:`https://ENVIRONMENT_ID.vfs.cloud9.REGION_ID.amazonaws.com/`.) This URL works only when the |IDE| for the |env| is open and the application is running in the same web browser.    
@@ -228,8 +237,15 @@ Step 2: Set Up the Security Group for the Instance
 In this step, you use the |EC2| console to set up the |EC2| security group for the instance that is connected to the |env|, to allow incoming HTTP requests over port 8080, 8081, or 8082.
 
 .. note:: You don't have to run using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082`. If you are running on a different protocol or port, substitute it throughout this step. 
-   You won't be able to preview your running application from within the |IDE| until you switch back to running using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` 
-   using IP :code:`127.0.0.1` or :code:`localhost`.
+   You won't be able to preview your running application from within the |IDE| until you switch back to running using HTTP over one of the ports and IPs as described in :ref:`app-preview-preview-app`.
+
+   For an additional layer of security, you can also set up a network access control list (ACL) for a subnet in a virtual private cloud (VPC) that the instance can use. 
+   For more information about security groups and network ACLs, see the following:
+   
+   * :ref:`app-preview-share-subnet`
+   * :VPC-ug:`Security <VPC_Security>` in the |VPC-ug|
+   * :VPC-ug:`Security Groups for Your VPC <VPC_SecurityGroups>` in the |VPC-ug|
+   * :VPC-ug:`Network ACLs <VPC_ACLs>` in the |VPC-ug|
 
 #. In the |IDE| for the |env|, on the menu bar, choose your user icon, and then choose :guilabel:`Manage EC2 Instance`. Then skip ahead to step 3 in this procedure.
 #. If choosing :guilabel:`Manage EC2 Instance` or other steps in this procedure display errors, we recommend you sign in to the |EC2| console using credentials for an |IAM| administrator user in your AWS account, and then 
@@ -244,7 +260,7 @@ In this step, you use the |EC2| console to set up the |EC2| security group for t
 
 #. In the :guilabel:`Description` tab for the instance, choose the security group link next to :guilabel:`Security groups`. 
 #. With the security group displayed, look on the :guilabel:`Inbound` tab. If a rule already exists where :guilabel:`Type` is set to :guilabel:`Custom TCP Rule` and :guilabel:`Port Range` is set to 
-   :guilabel:`8080`, :guilabel:`8081`, or :guilabel:`8082`, choose :guilabel:`Cancel`, and skip ahread to :ref:`app-preview-share-subnet`. Otherwise, choose :guilabel:`Edit`.
+   :guilabel:`8080`, :guilabel:`8081`, or :guilabel:`8082`, choose :guilabel:`Cancel`, and skip ahead to :ref:`app-preview-share-subnet`. Otherwise, choose :guilabel:`Edit`.
 #. In the :guilabel:`Edit inbound rules` dialog box, choose :guilabel:`Add Rule`.
 #. For :guilabel:`Type`, choose :guilabel:`Custom TCP Rule`.
 #. For :guilabel:`Port Range`, type :code:`8080`, :code:`8081`, or :code:`8082`. 
@@ -263,8 +279,14 @@ Step 3: Set Up the Subnet for the Instance
 In this step, you use the consoles for |EC2| and |VPClong| (|VPC|) to set up the subnet for the |EC2| instance that is connected to the |env|, to also allow incoming HTTP requests over port 8080, 8081, or 8082.
 
 .. note:: You don't have to run using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082`. If you are running on a different protocol or port, substitute it throughout this step. 
-   You won't be able to preview your running application from within the |IDE| until you switch back to running using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` 
-   using IP :code:`127.0.0.1` or :code:`localhost`.
+   You won't be able to preview your running application from within the |IDE| until you switch back to running using HTTP over the ports and IPs as described in :ref:`app-preview-preview-app`.
+
+   This step describes how to set up a network ACL for a subnet in an |VPC| that the instance can use. This step is not required. However, it adds an additional layer of security when compared to just using 
+   security groups. For more information 
+   about network ACLs, see the following:
+   
+   * :VPC-ug:`Security <VPC_Security>` in the |VPC-ug|
+   * :VPC-ug:`Network ACLs <VPC_ACLs>` in the |VPC-ug|
 
 #. With the |EC2| console already open from the previous step, in the service navigation pane, expand :guilabel:`Instances` if it is not already expanded, 
    and then choose :guilabel:`Instances`.
@@ -292,10 +314,9 @@ In this step, you use the consoles for |EC2| and |VPClong| (|VPC|) to set up the
 Step 4: Change the Running Application IP
 -----------------------------------------
 
-In your code, switch from using IP :code:`127.0.0.1` or :code:`localhost` to using IP :code:`0.0.0.0`. To use this new IP, stop the application if is already running, and then run the application again.
+In your code, switch from using IP :code:`127.0.0.1`, :code:`localhost`, or :code:`0.0.0.0` to using the IP address or addresses you specified in the previous steps in this section. To use these new IPs, stop the application if is already running, and then run the application again.
 
-.. note:: You won't be able to preview your running application from within the |IDE| until you switch back to using IP :code:`127.0.0.1` or :code:`localhost` 
-   running HTTP over port :code:`8080`, :code:`8081`, or :code:`8082`.
+.. note:: You won't be able to preview your running application from within the |IDE| until you switch back to running using HTTP over one of the ports and IPs as described in :ref:`app-preview-preview-app`.
 
 .. _app-preview-share-url:
 
@@ -310,8 +331,8 @@ not the default for that protocol (for example, :code:`http://192.0.2.0:8080/ind
    :ec2-user-guide:`Associating an Elastic IP Address with a Running Instance <elastic-ip-addresses-eip.html#using-instance-addressing-eips-associating>` in the |EC2-ug|. Note also that 
    allocating an Elastic IP address might result in charges to your AWS account. For more information, see `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_.
 
-   You don't have to run using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082`. However, you won't be able to preview your running application from within the |IDE| until you switch back to running using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082` 
-   using IP :code:`127.0.0.1` or :code:`localhost`.
+   You don't have to run using HTTP over port :code:`8080`, :code:`8081`, or :code:`8082`. However, you won't be able to preview your running application from within the |IDE| 
+   until you switch back to running using HTTP over one of the ports and IPs as described in :ref:`app-preview-preview-app`.
 
    If users make requests to the preceding URL, and those requests originate from a virtual private network (VPN) that blocks traffic over the requested protocol or 
    port, those requests might fail. Those users must use a different network that allows traffic over the requested protocol and port. For more information, see your network administrator.
