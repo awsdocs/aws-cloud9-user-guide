@@ -299,7 +299,7 @@ To view the settings for your |env|, choose the title inside of the :guilabel:`m
 To return to the IDE for your |env|, do one of the following:
 
 * Choose your web browser's back button, and then choose :guilabel:`Open IDE` inside of the :guilabel:`my-demo-environment` card.
-* In the navigation breadcrumb, choose :guilabel:`Environments`, and then choose :guilabel:`Open IDE` inside of the :guilabel:`my-demo-environment` card.
+* In the navigation breadcrumb, choose :guilabel:`Your environments`, and then choose :guilabel:`Open IDE` inside of the :guilabel:`my-demo-environment` card.
 
 .. note:: It can take a few moments for the IDE to display again. Please be patient.
 
