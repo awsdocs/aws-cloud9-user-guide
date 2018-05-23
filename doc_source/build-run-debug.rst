@@ -203,7 +203,7 @@ Create a Builder or Runner
    See :ref:`build-run-debug-define-builder-runner`.
 #. After you define the builder or runner, choose :guilabel:`File, Save As`. For a builder, save the file with the :file:`.build` extension in the
    :file:`ENVIRONMENT_NAME/.c9/builders` directory, where :file:`ENVIRONMENT_NAME` is the name of your |env|. For a runner, save the file with the
-   :file:`.run` file extension in the :file:`ENVIRONMENT_NAME/.c9/builders` directory, where :file:`ENVIRONMENT_NAME`
+   :file:`.run` file extension in the :file:`ENVIRONMENT_NAME/.c9/runners` directory, where :file:`ENVIRONMENT_NAME`
    is the name of your |env|.
    The file name you specify will be the name that is displayed on the :guilabel:`Run, Build System` menu (for a builder) or the
    :guilabel:`Run, Run With` menu (for a runner). Therefore, unless you specify a different file name,
