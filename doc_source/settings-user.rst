@@ -168,7 +168,7 @@ Tree & Navigate
  
    * :guilabel:`auto` for |AC9| to download files without modification.
    * :guilabel:`tar.gz` for |AC9| to download files as compressed TAR files.
-   * :guilabel:`auto` for |AC9| to download files as .zip files.
+   * :guilabel:`zip` for |AC9| to download files as .zip files.
 
 .. _settings-user-change-find-in-files:
 
