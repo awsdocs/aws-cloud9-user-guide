@@ -18,7 +18,7 @@ Express Setup for |AC9long|
     :description:
         Describes how to quickly set up for a single individual to start using AWS Cloud9.
 
-To set up to use |AC9|, follow one of these sets of procedures, depending on how you plan to use |AC9|.
+To start using |AC9|, follow one of these sets of procedures, depending on how you plan to use |AC9|.
 
 .. list-table::
    :widths: 2 1
@@ -26,14 +26,18 @@ To set up to use |AC9|, follow one of these sets of procedures, depending on how
 
    * - **Usage pattern**
      - **Follow these procedures**
-   * - I will always be the only one using my own AWS account, and I don't need to share my |envfirstplural| with anyone else.
+   * - I want to start using |AC9| quickly. 
+
+       |mdash| Or |mdash| 
+   
+       I will be the only one using |AC9| in my AWS account.
      - **This topic**
-   * - Multiple people will be using a single AWS account to create and share |envplural| within that account.
+   * - I want multiple users in my AWS account to use |AC9|.
      - :ref:`Team Setup <setup>`
-   * - Multiple people will be using a single AWS account, and I need to restrict creating |envplural| within that account to control costs.
+   * - I want multiple users in my AWS account to use |AC9|, and I want to restrict their usage to control costs.
      - :ref:`Advanced Team Setup <setup-teams>`
 
-To set up for a single person to use |AC9| as the only individual in a single AWS account, simply create
+To begin using |AC9| quickly, or to use |AC9| as the only one in your AWS account, simply create
 an AWS account if you don't already have one, and then sign in to the |AC9| console with the credentials
 of the AWS account root user.
 
@@ -58,8 +62,7 @@ To watch a 4-minute video related to the following procedure, see `Creating an A
    #. Complete the process by following the on-screen directions. This includes giving AWS your email address and
       credit card information. You must also use your phone to enter a code that AWS gives you.
 
-After you finish creating the account, AWS will send you a confirmation email. Do not go past this
-step until you get this confirmation.
+After you finish creating the account, AWS will send you a confirmation email. Do not go to the next step until you get this confirmation.
 
 .. _setup-express-sign-in-ide:
 
@@ -72,10 +75,30 @@ After you complete the previous step, you're ready to sign in to the |AC9| conso
    best practice. We recommend you sign in as an |IAM| user instead. For more information,
    see :ref:`Team Setup <setup>`. See also :iam-user-guide:`Create Individual IAM Users <best-practices.html#create-iam-users>` in the |IAM-ug|.
 
-#. Go to the AWS Cloud9 console: |AC9Console_link|.
+#. Open the AWS Cloud9 console, at |AC9Console_link|.
 #. If prompted, type the email address for the AWS account root user, and then choose :guilabel:`Next`.
 #. If prompted, type the password for the AWS account root user, and then choose :guilabel:`Sign In`.
 
    You have now successfully signed in, and the |AC9| console is displayed.
 
-Start experimenting with |AC9| by following the steps in the :doc:`IDE Tutorial <tutorial>`.
+.. _setup-express-next-steps:
+
+Next Steps
+==========
+
+.. list-table::
+   :widths: 1 2
+   :header-rows: 1
+
+   * - **Task**
+     - **See this topic**
+   * - Create an |envfirst|, and then use the |AC9IDE| to work with code in your new |env|.
+     - :ref:`Creating an Environment <create-environment>`
+   * - Learn how to use the |AC9IDE|.
+     - :ref:`IDE Tutorial <tutorial>`
+   * - Enable others in your AWS account to start using |AC9|.
+     - :ref:`Team Setup <setup>`
+   * - Invite others to use your new |env| along with you, in real time and with text chat support.
+     - :ref:`Working with Shared Environments <share-environment>`
+   * - Restrict |AC9| usage for others in your AWS account, to control costs.
+     - :ref:`Advanced Team Setup <setup-teams>`

@@ -62,6 +62,7 @@ Project Setting Changes You Can Make
 These sections describe the kinds of project settings that you can change on the :guilabel:`Preferences`
 tab's :guilabel:`Project Settings` pane.
 
+* :ref:`settings-project-change-ec2-instance`
 * :ref:`settings-project-change-code-editor-ace`
 * :ref:`settings-project-change-find-in-files`
 * :ref:`settings-project-change-hints-and-warnings`
@@ -73,6 +74,15 @@ tab's :guilabel:`Project Settings` pane.
 * :ref:`settings-project-change-php-support`
 * :ref:`settings-project-change-python-support`
 * :ref:`settings-project-change-go-support`
+
+.. _settings-project-change-ec2-instance:
+
+EC2 Instance
+------------
+
+:guilabel:`Stop my environment`
+   If the |env| is an |envec2|, after all web browser instances that are connected to the |IDE| for the |env| are closed, the amount of time until 
+   |AC9| shuts down the |EC2| instance for the |env|.
 
 .. _settings-project-change-code-editor-ace:
 

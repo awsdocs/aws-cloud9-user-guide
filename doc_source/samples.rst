@@ -27,10 +27,15 @@ Experiment with these samples to increase your knowledge and confidence using |A
    AWS CLI and aws-shell Sample <sample-aws-cli>
    AWS CodeCommit Sample <sample-codecommit>
    GitHub Sample <sample-github>
-   Amazon DynamoDB sample <sample-dynamodb>
-   Node.js Sample <sample-nodejs>
+   Amazon DynamoDB Sample <sample-dynamodb>
+   AWS CDK Sample <sample-cdk>
+   Java Sample <sample-java>
+   C++ Sample <sample-cplusplus>
    Python Sample <sample-python>
+   .NET Core Sample <sample-dotnetcore>
+   Node.js Sample <sample-nodejs>
    PHP Sample <sample-php>
    Ruby Sample <sample-ruby>
    Go Sample <sample-go>
-   C++ Sample <sample-cplusplus>
+   TypeScript Sample <sample-typescript>
+   Docker Sample <sample-docker>

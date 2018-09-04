@@ -18,24 +18,40 @@ Working with Shared Environments in |AC9long|
     :description:
         Describes how to share an environment and work with shared environments in AWS Cloud9.
 
-A :dfn:`shared environment` is an |envfirst| that multiple |IAM| users have been invited to participate in.
+A :dfn:`shared environment` is an |envfirst| that multiple users have been invited to participate in. This topic provides instructions for sharing an |env| in |AC9| and how to participate in a shared |env|.
 
-A shared |env| is good for:
+To invite a user to participate in an |env| you own, follow one of these sets of procedures, depending on the type of user you want to invite.
 
-* Pair programming (also know as :dfn:`peer programming`). This is where two users work together on the same code in a single |env|. In pair programming, typically one user writes code while
-  the other user observes the code being written. The observer gives immediate input and feedback to the code writer. These positions frequently switch during a project. Without a shared
-  |env|, teams of pair programmers typically sit in front of a single machine, and only one user at a
-  time can write code. With a shared |env|, both users can sit in front of
-  their own machine and can write code at the same time, even if they are in different physical offices.
-* Computer science classes. This is useful when teachers or teaching assistants want to access a student's |env| to review their homework or fix issues with their |env| in real time.
-  Students can also work together with their classmates on shared homework projects, writing code together in a single |env| in real time. They can do this even though they might be in different locations using
-  different computer operating systems and web browser types.
-* Any other situation where multiple users need to collaborate on the same code in real time.
+.. list-table::
+   :widths: 1 2
+   :header-rows: 1
 
-This topic provides instructions for sharing an |env| in |AC9| and how to participate in a shared |env|.
+   * - **User type**
+     - **Follow these procedures**     
+   * - A user in the same AWS account as the |env|.
+     - :ref:`share-environment-invite-user`
+   * - An |AC9| administrator in the same AWS account as the |env|, specifically:
+   
+       * The AWS account root user.
+       * An |IAM| administrator user.
+       * A user with the AWS managed policy :code:`AWSCloud9Administrator` attached.
 
+     - To invite the |AC9| administrator yourself, see :ref:`share-environment-invite-user`.
+
+       To have the |AC9| administrator invite themself (or others in the same AWS account), see :ref:`share-environment-admin-user`.
+
+   * - A user in a different AWS account than the |env|.
+     - :ref:`share-environment-invite-user-cross-account`
+
+.. _share-environment-contents:
+
+Contents
+========
+
+* :ref:`share-environment-about`
 * :ref:`share-environment-member-roles`
 * :ref:`share-environment-invite-user`
+* :ref:`share-environment-admin-user`
 * :ref:`share-environment-invite-user-cross-account`
 * :ref:`share-environment-open`
 * :ref:`share-environment-members-list`
@@ -51,6 +67,23 @@ This topic provides instructions for sharing an |env| in |AC9| and how to partic
 * :ref:`share-environment-delete-member`
 * :ref:`share-environment-best-practices`
 
+.. _share-environment-about:
+
+Shared |envtitle| Usage Scenarios
+=================================
+
+A shared |env| is good for the following.
+
+* Pair programming (also know as :dfn:`peer programming`). This is where two users work together on the same code in a single |env|. In pair programming, typically one user writes code while
+  the other user observes the code being written. The observer gives immediate input and feedback to the code writer. These positions frequently switch during a project. Without a shared
+  |env|, teams of pair programmers typically sit in front of a single machine, and only one user at a
+  time can write code. With a shared |env|, both users can sit in front of
+  their own machine and can write code at the same time, even if they are in different physical offices.
+* Computer science classes. This is useful when teachers or teaching assistants want to access a student's |env| to review their homework or fix issues with their |env| in real time.
+  Students can also work together with their classmates on shared homework projects, writing code together in a single |env| in real time. They can do this even though they might be in different locations using
+  different computer operating systems and web browser types.
+* Any other situation where multiple users need to collaborate on the same code in real time.
+
 .. _share-environment-member-roles:
 
 About |memlongtitle| Access Roles
@@ -62,7 +95,7 @@ permission levels :dfn:`environment member access roles`.
 A shared |env| in |AC9| offers three |memlong| access roles: :dfn:`owner`, :dfn:`read/write`, and :dfn:`read-only`.
 
 * An |memown| has full control over an |env|. Each |env| has one and only one |memown|, who is the |env| creator.
-  An |memown| can do the following:
+  An |memown| can do the following.
 
   * Add, change, and remove |mems| for the |env|
   * Open, view, and edit files
@@ -72,7 +105,7 @@ A shared |env| in |AC9| offers three |memlong| access roles: :dfn:`owner`, :dfn:
   * Delete existing chat messages
 
   In the |AC9IDE|, an |env| owner is displayed with :guilabel:`Read+Write` access.
-* A |memrw| member can do the following:
+* A |memrw| member can do the following.
 
   * Open, view, and edit files
   * Run code
@@ -81,7 +114,7 @@ A shared |env| in |AC9| offers three |memlong| access roles: :dfn:`owner`, :dfn:
   * Delete existing chat messages
 
   In the |AC9IDE|, |memrw| members are displayed with :guilabel:`Read+Write` access.
-* A |memro| member can do the following:
+* A |memro| member can do the following.
 
   * Open and view files
   * Chat with other |mems|
@@ -89,15 +122,20 @@ A shared |env| in |AC9| offers three |memlong| access roles: :dfn:`owner`, :dfn:
 
   In the |AC9IDE|, |memro| members are displayed with :guilabel:`Read Only` access.
 
-Before an |IAM| user can become an |env| owner or |mem|, that user must meet one of the following criteria:
+Before a user can become an |env| owner or |mem|, that user must meet one of the following criteria.
 
-* The user is an |IAM| administrator user in your AWS account. 
+* The user is an **AWS account root user**.
+* The user is an **IAM administrator user**. 
   For more information, see :IAM-ug:`Creating Your First IAM Admin User and Group <getting-started_create-admin-group>` in the |IAM-ug|.
-* The user belongs to an |IAM| group in your AWS account, and that group has the AWS managed policy :code:`AWSCloud9Administrator` or :code:`AWSCloud9User` (or :code:`AWSCloud9EnvironmentMember`, to be a |mem| only) attached. 
-  For more information, see :ref:`AWS Managed (Predefined) Policies <auth-and-access-control-managed-policies>`.
-
-To attach one of the preceding managed policies to a group, you can use the :ref:`AWS Management Console <share-environment-member-roles-console>` 
-or the :ref:`AWS Command Line Interface (AWS CLI) <share-environment-member-roles-cli>`.
+* The user is a **user who belongs to an IAM group**, a **user who assumes a role**, or a **federated user who assumes a role**, 
+  *and* that group or role has the AWS managed policy :code:`AWSCloud9Administrator` or :code:`AWSCloud9User` (or :code:`AWSCloud9EnvironmentMember`, to be a |mem| only) attached. 
+  For more information, see :ref:`AWS Managed (Predefined) Policies <auth-and-access-control-managed-policies>`. 
+  
+  * To attach one of the preceding managed policies to an |IAM| group, 
+    you can use the :ref:`AWS Management Console <share-environment-member-roles-console>` or the :ref:`AWS Command Line Interface (AWS CLI) <share-environment-member-roles-cli>` 
+    as described in the following procedures.
+  * To create a role in |IAM| with one of the preceding managed policies for a user or a federated user to assume, see :IAM-ug:`Creating Roles <id_roles_create>` in the |IAM-ug|. 
+    To have a user or a federated user assume the role, see coverage of assuming roles in :IAM-ug:`Using IAM Roles <id_roles_use>` in the |IAM-ug|. 
 
 .. _share-environment-member-roles-console:
 
@@ -113,7 +151,7 @@ Attach an AWS Managed Policy for |AC9| to a Group Using the Console
 #. Choose :guilabel:`Groups`.
 #. Choose the group's name.
 #. On the :guilabel:`Permissions` tab, for :guilabel:`Managed Policies`, choose :guilabel:`Attach Policy`.
-#. In the list of policy names, choose one of the following boxes:
+#. In the list of policy names, choose one of the following boxes.
 
    * :guilabel:`AWSCloud9User` (preferred) or :guilabel:`AWSCloud9Administrator` to enable each user in the group to be an |env| owner 
    * :guilabel:`AWSCloud9EnvironmentMember` to enable each user in the group to be a member only
@@ -132,27 +170,31 @@ Run the IAM :code:`attach-group-policy` command to attach the AWS managed policy
 
 .. code-block:: sh
 
-   aws iam attach-group-policy --group-name GROUP_NAME --policy-arn POLICY_ARN
+   aws iam attach-group-policy --group-name MyGroup --policy-arn arn:aws:iam::aws:policy/POLICY_NAME
 
-In the preceding command, replace :code:`GROUP_NAME` with the name of the group. Replace :code:`POLICY_ARN` with the ARN of the AWS managed policy, as follows:
+In the preceding command, replace :code:`MyGroup` with the name of the group. Replace :code:`POLICY_NAME` with the name of one of the following AWS managed policies.
 
-* :code:`arn:aws:iam::aws:policy/AWSCloud9User` (preferred) or :code:`arn:aws:iam::aws:policy/AWSCloud9Administrator` to enable each user in the group to be an |env| owner
-* :code:`arn:aws:iam::aws:policy/AWSCloud9EnvironmentMember` to enable each user in the group to be a member only
+* :code:`AWSCloud9User` (preferred) or :code:`AWSCloud9Administrator` to enable each user in the group to be an |env| owner
+* :code:`AWSCloud9EnvironmentMember` to enable each user in the group to be a member only
 
 .. _share-environment-invite-user:
 
-Invite an |IAM| User in Your Account to Your |envtitle|
-=======================================================
+Invite a User in the Same Account as the |envtitle|
+===================================================
 
-Use the instructions in this section to share an |envfirstlong| in your AWS account with an |IAM| entity in the same account. 
+Use the instructions in this section to share an |envfirstlong| that you own in your AWS account with a user in that same account. 
 
-To share an |env| in your account with an |IAM| user in another account, see :ref:`share-environment-invite-user-cross-account`.
+#. If the user you want to invite is **not** one of the following types of users, be sure the user you want to invite 
+   already has the corresponding environment member access role. For 
+   instructions, see :ref:`share-environment-member-roles`.
 
-#. Be sure the corresponding access policy is attached to the |IAM| group containing the user you want to invite. For more information,
-   see :ref:`share-environment-member-roles`.
-#. Sign in to |AC9| using the credentials of the |env| owner, if you are not already signed in. For more information, see :ref:`setup-sign-in-ide` in *Team Setup*.
-#. Open the |env| that you own and want to invite the user to, if the |env| is not already open. For more information, see :doc:`open-environment`.
-#. In the menu bar in the |AC9IDE|, do one of the following:
+   * The **AWS account root user**.
+   * An **IAM administrator user**.
+   * A **user who belongs to an IAM group**, a **user who assumes a role**, or a **federated user who assumes a role**, *and* that 
+     group or role has the AWS managed policy :code:`AWSCloud9Administrator` attached. 
+
+#. Open the |env| that you own and want to invite the user to, if the |env| is not already open.
+#. In the menu bar in the |AC9IDE|, do one of the following.
 
    * Choose :guilabel:`Window, Share`.
    * Choose :guilabel:`Share` (located next to the :guilabel:`Preferences` gear icon).
@@ -160,16 +202,13 @@ To share an |env| in your account with an |IAM| user in another account, see :re
      .. image:: images/ide-share.png
         :alt: The Share command in the AWS Cloud9 IDE menu bar
 
-#. In the :guilabel:`Share this environment` dialog box, for :guilabel:`Invite Members`, type the name
-   of the |IAM| user you want to invite to this |env|.
-   The invited user must be within the same AWS account as the |env| owner.
+#. In the :guilabel:`Share this environment` dialog box, for :guilabel:`Invite Members`, type one of the following.
 
-   .. note:: In addition to inviting |IAM| users, you can invite the AWS account root user, |IAM| users with assumed roles, and federated users, who are within the same AWS account as the |env| owner.
-
-      * To invite the AWS account root user, type :code:`arn:aws:iam::ACCOUNT_ID:root`. 
-      * To invite an |IAM| user with an assumed role, type :code:`arn:aws:sts::ACCOUNT_ID:assumed-role/ROLE_NAME/ROLE_SESSION_NAME`, where :samp:`{ROLE_NAME}` is the name of the assumed role, 
-        and :samp:`{ROLE_SESSION_NAME}` is the session name for the assumed role.
-      * To invite a federated user, type :code:`arn:aws:sts::ACCOUNT_ID:federated-user/USER_NAME`, where :samp:`{USER_NAME}` is the name of the federated user identified in |IAM|.
+   * To invite an **IAM user**, type the user's name.
+   * To invite the **AWS account root user**, type :code:`arn:aws:iam::123456789012:root`, replacing :code:`123456789012` with your AWS account ID.
+   * To invite a **user with an assumed role** or a **federated user with an assumed role**, 
+     type :code:`arn:aws:sts::123456789012:assumed-role/MyAssumedRole/MyAssumedRoleSession`, replacing :code:`123456789012` with your AWS account ID, 
+     :code:`MyAssumedRole` with the name of the assumed role, and :code:`MyAssumedRoleSession` with the session name for the assumed role.
 
 #. To make this user a |memro| member, choose :guilabel:`R`. To make this user |memrw|, choose :guilabel:`RW`.
 #. Choose :guilabel:`Invite`.
@@ -192,81 +231,63 @@ To share an |env| in your account with an |IAM| user in another account, see :re
 
 #. Contact the user to let them know they can open this |env| and begin using it.
 
-.. note:: The following entities can invite themselves to any |env| in their AWS account:
+.. _share-environment-admin-user:
 
-   * The AWS account root user.
-   * An |IAM| administrator user (or user belonging to an |IAM| administrator group) or equivalent in their AWS account.
-   * An |IAM| user (or user belonging to an |IAM| group) in their AWS account that has the AWS managed policy :code:`AWSCloud9Administrator` or equivalent attached. 
+Have an |AC9| Administrator in the Same Account as the |envtitle| Invite Themself or Others
+===========================================================================================
 
-   To invite themselves (or other |IAM| users or federated users in their AWS account), these entities can use the |cli| or the aws-shell to run the 
-   AWS Cloud9 :code:`create-environment-membership` command, specifying the ID of the |env| (represented here as :samp:`{ENVIRONMENT_ID}`) 
-   and the Amazon Resource Name (ARN) (represented here as :samp:`{ENTITY_ARN}`) of the entity to invite. For example:
+The following types of users can invite themselves (or other users in the same AWS account) to any |env| in the same account.
+
+* The **AWS account root user**.
+* An **IAM administrator user**.
+* A **user who belongs to an IAM group**, a **user who assumes a role**, or a **federated user who assumes a role**, *and* that 
+  group or role has the AWS managed policy :code:`AWSCloud9Administrator` attached. 
+
+If the invited user is **not** one of the preceding types of users, be sure that user already has the corresponding environment member access role. For 
+instructions, see :ref:`share-environment-member-roles`.
+
+To invite the user, use the |cli| or the aws-shell to run the 
+AWS Cloud9 :code:`create-environment-membership` command, as follows.
    
-   .. code-block:: sh
+.. code-block:: sh
      
-      aws cloud9 create-environment-membership --environment-id ENVIRONMENT_ID --user-arn ENTITY_ARN --permissions PERMISSION_LEVEL
+   aws cloud9 create-environment-membership --environment-id 12a34567b8cd9012345ef67abcd890e1 --user-arn USER_ARN --permissions PERMISSION_LEVEL
 
-   For example, to invite the AWS account root user for account ID :code:`123456789012` to an |env| with ID :code:`0c00a6ff0e8244698d33fdab581ea3EX` as a |memrw| member:
+In the preceding command, replace :code:`12a34567b8cd9012345ef67abcd890e1` with the ID of the |env|, and :code:`PERMISSION_LEVEL` with :code:`read-write` or :code:`read-only`. 
+Replace :code:`USER_ARN` with one of the following:
 
-   .. code-block:: sh
+* To invite an **IAM user**, type :code:`arn:aws:iam::123456789012:user/MyUser`, replacing :code:`123456789012` with your AWS account ID and 
+  :code:`MyUser` with the user's name.
+* To invite the **AWS account root user**, type :code:`arn:aws:iam::123456789012:root`, replacing :code:`123456789012` with your AWS account ID.
+* To invite a **user with an assumed role** or a **federated user with an assumed role**, 
+  type :code:`arn:aws:sts::123456789012:assumed-role/MyAssumedRole/MyAssumedRoleSession`, replacing :code:`123456789012` with your AWS account ID, 
+  :code:`MyAssumedRole` with the name of the assumed role, and :code:`MyAssumedRoleSession` with the session name for the assumed role.
+
+For example, to invite the AWS account root user for account ID :code:`123456789012` to an |env| with ID :code:`12a34567b8cd9012345ef67abcd890e1` as a |memrw| member, run the following command.
+
+.. code-block:: sh
      
-      aws cloud9 create-environment-membership --environment-id 0c00a6ff0e8244698d33fdab581ea3EX --user-arn arn:aws:iam::123456789012:root --permissions read-write
+   aws cloud9 create-environment-membership --environment-id 12a34567b8cd9012345ef67abcd890e1 --user-arn arn:aws:iam::123456789012:root --permissions read-write
 
-   .. note:: If you're using the aws-shell, omit the :code:`aws` prefix from the preceding commands.
-
-To use code to invite an |IAM| entity in your AWS account with an |IAM| entity in the same account, call the |AC9| create |env| membership operation, as follows.
-
-.. list-table::
-   :widths: 1 1
-   :header-rows: 0
-
-   * - |cli|
-     - :AC9-cli:`create-environment-membership <create-environment-membership>`
-   * - |sdk-cpp|
-     - :sdk-cpp-ref:`CreateEnvironmentMembershipRequest <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_membership_request>`, 
-       :sdk-cpp-ref:`CreateEnvironmentMembershipResult <LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_membership_result>`
-   * - |sdk-go|
-     - :sdk-for-go-api-ref:`CreateEnvironmentMembership <service/cloud9/#Cloud9.CreateEnvironmentMembership>`, 
-       :sdk-for-go-api-ref:`CreateEnvironmentMembershipRequest <service/cloud9/#Cloud9.CreateEnvironmentMembershipRequest>`, 
-       :sdk-for-go-api-ref:`CreateEnvironmentMembershipWithContext <service/cloud9/#Cloud9.CreateEnvironmentMembershipWithContext>`
-   * - |sdk-java|
-     - :sdk-java-api:`CreateEnvironmentMembershipRequest <com/amazonaws/services/cloud9/model/CreateEnvironmentMembershipRequest>`, 
-       :sdk-java-api:`CreateEnvironmentMembershipResult <com/amazonaws/services/cloud9/model/CreateEnvironmentMembershipResult>`
-   * - |sdk-js|
-     - :sdk-for-javascript-api-ref:`createEnvironmentMembership <AWS/Cloud9.html#createEnvironmentMembership-property>`
-   * - |sdk-net|
-     - :sdk-net-api-v3:`CreateEnvironmentMembershipRequest <items/Cloud9/TCreateEnvironmentMembershipRequest>`, 
-       :sdk-net-api-v3:`CreateEnvironmentMembershipResponse <items/Cloud9/TCreateEnvironmentMembershipResponse>`
-   * - |sdk-php|
-     - :sdk-for-php-api-ref:`createEnvironmentMembership <api-cloud9-2017-09-23.html#createenvironmentmembership>`
-   * - |sdk-python|
-     - :sdk-for-python-api-ref:`create_environment_membership <services/cloud9.html#Cloud9.Client.create_environment_membership>`
-   * - |sdk-ruby|
-     - :sdk-for-ruby-api-ref:`create_environment_membership <Aws/Cloud9/Client.html#create_environment_membership-instance_method>`
-   * - |TWPlong|
-     - :TWP-ref:`New-C9EnvironmentMembership <items/New-C9EnvironmentMembership>`
-   * - |AC9| API
-     - :AC9-api:`CreateEnvironmentMembership <API_CreateEnvironmentMembership>`
+.. note:: If you're using the aws-shell, omit the :code:`aws` prefix from the preceding commands.
 
 .. _share-environment-invite-user-cross-account:
 
-Invite an |IAM| User in Another Account to Your |envtitle|
-==========================================================
+Invite a User in a Different Account Than the |envtitle|
+========================================================
 
-Use the instructions in this section to share an |envfirstlong| in your AWS account with an |IAM| user in a separate AWS account. 
-
-To share an |env| in your account with other |IAM| entities within your same account, see :ref:`share-environment-invite-user`.
+Use the instructions in this section to share an |envfirstlong| that you own in your AWS account with a user in a different account. 
 
 Prerequisites
 -------------
 
-Before you complete the steps in the section, be sure you have the following:
+Before you complete the steps in the section, be sure you have the following.
 
 * Two AWS accounts. One account contains the |env| you want to share. To reduce confusion, we refer to this account as "your account" and as "account :code:`111111111111`" in this section's examples. 
-  A separate account contains the |IAM| user you want to share the |env| with. To reduce confusion, we refer to this account as "the other account" and as "account :code:`999999999999`" in this section's examples.
+  A separate account contains the user you want to share the |env| with. To reduce confusion, we refer to this account as "the other account" and as "account :code:`999999999999`" in this section's examples.
 * An |IAM| group in the other account :code:`999999999999`, which we refer to as :code:`AWSCloud9CrossAccountGroup` in this section's examples. 
   (To use a different group in that account, substitute its name throughout this section's examples).
-* An |IAM| user named in the other account :code:`999999999999`, which we refer to as :code:`AWSCloud9CrossAccountUser` in this section's examples. This user is a member of the 
+* A user in the other account :code:`999999999999`, which we refer to as :code:`AWSCloud9CrossAccountUser` in this section's examples. This user is a member of the 
   :code:`AWSCloud9CrossAccountGroup` group in the other account. (To use a different user in that account, substitute its name throughout this section's examples).
 * An |env| in your account :code:`111111111111` that you want to allow the user in the other account :code:`999999999999` to access. 
 
@@ -352,7 +373,7 @@ Step 4: Use the Other Account to Open the Shared |envtitle| in Your Account
 
 In this step, the user in the other account :code:`999999999999` uses the |IAM| role in your account :code:`111111111111` to open the shared |env| that's also in your account.
 
-#. If you're not already signed in to the AWS Management Console as the |IAM| user named :guilabel:`AWSCloud9CrossAccountUser` in the other AWS account :code:`999999999999`, sign in now. 
+#. If you're not already signed in to the AWS Management Console as the user named :guilabel:`AWSCloud9CrossAccountUser` in the other AWS account :code:`999999999999`, sign in now. 
 #. On the global navigation bar, choose :guilabel:`AWSCloud9CrossAccountUser`, and then choose :guilabel:`Switch Role`.
 #. On the :guilabel:`Switch role` page, choose :guilabel:`Switch Role`.
 #. For :guilabel:`Account`, type your AWS account ID: :code:`111111111111`.
@@ -378,7 +399,7 @@ Open a Shared |envtitle|
 To open a shared |env|, you use your |AC9| dashboard. You then use the |AC9IDE| to do things in a shared |env| such as work with files and chat with
 other |mems|.
 
-#. Be sure the corresponding access policy is attached to the group containing your user.
+#. Be sure the corresponding access policy is attached to the group or role for your user.
    For more information, see :ref:`share-environment-member-roles`.
 #. Sign in to |AC9|, if you are not already signed in. For more information, see :ref:`setup-sign-in-ide` in *Team Setup*.
 #. Open the shared |env| from your |AC9| dashboard. For more information, see :doc:`open-environment`.
@@ -398,11 +419,11 @@ See a List of |memslongtitle|
 
 With the shared |env| open, in the :guilabel:`Collaborate` window, expand :guilabel:`Environment Members`, if the list of |mems| is not visible.
 
-A circle next to each |mem| indicates their online status, as follows:
+A circle next to each |mem| indicates their online status, as follows.
 
-* Active |mems| have a green circle
-* Offline |mems| have a gray circle
-* Idle |mems| have an orange circle
+* Active |mems| have a green circle.
+* Offline |mems| have a gray circle.
+* Idle |mems| have an orange circle.
 
 .. image:: images/ide-collaborate-status.png
    :alt: Member online status in the AWS Cloud9 IDE
@@ -567,10 +588,10 @@ Remove Your User From a Shared |envtitle|
 
 .. note:: You cannot remove your user from an |env| if you are the |env| owner.
 
-   Removing your user from a |mem| does not remove your user from |IAM|.
+   Removing your user from an |env| does not remove your user from |IAM|.
    
 #. With the shared |env| open, in the :guilabel:`Collaborate` window, expand :guilabel:`Enviroment Members`, if the list of |mems| is not visible.
-#. Do one of the following:
+#. Do one of the following.
 
    * Next to :guilabel:`You`, choose the trash can icon.
    * Right-click :guilabel:`You`, and then choose :guilabel:`Leave environment`.
@@ -622,7 +643,7 @@ Remove Another |memlongtitle|
    
 #. Open the |env| that contains the |mem| you want to remove, if the |env| is not already open. For more information, see :doc:`open-environment`.
 #. In the :guilabel:`Collaborate` window, expand :guilabel:`Environment Members`, if the list of |mems| is not visible.
-#. Do one of the following:
+#. Do one of the following.
 
    * Next to the name of the |mem| you want to delete, choose the trash can icon.
    * Right-click the name of the |mem| you want to delete, and then choose :guilabel:`Revoke Access`.

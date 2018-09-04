@@ -168,7 +168,7 @@ Tree & Navigate
  
    * :guilabel:`auto` for |AC9| to download files without modification.
    * :guilabel:`tar.gz` for |AC9| to download files as compressed TAR files.
-   * :guilabel:`zip` for |AC9| to download files as .zip files.
+   * :guilabel:`auto` for |AC9| to download files as .zip files.
 
 .. _settings-user-change-find-in-files:
 
@@ -235,7 +235,7 @@ Terminal
 :guilabel:`Scrollback`
    The number of lines that you can scroll up or back through in :guilabel:`Terminal` tabs.
 
-:guilabel:`Use Cloud9 as the Default Editor`
+:guilabel:`Use AWS Cloud9 as the Default Editor`
    If selected, uses |AC9| as the default text editor.
 
 .. _settings-user-change-output:

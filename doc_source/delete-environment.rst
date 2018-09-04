@@ -18,7 +18,7 @@ Deleting an Environment in |AC9long|
     :description:
         Describes how to delete an environment in AWS Cloud9.
 
-To prevent ongoing charges to your AWS account related to an |envfirst| that you're no longer using,
+To prevent any ongoing charges to your AWS account related to an |envfirst| that you're no longer using,
 you should delete the |env|.
 
 * :ref:`delete-environment-console`
@@ -29,13 +29,16 @@ you should delete the |env|.
 Deleting an |envtitle| with the Console
 =======================================
 
-#. Open the |AC9| console, if it isn't already open, at |AC9Console_link|.
+.. warning:: When you delete an |env|, |AC9| deletes the |env| permanently. This includes permanently deleting all related 
+   settings, user data, and uncommitted code. Deleted |envplural| cannot be recovered.
+
+#. Sign in to the |AC9| console, at |AC9Console_link|.
 #. In the top navigation bar, choose the AWS Region where the |env| is located.
 
    .. image:: images/console-region.png
       :alt: AWS Region selector in the AWS Cloud9 console
       
-#. In the list of environments, for the |env| you want to delete, do one of the following:
+#. In the list of environments, for the |env| you want to delete, do one of the following.
 
    * Choose the title of the card for the |env|. Then choose :guilabel:`Delete` on the next page.
 
@@ -55,7 +58,7 @@ Deleting an |envtitle| with the Console
    that instance. If you don't terminate that instance later, your AWS account might continue to have ongoing charges 
    for |EC2| related to that instance.
 
-#. If the |env| was an |envssh|, |AC9| leaves behind a hidden subdirectory on the |EC2| instance or your own server that 
+#. If the |env| was an |envssh|, |AC9| leaves behind a hidden subdirectory on the cloud compute instance or your own server that 
    was connected to that |env|. You can now safely delete that subdirectory if you want to. The subdirectory is named 
    :file:`.c9`. It is located in the :guilabel:`Environment path` directory that you specified when you created the 
    |env|.
@@ -66,6 +69,9 @@ Deleting an |envtitle| with the Console
 
 Deleting an |envtitle| with Code
 ================================
+
+.. warning:: When you delete an |env|, |AC9| deletes the |env| permanently. This includes permanently deleting all related 
+   settings, user data, and uncommitted code. Deleted |envplural| cannot be recovered.
 
 To use code to delete an |env| in |AC9|, call the |AC9| delete |env| operation, as follows.
 

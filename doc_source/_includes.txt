@@ -83,3 +83,22 @@
 .. |memslong| replace:: |env| members
 .. |memstitle| replace:: Members
 .. |mems| replace:: members
+
+.. AWS Region IDs
+   --------------
+.. |region-id-ap-northeast-1| replace:: ap-northeast-1
+.. |region-id-ap-northeast-2| replace:: ap-northeast-2
+.. |region-id-ap-northeast-3| replace:: ap-northeast-3
+.. |region-id-ap-south-1| replace:: ap-south-1
+.. |region-id-ap-southeast-1| replace:: ap-southeast-1
+.. |region-id-ap-southeast-2| replace:: ap-southeast-2
+.. |region-id-ca-central-1| replace:: ca-central-1
+.. |region-id-eu-central-1| replace:: eu-central-1
+.. |region-id-eu-west-1| replace:: eu-west-1
+.. |region-id-eu-west-2| replace:: eu-west-2
+.. |region-id-eu-west-3| replace:: eu-west-3
+.. |region-id-sa-east-1| replace:: sa-east-1
+.. |region-id-us-east-1| replace:: us-east-1
+.. |region-id-us-east-2| replace:: us-east-2
+.. |region-id-us-west-1| replace:: us-west-1
+.. |region-id-us-west-2| replace:: us-west-2

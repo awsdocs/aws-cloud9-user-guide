@@ -23,46 +23,49 @@ In this tutorial, you set up an |envfirst| and then tour the |AC9IDElong|. Along
 .. note:: Completing this tutorial might result in charges to your AWS account. These include possible charges for |EC2|. For more information, see
    `Amazon EC2 Pricing <https://aws.amazon.com/ec2/pricing/>`_.
 
+* :ref:`tutorial-prereqs`
 * :ref:`tutorial-create-environment`
 * :ref:`tutorial-tour-ide`
 * :ref:`tutorial-clean-up`
 * :ref:`tutorial-next-steps`
 
+.. _tutorial-prereqs:
+
+Prerequisites
+=============
+
+To successfully complete this tutorial, you must first complete the steps in :ref:`Express Setup <setup-express>` or :ref:`Team Setup <setup>`.
+
 .. _tutorial-create-environment:
 
-Step 1: Create an |envec2title|
-===============================
+Step 1: Create an |envtitle|
+============================
 
-In this step, you use |AC9| console to create and then open an |envfirstec2|.
+In this step, you use |AC9| console to create and then open an |envfirst|.
+
+If you already have an |env|, open it, and then skip ahead to :ref:`tutorial-tour-ide`.
 
 In |AC9|, a :dfn:`development environment` (or just :dfn:`environment`) is a place where you store your development project's files and where you run the tools to develop your apps. 
-When you create a special kind of |env| called an :dfn:`EC2 environment`, |AC9| launches a new |EC2| instance running Amazon Linux, creates the |env|, and then connects 
-the |env| to the newly-launched instance. When you open the |env|, |AC9| displays the |AC9IDE| that enables you to work with the files and tools in that |env|.
-
-.. note:: When you create an |envec2|, the |env| doesn't contain any sample code by default. To create an |env| along with sample code, skip this step, and see one of the following 
-   topics instead: 
-   
-   * To create an |env| and connect it to an |EC2| instance preconfigured with a popular app or framework such as WordPress, MySQL, PHP, Node.js, Nginx, Drupal, or Joomla, or a Linux distribution such as 
-     Ubuntu, Debian, FreeBSD, or openSUSE, you can use |lightsaillong| along with |AC9|. To do this, see :ref:`Working with Amazon Lightsail Instances <lightsail-instances>`. 
-   * To create a more complex solution that includes a toolchain with the |AC9IDE|, source control, build, deployment, virtual servers or serverless resources, and more, 
-     you can use |ACSlong| along with |AC9|. To do this, see :ref:`Working with AWS CodeStar Projects <codestar-projects>`.
-
-   If you use |lightsail| or |ACSlong| to create your |env| and instance, we encourage you to come back to this topic, and then skip ahead to :ref:`tutorial-tour-ide` to learn how to use the |AC9IDE| to work 
-   with your new code. 
+In this tutorial, you create a special kind of |env| called an :dfn:`EC2 environment`. For this kind of |env|, |AC9| creates and manages a new |EC2| instance running Amazon Linux, 
+creates the |env|, and then connects the |env| to the newly-created instance. When you open the |env|, |AC9| displays the |AC9IDE| that enables you to work with the files and tools in that |env|.
 
 You can create a blank |envec2| with the :ref:`AWS Management Console <tutorial-create-environment-console>` 
 or the :ref:`AWS Command Line Interface (AWS CLI) <tutorial-create-environment-cli>`.
+
+.. note:: When you create an |envec2|, the |env| doesn't contain any sample code by default. To create an |env| along with sample code, see one of the following 
+   topics instead.
+   
+   * :ref:`Working with Amazon Lightsail Instances <lightsail-instances>` 
+   * :ref:`Working with AWS CodeStar Projects <codestar-projects>`
+
+   After you create the |env|, skip ahead to :ref:`tutorial-tour-ide`.
 
 .. _tutorial-create-environment-console:
 
 Create an |envec2title| with the Console
 ----------------------------------------
 
-#. Sign in to the |AC9| console, if you have not yet done so. To do this, see one of the following:
-   
-   * :ref:`setup-express-sign-in-ide` in :title:`Express Setup`.
-   * :ref:`setup-sign-in-ide` in :title:`Team Setup`.
-
+#. Sign in to the |AC9| console, at |AC9Console_link|.
 #. After you sign in to the |AC9| console, in the top navigation bar, choose an AWS Region to create the |env| in. For a list of available AWS Regions, see 
    :aws-gen-ref:`AWS Cloud9 <rande.html#cloud9_region>` in the |AWS-gr|.
 
@@ -90,7 +93,7 @@ Create an |envec2title| with the Console
 #. On the :guilabel:`Configure settings` page, for :guilabel:`Environment type`, leave the default choice of
    :guilabel:`Create a new instance for environment (EC2)`.
 
-   Choosing :guilabel:`Create a new instance for enviroment (EC2)` means you want |AC9| to connect the |env| to a newly-launched |EC2| instance. To use an existing |EC2| instance or your
+   Choosing :guilabel:`Create a new instance for enviroment (EC2)` means you want |AC9| to create a new |EC2| instance and then connect the |env| to the newly-created instance. To use an existing cloud compute instance or your
    own server instead (which we call an :dfn:`SSH environment`), see
    :doc:`Creating an Environment <create-environment>`.
 
@@ -100,7 +103,17 @@ Create an |envec2title| with the Console
 
    .. note:: Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for |EC2|.
 
-#. |AC9| uses |VPClong| (|VPC|) in your AWS account to communicate with the newly-launched |EC2| instance. Depending on how |VPC| is set up in your AWS account, do one of the following.
+#. Expand :guilabel:`Network settings (advanced)`.
+#. |AC9| uses |VPClong| (|VPC|) in your AWS account to communicate with the newly-created |EC2| instance. Depending on how |VPC| is set up in your AWS account, do one of the following.
+
+   .. list-table::
+      :widths: 1
+      :header-rows: 0
+
+      * - If you're not sure what to choose, we recommend that you skip ahead to step 11 in this procedure. 
+
+          When you skip past :guilabel:`Network settings (advanced)` and leave the preselected default settings, 
+          |AC9| attempts to automatically use the default VPC in your account with its single subnet.
 
    .. list-table::
       :widths: 2 3 1 3
@@ -113,22 +126,25 @@ Create an |envec2title| with the Console
       * - No
         - |mdash|
         - |mdash|
-        - If no VPC exists, create one. To do this, expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose :guilabel:`Create new VPC`, and then follow the 
-          on-screen directions. For more information, see :ref:`Create an Amazon VPC <vpc-settings-create-vpc>`.
+        - If no VPC exists, create one. To do this, choose :guilabel:`Create new VPC`, and then follow the 
+          on-screen directions. For more information, see :ref:`vpc-settings-create-vpc`.
           
-          If a VPC exists but has no subnet, create one. To do this, expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose :guilabel:`Create new subnet`, 
-          and then follow the on-screen directions. For more information, see :ref:`Create a Subnet <vpc-settings-create-subnet>`.
+          If a VPC exists but has no subnet, create one. To do this, choose :guilabel:`Create new subnet`, 
+          and then follow the on-screen directions. For more information, see :ref:`vpc-settings-create-subnet`.
       * - Yes
         - Yes
         - Yes
-        - Skip ahead to the next step in this procedure. (|AC9| will automatically use the default VPC with its single subnet.)
+        - Skip ahead to the step 11 in this procedure. 
+        
+          When you skip past :guilabel:`Network settings (advanced)` and leave the preselected default settings, 
+          |AC9| attempts to automatically use the default VPC in your account with its single subnet.
       * - Yes
         - Yes
         - No
         - Expand :guilabel:`Network settings (advanced)`. For :guilabel:`Subnet`, choose the subnet you want |AC9| to use in the preselected default VPC. 
       * - Yes
         - No
-        - Yes or No
+        - |mdash|
         - Expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose the VPC that you want |AC9| to use. 
           For :guilabel:`Subnet`, choose the subnet you want |AC9| to use in that VPC.
 
@@ -146,6 +162,10 @@ Create an |envec2title| with the Console
 After your |env| is created, the |AC9IDE| is displayed. You'll learn about the |AC9IDE| in the next
 step.
 
+If |AC9| doesn't display the |IDE| after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated
+virtual private cloud (VPC). For possible fixes, see 
+:ref:`troubleshooting-env-loading` in *Troubleshooting*.
+
 To learn more about what you can do with an |env| after you finish this tutorial, see :doc:`Working with Environments <environments>`.
 
 Skip ahead to :ref:`tutorial-tour-ide`.
@@ -155,12 +175,12 @@ Skip ahead to :ref:`tutorial-tour-ide`.
 Create an |envec2title| with the |cli|
 --------------------------------------
 
-#. Install and configure the |cli|, if you have not done so already. To do this, see the following in the |cli-ug|:
+#. Install and configure the |cli|, if you have not done so already. To do this, see the following in the |cli-ug|.
 
    * :cli-ug:`Installing the AWS Command Line Interface <installing>`
    * :cli-user-guide:`Quick Configuration <cli-chap-getting-started.html#cli-quick-configuration>`
    
-   We recommend you configure the |cli| using credentials for one of the following: 
+   We recommend you configure the |cli| using credentials for one of the following. 
    
    * The |IAM| user you created in :ref:`Team Setup <setup>`.
    * An |IAM| administrator user in your AWS account, if you will be working regularly with |AC9| resources for multiple users across the account. If you cannot 
@@ -170,11 +190,11 @@ Create an |envec2title| with the |cli|
      |envplural| with anyone else. For more information, see 
      :aws-gen-ref:`Creating, Disabling, and Deleting Access Keys for Your AWS Account <managing-aws-access-keys.html#create-aws-access-key>` in the |AWS-gr|.
 
-#. Run the AWS Cloud9 :code:`create-environment-ec2` command, for example:
+#. Run the AWS Cloud9 :code:`create-environment-ec2` command.
 
    .. code-block:: sh
 
-      aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --region us-west-2 --subnet-id SUBNET_ID
+      aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --region us-east-1 --subnet-id subnet-12a3456b
 
    In the preceding command: 
 
@@ -186,7 +206,7 @@ Create an |envec2title| with the |cli|
      For a list of available instance types, see the create environment wizard in the |AC9| console.
    * :code:`--region` represents the ID of the AWS Region for |AC9| to create the |env| in. For a list of available AWS Regions, see 
      :aws-gen-ref:`AWS Cloud9 <rande.html#cloud9_region>` in the |AWS-gr|.
-   * :code:`--subnet-id` represents the subnet you want |AC9| to use. Replace :code:`SUBNET_ID` with the ID of the subnet, which must be compatible with |AC9|. For more information, see :doc:`Amazon VPC Settings <vpc-settings>`.
+   * :code:`--subnet-id` represents the subnet you want |AC9| to use. Replace :code:`subnet-12a3456b` with the ID of the subnet, which must be compatible with |AC9|. For more information, see :doc:`Amazon VPC Settings <vpc-settings>`.
    * By default, |AC9| shuts down the |EC2| instance for the 
      |env| 30 minutes after all web browser instances that are connect to the |IDE| for the |env| have been closed. 
      To change this, add :code:`--automatic-stop-time-minutes` along with the number of minutes. 
@@ -194,7 +214,13 @@ Create an |envec2title| with the |cli|
    * By default, the entity that calls this command owns the |env|. To change this, add :code:`--owner-id` along with the Amazon Resource Name (ARN) of the owning entity.
 
 After you successfully run this command, open the |AC9IDE| for the newly-created |env|. To do this, see :ref:`Opening an Environment <open-environment>`. Then 
-return to this topic and continue on with :ref:`tutorial-tour-ide` to learn how to use the |AC9IDE| to work with your new |env|. 
+return to this topic and continue on with :ref:`tutorial-tour-ide` to learn how to use the |AC9IDE| to work with your new |env|.
+
+If you try to open the |env|, but |AC9| doesn't display the |IDE| after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated
+virtual private cloud (VPC). For possible fixes, see 
+:ref:`troubleshooting-env-loading` in *Troubleshooting*.
+
+To learn more about what you can do with an |env| after you finish this tutorial, see :doc:`Working with Environments <environments>`.
 
 .. _tutorial-tour-ide:
 
@@ -296,7 +322,7 @@ To open the dashboard, on the menu bar, choose :guilabel:`AWS Cloud9, Go To Your
 
 To view the settings for your |env|, choose the title inside of the :guilabel:`my-demo-environment` card.
 
-To return to the IDE for your |env|, do one of the following:
+To return to the IDE for your |env|, do one of the following.
 
 * Choose your web browser's back button, and then choose :guilabel:`Open IDE` inside of the :guilabel:`my-demo-environment` card.
 * In the navigation breadcrumb, choose :guilabel:`Your environments`, and then choose :guilabel:`Open IDE` inside of the :guilabel:`my-demo-environment` card.
@@ -528,7 +554,7 @@ Then, in the :guilabel:`Outline` window, choose :guilabel:`say_hello(i)`, and th
 Step 2.12: Immediate Tab
 ------------------------
 
-The :guilabel:`Immediate` tab enables you to test small snippets of JavaScript code. To see how the :guilabel:`Immediate` tab works, do the following:
+The :guilabel:`Immediate` tab enables you to test small snippets of JavaScript code. To see how the :guilabel:`Immediate` tab works, do the following.
 
 #. Open an :guilabel:`Immediate` tab by choosing :menuselection:`Window, New Immediate Window` on the menu bar.
 #. Run some code in the :guilabel:`Immediate` tab. To try this, type the following code into the window, pressing :kbd:`Shift-Enter` after typing line 1 and again after line 2. Press :kbd:`Enter` after line 3.
@@ -550,11 +576,11 @@ Step 2.13: Process List
 -----------------------
 
 The :guilabel:`Process List` shows all of the running processes. You can stop or even forcibly stop processes that you don't want to run anymore.
-To see how the :guilabel:`Process List` window works, do the following:
+To see how the :guilabel:`Process List` window works, do the following.
 
 #. Show the :guilabel:`Process List` by choosing :menuselection:`Tools, Process List` on the menu bar.
 #. Find a process. In the :guilabel:`Process List`, type the name of the process.
-#. Stop or forcibly stop a process. In the list of processes, choose the process, and then choose :guilabel:`Kill` or :guilabel:`Force Kill`, as follows:
+#. Stop or forcibly stop a process. In the list of processes, choose the process, and then choose :guilabel:`Kill` or :guilabel:`Force Kill`, as follows.
 
 .. image:: images/ide-process-list.png
    :alt: Process list in the AWS Cloud9 IDE
@@ -564,7 +590,7 @@ To see how the :guilabel:`Process List` window works, do the following:
 Step 2.14: Preferences
 ----------------------
 
-:dfn:`Preferences` include the following settings:
+:dfn:`Preferences` include the following settings.
 
 * Settings for the current |env| only, such as whether to use soft tabs in the editor, the file types to ignore, and code completion behaviors for languages such as PHP and Python.
 * Your user settings across each of your environments, such as colors, fonts, and editor behaviors.
@@ -585,7 +611,7 @@ You can run one or more :dfn:`terminal` sessions in the IDE. To start a terminal
 
 You can try running a command in the terminal. For example, in the terminal, type :kbd:`echo $PATH` (to print the value of the :code:`PATH` environment variable), and then press :kbd:`Enter`.
 
-You can also try running additional commands. For example, try commands such as the following:
+You can also try running additional commands. For example, try commands such as the following.
 
 * :command:`pwd` to print the path to the current directory.
 * :command:`aws --version` to print version information about the |cli|.
@@ -608,13 +634,13 @@ To show the :guilabel:`Debugger` button again, choose :menuselection:`Window, De
 
 To show the :guilabel:`Debugger` window, choose the :guilabel:`Debugger` button.
 
-You can experiment with using the :guilabel:`Debugger` window and some JavaScript code. To try this, do the following:
+You can experiment with using the :guilabel:`Debugger` window and some JavaScript code. To try this, do the following.
 
 #. Prepare to use the :guilabel:`Debugger` window to debug JavaScript code by installing Node.js into
    your |env|, if it isn't already installed. To confirm whether your |env| has Node.js installed,
    run the :command:`node --version` command. If Node.js is installed, the Node.js version number is output,
    and you can skip ahead to step 3 in this procedure to write some JavaScript code.
-#. To install Node.js:
+#. To install Node.js, do the following.
 
    #. Run the following two commands, one at a time, to be sure your |env| has the latest updates, and
       then download Node Version Manager (nvm). (nvm is a simple
@@ -665,7 +691,7 @@ You can experiment with using the :guilabel:`Debugger` window and some JavaScrip
    .. image:: images/ide-breakpoints.png
       :alt: Adding breakpoints to code in the Debugger window
 
-#. Now you're ready to debug the JavaScript code. To try this, do the following:
+#. Now you're ready to debug the JavaScript code. To try this, do the following.
 
    #. Show the :guilabel:`Debugger` window, if it's not already displayed.
    #. Watch the value of the variable named :code:`i` while the code is running. In the :guilabel:`Debugger` window, for :guilabel:`Watch Expressions`, choose :guilabel:`Type an expression here`.
@@ -695,7 +721,7 @@ You can experiment with using the :guilabel:`Debugger` window and some JavaScrip
       .. image:: images/ide-debugger-output.png
          :alt: hello.js tab with debug output
 
-Compare your results to the following:
+Compare your results to the following.
 
 .. image:: images/ide-debugger.gif
    :alt: Using the debugger
@@ -717,7 +743,7 @@ Delete the |envtitle| with the |AC9| Console
 --------------------------------------------
 
 #. Open the dashboard. To do this, on the menu bar in the |IDE|, choose :menuselection:`AWS Cloud9, Go To Your Dashboard`.
-#. Do one of the following:
+#. Do one of the following.
 
    * Choose the title inside of the :guilabel:`my-demo-environment` card, and then choose :guilabel:`Delete`.
 
@@ -744,13 +770,13 @@ Skip ahead to :ref:`tutorial-next-steps`.
 Delete the |envtitle| with the |cli|
 ------------------------------------
 
-Run the AWS Cloud9 :code:`delete-environment` command, specifying the ID of the |env| to delete, for example:
+Run the AWS Cloud9 :code:`delete-environment` command, specifying the ID of the |env| to delete.
 
 .. code-block:: sh
 
-   aws cloud9 delete-environment --environment-id ENVIRONMENT_ID
+   aws cloud9 delete-environment --environment-id 12a34567b8cd9012345ef67abcd890e1
 
-In the preceding command, replace :code:`ENVIRONMENT_ID` with the ID of the |env| to delete. The ID should look similar to this: :code:`349c86d4579e4e7298d500ff57a6b2EX`.
+In the preceding command, replace :code:`12a34567b8cd9012345ef67abcd890e1` with the ID of the |env| to delete.
 
 .. _tutorial-next-steps:
 
@@ -763,22 +789,21 @@ Explore any or all of the following topics to continue getting familiar with |AC
    :widths: 1 1
    :header-rows: 0
 
-   * - Learn more about the |AC9IDE|
+   * - Learn more about the |AC9IDE|.
      - :ref:`Working with the IDE <ide>`
-   * - Invite others to use your |env| along with you, in real time and with text chat support
+   * - Invite others to use your new |env| along with you, in real time and with text chat support.
      - :ref:`Working with Shared Environments <share-environment>`
-   * - Create |envsshplural| (|envplural| that use your own |EC2| instance or server, instead of an |EC2| instance that is 
-       managed by |AC9|)
+   * - Create |envsshplural| (|envplural| that use cloud compute instances or servers that you create, instead of an |EC2| instances that |AC9| creates for you).
      - :ref:`Creating an Environment <create-environment>` and :ref:`SSH Environment Host Requirements <ssh-settings>`
-   * - Use |AC9| with |LAM|
+   * - Use |AC9| with |LAM|.
      - :ref:`AWS Lambda Tutorial <tutorial-lambda>`, :ref:`Advanced AWS Lambda Tutorial <tutorial-lambda-advanced>`, and :ref:`Working with AWS Lambda Functions <lambda-functions>`
-   * - Use |AC9| with |lightsaillong|
+   * - Use |AC9| with |lightsaillong|.
      - :ref:`Working with Amazon Lightsail Instances <lightsail-instances>`
-   * - Use |AC9| with |ACSlong|
+   * - Use |AC9| with |ACSlong|.
      - :ref:`Working with AWS CodeStar Projects <codestar-projects>`
-   * - Use |AC9| with |ACPlong|
+   * - Use |AC9| with |ACPlong|.
      - :ref:`Working with AWS CodePipeline <codepipeline-repos>`
-   * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages
+   * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, the AWS Cloud Development Kit (AWS CDK), GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages.
      - :ref:`Samples <samples>`
 
 To get help with |AC9| from the community, see the `AWS Cloud9 Discussion Forum <https://forums.aws.amazon.com/forum.jspa?forumID=268>`_. (When you enter this forum, AWS might require you to sign in.)

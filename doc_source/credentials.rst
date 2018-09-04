@@ -40,7 +40,7 @@ There are several ways to provide credentials to your |env|. The following table
 
    * - |envtitle| type
      - Approach
-   * - |EC2|
+   * - EC2
      - Use |AC9tempcreds|.
 
        We recommend this approach for an |envec2|. |AC9tempcreds| manage AWS access credentials in an |envec2| on your behalf, while also following AWS security best practices.
@@ -48,7 +48,7 @@ There are several ways to provide credentials to your |env|. The following table
        **If you are using an EC2 environment, you can skip the rest of this topic, as AWS managed temporary credentials are already set up for you in the environment.**
 
        For more information, see :ref:`auth-and-access-control-temporary-managed-credentials`.
-   * - |EC2|
+   * - EC2
      - Attach an |IAM| instance profile to the instance.
 
        You should only use this approach if for some reason you can't use |AC9tempcreds|. Similar to |AC9tempcreds|,
@@ -56,13 +56,13 @@ There are several ways to provide credentials to your |env|. The following table
        the instance profile to the |EC2| instance yourself.
 
        For instructions, see :ref:`credentials-temporary`.
-   * - |EC2| or SSH
+   * - EC2 or SSH
      - Store your permanent AWS access credentials within the |env|.
 
        This approach is less secure than using temporary AWS access credentials. However, it is the only supported approach for an |envssh|.
 
        For instructions, see :ref:`credentials-permanent-create`.
-   * - |EC2| or SSH
+   * - EC2 or SSH
      - Insert your permanent AWS access credentials directly into your code.
 
        We discourage this approach because it doesn't follow AWS security best practices.
@@ -124,7 +124,7 @@ Create an Instance Profile with the |cli|
    For this topic, we recommend you configure the |cli| using credentials for an |IAM| administrator user in your AWS account. If you cannot 
    do this, check with your AWS account administrator.
 
-#. Define a trust relationship in AWS for the instance profile's required |IAM| role. To do this, create a file with the following contents, saving the file as :file:`my-demo-cloud9-instance-profile-role-trust.json`:
+#. Define a trust relationship in AWS for the instance profile's required |IAM| role. To do this, create and then save a file with the following contents (for example, as :file:`my-demo-cloud9-instance-profile-role-trust.json`).
 
    .. code-block:: json
 
@@ -142,19 +142,16 @@ Create an Instance Profile with the |cli|
         ]
       }
 
-   You can save the file with a different file name. If you do, substitute it throughout this section.
-
 #. Using the terminal or command prompt, switch to the directory where you just saved this file.
-#. Create an |IAM| role for the instance profile. To do this, run the IAM :code:`create-role` command, specifying a name for the new |IAM| role and the name of the file you just saved, for example:
+#. Create an |IAM| role for the instance profile. To do this, run the IAM :code:`create-role` command, specifying a name for the new |IAM| role 
+   (for example, :code:`my-demo-cloud9-instance-profile-role`), and the name of the file you just saved.
 
    .. code-block:: sh
 
       aws iam create-role --role-name my-demo-cloud9-instance-profile-role --assume-role-policy-document file://my-demo-cloud9-instance-profile-role-trust.json
 
-   You can give the |IAM| role a different name. If you do, substitute it throughout this section.
-
 #. Attach AWS access permissions to the instance profile's |IAM| role. To do this, run the IAM :code:`attach-role-policy` command, specifying the name of the existing |IAM| role and the Amazon Resource 
-   Name (ARN) of the AWS managed policy named :code:`AdministratorAccess`, for example:
+   Name (ARN) of the AWS managed policy named :code:`AdministratorAccess`.
 
    .. code-block:: sh
 
@@ -163,15 +160,13 @@ Create an Instance Profile with the |cli|
    .. note:: The :guilabel:`AdministratorAccess` policy allows unrestricted access to all AWS actions and resources across your AWS account. It should be used only for experimentation purposes.
       For more information, see :IAM-ug:`IAM Policies <access_policies>` in the |IAM-ug|.
 
-#. Create the instance profile. To do this, run the IAM :code:`create-instance-profile` command, specifying a name for the new instance profile, for example:
+#. Create the instance profile. To do this, run the IAM :code:`create-instance-profile` command, specifying a name for the new instance profile (for example, :code:`my-demo-cloud9-instance-profile`).
 
    .. code-block:: sh
 
       aws iam create-instance-profile --instance-profile-name my-demo-cloud9-instance-profile
 
-   You can give the instance profile a different name. If you do, substitute it throughout this section.
-
-#. Attach the |IAM| role to the instance profile. To do this, run the IAM :code:`add-role-to-instance-profile`, specifying the names of the existing |IAM| role and instance profile, for example:
+#. Attach the |IAM| role to the instance profile. To do this, run the IAM :code:`add-role-to-instance-profile`, specifying the names of the existing |IAM| role and instance profile.
 
    .. code-block:: sh
 
@@ -212,21 +207,21 @@ You can now start calling AWS services from your |env|. To use the |cli|, the aw
 Attach an Instance Profile to an Instance with the |cli|
 --------------------------------------------------------
 
-#. Run the Amazon EC2 :code:`associate-iam-instance-profile` command, specifying the name of the instance profile and the ID and AWS Region ID of the |EC2| instance for the |env|, for example: 
+#. Run the Amazon EC2 :code:`associate-iam-instance-profile` command, specifying the name of the instance profile and the ID and AWS Region ID of the |EC2| instance for the |env|. 
 
    .. code-block:: sh
 
-      aws ec2 associate-iam-instance-profile --iam-instance-profile Name=my-demo-cloud9-instance-profile --region REGION_ID --instance-id INSTANCE_ID
+      aws ec2 associate-iam-instance-profile --iam-instance-profile Name=my-demo-cloud9-instance-profile --region us-east-2 --instance-id i-12a3b45678cdef9a0 
 
-   In the preceding command, replace :code:`REGION_ID` with the AWS Region ID for the instance and :code:`INSTANCE_ID` with the instance's ID.
+   In the preceding command, replace :code:`us-east-2` with the AWS Region ID for the instance and :code:`i-12a3b45678cdef9a0` with the instance's ID.
    
-   To get the instance's ID, you could for example run the Amazon EC2 :code:`describe-instances` command, specifying the name and AWS Region ID of the |env|, for example:
+   To get the instance's ID, you could for example run the Amazon EC2 :code:`describe-instances` command, specifying the name and AWS Region ID of the |env|.
 
    .. code-block:: sh
 
-      aws ec2 describe-instances --region=REGION_ID --filters Name=tag:Name,Values=*ENVIRONMENT_NAME* --query "Reservations[*].Instances[*].InstanceId" --output text
+      aws ec2 describe-instances --region us-east-2 --filters Name=tag:Name,Values=*my-environment* --query "Reservations[*].Instances[*].InstanceId" --output text
 
-   In the preceding command, replace :code:`REGION_ID` with the AWS Region ID for the instance and :code:`ENVIRONMENT_NAME` with the name of the |env|.
+   In the preceding command, replace :code:`us-east-2` with the AWS Region ID for the instance and :code:`my-environment` with the name of the |env|.
 
 #. Back in the |env|, use the |cli| to run the :code:`aws configure` command or the aws-shell to run the :code:`configure` command. Do not specify any values for :guilabel:`AWS Access Key ID` or
    :guilabel:`AWS Secret Access Key` (press :kbd:`Enter` after each of these prompts). For :guilabel:`Default region name`, specify the AWS Region closest to you or the region where your AWS resources are located.
@@ -276,13 +271,13 @@ Create Permanent Access Credentials with the |cli|
 .. note:: For this section, we recommend you configure the |cli| using credentials for an |IAM| administrator user in your AWS account. If you cannot 
    do this, check with your AWS account administrator.
 
-Run the IAM :code:`create-access-key` command to create a new AWS access key and corresponding AWS secret access key for the user, for example:
+Run the IAM :code:`create-access-key` command to create a new AWS access key and corresponding AWS secret access key for the user.
 
 .. code-block:: sh
    
-   aws iam create-access-key --user-name USER_NAME
+   aws iam create-access-key --user-name MyUser
 
-In the preceding command, replace USER_NAME with the name of the user.
+In the preceding command, replace :code:`MyUser` with the name of the user.
 
 In a secure location, save the :code:`AccessKeyId` and :code:`SecretAccessKey` values that are displayed. 
 After you run the IAM :code:`create-access-key` command, this is the only time you can use the |cli| to view the user's AWS secret access key. 
@@ -306,34 +301,33 @@ opened the |env|, and are displaying the |AC9IDE| in your web browser. For more 
 #. With your |env| open, in the |AC9IDE|, start a new terminal session, if one is not already started. To start a new terminal session, on the
    menu bar, choose :menuselection:`Window, New Terminal`.
 #. Run each of the following commands, one command at a time, to set local environment variables representing your permanent access credentials.
-   In these commands, :samp:`{YOUR-ACCESS-KEY-ID}` is your AWS access key ID, :samp:`{YOUR-SECRET-ACCESS-KEY}` is your
-   AWS secret access key, and :samp:`{YOUR-DEFAULT-REGION-ID}` is the AWS Region identifier associated with the AWS Region closest to you (or your preferred AWS Region).
+   In these commands, after :code:`AWS_ACCESS_KEY_ID:`, type your AWS access key ID. After :code:`AWS_SECRET_ACCESS_KEY`, type your
+   AWS secret access key. After :code:`AWS_DEFAULT_REGION_ID`, type the AWS Region identifier associated with the AWS Region closest to you (or your preferred AWS Region).
    For a list of available identifiers, see :AWS-gr:`AWS Regions and Endpoints <rande>` in the |AWS-gr|. For example, for the US East (Ohio) Region, you would use
    :kbd:`us-east-2`.
 
    .. code-block:: sh
 
-      export AWS_ACCESS_KEY_ID=YOUR-ACCESS-KEY-ID
-      export AWS_SECRET_ACCESS_KEY=YOUR-SECRET-ACCESS-KEY
-      export AWS_DEFAULT_REGION=YOUR-DEFAULT-REGION-ID
+      export AWS_ACCESS_KEY_ID=
+      export AWS_SECRET_ACCESS_KEY=
+      export AWS_DEFAULT_REGION=
 
 #. Note that the preceding environment variables are valid only for the current terminal session. To make these environment variables available across terminal sessions, you must add them
-   to your shell profile file as user environment variables. To do this, do the following:
+   to your shell profile file as user environment variables, as follows.
 
    #. In the :guilabel:`Environment` window of the |IDE|, choose the gear icon, and then choose :guilabel:`Show Home in Favorites`.
       Repeat this step and choose :guilabel:`Show Hidden Files` as well.
    #. Open the :file:`~/.bashrc` file.
-   #. Type or paste the following code at the end of the file. In these commands, :samp:`{YOUR-ACCESS-KEY-ID}` is your AWS access key ID, :samp:`{YOUR-SECRET-ACCESS-KEY}` is your
-      AWS secret access key, and :samp:`{YOUR-DEFAULT-REGION-ID}` is the AWS Region identifier associated
-      with the AWS Region closest to you (or your preferred AWS Region).
-      For a list of available identifiers, see :AWS-gr:`AWS Regions and Endpoints <rande>` in the |AWS-gr|. (For example, for the US East (Ohio) Region, you would use
-      :kbd:`us-east-2`.)
+   #. Type or paste the following code at the end of the file. In these commands, after :code:`AWS_ACCESS_KEY_ID:`, type your AWS access key ID. After :code:`AWS_SECRET_ACCESS_KEY`, type your
+      AWS secret access key. After :code:`AWS_DEFAULT_REGION_ID`, type the AWS Region identifier associated with the AWS Region closest to you (or your preferred AWS Region).
+      For a list of available identifiers, see :AWS-gr:`AWS Regions and Endpoints <rande>` in the |AWS-gr|. For example, for the US East (Ohio) Region, you would use
+      :kbd:`us-east-2`.
 
       .. code-block:: sh
 
-         export AWS_ACCESS_KEY_ID=YOUR-ACCESS-KEY-ID
-         export AWS_SECRET_ACCESS_KEY=YOUR-SECRET-ACCESS-KEY
-         export AWS_DEFAULT_REGION=YOUR-DEFAULT-REGION-ID
+         export AWS_ACCESS_KEY_ID=
+         export AWS_SECRET_ACCESS_KEY=
+         export AWS_DEFAULT_REGION=
 
    #. Save the file.
    #. Source the :file:`~/.bashrc` file to load these new environment variables.

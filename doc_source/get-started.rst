@@ -26,16 +26,18 @@ To start using |AC9|, follow one of these sets of procedures, depending on how y
 
    * - **Usage pattern**
      - **Follow these procedures**
-   * - I will always be the only one using my own AWS account, and I don't need to share my |envfirstplural| with anyone else.
+   * - I want to start using |AC9| quickly.
+
+       |mdash| Or |mdash| 
+   
+       I will be the only one using |AC9| in my AWS account.
      - :ref:`Express Setup <setup-express>`
-   * - Multiple people will be using a single AWS account to create and share |envplural| within that account.
+   * - I want multiple users in my AWS account to use |AC9|.
      - :ref:`Team Setup <setup>`
-   * - Multiple people will be using a single AWS account, and I need to restrict creating |envplural| within that account to control costs.
+   * - I want multiple users in my AWS account to use |AC9|, and I want to restrict their usage to control costs.
      - :ref:`Advanced Setup for Teams <setup-teams>`
 
-After you finish setting up, follow the steps in the :doc:`IDE Tutorial <tutorial>` to begin experimenting with |AC9|.
-
-See :doc:`welcome` for general information about |AC9|.
+For general information about |AC9|, see :doc:`welcome`.
 
 .. toctree::
    :maxdepth: 1

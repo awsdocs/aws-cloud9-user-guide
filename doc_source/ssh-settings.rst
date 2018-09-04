@@ -21,15 +21,12 @@
 When you create an |envec2|, |AC9| creates a new |env|, requests |EC2| to launch a new instance, and then connects the newly launched instance to the new |env|. Creating an
 |envec2| has the following benefits:
 
-* **Automatic instance launching.** When you create an |envec2|, |AC9| requests |EC2| to launch a new instance at the same time. In an |envssh|, you must launch a new |EC2| instance yourself.
+* **Automatic instance launching.** When you create an |envec2|, |AC9| requests |EC2| to create a new instance at the same time. In an |envssh|, you must provide an existing cloud compute instance (for 
+  example an |EC2| instance) or your own server yourself.
 * **Automatic instance shutdown.** By default, |AC9| automatically shuts down the |envec2| 30 minutes after all web browser instances that are connected to the IDE for the |envec2| are closed. 
-  (You can change this behavior at any time.) This helps reduce additional charges to your AWS account for using |EC2|. 
-  In an |envssh|, automatic shutdown might not work as expected when connected to an existing |EC2| instance, 
-  and is turned off completely when connected to your own server.
-* **Automatic instance cleanup.** When you delete an |envec2|, the connected |EC2| instance is automatically deleted. This also helps reduce additional charges to your AWS account for using |EC2|. In an |envssh|, you must remember to
-  delete the |EC2| instance yourself.
-
-When you create an |envssh|, |AC9| does not launch a new |EC2| instance. Instead, |AC9| creates a new |env| and then connects an existing instance or your own server to the new |env|.
+  (You can change this behavior at any time.) This helps reduce additional charges to your AWS account for using |EC2|.
+* **Automatic instance cleanup.** When you delete an |envec2|, the connected |EC2| instance is automatically deleted. This also helps reduce additional charges to your AWS account for using |EC2|. In an |envssh| that 
+  is connected to cloud compute instance, you must remember to delete the instance yourself.
 
 When and How to Create an |envsshtitle|
 =======================================
@@ -42,13 +39,13 @@ You must create an |envssh| instead of an |envec2| whenever any of the following
 
    * - **Requirement**
      - **Directions**
-   * - You don't want to incur additional charges to your AWS account for using |EC2|, so you decide to connect |AC9| to your own server instead.
+   * - You don't want to incur additional charges to your AWS account for using AWS cloud compute instances, so you decide to connect |AC9| to an existing cloud compute instance outside of AWS or your own server instead.
      -
-       #. Be sure your server meets the :ref:`requirements <ssh-settings-requirements>` later in this
+       #. Be sure your instance or server meets the :ref:`requirements <ssh-settings-requirements>` later in this
           topic.
-       #. :ref:`Create an SSH environment <create-environment>` for |AC9| to connect your server to.
+       #. :ref:`Create an SSH environment <create-environment>` for |AC9| to connect your instance or server to.
 
-   * - You want to use an existing |EC2| instance in your AWS account instead of having |AC9| to launch a new instance at the same time the |env| is created.
+   * - You want to use an existing AWS cloud compute instance (for example an |EC2| instance) in your AWS account instead of having |AC9| to launch a new instance at the same time the |env| is created.
      -
        #. Be sure the instance meets the :ref:`requirements <ssh-settings-requirements>` later in this
           topic.
@@ -68,7 +65,7 @@ You must create an |envssh| instead of an |envec2| whenever any of the following
           topic.
        #. :ref:`Create an SSH environment <create-environment>` for |AC9| to connect the instance to.
 
-   * - You want to connect multiple |envplural| to a single existing |EC2| instance or your own server.
+   * - You want to connect multiple |envplural| to a single existing cloud compute instance or your own server.
      -
        #. Be sure the instance or server meets the :ref:`requirements <ssh-settings-requirements>` later
           in this topic.
@@ -81,11 +78,11 @@ You must create an |envssh| instead of an |envec2| whenever any of the following
 SSH Host Requirements
 =====================
 
-The existing |EC2| instance or your own server must meet the following requirements for |AC9| to connect it to an |envssh|.
+The existing cloud compute instance or your own server must meet the following requirements for |AC9| to connect it to an |envssh|.
 
 * It must run Linux.
 
-  .. note:: To log in to an existing |EC2| instance to verify and meet requirements, see one or more of the following resources:
+  .. note:: To log in to an existing AWS cloud compute instance to verify and meet requirements, see one or more of the following resources:
 
      * For |EC2|, see :EC2-ug:`Connect to Your Linux Instance <AccessingInstances>` in the |EC2-ug|.
      * For Amazon Lightsail, see `Connect to your Linux/Unix-based Lightsail instance <https://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-connect-to-your-instance-virtual-private-server>`_ in the *Amazon Lightsail Documentation*.
@@ -95,7 +92,7 @@ The existing |EC2| instance or your own server must meet the following requireme
 
 * It must be reachable over the public internet.
 
-  .. note:: If you are using an existing |EC2| instance, and that instance is part of an |VPClong| (|VPC|), there are additional requirements. See :ref:`Amazon VPC Settings <vpc-settings>`.
+  .. note:: If you are using an existing AWS cloud compute instance, and that instance is part of an |VPClong| (|VPC|), there are additional requirements. See :ref:`Amazon VPC Settings <vpc-settings>`.
 
 * It must have Python installed, and the **version must be 2.7**. To check the version, from the existing instance's or server's terminal, run the command :command:`python --version`.
   To install Python 2.7 on the instance or server, see one of the following:
@@ -128,7 +125,7 @@ The existing |EC2| instance or your own server must meet the following requireme
 * Optionally, you can restrict inbound traffic over SSH to only the IP addresses that |AC9| uses. To do this, set inbound SSH traffic to the IP ranges as described 
   in :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
 
-* If the |envssh| will be associated with an |EC2| instance that runs within an |VPClong| (|VPC|), there are additional requirements. See :ref:`vpc-settings`.
+* If the |envssh| will be associated with an AWS cloud compute instance that runs within an |VPClong| (|VPC|), there are additional requirements. See :ref:`vpc-settings`.
 
 After you are sure your instance or server meets the preceding requirements, :ref:`create an SSH environment
-<create-environment>` for |AC9| to connect it to.
+<create-environment-ssh>` for |AC9| to connect it to.

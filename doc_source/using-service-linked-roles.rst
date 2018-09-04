@@ -22,7 +22,7 @@ Using Service-Linked Roles for |SERVICENAMElong|
 
 .. meta::
     :description:
-        How to use service-linked roles to give |AC9| access to resources in your AWS account.
+        How to use service-linked roles to give AWS Cloud9 access to resources in your AWS account.
 
 |SERVICENAMElong| uses |IAMlong| (|IAM|) :IAM-ug:`service-linked roles <id_roles_terms-and-concepts>`.
 A service-linked role is a unique type of |IAM| role that is linked directly to |SERVICENAME|. Service-linked roles are predefined by
@@ -44,6 +44,7 @@ see :IAM-ug:`AWS Services That Work with IAM <reference_aws-services-that-work-w
 * :ref:`create-service-linked-role`
 * :ref:`edit-service-linked-role`
 * :ref:`delete-service-linked-role`
+* :ref:`slr-regions`
 
 .. _service-linked-role-permissions:
 
@@ -197,3 +198,70 @@ To remove |SERVICENAME| resources, see :ref:`Deleting an Environment <delete-env
 
 You can use the |IAM| console to delete the |SLR-NAME| service-linked 
 role. For more information, see :iam-user-guide:`Deleting a Service-Linked Role <using-service-linked-roles.html#delete-service-linked-role>` in the |IAM-ug|.
+
+.. _slr-regions:
+
+Supported Regions for |SERVICENAME| Service-Linked Roles
+========================================================
+
+|SERVICENAME| supports using service-linked roles in the following regions.
+
+.. list-table::
+   :widths: 2 1 1
+   :header-rows: 1
+
+   * - **Region name**
+     - **Region identity**
+     - **Support in AWS Cloud9**
+   * - |region-us-east-1|
+     - |region-id-us-east-1|
+     - Yes
+   * - |region-us-east-2|
+     - |region-id-us-east-2|
+     - Yes
+   * - |region-us-west-1|
+     - |region-id-us-west-1|
+     - No
+   * - |region-us-west-2|
+     - |region-id-us-west-2|
+     - Yes
+   * - |region-ap-south-1|
+     - |region-id-ap-south-1|
+     - No
+   * - |region-ap-northeast-3|
+     - |region-id-ap-northeast-3|
+     - No
+   * - |region-ap-northeast-2|
+     - |region-id-ap-northeast-2|
+     - No
+   * - |region-ap-southeast-1|
+     - |region-id-ap-southeast-1|
+     - Yes
+   * - |region-ap-southeast-2|
+     - |region-id-ap-southeast-2|
+     - No
+   * - |region-ap-northeast-1|
+     - |region-id-ap-northeast-1|
+     - No
+   * - |region-ca-central-1|
+     - |region-id-ca-central-1|
+     - No
+   * - |region-eu-central-1|
+     - |region-id-eu-central-1|
+     - No
+   * - |region-eu-west-1|
+     - |region-id-eu-west-1|
+     - Yes
+   * - |region-eu-west-2|
+     - |region-id-eu-west-2|
+     - No
+   * - |region-eu-west-3|
+     - |region-id-eu-west-3|
+     - No
+   * - |region-sa-east-1|
+     - |region-id-sa-east-1|
+     - No
+
+
+
+

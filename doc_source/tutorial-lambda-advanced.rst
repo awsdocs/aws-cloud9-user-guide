@@ -45,7 +45,7 @@ Prerequisites
 Before you start this tutorial, we recommend that you first complete the companion :ref:`AWS Lambda Tutorial for AWS Cloud9 <tutorial-lambda>`. This tutorial
 builds on the prerequisites and concepts that are presented there.
 
-.. note:: If you don't want to complete that entire tutorial first, you must at least complete the following steps in that tutorial or else create the equivalent AWS resources:
+.. note:: If you don't want to complete that entire tutorial first, you must at least complete the following steps in that tutorial or else create the equivalent AWS resources.
 
    * :ref:`tutorial-lambda-prereqs`: This includes creating an AWS account if you don't already have one, and deciding which |IAM| entity in the account you'll use to complete this tutorial.
    * :ref:`tutorial-lambda-create-environment`: This includes creating an |envfirstlongec2| and opening the |AC9IDE| for that |env|.
@@ -111,7 +111,7 @@ permission to use |SNS|. (You could do all of this setup in |SNS| and |IAM| manu
 After |CFN| creates the stack, you attach the execution role to the function, and then give |SNS| permission to start
 sending messages to your email address.
 
-#. In the terminal, change to the directory that contains the |CFN| template file named :file:`sns-create-topic-subscription.yaml`. For example:
+#. In the terminal, change to the directory that contains the |CFN| template file named :file:`sns-create-topic-subscription.yaml`.
 
    .. code-block:: sh
 
@@ -123,18 +123,17 @@ sending messages to your email address.
 
    .. code-block:: sh
 
-      aws cloudformation create-stack --template-body file://sns-create-topic-subscription.yaml --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=SNSTopicName,ParameterValue=SNS_TOPIC_NAME ParameterKey=EmailAddress,ParameterValue=EMAIL_ADDRESS --stack-name STACK_NAME --region REGION_ID
+      aws cloudformation create-stack --template-body file://sns-create-topic-subscription.yaml --capabilities CAPABILITY_NAMED_IAM --parameters ParameterKey=SNSTopicName,ParameterValue=MySNSTopic ParameterKey=EmailAddress,ParameterValue=me@example.com --stack-name MySNSStack --region us-east-2
 
-   In the preceding command, do the following:
+   In the preceding command, do the following.
 
-   * Leave :code:`CAPABILITY_NAMED_IAM` unchanged.
-   * Replace :code:`SNS_TOPIC_NAME` with whatever you want to name the |SNS| topic to send messages to (for example, :code:`MySNSTopic`).
-   * Replace :code:`EMAIL_ADDRESS` with your email address for |SNS| to send messages to.
-   * Replace :code:`STACK_NAME` with whatever you want to name the stack (for example, :code:`MySNSStack`).
-   * Replace :code:`REGION_ID` with the ID of the AWS Region where you created the function (see the corner of the :guilabel:`Lambda` pane in the :guilabel:`AWS Resources` window).
+   * Replace :code:`MySNSTopic` with whatever you want to name the |SNS| topic to send messages to.
+   * Replace :code:`me@example.com` with your email address for |SNS| to send messages to.
+   * Replace :code:`MySNSStack` with whatever you want to name the stack.
+   * Replace :code:`us-east-2` with the ID of the AWS Region where you created the function (see the corner of the :guilabel:`Lambda` pane in the :guilabel:`AWS Resources` window).
 
    .. note:: If you use an |IAM| user to call |CFN| for this tutorial, instead of an AWS account root user or an |IAM| administrator
-      user, the |IAM| user must have the following additional AWS access permissions:
+      user, the |IAM| user must have the following additional AWS access permissions.
 
       * :code:`cloudformation:CreateUploadBucket`
       * :code:`cloudformation:GetTemplateSummary`
@@ -153,7 +152,7 @@ sending messages to your email address.
 
    .. code-block:: sh
 
-      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name MySNSStack --region REGION_ID
+      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name MySNSStack --region us-east-2
 
    Do not proceed until the |cli| outputs
    :code:`CREATE_COMPLETE`. (You might need to run this command multiple times before you see :code:`CREATE_COMPLETE`.)
@@ -194,17 +193,17 @@ Currently, you can use the |IDE| to run functions that use only Node.js or Pytho
    .. code-block:: json
 
       {
-        "region": "REGION_ID",
+        "region": "us-east-2",
         "message": "You just sent an email by using Amazon SNS.",
         "subject": "Hello from Amazon SNS",
-        "topicARN": "arn:aws:sns:REGION_ID:ACCOUNT_ID:TOPIC_NAME"
+        "topicARN": "arn:aws:sns:us-east-2:123456789012:MySNSTopic"
       }
 
-   In the preceding payload, do the following:
+   In the preceding payload, do the following.
 
-   * Replace :code:`REGION_ID` with the ID of the AWS Region where the |SNS| topic exists. (For example, we use :code:`us-east-2` throughout the rest of this tutorial.)
-   * Replace :code:`ACCOUNT_ID` with your AWS account ID. (For example, we use the placeholder :code:`123456789012` throughout the rest of this tutorial.)
-   * Replace :code:`TOPIC_NAME` with the name of the |SNS| topic. (For example, we use :code:`MySNSTopic` throughout the rest of this tutorial.)
+   * Replace :code:`us-east-2` with the ID of the AWS Region where the |SNS| topic exists.
+   * Replace :code:`123456789012` with your AWS account ID.
+   * Replace :code:`MySNSTopic` with the name of the |SNS| topic.
 
 #. Choose :guilabel:`Run`.
 #. If the response shows a :code:`statusCode` of :code:`200`, then in a few minutes, check your email for the message that was sent.
@@ -229,7 +228,7 @@ Also, you can use the |IDE| to debug functions locally only. You cannot use the 
 #. On the edge of the |IDE|, choose :guilabel:`Debugger`.
 #. Add four expressions for the debugger to watch. To do this, in the :guilabel:`Watch Expressions` area,
    for :guilabel:`Type an expression here`, type :code:`event['subject']`, and then press :kbd:`Enter`.
-   Do this three more times, typing :code:`context['memoryLimitInMB']`, :code:`sns.endpoint.hostname`, and :code:`AWS.config.credentials.accessKeyId`.
+   Do this two more times, typing :code:`context['memoryLimitInMB']` and :code:`sns.endpoint.hostname`.
 
    .. note:: If you completed the previous |LAM| tutorial, you can delete any of those watch expressions that might still be there. To do this, simply right-click
       an expression, and then choose :guilabel:`Remove Watch Expression`.
@@ -238,15 +237,10 @@ Also, you can use the |IDE| to debug functions locally only. You cannot use the 
 #. Choose :guilabel:`Run`.
 
    Code execution pauses at the breakpoint and displays the current values of the
-   message's subject line, the function's memory limit in megabytes, the |SNS| service's hostname, and the caller's AWS access key ID.
+   message's subject line, the function's memory limit in megabytes, and the |SNS| service's hostname.
 
-   Compare your results to the following.
-
-   .. image:: images/ide-lambda-debug-sns.png
-      :alt: Debugging the Lambda function
-
-   You can also see these values by hovering your mouse over :code:`event`, :code:`context`, :code:`sns`, and
-   :code:`AWS` in the code, followed by expanding the screen tip that is displayed.
+   You can also see these values by hovering your mouse over :code:`event`, :code:`context`, and :code:`sns` 
+   in the code, followed by expanding the screen tip that is displayed.
 
 #. In the :code:`Debugger` window, choose the blue :guilabel:`Resume` button to finish running the code.
 #. On the run tab, if the response shows a :code:`statusCode` of :code:`200`, then in a few minutes, check your email for the message that was sent.
@@ -280,6 +274,27 @@ In this step, you use the |IDE| to have |ABP| run the |LAM| function on the inst
 #. Choose :guilabel:`Run`.
 #. If the response shows :code:`success`, then in a few minutes, check your email for the message that was sent.
 
+.. note:: If the response is :code:`Missing required key 'Message' in params` instead of :code:`success`, then add the following code to your :file:`index.js` file, 
+   save the file, and then try repeating this step again. 
+
+   .. code-block:: javascript
+
+      var sns = new AWS.SNS({apiVersion: '2010-03-31'});
+
+      // Begin adding code here.
+      if (event.body) {
+        event = JSON.parse(event.body);
+      }
+      // End adding code here.
+
+      var params ={
+        Message: event['message'],
+        Subject: event['subject'],
+        TopicArn: event['topicARN']
+      };
+
+   For more information, see :ref:`lambda-functions-vs-api-gateway`.
+
 .. _tutorial-lambda-advanced-debug-local-api:
 
 Step 6: Debug the API Locally
@@ -290,15 +305,15 @@ In this step, you use the |IDE| to have |ABP| debug the |LAM| function on the in
 #. Ensure that the :file:`index.js` file still has a breakpoint set on the line of code
    :code:`sns.publish`.
 #. Ensure that the :guilabel:`Watch Expressions` area of the :guilabel:`Debugger` window is still watching
-   :code:`event['subject']`, :code:`context['memoryLimitInMB']`, :code:`sns.endpoint.hostname`, and :code:`AWS.config.credentials.accessKeyId`.
+   :code:`event['subject']`, :code:`context['memoryLimitInMB']`, and :code:`sns.endpoint.hostname`.
 #. On the run tab from the previous step, choose the icon that looks like a bug. (It switches from grey to green.)
 #. Choose :guilabel:`Run`.
 
    Code execution pauses at the breakpoint and displays the current values of the
    message's subject line, the function's memory limit in megabytes, the |SNS| service's hostname, and the caller's AWS access key ID.
 
-   You can also see these values by hovering your mouse over :code:`event`, :code:`context`, :code:`sns`, and
-   :code:`AWS` in the code, followed by expanding the screen tip that is displayed.
+   You can also see these values by hovering your mouse over :code:`event`, :code:`context`, and :code:`sns`
+   followed by expanding the screen tip that is displayed.
 
 #. In the :code:`Debugger` window, choose the blue :guilabel:`Resume` button to finish running the code.
 #. If the response shows :code:`success`, then in a few minutes, check your email for the message that was sent.
@@ -372,7 +387,7 @@ However, that approach takes longer and still leaves the stack in |CFN| when it'
 
    .. code-block:: sh
 
-      aws cloudformation delete-stack --stack-name cloud9-MySNSApplication --region REGION_ID
+      aws cloudformation delete-stack --stack-name cloud9-MySNSApplication --region us-east-2
 
    If the command ran successfully, no output and no error message are displayed.
 
@@ -388,7 +403,7 @@ However, that approach takes longer and still leaves the stack in |CFN| when it'
 
    .. code-block:: sh
 
-      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name cloud9-MySNSApplication --region REGION_ID
+      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name cloud9-MySNSApplication --region us-east-2
 
 #. If you no longer want to keep the local function in the |IDE|, delete the :file:`~/environment/MySNSApplication` folder (for example, by running the command
    :code:`rm -rf ~/environment/MySNSApplication`).
@@ -400,14 +415,14 @@ When you delete the |CFN| stack that you created in :ref:`tutorial-lambda-advanc
 
 .. warning:: Deleting a stack cannot be undone. When you delete this stack, the associated topic, subscription, and execution role are deleted from |SNS| and |IAM| and cannot be recovered.
 
-#. With the |IDE| still displayed for the |env|, use the |cli| in the terminal to run the |CFN| :code:`delete-stack` command, specifying the name of the stack. For example:
+#. With the |IDE| still displayed for the |env|, use the |cli| in the terminal to run the |CFN| :code:`delete-stack` command, specifying the name of the stack.
 
    .. code-block:: sh
 
-      aws cloudformation delete-stack --stack-name MySNSStack --region REGION_ID
+      aws cloudformation delete-stack --stack-name MySNSStack --region us-east-2
 
    .. note:: If you use an |IAM| user to run this command, instead of an AWS account root user or an |IAM| administrator
-      user, the |IAM| user must have the following additional AWS access permissions:
+      user, the |IAM| user must have the following additional AWS access permissions.
 
       * :code:`cloudFormation:DeleteStack`
       * :code:`iam:DeleteRole`
@@ -423,7 +438,7 @@ When you delete the |CFN| stack that you created in :ref:`tutorial-lambda-advanc
 
    .. code-block:: sh
 
-      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name MySNSStack --region REGION_ID
+      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name MySNSStack --region us-east-2
 
    Keep running the preceding command until the output states that the stack doesn't exist.
 
@@ -434,7 +449,7 @@ Step 8.3: Delete the |envtitle| from |AC9|
    Once terminated in |EC2|, the instance cannot be reactivated or recovered.
 
 #. With the |IDE| still displayed for the |env|, open the dashboard in the |AC9| console. To do this, on the menu bar in the |IDE|, choose :menuselection:`AWS Cloud9, Go To Your Dashboard`.
-#. Do one of the following:
+#. Do one of the following.
 
    * Choose the title that matches the name of the |env|, and then choose :guilabel:`Delete`.
    * Select the card that contains the name of the |env|, and then choose :guilabel:`Delete`.
@@ -458,8 +473,7 @@ Explore any or all of the following topics to continue getting familiar with |AC
      - :ref:`IDE Tutorial <tutorial>` and :ref:`Working with the IDE <ide>`
    * - Invite others to use your |env| with you, in real time and with text chat support
      - :ref:`Working with Shared Environments <share-environment>`
-   * - Create |envsshplural| (|envplural| that use your own |EC2| instance or server, instead of an |EC2| instance that is
-       managed by |AC9|)
+   * - Create |envsshplural| (|envplural| that use cloud compute instances or servers that you create, instead of an |EC2| instances that |AC9| creates for you).
      - :ref:`Creating an Environment <create-environment>` and :ref:`SSH Environment Host Requirements <ssh-settings>`
    * - Use |AC9| with |lightsaillong|
      - :ref:`Working with Amazon Lightsail Instances <lightsail-instances>`
@@ -467,7 +481,7 @@ Explore any or all of the following topics to continue getting familiar with |AC
      - :ref:`Working with AWS CodeStar Projects <codestar-projects>`
    * - Use |AC9| with |ACPlong|
      - :ref:`Working with AWS CodePipeline <codepipeline-repos>`
-   * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages
+   * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, the AWS Cloud Development Kit (AWS CDK), GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages
      - :ref:`Samples <samples>`
 
 To get help with |AC9| from the community, see the `AWS Cloud9 Discussion Forum <https://forums.aws.amazon.com/forum.jspa?forumID=268>`_. (When you enter this forum, AWS might require you to sign in.)

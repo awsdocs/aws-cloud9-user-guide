@@ -40,5 +40,6 @@ Welcome to the |AC9-ug|. Use this guide to help you get started with and use |AC
    Authentication and Access Control <auth-and-access-control>
    Using Service-Linked Roles <using-service-linked-roles>
    Troubleshooting <troubleshooting>
+   Supported Browsers <browsers>
    Limits <limits>
    Document History <history>

@@ -8,9 +8,9 @@
    either express or implied. See the License for the specific language governing permissions and
    limitations under the License.
 
-If your |env| is not displayed in the console, try doing one or more of the following actions to try to display it:
+If your |env| is not displayed in the console, try doing one or more of the following actions to try to display it.
 
-* In the side navigation bar, choose one or more of the following:
+* In the side navigation bar, choose one or more of the following.
   
   * Choose :guilabel:`Your environments` to display all environments that your AWS entity owns within the selected AWS Region and AWS account.
   * Choose :guilabel:`Shared with you` to display all environments your AWS entity has been invited to within the selected AWS Region and AWS account.

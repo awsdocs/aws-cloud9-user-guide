@@ -20,7 +20,7 @@ Document History for the |AC9-ug|
         
 Here is a list of significant changes to the *AWS Cloud9 User Guide*.
 
-**Latest documentation update:** April 19, 2018
+**Latest documentation update:** August 30, 2018
 
 .. list-table::
    :widths: 2 3 2
@@ -29,6 +29,29 @@ Here is a list of significant changes to the *AWS Cloud9 User Guide*.
    * - **Change**
      - **Description**
      - **Date Changed**
+   * - New topic
+     - Added a new sample demonstrating how to use |AC9| with the AWS Cloud Development Kit (AWS CDK). For more information, see the 
+       :ref:`AWS CDK Sample <sample-cdk>`.
+     - August 30, 2018
+   * - New content
+     - For new |envfirstec2plural|, |AC9| now automatically restricts incoming SSH traffic to just the IP address ranges that 
+       |AC9| uses to connect over SSH. For more information, see :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
+     - July 31, 2018
+   * - New topic
+     - Added new sample demonstrating how to use |AC9| with Docker. For more information, see the 
+       :ref:`Docker Sample <sample-docker>`.
+     - June 19, 2018
+   * - New content
+     - Added information about additional options for deploying |LAMlong| functions from the |AC9IDE|, depending on how the |LAM| function was originally created. 
+       For more information, see :ref:`lambda-functions-upload-code`.
+     - May 29, 2018
+   * - New topics
+     - Added new samples demonstrating how to use |AC9| with Java, .NET Core, and TypeScript. For more information, see the 
+       :ref:`Java Sample <sample-java>`, :ref:`.NET Core Sample <sample-dotnetcore>`, and :ref:`TypeScript Sample <sample-typescript>`.
+     - May 29, 2018
+   * - New topic
+     - Added information about supported browsers for |AC9|. For more information, see :ref:`Supported Browsers <browsers>`.
+     - May 23, 2018
    * - New topics
      - Added new tutorials demonstrating how to create |LAM| functions with |AC9|. For more information, see the 
        :ref:`AWS Lambda Tutorial <tutorial-lambda>` and :ref:`Advanced AWS Lambda Tutorial <tutorial-lambda-advanced>`.

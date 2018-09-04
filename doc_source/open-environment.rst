@@ -23,13 +23,13 @@ This procedure describes how to open an environment in |AC9long|.
 .. note:: This procedure assumes you have already created an |envfirst|. To
    create an |env|, see :doc:`Creating an Environment <create-environment>`.
 
-#. Open the |AC9| console, if it isn't already open, at |AC9Console_link|.
+#. Sign in to the |AC9| console, at |AC9Console_link|.
 #. In the top navigation bar, choose the AWS Region where the |env| is located.
 
    .. image:: images/console-region.png
       :alt: AWS Region selector in the AWS Cloud9 console
       
-#. In the list of environments, for the |env| you want to open, do one of the following:
+#. In the list of environments, for the |env| you want to open, do one of the following.
 
    * Inside of the card, choose the :guilabel:`Open IDE` link.
 

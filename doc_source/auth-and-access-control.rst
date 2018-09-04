@@ -298,7 +298,8 @@ The following AWS managed policies, which you can attach to |IAM| identities in 
          {
            "Effect": "Allow",
            "Action": [
-             "cloud9:CreateEnvironment*",
+             "cloud9:CreateEnvironmentEC2",
+             "cloud9:CreateEnvironmentSSH",
              "cloud9:GetUserPublicKey",
              "cloud9:GetUserSettings",
              "cloud9:UpdateUserSettings",

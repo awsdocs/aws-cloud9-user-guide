@@ -87,9 +87,9 @@ Run the IAM :code:`attach-group-policy` command, specifying the group's name and
 
 .. code-block:: sh
 
-   aws iam attach-group-policy --group-name GROUP_NAME --policy-arn POLICY_ARN
+   aws iam attach-group-policy --group-name MyGroup --policy-arn POLICY_ARN
 
-In the preceding command, replace :code:`GROUP_NAME` with the name of the group. Replace :code:`POLICY_ARN` with the ARN of the AWS managed policy, as follows:
+In the preceding command, replace :code:`MyGroup` with the name of the group. Replace :code:`POLICY_ARN` with the ARN of the AWS managed policy, as follows:
 
 * :code:`arn:aws:iam::aws:policy/AWSCodeCommitPowerUser` for access to all of the functionality of |ACC| and repository-related resources, 
   except it does not allow deletion of |ACC| repositories or create or delete repository-related resources in other AWS services, such as |CWElong|.
@@ -137,9 +137,9 @@ Run the AWS CodeCommit :code:`create-repository` command, specifying the reposit
 
 .. code-block:: sh
 
-   aws codecommit create-repository --repository-name MyDemoCloud9Repo --repository-description "This is a demonstration repository for the AWS Cloud9 sample." --region REGION_ID
+   aws codecommit create-repository --repository-name MyDemoCloud9Repo --repository-description "This is a demonstration repository for the AWS Cloud9 sample." --region us-east-2
 
-In the preceding command, replace :code:`REGION_ID` with the ID of the AWS Region to create the repository in. For a list of supported regions, see 
+In the preceding command, replace :code:`us-east-2` with the ID of the AWS Region to create the repository in. For a list of supported regions, see 
 :aws-gen-ref:`AWS CodeCommit <rande.html#codecommit_region>` in the |AWS-gr|.
 
 If you choose to use a different repository name, substitute it throughout this sample.

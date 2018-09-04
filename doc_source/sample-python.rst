@@ -276,9 +276,9 @@ Step 6: Run the AWS SDK Code
 #. On the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
 #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`Python 2` or :guilabel:`Python 3`, depending 
    on which version of Python you want to use and is installed in your |env|.
-#. For :guilabel:`Command`, type :samp:`s3.py {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create 
-   and then delete, and :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US East (Ohio) Region, 
-   use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
+#. For :guilabel:`Command`, type :code:`s3.py my-test-bucket us-east-2`, where :code:`my-test-bucket` is the name of the bucket you want to create 
+   and then delete, and :code:`us-east-2` is the ID of the AWS Region you want to create the bucket in. 
+   For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|.
 
    .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
 

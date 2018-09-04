@@ -45,33 +45,22 @@ Then you run the function and API in |LAM| and |ABP| in production.
 Prerequisites
 =============
 
-To successfully complete this tutorial, you need the following.
-
-* An AWS account. If you don't already have an account, you can create one by following the instructions in :ref:`setup-express-create-account` in *Express Setup*.
-* Although you can use the root user in your AWS account to immediately begin working with |AC9|, this isn't an AWS security best practice. Instead, we recommend you use one of the following
-  identities in |IAMlong| (|IAM|) in your account to begin working with |AC9|.
-
-  * (Recommended) An |IAM| user that has the appropriate |AC9| access permissions. To create an |IAM| user and set its permissions, follow these instructions in this order.
-
-    #. :ref:`setup-create-iam-resources` in *Team Setup*
-    #. :ref:`setup-give-user-access` in *Team Setup*
-    #. :ref:`lambda-functions-prepare-user` in *Working with AWS Lambda Functions*
-
-  * An *IAM administrator user*. This is a user that has unrestricted access across your AWS account, avoiding some of the security-related concerns when using an AWS account root user.
-    To create an |IAM| administrator user in your account, follow the instructions in :IAM-ug:`Creating Your First IAM Admin User and Group <getting-started_create-admin-group>` in the |IAM-ug|.
+To successfully complete this tutorial, you must first complete the steps in :ref:`Express Setup <setup-express>` or :ref:`Team Setup <setup>`.
 
 .. _tutorial-lambda-create-environment:
 
-Step 1: Create and Open the |envfirstlongtitle|
-===============================================
+Step 1: Create and Open the |envtitle|
+======================================
 
-In this step, you use the |AC9| console to create and then open an |envfirstec2|.
+In this step, you use the |AC9| console to create and then open an |envfirst|.
 
-In |AC9|, a :dfn:`development environment` (or just :dfn:`environment`) is a place where you store your development project's files and where you run the tools to develop your apps.
-When you create a special kind of |env| called an :dfn:`EC2 environment`, |AC9| launches a new |EC2| instance running Amazon Linux, creates the |env|, and then connects
-the |env| to the newly launched instance. When you open the |env|, |AC9| displays the |AC9IDE| that enables you to work with the files and tools in that |env|.
+If you already have an |env|, open it, and then skip ahead to :ref:`tutorial-lambda-create-function`.
 
-#. Open the |AC9| console, at |AC9Console_link|.
+In |AC9|, a :dfn:`development environment` (or just :dfn:`environment`) is a place where you store your development project's files and where you run the tools to develop your apps. 
+In this tutorial, you create a special kind of |env| called an :dfn:`EC2 environment`. For this kind of |env|, |AC9| launches and manages a new |EC2| instance running Amazon Linux, 
+creates the |env|, and then connects the |env| to the newly-launched instance. When you open the |env|, |AC9| displays the |AC9IDE| that enables you to work with the files and tools in that |env|.
+
+#. Sign in to |AC9| console, at |AC9Console_link|.
 #. In the top navigation bar, choose the AWS Region to create the |env| in.
 
    .. image:: images/console-region.png
@@ -109,7 +98,7 @@ the |env| to the newly launched instance. When you open the |env|, |AC9| display
 After |AC9| creates your |env|, it displays the |AC9IDE| for the |env|.
 
 If |AC9| doesn't display the |IDE| after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated
-virtual private cloud (VPC). For possible fixes, see
+virtual private cloud (VPC). For possible fixes, see 
 :ref:`troubleshooting-env-loading` in *Troubleshooting*.
 
 .. _tutorial-lambda-create-function:
@@ -126,19 +115,19 @@ the current hour, minute, and second.
 
 Currently, you can use the |IDE| to automatically create functions that use only Node.js or Python. This function uses Node.js.
 
-#. Set the AWS Region that you want to create the function in. To do this, with the |IDE| displayed for the |env|, on the menu bar, choose :guilabel:`AWS Cloud9, Preferences`.
+#. With the |IDE| open from the previous step, set the AWS Region that you want to create the function in. To do this, on the menu bar, choose :guilabel:`AWS Cloud9, Preferences`.
 #. In the navigation pane of the :guilabel:`Preferences` tab, choose :guilabel:`AWS Settings`.
 #. For :guilabel:`AWS Region`, select the AWS Region you want to create the function in.
 
    .. image:: images/ide-prefs-aws-region.png
       :alt: AWS Region selector in the AWS Cloud9 IDE
 
-#. On the edge of the |IDE|, choose :guilabel:`AWS Resources` (**A** in the following screenshot).
+#. On the edge of the |IDE|, choose :guilabel:`AWS Resources`.
 
    .. image:: images/ide-create-lambda-function.png
       :alt: Create a new Lambda function
 
-#. Expand the :guilabel:`Lambda` pane (**B**), if it isn't already expanded. On the toolbar, choose the :guilabel:`Create a new Lambda function` icon (**C**).
+#. Expand the :guilabel:`Lambda`, if it isn't already expanded. On the toolbar, choose the :guilabel:`Create a new Lambda function` icon.
 #. In the :guilabel:`Create serverless application` dialog box, for :guilabel:`Function name`, type a name for the function (for
    example, :code:`myDateTimeFunction`).
 #. For :guilabel:`Application name`, type a name for the function's containing serverless application (for example, :code:`MyDateTimeApplication`).
@@ -162,7 +151,7 @@ The serverless application's and function's component files are displayed in the
 .. image:: images/ide-new-lambda-function.png
    :alt: The new Lambda function in the IDE
 
-.. note:: In addition to the function's code file, |AC9| creates the following helper files:
+.. note:: In addition to the function's code file, |AC9| creates the following helper files.
 
    * :file:`.application.json`: A hidden file that contains JSON-formatted settings that are specific to
      the serverless application. |AC9| uses these settings
@@ -381,6 +370,9 @@ Also, you can use the |IDE| to debug functions locally only. You cannot use the 
       :alt: Adding watch expressions
 
 #. On the run tab that |AC9| opened in :ref:`tutorial-lambda-run-local-function`, choose the icon that looks like a bug. (It switches from grey to green.)
+
+   .. image:: images/debug-button.png
+      :alt: The debug icon.
 
    .. image:: images/debug-icon-on.png
       :alt: Turning on debugging.
@@ -619,11 +611,11 @@ However, that approach takes longer and still leaves the stack in |CFN| when it'
 
 #. From the |IDE|, use the |clilong| (|cli|) in the terminal to run the |CFN| :code:`delete-stack` command, specifying the name and the AWS Region ID for the
    stack. (To display the terminal, on the menu bar, choose :guilabel:`Window, New Terminal`). This stack's name follows the format :code:`cloud9-APPLICATION_NAME`, so you would specify :code:`cloud9-MyDateTimeApplication` for this tutorial.
-   To get the AWS Region ID (represented in the following command as :code:`REGION_ID`), see the corner of the :guilabel:`Lambda` pane in the :guilabel:`AWS Resources` window.
+   To get the AWS Region ID (represented in the following command as :code:`us-east-2`), see the corner of the :guilabel:`Lambda` pane in the :guilabel:`AWS Resources` window.
 
    .. code-block:: sh
 
-      aws cloudformation delete-stack --stack-name cloud9-MyDateTimeApplication --region REGION_ID
+      aws cloudformation delete-stack --stack-name cloud9-MyDateTimeApplication --region us-east-2
 
    If the command ran successfully, no output and no error message are displayed.
 
@@ -640,7 +632,7 @@ However, that approach takes longer and still leaves the stack in |CFN| when it'
 
    .. code-block:: sh
 
-      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name cloud9-MyDateTimeApplication --region AWS_REGION_ID
+      aws cloudformation describe-stacks --query 'Stacks[0].StackStatus' --output text --stack-name cloud9-MyDateTimeApplication --region us-east-2
 
 #. If you no longer want to keep the local function in the |IDE|, delete the :file:`~/environment/MyDateTimeApplication` folder (for example, by running the command
    :code:`rm -rf ~/environment/MyDateTimeApplication`).
@@ -678,8 +670,7 @@ Explore any or all of the following topics to continue getting familiar with |AC
      - :ref:`IDE Tutorial <tutorial>` and :ref:`Working with the IDE <ide>`
    * - Invite others to use your |env| with you, in real time and with text chat support
      - :ref:`Working with Shared Environments <share-environment>`
-   * - Create |envsshplural| (|envplural| that use your own |EC2| instance or server, instead of an |EC2| instance that is
-       managed by |AC9|)
+   * - Create |envsshplural| (|envplural| that use cloud compute instances or servers that you create, instead of an |EC2| instances that |AC9| creates for you).
      - :ref:`Creating an Environment <create-environment>` and :ref:`SSH Environment Host Requirements <ssh-settings>`
    * - Use |AC9| with |lightsaillong|
      - :ref:`Working with Amazon Lightsail Instances <lightsail-instances>`
@@ -687,7 +678,7 @@ Explore any or all of the following topics to continue getting familiar with |AC
      - :ref:`Working with AWS CodeStar Projects <codestar-projects>`
    * - Use |AC9| with |ACPlong|
      - :ref:`Working with AWS CodePipeline <codepipeline-repos>`
-   * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages
+   * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, the AWS Cloud Development Kit (AWS CDK), GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages
      - :ref:`Samples <samples>`
 
 To get help with |AC9| from the community, see the `AWS Cloud9 Discussion Forum <https://forums.aws.amazon.com/forum.jspa?forumID=268>`_. (When you enter this forum, AWS might require you to sign in.)

@@ -60,8 +60,8 @@ If you are not using an |envec2|, do the following to install the |cli|:
 
 #. With your |env| open, in the |IDE|, check whether the |cli| is already installed. In the terminal, run the :command:`aws --version` command. (To start a new terminal session, on the
    menu bar, choose :menuselection:`Window, New Terminal`.) If the |cli| is installed, the version number
-   is displayed, with information such as the version numbers of Python and the operating system version number of your |EC2| instance or your own server. For example,
-   :samp:`aws-cli {N.NN.NN} Python/{N.N.NN} {OS/VERSION}`. If the |cli| is installed, skip ahead to :ref:`sample-aws-cli-creds`.
+   is displayed, with information such as the version numbers of Python and the operating system version number of your |EC2| instance or your own server.
+   If the |cli| is installed, skip ahead to :ref:`sample-aws-cli-creds`.
 #. To install the |cli|, see :cli-ug:`Installing the AWS Command Line Interface <installing>` in the |cli-ug|. For example, for an |envec2| running Amazon Linux,
    run these three commands, one at a time, in the terminal to install the |cli|.
 
@@ -85,7 +85,7 @@ Do the following to install the aws-shell:
    .. code-block:: sh
 
       wget https://bootstrap.pypa.io/get-pip.py # Get the pip install file.
-      sudo python get-pip.py                    # Install pip. (May need to run 'sudo python2 get-pip.py' or 'sudo python3 get-pip.py' instead, depending on how Python is installed.)
+      sudo python get-pip.py                    # Install pip. (You might need to run 'sudo python2 get-pip.py' or 'sudo python3 get-pip.py' instead, depending on how Python is installed.)
       rm get-pip.py                             # Delete the pip install file, as it is no longer needed.
 
 #. To use pip to install the aws-shell, run the following command.
@@ -121,12 +121,12 @@ In this step, you use the |cli| or the aws-shell in your |env| to create a bucke
 
 #. If you want to use the aws-shell but haven't started it yet, start the aws-shell by running the :code:`aws-shell` command. The :code:`aws>` prompt is displayed.
 #. Create a bucket. Run the :command:`aws s3 mb` command with the |cli| or :command:`s3 mb` command with the aws-shell, supplying the name of the bucket to create. In this example, we use a bucket named
-   :samp:`s3://cloud9-{ACCOUNT-ID}-bucket`, where :samp:`{ACCOUNT-ID}` is your AWS account ID. If you use a different name, substitute it throughout this step.
+   :code:`cloud9-123456789012-bucket`, where :code:`123456789012` is your AWS account ID. If you use a different name, substitute it throughout this step.
 
    .. code-block:: sh
 
-      aws s3 mb s3://cloud9-ACCOUNT-ID-bucket # For the AWS CLI.
-      s3 mb s3://cloud9-ACCOUNT-ID-bucket     # For the aws-shell.
+      aws s3 mb s3://cloud9-123456789012-bucket # For the AWS CLI.
+      s3 mb s3://cloud9-123456789012-bucket     # For the aws-shell.
 
    .. note:: Bucket names must be unique across all of AWS, not just your AWS account. The preceding
       suggested bucket name can help you come up with a unique bucket name.
@@ -137,8 +137,8 @@ In this step, you use the |cli| or the aws-shell in your |env| to create a bucke
 
    .. code-block:: sh
 
-      aws s3 rb s3://cloud9-ACCOUNT-ID-bucket # For the AWS CLI.
-      s3 rb s3://cloud9-ACCOUNT-ID-bucket     # For the aws-shell.
+      aws s3 rb s3://cloud9-123456789012-bucket # For the AWS CLI.
+      s3 rb s3://cloud9-123456789012-bucket     # For the aws-shell.
 
    To confirm whether the bucket was deleted, run the :command:`aws s3 ls` command again with the |cli| or the :command:`s3 ls` command again with the aws-shell. The name of 
    the bucket that was deleted should no longer appear in the list.

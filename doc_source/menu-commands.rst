@@ -105,6 +105,8 @@ File Menu
      - Discard changes for current file since it was last saved.
    * - :guilabel:`Revert All to Saved`
      - Discard changes for all unsaved files since they were last saved.
+   * - :guilabel:`Show File Revision History`
+     - View and manage changes to the current file in the editor. See :doc:`Working with File Revisions <file-revisions>`.
    * - :guilabel:`Upload Local Files`
      - Show the :guilabel:`Upload Files` dialog box, which enables you to drag files from your
        local computer into the |env|.
@@ -390,7 +392,7 @@ Tools Menu
      - Description
    * - :guilabel:`Strip Trailing Space`
      - Trim whitespace at the ends of lines.
-   * - :guilabel:`Preview, Preview File FILE-NAME`
+   * - :guilabel:`Preview, Preview File`
      - Preview the current document in a preview tab.
    * - :guilabel:`Preview, Preview Running Application`
      - Preview the current application in a separate web browser tab.
@@ -408,8 +410,6 @@ Tools Menu
      - Start keystroke recording, of stop if it is already recording.
    * - :guilabel:`Play Macro`
      - Play previously recorded keystrokes.
-   * - :guilabel:`Developer, Start in Debug Mode`
-     - Reload the IDE in debug mode.
 
 .. _menu-commands-window:
 
@@ -475,8 +475,6 @@ Window Menu
      - Go to the next pane.
    * - :guilabel:`Navigation, Previous Pane in History`
      - Go to the previous pane.
-   * - :guilabel:`Saved Layouts, LAYOUT-ID`
-     - Switch to the chosen layout.
    * - :guilabel:`Saved Layouts, Save`
      - Save the current layout. To switch to this layout later, choose :guilabel:`Saved Layouts, LAYOUT-ID`.
    * - :guilabel:`Saved Layouts, Save and Close All`
@@ -489,14 +487,10 @@ Window Menu
      - Close all open tabs in all panes.
    * - :guilabel:`Tabs, Close All But Current Tab`
      - Close all open tabs in the current pane, except the current tab.
-   * - :guilabel:`Tabs, TAB-NAME`
-     - Go to the chosen tab.
    * - :guilabel:`Tabs, Split Pane in Two Rows`
      - Split the current pane into two panes, top and bottom.
    * - :guilabel:`Tabs, Split Pane in Two Columns`
      - Split the current pane into two panes, left and right.
-   * - :guilabel:`Tabs, (visual layout indicator)`
-     - Switch to the chosen view.
    * - :guilabel:`Presets, Full IDE`
      - Switch to full IDE mode.
    * - :guilabel:`Presets, Minimal Editor`
@@ -533,7 +527,7 @@ Preview Menu
 
    * - Command
      - Description
-   * - :guilabel:`Preview File FILE-NAME`
+   * - :guilabel:`Preview File`
      - Preview the current document in a preview tab.
    * - :guilabel:`Preview Running Application`
      - Preview the current application in a separate web browser tab.

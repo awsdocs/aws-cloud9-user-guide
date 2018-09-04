@@ -118,6 +118,8 @@ and with the corresponding application code file open and active in the |AC9IDE|
 
 This opens an application preview tab within the |env|, and then displays the application's output on the tab.
 
+If the application preview tab displays an error or is blank, try following the troubleshooting steps in :ref:`troubleshooting-app-preview`.
+
 To enable others to preview the running application outside of the |IDE|, see :ref:`app-preview-share`. 
 
 .. note:: If the application is not already running, you will see an error on the application preview tab. Run or restart the application, and then choose the menu bar command again.
@@ -127,7 +129,13 @@ To enable others to preview the running application outside of the |IDE|, see :r
    within the |env| works only with the preceding ports and IPs, and it works with only a single port at a time.
    
    We don't recommend sharing the URL in the application preview tab with others. (The URL displays using the format 
-   :code:`https://ENVIRONMENT_ID.vfs.cloud9.REGION_ID.amazonaws.com/`.) This URL works only when the |IDE| for the |env| is open and the application is running in the same web browser.    
+   :code:`https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/`, where :code:`12a34567b8cd9012345ef67abcd890e1` is the ID that |AC9| assigns to the |env|, 
+   and :code:`us-east-2` is the ID of the AWS Region for the |env|.) This URL works only when the |IDE| for the |env| is open and the application is running in the same web browser.    
+
+   If you try to go to the IP of :code:`127.0.0.1`, :code:`localhost`, or :code:`0.0.0.0` by using the application preview tab 
+   in the |IDE| or in a separate web browser tab outside of the |IDE|, 
+   the default built-in behavior of the |AC9IDE| is that this will attempt to go to your local computer, instead of attempting to go the 
+   instance or your own server that is connected to the |env|.
 
 .. _app-preview-app-reload:
 
@@ -199,14 +207,14 @@ allow incoming application requests. Then you give the public IP address to othe
 
         curl http://169.254.169.254/latest/meta-data/instance-id
 
-     The instance ID will look similar to this: :code:`i-02ccbdf54d66e34EX`. Make a note of this instance ID.
+     The instance ID will look similar to this: :code:`i-12a3b456c789d0123`. Make a note of this instance ID.
 
    * In the |IDE| for the |env|, on the menu bar, choose your user icon, and then choose :guilabel:`Manage EC2 Instance`.
    
      .. image:: images/console-manage-instance.png
         :alt: Choosing to manage the instance from the AWS Cloud9 IDE
 
-     In the |EC2| console that displays, make a note of the instance ID that displays in the :guilabel:`Instance ID` column. The instance ID will look similar to this: :code:`i-02ccbdf54d66e34EX`. 
+     In the |EC2| console that displays, make a note of the instance ID that displays in the :guilabel:`Instance ID` column. The instance ID will look similar to this: :code:`i-12a3b456c789d0123`. 
 
 #. Get the |EC2| instance's public IP address. To get this, do one of the following:
 
@@ -326,6 +334,8 @@ Step 5: Share the Running Application URL
 With the application running, give to others the public IP address you noted earlier. Be sure to start the URL with the correct protocol, and add the port number if it is 
 not the default for that protocol (for example, :code:`http://192.0.2.0:8080/index.html` using HTTP over port 8080).
 
+If the resulting web browser tab displays an error, or the tab is blank, try following the troubleshooting steps in :ref:`troubleshooting-app-sharing`.
+
 .. note:: The instance's public IP address might change anytime the instance restarts. To prevent this IP address from changing, one solution is to allocate an Elastic IP address and then assign that address to the running instance. For instructions, see 
    :ec2-user-guide:`Allocating an Elastic IP Address <elastic-ip-addresses-eip.html#using-instance-addressing-eips-allocating>` and 
    :ec2-user-guide:`Associating an Elastic IP Address with a Running Instance <elastic-ip-addresses-eip.html#using-instance-addressing-eips-associating>` in the |EC2-ug|. Note also that 
@@ -338,4 +348,5 @@ not the default for that protocol (for example, :code:`http://192.0.2.0:8080/ind
    port, those requests might fail. Those users must use a different network that allows traffic over the requested protocol and port. For more information, see your network administrator.
 
    We don't recommend sharing the URL in the application preview tab in the |IDE| with others. (The URL displays using the format 
-   :code:`https://ENVIRONMENT_ID.vfs.cloud9.REGION_ID.amazonaws.com/`.) This URL works only when the |IDE| for the |env| is open and the application is running in the same web browser.
+   :code:`https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/`, where :code:`12a34567b8cd9012345ef67abcd890e1` is the ID that |AC9| assigns to the |env|, 
+   and :code:`us-east-2` is the ID of the AWS Region for the |env|.) This URL works only when the |IDE| for the |env| is open and the application is running in the same web browser.

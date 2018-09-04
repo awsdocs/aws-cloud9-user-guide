@@ -162,9 +162,9 @@ Change a Built-In Runner
 
 #. On the menu bar, choose :guilabel:`Run, Run With`, and then choose the built-in runner you want to change.
 #. Stop the runner from trying to run your code by choosing, :guilabel:`Stop` on the run configuration tab that displays.
-#. Choose :guilabel:`Runner: RUNNER_NAME`, where :guilabel:`RUNNER_NAME` is the name of the runner you want to change, and then choose :guilabel:`Edit Runner`.
-#. On the :guilabel:`RUNNER_NAME.run` tab that is displayed, change the runner's current definition. See :ref:`build-run-debug-define-builder-runner`.
-#. Choose :guilabel:`File, Save As`. Save the file with the same name (:guilabel:`RUNNER_NAME.run`) in the :file:`ENVIRONMENT_NAME/.c9/runners` directory, where :file:`ENVIRONMENT_NAME` is
+#. Choose :guilabel:`Runner: My Runner`, where :guilabel:`My Runner` is the name of the runner you want to change, and then choose :guilabel:`Edit Runner`.
+#. On the :guilabel:`My Runner.run` tab that is displayed, change the runner's current definition. See :ref:`build-run-debug-define-builder-runner`.
+#. Choose :guilabel:`File, Save As`. Save the file with the same name (:guilabel:`My Runner.run`) in the :file:`my-environment/.c9/runners` directory, where :file:`my-environment` is
    the name of your |envfirst|.
 
 .. note:: Any changes you make to a built-in runner apply only to the |env| you made those changes in. To apply your changes to a separate |env|,
@@ -202,8 +202,8 @@ Create a Builder or Runner
    that is displayed, define the builder or runner.
    See :ref:`build-run-debug-define-builder-runner`.
 #. After you define the builder or runner, choose :guilabel:`File, Save As`. For a builder, save the file with the :file:`.build` extension in the
-   :file:`ENVIRONMENT_NAME/.c9/builders` directory, where :file:`ENVIRONMENT_NAME` is the name of your |env|. For a runner, save the file with the
-   :file:`.run` file extension in the :file:`ENVIRONMENT_NAME/.c9/runners` directory, where :file:`ENVIRONMENT_NAME`
+   :file:`my-environment/.c9/builders` directory, where :file:`my-environment` is the name of your |env|. For a runner, save the file with the
+   :file:`.run` file extension in the :file:`my-environment/.c9/runnders` directory, where :file:`my-environment`
    is the name of your |env|.
    The file name you specify will be the name that is displayed on the :guilabel:`Run, Build System` menu (for a builder) or the
    :guilabel:`Run, Run With` menu (for a runner). Therefore, unless you specify a different file name,
@@ -247,7 +247,7 @@ For a runner, start with this code.
      "env": {},
      "selector": "",
      "debugger": "",
-     "debugport": "PORT_NUMBER"
+     "debugport": ""
    }
 
 In the preceding code:

@@ -119,7 +119,7 @@ In this step, you connect to the running instance and then set it up so that |AC
    check the version, 
    run the command :command:`python --version`, and note the version number that appears. If no version number appears, 
    or if the version is not 2.7, install Python 2.7 on the instance 
-   by running the command :command:`sudo apt-get install python`.
+   by running the command :command:`sudo apt-get install -y python-minimal`.
 #. Check to see if Node.js is installed, and if it is, check that the version is 0.6.16 or
    later. To check the version, run the command :command:`node --version`, and note the
    version number that appears. If no version number appears, or the version is not 0.6.16 or later,
@@ -148,7 +148,7 @@ Step 3: Create and Connect to an |envfirstlongsshtitle|
 
 In this step, you use the |AC9| console and the instance's terminal to create an |envssh| and then connect the |env| to the running instance.
 
-#. With the terminal session still open from the previous step, open the |AC9| console, at https://console.aws.amazon.com/cloud9.
+#. With the terminal session still open from the previous step, sign in to the |AC9| console, at |AC9Console_link|.
 
    .. note:: For this step, you will work with two different AWS services at the same time.
       If you signed in to the |lightsail| console as an |IAM| administrator user, but you want a different entity to own the new |envssh|,
@@ -204,7 +204,13 @@ In this step, you use the |AC9| console and the instance's terminal to create an
 
 #. Back in the |AC9| console, choose :guilabel:`Next step`.
 #. On the :guilabel:`Review choices` page, choose :guilabel:`Create environment`. Wait while |AC9| creates your |env| and then displays the |AC9IDE| for the |env|.
-   This can take several minutes. Please be patient.
+   This can take several minutes. 
+
+After |AC9| creates your |env|, it displays the |AC9IDE| for the |env|.
+
+If |AC9| doesn't display the |IDE| after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated 
+virtual private cloud (VPC). For possible fixes, see
+:ref:`troubleshooting-env-loading` in *Troubleshooting*.
 
 .. _lightsail-instances-change-code:
 

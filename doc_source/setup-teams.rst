@@ -18,7 +18,7 @@ Advanced Team Setup for |AC9long|
     :description:
         Describes how to do advanced setup for teams to start using AWS Cloud9.
 
-To set up to use |AC9|, follow one of these sets of procedures, depending on how you plan to use |AC9|.
+To start using |AC9|, follow one of these sets of procedures, depending on how you plan to use |AC9|.
 
 .. list-table::
    :widths: 2 1
@@ -26,11 +26,15 @@ To set up to use |AC9|, follow one of these sets of procedures, depending on how
 
    * - **Usage pattern**
      - **Follow these procedures**
-   * - I will always be the only one using my own AWS account, and I don't need to share my |envfirstplural| with anyone else.
+   * - I want to start using |AC9| quickly. 
+
+       |mdash| Or |mdash| 
+   
+       I will be the only one using |AC9| in my AWS account.
      - :ref:`Express Setup <setup-express>`
-   * - Multiple people will be using a single AWS account to create and share |envplural| within that account.
+   * - I want multiple users in my AWS account to use |AC9|.
      - :ref:`Team Setup <setup>`
-   * - Multiple people will be using a single AWS account, and I need to restrict creating |envplural| within that account to control costs.
+   * - I want multiple users in my AWS account to use |AC9|, and I want to restrict their usage to control costs.
      - **This topic**
 
 This topic assumes you have already completed the setup steps in :ref:`Team Setup <setup>`.
@@ -88,7 +92,7 @@ Repeat this step for each additional customer-managed policy that you want to cr
 Create a Customer-Managed Policy Using the |cli|
 ------------------------------------------------
 
-#. On the computer where you run the |cli|, create a file to describe the policy, for example, :file:`policy.json`.
+#. On the computer where you run the |cli|, create a file to describe the policy (for example, :file:`policy.json`).
 
    If you create the file with a different file name, substitute it throughout this procedure.
 
@@ -99,13 +103,13 @@ Create a Customer-Managed Policy Using the |cli|
       `documentation <https://aws.amazon.com/documentation/>`_.
 
 #. From the terminal or command prompt, switch to the directory that contains the :file:`policy.json` file.
-#. Run the IAM :code:`create-policy` command, specifying a name for the policy and the :file:`policy.json` file, for example:
+#. Run the IAM :code:`create-policy` command, specifying a name for the policy and the :file:`policy.json` file.
 
    .. code-block:: sh
 
-      aws iam create-policy --policy-document file://policy.json --policy-name POLICY_NAME
+      aws iam create-policy --policy-document file://policy.json --policy-name MyPolicy
 
-   In the preceding command, replace :code:`POLICY_NAME` with a name for the policy.
+   In the preceding command, replace :code:`MyPolicy` with a name for the policy.
 
 Skip ahead to :ref:`setup-teams-add-policy-cli`.
 
@@ -135,14 +139,14 @@ Add Customer-Managed Policies to a Group Using the Console
 Add Customer-Managed Policies to a Group Using the |cli|
 --------------------------------------------------------
 
-Run the IAM :code:`attach-group-policy` command, specifying the group's name and the Amazon Resource Name (ARN) of the policy, for example:
+Run the IAM :code:`attach-group-policy` command, specifying the group's name and the Amazon Resource Name (ARN) of the policy.
 
 .. code-block:: sh
 
-   aws iam attach-group-policy --group-name GROUP_NAME --policy-arn POLICY_ARN
+   aws iam attach-group-policy --group-name MyGroup --policy-arn arn:aws:iam::123456789012:policy/MyPolicy
 
-In the preceding command, replace :code:`GROUP_NAME` with the name of the group. Replace :code:`POLICY_ARN` with the ARN of the customer-managed policy. These ARNs typically follow 
-the format :code:`arn:aws:iam::ACCOUNT_ID:policy/POLICY_NAME`.
+In the preceding command, replace :code:`MyGroup` with the name of the group. Replace :code:`123456789012` with the AWS account ID, and replace 
+:code:`MyPolicy` with the name of the customer-managed policy.
 
 .. _setup-teams-policy-examples:
 
@@ -171,13 +175,16 @@ The following customer-managed policy, when attached to an |AC9| users group, pr
      "Statement": [
        {
          "Effect": "Deny",
-         "Action": "cloud9:CreateEnvironment*",
+         "Action": [
+           "cloud9:CreateEnvironmentEC2",
+           "cloud9:CreateEnvironmentSSH"
+         ],
          "Resource": "*"
        }
      ]
    }
 
-Note that the preceding customer-managed policy explicitly overrides :code:`"Effect": "Allow"` for :code:`"Action": "cloud9:CreateEnvironment*"` on :code:`"Resource": "*"` in the
+Note that the preceding customer-managed policy explicitly overrides :code:`"Effect": "Allow"` for :code:`"Action": "cloud9:CreateEnvironmentEC2"` and :code:`"cloud9:CreateEnvironmentSSH"` on :code:`"Resource": "*"` in the
 :code:`AWSCloud9User` managed policy that is already attached to the |AC9| users group.
 
 .. _setup-teams-policy-examples-prevent-ec2-environments:
@@ -362,3 +369,21 @@ Note that the preceding customer-managed policy allows those users to create |en
 :code:`"cloud9:CreateEnvironmentSSH",` from the preceding customer-managed policy.
 
 For additional examples, see the :ref:`auth-and-access-control-customer-policies-examples` in :ref:`Authentication and Access Control <auth-and-access-control>`.
+
+.. _setup-teams-next-steps:
+
+Next Steps
+==========
+
+.. list-table::
+   :widths: 1 2
+   :header-rows: 1
+
+   * - **Task**
+     - **See this topic**
+   * - Create an |envfirst|, and then use the |AC9IDE| to work with code in your new |env|.
+     - :ref:`Creating an Environment <create-environment>`
+   * - Learn how to use the |AC9IDE|.
+     - :ref:`IDE Tutorial <tutorial>`
+   * - Invite others to use your new |env| along with you, in real time and with text chat support.
+     - :ref:`Working with Shared Environments <share-environment>`

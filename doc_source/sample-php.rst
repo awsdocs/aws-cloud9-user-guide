@@ -242,15 +242,15 @@ Step 6: Run the AWS SDK Code
 
 #. In the |AC9IDE|, on the menu bar, choose :menuselection:`Run, Run Configurations, New Run Configuration`.
 #. On the :guilabel:`[New] - Idle` tab, choose :guilabel:`Runner: Auto`, and then choose :guilabel:`PHP (cli)`.
-#. For :guilabel:`Command`, type :samp:`s3.php {YOUR_TIME_ZONE} {YOUR_BUCKET_NAME} {THE_AWS_REGION}`, where:
+#. For :guilabel:`Command`, type :code:`s3.php America/Los_Angeles my-test-bucket us-east-2`, where:
 
-   * :samp:`{YOUR_TIME_ZONE}` is your default time zone ID. For example, for the Pacific Time Zone, use :code:`America/Los_Angeles`.
-     For more IDs, see `List of Supported Timezones <http://php.net/manual/en/timezones.php>`_ on the PHP website.
-   * :samp:`{YOUR_BUCKET_NAME}` is the name of the bucket you want to create and then delete.
-   * :samp:`{THE_AWS_REGION}` is the ID of the AWS Region you want to create the bucket in. For example, for the US East (Ohio) Region, 
-     use :code:`us-east-2`. For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|. 
+   * :code:`America/Los_Angeles` is your default time zone ID. For more IDs, see `List of Supported Timezones <http://php.net/manual/en/timezones.php>`_ on the PHP website.
+   * :code:`my-test-bucket` is the name of the bucket you want to create and then delete.
 
-   .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
+     .. note:: |S3| bucket names must be unique across AWS |mdash| not just your AWS account.
+
+   * :code:`us-east-2` is the ID of the AWS Region you want to create the bucket in. 
+     For more IDs, see :aws-gen-ref:`Amazon Simple Storage Service (Amazon S3) <rande.html#s3_region>` in the |AWS-gr|. 
 
 #. Choose the :guilabel:`Run` button, and compare your output.
 

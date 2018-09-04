@@ -41,13 +41,13 @@ Change |envtitle| Preferences
 Change |envtitle| Settings with the Console
 ===========================================
 
-#. Open the |AC9| console, if it isn't already open, at |AC9Console_link|.
+#. Sign in to the |AC9| console, at |AC9Console_link|.
 #. In the top navigation bar, choose the AWS Region where the |env| is located.
 
    .. image:: images/console-region.png
       :alt: AWS Region selector in the AWS Cloud9 console
       
-#. In the list of environments, for the |env| whose settings you want to change, do one of the following:
+#. In the list of environments, for the |env| whose settings you want to change, do one of the following.
 
    * Choose the title of the card for the |env|. Then choose :guilabel:`Edit` on the next page.
 
@@ -61,15 +61,15 @@ Change |envtitle| Settings with the Console
 
 #. Make your changes, and then choose :guilabel:`Save changes`.
 
-   You can use the |AC9| console to change the following settings: 
+   You can use the |AC9| console to change the following settings. 
 
    * For |envec2plural|, :guilabel:`Name` and :guilabel:`Description`.
    * For |envsshplural|: :guilabel:`Name`, :guilabel:`Description`, :guilabel:`User`, :guilabel:`Host`, :guilabel:`Port`, 
      :guilabel:`Environment path`, :guilabel:`Node.js binary path`, and :guilabel:`SSH jump host`.
 
-   To change other settings, do the following: 
+   To change other settings, do the following. 
 
-   * For |envec2plural|: 
+   * For |envec2plural|, do the following. 
        
      * You cannot change :guilabel:`Type`, :guilabel:`Security groups`, :guilabel:`VPC`, :guilabel:`Subnet`, :guilabel:`Environment path`, or :guilabel:`Environment ARN`.
      * For :guilabel:`Permissions` or :guilabel:`Number of members`, see :ref:`share-environment-change-access`, 
@@ -77,7 +77,7 @@ Change |envtitle| Settings with the Console
        :ref:`share-environment-delete-member`.
      * For :guilabel:`EC2 instance type`, :guilabel:`Memory`, or :guilabel:`vCPU`, see :ref:`Moving or Resizing an Environment <move-environment>`.
 
-   * For |envsshplural|: 
+   * For |envsshplural|, do the following. 
 
      * You cannot change :guilabel:`Type` or :guilabel:`Environment ARN`.
      * For :guilabel:`Permissions` or :guilabel:`Number of members`, see :ref:`share-environment-change-access`, 

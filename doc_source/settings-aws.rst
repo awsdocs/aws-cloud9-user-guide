@@ -20,7 +20,6 @@ Working with AWS Project and User Settings in the |AC9IDElongtitle|
 
 AWS service settings, located in the :guilabel:`AWS Settings` pane of the :guilabel:`Preferences` tab, include the following kinds of settings:
 
-* When to shut down an |EC2| instance if the associated |envec2| has not been used
 * Which AWS Region to use for the :guilabel:`AWS Resources` window
 * Whether to use |AC9tempcreds|
 * Whether to display the AWS Serverless Application Model (AWS SAM) template editor in plain text or visual mode
@@ -38,10 +37,6 @@ user-level settings apply across each |env| associated with your |IAM| user. For
 
 Project-Level Settings
 ======================
-
-:guilabel:`Stop my environment`
-   If the |env| is an |envec2|, after all web browser instances that are connected to the |IDE| for the |env| are closed, the amount of time until 
-   |AC9| shuts down the |EC2| instance for the |env|.
 
 :guilabel:`AWS Region`
    Which AWS Region to use for the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window.
