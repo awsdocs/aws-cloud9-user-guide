@@ -23,13 +23,13 @@ import shutil
 
 SPHINX_MISSING = """
 You must have Sphinx installed to use this script!
-Go to http://www.sphinx-doc.org for information about installing and using
+Go to http://www.sphinx-doc.org for a guide about installing and using
 Sphinx.
 """
 
 FAILED_CHECKOUT = """
-Couldn't clone repository. Please make sure that you have 'git' installed and
-that you can access GitHub repositories using SSH.
+Couldn't clone the repository. Please make sure you have 'git' installed and
+you can access GitHub repositories using SSH.
 """
 
 # The file to load extra dependencies from.
@@ -43,7 +43,7 @@ SOURCE_DIR = 'doc_source'
 
 def check_and_remove_dir(dir_name):
     """Check to see if the named directory exists. If it does, then remove it.
-    Throw an exception if the directory can't be removed."""
+    Throws an exception if the directory can't be removed."""
 
     if os.path.exists(dir_name):
         print("Removing directory: " + dir_name)
@@ -51,13 +51,13 @@ def check_and_remove_dir(dir_name):
             shutil.rmtree(dir_name)
         except:
             print("Couldn't remove " + dir_name)
-            print("Remove this directory before building!")
+            print("Please remove this directory before building!")
             sys.exit(1)
 
 
 def copy_dir_contents_with_overwrite(input_dir_name, output_dir_name):
     """Copy the contents of a directory into another, overwriting files if they
-    exist."""
+    already exist."""
 
     # if output_dir_name isn't a location, make it so.
     if not os.path.exists(output_dir_name):
