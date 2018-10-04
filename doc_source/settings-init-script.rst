@@ -950,7 +950,7 @@ The following code example displays various custom preference settings in a dial
 Working with Side Panels
 ------------------------
 
-Built-in side panels include windows such as :guilabel:`Environment`, :guilabel:`Navigate`, :guilabel:`Commands`, :guilabel:`Outline`, and :guilabel:`Debugger`.
+Built-in side panels include windows such as :guilabel:`Environment`, :guilabel:`Outline`, and :guilabel:`Debugger`.
 You can also create your own custom side panels.
 
 .. _settings-init-script-coding-panels-built-in:
@@ -989,9 +989,6 @@ The following example demonstrates all of these properties and methods.
 
    // Removes the Outline side panel button, if it isn't already removed.
    panels.disablePanel("outline");
-
-   // Displays the Navigate side panel button, if it isn't already displayed.
-   panels.enablePanel("navigate");
 
 .. _settings-init-script-coding-panels-custom:
 

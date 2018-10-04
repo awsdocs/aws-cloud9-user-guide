@@ -306,8 +306,8 @@ View Menu
 
 .. _menu-commands-goto:
 
-Goto Menu
-=========
+Go Menu
+=======
 
 .. list-table::
    :widths: 1 2
@@ -315,14 +315,16 @@ Goto Menu
 
    * - Command
      - Description
-   * - :guilabel:`Goto Anything`
-     - Show the :guilabel:`Navigate` window.
-   * - :guilabel:`Goto Symbol`
-     - Show the :guilabel:`Outline` window.
-   * - :guilabel:`Goto Line`
-     - Show the go to line box for the current document.
-   * - :guilabel:`Goto Command`
-     - Show the :guilabel:`Commands` window.
+   * - :guilabel:`Go To Anything`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to Anything` mode.
+   * - :guilabel:`Go To Symbol`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to Symbol` mode.
+   * - :guilabel:`Go To File`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to File` mode.
+   * - :guilabel:`Go To Command`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to Command` mode.
+   * - :guilabel:`Go To Line`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to Line` mode.
    * - :guilabel:`Next Error`
      - Go to the next error.
    * - :guilabel:`Previous Error`
@@ -422,6 +424,8 @@ Window Menu
 
    * - Command
      - Description
+   * - :guilabel:`Go`
+     - Show the :guilabel:`Go` window, or hide if shown.
    * - :guilabel:`New Terminal`
      - Open a new :guilabel:`Terminal` tab.
    * - :guilabel:`New Immediate Window`
@@ -440,10 +444,6 @@ Window Menu
      - Show the :guilabel:`Environment` window, or hide if shown.
    * - :guilabel:`Debugger`
      - Show the :guilabel:`Debugger` window, or hide if shown.
-   * - :guilabel:`Navigate`
-     - Show the :guilabel:`Navigate` window, or hide if shown.
-   * - :guilabel:`Commands`
-     - Show the :guilabel:`Commands` window, or hide if shown.
    * - :guilabel:`Navigation, Tab to the Right`
      - Go one tab right.
    * - :guilabel:`Navigation, Tab to the Left`

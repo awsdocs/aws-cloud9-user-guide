@@ -220,8 +220,8 @@ Allow Users in a Group to Create |envec2titleplural| Only with Specific |EC2| In
 The following customer-managed policy, when attached to an |AC9| users group, allows those users to create |envec2plural| that only use instance types starting with :code:`t2` in an AWS account. This policy assumes you haven't also attached a policy that
 prevents users in that group from creating |envec2plural|. Otherwise, those users won't be able to create |envec2plural| at all.
 
-You can replace :code:`"t2.*"` in the following policy with a different instance class (for example, :code:`"m3.*"`). Or you can restrict it to multiple instance classes or instance types (for example,
-:code:`[ "t2.*", "m3.*" ]` or :code:`[ "t2.nano", t2.micro" ]`).
+You can replace :code:`"t2.*"` in the following policy with a different instance class (for example, :code:`"m4.*"`). Or you can restrict it to multiple instance classes or instance types (for example,
+:code:`[ "t2.*", "m4.*" ]` or :code:`[ "t2.micro", "m4.large" ]`).
 
 For an |AC9| users group, detach the :code:`AWSCloud9User` managed policy from the group, and then add the following customer-managed policy in its place. (If you do not detach the :code:`AWSCloud9User`
 managed policy, the following customer-managed policy will have no effect.)

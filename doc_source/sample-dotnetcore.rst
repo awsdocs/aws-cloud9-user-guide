@@ -129,11 +129,11 @@ In this step, you install the .NET Core 2 SDK into your |env|, which is required
 
       . ~/.bash_profile
 
-#. Confirm the .NET Core 2 SDK is loaded by running .NET Core CLI with the :command:`-help` option.
+#. Confirm the .NET Core 2 SDK is loaded by running .NET Core CLI with the :command:`--help` option.
 
    .. code-block:: sh
 
-      dotnet -help
+      dotnet --help
 
    If successful, the .NET Core 2 SDK version number is displayed, with additional usage information.
 

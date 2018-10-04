@@ -20,7 +20,7 @@ Inbound SSH IP Address Ranges for |AC9|
 
 You can restrict incoming traffic to just the IP address ranges that |AC9| uses to connect over SSH to AWS cloud compute instances (for example |EC2| instances) in an |VPC| or your own servers in your network.
 
-.. note:: For an |envec2| created after July 31 2018, you can skip this topic. This is because |AC9| automatically restricts inbound SSH traffic for that |env| to only those IP addresses that are 
+.. note:: For an |envec2| created on or after July 31 2018, you can skip this topic. This is because |AC9| automatically restricts inbound SSH traffic for that |env| to only those IP addresses that are 
    described later in this topic. |AC9| does this by automatically adding a rule to the security group that is associated with the |EC2| instance for the |env|. 
    This rule restricts inbound SSH traffic over port 22 to only those IP addresses for the associated AWS Region.
 

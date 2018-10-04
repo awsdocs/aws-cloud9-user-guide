@@ -48,10 +48,10 @@ View or Change Your Keybindings
 
 For more information, see the following:
 
-* :doc:`Apple OSX Default Keybindings Reference <keybindings-default-apple-osx>`
-* :doc:`Apple OSX Vim Keybindings Reference <keybindings-vim-apple-osx>`
-* :doc:`Apple OSX Emacs Keybindings Reference <keybindings-emacs-apple-osx>`
-* :doc:`Apple OSX Sublime Keybindings Reference <keybindings-sublime-apple-osx>`
+* :doc:`MacOS Default Keybindings Reference <keybindings-default-apple-osx>`
+* :doc:`MacOS Vim Keybindings Reference <keybindings-vim-apple-osx>`
+* :doc:`MacOS Emacs Keybindings Reference <keybindings-emacs-apple-osx>`
+* :doc:`MacOS Sublime Keybindings Reference <keybindings-sublime-apple-osx>`
 * :doc:`Windows / Linux Default Keybindings Reference <keybindings-default-windows-linux>`
 * :doc:`Windows / Linux Vim Keybindings Reference <keybindings-vim-windows-linux>`
 * :doc:`Windows / Linux Emacs Keybindings Reference <keybindings-emacs-windows-linux>`
@@ -96,7 +96,7 @@ You can change the set of operating system keybindings the |AC9IDE| recognizes a
 #. For :guilabel:`Operating System`, choose one of these operating systems:
 
    * :guilabel:`Auto` for the |AC9IDE| to attempt to detect which set of operating system keybindings to use.
-   * :guilabel:`Apple OSX` for the |AC9IDE| to use the keybindings listed in Mac format.
+   * :guilabel:`MacOS` for the |AC9IDE| to use the keybindings listed in Mac format.
    * :guilabel:`Windows / Linux` for the |AC9IDE| to use the keybindings listed in Windows and Linux formats.
 
 .. _settings-keybindings-change:

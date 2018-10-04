@@ -34,6 +34,7 @@ Use the following information to help you identify and address issues with |AC9|
 * :ref:`troubleshooting-cli-invalid-token`
 * :ref:`troubleshooting-update-ami`
 * :ref:`troubleshooting-install-sam-local`
+* :ref:`troubleshooting_ide_low_memory`
 
 .. _troubleshooting-sts-assume-role:
 
@@ -120,7 +121,7 @@ Cannot Open an |envtitle|
 
 * Enable third-party cookies in your web browser, and then try opening the |env| again. To enable third-party cookies:
 
-  * For Apple Safari, see `Manage cookies and website data using Safari <https://support.apple.com/kb/PH21411>`_ on the Apple Support website.
+  * For Apple Safari, see `Manage cookies and website data in Safari <https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac>`_ on the Apple Support website.
   * For Google Chrome, see **Change your cookie settings** in `Clear, enable, and manage cookies in Chrome <https://support.google.com/chrome/answer/95647>`_ on the Google Chrome Help website.
   * For Internet Explorer, see **To block or allow all cookies** in `Description of Cookies <https://support.microsoft.com/help/260971/description-of-cookies>`_ on the Microsoft Support website.
   * For Mozilla Firefox, see the **Accept third party cookies** setting in `Enable and disable cookies that websites use to track your preferences <https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences>`_ on the Mozilla Support website.
@@ -422,6 +423,49 @@ To install SAM Local yourself, run the following commands, one at a time in the 
    ln -sfn $(which sam) ~/.c9/bin/sam  # Create a symbolic link (a shortcut) from the path that AWS Cloud9 expects to where SAM Local is installed.
 
 For more information, see the `awslabs/aws-sam-cli <https://github.com/awslabs/aws-sam-cli/blob/develop/README.rst>`_ repository on the GitHub website.
+
+.. _troubleshooting_ide_low_memory:
+
+|IDE| Warning: "This |envtitle| is Running Low on Memory" or "This |envtitle| Has High CPU Load"
+================================================================================================
+
+**Issue:** While the |IDE| is running, you see a message that contains the phrase "this |env| is running low on memory" or 
+"this |env| has high CPU load."
+
+**Cause:** The |IDE| might not have enough compute resources available to continue running without delays or hangs.
+
+**Recommended solutions:**
+
+* Stop one or more running processes to free up available memory. To do this, on the menu bar in the |IDE| for the |env|, 
+  choose :guilabel:`Tools, Process List`. For each process you want to stop, choose the process, and then choose :guilabel:`Force Kill`. 
+* Create a swap file in the |env|. A :dfn:`swap file` is a file in the |env| that the operating system can use as virtual memory.
+
+  To confirm whether the |env| is currently using swap memory, run the :command:`top` command in a terminal session in the |env|. If swap memory is being used, 
+  the output displays non-zero :code:`Swap` memory statistics (for example, :code:`Swap: 499996k total, 1280k used, 498716 free, 110672k cached`). To stop showing real-time 
+  memory information, press :kbd:`Ctrl + C`.
+
+  To create a swap file, you could run a command such as the following in the |env|.
+
+  .. code-block:: sh 
+
+     sudo fallocate --length 512MB /var/swapfile && sudo chmod 600 /var/swapfile && sudo mkswp /var/swapfile && echo '/var/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab > /dev/null
+
+  The preceding command does the following: 
+
+  #. Creates a 512 MB file named :file:`swapfile` in the :file:`/var` directory.
+  #. Changes access permissions for the :file:`swapfile` file to read-write for the owner only. 
+  #. Sets up the :file:`swapfile` file as a swap file.
+  #. Writes information to the :file:`/etc/fstab file`, which makes this swap file available whenever the system reboots.
+
+  After you run the preceding command, to make this swap file available immediately instead of waiting for a reboot, run the following command.
+
+  .. code-block:: sh 
+
+     sudo swapon /var/swapfile
+
+* Move or resize the |env| to an instance or server with more compute resources. To move or resize |EC2| instances, see 
+  :ref:`Moving or Resizing and Environment <move-environment>`. For other instance or server types, refer to your 
+  instance's or server's documentation.
 
 .. Troubleshooting template
 

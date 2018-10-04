@@ -34,6 +34,7 @@ Learn how to work with the |AC9IDE| by reading one or more of these topics.
    Working with File Revisions <file-revisions>
    Working with Image Files <images>
    Working with Builders, Runners, and Debuggers <build-run-debug>
+   Working with Language Projects <projects>
    Working with Custom Environment Variables <env-vars>
    Working with Project Settings <settings-project>
    Working with User Settings <settings-user>
@@ -41,10 +42,10 @@ Learn how to work with the |AC9IDE| by reading one or more of these topics.
    Working with Keybindings <settings-keybindings>
    Working with Themes <settings-theme>
    Working with Initialization Scripts <settings-init-script>
-   Apple OSX Default Keybindings Reference <keybindings-default-apple-osx>
-   Apple OSX Vim Keybindings Reference <keybindings-vim-apple-osx>
-   Apple OSX Emacs Keybindings Reference <keybindings-emacs-apple-osx>
-   Apple OSX Sublime Keybindings Reference <keybindings-sublime-apple-osx>
+   MacOS Default Keybindings Reference <keybindings-default-apple-osx>
+   MacOS Vim Keybindings Reference <keybindings-vim-apple-osx>
+   MacOS Emacs Keybindings Reference <keybindings-emacs-apple-osx>
+   MacOS Sublime Keybindings Reference <keybindings-sublime-apple-osx>
    Windows / Linux Default Keybindings Reference <keybindings-default-windows-linux>
    Windows / Linux Vim Keybindings Reference <keybindings-vim-windows-linux>
    Windows / Linux Emacs Keybindings Reference <keybindings-emacs-windows-linux>

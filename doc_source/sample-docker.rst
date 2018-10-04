@@ -92,7 +92,7 @@ the instance.
 Step 2: Build the Image
 =======================
 
-In this step, you use a Dockerfile to build one of the available Docker images for |AC9| onto the instance. This sample uses an image that includes Node.js and a sample chat server application.
+In this step, you use a Dockerfile to build a Docker image onto the instance. This sample uses an image that includes Node.js and a sample chat server application.
 
 #. On the instance, create the Dockerfile. To do this, with the SSH client still connected to the instance,
    in the :file:`/tmp` directory on the instance, create a file named :file:`Dockerfile`. For example, run the :command:`touch` command as follows.
@@ -105,8 +105,7 @@ In this step, you use a Dockerfile to build one of the available Docker images f
 
    .. code-block:: text
 
-      # Build a Docker image based on the cloud9/ws-nodejs Docker image
-      # definition for AWS Cloud9.
+      # Build a Docker image based on the cloud9/ws-nodejs Docker image.
       FROM cloud9/ws-nodejs
 
       # Enable the Docker container to communicate with AWS Cloud9 by
@@ -148,8 +147,8 @@ In this step, you use a Dockerfile to build one of the available Docker images f
    #. Switch to command mode. To do this, press the :kbd:`Esc` key. (:code:`-- INSERT --` disappears from the bottom of the window.)
    #. Type :code:`:wq` (to write to the :file:`/tmp/Dockerfile` file, save the file, and then exit :command:`vi`), and then press :kbd:`Enter`.
 
-   .. note:: Additional Docker images for |AC9| are available in the `c9/templates <https://github.com/c9/templates>`_ repository on the GitHub website.
-      The following table lists the available images and their content and definitions. To use a different Docker image for |AC9|, replace
+   .. note:: Some additional Docker images are available in the `c9/templates <https://github.com/c9/templates>`_ repository on the GitHub website.
+      The following table lists the available images and their content and definitions. To use a different Docker image from this repository, replace
       :code:`cloud9/ws-nodejs` in the Dockerfile with one of the following image IDs.
 
       .. list-table::

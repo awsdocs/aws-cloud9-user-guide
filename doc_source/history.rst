@@ -20,7 +20,7 @@ Document History for the |AC9-ug|
         
 Here is a list of significant changes to the *AWS Cloud9 User Guide*.
 
-**Latest documentation update:** August 30, 2018
+**Latest documentation update:** October 2, 2018
 
 .. list-table::
    :widths: 2 3 2
@@ -30,11 +30,19 @@ Here is a list of significant changes to the *AWS Cloud9 User Guide*.
      - **Description**
      - **Date Changed**
    * - New topic
+     - The |AC9IDE| now provides additional productivity features for some languages in the context of a language project.
+       For more information, see :ref:`Working with Language Projects <projects>`.
+     - October 2, 2018
+   * - Changed content
+     - The :guilabel:`Go` window was added to the |AC9IDE| for |envplural| created on or after October 2, 2018. This new window replaces the :guilabel:`Navigate` and :guilabel:`Commands` windows, 
+       which were both removed from the |IDE| for |envplural| created on or after October 2, 2018. For more information, see :ref:`tutorial-go` in the *IDE Tutorial*.
+     - October 2, 2018
+   * - New topic
      - Added a new sample demonstrating how to use |AC9| with the AWS Cloud Development Kit (AWS CDK). For more information, see the 
        :ref:`AWS CDK Sample <sample-cdk>`.
      - August 30, 2018
    * - New content
-     - For new |envfirstec2plural|, |AC9| now automatically restricts incoming SSH traffic to just the IP address ranges that 
+     - For |envfirstec2plural| created on or after July 31 2018, |AC9| now automatically restricts incoming SSH traffic to just the IP address ranges that 
        |AC9| uses to connect over SSH. For more information, see :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
      - July 31, 2018
    * - New topic

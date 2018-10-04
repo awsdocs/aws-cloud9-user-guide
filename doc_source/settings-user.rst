@@ -147,10 +147,10 @@ Tree & Navigate
 ---------------
 
 :guilabel:`Scope Navigate to Favorites`
-   If enabled, the :guilabel:`Navigate` window only works with items in the :guilabel:`Environment` window's :guilabel:`Favorites` section.
+   If enabled, the navigation window only works with items in the :guilabel:`Environment` window's :guilabel:`Favorites` section.
 
 :guilabel:`Enable Preview on Navigation`
-   If enabled, |AC9| displays the chosen file in the :guilabel:`Navigate` window with a single mouse click instead of a double mouse click.
+   If enabled, |AC9| displays the chosen file in the navigation window with a single mouse click instead of a double mouse click.
 
 :guilabel:`Enable Preview on Tree Selection`
    If enabled, |AC9| displays the chosen file with a single mouse click instead of a double mouse click.

@@ -16,7 +16,7 @@ What Is |AC9long|?
 
 .. meta::
     :description:
-        Introduction to AWS Cloud9.
+        Provides an introduction to AWS Cloud9.
 
 |AC9| contains a collection of tools that you use to code, build, run, test, debug, and
 release software in the cloud. To work with these tools, you use the 

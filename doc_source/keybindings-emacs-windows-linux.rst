@@ -82,6 +82,9 @@ General
    * - Go to the previous match in the current document for the find query you entered last
      - :kbd:`Ctrl-Shift-K`
      - :code:`findprevious`
+   * - Display all known references to the symbol at the insertion point in the active file in the editor
+     - :kbd:`Shift-F3`
+     - :code:`findReferences`
    * - Open the :guilabel:`Environment` window, and then make the list of files active
      - :kbd:`Shift-Esc`
      - :code:`focusTree`
@@ -97,6 +100,9 @@ General
    * - Go to the definition of the variable or function at the cursor
      - :kbd:`F3`
      - :code:`jumptodef`
+   * - If a local |LAM| function is selected in the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, attempts to upload the function to |LAM| as a remote function
+     - :kbd:`Ctrl-Shift-U`
+     - :code:`lambdaUploadFunction`
    * - Create a new file
      - :kbd:`Alt-N`
      - :code:`newfile`
@@ -142,9 +148,6 @@ General
    * - Save the current file to disk with a different file name
      - :kbd:`Ctrl-Shift-S`
      - :code:`saveas`
-   * - If a preview page and the related HTML file are both open, scroll the preview page to the location that matches the current element under the cursor in the HTML file
-     - :kbd:`Ctrl-I`
-     - :code:`scrollPreviewElementIntoView`
    * - Show the find and replace bar for multiple files
      - :kbd:`Ctrl-Shift-F`
      - :code:`searchinfiles`
@@ -275,15 +278,18 @@ Panels
    * - Description
      - Keybinding
      - Command
-   * - Show the :guilabel:`Commands` window
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to Anything` mode
+     - :kbd:`Ctrl-E|Ctrl-P`
+     - :code:`gotoanything`
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to Command` mode
      - :kbd:`Ctrl-.`
-     - :code:`commands`
-   * - Show the :guilabel:`Navigate` window
-     - :kbd:`Ctrl-E`
-     - :code:`navigate`
-   * - Show the :guilabel:`Navigate` window
+     - :code:`gotocommand`
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to File` mode.
      - :kbd:`Ctrl-O`
-     - :code:`navigate_altkey`
+     - :code:`gotofile`
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to Symbol` mode.
+     - :kbd:`Ctrl-Shift-O`
+     - :code:`gotosymbol`
    * - Show the :guilabel:`Outline` window
      - :kbd:`Ctrl-Shift-E`
      - :code:`outline`

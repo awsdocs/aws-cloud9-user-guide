@@ -126,25 +126,8 @@ To install :command:`npm`, you use Node Version Manager (:command:`nvm`). If you
 Step 2: Add Code
 ================
 
-In the |AC9IDE|, create a file with the following content, and save the file with the name :file:`hello.ts`.
-(To create a file, on the menu bar, choose :menuselection:`File, New File`. To save the file, choose :menuselection:`File, Save`.)
-
-.. code-block:: typescript
-
-   console.log('Hello, World!');
-
-   console.log('The sum of 2 and 3 is 5.');
-
-   const sum: number = parseInt(process.argv[2], 10) + parseInt(process.argv[3], 10);
-
-   console.log('The sum of ' + process.argv[2] + ' and ' +
-     process.argv[3] + ' is ' + sum + '.');
-
-.. _sample-typescript-run:
-
-Step 3: Run the Code
-====================
-
+#. In the |AC9IDE|, create a file named :file:`hello.ts`. 
+   (To create a file, on the menu bar, choose :menuselection:`File, New File`. To save the file, choose :menuselection:`File, Save`.)
 #. In a terminal in the |IDE|, from the same directory as the :file:`hello.ts` file, run :command:`npm` to install the
    :code:`@types/node` library.
 
@@ -152,10 +135,27 @@ Step 3: Run the Code
 
       npm install @types/node
 
-   This adds a
+   This adds a 
    :file:`node_modules/@types/node` folder in the same directory as the :file:`hello.ts` file. This new folder
-   contains Node.js type definitions (for example, ones for the :code:`console.log` and :code:`process.argv`
-   properties in the :file:`hello.ts` file) that TypeScript needs later in this procedure.
+   contains Node.js type definitions that TypeScript needs later in this procedure for the :code:`console.log` and :code:`process.argv`
+   properties that you will add to the :file:`hello.ts` file. 
+#. Add the following code to the :file:`hello.ts` file:
+
+   .. code-block:: typescript
+
+      console.log('Hello, World!');
+
+      console.log('The sum of 2 and 3 is 5.');
+
+      const sum: number = parseInt(process.argv[2], 10) + parseInt(process.argv[3], 10);
+
+      console.log('The sum of ' + process.argv[2] + ' and ' +
+        process.argv[3] + ' is ' + sum + '.');
+
+.. _sample-typescript-run:
+
+Step 3: Run the Code
+====================
 
 #. In the terminal, from the same directory as the :file:`hello.ts` file, run the TypeScript compiler. Specify the
    :file:`hello.ts` file and additional libraries to include.
@@ -231,102 +231,106 @@ Step 5: Add AWS SDK Code
 In this step, you add some more code, this time to interact with |s3| to create a bucket, list your available buckets, and then delete the bucket you just created. You'll
 run this code later.
 
-In the |AC9IDE|, in the same directory as the :file:`hello.js` file in previous steps, create a file with the following content,
-and save the file with the name :file:`s3.ts`.
+#. In the |AC9IDE|, in the same directory as the :file:`hello.js` file in previous steps, create a file named :file:`s3.ts`.
+#. From a terminal in the |AC9IDE|, in the same directory as the :file:`s3.ts` file,
+   enable the code to call |S3| operations asynchronously by running :command:`npm` twice to install the async library for TypeScript and again for JavaScript.
 
-.. code-block:: javascript
+   .. code-block:: sh
 
-   import { } from 'async';
+      npm install @types/async # For TypeScript.
+      npm install async        # For JavaScript.
 
-   if (process.argv.length < 4) {
-     console.log('Usage: node s3.js <the bucket name> <the AWS Region to use>\n' +
-       'Example: node s3.js my-test-bucket us-east-2');
-     process.exit(1);
-   }
+#. Add the following code to the :file:`s3.ts` file:
 
-   const AWS = require('aws-sdk'); // To set the AWS credentials and AWS Region.
-   const async = require('async'); // To call AWS operations asynchronously.
+   .. code-block:: typescript
 
-   const s3 = new AWS.S3({apiVersion: '2006-03-01'});
-   const bucket_name = process.argv[2];
-   const region = process.argv[3];
+      import * as async from 'async';
+      import * as AWS from 'aws-sdk';
 
-   AWS.config.update({
-     region: region
-   });
+      if (process.argv.length < 4) {
+        console.log('Usage: node s3.js <the bucket name> <the AWS Region to use>\n' +
+          'Example: node s3.js my-test-bucket us-east-2');
+        process.exit(1);
+      }
 
-   const create_bucket_params = {
-     Bucket: bucket_name,
-     CreateBucketConfiguration: {
-       LocationConstraint: region
-     }
-   };
+      const AWS = require('aws-sdk'); // To set the AWS credentials and AWS Region.
+      const async = require('async'); // To call AWS operations asynchronously.
 
-   const delete_bucket_params = {Bucket: bucket_name};
+      const s3: AWS.S3 = new AWS.S3({apiVersion: '2006-03-01'});
+      const bucket_name: string = process.argv[2];
+      const region: string = process.argv[3];
 
-   // List all of your available buckets in this AWS Region.
-   function listMyBuckets(callback) {
-     s3.listBuckets(function(err, data) {
-       if (err) {
+      AWS.config.update({
+        region: region
+      });
 
-       } else {
-         console.log("My buckets now are:\n");
+      const create_bucket_params: any = {
+        Bucket: bucket_name,
+        CreateBucketConfiguration: {
+          LocationConstraint: region
+        }
+      };
 
-         for (let i = 0; i < data.Buckets.length; i++) {
-           console.log(data.Buckets[i].Name);
-         }
-       }
+      const delete_bucket_params: any = {
+        Bucket: bucket_name
+      };
 
-       callback(err);
-     });
-   }
+      // List all of your available buckets in this AWS Region.
+      function listMyBuckets(callback): void {
+        s3.listBuckets(function(err, data) {
+          if (err) {
 
-   // Create a bucket in this AWS Region.
-   function createMyBucket(callback) {
-     console.log('\nCreating a bucket named ' + bucket_name + '...\n');
+          } else {
+            console.log("My buckets now are:\n");
 
-     s3.createBucket(create_bucket_params, function(err, data) {
-       if (err) {
-         console.log(err.code + ": " + err.message);
-       }
+            for (let i: number = 0; i < data.Buckets.length; i++) {
+              console.log(data.Buckets[i].Name);
+            }
+          }
 
-       callback(err);
-     });
-   }
+          callback(err);
+        });
+      }
 
-   // Delete the bucket you just created.
-   function deleteMyBucket(callback) {
-     console.log('\nDeleting the bucket named ' + bucket_name + '...\n');
+      // Create a bucket in this AWS Region.
+      function createMyBucket(callback): void {
+        console.log("\nCreating a bucket named '" + bucket_name + "'...\n");
 
-     s3.deleteBucket(delete_bucket_params, function(err, data) {
-       if (err) {
-         console.log(err.code + ": " + err.message);
-       }
+        s3.createBucket(create_bucket_params, function(err, data) {
+          if (err) {
+            console.log(err.code + ": " + err.message);
+          }
 
-       callback(err);
-     });
-   }
+          callback(err);
+        });
+      }
 
-   // Call the AWS operations in the following order.
-   async.series([
-     listMyBuckets,
-     createMyBucket,
-     listMyBuckets,
-     deleteMyBucket,
-     listMyBuckets
-   ]);
+      // Delete the bucket you just created.
+      function deleteMyBucket(callback): void {
+        console.log("\nDeleting the bucket named '" + bucket_name + "'...\n");
+
+        s3.deleteBucket(delete_bucket_params, function(err, data) {
+          if (err) {
+            console.log(err.code + ": " + err.message);
+          }
+
+          callback(err);
+        });
+      }
+
+      // Call the AWS operations in the following order.
+      async.series([
+        listMyBuckets,
+        createMyBucket,
+        listMyBuckets,
+        deleteMyBucket,
+        listMyBuckets
+      ]);
 
 .. _sample-typescript-sdk-run:
 
 Step 6: Run the AWS SDK Code
 ============================
-
-#. From a terminal in the |AC9IDE|, in the same directory as the :file:`s3.ts` file from :ref:`sample-typescript-sdk-code`,
-   enable the code to call |S3| operations asynchronously by running :command:`npm` to install the async library.
-
-   .. code-block:: sh
-
-      npm install async
 
 #. In the terminal, from the same directory as the :file:`s3.ts` file, run the TypeScript compiler. Specify the
    :file:`s3.ts` file and additional libraries to include.

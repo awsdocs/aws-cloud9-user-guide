@@ -20,8 +20,16 @@ Commands Reference for the |AC9IDElongtitle|
 
 Following is a list of default commands in the |AC9IDE|.
 
-For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to display the :guilabel:`Commands` window. If the :guilabel:`Commands` button is not visible, choose
-:guilabel:`Window, Commands` on the menu bar.
+To run a command in the |AC9IDE|:
+
+#. Choose the :guilabel:`Go` button (magnifying glass) to display the :guilabel:`Go` window. If the :guilabel:`Go` button is not visible, choose
+   :guilabel:`Window, Go` on the menu bar.
+#. In the :guilabel:`Go to Anything` box, type a dot (:kbd:`.`) followed by the name of the command.
+#. Do one of the following in the list of matching commands:
+
+   * Choose the command to run.
+   * Use your up and down arrow keys to choose a command, and then press :kbd:`Enter` to run the chosen command.
+
 
 .. list-table::
    :widths: 1 2
@@ -48,6 +56,8 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Add the selection as a watch expression
    * - :code:`alignCursors`
      - Move all cursors to the same space as the active cursor on each of their lines, if they are misaligned
+   * - :code:`aws-panel`
+     - Show the :guilabel:`AWS Resources` window
    * - :code:`backspace`
      - Backspace one space
    * - :code:`blockindent`
@@ -80,8 +90,6 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Close the current pane
    * - :code:`closetab`
      - Close the current tab
-   * - :code:`commands`
-     - Show the :guilabel:`Commands` window
    * - :code:`complete`
      - Show the code completion context menu
    * - :code:`completeoverwrite`
@@ -162,6 +170,8 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Go to the next match in the current document for the find query you entered last
    * - :code:`findprevious`
      - Go to the previous match in the current document for the find query you entered last
+   * - :code:`findReferences`
+     - Display all known references to the symbol at the insertion point in the active file in the editor
    * - :code:`focusTree`
      - Open the :guilabel:`Environment` window, and then make the list of files active
    * - :code:`fold`
@@ -170,18 +180,30 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Fold all possibly foldable elements
    * - :code:`foldOther`
      - Fold all possibly foldable elements, except for the selection scope
+   * - :code:`forceToggleTimeslider`
+     - Show the :guilabel:`File Revision History` pane, or hide if shown
    * - :code:`formatcode`
      - Reformat the selected JavaScript code
    * - :code:`formatprefs`
      - Open the :guilabel:`Project Settings` section of the :guilabel:`Preferences` tab to programming language settings
    * - :code:`foursplit`
      - Display a four-pane layout
+   * - :code:`gethelp`
+     - Display the AWS Discussion Forum for |AC9|
+   * - :code:`gitcloneterminal`
+     - Run the :command:`git clone` command in a new terminal session
    * - :code:`golinedown`
      - Go down one line
    * - :code:`golineup`
      - Go up one line
+   * - :code:`gotoanything`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to Anything` mode
+   * - :code:`gotocommand`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to Command` mode
    * - :code:`gotoend`
      - Go to the end of the file
+   * - :code:`gotofile`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to File` mode.
    * - :code:`gotoleft`
      - Go left one space
    * - :code:`gotoline`
@@ -210,6 +232,8 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Go right one space
    * - :code:`gotostart`
      - Go to the start of the file
+   * - :code:`gotosymbol`
+     - Show the :guilabel:`Go` window in :guilabel:`Go to Symbol` mode.
    * - :code:`gototableft`
      - Go one tab left
    * - :code:`gototabright`
@@ -238,6 +262,18 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Go to the definition of the variable or function at the cursor
    * - :code:`jumptomatching`
      - Go to the matching symbol in the current scope
+   * - :code:`lambdaConvertFunction`
+     - Show the :guilabel:`Convert to SAM` dialog box
+   * - :code:`lambdaCreateFunction`
+     - Show the :guilabel:`Create serverless application` dialog box
+   * - :code:`lambdaImportFunction`
+     - If a remote |LAMlong| function is selected in the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, attempts to import the function into the |IDE| as a local function
+   * - :code:`lambdaLinkToCFStack`
+     - Show the :guilabel:`Link application to CloudFormation stack` dialog box
+   * - :code:`lambdaRefreshFunctionsList`
+     - Refreshes the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window if shown
+   * - :code:`lambdaUploadFunction`
+     - If a local |LAM| function is selected in the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, attempts to upload the function to |LAM| as a remote function
    * - :code:`largerfont`
      - Increase the font size
    * - :code:`maximizeconsole`
@@ -259,10 +295,6 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Move the current tab right, or if the tab is already at the far right, create a split tab there
    * - :code:`movetabup`
      - Move the current tab up one pane, or if the tab is already at very top, create a split tab there
-   * - :code:`navigate`
-     - Show the :guilabel:`Navigate` window
-   * - :code:`navigate_altkey`
-     - Show the :guilabel:`Navigate` window
    * - :code:`newEnvironment`
      - Show the :guilabel:`Create new environment` wizard in the |AC9| console
    * - :code:`newfile`
@@ -341,8 +373,6 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Rerun your initialization script
    * - :code:`restartc9`
      - Restart the |env|
-   * - :code:`restartc9vm`
-     - Restart the |env|
    * - :code:`resume`
      - Resume the current paused process
    * - :code:`revealtab`
@@ -367,8 +397,6 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Save the current pane layout in the :guilabel:`Window, Saved Layouts` menu, and then close all open tabs
    * - :code:`scrolldown`
      - Scroll down in the current document
-   * - :code:`scrollPreviewElementIntoView`
-     - If a preview page and the related HTML file are both open, scroll the preview page to the location that matches the current element under the cursor in the HTML file
    * - :code:`scrollup`
      - Scroll up in the current document
    * - :code:`searchinfiles`
@@ -421,6 +449,8 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Include the next word to the right of the cursor in the selection
    * - :code:`setIndentation`
      - Set the indentation type (spaces or tabs) and length
+   * - :code:`sharedialog`
+     - Show the :guilabel:`Share this environment` dialog box
    * - :code:`showimmediate`
      - Show the :guilabel:`Immediate` tab
    * - :code:`showinstaller`
@@ -533,5 +563,7 @@ For more information, in the |AC9IDE|, choose the :guilabel:`Commands` button to
      - Unfold selected code
    * - :code:`unfoldall`
      - Unfold code folding for the entire file
+   * - :code:`uploadLocalFiles`
+     - Show the :guilabel:`Upload Files` dialog box
    * - :code:`vsplit`
      - Split the current pane into two panes, top and bottom, and move the current tab to the top pane

@@ -240,9 +240,8 @@ Toward the end of this tour, you use these tools to code, run, and debug your fi
 * :ref:`tutorial-open-files`
 * :ref:`tutorial-gutter`
 * :ref:`tutorial-status-bar`
-* :ref:`tutorial-navigate`
-* :ref:`tutorial-commands`
 * :ref:`tutorial-outline`
+* :ref:`tutorial-go`
 * :ref:`tutorial-immediate`
 * :ref:`tutorial-process-list`
 * :ref:`tutorial-preferences`
@@ -256,8 +255,8 @@ Step 2.1: Menu Bar
 
 The :dfn:`menu bar`, at the top edge of the IDE, contains common commands for working with files and code and changing IDE settings. You can also preview and run code from the menu bar.
 
-.. image:: images/ide-hide-show-menu-bar.gif
-   :alt: Hiding and showing the menu bar in the AWS Cloud9 IDE
+.. image:: images/ide-menu-bar.png
+   :alt: The menu bar in the AWS Cloud9 IDE
 
 You can hide the menu bar by choosing the arrow at its edge, as follows.
 
@@ -268,6 +267,11 @@ You can show the menu bar again by choosing the arrow in the middle of where the
 
 .. image:: images/ide-show-menu-bar.png
    :alt: Showing the menu bar again in the AWS Cloud9 IDE
+
+Compare your results to the following.
+
+.. image:: images/ide-hide-show-menu-bar.gif
+   :alt: Hiding and showing the menu bar in the AWS Cloud9 IDE
 
 You can use the IDE to work with a set of files in the next several sections in this tutorial. To set
 up these files, choose :menuselection:`File, New File`.
@@ -303,7 +307,7 @@ There are often several ways to do things in the IDE. For example, to hide the m
 the arrow at its edge,
 you can choose :menuselection:`View, Menu Bar`. To create a new file, instead of choosing :menuselection:`File,
 New File` you can press :kbd:`Alt-N` (for Windows/Linux) or
-:kbd:`Control-N` (for Apple OSX).
+:kbd:`Control-N` (for MacOS).
 To reduce this tutorial's length, we only describe one way to do things. As you get more comfortable with
 the IDE, feel free to experiment and figure out the way that works best for you.
 
@@ -342,6 +346,9 @@ To hide the :guilabel:`Environment` window and the :guilabel:`Environment` butto
 To show the :guilabel:`Environment` button again, choose :menuselection:`Window, Environment` again.
 
 To show the :guilabel:`Environment` window, choose the :guilabel:`Environment` button.
+
+.. image:: images/ide-environment-window.png
+   :alt: The Environment window in the AWS Cloud9 IDE
 
 To show hidden files, in the :guilabel:`Environment` window, choose the gear icon, and then choose :menuselection:`Show Hidden Files`, as follows.
 
@@ -467,52 +474,10 @@ To go back to plain text colors, choose :guilabel:`Plain Text`, as follows.
 .. image:: images/ide-text-color.gif
    :alt: Changing file type preference in the AWS Cloud9 status bar
 
-.. _tutorial-navigate:
-
-Step 2.9: Navigate Window
--------------------------
-
-The :guilabel:`Navigate` window enables you to go to a different file. To use this window, begin typing the file's name. When you see the file you want, choose it.
-
-To hide the :guilabel:`Navigate` button, choose :menuselection:`Window, Navigate` on the menu bar.
-
-To show the :guilabel:`Navigate` button again, choose :menuselection:`Window, Navigate` again.
-
-To show the :guilabel:`Navigate` window, choose the :guilabel:`Navigate` button.
-
-To go to a file, in the :guilabel:`Navigate` window, start typing the file name. For example, type :kbd:`fish`. When :guilabel:`fish.txt` is highlighted, press :kbd:`Enter`.
-You can repeat this to go to a different file. For example, try going to the :file:`cat.txt` file.
-
-.. _tutorial-commands:
-
-Step 2.10: Commands Window
---------------------------
-
-The :guilabel:`Commands` window enables you to find and run IDE commands. To use this window, begin typing something about the command. When you see the command you want, choose it.
-
-To hide the :guilabel:`Commands` window and :guilabel:`Commands` button,
-choose :menuselection:`Window, Commands` on the menu bar.
-
-To show the :guilabel:`Commands` button again, choose :menuselection:`Window, Commands` again.
-
-To show the :guilabel:`Commands` window, choose the :guilabel:`Commands` button.
-
-For example, you can use a command to show two vertical panes in the editor. To do this, in the :guilabel:`Commands`
-window, type :kbd:`split`. In the list of commands,
-choose :guilabel:`twovsplit`, as follows.
-
-.. image:: images/ide-twovsplit.png
-   :alt: Showing two vertical panes in the editor
-
-.. image:: images/ide-twovsplit.gif
-   :alt: Showing two vertical panes in the editor
-
-To go back to a single pane, in the :guilabel:`Commands` window, in the list of commands, choose :guilabel:`nosplit`.
-
 .. _tutorial-outline:
 
-Step 2.11: Outline Window
--------------------------
+Step 2.9: Outline Window
+------------------------
 
 You can use the :guilabel:`Outline` window to quickly go to a specific file location.
 
@@ -549,9 +514,46 @@ Then, in the :guilabel:`Outline` window, choose :guilabel:`say_hello(i)`, and th
 .. image:: images/ide-outline.gif
    :alt: Outline window in AWS Cloud9 IDE
 
+.. _tutorial-go:
+
+Step 2.10: Go Window
+--------------------
+
+You can use the :guilabel:`Go` window to open a file in the editor, go to a symbol's definition, run a command, or go to a line in the active file in the editor.
+
+To hide the :guilabel:`Go` window and :guilabel:`Go` button (the magnifying glass icon), choose :menuselection:`Window, Go` on the menu bar.
+
+To show the :guilabel:`Go` button again, choose :menuselection:`Window, Go` again.
+
+To show the :guilabel:`Go` window, choose the :guilabel:`Go` button (the magnifying glass).
+
+With the :guilabel:`Go` window showing, you can:
+
+* Type a forward slash (:kbd:`/`) followed by part or all of a file name. In the list of matching files that displays, choose a file to open it in the editor. 
+  For example, typing :kbd:`/fish` lists :file:`fish.txt`, while typing :kbd:`/.txt` lists both :file:`fish.txt` and :file:`cat.txt`.
+
+  .. note:: File search is scoped only to non-hidden files and non-hidden folders in the :guilabel:`Environment` window.
+
+* Type an at symbol (:kbd:`@`) followed by the name of a symbol. In the list of matching symbols that displays, choose a symbol to go to it in the editor. 
+  For example, with the :file:`hello.rb` file open and active in the editor, type :kbd:`@hello` to list :code:`say_hello(i)`, or type :kbd:`@say` to list 
+  both :code:`say_hello(i)` and :code:`say_goodbye(i)`.
+
+  .. note:: If the active file in the editor is part of a supported language project, symbol search is scoped to the current project. Otherwise, 
+     symbol search is scoped only to the active file in the editor. For more information, see :ref:`Working with Language Projects <projects>`.
+
+* Type a dot (:kbd:`.`) followed by the name of a command. In the list of commands that displays, choose a command to run it. 
+  For example, typing :kbd:`.closetab` and then pressing :kbd:`Enter` closes the current tab in the editor. For a list of available commands, see the :ref:`Commands Reference <commands>`.
+* Type a colon (:kbd:`:`) followed by a number to go to that line number in the active file in the editor. For example, with the :file:`hello.rb` file open and active 
+  in the editor, type :kbd:`:11` to go to line 11 in that file.
+
+.. image:: images/ide-go-window.png
+   :alt: Go window in AWS Cloud9 IDE
+
+To see the keybindings for each of these actions based on the current keyboard mode and operating system, see each of the available :guilabel:`Go To` commands on the :guilabel:`Go` menu in the menu bar.
+
 .. _tutorial-immediate:
 
-Step 2.12: Immediate Tab
+Step 2.11: Immediate Tab
 ------------------------
 
 The :guilabel:`Immediate` tab enables you to test small snippets of JavaScript code. To see how the :guilabel:`Immediate` tab works, do the following.
@@ -572,7 +574,7 @@ The :guilabel:`Immediate` tab enables you to test small snippets of JavaScript c
 
 .. _tutorial-process-list:
 
-Step 2.13: Process List
+Step 2.12: Process List
 -----------------------
 
 The :guilabel:`Process List` shows all of the running processes. You can stop or even forcibly stop processes that you don't want to run anymore.
@@ -587,7 +589,7 @@ To see how the :guilabel:`Process List` window works, do the following.
 
 .. _tutorial-preferences:
 
-Step 2.14: Preferences
+Step 2.13: Preferences
 ----------------------
 
 :dfn:`Preferences` include the following settings.
@@ -604,7 +606,7 @@ To show preferences, choose :menuselection:`AWS Cloud9, Preferences` on the menu
 
 .. _tutorial-terminal:
 
-Step 2.15: Terminal
+Step 2.14: Terminal
 -------------------
 
 You can run one or more :dfn:`terminal` sessions in the IDE. To start a terminal session, choose :menuselection:`Window, New Terminal` on the menu bar.
@@ -622,7 +624,7 @@ You can also try running additional commands. For example, try commands such as 
 
 .. _tutorial-debugger:
 
-Step 2.16: Debugger Window
+Step 2.15: Debugger Window
 --------------------------
 
 You can use the :guilabel:`Debugger` window to debug your code. For example, you can step through running code a portion at a time, watch the values of variables

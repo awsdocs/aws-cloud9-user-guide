@@ -1009,7 +1009,7 @@ For an |envfirstec2|, |AC9tempcreds| allow all AWS actions for all AWS resources
   * :code:`iam:UpdateSSHPublicKey`
   * :code:`iam:UploadSSHPublicKey`
 
-* All |IAM| actions that interact with roles are allowed only for role names starting with :code:`cloud9-`. However, :code:`iam:PassRole` works with all role names.
+* All |IAM| actions that interact with roles are allowed only for role names starting with :code:`Cloud9-`. However, :code:`iam:PassRole` works with all role names.
 * For |STSlong| (|STS|), only the following actions are allowed:
 
   * :code:`sts:GetCallerIdentity`

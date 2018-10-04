@@ -396,10 +396,10 @@ Minimum Inbound and Outbound Traffic Settings for |AC9|
 * **Inbound**: All IP addresses using SSH over port 22. However, you can restrict these IP addresses to only those that |AC9| uses. For more information, see 
   :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
 
-  .. note:: For |envec2plural| created after July 31 2018, |AC9| uses security groups to automatically restrict inbound IP addresses using SSH over port 22 to only those addresses that |AC9| uses. 
+  .. note:: For |envec2plural| created on or after July 31 2018, |AC9| uses security groups to automatically restrict inbound IP addresses using SSH over port 22 to only those addresses that |AC9| uses. 
      For more information, see :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
 
-* **Inbound**: For |envec2plural|, and for |envsshplural| associated with |EC2| instances running Amazon Linux, all IP addresses using TCP over ports 32768-61000. 
+* **Inbound (network ACLs only)**: For |envec2plural|, and for |envsshplural| associated with |EC2| instances running Amazon Linux, all IP addresses using TCP over ports 32768-61000. 
   For more information, and for port ranges for other |EC2| instance types, see :vpc-user-guide:`Ephemeral Ports <VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports>` in the |VPC-ug|.
 * **Outbound**: All traffic sources using any protocol and port.
 
@@ -423,13 +423,8 @@ Inbound rules:
      - 22
      - 0.0.0.0 
        (But see the following note and :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.)
-   * - Custom TCP Rule
-     - TCP (6)
-     - 32768-61000
-       (For Amazon Linux instances. For other instance types, see :vpc-user-guide:`Ephemeral Ports <VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports>`.)
-     - 0.0.0.0/0
 
-.. note:: For |envec2plural| created after July 31 2018, |AC9| automatically adds an inbound rule to restrict inbound IP addresses using SSH over port 22 to only those addresses that |AC9| uses. 
+.. note:: For |envec2plural| created on or after July 31 2018, |AC9| automatically adds an inbound rule to restrict inbound IP addresses using SSH over port 22 to only those addresses that |AC9| uses. 
    For more information, see :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
 
 Outbound rules:
@@ -623,7 +618,7 @@ You can use the |VPC| console to create an |VPC| that is compatible with |AC9|.
    the correct AWS Region.
 #. Choose :guilabel:`VPC Dashboard` in
    the navigation pane, if the :guilabel:`VPC Dashboard` page isn't already displayed.
-#. Choose :guilabel:`Start VPC Wizard`.
+#. Choose :guilabel:`Launch VPC Wizard`.
 #. For :guilabel:`Step 1: Select a VPC Configuration`, with :guilabel:`VPC with a Single Public Subnet` already selected, choose :guilabel:`Select`.
 #. For :guilabel:`Step 2: VPC with a Single Public Subnet`, we recommend that you leave the following default settings. (However, you can change the CIDR settings if
    you have custom CIDRs you want to use. For more information, see :vpc-user-guide:`VPC and Subnet Sizing <VPC_Subnets.html#VPC_Sizing>` in the |VPC-ug|.)

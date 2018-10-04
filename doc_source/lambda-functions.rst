@@ -67,10 +67,8 @@ Step 1: Set Up Your |IAM| Group with Required Access Permissions
 
 If your AWS access credentials are associated with an |IAM| administrator user in your AWS account, and you want to use that user to work with |LAM| functions, skip ahead to :ref:`lambda-functions-prepare-access`.
 
-Otherwise, complete the following instructions to:
-
-* Use the |IAM| console to attach the AWS managed policies named :code:`AWSLambdaFullAccess`, :code:`AmazonAPIGatewayAdministrator`, and :code:`AmazonAPIGatewayInvokeFullAccess` to an |IAM| group to which your user belongs.
-* Use the |CFNlong| console to attach an additional inline policy to that group.
+Otherwise, complete the following instructions to use the |IAM| console to attach the AWS managed policies named :code:`AWSLambdaFullAccess`, :code:`AmazonAPIGatewayAdministrator`, 
+:code:`AmazonAPIGatewayInvokeFullAccess`, and an additional inline policy, to an |IAM| group to which your user belongs.
 
 #. Sign in to the AWS Management Console, if you're not already signed in.
 
@@ -92,8 +90,8 @@ Otherwise, complete the following instructions to:
 #. On the :guilabel:`Select Template` page, for :guilabel:`Choose a template`, choose :guilabel:`Upload a template to Amazon S3`. Choose :guilabel:`Browse`, and then 
    choose the |CFN| template file that you just saved to your local computer.
 #. Choose :guilabel:`Next`.
-#. On the :guilabel:`Specify Details` page, for :guilabel:`Stack name`, type a name for the stack, for example :code:`AWSCloud9LambdaAccessStack`.
-   If you type a different name, replace it throughout this procedure.
+#. On the :guilabel:`Specify Details` page, for :guilabel:`Stack name`, type a name for the stack (for example :code:`AWSCloud9LambdaAccessStack`.
+   If you type a different name, replace it throughout this procedure).
 #. For :guilabel:`Parameters`, for :guilabel:`GroupName`, type the name of the existing group in your AWS account you want to attach the access policy to.
 #. Choose :guilabel:`Next`.
 #. On the :guilabel:`Options` page, choose :guilabel:`Next`. (Do not change any of the default settings on the :guilabel:`Options` page.)
@@ -164,7 +162,7 @@ Do one of the following to set up the |cli| in your |env|:
 Step 3: Create an Execution Role for Your |LAM| Functions
 ---------------------------------------------------------
 
-If you want your |LAM| functions to do things usings AWS resources, you must specify
+If you want your |LAM| functions to do things using AWS resources, you must specify
 an |IAM| role (execution role) that contains the necessary access permissions for your functions to use.
 
 When you create a |LAM| function, |AC9| can create an execution role for you. This execution role contains the permissions as described in

@@ -10,22 +10,22 @@
 
 .. _keybindings-emacs-apple-osx:
 
-###############################################################
-Apple OSX Emacs Keybindings Reference for the |AC9IDElongtitle|
-###############################################################
+###########################################################
+MacOS Emacs Keybindings Reference for the |AC9IDElongtitle|
+###########################################################
 
 .. meta::
     :description:
-        Provides a list of Emacs keyboard mode keybindings for Apple OSX operating systems in the AWS Cloud9 IDE.
+        Provides a list of Emacs keyboard mode keybindings for MacOS operating systems in the AWS Cloud9 IDE.
 
-Following is a list of Emacs keyboard mode keybindings for Apple OSX operating systems in the |AC9IDE|.
+Following is a list of Emacs keyboard mode keybindings for MacOS operating systems in the |AC9IDE|.
 
 For more information, in the |AC9IDE|:
 
 #. On the menu bar, choose :menuselection:`AWS Cloud9, Preferences`.
 #. On the :guilabel:`Preferences` tab, choose :guilabel:`Keybindings`.
 #. For :guilabel:`Keyboard Mode`, choose :guilabel:`Emacs`.
-#. For :guilabel:`Operating System`, choose :guilabel:`Apple OSX`.
+#. For :guilabel:`Operating System`, choose :guilabel:`MacOS`.
 
 See also :doc:`Working with Keybindings <settings-keybindings>`.
 
@@ -82,6 +82,9 @@ General
    * - Go to the previous match in the current document for the find query you entered last
      - :kbd:`Command-Shift-G`
      - :code:`findprevious`
+   * - Display all known references to the symbol at the insertion point in the active file in the editor
+     - :kbd:`Shift-F3`
+     - :code:`findReferences`
    * - Open the :guilabel:`Environment` window, and then make the list of files active
      - :kbd:`Shift-Esc`
      - :code:`focusTree`
@@ -97,6 +100,9 @@ General
    * - Go to the definition of the variable or function at the cursor
      - :kbd:`F3`
      - :code:`jumptodef`
+   * - If a local |LAM| function is selected in the :guilabel:`Lambda` section of the :guilabel:`AWS Resources` window, attempts to upload the function to |LAM| as a remote function
+     - :kbd:`Command-Shift-U`
+     - :code:`lambdaUploadFunction`
    * - Create a new file
      - :kbd:`Control-N`
      - :code:`newfile`
@@ -142,9 +148,6 @@ General
    * - Save the current file to disk with a different file name
      - :kbd:`Command-Shift-S`
      - :code:`saveas`
-   * - If a preview page and the related HTML file are both open, scroll the preview page to the location that matches the current element under the cursor in the HTML file
-     - :kbd:`Control-I`
-     - :code:`scrollPreviewElementIntoView`
    * - Show the find and replace bar for multiple files
      - :kbd:`Shift-Command-F`
      - :code:`searchinfiles`
@@ -275,15 +278,18 @@ Panels
    * - Description
      - Keybinding
      - Command
-   * - Show the :guilabel:`Commands` window
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to Anything` mode
+     - :kbd:`Command-E|Command-P`
+     - :code:`gotoanything`
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to Command` mode
      - :kbd:`Command-.`
-     - :code:`commands`
-   * - Show the :guilabel:`Navigate` window
-     - :kbd:`Command-E | Command-P`
-     - :code:`navigate`
-   * - Show the :guilabel:`Navigate` window
+     - :code:`gotocommand`
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to File` mode.
      - :kbd:`Command-O`
-     - :code:`navigate_altkey`
+     - :code:`gotofile`
+   * - Show the :guilabel:`Go` window in :guilabel:`Go to Symbol` mode.
+     - :kbd:`Command-Shift-O`
+     - :code:`gotosymbol`
    * - Show the :guilabel:`Outline` window
      - :kbd:`Command-Shift-E`
      - :code:`outline`

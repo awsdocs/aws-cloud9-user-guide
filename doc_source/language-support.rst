@@ -138,6 +138,11 @@ and to what level.
      - X :sup:`5`
      -
 
+The |AC9IDE| provides additional support for some programming languages, such as TypeScript, within the context of a language project. 
+For more information, see :ref:`Working with Language Projects <projects>`.
+
+**Notes**
+
 :sup:`1` The |AC9IDE| provides syntax highlighting for many more languages. For a complete list, in the menu bar of the |IDE|, choose :guilabel:`View, Syntax`.
 
 :sup:`2` You can run programs or scripts at the click of a button for languages marked with an **X**, without using the command line. For languages not marked with an **X** or

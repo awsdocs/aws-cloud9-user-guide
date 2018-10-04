@@ -25,7 +25,10 @@ You can move an |envfirst| from one |EC2| instance to another. (We also call thi
 * Increase an instance's compute resources, because the |env| is over-utilized on the current instance.
 * Decrease an instance's compute resources, because the |env| is under-utilized on the current instance.
 
-.. note:: This topic only covers resizing an |env| from one |EC2| instance to another.
+.. note:: Before you resize an |env|, you might want to try stopping some running processes in the |env| or adding a 
+   swap file to the |env|. For more information, see :ref:`troubleshooting_ide_low_memory` in *Troubleshooting*.
+
+   This topic only covers resizing an |env| from one |EC2| instance to another.
    To resize an |env| from one of your own servers to another, refer to your server's documentation.
 
    You cannot resize an |env| to an |EC2| instance of the same type. When you resize, you must choose a different |EC2| instance type for the new instance.
