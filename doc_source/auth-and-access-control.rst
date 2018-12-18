@@ -980,6 +980,15 @@ Actions Supported by |AC9tempcredstitle|
 
 For an |envfirstec2|, |AC9tempcreds| allow all AWS actions for all AWS resources in the caller's AWS account, with the following restrictions:
 
+* For |AC9|, only the following actions are allowed:
+
+  * :code:`cloud9:CreateEnvironmentEC2`
+  * :code:`cloud9:CreateEnvironmentSSH`
+  * :code:`cloud9:DescribeEnvironmentMemberships`
+  * :code:`cloud9:DescribeEnvironments`
+  * :code:`cloud9:DescribeEnvironmentStatus`
+  * :code:`cloud9:UpdateEnvironment`
+
 * For |IAM|, only the following actions are allowed:
 
   * :code:`iam:AttachRolePolicy`

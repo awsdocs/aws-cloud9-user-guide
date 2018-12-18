@@ -32,15 +32,15 @@ The following tables list limits in |AC9| and related AWS services.
    :widths: 1 2
 
    * - Maximum number of |envfirstec2plural|
-     - * 20 per |IAM| user
-       * 100 per AWS account
+     - * 20 per user per AWS Region
+       * 200 per AWS account per Region
    * - Maximum number of |envsshplural|
-     - * 10 per |IAM| user
-       * 100 per AWS account
+     - * 10 per user per Region
+       * 100 per AWS account per Region
    * - Maximum number of |mems| in an |env|
-     - 8
-   * - Maximum number of |envplural| open at the same time
-     - 10 total per |IAM| user, regardless of |env| type (EC2 or SSH)
+     - 8 per user per Region
+   * - Maximum editable file size
+     - 8 MB
 
 .. _limits-related:
 

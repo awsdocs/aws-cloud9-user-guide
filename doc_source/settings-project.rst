@@ -71,6 +71,7 @@ tab's :guilabel:`Project Settings` pane.
 * :ref:`settings-project-change-run-and-debug`
 * :ref:`settings-project-change-run-configurations`
 * :ref:`settings-project-change-code-formatters`
+* :ref:`settings-project-change-typescript-support`
 * :ref:`settings-project-change-php-support`
 * :ref:`settings-project-change-python-support`
 * :ref:`settings-project-change-go-support`
@@ -287,6 +288,10 @@ Code Formatters
               }
            }
 
+   :guilabel:`Preserve Inline Blocks`
+      If enabled, |AC9| does not attempt to move the beginning and ending braces for inline 
+      blocks to separate lines, if those braces are on the same line.
+
    :guilabel:`Space Before Conditionals`
       If enabled, |AC9| adds a space before each conditional declaration, as needed.
 
@@ -296,6 +301,17 @@ Code Formatters
 
    :guilabel:`Indent Inner Html`
       If enabled, |AC9| indents :code:`<head>` and :code:`<body>` sections in HTML code.
+
+.. _settings-project-change-typescript-support:
+
+TypeScript Support
+------------------
+
+:guilabel:`Format Code on Save`
+   If enabled, |AC9| attempts to format TypeScript code whenever TypeScript files are saved.
+
+:guilabel:`Custom Code Formatter`
+   The path to any custom code formatting configuration for TypeScript code.
 
 .. _settings-project-change-php-support:
 

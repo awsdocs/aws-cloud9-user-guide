@@ -39,3 +39,11 @@ Experiment with these samples to increase your knowledge and confidence using |A
    Go Sample <sample-go>
    TypeScript Sample <sample-typescript>
    Docker Sample <sample-docker>
+
+.. _samples-additonal:
+
+Related Samples
+---------------
+
+* `Getting Started with AWS RoboMaker <https://docs.aws.amazon.com/robomaker/latest/dg/getting-started.html>`_ in the *AWS RoboMaker Developer Guide*. This 
+  sample uses |AC9| to modify, build, and bundle a sample robot application.

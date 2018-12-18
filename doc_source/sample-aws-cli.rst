@@ -24,8 +24,11 @@ the |console| to quickly run commands to interact with AWS, and some of these co
 
 For more information about the |cli|, see the |cli-ug|_. For the aws-shell, see the following resources:
 
-* `aws-shell <https://github.com/awslabs/aws-shell>`_ on the GitHub website
-* `aws-shell <https://pypi.python.org/pypi/aws-shell>`_ on the pip website
+* `aws-shell`__ on the GitHub website
+* `aws-shell`__ on the pip website
+
+__ https://github.com/awslabs/aws-shell
+__ https://pypi.python.org/pypi/aws-shell
 
 For a list of commands you can run with the |cli| to interact with AWS, see the |cli-ref|_. You use the same commands with the aws-shell, except that 
 you start commands without the :code:`aws` prefix.

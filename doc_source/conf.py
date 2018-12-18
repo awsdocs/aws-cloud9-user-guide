@@ -99,8 +99,12 @@ build_html = True
 build_pdf = True #Or False if you don't build a pdf
 # build_mobi = True #Or the Kindle ASIN if you need a Kindle build
 
-# Route customer feedback internally to AWS, using the following SIM folder ID.
-feedback_folder_id = 'ea85bca2-658d-40f4-900f-65193653578a'
+# Route customer feedback internally to AWS.
+# Uncomment the following line to specify routing to a folder in classic SIM.
+# feedback_folder_id = 'ea85bca2-658d-40f4-900f-65193653578a'
+
+# Uncomment the following line to specify routing to a CTI in SIM Ticketing.
+feedback_name = 'Cloud9'
 
 # For the url docs.aws.amazon.com/docset-root/version/guide-name
 docset_path_slug = 'cloud9'

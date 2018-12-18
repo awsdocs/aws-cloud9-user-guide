@@ -104,7 +104,7 @@ Create an |envec2title| with the Console
    .. note:: Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for |EC2|.
 
 #. Expand :guilabel:`Network settings (advanced)`.
-#. |AC9| uses |VPClong| (|VPC|) in your AWS account to communicate with the newly-created |EC2| instance. Depending on how |VPC| is set up in your AWS account, do one of the following.
+#. |AC9| uses |VPClong| (|VPC|) to communicate with the newly-created |EC2| instance. Depending on how |VPC| is set up, do one of the following.
 
    .. list-table::
       :widths: 1
@@ -113,40 +113,87 @@ Create an |envec2title| with the Console
       * - If you're not sure what to choose, we recommend that you skip ahead to step 11 in this procedure. 
 
           When you skip past :guilabel:`Network settings (advanced)` and leave the preselected default settings, 
-          |AC9| attempts to automatically use the default VPC in your account with its single subnet.
+          |AC9| attempts to automatically use the default VPC with its single subnet in the same AWS account and 
+          AWS Region as the new |env|.
 
    .. list-table::
-      :widths: 2 3 1 3
+      :widths: 1 1 1 1 3
       :header-rows: 1
 
-      * - **Does the account have a VPC with at least one subnet in that VPC?**
-        - **Is the VPC you want AWS Cloud9 to use the default VPC in the account?**
-        - **Does the VPC have a single subnet?**
+      * - **Does the AWS account have access to an Amazon VPC?**
+        - **Is that VPC in the same AWS account and AWS Region as the new environment?**
+        - **Is that VPC the default VPC for its AWS account?**
+        - **Does that VPC contain a single subnet?**
         - **Do this**
       * - No
         - |mdash|
         - |mdash|
-        - If no VPC exists, create one. To do this, choose :guilabel:`Create new VPC`, and then follow the 
+        - |mdash|
+        - If no VPC exists, create one.
+        
+          To create a VPC in the same AWS account and AWS Region as the new |env|, choose :guilabel:`Create new VPC`, and then follow the 
           on-screen directions. For more information, see :ref:`vpc-settings-create-vpc`.
           
-          If a VPC exists but has no subnet, create one. To do this, choose :guilabel:`Create new subnet`, 
-          and then follow the on-screen directions. For more information, see :ref:`vpc-settings-create-subnet`.
+          To create a VPC in a different AWS account than the new |env|, see :VPC-ug:`Working with Shared VPCs <vpc-sharing>` in the |VPC-ug|.
       * - Yes
+        - Yes
         - Yes
         - Yes
         - Skip ahead to the step 11 in this procedure. 
         
           When you skip past :guilabel:`Network settings (advanced)` and leave the preselected default settings, 
-          |AC9| attempts to automatically use the default VPC in your account with its single subnet.
+          |AC9| attempts to automatically use the default VPC with its single subnet in the same account and region as the new |env|.
+      * - Yes
+        - Yes
+        - Yes 
+        - No
+        - If the default VPC has multiple subnets, expand :guilabel:`Network settings (advanced)`. For :guilabel:`Subnet`, choose the 
+          subnet you want |AC9| to use in the preselected default VPC.
+          
+          If the default VPC has no subnets, create one. To do this, choose :guilabel:`Create new subnet`, 
+          and then follow the on-screen directions. For more information, see :ref:`vpc-settings-create-subnet`.
       * - Yes
         - Yes
         - No
-        - Expand :guilabel:`Network settings (advanced)`. For :guilabel:`Subnet`, choose the subnet you want |AC9| to use in the preselected default VPC. 
+        - Yes
+        - Expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose the VPC that you want |AC9| to use.
+      * - Yes
+        - Yes 
+        - No
+        - No
+        - Expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose the VPC that you want |AC9| to use.
+
+          If the chosen VPC has multiple subnets, expand :guilabel:`Network settings (advanced)`. For :guilabel:`Subnet`, choose the 
+          subnet you want |AC9| to use in the chosen VPC.
+          
+          If the chosen VPC has no subnets, create one. To do this, choose :guilabel:`Create new subnet`, 
+          and then follow the on-screen directions. For more information, see :ref:`vpc-settings-create-subnet`.
       * - Yes
         - No
+        - Yes
         - |mdash|
-        - Expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose the VPC that you want |AC9| to use. 
-          For :guilabel:`Subnet`, choose the subnet you want |AC9| to use in that VPC.
+        - |AC9| cannot use a default VPC in an AWS account than is different than the AWS account for the new |env|. 
+          Choose a different option in this list.
+      * - Yes
+        - No
+        - No
+        - Yes
+        - Expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose the VPC that you want |AC9| to use.
+
+          .. note:: The VPC must be in the same AWS Region as the new |env|, even if the VPC is in a different AWS account.
+
+      * - Yes
+        - No
+        - No
+        - No
+        - Expand :guilabel:`Network settings`. For :guilabel:`Network (VPC)`, choose the VPC that you want |AC9| to use.
+
+          For :guilabel:`Subnet`, choose the subnet you want |AC9| to use in the chosen VPC.
+          
+          If the chosen VPC has no subnets, to create a subnet for a VPC in a different AWS account than the new |env|, 
+          see :VPC-ug:`Working with Shared VPCs <vpc-sharing>` in the |VPC-ug|.
+
+          .. note:: The VPC and subnet must be in the same AWS Region as the new |env|, even if the VPC and subnet are in a different AWS account.
 
    For more information, see :doc:`Amazon VPC Settings <vpc-settings>`.
   
@@ -807,6 +854,8 @@ Explore any or all of the following topics to continue getting familiar with |AC
      - :ref:`Working with AWS CodePipeline <codepipeline-repos>`
    * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, the AWS Cloud Development Kit (AWS CDK), GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages.
      - :ref:`Samples <samples>`
+   * - Work with code for intelligent robotics applications in AWS RoboMaker.
+     - `Developing with AWS Cloud9 <https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html>`_ in the *AWS RoboMaker Developer Guide*
 
 To get help with |AC9| from the community, see the `AWS Cloud9 Discussion Forum <https://forums.aws.amazon.com/forum.jspa?forumID=268>`_. (When you enter this forum, AWS might require you to sign in.)
 

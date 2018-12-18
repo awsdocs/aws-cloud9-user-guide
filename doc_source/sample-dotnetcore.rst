@@ -47,6 +47,12 @@ Step 1: Install Required Tools
 
 In this step, you install the .NET Core 2 SDK into your |env|, which is required to run this sample.
 
+.. note:: The following procedure shows how to install the .NET Core 2 SDK in an |envec2| that is connected to an |EC2| instance running Amazon Linux. To 
+   set up an |envssh| connected to an |EC2| instance running Ubuntu Server with the .NET Core 2 SDK already installed, skip this procedure and 
+   watch the 8-minute video 
+   `Setting Up a .NET and PowerShell Development Environment with AWS Cloud9 and Amazon EC2 <https://www.youtube.com/watch?v=3ZdvbGArONk>`_ 
+   on the YouTube website instead.
+
 #. Confirm whether the .NET Core 2 SDK is already installed in your |env|. To do this, in a terminal session in the |AC9IDE|, run the .NET Core command line interface (CLI)
    with the :command:`-help` option.
 

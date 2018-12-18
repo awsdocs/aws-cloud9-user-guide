@@ -35,6 +35,7 @@ Use the following information to help you identify and address issues with |AC9|
 * :ref:`troubleshooting-update-ami`
 * :ref:`troubleshooting-install-sam-local`
 * :ref:`troubleshooting_ide_low_memory`
+* :ref:`troubleshooting_file_preview_script_block`
 
 .. _troubleshooting-sts-assume-role:
 
@@ -422,6 +423,17 @@ To install SAM Local yourself, run the following commands, one at a time in the 
    npm install -g aws-sam-local        # Use Node Package Manager (npm) to install SAM Local as a global package in the environment.
    ln -sfn $(which sam) ~/.c9/bin/sam  # Create a symbolic link (a shortcut) from the path that AWS Cloud9 expects to where SAM Local is installed.
 
+If, after running the previous commands, you're still having SAM Local install issues, try running the following additional commands, 
+one at a time in the following order, from a terminal session in the |IDE|.
+
+.. code-block:: sh 
+
+   npm uninstall -g aws-sam-local  # Use npm to uninstall the globally-installed SAM Local from the environment.
+   rm -rf $(which sam)             # Remove the related symbolic link.
+   pip install --user aws-sam-cli  # Use pip to re-install the AWS SAM CLI from the context of the user (not globally).
+   hash -r                         # Reset the bash cache (removes all current tracked aliases).
+   sam –-version                   # Verify that your installation worked. 
+
 For more information, see the `awslabs/aws-sam-cli <https://github.com/awslabs/aws-sam-cli/blob/develop/README.rst>`_ repository on the GitHub website.
 
 .. _troubleshooting_ide_low_memory:
@@ -448,7 +460,7 @@ For more information, see the `awslabs/aws-sam-cli <https://github.com/awslabs/a
 
   .. code-block:: sh 
 
-     sudo fallocate --length 512MB /var/swapfile && sudo chmod 600 /var/swapfile && sudo mkswp /var/swapfile && echo '/var/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab > /dev/null
+     sudo fallocate --length 512MB /var/swapfile && sudo chmod 600 /var/swapfile && sudo mkswap /var/swapfile && echo '/var/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab > /dev/null
 
   The preceding command does the following: 
 
@@ -466,6 +478,20 @@ For more information, see the `awslabs/aws-sam-cli <https://github.com/awslabs/a
 * Move or resize the |env| to an instance or server with more compute resources. To move or resize |EC2| instances, see 
   :ref:`Moving or Resizing and Environment <move-environment>`. For other instance or server types, refer to your 
   instance's or server's documentation.
+
+.. _troubleshooting_file_preview_script_block:
+
+Previewing a File Returns a 499 Error
+=====================================
+
+**Issue:** When you try to use the |AC9IDE| to preview a file that contains a :code:`<script>` element containing the :code:`src` attribute and with the 
+:code:`type` attribute set to :code:`module`, a 499 error occurs and the script doesn't run as expected.
+
+**Cause:** File preview fetch requests in the |AC9IDE| require cookies to be sent by the web browser to authenticate. By default, web browsers send cookies 
+for regular script requests, but not for module script requests, unless you add the :code:`crossorigin` attribute.
+
+**Solution:** Add the :code:`crossorigin` attribute to the :code:`<script>` element. For example, :code:`<script type="module" src="index.js" crossorigin></script>`. 
+Then save the changed file, and try to preview the it again.
 
 .. Troubleshooting template
 

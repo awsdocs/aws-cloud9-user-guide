@@ -160,40 +160,53 @@ In this step, you use a Dockerfile to build a Docker image onto the instance. Th
            - **Definition**
          * - `cloud9/workspace <https://hub.docker.com/r/cloud9/workspace/>`_
            - Ubuntu 14.04.5 with common tools such as Git, Node.js, OpenJDK, Apache Ant, Apache Maven, Nginx, MySQL, PostgreSQL, Ruby, Apache HTTP Server, and PHP.
-           - `Definition <https://github.com/c9/templates/blob/master/workspace/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-android <https://hub.docker.com/r/cloud9/ws-android/>`_
            - The contents of the :code:`cloud9/workspace` image with the Android SDK, Gradle, and common Android tools.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-android/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-cpp <https://hub.docker.com/r/cloud9/ws-cpp/>`_
            - The contents of the :code:`cloud9/workspace` image with the GNU Compiler Collection (GCC) and sample C and C++ command line applications.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-cpp/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-default <https://hub.docker.com/r/cloud9/ws-default/>`_
            - The contents of the :code:`cloud9/workspace` image with a basic readme file.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-default/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-html5 <https://hub.docker.com/r/cloud9/ws-html5/>`_
            - The contents of the :code:`cloud9/workspace` image with a sample HTML file.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-html5/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-meteor <https://hub.docker.com/r/cloud9/ws-meteor/>`_
            - The contents of the :code:`cloud9/workspace` image with Meteor and a sample Meteor application.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-meteor/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-nodejs <https://hub.docker.com/r/cloud9/ws-nodejs/>`_ (this sample)
            - The contents of the :code:`cloud9/workspace` image with additional versions of Node.js and a sample chat server application.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-nodejs/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-php <https://hub.docker.com/r/cloud9/ws-php/>`_
            - The contents of the :code:`cloud9/workspace` image with a sample PHP application.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-php/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-python-plain <https://hub.docker.com/r/cloud9/ws-python-plain/>`_
            - The contents of the :code:`cloud9/workspace` image with several versions of Python and a sample web application.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-python-plain/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-python <https://hub.docker.com/r/cloud9/ws-python/>`_
            - The contents of the :code:`cloud9/workspace` image with Django.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-python/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-ruby <https://hub.docker.com/r/cloud9/ws-ruby/>`_
            - The contents of the :code:`cloud9/workspace` image with several versions of Ruby and Ruby on Rails.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-ruby/Dockerfile>`_
+           - `Definition`__
          * - `cloud9/ws-wordpress <https://hub.docker.com/r/cloud9/ws-wordpress/>`_
            - The contents of the :code:`cloud9/workspace` image with WordPress.
-           - `Definition <https://github.com/c9/templates/blob/master/ws-wordpress/Dockerfile>`_
+           - `Definition`__
+
+      __ https://github.com/c9/templates/blob/master/workspace/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-android/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-cpp/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-default/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-html5/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-meteor/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-nodejs/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-php/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-python-plain/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-python/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-ruby/Dockerfile
+      __ https://github.com/c9/templates/blob/master/ws-wordpress/Dockerfile
 
 #. On the instance, create a file that contains the |AC9| SSH public key for the Docker container to use. To do this, in the same directory as the :file:`Dockerfile` file,
    create a file named :file:`authorized_keys`, for example, by running the :command:`touch` command.

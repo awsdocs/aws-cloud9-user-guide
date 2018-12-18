@@ -100,6 +100,8 @@ Topics in This Guide
      - :ref:`Docker Sample <sample-docker>`
    * - Invite others to use an |env| along with you, in real time and with text chat support.
      - :ref:`Working with Shared Environments <share-environment>`
+   * - Work with code for intelligent robotics applications in AWS RoboMaker.
+     - `Developing with AWS Cloud9 <https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html>`_ in the *AWS RoboMaker Developer Guide*
 
 Related Videos
 --------------

@@ -373,11 +373,16 @@ To invoke the function, see :ref:`lambda-functions-invoke`. If the function has 
 Create and Deploy |LAM| Functions with the AWS Serverless Application Repository
 ================================================================================
 
-You can use the |AC9IDE| and the `AWS Serverless Application Repository <https://aws.amazon.com/serverless/serverlessrepo/>`_ to create multiple |LAM| functions at the same time,
+You can use the |AC9IDE| and the `AWS Serverless Application Repository`__ to create multiple |LAM| functions at the same time,
 |LAM| functions along with supporting components at the same time, or |LAM| functions that are owned by entities other than AWS. If you already have |LAM| functions in your
 AWS account for the AWS Region you set earlier, skip ahead to :ref:`lambda-functions-import`.
 
-#. In a separate web browser tab, open the `AWS Serverless Application Repository <https://serverlessrepo.aws.amazon.com>`_.
+__ https://aws.amazon.com/serverless/serverlessrepo/
+
+#. In a separate web browser tab, open the `AWS Serverless Application Repository`__.
+
+   __ https://serverlessrepo.aws.amazon.com
+
 #. Find the serverless application you want to create, and then choose the title of the serverless application that you want inside of its card.
    (If the card isn't visible, begin typing information about the serverless application that you want in the :guilabel:`Search applications by name, description, or labels` box to show it.)
 #. On the :guilabel:`Application details` page that appears, if a URL for a Git-based repository is displayed, copy that URL (for example, :code:`https://github.com/USER_NAME/REPOSITORY_NAME`).

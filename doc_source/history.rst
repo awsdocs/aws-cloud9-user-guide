@@ -20,7 +20,7 @@ Document History for the |AC9-ug|
         
 Here is a list of significant changes to the *AWS Cloud9 User Guide*.
 
-**Latest documentation update:** October 2, 2018
+**Latest documentation update:** December 7, 2018
 
 .. list-table::
    :widths: 2 3 2
@@ -29,6 +29,14 @@ Here is a list of significant changes to the *AWS Cloud9 User Guide*.
    * - **Change**
      - **Description**
      - **Date Changed**
+   * - New content
+     - |AC9| now supports shared VPCs in |VPC|. For more information, see :ref:`Amazon VPC Requirements for AWS Cloud9 <vpc-settings-requirements>`.
+     - December 7, 2018
+   * - AWS RoboMaker integration
+     - |AC9| now supports AWS RoboMaker, a service that makes it easy to develop, test, and deploy intelligent robotics applications at scale. For more information, see 
+       `Getting Started with AWS RoboMaker <https://docs.aws.amazon.com/robomaker/latest/dg/getting-started.html>`_ and 
+       `Developing with AWS Cloud9 <https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html>`_ in the *AWS RoboMaker Developer Guide*.
+     - November 26, 2018
    * - New topic
      - The |AC9IDE| now provides additional productivity features for some languages in the context of a language project.
        For more information, see :ref:`Working with Language Projects <projects>`.

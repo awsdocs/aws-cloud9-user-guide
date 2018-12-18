@@ -43,9 +43,15 @@ Use the following checklist to confirm that the VPC meets **all** of the followi
    * - **Criteria**
      - **How to confirm**
      - **Additional resources**
-   * - The VPC must be in the same AWS account and AWS Region as the |envfirstlong|.
+   * - The VPC can be in the same AWS account and AWS Region as the |envfirstlong|.
+   
+       |mdash| OR |mdash|
+   
+       The VPC can be a shared VPC in a different AWS account than the |env|. (However, the VPC must be in the same AWS Region as the |env|).
      - :ref:`vpc-settings-requirements-list-vpcs`
-     - :ref:`vpc-settings-create-vpc`
+     - 
+       * :ref:`vpc-settings-create-vpc`
+       * :VPC-ug:`Working with Shared VPCs <vpc-sharing>` in the |VPC-ug|
    * - The VPC must have a public subnet. (A subnet is public if its traffic is routed to an internet gateway.)
      - 
        * :ref:`vpc-settings-requirements-subnets-view`

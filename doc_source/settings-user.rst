@@ -143,14 +143,14 @@ Collaboration
 
 .. _settings-user-change-tree-and-navigate:
 
-Tree & Navigate
----------------
+Tree and Go Panel
+-----------------
 
-:guilabel:`Scope Navigate to Favorites`
-   If enabled, the navigation window only works with items in the :guilabel:`Environment` window's :guilabel:`Favorites` section.
+:guilabel:`Scope Go to Anything to Favorites`
+   If enabled, :guilabel:`Go to File` in the :guilabel:`Go` window displays results scoped only to :guilabel:`Favorites` in the :guilabel:`Environment` window.
 
-:guilabel:`Enable Preview on Navigation`
-   If enabled, |AC9| displays the chosen file in the navigation window with a single mouse click instead of a double mouse click.
+:guilabel:`Enable Preview on Go to Anything`
+   If enabled, :guilabel:`Go to File` in the :guilabel:`Go` window displays matching file contents as you type.
 
 :guilabel:`Enable Preview on Tree Selection`
    If enabled, |AC9| displays the chosen file with a single mouse click instead of a double mouse click.

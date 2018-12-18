@@ -95,34 +95,34 @@ Step 1.1: Install Node Version Manager (nvm)
 Step 1.2: Install Node.js
 -------------------------
 
-#. Confirm whether you already have Node.js installed, and if you do, confirm that the installed version is 8.11.0 or greater. 
-   **This sample has been tested with Node.js 8.11.0.** To check, 
+#. Confirm whether you already have Node.js installed, and if you do, confirm that the installed version is 8.12.0 or greater. 
+   **This sample has been tested with Node.js 8.12.0.** To check, 
    with the terminal session still open in the |IDE|, run the :command:`node` command with the :command:`--version` option. 
    
    .. code-block:: sh
    
       node --version
       
-   If you do have Node.js installed, the output contains the version number. If the version number is v8.11.0, skip ahead to :ref:`sample-cdk-install-typescript`.
+   If you do have Node.js installed, the output contains the version number. If the version number is v8.12.0, skip ahead to :ref:`sample-cdk-install-typescript`.
 
-#. Install Node.js 8.11.0 by running the :command:`nvm` command with the :command:`install` action and the version number, as follows.
+#. Install Node.js 8.12.0 by running the :command:`nvm` command with the :command:`install` action and the version number, as follows.
 
    .. code-block:: sh 
 
-      nvm install v8.11.0
+      nvm install v8.12.0
 
-#. Start using Node.js 8.11.0. To do this, run the :command:`nvm` command along with the :command:`alias` action, the version number to alias, and the version to 
+#. Start using Node.js 8.12.0. To do this, run the :command:`nvm` command along with the :command:`alias` action, the version number to alias, and the version to 
    use for that alias, as follows.
 
    .. code-block:: sh 
 
-      nvm alias default 8.11.0
+      nvm alias default 8.12.0
 
-   .. note:: The preceding command sets Node.js 8.11.0 as the default version of Node.js. Alternatively, you can run the :command:`nvm` command along with the :command:`use` 
+   .. note:: The preceding command sets Node.js 8.12.0 as the default version of Node.js. Alternatively, you can run the :command:`nvm` command along with the :command:`use` 
       action instead of the :command:`alias` action (for example, 
-      :command:`nvm use 8.11.0`). However, the :command:`use` action causes that version of Node.js to run only while the current terminal session is running.
+      :command:`nvm use 8.12.0`). However, the :command:`use` action causes that version of Node.js to run only while the current terminal session is running.
 
-#. To confirm that you're using Node.js 8.11.0, run the :command:`node --version` command again. If the correct version is installed, the output contains version v8.11.0.
+#. To confirm that you're using Node.js 8.12.0, run the :command:`node --version` command again. If the correct version is installed, the output contains version v8.12.0.
 
 .. _sample-cdk-install-typescript:
 
@@ -201,17 +201,18 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
       mkdir ~/environment/hello-cdk  # Create the directory.
       cd ~/environment/hello-cdk     # Switch to the directory.
 
-#. Set up the directory as a TypeScript language project for the AWS CDK. To do this, run the :command:`cdk` command with the :command:`init` action and the 
-   :command:`--language` option along with the name of the programming language.
+#. Set up the directory as a TypeScript language project for the AWS CDK. To do this, run the :command:`cdk` command with the :command:`init` action, the 
+   :command:`sample-app` template, and the :command:`--language` option along with the name of the programming language.
 
    .. code-block:: sh 
 
-      cdk init --language typescript
+      cdk init sample-app --language typescript
 
    This creates the following files and subdirectories in the directory.
 
    * A hidden :file:`.git` subdirectory and a hidden :file:`.gitignore` file, which makes the project compatible with source control tools such as Git.
-   * A :file:`bin` subdirectory, which includes a :file:`hello-cdk.ts` file. This file contains the code for your AWS CDK app and stack. This code is described in the next step in this procedure.
+   * A :file:`lib` subdirectory, which includes a :file:`hello-cdk-stack.ts` file. This file contains the code for your AWS CDK stack. This code is described in the next step in this procedure.
+   * A :file:`bin` subdirectory, which includes a :file:`hello-cdk.ts` file. This file contains the entry point for your AWS CDK app.
    * A :file:`node_modules` subdirectory, which contains supporting code packages that the app and stack can use as needed.
    * A hidden :file:`.npmignore` file, which lists the types of subdirectories and files that :command:`npm` doesn't need when it builds the code.
    * A :file:`cdk.json` file, which contains information to make running the :command:`cdk` command easier.
@@ -220,16 +221,15 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
    * A :file:`README.md` file, which lists useful commands you can run with :command:`npm` and the AWS CDK.
    * A :file:`tsconfig.json` file, which contains information to make running the :command:`tsc` command easier and with possibly fewer build and run errors.
 
-#. In the :guilabel:`Environment` window, open the :file:`hello-cdk/bin/hello-cdk.ts` file, and browse the following code in that file.
+#. In the :guilabel:`Environment` window, open the :file:`hello-cdk/lib/hello-cdk-stack.ts` file, and browse the following code in that file.
 
    .. code-block:: typescript
 
-      #!/usr/bin/env node
-      import sns = ('@aws-cdk/aws-sns');
-      import sqs = ('@aws-cdk/aws-sqs');
-      import cdk = ('@aws-cdk/cdk');
+      import sns = require('@aws-cdk/aws-sns');
+      import sqs = require('@aws-cdk/aws-sqs');
+      import cdk = require('@aws-cdk/cdk');
 
-      class HelloCdkStack extends cdk.Stack {
+      export class HelloCdkStack extends cdk.Stack {
         constructor(parent: cdk.App, name: string, props?: cdk.StackProps) {
           super(parent, name, props);
 
@@ -242,20 +242,27 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
           topic.subscribeQueue(queue);
         }
       }
-
-      const app = new cdk.App(process.argv);
       
-      new HelloCdkStack(app, 'HelloCdkStack');
-
-      process.stdout.write(app.run());
-      
-   * The :code:`App`, :code:`Stack`, :code:`StackProps`, :code:`Topic`, and :code:`Queue` classes represent an executable program, 
-     an |CFN| stack and its properties, an |SNS| topic, and an |SQS| queue, respectively.
+   * The :code:`Stack`, :code:`App`, :code:`StackProps`, :code:`Queue`, and :code:`Topic` classes represent 
+     an |CFN| stack and its properties, an executable program, an |SQS| queue, and an |SNS| topic, respectively.
    * The :code:`HelloCdkStack` class represents the |CFN| stack for this application. This stack contains the new |SQS| queue and |SNS| topic 
      for this application.
-   * The :code:`run` method runs the application, which instructs |CFN| to deploy the stack.
 
-#. Use :command:`npm` to run the TypeScript compiler to check for coding errors, and then enable the AWS CDK to execute the project's :file:`bin/hello-cdk.js` file. 
+#. In the :guilabel:`Environment` window, open the :file:`hello-cdk/bin/hello-cdk.ts` file, and browse the following code in that file.
+
+   .. code-block:: typescript
+
+      #!/usr/bin/env node
+      import cdk = require('@aws-cdk/cdk');
+      import { HelloCdkStack } from '../lib/hello-cdk-stack';
+
+      const app = new cdk.App();
+      new HelloCdkStack(app, 'HelloCdkStack');
+      app.run();
+
+   This code loads, instantiates, and then runs the :code:`HelloCdkStack` class from the :file:`hello-cdk/lib/hello-cdk-stack.ts` file.
+
+#. Use :command:`npm` to run the TypeScript compiler to check for coding errors, and then enable the AWS CDK to execute the project's :file:`hello-cdk/bin/hello-cdk.js` file. 
    To do this, from the project's root directory, run the :command:`npm` command with the :command:`run` action, specifying 
    the :command:`build` command value in the :file:`package.json` file, as follows.
 
@@ -263,14 +270,16 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
 
       npm run build
 
-   The preceding command runs the TypeScript compiler, which adds a supporting :file:`bin/hello-cdk.d.ts` file and also transpiles the :file:`bin/hello-cdk.ts` file into a :file:`bin/hello-cdk.js` file. 
+   The preceding command runs the TypeScript compiler, which adds supporting :file:`hello-cdk/bin/hello-cdk.d.ts` and :file:`hello-cdk/lib/hello-cdk-stack.d-ts` files. The compiler 
+   also transpiles the :file:`hello-cdk/bin/hello-cdk.ts` and :file:`hello-cdk/lib/hello-cdk-stack.ts` files into :file:`hello-cdk/bin/hello-cdk.js` and 
+   :file:`hello-cdk/lib/hello-cdk-stack.js` files. 
 
 .. _sample-cdk-run:
 
 Step 3: Run the Code
 ====================
 
-In this step, you instruct the AWS CDK to create a |CFN| stack template based on the code in the :file:`bin/hello-cdk.js` file. You then instruct the AWS CDK to deploy the stack, which 
+In this step, you instruct the AWS CDK to create a |CFN| stack template based on the code in the :file:`hello-cdk/bin/hello-cdk.js` file. You then instruct the AWS CDK to deploy the stack, which 
 creates the |SNS| topic and |SQS| queue and then subscribes the queue to the topic. You then confirm that the topic and queue were successfully deployed by sending a message from the topic to the queue.
 
 #. Have the AWS CDK create the |CFN| stack template. To do this, with the terminal session still open in the |IDE|, from the project's root directory, run the :command:`cdk` command with the 
@@ -281,6 +290,15 @@ creates the |SNS| topic and |SQS| queue and then subscribes the queue to the top
       cdk synth HelloCdkStack
 
    If successful, the output displays the |CFN| stack template's :code:`Resources` section.
+
+#. The first time that you deploy an AWS CDK app into an environment for a specific AWS account and AWS Region combination, you must install a *bootstrap stack*. 
+   This stack includes various resources that the AWS CDK needs to complete its various operations. For example, this stack includes an |S3| bucket that the AWS CDK uses to store templates 
+   and assets during its deployment processes. To install the bootstrap stack, run the :command:`cdk` command with the 
+   :command:`bootstrap` action.
+
+   .. code-block:: sh 
+
+      cdk bootstrap
 
 #. Have the AWS CDK run the |CFN| stack template to deploy the stack. To do this, from the project's root directory, run the :command:`cdk` command with the 
    :command:`deploy` action and the name of the stack.

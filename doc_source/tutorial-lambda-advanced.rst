@@ -483,6 +483,8 @@ Explore any or all of the following topics to continue getting familiar with |AC
      - :ref:`Working with AWS CodePipeline <codepipeline-repos>`
    * - Use |AC9| with the |cli|, the aws-shell, |ACClong|, the AWS Cloud Development Kit (AWS CDK), GitHub, or |DDBlong|, as well as Node.js, Python, or other programming languages
      - :ref:`Samples <samples>`
+   * - Work with code for intelligent robotics applications in AWS RoboMaker.
+     - `Developing with AWS Cloud9 <https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html>`_ in the *AWS RoboMaker Developer Guide*
 
 To get help with |AC9| from the community, see the `AWS Cloud9 Discussion Forum <https://forums.aws.amazon.com/forum.jspa?forumID=268>`_. (When you enter this forum, AWS might require you to sign in.)
 
