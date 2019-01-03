@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -19,6 +19,9 @@ Troubleshooting |AC9long|
         Provides troubleshooting guidance for AWS Cloud9.
 
 Use the following information to help you identify and address issues with |AC9|.
+
+If your issue is not listed, or if you need additional help, see the `AWS Cloud9 Discussion Forum <https://forums.aws.amazon.com/forum.jspa?forumID=268>`_. (When you enter this forum, AWS might require you to sign in.) 
+You can also `contact us <https://aws.amazon.com/contact-us/>`_ directly.
 
 * :ref:`troubleshooting-sts-assume-role`
 * :ref:`troubleshooting-access-not-authorized`
@@ -192,24 +195,11 @@ Cannot Open an |envtitle|
 The |AC9| Installer Hangs or Fails
 ==================================
 
-**Issue:** When you open an |envfirstssh|, you are prompted to run the :guilabel:`AWS Cloud9 Installer`. When you try to run it, it either hangs or displays errors, and you cannot use the |AC9IDE| for
-the |env| as expected. (In some cases, a message might display before you are prompted to run the :guilabel:`AWS Cloud9 Installer`. The message states that opening the |env| is taking longer than expected.)
+**Issue:** When you :ref:`download and run the AWS Cloud9 Installer <installer-download-run>`, one or more error messages display, and the installer script does not show :code:`Done`.
 
-**Cause:** The :guilabel:`AWS Cloud9 Installer` cannot run a required setup script to properly set up the |env|.
+**Cause:** The |AC9| Installer has encountered one or more errors that it cannot recover from and therefore fails.
 
-**Solution:** Manually run the :file:`install.sh` script that the :guilabel:`AWS Cloud9 Installer` unsuccessfully tried to run, as follows:
-
-#. Close the web browser tab for the |env|, which stops the :guilabel:`AWS Cloud9 Installer`.
-#. Connect to the cloud compute instance or your own server using an SSH connection client outside of |AC9|, for example by using the :code:`ssh` command or PuTTY.
-#. Run one of the following commands on the cloud compute instance or your own server:
-
-   .. code-block:: sh
-
-      curl -L https://raw.githubusercontent.com/c9/install/master/install.sh | bash
-      wget -O - https://raw.githubusercontent.com/c9/install/master/install.sh | bash
-
-#. Try opening the |env| again. You might be prompted to run the :guilabel:`AWS Cloud9 Installer` again. When you try to run it this time though, it should run without hangs or errors.
-   However, depending on your Linux distribution and build, you might need to repeat this process to successfully set up the |env|.
+**Solution:** See common issues, their possible causes, and recommended solutions, in :ref:`installer-troubleshooting`.
 
 .. _troubleshooting-python-ssh:
 

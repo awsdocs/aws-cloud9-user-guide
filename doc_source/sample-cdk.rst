@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -221,7 +221,7 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
    * A :file:`README.md` file, which lists useful commands you can run with :command:`npm` and the AWS CDK.
    * A :file:`tsconfig.json` file, which contains information to make running the :command:`tsc` command easier and with possibly fewer build and run errors.
 
-#. In the :guilabel:`Environment` window, open the :file:`hello-cdk/lib/hello-cdk-stack.ts` file, and browse the following code in that file.
+#. In the :guilabel:`Environment` window, open the :file:`lib/hello-cdk-stack.ts` file, and browse the following code in that file.
 
    .. code-block:: typescript
 
@@ -248,7 +248,7 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
    * The :code:`HelloCdkStack` class represents the |CFN| stack for this application. This stack contains the new |SQS| queue and |SNS| topic 
      for this application.
 
-#. In the :guilabel:`Environment` window, open the :file:`hello-cdk/bin/hello-cdk.ts` file, and browse the following code in that file.
+#. In the :guilabel:`Environment` window, open the :file:`bin/hello-cdk.ts` file, and browse the following code in that file.
 
    .. code-block:: typescript
 
@@ -260,9 +260,9 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
       new HelloCdkStack(app, 'HelloCdkStack');
       app.run();
 
-   This code loads, instantiates, and then runs the :code:`HelloCdkStack` class from the :file:`hello-cdk/lib/hello-cdk-stack.ts` file.
+   This code loads, instantiates, and then runs the :code:`HelloCdkStack` class from the :file:`lib/hello-cdk-stack.ts` file.
 
-#. Use :command:`npm` to run the TypeScript compiler to check for coding errors, and then enable the AWS CDK to execute the project's :file:`hello-cdk/bin/hello-cdk.js` file. 
+#. Use :command:`npm` to run the TypeScript compiler to check for coding errors, and then enable the AWS CDK to execute the project's :file:`bin/hello-cdk.js` file. 
    To do this, from the project's root directory, run the :command:`npm` command with the :command:`run` action, specifying 
    the :command:`build` command value in the :file:`package.json` file, as follows.
 
@@ -270,16 +270,16 @@ creates an |SNS| topic and an |SQS| queue in your AWS account and then subscribe
 
       npm run build
 
-   The preceding command runs the TypeScript compiler, which adds supporting :file:`hello-cdk/bin/hello-cdk.d.ts` and :file:`hello-cdk/lib/hello-cdk-stack.d-ts` files. The compiler 
-   also transpiles the :file:`hello-cdk/bin/hello-cdk.ts` and :file:`hello-cdk/lib/hello-cdk-stack.ts` files into :file:`hello-cdk/bin/hello-cdk.js` and 
-   :file:`hello-cdk/lib/hello-cdk-stack.js` files. 
+   The preceding command runs the TypeScript compiler, which adds supporting :file:`bin/hello-cdk.d.ts` and :file:`lib/hello-cdk-stack.d.ts` files. The compiler 
+   also transpiles the :file:`hello-cdk.ts` and :file:`hello-cdk-stack.ts` files into :file:`hello-cdk.js` and 
+   :file:`hello-cdk-stack.js` files. 
 
 .. _sample-cdk-run:
 
 Step 3: Run the Code
 ====================
 
-In this step, you instruct the AWS CDK to create a |CFN| stack template based on the code in the :file:`hello-cdk/bin/hello-cdk.js` file. You then instruct the AWS CDK to deploy the stack, which 
+In this step, you instruct the AWS CDK to create a |CFN| stack template based on the code in the :file:`bin/hello-cdk.js` file. You then instruct the AWS CDK to deploy the stack, which 
 creates the |SNS| topic and |SQS| queue and then subscribes the queue to the topic. You then confirm that the topic and queue were successfully deployed by sending a message from the topic to the queue.
 
 #. Have the AWS CDK create the |CFN| stack template. To do this, with the terminal session still open in the |IDE|, from the project's root directory, run the :command:`cdk` command with the 

@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -140,6 +140,8 @@ In this step, you connect to the running instance and then set it up so that |AC
    .. note:: If the output of the command :command:`which node` is something like :code:`/usr/sbin/node`, |AC9| won't be able to find Node.js in that 
       path. Instead, use nvm to install Node.js, as described in the previous step in this procedure. Then run the command :code:`which node` again and 
       note the new value that appears.
+
+#. :ref:`Download and run the AWS Cloud9 Installer <installer-download-run>` on the instance.
 
 .. _lightsail-instances-environment:
 

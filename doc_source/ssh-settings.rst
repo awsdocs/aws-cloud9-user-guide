@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -80,9 +80,18 @@ SSH Host Requirements
 
 The existing cloud compute instance or your own server must meet the following requirements for |AC9| to connect it to an |envssh|.
 
-* It must run Linux.
+* It must run Linux. (|AC9| doesn't support Windows.)
+* It must be reachable over the public internet by using SSH. If it is reachable only through a virtual private cloud (VPC) or virtual private network (VPN), that 
+  VPC or VPN must have access to the public internet.
+* If the host is an existing AWS cloud compute instance that is part of an |VPClong| (|VPC|), there are additional requirements. See :ref:`Amazon VPC Settings <vpc-settings>`.
+* It must have Python installed, and the **version must be 2.7**. To check the version, from the existing instance's or server's terminal, run the command :command:`python --version`.
+  To install Python 2.7 on the instance or server, see one of the following:
 
-  .. note:: To log in to an existing AWS cloud compute instance to verify and meet requirements, see one or more of the following resources:
+  * :ref:`sample-python-install` in the :title:`Python Sample`.
+  * `Download Python <https://www.python.org/downloads/>`_ from the Python website and see `Installing
+    Packages <https://packaging.python.org/installing/>`_ in the :title:`Python Packaging User Guide`.
+
+  .. note:: To connect to an existing AWS cloud compute instance to verify and meet requirements, see one or more of the following resources:
 
      * For |EC2|, see :EC2-ug:`Connect to Your Linux Instance <AccessingInstances>` in the |EC2-ug|.
      * For Amazon Lightsail, see `Connect to your Linux/Unix-based Lightsail instance <https://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-connect-to-your-instance-virtual-private-server>`_ in the *Amazon Lightsail Documentation*.
@@ -90,16 +99,8 @@ The existing cloud compute instance or your own server must meet the following r
      * For |OPSlong|, see :OPS-ug:`Using SSH to Log In to a Linux Instance <workinginstances-ssh>` in the |OPS-ug|.
      * For other AWS services, see the service's `documentation <https://aws.amazon.com/documentation/>`_.
 
-* It must be reachable over the public internet.
-
-  .. note:: If you are using an existing AWS cloud compute instance, and that instance is part of an |VPClong| (|VPC|), there are additional requirements. See :ref:`Amazon VPC Settings <vpc-settings>`.
-
-* It must have Python installed, and the **version must be 2.7**. To check the version, from the existing instance's or server's terminal, run the command :command:`python --version`.
-  To install Python 2.7 on the instance or server, see one of the following:
-
-  * :ref:`sample-python-install` in the :title:`Python Sample`.
-  * `Download Python <https://www.python.org/downloads/>`_ from the Python website and see `Installing
-    Packages <https://packaging.python.org/installing/>`_ in the :title:`Python Packaging User Guide`.
+     To connect to your own server to verify and meet requirements, you could search the internet using a phrase such as "connect to a server by using the ssh command" (from macOS or Linux) or 
+     "connect to a server by using PuTTY" (from Windows).
 
 * It must have Node.js installed, and the **version must be 0.6.16 or later**. To check the version, from the existing instance's or server's terminal, run the command :command:`node --version`.
   To install Node.js on the instance or server, see one of the following:
@@ -108,24 +109,21 @@ The existing cloud compute instance or your own server must meet the following r
   * `Installing Node.js via package manager <https://nodejs.org/en/download/package-manager/>`_ on the Node.js website.
   * `Node Version Manager <http://nvm.sh>`_ on GitHub.
 
-* The public SSH key value that |AC9| generates for the |envssh| must be stored in the correct location on the existing instance or server. To do this, as you :ref:`create a new environment <create-environment>`,
-  with the create environment wizard open to the :guilabel:`Configure settings` page and :guilabel:`Connect and run remote server (SSH)` chosen, choose :guilabel:`Copy key to clipboard`.
-  Paste the public SSH key value that was copied into the :file:`~/.ssh/authorized_keys` file on the existing instance or server.
-
-  .. note:: To see the public SSH key value that was copied, expand :guilabel:`View public SSH key` on the :guilabel:`Configure settings` page.
-
 * The path to the directory on the existing instance or server that you want |AC9| to start from after login must have its access permissions set to :code:`rwxr-xr-x`.
-  This means read-write-execute permissions for the owner, read-execute permissions for the group, and read-execute permissions for others. For example, if the directory's path is :code:`~`, you can set
-  these permissions on the directory by running the :command:`chmod` command from the instance's or server's terminal, as follows.
+  This means read-write-execute permissions for the owner that corresponds to the login name that you specify in the :ref:`create environment wizard <create-environment-ssh>` for :guilabel:`User` on the :guilabel:`Configure settings` page, 
+  read-execute permissions for the group that this owner belongs to, and read-execute permissions for others.
+  
+  For example, if the directory's path is :code:`~` 
+  (where :file:`~` represents the home directory for the login name that you specify for :guilabel:`User` on the :guilabel:`Configure settings` page), you can set
+  these permissions on the directory by running the :command:`chmod` command on the instance or server, as follows.
 
   .. code-block:: sh
 
      sudo chmod u=rwx,g=rx,o=rx ~
 
+* :ref:`Download and run the AWS Cloud9 Installer <installer-download-run>` on the existing instance or server.
 * Optionally, you can restrict inbound traffic over SSH to only the IP addresses that |AC9| uses. To do this, set inbound SSH traffic to the IP ranges as described 
   in :ref:`Inbound SSH IP Address Ranges <ip-ranges>`.
-
-* If the |envssh| will be associated with an AWS cloud compute instance that runs within an |VPClong| (|VPC|), there are additional requirements. See :ref:`vpc-settings`.
 
 After you are sure your instance or server meets the preceding requirements, :ref:`create an SSH environment
 <create-environment-ssh>` for |AC9| to connect it to.

@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -35,6 +35,7 @@ Welcome to the |AC9-ug|. Use this guide to help you get started with and use |AC
    Samples <samples>
    Amazon VPC Settings <vpc-settings>
    SSH Environment Host Requirements <ssh-settings>
+   AWS Cloud9 Installer <installer>
    Inbound SSH IP Address Ranges <ip-ranges>
    AMI Contents <ami-contents>
    Authentication and Access Control <auth-and-access-control>

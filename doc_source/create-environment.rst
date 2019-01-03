@@ -1,4 +1,4 @@
-.. Copyright 2010-2018 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+.. Copyright 2010-2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 
    This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0
    International License (the "License"). You may not use this file except in compliance with the
@@ -265,35 +265,27 @@ Prerequisites
 
 * Make sure you completed the steps in :ref:`Express Setup <setup-express>` or :ref:`Team Setup <setup>`, so that you can sign in to the |AC9| console and create |envplural|.
 * Identify an existing cloud compute instance (for example an |EC2| instance in your AWS account), or your own server, that you want |AC9| to connect to the |env|.
-* The existing instance or your own server must be running Linux. |AC9| doesn't support Windows.
-* You must be able to reach the existing instance or your own server over the public Internet by using SSH. You cannot use this procedure if you
-  can only reach the instance or your own server through a virtual private cloud (VPC) or virtual private network (VPN) **and** that VPC or VPN doesn't have access to the public internet.
-* If the existing AWS instance is part of an |VPClong| (|VPC|), the VPC must meet |AC9| requirements. 
-  For details, see :ref:`Amazon VPC Settings <vpc-settings>`.
-* The existing instance or server must have Python installed, and the **version must be 2.7**. To check your version, from your instance's or server's terminal, run the command :command:`python --version`. To install Python 2.7 on your server, see one of the following.
-
-  * :ref:`sample-python-install` in the :title:`Python Sample`.
-  * `Download Python <https://www.python.org/downloads/>`_ from the Python website and see `Installing 
-    Packages <https://packaging.python.org/installing/>`_ in the :title:`Python Packaging User Guide`.
-
-* The existing instance or server must have Node.js installed, and the **version must be 0.6.16 or later**. To check your version, from your instance's or server's terminal, run the command :command:`node --version`. To install Node.js on your server, see one of the following.
-
-  * :ref:`sample-nodejs-install` in the :title:`Node.js Sample`.
-  * `Installing Node.js via package manager <https://nodejs.org/en/download/package-manager/>`_ on the Node.js website.
-  * `Node Version Manager <http://nvm.sh>`_ on GitHub.
-
-* The directory that you want |AC9| to start from after login on the existing instance or server must have its access permissions set to :code:`rwxr-xr-x`. This means read-write-execute permissions for the owner, 
-  read-execute permissions for the group, and read-execute permissions for others. For example, if the directory's path is :code:`~`, you can set 
-  these permissions on the directory by running the :command:`chmod` command on the instance or server, as follows.
-
-  .. code-block:: sh
-
-     sudo chmod u=rwx,g=rx,o=rx ~
+* Make sure that the existing instance or your own server meets all of the :ref:`SSH Host Requirements <ssh-settings-requirements>`. This includes having specific versions of Python, 
+  Node.js, and other components installed; setting specific permissions on the directory that you want |AC9| to start from after login; and setting up any associated |VPClong|.
 
 Create the |envsshtitle|
 ------------------------
 
 #. Make sure you completed the preceding prerequisites. 
+#. Connect to your existing instance or your own server by using an SSH client, if you are not already connected to it. You must do 
+   this so that you can add the necessary public SSH key value to the instance or server, as described later in this procedure.
+
+   .. note:: To connect to an existing AWS cloud compute instance, see one or more of the following resources:
+
+      * For |EC2|, see :EC2-ug:`Connect to Your Linux Instance <AccessingInstances>` in the |EC2-ug|.
+      * For Amazon Lightsail, see `Connect to your Linux/Unix-based Lightsail instance <https://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-connect-to-your-instance-virtual-private-server>`_ in the *Amazon Lightsail Documentation*.
+      * For |AEBlong|, see :AEB-dg:`Listing and Connecting to Server Instances <using-features.ec2connect>` in the |AEB-dg|.
+      * For |OPSlong|, see :OPS-ug:`Using SSH to Log In to a Linux Instance <workinginstances-ssh>` in the |OPS-ug|.
+      * For other AWS services, see the service's `documentation <https://aws.amazon.com/documentation/>`_. 
+   
+      To connect to your own server, you could search the internet using a phrase such as "connect to a server by using the ssh command" (from macOS or Linux) or 
+      "connect to a server by using PuTTY" (from Windows).
+
 #. Sign in to the |AC9| console, at |AC9Console_link|.
 #. After you sign in to the |AC9| console, in the top navigation bar, choose an AWS Region to create the |env| in. For a list of available AWS Regions, see 
    :aws-gen-ref:`AWS Cloud9 <rande.html#cloud9_region>` in the |AWS-gr|.
@@ -316,14 +308,13 @@ Create the |envsshtitle|
 #. To add a description to your |env|, type it in :guilabel:`Description`.
 #. Choose :guilabel:`Next step`.
 #. For :guilabel:`Environment type:`, choose :guilabel:`Connect and run in remote server (SSH)`.
-#. Choose :guilabel:`Copy key to clipboard`. (This is between :guilabel:`View public SSH key` and :guilabel:`Advanced settings`.) 
-   Paste the public SSH key value that was copied into the :file:`~/.ssh/authorized_keys` file on the existing instance or server.
+#. For :guilabel:`User`, type the login name you used to connect to the instance or server earlier in this procedure. 
+   For example, for an AWS cloud compute instance, it might be :code:`ec2-user`, :code:`ubuntu`, or :code:`root`.
 
-   .. note:: To see the public SSH key value that was copied, expand :guilabel:`View public SSH key`.
+   .. note:: For best results, we recommend that the login name is associated with administrative privileges or an administrator user on the instance or server. 
+      Specifically, this login name should own the Node.js installation on the instance or server. To check this, from your instance's or server's terminal, run the 
+      command :command:`ls -l $(which node)` (or :command:`ls -l $(nvm which node)` if you're using nvm). This command displays the Node.js installation's owner's name (along with the installation's permissions, group name, and location).
 
-#. After you paste the public SSH key value, back on the :guilabel:`Configure settings` page in the |AC9| console, 
-   for :guilabel:`User`, type the login name you use for the instance or server. 
-   For example, for an |EC2| instance running Amazon Linux, it might be :code:`ec2-user`. For another type of server, it might be :code:`root`.
 #. For :guilabel:`Host`, type the public IP address (preferred) or the hostname of the instance or server.
 #. For :guilabel:`Port`, type the port that you want |AC9| to use to try to connect to the instance or server, or leave the default port.
 #. To specify the path to the directory on the instance or server that you want |AC9| to start from after login, which you identified earlier in this procedure's prerequisites, expand :guilabel:`Advanced settings`, 
@@ -344,12 +335,16 @@ Create the |envsshtitle|
    * It must allow inbound access by any IP address over the specified port.
    * The public SSH key value that was copied into the :file:`~/.ssh/authorized_keys` file on the existing instance or server must also be copied into the :file:`~/.ssh/authorized_keys` file on the jump host.
 
+#. Choose :guilabel:`Copy key to clipboard`. (This is between :guilabel:`View public SSH key` and :guilabel:`Advanced settings`.) 
+   Paste the public SSH key value that was copied, into the :file:`~/.ssh/authorized_keys` file on the existing instance or server that you connected to earlier in this procedure. 
+   (:file:`~` represents the home directory for 
+   the login name that you specified for :guilabel:`User` earlier in this procedure.)
+
+   .. note:: To see the public SSH key value that was copied, expand :guilabel:`View public SSH key`.
+
 #. Choose :guilabel:`Next step`.
 #. On the :guilabel:`Review` page, choose :guilabel:`Create environment`. Wait while |AC9| creates your |env|. 
    This can take several minutes.
-
-   After |AC9| creates the |env|, it displays the |AC9IDE| for the |env|, and the :guilabel:`AWS Cloud9 installer` dialog box displays. 
-   Choose :guilabel:`Next` on each of these confirmation pages to complete the |env| setup process.
 
 If |AC9| doesn't display the |IDE| after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated
 network. For possible fixes, see :ref:`troubleshooting-env-loading` in *Troubleshooting*.
