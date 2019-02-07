@@ -1,0 +1,33 @@
+# Opening an Environment in AWS Cloud9<a name="open-environment"></a>
+
+This procedure describes how to open an environment in AWS Cloud9\.
+
+**Note**  
+This procedure assumes you have already created an AWS Cloud9 development environment\. To create an environment, see [Creating an Environment](create-environment.md)\.
+
+1. Sign in to the AWS Cloud9 console as follows:
+   + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
+   + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
+   + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
+   + If you're a student in a classroom, see your instructor for sign\-in instructions\.
+
+1. In the top navigation bar, choose the AWS Region where the environment is located\.  
+![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
+
+1. In the list of environments, for the environment you want to open, do one of the following\.
+   + Inside of the card, choose the **Open IDE** link\.  
+![\[Choosing an environment using the Open IDE link\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-open-ide.png)
+   + Select the card, and then choose the **Open IDE** button\.  
+![\[Choosing an environment using the Open IDE button\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-open-ide-card.png)
+
+If your environment is not displayed in the console, try doing one or more of the following actions to try to display it\.
++ In the side navigation bar, choose one or more of the following\.
+  + Choose **Your environments** to display all environments that your AWS entity owns within the selected AWS Region and AWS account\.
+  + Choose **Shared with you** to display all environments your AWS entity has been invited to within the selected AWS Region and AWS account\.
+  + Choose **Account environments** to display all environments within the selected AWS Region and AWS account that your AWS entity has permissions to display\.  
+![\[Environment list scope in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-env-list.png)
++ Choose the previous arrow, next arrow, or page number button to display more environments in the current scope\.  
+![\[Environment list page control in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-find-env.png)
++ If you think you should be a member of an environment, but the environment is not displayed in the **Shared with you** list, check with the environment owner\.
++ In the top navigation bar, choose a different AWS Region\.  
+![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)

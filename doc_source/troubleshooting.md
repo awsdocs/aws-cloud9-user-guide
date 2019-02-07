@@ -1,0 +1,317 @@
+# Troubleshooting AWS Cloud9<a name="troubleshooting"></a>
+
+Use the following information to help you identify and address issues with AWS Cloud9\.
+
+If your issue is not listed, or if you need additional help, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\) You can also [contact us](https://aws.amazon.com/contact-us/) directly\.
++  [Environment Creation Error: "AWS is currently verifying your AWS account"](#troubleshooting-account-verification) 
++  [Environment Creation Error: "Not authorized to perform sts:AssumeRole"](#troubleshooting-sts-assume-role) 
++  [Console Error: "User is not authorized to perform action on resource"](#troubleshooting-access-not-authorized) 
++  [Federated Identities Cannot Create Environments](#troubleshooting-federated-service-role) 
++  [Cannot Open an Environment](#troubleshooting-env-loading) 
++  [The AWS Cloud9 Installer Hangs or Fails](#troubleshooting-ssh-installer) 
++  [SSH Environment Error: "Python version 2\.7 is required to install pty\.js"](#troubleshooting-python-ssh) 
++  [Application Preview Tab Displays an Error or is Blank](#troubleshooting-app-preview) 
++  [Cannot Display Your Running Application Outside of the IDE](#troubleshooting-app-sharing) 
++  [After Reloading an Environment, You Must Refresh Application Preview](#troubleshooting-app-preview-refresh) 
++  [Unable to Preview Application in the AWS Cloud9 IDE with HTTP](#troubleshooting-app-preview-http) 
++  [Cannot Run Some Commands or Scripts in an EC2 Environment](#troubleshooting-rhel) 
++  [AWS CLI / aws\-shell Error: "The security token included in the request is invalid" in an EC2 environment](#troubleshooting-cli-invalid-token) 
++  [Amazon EC2 Instances Are Not Automatically Updated](#troubleshooting-update-ami) 
++  [Lambda Local Function Run Error: Cannot Install SAM Local](#troubleshooting-install-sam-local) 
++  [IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"](#troubleshooting-ide-low-memory) 
++  [Previewing a File Returns a 499 Error](#troubleshooting-file-preview-script-block) 
+
+## Environment Creation Error: "AWS is currently verifying your AWS account"<a name="troubleshooting-account-verification"></a>
+
+ **Issue:** When you try to create an AWS Cloud9 development environment, a message appears with the phrase "AWS is currently verifying your AWS account", and the environment isn't created\.
+
+ **Cause:** AWS is currently verifying your AWS account\. Until this verification is complete, you can't create this or other environments\. This verification could take up to two hours or longer\.
+
+ **Solution:** Try creating the environment again later\. If you're still receiving this message after more than two hours, email [aws\-verification@amazon\.com](mailto:aws-verification@amazon.com)\. Note that for each environment that fails to create, AWS CloudFormation creates a related stack in your account\. To help prevent a stack creation limit from being reached in your account, you can safely delete these failed stacks\. For more information, see [Deleting a Stack on the AWS CloudFormation Console](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) in the *AWS CloudFormation User Guide*\.
+
+## Environment Creation Error: "Not authorized to perform sts:AssumeRole"<a name="troubleshooting-sts-assume-role"></a>
+
+ **Issue:** When you try to create a new environment, you see this error: "Not authorized to perform sts:AssumeRole," and the environment is not created\.
+
+ **Possible causes:** An AWS Cloud9 service\-linked role doesn't exist in your AWS account\.
+
+ **Recommended solutions:** Create an AWS Cloud9 service\-linked role in your AWS account by running the following command with the AWS Command Line Interface \(AWS CLI\) or the aws\-shell\.
+
+```
+aws iam create-service-linked-role --aws-service-name cloud9.amazonaws.com # For the AWS CLI.
+iam create-service-linked-role --aws-service-name cloud9.amazonaws.com     # For the aws-shell.
+```
+
+If you cannot do this, check with your AWS account administrator\.
+
+After you run this command, try creating the environment again\.
+
+## Console Error: "User is not authorized to perform action on resource"<a name="troubleshooting-access-not-authorized"></a>
+
+ **Issue:** When you try to use the AWS Cloud9 console to create or manage an AWS Cloud9 development environment, you see an error that contains a phrase similar to "User arn:aws:iam::123456789012:user/MyUser is not authorized to perform cloud9:action on resource arn:aws:cloud9:us\-east\-2:123456789012:environment:12a34567b8cd9012345ef67abcd890e1," where:
++  `arn:aws:iam::123456789012:user/MyUser` is the Amazon Resource Name \(ARN\) of the requesting user\.
++  `action` is the name of the operation that the user requested\.
++  `arn:aws:cloud9:us-east-2:123456789012:environment:12a34567b8cd9012345ef67abcd890e1` is the ARN of the environment that the user requested to run the operation\.
+
+ **Cause:** The user you signed in to the AWS Cloud9 console with doesn't have the correct AWS access permissions to perform the action\.
+
+ **Solution:** Ensure the user has the correct AWS access permissions, and then try to perform the action again\. For more information, see one or more of the following:
++  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
++  [Step 6\. Enable Groups and Users Within the Organization to Use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
++  [About Environment Member Access Roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
+
+## Federated Identities Cannot Create Environments<a name="troubleshooting-federated-service-role"></a>
+
+ **Issue:** When you try to use an AWS federated identity to create an AWS Cloud9 development environment, an access error message is displayed, and the environment isn't created\.
+
+ **Cause:** : AWS Cloud9 uses service\-linked roles\. The service\-linked role is created the first time an environment is created in an account using the `iam:CreateServiceLinkedRole` call\. However, federated users can't call IAM APIs\. For more information, see [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_API_GetFederationToken.html) in the *AWS STS API Reference*\.
+
+ **Solution:** Ask an AWS account administrator to create the service\-linked role for AWS Cloud9 either in the IAM console or by running this command with the AWS Command Line Interface \(AWS CLI\):
+
+```
+aws iam create-service-linked-role --aws-service-name cloud9.amazonaws.com
+```
+
+Or this command with the aws\-shell:
+
+```
+iam create-service-linked-role --aws-service-name cloud9.amazonaws.com
+```
+
+For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
+
+## Cannot Open an Environment<a name="troubleshooting-env-loading"></a>
+
+ **Issue:** When you try to open an environment, the IDE does not display for a long time \(after at least five minutes\)\.
+
+ **Possible causes:** 
++ Your web browser does not have third\-party cookies enabled\.
++ The IAM user that is signed in to the AWS Cloud9 console does not have the required AWS access permissions to open the environment\.
++ If the environment is associated with an AWS cloud compute instance \(for example an Amazon EC2 instance\), the instance's associated VPC is not set to the correct settings for AWS Cloud9\.
++ If the environment is associated with an AWS cloud compute instance, the instance is transitioning between states or is failing automated status checks, during the time when AWS Cloud9 is trying to connect to the instance\.
++ If the environment is an SSH environment, the associated cloud compute instance or your own server is not set up correctly to allow AWS Cloud9 to access it\.
+
+ **Recommended solutions:** 
++ Enable third\-party cookies in your web browser, and then try opening the environment again\. To enable third\-party cookies:
+  + For Apple Safari, see [Manage cookies and website data in Safari](https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac) on the Apple Support website\.
+  + For Google Chrome, see **Change your cookie settings** in [Clear, enable, and manage cookies in Chrome](https://support.google.com/chrome/answer/95647) on the Google Chrome Help website\.
+  + For Internet Explorer, see **To block or allow all cookies** in [Description of Cookies](https://support.microsoft.com/help/260971/description-of-cookies) on the Microsoft Support website\.
+  + For Mozilla Firefox, see the **Accept third party cookies** setting in [Enable and disable cookies that websites use to track your preferences](https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences) on the Mozilla Support website\.
+  + For other web browsers, see their web browser's documentation\.
+
+  If you want to restrict enabling third\-party cookies only for AWS Cloud9 and your web browser allows this, specify the following domains, depending on the supported AWS Regions where you want to use AWS Cloud9\.  
+****    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/troubleshooting.html)
++ Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
+  +  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
+  +  [AWS Managed \(Predefined\) Policies for AWS Cloud9](auth-and-access-control.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
+  +  [Customer\-Managed Policy Examples for Teams](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
+  +  [Customer\-Managed Policy Examples](auth-and-access-control.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
+  +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
+  +  [Troubleshoot IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html) in the *IAM User Guide*
+
+  If the signed\-in IAM user still cannot open the environment, you could try signing out and then signing back in as either the AWS account root user or an IAM administrator user in the account\. Then try opening the environment again\. If you are able to open the environment in this way, then there is most likely a problem with the IAM user's access permissions\.
++ If the environment is associated with an AWS cloud compute instance \(for example an Amazon EC2 instance\), make sure the instance's associated VPC is set to the correct settings for AWS Cloud9, and then try opening the environment again\. For details, see [Amazon VPC Requirements for AWS Cloud9](vpc-settings.md#vpc-settings-requirements)\.
+
+  If the AWS cloud compute instance's associated VPC is set to the correct settings for AWS Cloud9 and you still cannot open the environment, the instance's security group might be preventing access to AWS Cloud9\. Check the security group to make sure that at minimum, inbound SSH traffic is allowed over port 22 for all IP addresses \(`Anywhere` or `0.0.0.0/0`\)\. For instructions, see [Describing Your Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#describing-security-group) and [Updating Security Group Rules](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#updating-security-group-rules) in the *Amazon EC2 User Guide for Linux Instances*\.
+
+  For additional VPC troubleshooting steps, watch the related 5\-minute video [AWS Knowledge Center Videos: What can I check if I cannot connect to an instance in a VPC?](https://www.youtube.com/watch?v=--BoDeCF5Dw) on the YouTube website\.
++ If the environment is associated with an AWS cloud compute instance, restart the instance, make sure the instance is running and has passed all system checks, and then try opening the environment again\. For details, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and [Viewing Status Checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#viewing_status) in the *Amazon EC2 User Guide for Linux Instances*\.
++ If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [SSH Environment Host Requirements](ssh-settings.md)\.
+
+## The AWS Cloud9 Installer Hangs or Fails<a name="troubleshooting-ssh-installer"></a>
+
+ **Issue:** When you [download and run the AWS Cloud9 Installer](installer.md#installer-download-run), one or more error messages display, and the installer script does not show `Done`\.
+
+ **Cause:** The AWS Cloud9 Installer has encountered one or more errors that it cannot recover from and therefore fails\.
+
+ **Solution:** See common issues, their possible causes, and recommended solutions, in [Troubleshooting the AWS Cloud9 Installer](installer.md#installer-troubleshooting)\.
+
+## SSH Environment Error: "Python version 2\.7 is required to install pty\.js"<a name="troubleshooting-python-ssh"></a>
+
+ **Issue:** After you open an AWS Cloud9 SSH development environment, the terminal in the AWS Cloud9 IDE displays a message that begins with "Python version 2\.7 is required to install pty\.js\."
+
+ **Cause:** To work as expected, an SSH environment requires that Python version 2\.7 is installed\.
+
+ **Solution:** Install Python version 2\.7 in the environment\. To check your version, from your server's terminal, run the command ** `python --version` **\. To install Python 2\.7 on your server, see one of the following:
++  [Step 1: Install Required Tools](sample-python.md#sample-python-install) in the *Python Sample*\.
++  [Download Python](https://www.python.org/downloads/) on the Python website and [Installing Packages](https://packaging.python.org/installing/) in the *Python Packaging User Guide*\.
+
+## Application Preview Tab Displays an Error or is Blank<a name="troubleshooting-app-preview"></a>
+
+ **Issue:** On the menu bar in the IDE, when you choose **Preview, Preview Running Application** or **Tools, Preview, Preview Running Application** to try to display your application in a preview tab in the IDE, the tab displays an error, or the tab is blank\.
+
+ **Possible causes:** 
++ Your application is not running in the IDE\.
++ Your application is not running using HTTP\.
++ Your application is running over more than one port\.
++ Your application is running over a port other than `8080`, `8081`, or `8082`\.
++ Your application is running with an IP other than `127.0.0.1`, `localhost`, or `0.0.0.0`\.
++ The port \(`8080`, `8081`, or `8082`\) is not specified in the URL on the preview tab\.
++ Your network blocks inbound traffic to ports `8080`, `8081`, or `8082`\.
++ You are trying to go to an address that contains an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. The default built\-in behavior of the AWS Cloud9 IDE is that this will attempt to go to your local computer, instead of attempting to go the instance or your own server that is connected to the environment\.
+
+ **Recommended solutions:** 
++ Ensure that the application is running in the IDE\.
++ Ensure that the application is running using HTTP\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Ensure that the application is running over only one port\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Ensure that the application is running over port `8080`, `8081`, or `8082`\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Ensure that the application is running with an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Add `:8080`, `:8081`, or `:8082` to the URL on the preview tab\.
++ Ensure that your network allows inbound traffic over ports `8080`, `8081`, or `8082`\. If you cannot make changes to your network, see your network administrator\.
++ If you are trying to go to an address that contains an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`, try going to the following address instead: `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/`, where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\. Note that you can also try to go to this address outside of the IDE, but it works only when the IDE for the environment is open and the application is running in the same web browser\.
++ After you are sure that all of the preceding conditions are met, try stopping the application and then starting it again\.
++ If you stopped the application and then started it again, try choosing **Preview, Preview Running Application** or **Tools, Preview, Preview Running Application** on the menu bar again\. Or try choosing the **Refresh** button \(the circular arrow\) on the corresponding application preview tab, if the tab is already visible\.
+
+## Cannot Display Your Running Application Outside of the IDE<a name="troubleshooting-app-sharing"></a>
+
+ **Issue:** When you or others try to display your running application in a web browser tab outside of the IDE, that web browser tab displays an error, or the tab is blank\.
+
+ **Possible causes:** 
++ The application is not running in the IDE\.
++ The application is running with an IP of `127.0.0.1` or `localhost`\.
++ The application is running in an AWS Cloud9 EC2 development environment, and one or more security groups that are associated with the corresponding Amazon EC2 instance do not allow inbound traffic over the protocols, ports, or IP addresses that the application requires\.
++ The application is running in an AWS Cloud9 SSH development environment for an AWS cloud compute instance \(for example an Amazon EC2 instance\), and the network ACL for the subnet in the virtual private cloud \(VPC\) that is associated with the corresponding instance does not allow inbound traffic over the protocols, ports, or IP addresses that the application requires\.
++ The URL is incorrect\.
++ The URL in the application preview tab is being requested instead of the instance's public IP address\.
++ You are trying to go to an address that contains an IP of `127.0.0.1` or `localhost`\. These IPs will attempt to access resources on your local computer instead of resources in the environment\.
++ The instance's public IP address has changed\.
++ The web request originates from a virtual private network \(VPN\) that blocks traffic over the protocols, ports, or IP addresses that the application requires\.
++ The application is running in an SSH environment, and your server or the associated network does not allow traffic over the protocols, ports, or IP addresses that the application requires\.
+
+ **Recommended solutions:** 
++ Ensure that the application is running in the IDE\.
++ Ensure that the application is not running with an IP of `127.0.0.1` or `localhost`\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ If the application is running on an AWS cloud compute instance \(for example an Amazon EC2 instance\), ensure all security groups that are associated with the corresponding instance allow inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 2: Set Up the Security Group for the Instance](app-preview.md#app-preview-share-security-group) in *Share a Running Application over the Internet*\. See also [Security Groups for Your VPC](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
++ If the application is running on an AWS cloud compute instance, and a network ACL exists for the subnet in the VPC that is associated with the corresponding instance, ensure that network ACL allows inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 3: Set Up the Subnet for the Instance](app-preview.md#app-preview-share-subnet) in *Share a Running Application over the Internet*\. See also [Network ACLs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
++ Ensure that the requesting URL, including the protocol \(and port, if it must be specified\), is correct\. For more information, see [Step 5: Share the Running Application URL](app-preview.md#app-preview-share-url) in *Share a Running Application over the Internet*\.
++ We do not recommend requesting a URL with the format `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/` \(where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\)\. This URL works only when the IDE for the environment is open and the application is running in the same web browser\.
++ If you are trying to go to an address that contains an IP of `127.0.0.1` or `localhost`, try going to the correct non\-local address for the running application instead\. For more information, see [Share a Running Application over the Internet](app-preview.md#app-preview-share)\.
++ If the application is running on an AWS cloud compute instance, determine whether the instance's public IP address has changed\. The instance's public IP address might change anytime the instance restarts\. To prevent this IP address from changing, you can allocate an Elastic IP address and assign it to the running instance\. For more information, see [Step 5: Share the Running Application URL](app-preview.md#app-preview-share-url) in *Share a Running Application over the Internet*\.
++ If the web request originates from a VPN, ensure that VPN allows traffic over the protocols, ports, and IP addresses that the application requires\. If you cannot make changes to your VPN, see your network administrator\. Or make the web request from a different network if possible\.
++ If the application is running in an SSH environment for your own server, ensure your server and the associated network allow traffic over the protocols, ports, and IP addresses that the application requires\. If you cannot make changes to your server or the associated network, see your server or network administrator\.
++ Try running the application from a terminal in the environment by running the `curl` command, followed by the URL\. If this command displays an error message, there might be some other issue that is not related to AWS Cloud9\.
+
+## After Reloading an Environment, You Must Refresh Application Preview<a name="troubleshooting-app-preview-refresh"></a>
+
+ **Issue:** After you reload an environment that displays an application preview tab, the tab doesn't display the application preview\.
+
+ **Cause:** Sometimes users write code that can run an infinite loop or that otherwise uses so much memory that the AWS Cloud9 IDE can pause or stop when the application preview is running\. To keep this from happening, AWS Cloud9 doesn't reload application preview tabs whenever an environment is reloaded\.
+
+ **Solution:** After you reload an environment that displays an application preview tab, to display the application preview, choose the **Click to load the page** button on the tab\.
+
+## Unable to Preview Application in the AWS Cloud9 IDE with HTTP<a name="troubleshooting-app-preview-http"></a>
+
+ **Issue:** In the address box of an application preview tab in the AWS Cloud9 IDE, the URL always starts with `https`\. If you try to change `https` in the box to `http` and then press `Enter`, the tab doesn't display the application preview\.
+
+ **Cause:** To help improve code safety, in the address box of the application preview tab in the IDE, AWS Cloud9 always uses `https`\. This behavior cannot be changed\.
+
+ **Solution:** To view an application preview with an address starting with `http` instead of `https`, change `https` in the address box of the tab to `http` and then press `Enter`\. Then choose the `Open your page in a new tab` button\. This displays the application preview in a separate web browser tab using HTTP\.
+
+## Cannot Run Some Commands or Scripts in an EC2 Environment<a name="troubleshooting-rhel"></a>
+
+ **Issue:** After you open an AWS Cloud9 EC2 development environment, you cannot install some types of packages, run commands such as `apt`, or run scripts containing commands that typically work with Linux operating systems such as Ubuntu\.
+
+ **Cause:** The Amazon EC2 instance that AWS Cloud9 uses for an EC2 environment relies on Amazon Linux, which is based on Red Hat Enterprise Linux \(RHEL\)\.
+
+ **Solution:** If you install or manage packages or run commands or scripts in the IDE for an EC2 environment, ensure they are compatible with RHEL\.
+
+## AWS CLI / aws\-shell Error: "The security token included in the request is invalid" in an EC2 environment<a name="troubleshooting-cli-invalid-token"></a>
+
+ **Issue:** When you try to use the AWS Command Line Interface \(AWS CLI\) or the aws\-shell to run a command in the AWS Cloud9 IDE for an EC2 environment, an error displays: "The security token included in the request is invalid\."
+
+ **Possible causes:** 
++ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those temporary credentials\. For a list of allowed commands, see [Actions Supported by AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials-supported)\.
++ If you have AWS managed temporary credentials enabled and the environment is a shared environment, the environment owner has not opened the environment within the past 12 hours so that AWS Cloud9 can refresh AWS managed temporary credentials in the environment\. \(AWS Cloud9 sets this 12\-hour limit as an AWS security best practice\.\)
+
+ **Recommended solutions:** 
++ If you have AWS managed temporary credentials enabled, run allowed commands only\. If you must run a command that is not allowed by AWS managed temporary credentials, one approach would be to configure the AWS CLI or aws\-shell in the environment with a set of permanent credentials, which removes this limitation\. For instructions, see [Create and Store Permanent Access Credentials in an Environment](credentials.md#credentials-permanent-create)\.
++ Have the environment owner open the environment so that AWS Cloud9 can refresh temporary credentials in the environment\.
+
+For more information, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.
+
+## Amazon EC2 Instances Are Not Automatically Updated<a name="troubleshooting-update-ami"></a>
+
+ **Issue:** Recent system updates are not automatically applied to an Amazon EC2 instance that connects to an AWS Cloud9 development environment\.
+
+ **Cause:** Automatically applying recent system updates could cause your code or the Amazon EC2 instance to behave in unexpected ways, without your prior knowledge or approval\.
+
+ **Recommended solutions:** 
+
+Apply system updates to the Amazon EC2 instance on a regular basis by following the instructions in [Updating Instance Software](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/install-updates.html) in the *Amazon EC2 User Guide for Linux Instances*\.
+
+To run commands on the instance, you can use a terminal session in the AWS Cloud9 IDE from the environment that is connected to the instance\.
+
+Alternatively, you can use an SSH remote access utility such as **ssh** or PuTTY to connect to the instance\. To do this, from your local computer, use an SSH key pair creation utility such as **ssh\-keygen** or PuTTYgen\. Use the AWS Cloud9 IDE from the environment that is connected to the instance to store the generated public key on the instance\. Then use the SSH remote access utility along with the generate private key to access the instance\. For more information, see your utility's documentation\.
+
+## Lambda Local Function Run Error: Cannot Install SAM Local<a name="troubleshooting-install-sam-local"></a>
+
+ **Issue:** After you try to run the local version of an AWS Lambda function in the AWS Cloud9 IDE, a dialog box is displayed, stating that AWS Cloud9 is having trouble installing SAM Local\. AWS Cloud9 needs SAM Local to run local versions of AWS Lambda functions in the IDE\. Until SAM Local is installed, you cannot run local versions of Lambda functions in the IDE\.
+
+ **Cause:** AWS Cloud9 can't find SAM Local at the expected path in the environment, which is `~/.c9/bin/sam`\. This is because SAM Local is not yet installed, or if it is installed, AWS Cloud9 can't find it at that location\.
+
+ **Recommended solutions:** You can wait for AWS Cloud9 to try to finish installing SAM Local, or you can install it yourself\.
+
+To see how AWS Cloud9 is doing with attempting to install SAM Local, choose **Window, Installer** on the menu bar\.
+
+To install SAM Local yourself, run the following commands, one at a time in the following order, from a terminal session in the IDE\.
+
+```
+npm install -g aws-sam-local        # Use Node Package Manager (npm) to install SAM Local as a global package in the environment.
+ln -sfn $(which sam) ~/.c9/bin/sam  # Create a symbolic link (a shortcut) from the path that AWS Cloud9 expects to where SAM Local is installed.
+```
+
+If, after running the previous commands, you're still having SAM Local install issues, try running the following additional commands, one at a time in the following order, from a terminal session in the IDE\.
+
+```
+npm uninstall -g aws-sam-local  # Use npm to uninstall the globally-installed SAM Local from the environment.
+rm -rf $(which sam)             # Remove the related symbolic link.
+pip install --user aws-sam-cli  # Use pip to re-install the AWS SAM CLI from the context of the user (not globally).
+hash -r                         # Reset the bash cache (removes all current tracked aliases).
+sam –-version                   # Verify that your installation worked.
+```
+
+For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs/aws-sam-cli/blob/develop/README.rst) repository on the GitHub website\.
+
+## IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"<a name="troubleshooting-ide-low-memory"></a>
+
+ **Issue:** While the IDE is running, you see a message that contains the phrase "this environment is running low on memory" or "this environment has high CPU load\."
+
+ **Cause:** The IDE might not have enough compute resources available to continue running without delays or hangs\.
+
+ **Recommended solutions:** 
++ Stop one or more running processes to free up available memory\. To do this, on the menu bar in the IDE for the environment, choose **Tools, Process List**\. For each process you want to stop, choose the process, and then choose **Force Kill**\.
++ Create a swap file in the environment\. A *swap file* is a file in the environment that the operating system can use as virtual memory\.
+
+  To confirm whether the environment is currently using swap memory, run the ** `top` ** command in a terminal session in the environment\. If swap memory is being used, the output displays non\-zero `Swap` memory statistics \(for example, `Swap: 499996k total, 1280k used, 498716 free, 110672k cached`\)\. To stop showing real\-time memory information, press `Ctrl + C`\.
+
+  To create a swap file, you could run a command such as the following in the environment\.
+
+  ```
+  sudo fallocate --length 512MB /var/swapfile && sudo chmod 600 /var/swapfile && sudo mkswap /var/swapfile && echo '/var/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab > /dev/null
+  ```
+
+  The preceding command does the following:
+
+  1. Creates a 512 MB file named `swapfile` in the `/var` directory\.
+
+  1. Changes access permissions for the `swapfile` file to read\-write for the owner only\.
+
+  1. Sets up the `swapfile` file as a swap file\.
+
+  1. Writes information to the `/etc/fstab file`, which makes this swap file available whenever the system reboots\.
+
+  After you run the preceding command, to make this swap file available immediately instead of waiting for a reboot, run the following command\.
+
+  ```
+  sudo swapon /var/swapfile
+  ```
++ Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving or Resizing and Environment](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
+
+## Previewing a File Returns a 499 Error<a name="troubleshooting-file-preview-script-block"></a>
+
+ **Issue:** When you try to use the AWS Cloud9 IDE to preview a file that contains a `<script>` element containing the `src` attribute and with the `type` attribute set to `module`, a 499 error occurs and the script doesn't run as expected\.
+
+ **Cause:** File preview fetch requests in the AWS Cloud9 IDE require cookies to be sent by the web browser to authenticate\. By default, web browsers send cookies for regular script requests, but not for module script requests, unless you add the `crossorigin` attribute\.
+
+ **Solution:** Add the `crossorigin` attribute to the `<script>` element\. For example, `<script type="module" src="index.js" crossorigin></script>`\. Then save the changed file, and try to preview the it again\.

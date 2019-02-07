@@ -1,0 +1,41 @@
+# Document History for the *AWS Cloud9 User Guide*<a name="history"></a>
+
+Here is a list of significant changes to the *AWS Cloud9 User Guide*\.
+
+ **Latest documentation update:** February 7, 2019
+
+
+****  
+
+|  **Change**  |  **Description**  |  **Date Changed**  | 
+| --- | --- | --- | 
+|  New and changed content  |  Instructions for getting started with AWS Cloud9 have been expanded to include steps for students, educators, and enterprises\. For more information, see [Getting Started with AWS Cloud9](get-started.md)\.  |  February 7, 2019  | 
+|  New content  |  AWS CloudTrail now supports AWS Cloud9\. For more information, see [Logging AWS Cloud9 API Calls with AWS CloudTrail](cloudtrail.md)\.  |  January 21, 2019  | 
+|  New content  |  AWS Cloud9 now supports shared VPCs in Amazon VPC\. For more information, see [Amazon VPC Requirements for AWS Cloud9](vpc-settings.md#vpc-settings-requirements)\.  |  December 7, 2018  | 
+|  AWS RoboMaker integration  |  AWS Cloud9 now supports AWS RoboMaker, a service that makes it easy to develop, test, and deploy intelligent robotics applications at scale\. For more information, see [Getting Started with AWS RoboMaker](https://docs.aws.amazon.com/robomaker/latest/dg/getting-started.html) and [Developing with AWS Cloud9](https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html) in the *AWS RoboMaker Developer Guide*\.  |  November 26, 2018  | 
+|  New topic  |  The AWS Cloud9 IDE now provides additional productivity features for some languages in the context of a language project\. For more information, see [Working with Language Projects](projects.md)\.  |  October 2, 2018  | 
+|  Changed content  |  The **Go** window was added to the AWS Cloud9 IDE for environments created on or after October 2, 2018\. This new window replaces the **Navigate** and **Commands** windows, which were both removed from the IDE for environments created on or after October 2, 2018\. For more information, see [Step 2\.10: Go Window](tutorial.md#tutorial-go) in the *IDE Tutorial*\.  |  October 2, 2018  | 
+|  New topic  |  Added a new sample demonstrating how to use AWS Cloud9 with the AWS Cloud Development Kit \(AWS CDK\)\. For more information, see the [AWS CDK Sample](sample-cdk.md)\.  |  August 30, 2018  | 
+|  New content  |  For AWS Cloud9 EC2 development environments created on or after July 31 2018, AWS Cloud9 now automatically restricts incoming SSH traffic to just the IP address ranges that AWS Cloud9 uses to connect over SSH\. For more information, see [Inbound SSH IP Address Ranges](ip-ranges.md)\.  |  July 31, 2018  | 
+|  New topic  |  Added new sample demonstrating how to use AWS Cloud9 with Docker\. For more information, see the [Docker Sample](sample-docker.md)\.  |  June 19, 2018  | 
+|  New content  |  Added information about additional options for deploying AWS Lambda functions from the AWS Cloud9 IDE, depending on how the Lambda function was originally created\. For more information, see [Upload Code for a Lambda Function](lambda-functions.md#lambda-functions-upload-code)\.  |  May 29, 2018  | 
+|  New topics  |  Added new samples demonstrating how to use AWS Cloud9 with Java, \.NET Core, and TypeScript\. For more information, see the [Java Sample](sample-java.md), [\.NET Core Sample](sample-dotnetcore.md), and [TypeScript Sample](sample-typescript.md)\.  |  May 29, 2018  | 
+|  New topic  |  Added information about supported browsers for AWS Cloud9\. For more information, see [Supported Browsers](browsers.md)\.  |  May 23, 2018  | 
+|  New topics  |  Added new tutorials demonstrating how to create Lambda functions with AWS Cloud9\. For more information, see the [AWS Lambda Tutorial](tutorial-lambda.md) and [Advanced AWS Lambda Tutorial](tutorial-lambda-advanced.md)\.  |  April 19, 2018  | 
+|  New topic  |  Added information about how to restrict incoming traffic to just the IP address ranges that AWS Cloud9 uses to connect to hosts over SSH\. For more information, see [Inbound SSH IP Address Ranges](ip-ranges.md)\.  |  April 19, 2018  | 
+|  New content  |  Added information about how to use the AWS Serverless Application Repository with AWS Cloud9\. For more information, see [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](lambda-functions.md#lambda-functions-create-repo)\.  |  April 19, 2018  | 
+|  New content  |  Added new troubleshooters for previewing applications and sharing running applications\. For more information, see [Application Preview Tab Displays an Error or is Blank](troubleshooting.md#troubleshooting-app-preview) and [Cannot Display Your Running Application Outside of the IDE](troubleshooting.md#troubleshooting-app-sharing)\.  |  April 19, 2018  | 
+|  New topic  |  Added information about how to use the **File Revision History** pane in the IDE\. For more information, see [Working with File Revisions](file-revisions.md)\.  |  April 19, 2018  | 
+|  New content  |  Added information about how to debug Lambda functions that use Python\. For more information, see [Debug the Local Version of a Lambda Function or Its Related API Gateway API](lambda-functions.md#lambda-functions-debug)\.  |  March 22, 2018  | 
+|  New content  |  Added a new troubleshooter for opening AWS Cloud9 development environments\. For more information, see [Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading)\.  |  March 19, 2018  | 
+|  New content  |  Added a new troubleshooter for the AWS Cloud9 Installer\. For more information, see [The AWS Cloud9 Installer Hangs or Fails](troubleshooting.md#troubleshooting-ssh-installer)\.  |  March 19, 2018  | 
+|  New topic  |  Added information about how to use AWS Cloud9 with AWS CodePipeline\. For more information, see [Working with AWS CodePipeline](codepipeline-repos.md)\.  |  February 13, 2018  | 
+|  New content  |  Added information about how to share AWS Cloud9 development environments across AWS accounts\. For more information, see [Invite an IAM User in Another Account to Your Environment](share-environment.md#share-environment-invite-user-cross-account)\.  |  February 5, 2018  | 
+|  New content  |  Added information about how to use AWS Cloud9 with the aws\-shell\. For more information, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\.  |  January 19, 2018  | 
+|  GitHub availability  |  This guide is now available on GitHub\. You can also use GitHub to submit feedback and change requests for this guide's content\. For more information, choose the **Edit on GitHub** icon in the guide's navigation bar, or see the [awsdocs/aws\-cloud9\-user\-guide](https://github.com/awsdocs/aws-cloud9-user-guide) repository on the GitHub website\.  |  January 10, 2018  | 
+|  Kindle format availability  |  This guide is now available in Amazon Kindle format\. For more information, choose the **Open Kindle** icon in the guide's navigation bar, or see [AWS Cloud9: User Guide Kindle Edition](http://www.amazon.com/AWS-Cloud9-Amazon-Web-Services-ebook/dp/B078XBZMWS) on the Amazon website\.  |  January 2, 2018  | 
+|  New topic  |  Added information about how to use AWS Cloud9 with Amazon Lightsail\. For more information, see [Working with Amazon Lightsail Instances](lightsail-instances.md)\.  |  December 19, 2017  | 
+|  New topic  |  Added descriptions of specific AWS settings for AWS Cloud9 development environments\. For more information, see [Working with AWS Project and User Settings](settings-aws.md)\.  |  December 7, 2017  | 
+|  New topics  |  Added setup steps for using AWS Cloud9 with an AWS account root user\. Added advanced setup steps for using AWS Cloud9 with teams\. For more information, see [Getting Started](get-started.md)\.  |  December 5, 2017  | 
+|  New topic  |  Expanded coverage of requirements for an Amazon EC2 instance or your own server to connect to an AWS Cloud9 SSH development environment\. For more information, see [SSH Environment Host Requirements](ssh-settings.md)\.  |  December 4, 2017  | 
+|  Initial release  |  This is the initial release of the *AWS Cloud9 User Guide*\.  |  November 30, 2017  | 
