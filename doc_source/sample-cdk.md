@@ -7,17 +7,19 @@ The AWS CDK includes the AWS Construct Library that you can use to quickly resol
  *The AWS CDK is currently in developer preview and we look forward to community feedback and collaboration\!* 
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2, Amazon SNS, and Amazon SQS\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/), [Amazon SNS Pricing](https://aws.amazon.com/sns/pricing/), and [Amazon SQS Pricing](https://aws.amazon.com/sqs/pricing/)\.
-+  [Prerequisites](#sample-cdk-prereqs) 
-+  [Step 1: Install Required Tools](#sample-cdk-install) 
-+  [Step 2: Add Code](#sample-cdk-code) 
-+  [Step 3: Run the Code](#sample-cdk-run) 
-+  [Step 4: Clean Up](#sample-cdk-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-cdk-prereqs)
++ [Step 1: Install Required Tools](#sample-cdk-install)
++ [Step 2: Add Code](#sample-cdk-code)
++ [Step 3: Run the Code](#sample-cdk-run)
++ [Step 4: Clean Up](#sample-cdk-clean-up)
 
 ## Prerequisites<a name="sample-cdk-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Required Tools<a name="sample-cdk-install"></a>
 
@@ -33,10 +35,18 @@ In this step, you install all of the tools in your environment that the AWS CDK 
 
 ### Step 1\.1: Install Node Version Manager \(nvm\)<a name="sample-cdk-install-nvm"></a>
 
-1. In a terminal session in the AWS Cloud9 IDE, ensure the latest security updates and bug fixes are installed\. To do this, run the ** `yum update` ** command\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\)
+1. In a terminal session in the AWS Cloud9 IDE, ensure the latest security updates and bug fixes are installed\. To do this, run the ** `yum update` ** \(for Amazon Linux\) or ** `apt update` ** command \(for Ubuntu Server\)\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\)
+
+   For Amazon Linux:
 
    ```
    sudo yum -y update
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt update
    ```
 
 1. Confirm whether ** `nvm` ** is already installed\. To do this, run the ** `nvm` ** command with the ** `--version` ** option\.
@@ -235,9 +245,9 @@ In this step, you instruct the AWS CDK to create a AWS CloudFormation stack temp
 
    If successful, the output displays that the `HelloCdkStack` stack deployed without errors\.
 **Note**  
-If the output displays a message that the stack does not define an environment and that AWS credentials could not be obtained from standard locations or no region was configured, make sure that your AWS credentials are set correctly in the IDE, and then run the ** `cdk deploy` ** command again\. For more information, see [Call AWS Services from an Environment](credentials.md)\.
+If the output displays a message that the stack does not define an environment and that AWS credentials could not be obtained from standard locations or no region was configured, make sure that your AWS credentials are set correctly in the IDE, and then run the ** `cdk deploy` ** command again\. For more information, see [Calling AWS Services from an Environment in AWS Cloud9](credentials.md)\.
 
-1. To confirm that the Amazon SNS topic and Amazon SQS queue were successfully deployed, send a message to the topic, and then check the queue for the received message\. To do this, you can use a tool such as the AWS Command Line Interface \(AWS CLI\) or the aws\-shell\. For more information about these tools, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\.
+1. To confirm that the Amazon SNS topic and Amazon SQS queue were successfully deployed, send a message to the topic, and then check the queue for the received message\. To do this, you can use a tool such as the AWS Command Line Interface \(AWS CLI\) or the aws\-shell\. For more information about these tools, see the [AWS Command Line Interface and aws\-shell Sample for AWS Cloud9](sample-aws-cli.md)\.
 
    For example, to send a message to the topic, with the terminal session still open in the IDE, use the AWS CLI to run the Amazon SNS** `publish` ** command, supplying the message's subject and body, the AWS Region for the topic, and the topic's Amazon Resource Name \(ARN\)\.
 
@@ -285,4 +295,4 @@ If successful, the output displays that the `HelloCdkStack` stack was deleted wi
 
 ### Step 4\.2: Delete the Environment<a name="step-4-2-delete-the-envtitle"></a>
 
-To delete the environment, see [Deleting an Environment](delete-environment.md)\.
+To delete the environment, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

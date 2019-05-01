@@ -81,7 +81,7 @@ Skip ahead to [Step 2\.2: Create an IAM User and Add the User to the Group with 
 
 ### Step 2\.1: Create an IAM Group with the AWS CLI<a name="setup-create-iam-resources-group-cli"></a>
 
-1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS CLI User Guide*:
+1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
    +  [Quick Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) 
 **Note**  
@@ -220,7 +220,7 @@ Skip ahead to [Step 4: Sign in to the AWS Cloud9 Console](#setup-sign-in-ide)\.
 
 ### Add AWS Cloud9 Access Permissions to the Group with the AWS CLI<a name="setup-give-user-access-cli"></a>
 
-1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS CLI User Guide*:
+1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
    +  [Quick Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) 
 **Note**  

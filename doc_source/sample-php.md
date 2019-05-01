@@ -3,20 +3,22 @@
 This sample enables you to run some PHP scripts in an AWS Cloud9 development environment\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
-+  [Prerequisites](#sample-php-prereqs) 
-+  [Step 1: Install Required Tools](#sample-php-install) 
-+  [Step 2: Add Code](#sample-php-code) 
-+  [Step 3: Run the Code](#sample-php-run) 
-+  [Step 4: Install and Configure the AWS SDK for PHP](#sample-php-sdk) 
-+  [Step 5: Add AWS SDK Code](#sample-php-sdk-code) 
-+  [Step 6: Run the AWS SDK Code](#sample-php-sdk-run) 
-+  [Step 7: Clean Up](#sample-php-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-php-prereqs)
++ [Step 1: Install Required Tools](#sample-php-install)
++ [Step 2: Add Code](#sample-php-code)
++ [Step 3: Run the Code](#sample-php-run)
++ [Step 4: Install and Configure the AWS SDK for PHP](#sample-php-sdk)
++ [Step 5: Add AWS SDK Code](#sample-php-sdk-code)
++ [Step 6: Run the AWS SDK Code](#sample-php-sdk-run)
++ [Step 7: Clean Up](#sample-php-clean-up)
 
 ## Prerequisites<a name="sample-php-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Required Tools<a name="sample-php-install"></a>
 
@@ -27,16 +29,32 @@ The following procedure installs PHP only\. To install related tools such as an 
 
 1. In a terminal session in the AWS Cloud9 IDE, confirm whether PHP is already installed by running the ** `php --version` ** command\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\) If successful, the output contains the PHP version number\. If PHP is installed, skip ahead to [Step 2: Add Code](#sample-php-code)\.
 
-1. Run the ** `yum update` ** command to help ensure the latest security updates and bug fixes are installed\.
+1. Run the ** `yum update` ** for \(Amazon Linux\) or ** `apt update` ** for \(Ubuntu Server\) command to help ensure the latest security updates and bug fixes are installed\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y update
    ```
 
+   For Ubuntu Server:
+
+   ```
+   sudo apt update
+   ```
+
 1. Install PHP by running the ** `install` ** command\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y install php56
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt install -y php php-xml
    ```
 
    For more information, see [Installation and Configuration](http://php.net/manual/en/install.php) on the PHP website\.
@@ -84,7 +102,7 @@ You can enhance this sample to use the AWS SDK for PHP to create an Amazon S3 bu
 
 In this step, you install and configure the AWS SDK for PHP, which provides a convenient way to interact with AWS services such as Amazon S3, from your PHP code\. Before you can install the AWS SDK for PHP, you should install [Composer](https://getcomposer.org/)\. After you install the AWS SDK for PHP, you must set up credentials management in your environment\. The AWS SDK for PHP needs these credentials to interact with AWS services\.
 
-### To install Composer<a name="w3aac21c31c17b7"></a>
+### To install Composer<a name="sample-php-sdk-install-composer"></a>
 
 Run the ** `curl` ** command with the silent \(`-s`\) and show error \(`-S`\) options, piping the Composer installer into a PHP archive \(PHAR\) file, named `composer.phar` by convention\.
 
@@ -92,9 +110,15 @@ Run the ** `curl` ** command with the silent \(`-s`\) and show error \(`-S`\) op
 curl -sS https://getcomposer.org/installer | php
 ```
 
-### To install the AWS SDK for PHP<a name="w3aac21c31c17b9"></a>
+### To install the AWS SDK for PHP<a name="sample-php-sdk-install-sdk"></a>
 
-Use the php command to run the Composer installer to install the AWS SDK for PHP\.
+For Ubuntu Server, install additional packages that Composer needs to install the AWS SDK for PHP\.
+
+```
+sudo apt install -y php-xml php-curl
+```
+
+For Amazon Linux or Ubuntu Server, use the php command to run the Composer installer to install the AWS SDK for PHP\.
 
 ```
 php composer.phar require aws/aws-sdk-php
@@ -102,15 +126,22 @@ php composer.phar require aws/aws-sdk-php
 
 This command creates several folders and files in your environment\. The primary file you will use is `autoload.php`, which is in the `vendor` folder in your environment\.
 
-For more information, see [Installation](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/installation.html) in the *AWS SDK for PHP Getting Started Guide*\.
+**Note**  
+After installation, Composer might suggest that you install additional dependencies\. You can do this with a command such as the following, specifying the list of dependencies to install\. For example, the following command instructs Composer to install the following list of dependencies\.  
 
-### To set up credentials management in your environment<a name="w3aac21c31c17c11"></a>
+```
+php composer.phar require psr/log ext-curl doctrine/cache aws/aws-php-sns-message-validator
+```
+
+For more information, see [Installation](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/installation.html) in the *AWS SDK for PHP Developer Guide*\.
+
+### To set up credentials management in your environment<a name="sample-php-sdk-creds"></a>
 
 Each time you use the AWS SDK for PHP to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for PHP has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-In this step, you store your credentials within the environment\. To do this, follow the instructions in [Call AWS Services from an Environment](credentials.md), and then return to this topic\.
+In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see the "Creating a client" section of [Basic Usage](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/basic-usage.html) in the *AWS SDK for PHP Getting Started Guide*\.
+For additional information, see the "Creating a client" section of [Basic Usage](https://docs.aws.amazon.com/sdk-for-php/v3/developer-guide/basic-usage.html) in the *AWS SDK for PHP Developer Guide*\.
 
 ## Step 5: Add AWS SDK Code<a name="sample-php-sdk-code"></a>
 
@@ -120,9 +151,6 @@ In the AWS Cloud9 IDE, create a file with this content, and save the file with t
 
 ```
 <?php
-```
-
-```
   require './vendor/autoload.php';
 
   if ($argc < 4) {
@@ -189,9 +217,7 @@ In the AWS Cloud9 IDE, create a file with this content, and save the file with t
   $promise->wait();
 
   listMyBuckets($s3);
-```
 
-```
 ?>
 ```
 
@@ -226,4 +252,4 @@ Amazon S3 bucket names must be unique across AWS—not just your AWS account\.
 
 ## Step 7: Clean Up<a name="sample-php-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

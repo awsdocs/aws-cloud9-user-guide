@@ -3,23 +3,26 @@
 Use the following information to help you identify and address issues with AWS Cloud9\.
 
 If your issue is not listed, or if you need additional help, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\) You can also [contact us](https://aws.amazon.com/contact-us/) directly\.
-+  [Environment Creation Error: "AWS is currently verifying your AWS account"](#troubleshooting-account-verification) 
-+  [Environment Creation Error: "Not authorized to perform sts:AssumeRole"](#troubleshooting-sts-assume-role) 
-+  [Console Error: "User is not authorized to perform action on resource"](#troubleshooting-access-not-authorized) 
-+  [Federated Identities Cannot Create Environments](#troubleshooting-federated-service-role) 
-+  [Cannot Open an Environment](#troubleshooting-env-loading) 
-+  [The AWS Cloud9 Installer Hangs or Fails](#troubleshooting-ssh-installer) 
-+  [SSH Environment Error: "Python version 2\.7 is required to install pty\.js"](#troubleshooting-python-ssh) 
-+  [Application Preview Tab Displays an Error or is Blank](#troubleshooting-app-preview) 
-+  [Cannot Display Your Running Application Outside of the IDE](#troubleshooting-app-sharing) 
-+  [After Reloading an Environment, You Must Refresh Application Preview](#troubleshooting-app-preview-refresh) 
-+  [Unable to Preview Application in the AWS Cloud9 IDE with HTTP](#troubleshooting-app-preview-http) 
-+  [Cannot Run Some Commands or Scripts in an EC2 Environment](#troubleshooting-rhel) 
-+  [AWS CLI / aws\-shell Error: "The security token included in the request is invalid" in an EC2 environment](#troubleshooting-cli-invalid-token) 
-+  [Amazon EC2 Instances Are Not Automatically Updated](#troubleshooting-update-ami) 
-+  [Lambda Local Function Run Error: Cannot Install SAM Local](#troubleshooting-install-sam-local) 
-+  [IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"](#troubleshooting-ide-low-memory) 
-+  [Previewing a File Returns a 499 Error](#troubleshooting-file-preview-script-block) 
+
+**Topics**
++ [Environment Creation Error: "AWS is currently verifying your AWS account"](#troubleshooting-account-verification)
++ [Environment Creation Error: "Not authorized to perform sts:AssumeRole"](#troubleshooting-sts-assume-role)
++ [Console Error: "User is not authorized to perform action on resource"](#troubleshooting-access-not-authorized)
++ [Federated Identities Cannot Create Environments](#troubleshooting-federated-service-role)
++ [Cannot Open an Environment](#troubleshooting-env-loading)
++ [The AWS Cloud9 Installer Hangs or Fails](#troubleshooting-ssh-installer)
++ [SSH Environment Error: "Python version 2\.7 is required to install pty\.js"](#troubleshooting-python-ssh)
++ [Application Preview Tab Displays an Error or is Blank](#troubleshooting-app-preview)
++ [Cannot Display Your Running Application Outside of the IDE](#troubleshooting-app-sharing)
++ [After Reloading an Environment, You Must Refresh Application Preview](#troubleshooting-app-preview-refresh)
++ [Unable to Preview Application in the AWS Cloud9 IDE with HTTP](#troubleshooting-app-preview-http)
++ [Cannot Run Some Commands or Scripts in an EC2 Environment](#troubleshooting-rhel-ubuntu)
++ [AWS CLI / aws\-shell Error: "The security token included in the request is invalid" in an EC2 environment](#troubleshooting-cli-invalid-token)
++ [Amazon EC2 Instances Are Not Automatically Updated](#troubleshooting-update-ami)
++ [Lambda Local Function Run Error: Cannot Install SAM Local](#troubleshooting-install-sam-local)
++ [IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"](#troubleshooting-ide-low-memory)
++ [Previewing a File Returns a 499 Error](#troubleshooting-file-preview-script-block)
++ [Environment Deletion Error: "One or more environments failed to delete"](#troubleshooting-delete-environment)
 
 ## Environment Creation Error: "AWS is currently verifying your AWS account"<a name="troubleshooting-account-verification"></a>
 
@@ -57,14 +60,14 @@ After you run this command, try creating the environment again\.
 
  **Solution:** Ensure the user has the correct AWS access permissions, and then try to perform the action again\. For more information, see one or more of the following:
 +  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
-+  [Step 6\. Enable Groups and Users Within the Organization to Use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
++  [Step 6\. Enable Groups and Users within the Organization to Use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
 +  [About Environment Member Access Roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
 
 ## Federated Identities Cannot Create Environments<a name="troubleshooting-federated-service-role"></a>
 
  **Issue:** When you try to use an AWS federated identity to create an AWS Cloud9 development environment, an access error message is displayed, and the environment isn't created\.
 
- **Cause:** : AWS Cloud9 uses service\-linked roles\. The service\-linked role is created the first time an environment is created in an account using the `iam:CreateServiceLinkedRole` call\. However, federated users can't call IAM APIs\. For more information, see [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_API_GetFederationToken.html) in the *AWS STS API Reference*\.
+ **Cause:** : AWS Cloud9 uses service\-linked roles\. The service\-linked role is created the first time an environment is created in an account using the `iam:CreateServiceLinkedRole` call\. However, federated users can't call IAM APIs\. For more information, see [GetFederationToken](https://docs.aws.amazon.com/STS/latest/APIReference/API_API_GetFederationToken.html) in the *AWS Security Token Service API Reference*\.
 
  **Solution:** Ask an AWS account administrator to create the service\-linked role for AWS Cloud9 either in the IAM console or by running this command with the AWS Command Line Interface \(AWS CLI\):
 
@@ -105,7 +108,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
   +  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
   +  [AWS Managed \(Predefined\) Policies for AWS Cloud9](auth-and-access-control.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
-  +  [Customer\-Managed Policy Examples for Teams](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
+  +  [Customer\-Managed Policy Examples for Teams Using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
   +  [Customer\-Managed Policy Examples](auth-and-access-control.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
   +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
   +  [Troubleshoot IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html) in the *IAM User Guide*
@@ -117,7 +120,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
   For additional VPC troubleshooting steps, watch the related 5\-minute video [AWS Knowledge Center Videos: What can I check if I cannot connect to an instance in a VPC?](https://www.youtube.com/watch?v=--BoDeCF5Dw) on the YouTube website\.
 + If the environment is associated with an AWS cloud compute instance, restart the instance, make sure the instance is running and has passed all system checks, and then try opening the environment again\. For details, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and [Viewing Status Checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#viewing_status) in the *Amazon EC2 User Guide for Linux Instances*\.
-+ If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [SSH Environment Host Requirements](ssh-settings.md)\.
++ If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)\.
 
 ## The AWS Cloud9 Installer Hangs or Fails<a name="troubleshooting-ssh-installer"></a>
 
@@ -182,8 +185,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Recommended solutions:** 
 + Ensure that the application is running in the IDE\.
 + Ensure that the application is not running with an IP of `127.0.0.1` or `localhost`\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
-+ If the application is running on an AWS cloud compute instance \(for example an Amazon EC2 instance\), ensure all security groups that are associated with the corresponding instance allow inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 2: Set Up the Security Group for the Instance](app-preview.md#app-preview-share-security-group) in *Share a Running Application over the Internet*\. See also [Security Groups for Your VPC](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
-+ If the application is running on an AWS cloud compute instance, and a network ACL exists for the subnet in the VPC that is associated with the corresponding instance, ensure that network ACL allows inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 3: Set Up the Subnet for the Instance](app-preview.md#app-preview-share-subnet) in *Share a Running Application over the Internet*\. See also [Network ACLs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
++ If the application is running on an AWS cloud compute instance \(for example an Amazon EC2 instance\), ensure all security groups that are associated with the corresponding instance allow inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 2: Set Up the Security Group for the Instance](app-preview.md#app-preview-share-security-group) in *Share a Running Application over the Internet*\. See also [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
++ If the application is running on an AWS cloud compute instance, and a network ACL exists for the subnet in the VPC that is associated with the corresponding instance, ensure that network ACL allows inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 3: Set Up the Subnet for the Instance](app-preview.md#app-preview-share-subnet) in *Share a Running Application over the Internet*\. See also [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
 + Ensure that the requesting URL, including the protocol \(and port, if it must be specified\), is correct\. For more information, see [Step 5: Share the Running Application URL](app-preview.md#app-preview-share-url) in *Share a Running Application over the Internet*\.
 + We do not recommend requesting a URL with the format `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/` \(where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\)\. This URL works only when the IDE for the environment is open and the application is running in the same web browser\.
 + If you are trying to go to an address that contains an IP of `127.0.0.1` or `localhost`, try going to the correct non\-local address for the running application instead\. For more information, see [Share a Running Application over the Internet](app-preview.md#app-preview-share)\.
@@ -208,20 +211,20 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
  **Solution:** To view an application preview with an address starting with `http` instead of `https`, change `https` in the address box of the tab to `http` and then press `Enter`\. Then choose the `Open your page in a new tab` button\. This displays the application preview in a separate web browser tab using HTTP\.
 
-## Cannot Run Some Commands or Scripts in an EC2 Environment<a name="troubleshooting-rhel"></a>
+## Cannot Run Some Commands or Scripts in an EC2 Environment<a name="troubleshooting-rhel-ubuntu"></a>
 
- **Issue:** After you open an AWS Cloud9 EC2 development environment, you cannot install some types of packages, run commands such as `apt`, or run scripts containing commands that typically work with Linux operating systems such as Ubuntu\.
+ **Issue:** After you open an AWS Cloud9 EC2 development environment, you cannot install some types of packages, run commands such as `yum` or `apt`, or run scripts containing commands that typically work with other Linux operating systems\.
 
- **Cause:** The Amazon EC2 instance that AWS Cloud9 uses for an EC2 environment relies on Amazon Linux, which is based on Red Hat Enterprise Linux \(RHEL\)\.
+ **Cause:** The Amazon EC2 instances that AWS Cloud9 uses for an EC2 environment rely on either Amazon Linux \(which is based on Red Hat Enterprise Linux \(RHEL\)\) or Ubuntu Server\.
 
- **Solution:** If you install or manage packages or run commands or scripts in the IDE for an EC2 environment, ensure they are compatible with RHEL\.
+ **Solution:** If you install or manage packages or run commands or scripts in the IDE for an EC2 environment, ensure they are compatible with either RHEL \(for Amazon Linux\) or Ubuntu Server, depending on the instance for that environment\.
 
 ## AWS CLI / aws\-shell Error: "The security token included in the request is invalid" in an EC2 environment<a name="troubleshooting-cli-invalid-token"></a>
 
  **Issue:** When you try to use the AWS Command Line Interface \(AWS CLI\) or the aws\-shell to run a command in the AWS Cloud9 IDE for an EC2 environment, an error displays: "The security token included in the request is invalid\."
 
  **Possible causes:** 
-+ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those temporary credentials\. For a list of allowed commands, see [Actions Supported by AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials-supported)\.
++ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those AWS managed temporary credentials\. For a list of allowed commands, see [Actions Supported by AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials-supported)\.
 + If you have AWS managed temporary credentials enabled and the environment is a shared environment, the environment owner has not opened the environment within the past 12 hours so that AWS Cloud9 can refresh AWS managed temporary credentials in the environment\. \(AWS Cloud9 sets this 12\-hour limit as an AWS security best practice\.\)
 
  **Recommended solutions:** 
@@ -271,7 +274,7 @@ hash -r                         # Reset the bash cache (removes all current trac
 sam –-version                   # Verify that your installation worked.
 ```
 
-For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs/aws-sam-cli/blob/develop/README.rst) repository on the GitHub website\.
+For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs/aws-sam-cli/blob/develop/README.md) repository on the GitHub website\.
 
 ## IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"<a name="troubleshooting-ide-low-memory"></a>
 
@@ -306,7 +309,7 @@ For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs
   ```
   sudo swapon /var/swapfile
   ```
-+ Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving or Resizing and Environment](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
++ Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving or Resizing an Environment in AWS Cloud9](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
 
 ## Previewing a File Returns a 499 Error<a name="troubleshooting-file-preview-script-block"></a>
 
@@ -315,3 +318,32 @@ For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs
  **Cause:** File preview fetch requests in the AWS Cloud9 IDE require cookies to be sent by the web browser to authenticate\. By default, web browsers send cookies for regular script requests, but not for module script requests, unless you add the `crossorigin` attribute\.
 
  **Solution:** Add the `crossorigin` attribute to the `<script>` element\. For example, `<script type="module" src="index.js" crossorigin></script>`\. Then save the changed file, and try to preview the it again\.
+
+## Environment Deletion Error: "One or more environments failed to delete"<a name="troubleshooting-delete-environment"></a>
+
+**Issue:** When you try to delete one or more environments in the AWS Cloud9 console, a message is displayed that reads "one or more environments failed to delete," and at least one of the environments is not deleted\.
+
+**Possible cause:** AWS CloudFormation might have a problem deleting one or more of the environments\. \(AWS Cloud9 relies on AWS CloudFormation to create and delete environments\.\)
+
+**Recommended solution:** Try using AWS CloudFormation to delete each of the undeleted environments, as follows\.
+
+1. Open the AWS CloudFormation console at [https://console\.aws\.amazon\.com/cloudformation](https://console.aws.amazon.com/cloudformation/)\.
+
+1. On the AWS navigation bar, choose the AWS Region for the environment\.
+
+1. In the list of AWS CloudFormation stacks, select the entry where **Stack name** contains the undeleted environment name and **Status** is **DELETE\_FAILED**\. For example, if the environment name is **my\-demo\-environment**, choose the stack that begins with the name **aws\-cloud9\-my\-demo\-environment**\. \(Choose the box or option next to the environment name, not the environment name itself\.\)
+
+1. Choose **Actions, Delete Stack**\.
+
+1. If prompted, choose **Yes, Delete**\.
+
+The process of deleting a stack might take a few minutes\.
+
+If the stack disappears from the list, the environment is now deleted\.
+
+If the stack is still displays displayed with **DELETE\_FAILED** after a few minutes, the environment is still not deleted\. In this case, you can try to manually delete each of the failed stack's resources\.
+
+**Note**  
+Manually deleting a failed stack's resources doesn't remove the stack itself from your AWS account\.
+
+To manually delete these resources, in the AWS CloudFormation console, choose the failed stack, and then select the **Resources** section\. Go to the console in AWS for each resource in this list, and then use that console to manually delete the resource\.

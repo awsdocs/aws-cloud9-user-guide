@@ -3,20 +3,22 @@
 This sample enables you to run some Go code in an AWS Cloud9 development environment\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
-+  [Prerequisites](#sample-go-prereqs) 
-+  [Step 1: Install Required Tools](#sample-go-install) 
-+  [Step 2: Add Code](#sample-go-code) 
-+  [Step 3: Run the Code](#sample-go-run) 
-+  [Step 4: Install and Configure the AWS SDK for Go](#sample-go-sdk) 
-+  [Step 5: Add AWS SDK Code](#sample-go-sdk-code) 
-+  [Step 6: Run the AWS SDK Code](#sample-go-sdk-run) 
-+  [Step 7: Clean Up](#sample-go-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-go-prereqs)
++ [Step 1: Install Required Tools](#sample-go-install)
++ [Step 2: Add Code](#sample-go-code)
++ [Step 3: Run the Code](#sample-go-run)
++ [Step 4: Install and Configure the AWS SDK for Go](#sample-go-sdk)
++ [Step 5: Add AWS SDK Code](#sample-go-sdk-code)
++ [Step 6: Run the AWS SDK Code](#sample-go-sdk-run)
++ [Step 7: Clean Up](#sample-go-clean-up)
 
 ## Prerequisites<a name="sample-go-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Required Tools<a name="sample-go-install"></a>
 
@@ -24,10 +26,18 @@ In this step, you install and configure Go, which is required to run this sample
 
 1. In a terminal session in the AWS Cloud9 IDE, confirm whether Go is already installed by running the ** `go version` ** command\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\) If successful, the output should contain the Go version number\. Otherwise, an error message should be output\. If Go is installed, skip ahead to [Step 2: Add Code](#sample-go-code)\.
 
-1. Run the ** `yum update` ** command to help ensure the latest security updates and bug fixes are installed\.
+1. Run the ** `yum update` ** for \(Amazon Linux\) or ** `apt update` ** for \(Ubuntu Server\) command to help ensure the latest security updates and bug fixes are installed\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y update
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt update
    ```
 
 1. To install Go, run these commands, one at a time\.
@@ -42,7 +52,7 @@ In this step, you install and configure Go, which is required to run this sample
 
 1. Add the path to the Go binary to your `PATH` environment variable, like this\.
 
-   1. Open your shell profile file \(for example, `~/.bashrc` in Amazon Linux\) for editing\.
+   1. Open your shell profile file \(for example, `~/.bashrc`\) for editing\.
 
    1. At the end of this line of code, type the following, so that the code now looks like this\.
 
@@ -125,7 +135,7 @@ You can enhance this sample to use the AWS SDK for Go to create an Amazon S3 buc
 
 In this step, you install and configure the AWS SDK for Go, which provides a convenient way to interact with AWS services such as Amazon S3, from your Go code\. Before you install the AWS SDK for Go, you must set your `GOPATH` environment variable\. After you install the AWS SDK for Go and set your `GOPATH` environment variable, you must set up credentials management in your environment\. The AWS SDK for Go needs these credentials to interact with AWS services\.
 
-**To set your GOPATH environment variable**
+### To set your GOPATH environment variable<a name="sample-go-sdk-set-gopath"></a>
 
 1. Open your `~/.bashrc` file for editing\.
 
@@ -133,7 +143,7 @@ In this step, you install and configure the AWS SDK for Go, which provides a con
 
    ```
    GOPATH=~/environment/go
-   
+      
    export GOPATH
    ```
 
@@ -145,9 +155,9 @@ In this step, you install and configure the AWS SDK for Go, which provides a con
    . ~/.bashrc
    ```
 
-1. Confirm that the `GOPATH` environment variable is successfully set by running the ** `echo $GOPATH` ** command\. If successful, `/home/ec2-user/environment/go` should be output\.
+1. Confirm that the `GOPATH` environment variable is successfully set by running the ** `echo $GOPATH` ** command\. If successful, `/home/ec2-user/environment/go` or `/home/ubuntu/environment/go` should be output\.
 
-### To install the AWS SDK for Go<a name="w3aac21c35c17b9"></a>
+### To install the AWS SDK for Go<a name="sample-go-sdk-install-sdk"></a>
 
 Run the ** `go get` ** command, specifying the location of the AWS SDK for Go source\.
 
@@ -157,13 +167,13 @@ go get -u github.com/aws/aws-sdk-go/...
 
 Go installs the AWS SDK for Go source into the location specified by your `GOPATH` environment variable, which is the `go` folder in your environment\.
 
-### To set up credentials management in your environment<a name="w3aac21c35c17c11"></a>
+### To set up credentials management in your environment<a name="sample-go-sdk-creds"></a>
 
 Each time you use the AWS SDK for Go to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for Go has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-In this step, you store your credentials within the environment\. To do this, follow the instructions in [Call AWS Services from an Environment](credentials.md), and then return to this topic\.
+In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Specifying Credentials](https://docs.aws.amazon.com/sdk-for-go/v1/developer-guide/configuring-sdk.html#specifying-credentials) in the *AWS SDK for Go Developer Guide*\.
+For additional information, see [Specifying Credentials](https://docs.aws.amazon.com/sdk-for-go/latest/developer-guide/configuring-sdk.html#specifying-credentials) in the *AWS SDK for Go Developer Guide*\.
 
 ## Step 5: Add AWS SDK Code<a name="sample-go-sdk-code"></a>
 
@@ -299,4 +309,4 @@ Amazon S3 bucket names must be unique across AWS—not just your AWS account\.
 
 ## Step 7: Clean Up<a name="sample-go-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

@@ -3,16 +3,18 @@
 This sample shows you how to connect an AWS Cloud9 SSH development environment to a running Docker container inside of an Amazon Linux instance in Amazon EC2\. This enables you to use the AWS Cloud9 IDE to work with code and files inside of a Docker container and to run commands on that container\. For information about Docker, see [What is Docker](https://www.docker.com/what-docker) on the Docker website\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
-+  [Prerequisites](#sample-docker-prereqs) 
-+  [Step 1: Install and Run Docker](#sample-docker-install) 
-+  [Step 2: Build the Image](#sample-docker-build) 
-+  [Step 3: Run the Container](#sample-docker-run) 
-+  [Step 4: Create the Environment](#sample-docker-env) 
-+  [Step 5: Run the Code](#sample-docker-code) 
-+  [Step 6: Clean Up](#sample-docker-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-docker-prereqs)
++ [Step 1: Install and Run Docker](#sample-docker-install)
++ [Step 2: Build the Image](#sample-docker-build)
++ [Step 3: Run the Container](#sample-docker-run)
++ [Step 4: Create the Environment](#sample-docker-env)
++ [Step 5: Run the Code](#sample-docker-code)
++ [Step 6: Clean Up](#sample-docker-clean-up)
 
 ## Prerequisites<a name="sample-docker-prereqs"></a>
-+  **You should have an Amazon EC2 instance running Amazon Linux\.** This sample assumes you already have an Amazon EC2 instance running Amazon Linux in your AWS account\. To launch an Amazon EC2 instance, see [Launch a Linux Virtual Machine](https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/)\. In the **Choose an Amazon Machine Image \(AMI\)** page of the wizard, choose an AMI whose display name starts with **Amazon Linux AMI**\.
++  **You should have an Amazon EC2 instance running Amazon Linux or Ubuntu Server\.** This sample assumes you already have an Amazon EC2 instance running Amazon Linux or Ubuntu Server in your AWS account\. To launch an Amazon EC2 instance, see [Launch a Linux Virtual Machine](https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/)\. In the **Choose an Amazon Machine Image \(AMI\)** page of the wizard, choose an AMI whose display name starts with **Amazon Linux AMI** or **Ubuntu Server**\.
 +  **If the Amazon EC2 instance runs within an Amazon VPC, there are additional requirements\.** See [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
 +  **The Amazon EC2 instance should have at least 8 to 16 GB of free disk space available\.** This sample uses Docker images that are over 3 GB in size and can use additional increments of 3 GB or more of disk space to build images\. If you try to run this sample on a disk that has 8 GB of free space or less, we've found that the Docker image might not build or the Docker container might not run\. To check the instance's free disk space, you can run a command such as ** `df -h` ** \(for "disk filesystem information in human\-readable format"\) on the instance\. To increase an existing instance's disk size, see [Modifying a Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -30,10 +32,18 @@ In this step, you check if Docker is installed on the Amazon EC2 instance, and i
 
    If Docker is installed, the Docker version and build number are displayed\. In this case, skip ahead to step 5 later in this procedure\.
 
-1. Install Docker\. To do this, run the ** `yum` ** command with the ** `install` ** action, specifying the ** `docker` ** package to install\.
+1. Install Docker\. To do this, run the ** `yum` ** or ** `apt` ** command with the ** `install` ** action, specifying the ** `docker` ** or ** `docker.io` ** package to install\.
+
+   For Amazon Linux:
 
    ```
    sudo yum install -y docker
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt install -y docker.io
    ```
 
 1. Confirm that Docker is installed\. To do this, run the ** `docker --version` ** command again\. The Docker version and build number are displayed\.
@@ -70,10 +80,10 @@ In this step, you use a Dockerfile to build a Docker image onto the instance\. T
    
    # Enable the Docker container to communicate with AWS Cloud9 by
    # installing SSH.
-   RUN apt-get update && apt-get install -y openssh-server
+   RUN apt update && apt install -y openssh-server
    
    # Ensure that Node.js is installed.
-   RUN apt-get install -y nodejs && ln -s /usr/bin/nodejs /usr/bin/node
+   RUN apt install -y nodejs && ln -s /usr/bin/nodejs /usr/bin/node
    
    # Disable password authentication by turning off the
    # Pluggable Authentication Module (PAM).
@@ -220,7 +230,7 @@ In this step, you use AWS Cloud9 to create an AWS Cloud9 SSH development environ
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
    + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
-   + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
+   + If you're using an AWS Educate Starter Account, see [Step 2: Sign In to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
    + If you're a student in a classroom, see your instructor for sign\-in instructions\.
 
 1. In the AWS navigation bar, in the AWS Region selector, choose the AWS Region where you want to create the SSH environment\.
@@ -237,7 +247,7 @@ In this step, you use AWS Cloud9 to create an AWS Cloud9 SSH development environ
 
 1. For **User**, type `ubuntu`\.
 
-1. For **Host**, type the pubic IP address of the Amazon EC2 instance, which you noted earlier\.
+1. For **Host**, type the public IP address of the Amazon EC2 instance, which you noted earlier\.
 
 1. For **Port**, type `9090`\.
 
@@ -276,7 +286,7 @@ In this step, you delete the environment and remove AWS Cloud9 and Docker suppor
 
 ### Step 6\.1: Delete the Environment<a name="step-6-1-delete-the-envtitle"></a>
 
-To delete the environment, see [Deleting an Environment](delete-environment.md)\.
+To delete the environment, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
 
 ### Step 6\.2: Remove AWS Cloud9 Support Files from the Container<a name="step-6-2-remove-ac9-support-files-from-the-container"></a>
 
@@ -311,8 +321,16 @@ If you no longer want to keep the Docker container, the Docker image, and Docker
 
 1. Uninstall Docker\. To do this, run the ** `yum` ** command on the instance with the ** `remove` ** action, specifying the ** `docker` ** package to uninstall\.
 
+   For Amazon Linux:
+
    ```
    sudo yum -y remove docker
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt -y remove docker
    ```
 
    You can also remove the `Dockerfile` and `authorized_keys` files you created earlier\. For example, run the ** `rm` ** command on the instance\.

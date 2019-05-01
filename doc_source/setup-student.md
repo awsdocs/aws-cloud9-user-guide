@@ -1,6 +1,6 @@
 # Individual Student Setup for AWS Cloud9<a name="setup-student"></a>
 
-This topic explains how to set up to use AWS Cloud9 as a student, with you as the only individual using your account with AWS\. To set up to use AWS Cloud9 for any other usage pattern, see [Getting Started with AWS Cloud9](get-started.md) for the correct instructions\.
+This topic explains how to set up to use AWS Cloud9 as a student, with you as the only individual using your account with AWS\. To set up to use AWS Cloud9 for any other usage pattern, see [Getting Started with AWS Cloud9](get-started.md) for the correct instructions\. To learn about who qualifies as a student, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
 +  [Step 1: Create an Account with AWS](#setup-student-create-account) 
 +  [Step 2: Sign In to the AWS Cloud9 Console](#setup-student-sign-in-ide) 
 +  [Next Steps](#setup-student-next-steps) 
@@ -23,7 +23,7 @@ For an AWS Educate Starter account, note the following:
 
 For more information, see [What is the difference between the AWS Account and AWS Educate Starter Account](https://www.awseducate.com/faqs#fa0Po000000C0eH1EAJ) on the *AWS Educate Frequently Asked Questions* website\. To watch a related 5\-minute video, see [What's the difference between a regular AWS account and an AWS Educate Starter Account](https://www.youtube.com/watch?v=fJ-npJNpgWI) on the YouTube website\.
 +  [Create an AWS Educate Starter Account](#setup-student-create-account-starter) 
-+  [Create a Regular AWS Account](#setup-student-create-account-regular) 
++  [Create a Regular AWS Account and Apply for AWS Educate](#setup-student-create-account-regular) 
 
 ### Create an AWS Educate Starter Account<a name="setup-student-create-account-starter"></a>
 
@@ -43,13 +43,13 @@ If you already have an AWS Educate Starter Account, skip ahead to [Step 2: Sign 
 
 1. After you complete the application process, AWS will send you an email with the title **Thank You for Applying for AWS Educate**\. This email includes details such as how to check the status of your application and how to contact AWS Educate support with any questions\.
 
-1. After AWS Educate approves your application, AWS will send you an email with the title **AWS Educate Application Approved**\. Note that the approval process might take a day or longer\. Do not go past this step in this procedure until you get this approval\.
+   After AWS Educate approves your application, AWS will send you an email with the title **AWS Educate Application Approved**\. Note that the approval process might take a day or longer\. Do not go past this step in this procedure until you get this approval\.
 
 1. After you get the approval email, follow the instructions in the email to set your AWS Educate Student Portal password, and then sign in to your AWS Educate Student Portal\. After you set your AWS Educate Student Portal password, store that password in a secure location\.
 
 1. Skip ahead to [Step 2: Sign In to the AWS Cloud9 Console](#setup-student-sign-in-ide)\.
 
-### Create a Regular AWS Account<a name="setup-student-create-account-regular"></a>
+### Create a Regular AWS Account and Apply for AWS Educate<a name="setup-student-create-account-regular"></a>
 
 If you already have a regular AWS account, skip ahead to step 6 in this procedure to apply for AWS Educate\.
 
@@ -73,7 +73,7 @@ If you already have a regular AWS account, skip ahead to step 6 in this procedur
 
 1. On the **Choose one of the following** page, select **Click here to enter an AWS Account ID**\.
 
-1. In the box next to **Click here to enter an AWS Account ID**, enter your AWS account ID, and then choose **Next**\.
+1. In the box next to **Click here to enter an AWS Account ID**, enter your AWS account ID, and then choose **Next**\. \(To get your AWS account ID, see [Finding Your AWS Account ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingYourAccountIdentifiers) in the *Amazon Web Services General Reference*\.\)
 
 1. AWS will send you an email with the title **Email Verification \- AWS Educate Application**\. Choose the link in that email to confirm your email address, review the AWS Educate program terms and conditions, and complete the application process\.
 

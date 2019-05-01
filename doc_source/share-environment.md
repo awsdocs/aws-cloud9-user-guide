@@ -433,7 +433,7 @@ To use code to change the access role of a environment member, call the AWS Clou
 You cannot remove your user from an environment if you are the environment owner\.  
 Removing your user from an environment does not remove your user from IAM\.
 
-1. With the shared environment open, in the **Collaborate** window, expand **Enviroment Members**, if the list of members is not visible\.
+1. With the shared environment open, in the **Collaborate** window, expand **Environment Members**, if the list of members is not visible\.
 
 1. Do one of the following\.
    + Next to **You**, choose the trash can icon\.

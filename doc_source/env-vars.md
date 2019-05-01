@@ -49,7 +49,7 @@ If you set the same custom environment variable in your `~/.bash_profile` file a
 
 ## Set Custom User Environment Variables in \~/\.bashrc<a name="env-vars-bashrc"></a>
 
-You can set custom user environment variables in `~/.bashrc` file in your environment\. To test this behavior, add the following code to the `~/.bashrc` file in your environment:
+You can set custom user environment variables in the `~/.bashrc` file in your environment\. To test this behavior, add the following code to the `~/.bashrc` file in your environment:
 
 ```
 export MY_ENV_VAR='.bashrc file'

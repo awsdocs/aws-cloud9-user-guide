@@ -1,13 +1,15 @@
 # Previewing Running Applications in the AWS Cloud9 Integrated Development Environment \(IDE\)<a name="app-preview"></a>
 
 You can use the AWS Cloud9 IDE to preview a running application from within the IDE\.
-+  [Run an Application](#app-preview-run-app) 
-+  [Preview a Running Application](#app-preview-preview-app) 
-+  [Reload an Application Preview](#app-preview-app-reload) 
-+  [Change the Application Preview Type](#app-preview-app-preview-type) 
-+  [Open an Application Preview in a Separate Web Browser Tab](#app-preview-app-open-tab) 
-+  [Switch to a Different Preview URL](#app-preview-url-switch) 
-+  [Share a Running Application over the Internet](#app-preview-share) 
+
+**Topics**
++ [Run an Application](#app-preview-run-app)
++ [Preview a Running Application](#app-preview-preview-app)
++ [Reload an Application Preview](#app-preview-app-reload)
++ [Change the Application Preview Type](#app-preview-app-preview-type)
++ [Open an Application Preview in a Separate Web Browser Tab](#app-preview-app-open-tab)
++ [Switch to a Different Preview URL](#app-preview-url-switch)
++ [Share a Running Application over the Internet](#app-preview-share)
 
 ## Run an Application<a name="app-preview-run-app"></a>
 
@@ -126,11 +128,13 @@ On the application preview tab, type the path to a different URL in the address 
 After you preview your running application, you can make it available to others over the internet\.
 
 To do this, if an Amazon EC2 instance is connected to your environment, follow these steps\. Otherwise, see your server's documentation\.
-+  [Step 1: Get the ID and the IP Address of the Instance](#app-preview-share-get-metadata) 
-+  [Step 2: Set Up the Security Group for the Instance](#app-preview-share-security-group) 
-+  [Step 3: Set Up the Subnet for the Instance](#app-preview-share-subnet) 
-+  [Step 4: Change the Running Application IP](#app-preview-share-change-port) 
-+  [Step 5: Share the Running Application URL](#app-preview-share-url) 
+
+**Topics**
++ [Step 1: Get the ID and the IP Address of the Instance](#app-preview-share-get-metadata)
++ [Step 2: Set Up the Security Group for the Instance](#app-preview-share-security-group)
++ [Step 3: Set Up the Subnet for the Instance](#app-preview-share-subnet)
++ [Step 4: Change the Running Application IP](#app-preview-share-change-port)
++ [Step 5: Share the Running Application URL](#app-preview-share-url)
 
 ### Step 1: Get the ID and the IP Address of the Instance<a name="app-preview-share-get-metadata"></a>
 
@@ -170,9 +174,9 @@ In this step, you use the Amazon EC2 console to set up the Amazon EC2 security g
 You don't have to run using HTTP over port `8080`, `8081`, or `8082`\. If you are running on a different protocol or port, substitute it throughout this step\. You won't be able to preview your running application from within the IDE until you switch back to running using HTTP over one of the ports and IPs as described in [Preview a Running Application](#app-preview-preview-app)\.  
 For an additional layer of security, you can also set up a network access control list \(ACL\) for a subnet in a virtual private cloud \(VPC\) that the instance can use\. For more information about security groups and network ACLs, see the following:  
  [Step 3: Set Up the Subnet for the Instance](#app-preview-share-subnet) 
- [Security](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Security.html) in the *Amazon VPC User Guide*
- [Security Groups for Your VPC](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*
- [Network ACLs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) in the *Amazon VPC User Guide*
+ [Security](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html) in the *Amazon VPC User Guide*
+ [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*
+ [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide*
 
 1. In the IDE for the environment, on the menu bar, choose your user icon, and then choose **Manage EC2 Instance**\. Then skip ahead to step 3 in this procedure\.
 
@@ -211,8 +215,8 @@ In this step, you use the consoles for Amazon EC2 and Amazon Virtual Private Clo
 **Note**  
 You don't have to run using HTTP over port `8080`, `8081`, or `8082`\. If you are running on a different protocol or port, substitute it throughout this step\. You won't be able to preview your running application from within the IDE until you switch back to running using HTTP over the ports and IPs as described in [Preview a Running Application](#app-preview-preview-app)\.  
 This step describes how to set up a network ACL for a subnet in an Amazon VPC that the instance can use\. This step is not required\. However, it adds an additional layer of security when compared to just using security groups\. For more information about network ACLs, see the following:  
- [Security](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Security.html) in the *Amazon VPC User Guide*
- [Network ACLs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) in the *Amazon VPC User Guide*
+ [Security](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html) in the *Amazon VPC User Guide*
+ [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide*
 
 1. With the Amazon EC2 console already open from the previous step, in the service navigation pane, expand **Instances** if it is not already expanded, and then choose **Instances**\.
 

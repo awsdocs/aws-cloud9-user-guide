@@ -9,7 +9,7 @@ In this topic, you create and set up a Linux\-based Lightsail instance that is c
 **Note**  
 Completing these procedures might result in charges to your AWS account\. These include possible charges for services such as Lightsail\. For more information, see [Amazon Lightsail Pricing](https://aws.amazon.com/lightsail/pricing/)\.  
 To create and set up a more advanced solution that includes a toolchain with the AWS Cloud9 IDE, source control, build, deployment, virtual servers or serverless resources, and more, skip the rest of this topic, and see [Working with AWS CodeStar Projects](codestar-projects.md) instead\.  
-To use the AWS Cloud9 IDE to work with an Amazon EC2 instance running Amazon Linux that contains no sample code, skip the rest of this topic, and see the [IDE Tutorial](tutorial.md) instead\.
+To use the AWS Cloud9 IDE to work with an Amazon EC2 instance running Amazon Linux or Ubuntu Server that contains no sample code, skip the rest of this topic, and see the [IDE Tutorial](tutorial.md) instead\.
 +  [Step 1: Create a Linux\-Based Lightsail Instance](#lightsail-instances-create) 
 +  [Step 2: Set up the Instance to Use It with AWS Cloud9](#lightsail-instances-setup) 
 +  [Step 3: Create and Connect to an AWS Cloud9 SSH Development Environment](#lightsail-instances-environment) 
@@ -67,16 +67,16 @@ The following instructions assume you chose **Apps \+ OS** in the previous step\
 
 1. Choose **Connect using SSH**\.
 
-1. Be sure that the instance has the latest system updates\. To do this, in the terminal session that appears, run the command ** `sudo apt-get update` **\.
+1. Be sure that the instance has the latest system updates\. To do this, in the terminal session that appears, run the command ** `sudo apt update` **\.
 
-1. Check to see if Python is installed, and if it is, check to be sure the version is 2\.7\. To check the version, run the command ** `python --version` **, and note the version number that appears\. If no version number appears, or if the version is not 2\.7, install Python 2\.7 on the instance by running the command ** `sudo apt-get install -y python-minimal` **\.
+1. Check to see if Python is installed, and if it is, check to be sure the version is 2\.7\. To check the version, run the command ** `python --version` **, and note the version number that appears\. If no version number appears, or if the version is not 2\.7, install Python 2\.7 on the instance by running the command ** `sudo apt install -y python-minimal` **\.
 
 1. Check to see if Node\.js is installed, and if it is, check that the version is 0\.6\.16 or later\. To check the version, run the command ** `node --version` **, and note the version number that appears\. If no version number appears, or the version is not 0\.6\.16 or later, we recommend you use Node Version Manager \(nvm\) to install Node\.js on the instance\.
 
    To do this, run the following commands one at a time, in the following order, to update the instance, install Node Version Manager \(nvm\) on the instance, activate nvm on the instance, and then install the latest version of Node\.js on the instance\.
 
    ```
-   sudo apt-get update
+   sudo apt update
    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
    . ~/.bashrc
    nvm install node

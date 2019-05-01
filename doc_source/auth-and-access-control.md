@@ -1,10 +1,12 @@
 # Access Permissions Reference for AWS Cloud9<a name="auth-and-access-control"></a>
 
 Access to AWS Cloud9 requires AWS access credentials\. Those credentials must have permissions to do things such as create, share, or delete an AWS Cloud9 development environment\. The following sections describe how you can use AWS Identity and Access Management \(IAM\) to allow or deny access to your AWS Cloud9 resources and then map those permissions to credentials\.
-+  [Overview](#auth-and-access-control-overview) 
-+  [AWS Managed \(Predefined\) Policies for AWS Cloud9](#auth-and-access-control-managed-policies) 
-+  [Creating Customer\-Managed Policies for AWS Cloud9](#auth-and-access-control-customer-policies) 
-+  [AWS Managed Temporary Credentials](#auth-and-access-control-temporary-managed-credentials) 
+
+**Topics**
++ [Overview](#auth-and-access-control-overview)
++ [AWS Managed \(Predefined\) Policies for AWS Cloud9](#auth-and-access-control-managed-policies)
++ [Creating Customer\-Managed Policies for AWS Cloud9](#auth-and-access-control-customer-policies)
++ [AWS Managed Temporary Credentials](#auth-and-access-control-temporary-managed-credentials)
 
 ## Overview<a name="auth-and-access-control-overview"></a>
 
@@ -12,11 +14,13 @@ This section provides an overview of the IAM authentication and access control m
 
 **Note**  
 If you just want to set up predefined sets of access permissions for common usage scenarios and user types, skip ahead to [AWS Managed \(Predefined\) Policies for AWS Cloud9](#auth-and-access-control-managed-policies)\.
-+  [Authentication](#auth-and-access-control-overview-auth) 
-+  [Access Control](#access-permissions-overview-access-control) 
-+  [AWS Cloud9 Resources and Operations](#access-permissions-overview-resources-and-operations) 
-+  [Understanding Resource Ownership](#auth-and-access-control-overview-resource-ownership) 
-+  [Managing Access to Resources](#access-permissions-overview-managing-access) 
+
+**Topics**
++ [Authentication](#auth-and-access-control-overview-auth)
++ [Access Control](#access-permissions-overview-access-control)
++ [AWS Cloud9 Resources and Operations](#access-permissions-overview-resources-and-operations)
++ [Understanding Resource Ownership](#auth-and-access-control-overview-resource-ownership)
++ [Managing Access to Resources](#access-permissions-overview-managing-access)
 
 ### Authentication<a name="auth-and-access-control-overview-auth"></a>
 
@@ -45,7 +49,7 @@ You can use an IAM role in your account to grant an AWS service permissions to a
 
  **Applications running on Amazon EC2** 
 
-Instead of storing access keys within an Amazon EC2 instance for use by applications running on the instance and making AWS API requests, you can use an IAM role to manage temporary credentials for these applications\. To assign an AWS role to an Amazon EC2 instance and make it available to all of its applications, you can create an *instance profile* that is attached to the instance\. An instance profile contains the role and enables programs running on the Amazon EC2 instance to get temporary credentials\. For more information, see [Create and Use an Instance Profile to Manage Temporary Credentials](credentials.md#credentials-temporary) and [Using an IAM Role to Grant Permissions to Applications Running on Amazon EC2 Instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html) in the *IAM User Guide*\.
+Instead of storing access keys within an Amazon EC2 instance for use by applications running on the instance and making AWS API requests, you can use an IAM role to manage temporary credentials for these applications\. To assign an AWS role to an Amazon EC2 instance and make it available to all of its applications, you can create an *instance profile* that is attached to the instance\. An instance profile contains the role and enables programs running on the Amazon EC2 instance to get temporary credentials\. For more information, see [Create and Use an Instance Profile to Manage Temporary Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/credentials.html#credentials-temporary) and [Using an IAM Role to Grant Permissions to Applications Running on Amazon EC2 Instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html) in the *IAM User Guide*\.
 
 **Note**  
 Instead of attaching an instance profile to an Amazon EC2 instance that connects to an environment, AWS Cloud9 can automatically set up and manage temporary credentials on your behalf in an EC2 environment\. For more information, see [AWS Managed Temporary Credentials](#auth-and-access-control-temporary-managed-credentials)\.
@@ -146,7 +150,7 @@ To attach an AWS managed policy to an IAM identity, see [Attaching IAM Policies 
 
 The following AWS managed policies, which you can attach to IAM identities in your account, are specific to AWS Cloud9\.
 +  `AWSCloud9Administrator`: Provides the following permissions:
-  + Amazon EC2: get information about Amazon VPCs and subnets in their AWS account\.
+  + Amazon EC2: get information about multiple Amazon VPC and subnet resources in their AWS account\.
   + AWS Cloud9: all AWS Cloud9 actions in their AWS account\.
   + IAM: get information about IAM users in their AWS account, and create the AWS Cloud9 service\-linked role in their AWS account as needed\.
 
@@ -183,7 +187,7 @@ The following AWS managed policies, which you can attach to IAM identities in yo
   }
   ```
 +  `AWSCloud9User`: Provides the following permissions:
-  + Amazon EC2: get information about Amazon VPCs and subnets in their AWS account\.
+  + Amazon EC2: get information about multiple Amazon VPC and subnet resources in their AWS account\.
   + AWS Cloud9: create and get information about their environments, and get and change user settings for their environments\.
   + IAM: get information about IAM users in their AWS account, and create the AWS Cloud9 service\-linked role in their AWS account as needed\.
 
@@ -279,9 +283,11 @@ The following AWS managed policies, which you can attach to IAM identities in yo
 If none of the AWS managed policies meet your access control requirements, you can create and attach your own customer\-managed policies\.
 
 To create a customer\-managed policy, see [Create an IAM Policy \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) in the *IAM User Guide*\.
-+  [Specifying Policy Elements: Effects, Principals, Actions, and Resources](#auth-and-access-control-customer-policies-specifying-policy-elements) 
-+  [Customer\-Managed Policy Examples](#auth-and-access-control-customer-policies-examples) 
-+  [AWS Cloud9 Permissions Reference](#auth-and-access-control-ref) 
+
+**Topics**
++ [Specifying Policy Elements: Effects, Principals, Actions, and Resources](#auth-and-access-control-customer-policies-specifying-policy-elements)
++ [Customer\-Managed Policy Examples](#auth-and-access-control-customer-policies-examples)
++ [AWS Cloud9 Permissions Reference](#auth-and-access-control-ref)
 
 ### Specifying Policy Elements: Effects, Principals, Actions, and Resources<a name="auth-and-access-control-customer-policies-specifying-policy-elements"></a>
 
@@ -305,19 +311,21 @@ To create or attach a customer\-managed policy to an IAM identity, see [Create a
 
 **Note**  
 The following examples use the US East \(Ohio\) Region \(`us-east-2`\), a fictitious AWS account ID \(`123456789012`\), and a fictitious AWS Cloud9 development environment ID \(`81e900317347585a0601e04c8d52eaEX`\)\.
-+  [Get Information About Environments](#auth-and-access-control-customer-policies-examples-describe-environments) 
-+  [Create EC2 Environments](#auth-and-access-control-customer-policies-examples-create-environment-ec2) 
-+  [Create EC2 Environments with Specific Amazon EC2 Instance Types](#auth-and-access-control-customer-policies-examples-ec2-instance-types) 
-+  [Create EC2 Environments in Specific Amazon VPC Subnets](#auth-and-access-control-customer-policies-examples-ec2-subnets) 
-+  [Create an EC2 Environment with a Specific Environment Name](#auth-and-access-control-customer-policies-examples-ec2-name) 
-+  [Create SSH Environments Only](#auth-and-access-control-customer-policies-examples-no-ec2) 
-+  [Update Environments, or Prevent Updating an Environment](#auth-and-access-control-customer-policies-examples-update-environment) 
-+  [Get Lists of Environment Members](#auth-and-access-control-customer-policies-examples-describe-environment-memberships) 
-+  [Share Environments Only with a Specific User](#auth-and-access-control-customer-policies-examples-restrict-collaboration) 
-+  [Prevent Sharing Environments](#auth-and-access-control-customer-policies-examples-no-collaboration) 
-+  [Change, or Prevent Changing, the Settings of Environment Members](#auth-and-access-control-customer-policies-examples-update-environment-membership) 
-+  [Remove, or Prevent Removing, Environment Members](#auth-and-access-control-customer-policies-examples-delete-environment-membership) 
-+  [Delete Environments, or Prevent Deleting an Environment](#auth-and-access-control-customer-policies-examples-delete-environment) 
+
+**Topics**
++ [Get Information About Environments](#auth-and-access-control-customer-policies-examples-describe-environments)
++ [Create EC2 Environments](#auth-and-access-control-customer-policies-examples-create-environment-ec2)
++ [Create EC2 Environments with Specific Amazon EC2 Instance Types](#auth-and-access-control-customer-policies-examples-ec2-instance-types)
++ [Create EC2 Environments in Specific Amazon VPC Subnets](#auth-and-access-control-customer-policies-examples-ec2-subnets)
++ [Create an EC2 Environment with a Specific Environment Name](#auth-and-access-control-customer-policies-examples-ec2-name)
++ [Create SSH Environments Only](#auth-and-access-control-customer-policies-examples-no-ec2)
++ [Update Environments, or Prevent Updating an Environment](#auth-and-access-control-customer-policies-examples-update-environment)
++ [Get Lists of Environment Members](#auth-and-access-control-customer-policies-examples-describe-environment-memberships)
++ [Share Environments Only with a Specific User](#auth-and-access-control-customer-policies-examples-restrict-collaboration)
++ [Prevent Sharing Environments](#auth-and-access-control-customer-policies-examples-no-collaboration)
++ [Change, or Prevent Changing, the Settings of Environment Members](#auth-and-access-control-customer-policies-examples-update-environment-membership)
++ [Remove, or Prevent Removing, Environment Members](#auth-and-access-control-customer-policies-examples-delete-environment-membership)
++ [Delete Environments, or Prevent Deleting an Environment](#auth-and-access-control-customer-policies-examples-delete-environment)
 
 #### Get Information About Environments<a name="auth-and-access-control-customer-policies-examples-describe-environments"></a>
 
@@ -662,8 +670,10 @@ You can use the following table as a reference when you are setting up access co
 You can use AWS\-wide condition keys in your AWS Cloud9 policies to express conditions\. For a list, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
 
 You specify the actions in the policy's `Action` field\. To specify an action, use the `cloud9:` prefix followed by the API operation name \(for example, `"Action": "cloud9:DescribeEnvironments"`\)\. To specify multiple actions in a single statement, separate them with commas \(for example, `"Action": [ "cloud9:UpdateEnvironment", "cloud9:DeleteEnvironment" ]`\)\.
-+  [Using Wildcard Characters](#auth-and-access-control-ref-wildcards) 
-+  [AWS Cloud9 API Operations and Required Permissions for Actions](#auth-and-access-control-ref-matrix) 
+
+**Topics**
++ [Using Wildcard Characters](#auth-and-access-control-ref-wildcards)
++ [AWS Cloud9 API Operations and Required Permissions for Actions](#auth-and-access-control-ref-matrix)
 
 #### Using Wildcard Characters<a name="auth-and-access-control-ref-wildcards"></a>
 
@@ -794,4 +804,4 @@ AWS managed temporary credentials are updated under any of the following conditi
 + Whenever a certain period of time passes\. Currently, this is every 5 minutes\.
 + Whenever you reload the web browser tab that displays the IDE for the environment\.
 + When the timestamp that is listed in the `~/.aws/credentials` file for the environment is reached\.
-+ If the **AWS managed temporary credentials** setting is set to off, whenever you turn it back on\. \(To view or change this setting, choose **AWS Cloud, Preferences** in the menu bar of the IDE\. In the **Preferences** tab, in the navigation pane, choose **AWS Settings, Credentials**\.\)
++ If the **AWS managed temporary credentials** setting is set to off, whenever you turn it back on\. \(To view or change this setting, choose **AWS Cloud9, Preferences** in the menu bar of the IDE\. In the **Preferences** tab, in the navigation pane, choose **AWS Settings, Credentials**\.\)

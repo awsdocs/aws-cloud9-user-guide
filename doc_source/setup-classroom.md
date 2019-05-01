@@ -34,7 +34,7 @@ If you are already a member of AWS Educate, skip ahead to [Step 2: Set Up Your V
 
 1. On the **Choose one of the following** page, select **Click here to enter an AWS Account ID**, and then choose **Next**\.
 
-1. In the box next to **Click here to enter an AWS Account ID**, enter your AWS account ID, and then choose **Next**\.
+1. In the box next to **Click here to enter an AWS Account ID**, enter your AWS account ID, and then choose **Next**\. \(To get your AWS account ID, see [Finding Your AWS Account ID](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html#FindingYourAccountIdentifiers) in the *Amazon Web Services General Reference*\.\)
 
 1. AWS will send you an email with the title **Email Verification \- AWS Educate Application**\. Choose the link in that email to confirm your email address, review the AWS Educate program terms and conditions, and complete the application process\.
 

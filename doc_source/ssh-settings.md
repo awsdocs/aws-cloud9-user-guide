@@ -17,7 +17,7 @@ You must create an SSH environment instead of an EC2 environment whenever any of
 |  You don't want to incur additional charges to your AWS account for using AWS cloud compute instances, so you decide to connect AWS Cloud9 to an existing cloud compute instance outside of AWS or your own server instead\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ssh-settings.html)  | 
 |  You want to use an existing AWS cloud compute instance \(for example an Amazon EC2 instance\) in your AWS account instead of having AWS Cloud9 to launch a new instance at the same time the environment is created\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ssh-settings.html)  | 
 |  You want to use an Amazon EC2 instance type that AWS Cloud9 currently doesn't support for an EC2 environment \(for example, R4\)\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ssh-settings.html)  | 
-|  You want to use an Amazon EC2 instance that is based on an Amazon Machine Image \(AMI\) other than Amazon Linux \(for example, Ubuntu Server\)\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ssh-settings.html)  | 
+|  You want to use an Amazon EC2 instance that is based on an Amazon Machine Image \(AMI\) other than Amazon Linux or Ubuntu Server\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ssh-settings.html)  | 
 |  You want to connect multiple environments to a single existing cloud compute instance or your own server\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ssh-settings.html)  | 
 
 **Note**  
@@ -52,6 +52,6 @@ To connect to your own server to verify and meet requirements, you could search 
   sudo chmod u=rwx,g=rx,o=rx ~
   ```
 +  [Download and run the AWS Cloud9 Installer](installer.md#installer-download-run) on the existing instance or server\.
-+ Optionally, you can restrict inbound traffic over SSH to only the IP addresses that AWS Cloud9 uses\. To do this, set inbound SSH traffic to the IP ranges as described in [Inbound SSH IP Address Ranges](ip-ranges.md)\.
++ Optionally, you can restrict inbound traffic over SSH to only the IP addresses that AWS Cloud9 uses\. To do this, set inbound SSH traffic to the IP ranges as described in [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
 
 After you are sure your instance or server meets the preceding requirements, [create an SSH environment](create-environment.md#create-environment-ssh) for AWS Cloud9 to connect it to\.

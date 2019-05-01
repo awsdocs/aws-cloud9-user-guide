@@ -105,7 +105,7 @@ In this step, you either create groups and users in an AWS SSO directory for the
   1.  [Add Users](https://docs.aws.amazon.com/singlesignon/latest/userguide/addusers.html)\. 
 
   1.  [Add Users to Groups](https://docs.aws.amazon.com/singlesignon/latest/userguide/adduserstogroups.html)\. Add any AWS Cloud9 administrators to the `AWSCloud9Administrators` group, repeat this step to add AWS Cloud9 users to the `AWSCloud9Users` group, and optionally repeat this step to add any remaining users to the `AWSCloud9EnvironmentMembers` group\. Adding users to groups is an AWS security best practice that can help you better control, track, and troubleshoot issues with AWS resource access\.
-+ If you're using an AWS Managed Microsoft AD or AD Connector directory that you manage in AWS Directory Service for the organization, follow the instructions in [Connect to Your Microsoft AD Directory](https://docs.aws.amazon.com/singlesignon/latest/userguide/Connect to Your Microsoft AD Directory) in the *AWS Single Sign\-On User Guide*\.
++ If you're using an AWS Managed Microsoft AD or AD Connector directory that you manage in AWS Directory Service for the organization, follow the instructions in [Connect to Your Microsoft AD Directory](https://docs.aws.amazon.com/singlesignon/latest/userguide/manage-your-directory-connected.html) in the *AWS Single Sign\-On User Guide*\.
 
 ## Step 6\. Enable Groups and Users within the Organization to Use AWS Cloud9<a name="setup-enterprise-groups-users-access"></a>
 

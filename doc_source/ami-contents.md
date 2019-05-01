@@ -1,27 +1,95 @@
 # Amazon Machine Image \(AMI\) Contents for an AWS Cloud9 EC2 Development Environment<a name="ami-contents"></a>
 
-The Amazon Machine Image \(AMI\) that AWS Cloud9 uses for an EC2 environment contains the following components:
-+ The packages listed in [Amazon Linux AMI 2018\.03 Packages](https://aws.amazon.com/amazon-linux-ami/2018-03-packages/) on the Amazon Linux AMI website\.
-+  [Apache HTTP Server](http://httpd.apache.org/) 2\.4
-+  [AWS CLI](sample-aws-cli.md) 1\.14\.9
-+  [AWS SAM Local](https://github.com/awslabs/aws-sam-local) 0\.2\.11
-+  [CoffeeScript](http://coffeescript.org) 2\.3\.1
-+  [Docker](https://www.docker.com/) 18\.03\.1\-ce
-+  [GCC, G\+\+](https://gcc.gnu.org/) 4\.8\.5
-+  [GDB](https://www.gnu.org/software/gdb/) 7\.6\.1
-+  [Git](https://git-scm.com/) 2\.14\.4
-+  [GNU libc](https://www.gnu.org/software/libc/) 2\.17
-+  [Go](https://golang.org) 1\.9\.1
-+  [MySQL](https://dev.mysql.com/) 14\.14
-+  [MySQL native driver for PHP](https://dev.mysql.com/downloads/connector/php-mysqlnd/) 
-+  [Node\.js](https://nodejs.org/en/) v6\.14\.3
-+  [Node Package manager \(npm\)](https://www.npmjs.com/) 3\.10\.10
-+  [Node Version Manager \(nvm\)](http://nvm.sh/) 0\.31\.7
-+  [Perl](https://www.perl.org/) v\.5\.16\.3
-+  [PHP](https://secure.php.net/) 5\.6\.36
-+  [Pylint](https://www.pylint.org/) 1\.8\.1
-+  [Python](https://www.python.org/) 2\.7\.14
-+  [Python](https://www.python.org/) 3\.6\.5
-+  [Ruby on Rails](http://rubyonrails.org/) 5\.2\.0
-+  [Ruby](https://www.ruby-lang.org/en/) 2\.4\.1
-+  [virtualenv](https://virtualenv.pypa.io/en/stable/) 16\.0\.0
+Use the following information to get details about Amazon Machine Images \(AMIs\) that AWS Cloud9 uses for an EC2 environment\.
+
+**Topics**
++ [Amazon Linux](#ami-contents-amazon-linux)
++ [Ubuntu Server](#ami-contents-ubuntu-server)
+
+## Amazon Linux<a name="ami-contents-amazon-linux"></a>
+
+To display the version of an Amazon Linux instance, run the following command from the AWS Cloud9 IDE for the connected environment or from an SSH utility such as the ssh command or PuTTY\.
+
+```
+cat /etc/system-release
+```
+
+To display a list of packages that are installed on an Amazon Linux instance, run one or more of the following commands\.
+
+To display all installed packages as a single list:
+
+```
+sudo yum list installed
+```
+
+To display a list of installed packages with package names containing the specified text:
+
+```
+sudo yum list installed | grep YOUR_SEARCH_TERM
+```
+
+In the preceding command, replace `YOUR_SEARCH_TERM` with some portion of the package name\. For example, to display a list of all installed packages with names containing `sql`:
+
+```
+sudo yum list installed | grep sql
+```
+
+To display a list of all installed packages, displayed one page at a time:
+
+```
+sudo yum list installed | less
+```
+
+To scroll through the displayed pages:
++ To move down a line, press **j**\.
++ To move up a line, press **k**\.
++ To move down a page, press **Ctrl\-F**\.
++ To move up a page, press **Ctrl\-B**\.
++ To quit, press **q**\.
+
+For additional options, run the man yum command\. See also [Amazon Linux AMI 2018\.03 Packages](https://aws.amazon.com/amazon-linux-ami/2018-03-packages/) on the Amazon Linux AMI website\.
+
+## Ubuntu Server<a name="ami-contents-ubuntu-server"></a>
+
+To display the version of an Ubuntu Server instance, run the following command from the AWS Cloud9 IDE for the connected environment or from an SSH utility such as the ssh command or PuTTY\.
+
+```
+lsb_release -a
+```
+
+The version will display next to the **Description** field\.
+
+To display a list of packages that are installed on an Ubuntu Server, run one or more of the following commands\.
+
+To display all installed packages as a single list:
+
+```
+sudo apt list --installed
+```
+
+To display a list of installed packages with package names containing the specified text:
+
+```
+sudo apt list --installed | grep YOUR_SEARCH_TERM
+```
+
+In the preceding command, replace `YOUR_SEARCH_TERM` with some portion of the package name\. For example, to display a list of all installed packages with names containing `sql`:
+
+```
+sudo apt list --installed grep sql
+```
+
+To display a list of all installed packages, one page at a time:
+
+```
+sudo apt list --installed | less
+```
+
+To scroll through the displayed pages:
++ To move down a line, press **j**\.
++ To move up a line, press **k**\.
++ To move down a page, press **Ctrl\-F**\.
++ To move up a page, press **Ctrl\-B**\.
++ To quit, press **q**\.
+
+For additional options, run the man apt command\. See also [Ubuntu Packages Search](https://packages.ubuntu.com/) on the Ubuntu website\.

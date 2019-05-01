@@ -4,15 +4,17 @@ In this tutorial, you set up an AWS Cloud9 development environment and then tour
 
 **Note**  
 Completing this tutorial might result in charges to your AWS account\. These include possible charges for Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
-+  [Prerequisites](#tutorial-prereqs) 
-+  [Step 1: Create an Environment](#tutorial-create-environment) 
-+  [Step 2: Tour the IDE](#tutorial-tour-ide) 
-+  [Step 3: Clean Up](#tutorial-clean-up) 
-+  [Next Steps](#tutorial-next-steps) 
+
+**Topics**
++ [Prerequisites](#tutorial-prereqs)
++ [Step 1: Create an Environment](#tutorial-create-environment)
++ [Step 2: Tour the IDE](#tutorial-tour-ide)
++ [Step 3: Clean Up](#tutorial-clean-up)
++ [Next Steps](#tutorial-next-steps)
 
 ## Prerequisites<a name="tutorial-prereqs"></a>
 
-To successfully complete this tutorial, you must first complete the steps in [Getting Started](get-started.md)\.
+To successfully complete this tutorial, you must first complete the steps in [Getting Started with AWS Cloud9](get-started.md)\.
 
 ## Step 1: Create an Environment<a name="tutorial-create-environment"></a>
 
@@ -20,22 +22,22 @@ In this step, you use AWS Cloud9 console to create and then open an AWS Cloud9 d
 
 If you already have an environment, open it, and then skip ahead to [Step 2: Tour the IDE](#tutorial-tour-ide)\.
 
-In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your apps\. In this tutorial, you create a special kind of environment called an *EC2 environment*\. For this kind of environment, AWS Cloud9 creates and manages a new Amazon EC2 instance running Amazon Linux, creates the environment, and then connects the environment to the newly\-created instance\. When you open the environment, AWS Cloud9 displays the AWS Cloud9 IDE that enables you to work with the files and tools in that environment\.
+In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your apps\. In this tutorial, you create a special kind of environment called an *EC2 environment*\. For this kind of environment, AWS Cloud9 creates and manages a new Amazon EC2 instance running Amazon Linux or Ubuntu Server, creates the environment, and then connects the environment to the newly\-created instance\. When you open the environment, AWS Cloud9 displays the AWS Cloud9 IDE that enables you to work with the files and tools in that environment\.
 
-You can create a blank EC2 environment with the [AWS Management Console](#tutorial-create-environment-console) or the [AWS Command Line Interface \(AWS CLI\)](#tutorial-create-environment-cli)\.
+You can create a blank EC2 environment with the [console](#tutorial-create-environment-console) or the [AWS CLI](#tutorial-create-environment-cli)\.
 
 **Note**  
 When you create an EC2 environment, the environment doesn't contain any sample code by default\. To create an environment along with sample code, see one of the following topics instead\.  
- [Working with Amazon Lightsail Instances](lightsail-instances.md) 
- [Working with AWS CodeStar Projects](codestar-projects.md) 
+ [Working with Amazon Lightsail Instances in the AWS Cloud9 Integrated Development Environment \(IDE\)](lightsail-instances.md) 
+ [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](codestar-projects.md) 
 After you create the environment, skip ahead to [Step 2: Tour the IDE](#tutorial-tour-ide)\.
 
 ### Create an EC2 Environment with the Console<a name="tutorial-create-environment-console"></a>
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
-   + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
-   + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
+   + If your organization uses AWS Single Sign\-On \(AWS SSO\), see your AWS account administrator for sign\-in instructions\.
+   + If you're using an AWS Educate Starter Account, see [Step 2: Sign In to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
    + If you're a student in a classroom, see your instructor for sign\-in instructions\.
 
 1. After you sign in to the AWS Cloud9 console, in the top navigation bar, choose an AWS Region to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *Amazon Web Services General Reference*\.  
@@ -57,13 +59,15 @@ After you create the environment, skip ahead to [Step 2: Tour the IDE](#tutorial
 
 1. On the **Configure settings** page, for **Environment type**, leave the default choice of **Create a new instance for environment \(EC2\)**\.
 
-   Choosing **Create a new instance for enviroment \(EC2\)** means you want AWS Cloud9 to create a new Amazon EC2 instance and then connect the environment to the newly\-created instance\. To use an existing cloud compute instance or your own server instead \(which we call an *SSH environment*\), see [Creating an Environment](create-environment.md)\.
+   Choosing **Create a new instance for environment \(EC2\)** means you want AWS Cloud9 to create a new Amazon EC2 instance and then connect the environment to the newly\-created instance\. To use an existing cloud compute instance or your own server instead \(which we call an *SSH environment*\), see [Creating an Environment in AWS Cloud9](create-environment.md)\.
 **Note**  
 Choosing **Create a new instance for environment \(EC2\)** might result in possible charges to your AWS account for Amazon EC2\.
 
 1. For **Instance type**, leave the default choice\. This choice has relatively low RAM and vCPUs, which is sufficient for this tutorial\.
 **Note**  
 Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\.
+
+1. For **Platform**, choose the type of Amazon EC2 instance that AWS Cloud9 will create and then connect to this environment: **Amazon Linux** or **Ubuntu**\.
 
 1. Expand **Network settings \(advanced\)**\.
 
@@ -73,7 +77,7 @@ Choosing instance types with more RAM and vCPUs might result in additional charg
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/tutorial.html)
 
-   For more information, see [Amazon VPC Settings](vpc-settings.md)\.
+   For more information, see [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
 
 1. For **Cost\-saving setting**, choose the amount of time until AWS Cloud9 shuts down the Amazon EC2 instance for the environment after all web browser instances that are connect to the IDE for the environment have been closed\. Or leave the default choice\.
 **Note**  
@@ -87,18 +91,21 @@ After your environment is created, the AWS Cloud9 IDE is displayed\. You'll lear
 
 If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
-To learn more about what you can do with an environment after you finish this tutorial, see [Working with Environments](environments.md)\.
+To learn more about what you can do with an environment after you finish this tutorial, see [Working with Environments in AWS Cloud9](environments.md)\.
 
 Skip ahead to [Step 2: Tour the IDE](#tutorial-tour-ide)\.
 
 ### Create an EC2 Environment with the AWS CLI<a name="tutorial-create-environment-cli"></a>
 
-1. Install and configure the AWS CLI, if you have not done so already\. To do this, see the following in the *AWS CLI User Guide*\.
+**Note**  
+Currently, you cannot use the AWS CLI to create an Ubuntu Server\-based EC2 environment—only Amazon Linux\. Support for Ubuntu Server is expected in the future\.
+
+1. Install and configure the AWS CLI, if you have not done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*\.
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
    +  [Quick Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) 
 
    We recommend you configure the AWS CLI using credentials for one of the following\.
-   + The IAM user you created in [Team Setup](setup.md)\.
+   + The IAM user you created in [Team Setup for AWS Cloud9](setup.md)\.
    + An IAM administrator user in your AWS account, if you will be working regularly with AWS Cloud9 resources for multiple users across the account\. If you cannot configure the AWS CLI as an IAM administrator user, check with your AWS account administrator\. For more information, see [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
    + An AWS account root user, but only if you will always be the only one using your own AWS account, and you don't need to share your environments with anyone else\. For more information, see [Creating, Disabling, and Deleting Access Keys for Your AWS Account](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html#create-aws-access-key) in the *Amazon Web Services General Reference*\.
    + For other options, see your AWS account administrator or classroom instructor\.
@@ -114,36 +121,38 @@ Skip ahead to [Step 2: Tour the IDE](#tutorial-tour-ide)\.
    +  `--description` represents an optional description for the environment\.
    +  `--instance-type` represents the type of Amazon EC2 instance AWS Cloud9 will launch and connect to the new environment\. This example specifies `t2.micro`, which has relatively low RAM and vCPUs and is sufficient for this tutorial\. Specifying instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\. For a list of available instance types, see the create environment wizard in the AWS Cloud9 console\.
    +  `--region` represents the ID of the AWS Region for AWS Cloud9 to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *Amazon Web Services General Reference*\.
-   +  `--subnet-id` represents the subnet you want AWS Cloud9 to use\. Replace `subnet-12a3456b` with the ID of the subnet, which must be compatible with AWS Cloud9\. For more information, see [Amazon VPC Settings](vpc-settings.md)\.
+   +  `--subnet-id` represents the subnet you want AWS Cloud9 to use\. Replace `subnet-12a3456b` with the ID of the subnet, which must be compatible with AWS Cloud9\. For more information, see [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
    + By default, AWS Cloud9 shuts down the Amazon EC2 instance for the environment 30 minutes after all web browser instances that are connect to the IDE for the environment have been closed\. To change this, add `--automatic-stop-time-minutes` along with the number of minutes\. A shorter time period might result in fewer charges to your AWS account\. Likewise, a longer time might result in more charges\.
    + By default, the entity that calls this command owns the environment\. To change this, add `--owner-id` along with the Amazon Resource Name \(ARN\) of the owning entity\.
 
-After you successfully run this command, open the AWS Cloud9 IDE for the newly\-created environment\. To do this, see [Opening an Environment](open-environment.md)\. Then return to this topic and continue on with [Step 2: Tour the IDE](#tutorial-tour-ide) to learn how to use the AWS Cloud9 IDE to work with your new environment\.
+After you successfully run this command, open the AWS Cloud9 IDE for the newly\-created environment\. To do this, see [Opening an Environment in AWS Cloud9](open-environment.md)\. Then return to this topic and continue on with [Step 2: Tour the IDE](#tutorial-tour-ide) to learn how to use the AWS Cloud9 IDE to work with your new environment\.
 
 If you try to open the environment, but AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
-To learn more about what you can do with an environment after you finish this tutorial, see [Working with Environments](environments.md)\.
+To learn more about what you can do with an environment after you finish this tutorial, see [Working with Environments in AWS Cloud9](environments.md)\.
 
 ## Step 2: Tour the IDE<a name="tutorial-tour-ide"></a>
 
 In the previous step, you created an environment, and the AWS Cloud9 IDE is now displayed\. In this step, you'll learn how to use the IDE\.
 
 The AWS Cloud9 IDE is a collection of tools you use to code, build, run, test, debug, and release software in the cloud\. In this step, you experiment with the most common of these tools\. Toward the end of this tour, you use these tools to code, run, and debug your first app\.
-+  [Step 2\.1: Menu Bar](#tutorial-menu-bar) 
-+  [Step 2\.2: Dashboard](#tutorial-dashboard) 
-+  [Step 2\.3: Environment Window](#tutorial-environment) 
-+  [Step 2\.4: Editor, Tabs, and Panes](#tutorial-editor) 
-+  [Step 2\.5: Console](#tutorial-console) 
-+  [Step 2\.6: Open Files Section](#tutorial-open-files) 
-+  [Step 2\.7: Gutter](#tutorial-gutter) 
-+  [Step 2\.8: Status Bar](#tutorial-status-bar) 
-+  [Step 2\.9: Outline Window](#tutorial-outline) 
-+  [Step 2\.10: Go Window](#tutorial-go) 
-+  [Step 2\.11: Immediate Tab](#tutorial-immediate) 
-+  [Step 2\.12: Process List](#tutorial-process-list) 
-+  [Step 2\.13: Preferences](#tutorial-preferences) 
-+  [Step 2\.14: Terminal](#tutorial-terminal) 
-+  [Step 2\.15: Debugger Window](#tutorial-debugger) 
+
+**Topics**
++ [Step 2\.1: Menu Bar](#tutorial-menu-bar)
++ [Step 2\.2: Dashboard](#tutorial-dashboard)
++ [Step 2\.3: Environment Window](#tutorial-environment)
++ [Step 2\.4: Editor, Tabs, and Panes](#tutorial-editor)
++ [Step 2\.5: Console](#tutorial-console)
++ [Step 2\.6: Open Files Section](#tutorial-open-files)
++ [Step 2\.7: Gutter](#tutorial-gutter)
++ [Step 2\.8: Status Bar](#tutorial-status-bar)
++ [Step 2\.9: Outline Window](#tutorial-outline)
++ [Step 2\.10: Go Window](#tutorial-go)
++ [Step 2\.11: Immediate Tab](#tutorial-immediate)
++ [Step 2\.12: Process List](#tutorial-process-list)
++ [Step 2\.13: Preferences](#tutorial-preferences)
++ [Step 2\.14: Terminal](#tutorial-terminal)
++ [Step 2\.15: Debugger Window](#tutorial-debugger)
 
 ### Step 2\.1: Menu Bar<a name="tutorial-menu-bar"></a>
 
@@ -225,7 +234,7 @@ To show the **Environment** window, choose the **Environment** button\.
 
 To show hidden files, in the **Environment** window, choose the gear icon, and then choose **Show Hidden Files**, as follows\.
 
-![\[Showing hidden files using the Environment window\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-show-hidden-files.png)
+![\[Showing hidden files using the Environmentwindow\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-show-hidden-files.png)
 
 To hide hidden files, choose the gear icon again, and then choose **Show Hidden Files** again\.
 
@@ -303,15 +312,15 @@ To show the status bar, choose **View**, **Status Bar** again\.
 
 To go to a specific line number, choose a tab such as **cat\.txt** if it's not already selected\. Then in the status bar, choose the line and character number \(it should be something like **7:45**\)\. Type a line number \(like `4`\), and then press `Enter`, as follows\.
 
-![\[Going to specific line numbers using the AWS Cloud9 status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-go-to-line.png)
+![\[Going to specific line numbers using the AWS Cloud9 IDE status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-go-to-line.png)
 
-![\[Going to specific line numbers using the AWS Cloud9 status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-go-to-line.gif)
+![\[Going to specific line numbers using the AWS Cloud9 IDE status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-go-to-line.gif)
 
 To change the file type preference, in the status bar, choose a different file type\. For example, for **cat\.txt**, choose **Ruby** to see the syntax colors change\. To go back to plain text colors, choose **Plain Text**, as follows\.
 
-![\[Changing file type preference in the AWS Cloud9 status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-text-color.png)
+![\[Changing file type preference in the AWS Cloud9 IDE status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-text-color.png)
 
-![\[Changing file type preference in the AWS Cloud9 status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-text-color.gif)
+![\[Changing file type preference in the AWS Cloud9 IDE status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-text-color.gif)
 
 ### Step 2\.9: Outline Window<a name="tutorial-outline"></a>
 
@@ -364,8 +373,8 @@ With the **Go** window showing, you can:
 File search is scoped only to non\-hidden files and non\-hidden folders in the **Environment** window\.
 + Type an at symbol \(`@`\) followed by the name of a symbol\. In the list of matching symbols that displays, choose a symbol to go to it in the editor\. For example, with the `hello.rb` file open and active in the editor, type `@hello` to list `say_hello(i)`, or type `@say` to list both `say_hello(i)` and `say_goodbye(i)`\.
 **Note**  
-If the active file in the editor is part of a supported language project, symbol search is scoped to the current project\. Otherwise, symbol search is scoped only to the active file in the editor\. For more information, see [Working with Language Projects](projects.md)\.
-+ Type a dot \(`.`\) followed by the name of a command\. In the list of commands that displays, choose a command to run it\. For example, typing `.closetab` and then pressing `Enter` closes the current tab in the editor\. For a list of available commands, see the [Commands Reference](commands.md)\.
+If the active file in the editor is part of a supported language project, symbol search is scoped to the current project\. Otherwise, symbol search is scoped only to the active file in the editor\. For more information, see [Working with Language Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](projects.md)\.
++ Type a dot \(`.`\) followed by the name of a command\. In the list of commands that displays, choose a command to run it\. For example, typing `.closetab` and then pressing `Enter` closes the current tab in the editor\. For a list of available commands, see the [Commands Reference for the AWS Cloud9 Integrated Development Environment \(IDE\)](commands.md)\.
 + Type a colon \(`:`\) followed by a number to go to that line number in the active file in the editor\. For example, with the `hello.rb` file open and active in the editor, type `:11` to go to line 11 in that file\.
 
 ![\[Go window in AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-go-window.png)
@@ -442,19 +451,37 @@ You can experiment with using the **Debugger** window and some JavaScript code\.
 
    1. Run the following two commands, one at a time, to be sure your environment has the latest updates, and then download Node Version Manager \(nvm\)\. \(nvm is a simple Bash shell script that is useful for installing and managing Node\.js versions\. For more information, see [Node Version Manager](https://github.com/creationix/nvm/blob/master/README.md) on GitHub\.\)
 
+      For Amazon Linux:
+
       ```
       sudo yum -y update
       curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
       ```
 
-   1. Use a text editor to update your `~/.bashrc` file to enable nvm to load\. For example, in the **Environment** window of the IDE, choose the gear icon, and then choose **Show Home in Favorites**\. Repeat this step and choose **Show Hidden Files** as well\.
+      For Ubuntu Server:
+
+      ```
+      sudo apt update
+      curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+      ```
+
+   1. Use a text editor to update your shell profile file \(for example, `~/.bashrc`\) to enable nvm to load\. For example, in the **Environment** window of the IDE, choose the gear icon, and then choose **Show Home in Favorites**\. Repeat this step and choose **Show Hidden Files** as well\.
 
    1. Open the `~/.bashrc` file\.
 
    1. Type or paste the following code at the end of the file to enable nvm to load\.
 
+      For Amazon Linux:
+
       ```
       export NVM_DIR="/home/ec2-user/.nvm"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm.
+      ```
+
+      For Ubuntu Server:
+
+      ```
+      export NVM_DIR="/home/ubuntu/.nvm"
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm.
       ```
 
@@ -517,7 +544,7 @@ To prevent ongoing charges to your AWS account related to this tutorial, you sho
 **Warning**  
 Deleting an environment cannot be undone\.
 
-You can delete the environment with the [AWS Cloud9 console](#tutorial-clean-up-console) or the [AWS CLI](#tutorial-clean-up-cli)\.
+You can delete the environment with the [Delete the Environment with the AWS Cloud9 Console](#tutorial-clean-up-console) or the [Delete the Environment with the AWS CLI](#tutorial-clean-up-cli)\.
 
 ### Delete the Environment with the AWS Cloud9 Console<a name="tutorial-clean-up-console"></a>
 
@@ -556,14 +583,14 @@ Explore any or all of the following topics to continue getting familiar with AWS
 
 |  |  | 
 | --- |--- |
-|  Learn more about the AWS Cloud9 IDE\.  |   [Working with the IDE](ide.md)   | 
-|  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 
-|  Create SSH environments \(environments that use cloud compute instances or servers that you create, instead of an Amazon EC2 instances that AWS Cloud9 creates for you\)\.  |   [Creating an Environment](create-environment.md) and [SSH Environment Host Requirements](ssh-settings.md)   | 
-|  Use AWS Cloud9 with Lambda\.  |   [AWS Lambda Tutorial](tutorial-lambda.md), [Advanced AWS Lambda Tutorial](tutorial-lambda-advanced.md), and [Working with AWS Lambda Functions](lambda-functions.md)   | 
-|  Use AWS Cloud9 with Amazon Lightsail\.  |   [Working with Amazon Lightsail Instances](lightsail-instances.md)   | 
-|  Use AWS Cloud9 with AWS CodeStar\.  |   [Working with AWS CodeStar Projects](codestar-projects.md)   | 
-|  Use AWS Cloud9 with AWS CodePipeline\.  |   [Working with AWS CodePipeline](codepipeline-repos.md)   | 
-|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages\.  |   [Samples](samples.md)   | 
+|  Learn more about the AWS Cloud9 IDE\.  |   [Working with the AWS Cloud9 Integrated Development Environment \(IDE\)](ide.md)   | 
+|  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments in AWS Cloud9](share-environment.md)   | 
+|  Create SSH environments \(environments that use cloud compute instances or servers that you create, instead of an Amazon EC2 instances that AWS Cloud9 creates for you\)\.  |   [Creating an Environment in AWS Cloud9](create-environment.md) and [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)   | 
+|  Use AWS Cloud9 with Lambda\.  |   [AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda.md), [Advanced AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda-advanced.md), and [Working with AWS Lambda Functions in the AWS Cloud9 Integrated Development Environment \(IDE\)](lambda-functions.md)   | 
+|  Use AWS Cloud9 with Amazon Lightsail\.  |   [Working with Amazon Lightsail Instances in the AWS Cloud9 Integrated Development Environment \(IDE\)](lightsail-instances.md)   | 
+|  Use AWS Cloud9 with AWS CodeStar\.  |   [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](codestar-projects.md)   | 
+|  Use AWS Cloud9 with AWS CodePipeline\.  |   [Working with AWS CodePipeline in the AWS Cloud9 Integrated Development Environment \(IDE\)](codepipeline-repos.md)   | 
+|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages\.  |   [Samples for AWS Cloud9](samples.md)   | 
 |  Work with code for intelligent robotics applications in AWS RoboMaker\.  |   [Developing with AWS Cloud9](https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html) in the *AWS RoboMaker Developer Guide*   | 
 
 To get help with AWS Cloud9 from the community, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\)

@@ -10,30 +10,36 @@ You can use the AWS Cloud9 IDE to work with AWS Lambda functions and their relat
 This topic assumes you already know about Lambda\. For more information, see the [AWS Lambda Developer Guide](https://docs.aws.amazon.com/lambda/latest/dg/)\.
 
 **Note**  
-Completing these procedures might result in charges to your AWS account\. These include possible charges for services such as Lambda, API Gateway, and AWS services supported by the AWS Serverless Application Model \(SAM\)\. For more information, see [AWS Lambda Pricing](https://aws.amazon.com/lambda/pricing/), [Amazon API Gateway Pricing](https://aws.amazon.com/api-gateway/pricing/), and [Cloud Services Pricing](https://aws.amazon.com/pricing/services/)\.
-+  [Prepare to Work with Lambda Functions](#lambda-functions-prepare) 
-+  [Create a Lambda Function With the Create Serverless Application Wizard](#lambda-functions-create) 
-+  [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](#lambda-functions-create-repo) 
-+  [Import a Lambda Function](#lambda-functions-import) 
-+  [Invoke a Lambda Function](#lambda-functions-invoke) 
-+  [Invoke an API Gateway API for a Related Lambda Function](#lambda-functions-api) 
-+  [Response Differences When Invoking a Lambda Function from API Gateway](#lambda-functions-vs-api-gateway) 
-+  [Add Dependent Code to a Lambda Function](#lambda-functions-adding-packages) 
-+  [Debug the Local Version of a Lambda Function or Its Related API Gateway API](#lambda-functions-debug) 
-+  [Change Code in a Lambda Function](#lambda-functions-change-code) 
-+  [Upload Code for a Lambda Function](#lambda-functions-upload-code) 
-+  [Convert a Lambda Function to a Serverless Application](#lambda-functions-convert-to-sam) 
-+  [Update Configuration Settings for a Lambda Function](#lambda-functions-update-settings) 
-+  [Delete a Lambda Function](#lambda-functions-delete) 
+Completing these procedures might result in charges to your AWS account\. These include possible charges for services such as Lambda, API Gateway, and AWS services supported by the AWS Serverless Application Model \(AWS SAM\)\. For more information, see [AWS Lambda Pricing](https://aws.amazon.com/lambda/pricing/), [Amazon API Gateway Pricing](https://aws.amazon.com/api-gateway/pricing/), and [Cloud Services Pricing](https://aws.amazon.com/pricing/services/)\.
+
+**Topics**
++ [Prepare to Work with Lambda Functions](#lambda-functions-prepare)
++ [Create a Lambda Function With the Create Serverless Application Wizard](#lambda-functions-create)
++ [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](#lambda-functions-create-repo)
++ [Import a Lambda Function](#lambda-functions-import)
++ [Invoke a Lambda Function](#lambda-functions-invoke)
++ [Invoke a Lambda Function that Uses Environment Variables](#lambda-functions-invoke-env-vars)
++ [Working with Lambda Functions that Use Versions, Aliases, or Layers](#lambda-functions-versions-aliases-layers)
++ [Invoke an API Gateway API for a Related Lambda Function](#lambda-functions-api)
++ [Response Differences When Invoking a Lambda Function from API Gateway](#lambda-functions-vs-api-gateway)
++ [Add Dependent Code to a Lambda Function](#lambda-functions-adding-packages)
++ [Debug the Local Version of a Lambda Function or Its Related API Gateway API](#lambda-functions-debug)
++ [Change Code in a Lambda Function](#lambda-functions-change-code)
++ [Upload Code for a Lambda Function](#lambda-functions-upload-code)
++ [Convert a Lambda Function to a Serverless Application](#lambda-functions-convert-to-sam)
++ [Update Configuration Settings for a Lambda Function](#lambda-functions-update-settings)
++ [Delete a Lambda Function](#lambda-functions-delete)
 
 ## Prepare to Work with Lambda Functions<a name="lambda-functions-prepare"></a>
 
 Before you can work with Lambda functions in the AWS Cloud9 IDE, you must complete the following steps:
-+  [Step 1: Set Up Your IAM Group with Required Access Permissions](#lambda-functions-prepare-user) 
-+  [Step 2: Set Up Your Environment with Your AWS Access Credentials](#lambda-functions-prepare-access) 
-+  [Step 3: Create an Execution Role for Your Lambda Functions](#lambda-functions-prepare-role) 
-+  [Step 4: Set Your Environment to the Correct AWS Region](#lambda-functions-prepare-region) 
-+  [Step 5: Open the Lambda Section of the AWS Resources Window](#lambda-functions-prepare-open) 
+
+**Topics**
++ [Step 1: Set Up Your IAM Group with Required Access Permissions](#lambda-functions-prepare-user)
++ [Step 2: Set Up Your Environment with Your AWS Access Credentials](#lambda-functions-prepare-access)
++ [Step 3: Create an Execution Role for Your Lambda Functions](#lambda-functions-prepare-role)
++ [Step 4: Set Your Environment to the Correct AWS Region](#lambda-functions-prepare-region)
++ [Step 5: Open the Lambda Section of the AWS Resources Window](#lambda-functions-prepare-open)
 
 ### Step 1: Set Up Your IAM Group with Required Access Permissions<a name="lambda-functions-prepare-user"></a>
 
@@ -57,13 +63,13 @@ Otherwise, complete the following instructions to use the IAM console to attach 
 
 1. Choose **Attach Policy**\.
 
-1. Save the following AWS CloudFormation template file to your local computer: [https://docs\.aws\.amazon\.com/cloud9/Cloud9LambdaAccessGroup\.yaml](https://docs.aws.amazon.com/cloud9/Cloud9LambdaAccessGroup.yaml) 
+1. Download the following ZIP file to your local computer: [Cloud9LambdaAccessGroup\.zip](samples/Cloud9LambdaAccessGroup.zip)\. Then extract the AWS CloudFormation template file named `Cloud9LambdaAccessGroup.yaml` from the downloaded ZIP file\. 
 
 1. Open the AWS CloudFormation console\. To do this, in the console's navigation bar, choose **Services**\. Then choose **CloudFormation**\.
 
 1. Choose **Create Stack**\.
 
-1. On the **Select Template** page, for **Choose a template**, choose **Upload a template to Amazon S3**\. Choose **Browse**, and then choose the AWS CloudFormation template file that you just saved to your local computer\.
+1. On the **Select Template** page, for **Choose a template**, choose **Upload a template to Amazon S3**\. Choose **Browse**, and then choose the AWS CloudFormation template file that you just extracted\.
 
 1. Choose **Next**\.
 
@@ -289,7 +295,7 @@ When you clone the GitHub repository, the IDE uses the AWS Serverless Applicatio
 
 To invoke the functions, see [Invoke a Lambda Function](#lambda-functions-invoke)\. If the functions have related APIs in API Gateway, to invoke the APIs, see [Invoke an API Gateway API for a Related Lambda Function](#lambda-functions-api)\. When you invoke a function or API this way for the first time, AWS Cloud9 adds a hidden `.application.json` file to the serverless application's component files\. This file is used by AWS Cloud9 and contains JSON\-formatted settings that are specific to the serverless application\.
 
-If the serverless application requires parameters to be specified during deployment, you can deploy it from the IDE only by using the terminal\. To see if parameters are required, on the **Application details** page you opened earlier, choose the **Deploy** button, and then see the **Configure application parameters** card for any parameters\. If there are any parameters, deploy the serverless application from the terminal in the IDE by running the AWS CloudFormation`deploy` command, for example:
+If the serverless application requires parameters to be specified during deployment, you can deploy it from the IDE only by using the terminal\. To see if parameters are required, on the **Application details** page you opened earlier, choose the **Deploy** button, and then see the **Configure application parameters** card for any parameters\. If there are any parameters, deploy the serverless application from the terminal in the IDE by running the AWS CloudFormation `deploy` command, for example:
 
 ```
 aws cloudformation deploy --template-file TEMPLATE_FILE_PATH --parameter-overrides "PARAMETER_KEY_1=PARAMETER_VALUE_1" "PARAMETER_KEY_N=PARAMETER_VALUE_N" --region REGION_ID
@@ -383,6 +389,190 @@ Compare your results to the following:
 For more information, see [Step 2\.2: Invoke the Lambda Function Manually and Verify Results, Logs, and Metrics](https://docs.aws.amazon.com/lambda/latest/dg/get-started-invoke-manually.html) in the *AWS Lambda Developer Guide*\.
 
 To upload the local version of any changed function code to the related remote version in Lambda, see [Upload Code for a Lambda Function](#lambda-functions-upload-code)\.
+
+## Invoke a Lambda Function that Uses Environment Variables<a name="lambda-functions-invoke-env-vars"></a>
+
+To invoke a Lambda function locally or remotely that uses environment variables, do one of the following\.
+
+**Invoke a Lambda function locally with predefined environment variables and their values**  
+Add the predefined environment variable definitions to the function's `template.yaml` file if they are not already there, and then run the **Run Local** command for that function from the **Lambda** section of the **AWS Resources** window\.   
+For example, given the following Node\.js function definition in a file named `index.js`:  
+
+```
+exports.handler = (event, context, callback) => {
+    
+    var result = {  
+      MY_ENV_VAR_1: process.env.MY_ENV_VAR_1,
+      MY_ENV_VAR_2: process.env.MY_ENV_VAR_2 
+    };
+    
+    const response = {
+      statusCode: 200,
+      headers: { "Content-type": "application/json" },
+      body: result
+    };
+      
+    callback(null, response);
+    
+};
+```
+And given the following addition to the function's `template.yaml` file one directory above `index.js`:  
+
+```
+...
+Resources:
+  MyEnvVarsFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      ...
+      Environment:
+        Variables:
+          MY_ENV_VAR_1: "This is my environment variable 1 value from the template.yaml file."
+          MY_ENV_VAR_2: "This is my environment variable 2 value from the template.yaml file."
+```
+And running the **Run Local** command for that function from the **Lambda** section of the **AWS Resources** window, the following is output:  
+
+```
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-type": "application/json"
+  },
+  "body": {
+    "MY_ENV_VAR_1": "This is my environment variable 1 value from the template.yaml file.",
+    "MY_ENV_VAR_2": "This is my environment variable 2 value from the template.yaml file."
+  }
+}
+```
+For more details, see [Lambda Environment Variables](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/advanced_usage.md#lambda-environment-variables) in the [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli) repository on GitHub\.
+
+**Invoke a Lambda function locally with environment variables and their values that the caller provides dynamically at run time**  
+You cannot use the **Run Local** command for such a function from the **Lambda** section of the **AWS Resources** window\.   
+Instead, add the predefined environment variable definitions to the function's `template.yaml` file if they are not already there\. Then use the terminal in the IDE to run the AWS SAM CLI with the invoke command along with the \-\-env\-vars argument and a separate JSON file that contains the environment variable definitions and their values\.   
+For example, given the following Node\.js function named `MyEnvVarsFunction` with its definition in a file named `index.js`:  
+
+```
+exports.handler = (event, context, callback) => {
+    
+  var result = {  
+    MY_ENV_VAR_1: process.env.MY_ENV_VAR_1,
+    MY_ENV_VAR_2: process.env.MY_ENV_VAR_2 
+  };
+    
+  const response = {
+    statusCode: 200,
+    headers: { "Content-type": "application/json" },
+    body: result
+  };
+      
+  callback(null, response);
+    
+};
+```
+And given the following addition to the function's `template.yaml` file one directory above `index.js`:  
+
+```
+...
+Resources:
+  MyEnvVarsFunction:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      ...
+      Environment:
+        Variables:
+          MY_ENV_VAR_1: "This is my environment variable 1 value from the template.yaml file."
+          MY_ENV_VAR_2: "This is my environment variable 2 value from the template.yaml file."
+```
+And given the following file named `MyEnvVars.json` in the same directory as `index.js`:  
+
+```
+{
+  "MyEnvVarsFunction": {
+    "MY_ENV_VAR_1": "This is my environment variable 1 value from the JSON file.",
+    "MY_ENV_VAR_2": "This is my environment variable 2 value from the JSON file."
+  }
+}
+```
+And running the following AWS SAM CLI command from the same directory as `index.js`:  
+
+```
+sam local invoke --event lambda-payloads.json --template ../template.yaml --env-vars MyEnvVars.json
+```
+The following is output:  
+
+```
+{  
+  "statusCode": 200,
+  "headers": {
+    "Content-type": "application/json"
+  },
+  "body": {
+    "MY_ENV_VAR_1": "This is my environment variable 1 value from the JSON file.",
+    "MY_ENV_VAR_2": "This is my environment variable 2 value from the JSON file."
+  }
+}
+```
+For more details, including how to use a shell's environment variables instead of a separate JSON file, see [Lambda Environment Variables](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/advanced_usage.md#lambda-environment-variables) in the [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli) repository on GitHub\.
+
+**Invoke a Lambda function remotely that already has predefined environment variable and their values**  
+Run the **Run Remote** command for that function from the **Lambda** section of the **AWS Resources** window\.   
+To view or change predefined environment variable values for an existing remote function before you invoke it remotely, see [AWS Lambda Environment Variables](https://docs.aws.amazon.com/lambda/latest/dg/env_variables.html) in the *AWS Lambda Developer Guide*\.
+
+**Invoke a Lambda function remotely with environment variables and their values that the caller provides dynamically at run time**  
+You cannot use the **Run Remote** command for such a function from the **Lambda** section of the **AWS Resources** window\.   
+Instead, you can use the terminal in the IDE to run the AWS CLI with the lambda command's update\-function\-configuration action and the \-\-environment argument with the environment variable definitions and their values\. Then run the lambda command's invoke action\.   
+For example, given the following Node\.js function named `MyEnvVarsFunction` with the following definition and with predefined environment variables named `MY_ENV_VAR_1` and `MY_ENV_VAR_2`:   
+
+```
+exports.handler = (event, context, callback) => {
+    
+  var result = {  
+    MY_ENV_VAR_1: process.env.MY_ENV_VAR_1,
+    MY_ENV_VAR_2: process.env.MY_ENV_VAR_2 
+  };
+    
+  const response = {
+    statusCode: 200,
+    headers: { "Content-type": "application/json" },
+    body: result
+  };
+      
+  callback(null, response);
+    
+};
+```
+And running the following AWS CLI commands, one at a time in the following order:  
+
+```
+aws lambda update-function-configuration --function-name MyEnvVarsFunction --environment '{"Variables":{"MY_ENV_VAR_1":"This is my environment variable 1 value from the AWS CLI.","MY_ENV_VAR_2":"This is my environment variable 2 value from the AWS CLI."}}'
+
+aws lambda invoke --function-name MyEnvVarsFunction results.json
+```
+The following is output to a file named `results.json`:  
+
+```
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-type": "application/json"
+  },
+  "body": {
+    "MY_ENV_VAR_1": "This is my environment variable 1 value from the AWS CLI.",
+    "MY_ENV_VAR_2": "This is my environment variable 2 value from the AWS CLI."  
+  }
+}
+```
+For more details, see the discussion of update\-function\-configuration and invoke in [Create the Lambda function and Test It](https://docs.aws.amazon.com/lambda/latest/dg/tutorial-env_cli.html#with-env-create-function) in the *AWS Lambda Developer Guide*\.
+
+## Working with Lambda Functions that Use Versions, Aliases, or Layers<a name="lambda-functions-versions-aliases-layers"></a>
+
+The **Lambda** section of the **AWS Resources** window currently does not provide any features for working with versions, aliases, or layers for Lambda functions\. Instead, you can use the terminal in the IDE to run the AWS CLI and AWS SAM CLI with the corresponding commands, actions, and arguments\. For details, see the following\.
++ [Introduction to AWS Lambda Versioning](https://docs.aws.amazon.com/lambda/latest/dg/versioning-intro.html) in the *AWS Lambda Developer Guide*
++ [Introduction to AWS Lambda Aliases](https://docs.aws.amazon.com/lambda/latest/dg/aliases-intro.html) in the *AWS Lambda Developer Guide*
++ [Managing Versioning Using the AWS Management Console, the AWS CLI, or Lambda API Operations](https://docs.aws.amazon.com/lambda/latest/dg/how-to-manage-versioning.html) in the *AWS Lambda Developer Guide*
++ [AWS Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html) in the *AWS Lambda Developer Guide*
++ [Working with Layers](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-layers.html) in the *AWS Serverless Application Model Developer Guide*
++ [AWS::Serverless::LayerVersion](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template.html#serverless-sam-template-layerversion) in the *AWS Serverless Application Model Developer Guide*
 
 ## Invoke an API Gateway API for a Related Lambda Function<a name="lambda-functions-api"></a>
 
@@ -761,7 +951,7 @@ To upload the local version of a Lambda function in your environment to the rela
 
 ### Upload Code for a Lambda Function Created By the Create Serverless Application Wizard<a name="lambda-function-upload-code-wizard"></a>
 
-After you [create a Lambda function with the Create serverless application wizard](#lambda-functions-create) in your environment, you can upload the local version of that function to the related remote version of the function in Lambda as follows\.
+After you [Create a Lambda Function With the Create Serverless Application Wizard](#lambda-functions-create) in your environment, you can upload the local version of that function to the related remote version of the function in Lambda as follows\.
 
 1. In the **Lambda** section of the **AWS Resources** window, expand the **Local Functions** list, if it isn't already expanded\.
 
@@ -775,7 +965,7 @@ After you [create a Lambda function with the Create serverless application wizar
 
 ### Upload Code for a Lambda Function That is Part of an AWS CodeStar Project<a name="lambda-function-upload-codestar"></a>
 
-After you [create a Lambda function as part of an AWS CodeStar project](codestar-projects.md), you can upload the local version of that function in your environment to the related remote version of the function in Lambda as follows\.
+As you are [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](codestar-projects.md), you can upload the local version of that function in your environment to the related remote version of the function in Lambda as follows\.
 
 Use a terminal session in the IDE to run the `git push` command to push committed code changes to the repository for the AWS CodeStar project\. This instructs AWS CodeStar to upload the local version of the Lambda function in your environment to the related remote version of the function in Lambda\.
 
@@ -783,7 +973,7 @@ If you do not follow this procedure, the error "Parameters: \[ProjectId\] must h
 
 ### Upload Code for a Lambda Function That is Part of an AWS Serverless Application Repository Project with Parameters<a name="lambda-function-upload-code-sam-params"></a>
 
-If you [create a Lambda function as part of an AWS Serverless Application Repository project](#lambda-functions-create-repo), and that project requires you to specify parameters during the upload, see coverage of the AWS CloudFormation `deploy` command in [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](#lambda-functions-create-repo) for upload instructions\.
+If you [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](#lambda-functions-create-repo), and that project requires you to specify parameters during the upload, see coverage of the AWS CloudFormation `deploy` command in [](#lambda-functions-create-repo) for upload instructions\.
 
 If you do not follow that procedure, an error will display that required parameters are missing, and the code will not upload\.
 
@@ -866,7 +1056,7 @@ To convert the local version of an existing Lambda function into a serverless ap
 ![\[Convert to SAM command in the Lambda section of the AWS Resources window\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-lambda-convert.png)
 
 AWS Cloud9 does the following:
-+ In the function's folder in the **Environment** window, the `DeploymentMethod` setting in the `.application.json` file changes from `lambda` to `cloudformation`\. This means that now AWS Cloud9 will instruct AWS SAM to use AWS CloudFormation whenever you use the IDE to upload the function's code as part of the serverless application\. \(`lambda` means that AWS Cloud9 will instruct Lambda to deploy the function instead\.\) To upload the function code, see [Upload Code for a Lambda Function](#lambda-functions-upload-code)\.
++ In the function's folder in the **Environment** window, the `DeploymentMethod` setting in the `.application.json` file changes from `lambda` to `cloudformation`\. This means that now AWS Cloud9 will instruct AWS SAM to use AWS CloudFormation whenever you use the IDE to upload the function's code as part of the serverless application\. \(`lambda` means that AWS Cloud9 will instruct Lambda to deploy the function instead\.\) To upload the function code, see [](#lambda-functions-upload-code)\.
 + In the **Lambda** section of the **AWS Resources** window, in the **Local Functions** list, AWS Cloud9 adds the existing Lambda function to a new serverless application \(represented by a Lambda icon inside of a folder\)\. The serverless application has the same name as the function\.
 
 When you upload the function's code as described in [Upload Code for a Lambda Function](#lambda-functions-upload-code), because the function upload method is no longer Lambda but now AWS SAM using AWS CloudFormation, AWS Cloud9 creates a new remote version of the function in Lambda and adds it to the **Remote Functions** list\. AWS Cloud9 gives the remote version a name that is different from the original Lambda function\. For example, if the serverless application and the function are both named `myDemoFunction`, the remote version name of your function would be `cloud9-myDemoFunction-myDemoFunction-RANDOM_ID`, where `RANDOM_ID` is a randomly determined ID\.
@@ -903,8 +1093,10 @@ By default, configuration settings are displayed in plain text\. To change this 
 ## Delete a Lambda Function<a name="lambda-functions-delete"></a>
 
 You can delete the local version of a Lambda function from your environment, delete the remote version of the function from Lambda, or both, as follows\.
-+  [Delete the Local Version of a Lambda Function](#lambda-functions-delete-local) 
-+  [Delete the Remote Version of the Lambda Function](#lambda-functions-delete-remote) 
+
+**Topics**
++ [Delete the Local Version of a Lambda Function](#lambda-functions-delete-local)
++ [Delete the Remote Version of the Lambda Function](#lambda-functions-delete-remote)
 
 ### Delete the Local Version of a Lambda Function<a name="lambda-functions-delete-local"></a>
 
@@ -921,8 +1113,10 @@ To determine which approach to use to delete the remote version of a Lambda func
 
 **Note**  
 If the `DeploymentMethod` value is set to `cloudformation` in the `.application.json` file, we do not recommend using Lambda to delete the function\. If you use Lambda instead of AWS CloudFormation to delete the function in this case, then you might leave some associated AWS resources still remaining\. Those remaining resources could result in ongoing charges to your AWS account\.
-+  [Use Lambda to Delete the Remote Version of the Function](#lambda-functions-delete-remote-lambda) 
-+  [Use AWS CloudFormation to Delete the Remote Version of the Function](#lambda-functions-delete-remote-cloudformation) 
+
+**Topics**
++ [Use Lambda to Delete the Remote Version of the Function](#lambda-functions-delete-remote-lambda)
++ [Use AWS CloudFormation to Delete the Remote Version of the Function](#lambda-functions-delete-remote-cloudformation)
 
 #### Use Lambda to Delete the Remote Version of the Function<a name="lambda-functions-delete-remote-lambda"></a>
 

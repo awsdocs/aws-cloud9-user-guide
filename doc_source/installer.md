@@ -49,6 +49,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 
 To install the ** `make` ** utility, you could run a command on the instance or server such as the following\.
 + For Amazon Linux, Amazon Linux 2, and Red Hat Enterprise Linux \(RHEL\) running in Amazon EC2: ** `sudo yum -y groupinstall "Development Tools"` ** 
++ For Ubuntu Server running in Amazon EC2: ** `sudo apt install -y build-essential` **
 + For SUSE: ** `sudo zypper install -y make` ** 
 
 ### Error: please install gcc to proceed<a name="installer-install-gcc"></a>
@@ -61,6 +62,7 @@ To install the ** `make` ** utility, you could run a command on the instance or 
 
 To install the ** `gcc` ** utility, you could run a command on the instance or server such as the following\.
 + For Amazon Linux, Amazon Linux 2, and Red Hat Enterprise Linux \(RHEL\) running in Amazon EC2: ** `sudo yum -y groupinstall "Development Tools"` ** 
++ For Ubuntu Server running in Amazon EC2: ** `sudo apt install -y build-essential` **
 + For SUSE: ** `sudo zypper install -y gcc` ** 
 + For other operating systems, see [Installing GCC](https://gcc.gnu.org/install/)\.
 

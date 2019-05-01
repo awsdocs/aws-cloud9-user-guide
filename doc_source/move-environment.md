@@ -13,8 +13,10 @@ You can also resize the Amazon Elastic Block Store \(Amazon EBS\) volume that is
 Before you move or resize an environment, you might want to try stopping some running processes in the environment or adding a swap file to the environment\. For more information, see [IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"](troubleshooting.md#troubleshooting-ide-low-memory) in *Troubleshooting*\.
 
 This topic only covers moving an environment from one Amazon EC2 instance to another or resizing an Amazon EBS volume\. To resize an environment from one of your own servers to another or to change the storage space for one of your own servers, refer to your server's documentation\.
-+  [Moving an Environment](#move-environment-move) 
-+  [Resizing an Environment](#move-environment-resize) 
+
+**Topics**
++ [Moving an Environment](#move-environment-move)
++ [Resizing an Environment](#move-environment-resize)
 
 ## Moving an Environment<a name="move-environment-move"></a>
 
@@ -61,7 +63,7 @@ If the instance type that you chose is EBS–optimized by default, **EBS\-optimi
 **Note**  
 If you did not choose a different instance type for **Instance Type** earlier in this procedure, nothing happens after you choose **Apply**\.
 
-1. Reopen the environment\. For more information, see [Opening an Environment](open-environment.md)\.
+1. Reopen the environment\. For more information, see [Opening an Environment in AWS Cloud9](open-environment.md)\.
 
 For more information about the preceding procedure, see [Changing the Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
@@ -71,6 +73,8 @@ For more information about the preceding procedure, see [Changing the Instance T
 
 1. In the AWS Cloud9 IDE for the environment, create a file with the following contents, and then save the file with the extension `.sh`, for example, `resize.sh`\.
 
+   For Amazon Linux:
+
    ```
    #!/bin/bash
    
@@ -79,6 +83,38 @@ For more information about the preceding procedure, see [Changing the Instance T
    
    # Install the jq command-line JSON processor.
    sudo yum -y install jq
+   
+   # Get the ID of the envrionment host Amazon EC2 instance.
+   INSTANCEID=$(curl http://169.254.169.254/latest/meta-data//instance-id)
+   
+   # Get the ID of the Amazon EBS volume associated with the instance.
+   VOLUMEID=$(aws ec2 describe-instances --instance-id $INSTANCEID | jq -r .Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId)
+   
+   # Resize the EBS volume.
+   aws ec2 modify-volume --volume-id $VOLUMEID --size $SIZE
+   
+   # Wait for the resize to finish.
+   while [ "$(aws ec2 describe-volumes-modifications --volume-id $VOLUMEID --filters Name=modification-state,Values="optimizing","completed" | jq '.VolumesModifications | length')" != "1" ]; do
+     sleep 1
+   done
+   
+   # Rewrite the partition table so that the partition takes up all the space that it can.
+   sudo growpart /dev/xvda 1
+   
+   # Expand the size of the file system.
+   sudo resize2fs /dev/xvda1
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   #!/bin/bash
+   
+   # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
+   SIZE=${1:=20}
+   
+   # Install the jq command-line JSON processor.
+   sudo apt install -y jq
    
    # Get the ID of the envrionment host Amazon EC2 instance.
    INSTANCEID=$(curl http://169.254.169.254/latest/meta-data//instance-id)

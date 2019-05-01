@@ -3,20 +3,22 @@
 This sample enables you to set up an AWS Cloud9 development environment to interact with a remote code repository in GitHub\. For more information about GitHub, see the [GitHub](https://github.com/) and [GitHub Help](https://help.github.com/) websites\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
-+  [Prerequisites](#sample-github-prereqs) 
-+  [Step 1: Create a GitHub Account](#sample-github-create-account) 
-+  [Step 2: Create a GitHub Repository](#sample-github-create-repo) 
-+  [Step 3: Install Git in Your Environment](#sample-github-install-git) 
-+  [Step 4: Clone the Remote Repository into Your Environment](#sample-github-clone-repo) 
-+  [Step 5: Add Files to the Repository](#sample-github-add-files) 
-+  [Step 6: Keep Working with the IDE and GitHub](#sample-github-explore) 
-+  [Step 7: Clean Up](#sample-github-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-github-prereqs)
++ [Step 1: Create a GitHub Account](#sample-github-create-account)
++ [Step 2: Create a GitHub Repository](#sample-github-create-repo)
++ [Step 3: Install Git in Your Environment](#sample-github-install-git)
++ [Step 4: Clone the Remote Repository into Your Environment](#sample-github-clone-repo)
++ [Step 5: Add Files to the Repository](#sample-github-add-files)
++ [Step 6: Keep Working with the IDE and GitHub](#sample-github-explore)
++ [Step 7: Clean Up](#sample-github-clean-up)
 
 ## Prerequisites<a name="sample-github-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 Start with the following step, depending on what you already have\.
 
@@ -58,6 +60,14 @@ If you already have Git installed in your environment, skip ahead to [Step 4: Cl
    sudo yum -y update      # Install the latest system updates.
    sudo yum -y install git # Install Git.
    git --version           # Confirm Git was installed.
+   ```
+
+   For an EC2 environment running Ubuntu Server, run these three commands in the terminal instead, one at a time, to install Git\.
+
+   ```
+   sudo apt update      # Install the latest system updates.
+   sudo apt install -y git # Install Git.
+   git --version               # Confirm Git was installed.
    ```
 
 1. Set your Git name and email address\. In the terminal, run these two commands, one at a time, substituting your Git name and email address for ` USER_NAME ` and ` EMAIL_ADDRESS `\.
@@ -170,14 +180,14 @@ You will not see your password or personal access token whenever you enter it in
 
 Use the AWS Cloud9 IDE and GitHub to keep working with your code\. Here are some things to try\.
 + Use the **Environment** window and editor tabs in the IDE to view, change, and save code\. For more information, see [Step 2\.3: Environment Window](tutorial.md#tutorial-environment) and [Step 2\.4: Editor, Tabs, and Panes](tutorial.md#tutorial-editor) in the *IDE Tutorial for AWS Cloud9*\.
-+ Use the IDE to run, debug, and build your code\. For more information, see [Working with Builders, Runners, and Debuggers](build-run-debug.md)\.
++ Use the IDE to run, debug, and build your code\. For more information, see [Working with Builders, Runners, and Debuggers in the AWS Cloud9 Integrated Development Environment \(IDE\)](build-run-debug.md)\.
 + Use Git in the terminal session in the IDE to continue pushing more code changes to the GitHub repository, as well as periodically pull code changes from others from the repository\. For more information, see [Pushing to a Remote](https://help.github.com/articles/pushing-to-a-remote/) and [Fetching a remote](https://help.github.com/articles/fetching-a-remote/) on the GitHub Help website\.
 + Use additional Git commands as you need them\. For a list of these commands, see [Git cheatsheet](https://help.github.com/articles/git-cheatsheet/) on the GitHub Help website\.
 + If you're new to Git and you don't want to mess up your GitHub repository, experiment with a sample Git repository on the [Try Git](https://try.github.io/) website\.
-+ Invite others to work on your code with you in the same environment, in real time and with text chat\. For more information, see [Sharing an Environment](share-environment.md)\.
++ Invite others to work on your code with you in the same environment, in real time and with text chat\. For more information, see [Working with Shared Environments in AWS Cloud9](share-environment.md)\.
 
 ## Step 7: Clean Up<a name="sample-github-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
 
 To delete the GitHub repository, see [Deleting a Repository](https://help.github.com/articles/deleting-a-repository/) on the GitHub Help website\.

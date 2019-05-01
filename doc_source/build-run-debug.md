@@ -193,15 +193,15 @@ The following table shows the variables you can use\.
 
 |  **Variable**  |  **Description**  | 
 | --- | --- | 
-|   `$file_path`   |  The directory of the current file, for example, `/home/ec2-user/environment`\.  | 
-|   `$file`   |  The full path to the current file, for example, `/home/ec2-user/environment/hello.py`\.  | 
+|   `$file_path`   |  The directory of the current file, for example, `/home/ec2-user/environment` or `/home/ubuntu/environment`\.  | 
+|   `$file`   |  The full path to the current file, for example, `/home/ec2-user/environment/hello.py` or `/home/ubuntu/environment/hello.py`\.  | 
 |   `$args`   |  Any arguments entered after the file name, for example, `"5" "9"`\.  | 
 |   `$file_name`   |  The name portion of the current file, for example, `hello.py`\.  | 
 |   `$file_extension`   |  The extension of the current file, for example, `py`\.  | 
 |   `$file_base_name`   |  The name of the current file without the file extension, for example, `hello`\.  | 
 |   `$packages`   |  The full path to the packages folder\.  | 
 |   `$project`   |  The full path to the current project folder\.  | 
-|   `$project_path`   |  The directory of the current project file, for example, `/home/ec2-user/environment/`\.  | 
+|   `$project_path`   |  The directory of the current project file, for example, `/home/ec2-user/environment/` or `/home/ubuntu/environment/`\.  | 
 |   `$project_name`   |  The name of the current project file without the file extension, for example, `my-demo-environment`\.  | 
 |   `$project_extension`   |  The extension of the current project file\.  | 
 |   `$project_base_name`   |  The name of the current project file without the extension\.  | 

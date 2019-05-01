@@ -14,8 +14,8 @@ Creating this sample might result in charges to your AWS account\. These include
 ## Prerequisites<a name="sample-codecommit-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Set Up Your IAM Group with Required Access Permissions<a name="sample-codecommit-permissions"></a>
 
@@ -67,7 +67,7 @@ To see the list of access permissions that these AWS managed policies give to a 
 
 In this step, you create a remote code repository in AWS CodeCommit by using the AWS CodeCommit console\.
 
-If you already have an AWS CodeCommit repository, skip ahead to [Step 3: Connect Your Environment to the Remote Repository](#sample-codecommit-connect-repo)\.
+If you already have a AWS CodeCommit repository, skip ahead to [Step 3: Connect Your Environment to the Remote Repository](#sample-codecommit-connect-repo)\.
 
 You can complete this step using the [AWS Management Console](#sample-codecommit-create-repo-console) or the [AWS Command Line Interface \(AWS CLI\)](#sample-codecommit-create-repo-cli)\.
 

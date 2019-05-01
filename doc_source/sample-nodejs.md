@@ -3,20 +3,22 @@
 This sample enables you to run some Node\.js scripts in an AWS Cloud9 development environment\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
-+  [Prerequisites](#sample-nodejs-prereqs) 
-+  [Step 1: Install Required Tools](#sample-nodejs-install) 
-+  [Step 2: Add Code](#sample-nodejs-code) 
-+  [Step 3: Run the Code](#sample-nodejs-run) 
-+  [Step 4: Install and Configure the AWS SDK for JavaScript](#sample-nodejs-sdk) 
-+  [Step 5: Add AWS SDK Code](#sample-nodejs-sdk-code) 
-+  [Step 6: Run the AWS SDK Code](#sample-nodejs-sdk-run) 
-+  [Step 7: Clean Up](#sample-nodejs-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-nodejs-prereqs)
++ [Step 1: Install Required Tools](#sample-nodejs-install)
++ [Step 2: Add Code](#sample-nodejs-code)
++ [Step 3: Run the Code](#sample-nodejs-run)
++ [Step 4: Install and Configure the AWS SDK for JavaScript in Node\.js](#sample-nodejs-sdk)
++ [Step 5: Add AWS SDK Code](#sample-nodejs-sdk-code)
++ [Step 6: Run the AWS SDK Code](#sample-nodejs-sdk-run)
++ [Step 7: Clean Up](#sample-nodejs-clean-up)
 
 ## Prerequisites<a name="sample-nodejs-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Required Tools<a name="sample-nodejs-install"></a>
 
@@ -24,10 +26,18 @@ In this step, you install Node\.js, which is required to run this sample\.
 
 1. In a terminal session in the AWS Cloud9 IDE, confirm whether Node\.js is already installed by running the ** `node --version` ** command\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\) If successful, the output contains the Node\.js version number\. If Node\.js is installed, skip ahead to [Step 2: Add Code](#sample-nodejs-code)\.
 
-1. Run the ** `yum update` ** command to help ensure the latest security updates and bug fixes are installed\.
+1. Run the ** `yum update` ** for \(Amazon Linux\) or ** `apt update` ** for \(Ubuntu Server\) command to help ensure the latest security updates and bug fixes are installed\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y update
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt update
    ```
 
 1. To install Node\.js, begin by running this command to download Node Version Manager \(nvm\)\. \(nvm is a simple Bash shell script that is useful for installing and managing Node\.js versions\. For more information, see [Node Version Manager](https://github.com/creationix/nvm/blob/master/README.md) on the GitHub website\.\)
@@ -81,13 +91,13 @@ console.log('The sum of ' + process.argv[2] + ' and ' +
 
 ![\[Node.js output after running the code in the AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-nodejs-simple.png)
 
-## Step 4: Install and Configure the AWS SDK for JavaScript<a name="sample-nodejs-sdk"></a>
+## Step 4: Install and Configure the AWS SDK for JavaScript in Node\.js<a name="sample-nodejs-sdk"></a>
 
-You can enhance this sample to use the AWS SDK for JavaScript to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
+You can enhance this sample to use the AWS SDK for JavaScript in Node\.js to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
-In this step, you install and configure the AWS SDK for JavaScript, which provides a convenient way to interact with AWS services such as Amazon S3, from your JavaScript code\. After you install the AWS SDK for JavaScript, you must set up credentials management in your environment\. The AWS SDK for JavaScript needs these credentials to interact with AWS services\.
+In this step, you install and configure the AWS SDK for JavaScript in Node\.js, which provides a convenient way to interact with AWS services such as Amazon S3, from your JavaScript code\. After you install the AWS SDK for JavaScript in Node\.js, you must set up credentials management in your environment\. The AWS SDK for JavaScript in Node\.js needs these credentials to interact with AWS services\.
 
-### To install the AWS SDK for JavaScript<a name="w3aac21c29c17b7"></a>
+### To install the AWS SDK for JavaScript in Node\.js<a name="sample-nodejs-sdk-install"></a>
 
 Use npm to run the ** `install` ** command\.
 
@@ -97,11 +107,11 @@ npm install aws-sdk
 
 For more information, see [Installing the SDK for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/installing-jssdk.html) in the *AWS SDK for JavaScript Developer Guide*\.
 
-### To set up credentials management in your environment<a name="w3aac21c29c17b9"></a>
+### To set up credentials management in your environment<a name="sample-nodejs-sdk-creds"></a>
 
-Each time you use the AWS SDK for JavaScript to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for JavaScript has the appropriate permissions to make that call\. If the credentials do not cover the appropriate permissions, the call will fail\.
+Each time you use the AWS SDK for JavaScript in Node\.js to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for JavaScript in Node\.js has the appropriate permissions to make that call\. If the credentials do not cover the appropriate permissions, the call will fail\.
 
-In this step, you store your credentials within the environment\. To do this, follow the instructions in [Call AWS Services from an Environment](credentials.md), and then return to this topic\.
+In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
 For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
 
@@ -225,4 +235,4 @@ Amazon S3 bucket names must be unique across AWS—not just your AWS account\.
 
 ## Step 7: Clean Up<a name="sample-nodejs-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

@@ -3,20 +3,22 @@
 This sample enables you to run some Ruby scripts in an AWS Cloud9 development environment\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
-+  [Prerequisites](#sample-ruby-prereqs) 
-+  [Step 1: Install Required Tools](#sample-ruby-install) 
-+  [Step 2: Add Code](#sample-ruby-code) 
-+  [Step 3: Run the Code](#sample-ruby-run) 
-+  [Step 4: Install and Configure the AWS SDK for Ruby](#sample-ruby-sdk) 
-+  [Step 5: Add AWS SDK Code](#sample-ruby-sdk-code) 
-+  [Step 6: Run the AWS SDK Code](#sample-ruby-sdk-run) 
-+  [Step 7: Clean Up](#sample-ruby-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-ruby-prereqs)
++ [Step 1: Install Required Tools](#sample-ruby-install)
++ [Step 2: Add Code](#sample-ruby-code)
++ [Step 3: Run the Code](#sample-ruby-run)
++ [Step 4: Install and Configure the AWS SDK for Ruby](#sample-ruby-sdk)
++ [Step 5: Add AWS SDK Code](#sample-ruby-sdk-code)
++ [Step 6: Run the AWS SDK Code](#sample-ruby-sdk-run)
++ [Step 7: Clean Up](#sample-ruby-clean-up)
 
 ## Prerequisites<a name="sample-ruby-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Required Tools<a name="sample-ruby-install"></a>
 
@@ -24,16 +26,32 @@ In this step, you install Ruby, which is required to run this sample\.
 
 1. In a terminal session in the AWS Cloud9 IDE, confirm whether Ruby is already installed by running the ** `ruby --version` ** command\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\) If successful, the output contains the Ruby version number\. If Ruby is installed, skip ahead to [Step 2: Add Code](#sample-ruby-code)\.
 
-1. Run the ** `yum update` ** command to help ensure the latest security updates and bug fixes are installed\.
+1. Run the ** `yum update` ** for \(Amazon Linux\) or ** `apt update` ** for \(Ubuntu Server\) command to help ensure the latest security updates and bug fixes are installed\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y update
    ```
 
+   For Ubuntu Server:
+
+   ```
+   sudo apt update
+   ```
+
 1. Install Ruby by running the ** `install` ** command\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y install ruby
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt install -y ruby
    ```
 
    For more information, see [Installing Ruby](https://www.ruby-lang.org/en/documentation/installation) on the Ruby website\.
@@ -78,19 +96,27 @@ You can enhance this sample to use the AWS SDK for Ruby to create an Amazon S3 b
 
 In this step, you install and configure the AWS SDK for Ruby, which provides a convenient way to interact with AWS services such as Amazon S3, from your Ruby code\. Before you can install the AWS SDK for Ruby, you must install RubyGems\. After you install the AWS SDK for Ruby, you must set up credentials management in your environment\. The AWS SDK for Ruby needs these credentials to interact with AWS services\.
 
-**To install RubyGems**
+### To install RubyGems<a name="sample-ruby-sdk-install-gems"></a>
 
 1. In the AWS Cloud9 IDE, confirm whether RubyGems is already installed by running the ** `gem --version` ** command\. If successful, the output contains the RubyGems version number\. Otherwise, an error message should be output\. If RubyGems is installed, skip ahead to "Step 4\.2: Install the AWS SDK for Ruby\."
 
 1. To install RubyGems, run the ** `install` ** command\.
 
+   For Amazon Linux:
+
    ```
    sudo yum -y install gem
    ```
 
+   For Ubuntu Server:
+
+   ```
+   sudo apt install -y gem
+   ```
+
    For more information, see [Download RubyGems](https://rubygems.org/pages/download) on the RubyGems website\.
 
-### To install the AWS SDK for Ruby<a name="w3aac21c33c17b9"></a>
+### To install the AWS SDK for Ruby<a name="sample-ruby-sdk-install-sdk"></a>
 
 After you install RubyGems, run the ** `gem install` ** command\.
 
@@ -100,11 +126,11 @@ sudo gem install aws-sdk
 
 For more information, see [Installing the AWS SDK for Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-install.html) in the *AWS SDK for Ruby Developer Guide*\.
 
-### To set up credentials management in your environment<a name="w3aac21c33c17c11"></a>
+### To set up credentials management in your environment<a name="sample-ruby-sdk-creds"></a>
 
 Each time you use the AWS SDK for Ruby to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for Ruby has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-In this step, you will store your credentials within the environment\. To do this, follow the instructions in [Call AWS Services from an Environment](credentials.md), and then return to this topic\.
+In this step, you will store your credentials within the environment\. To do this, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
 For additional information, see [Configuring the AWS SDK for Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html) in the *AWS SDK for Ruby Developer Guide*\.
 
@@ -195,4 +221,4 @@ Amazon S3 bucket names must be unique across AWS—not just your AWS account\.
 
 ## Step 7: Clean Up<a name="sample-ruby-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

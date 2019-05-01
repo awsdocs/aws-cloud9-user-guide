@@ -3,21 +3,23 @@
 This sample enables you to run some Java code in an AWS Cloud9 development environment\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
-+  [Prerequisites](#sample-java-prerequisites) 
-+  [Step 1: Install Required Tools](#sample-java-install) 
-+  [Step 2: Add Code](#sample-java-code) 
-+  [Step 3: Build and Run the Code](#sample-java-run) 
-+  [Step 4: Set Up to Use the AWS SDK for Java](#sample-java-sdk) 
-+  [Step 5: Set Up AWS Credentials Management in Your Environment](#sample-java-sdk-creds) 
-+  [Step 6: Add AWS SDK Code](#sample-java-sdk-code) 
-+  [Step 7: Build and Run the AWS SDK Code](#sample-java-sdk-run) 
-+  [Step 8: Clean Up](#sample-java-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-java-prerequisites)
++ [Step 1: Install Required Tools](#sample-java-install)
++ [Step 2: Add Code](#sample-java-code)
++ [Step 3: Build and Run the Code](#sample-java-run)
++ [Step 4: Set Up to Use the AWS SDK for Java](#sample-java-sdk)
++ [Step 5: Set Up AWS Credentials Management in Your Environment](#sample-java-sdk-creds)
++ [Step 6: Add AWS SDK Code](#sample-java-sdk-code)
++ [Step 7: Build and Run the AWS SDK Code](#sample-java-sdk-run)
++ [Step 8: Clean Up](#sample-java-clean-up)
 
 ## Prerequisites<a name="sample-java-prerequisites"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Required Tools<a name="sample-java-install"></a>
 
@@ -35,16 +37,32 @@ In this step, you install a set of Java development tools in your AWS Cloud9 dev
    + If the output contains values starting with `java version 1.8` and `OpenJDK`, skip ahead to [Step 2: Add Code](#sample-java-code)\. OpenJDK 8 is installed correctly for this sample\.
    + If the output contains a `java version` less than `1.8` and values starting with `OpenJDK`, continue with step 2 in this procedure to upgrade the installed OpenJDK version to OpenJDK 8\.
 
-1. Ensure the latest security updates and bug fixes are installed\. To do this, run the yum tool with the ** `update` ** command\.
+1. Ensure the latest security updates and bug fixes are installed\. To do this, run the yum tool \(for Amazon Linux\) or the apt tool \(for Ubuntu Server\) with the ** `update` ** command\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y update
    ```
 
-1. Install OpenJDK 8\. To do this, run the yum tool with the ** `install` ** command, specifying the OpenJDK 8 package\.
+   For Ubuntu Server:
+
+   ```
+   sudo apt update
+   ```
+
+1. Install OpenJDK 8\. To do this, run the yum tool \(for Amazon Linux\) or the apt tool \(for Ubuntu Server\) with the ** `install` ** command, specifying the OpenJDK 8 package\.
+
+   For Amazon Linux:
 
    ```
    sudo yum -y install java-1.8.0-openjdk-devel
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo apt install -y openjdk-8-jdk
    ```
 
    For more information, see [How to download and install prebuilt OpenJDK packages](http://openjdk.java.net/install/) on the OpenJDK website\.
@@ -114,8 +132,10 @@ public class hello {
 You can enhance this sample to use the AWS SDK for Java to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
 In this step, you install [Apache Maven](https://maven.apache.org/) or [Gradle](https://gradle.org/) in your environment\. Maven and Gradle are common build automation systems that can be used with Java projects\. After you install Maven or Gradle, you use it to generate a new Java project\. In this new project, you add a reference to the AWS SDK for Java\. This AWS SDK for Java provides a convenient way to interact with AWS services such as Amazon S3, from your Java code\.
-+  [Set Up With Maven](#sample-java-sdk-maven) 
-+  [Set Up With Gradle](#sample-java-sdk-gradle) 
+
+**Topics**
++ [Set Up With Maven](#sample-java-sdk-maven)
++ [Set Up With Gradle](#sample-java-sdk-gradle)
 
 ### Set Up With Maven<a name="sample-java-sdk-maven"></a>
 
@@ -127,7 +147,9 @@ In this step, you install [Apache Maven](https://maven.apache.org/) or [Gradle](
 
    If successful, the output contains the Maven version number\. If Maven is already installed, skip ahead to step 4 in this procedure to use Maven to generate a new Java project in your environment\.
 
-1. Install Maven by using the terminal to run the following commands\. These commands get information about the package repository where Maven is stored, and then use this information to install Maven\.
+1. Install Maven by using the terminal to run the following commands\. 
+
+   For Amazon Linux, the following commands get information about the package repository where Maven is stored, and then use this information to install Maven\.
 
    ```
    sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
@@ -136,6 +158,12 @@ In this step, you install [Apache Maven](https://maven.apache.org/) or [Gradle](
    ```
 
    For more information about the preceding commands, see [Extra Packages for Enterprise Linux \(EPEL\)](https://fedoraproject.org/wiki/EPEL) on the Fedora Project Wiki website\.
+
+   For Ubuntu Server, run the following command instead\.
+
+   ```
+   sudo apt install -y maven
+   ```
 
 1. Confirm the installation by running Maven with the ** `-version` ** option\.
 
@@ -359,7 +387,7 @@ Skip ahead to [Step 5: Set Up AWS Credentials Management in Your Environment](#s
 
 Each time you use the AWS SDK for Java to call an AWS service, you must provide a set of AWS credentials with the call\. These credentials determine whether the AWS SDK for Java has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-In this step, you store your credentials within the environment\. To do this, follow the instructions in [Call AWS Services from an Environment](credentials.md), and then return to this topic\.
+In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
 For additional information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.
 
@@ -482,4 +510,4 @@ My buckets now are:
 
 ## Step 8: Clean Up<a name="sample-java-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Delete an Environment](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

@@ -3,103 +3,101 @@
 This sample enables you to run some \.NET Core code in an AWS Cloud9 development environment\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
-+  [Prerequisites](#sample-dotnetcore-prereqs) 
-+  [Step 1: Install Required Tools](#sample-dotnetcore-setup) 
-+  [Step 2: Create a \.NET Core Console Application Project](#sample-dotnetcore-app) 
-+  [Step 3: Add Code](#sample-dotnetcore-code) 
-+  [Step 4: Build and Run the Code](#sample-dotnetcore-run) 
-+  [Step 5: Create and Set Up a \.NET Core Console Application Project That Uses the AWS SDK for \.NET](#sample-dotnetcore-sdk) 
-+  [Step 6: Add AWS SDK Code](#sample-dotnetcore-sdk-code) 
-+  [Step 7: Build and Run the AWS SDK Code](#sample-dotnetcore-sdk-run) 
-+  [Step 8: Clean Up](#sample-dotnetcore-clean-up) 
+
+**Topics**
++ [Prerequisites](#sample-dotnetcore-prereqs)
++ [Step 1: Install Required Tools](#sample-dotnetcore-setup)
++ [Step 2: Create a \.NET Core Console Application Project](#sample-dotnetcore-app)
++ [Step 3: Add Code](#sample-dotnetcore-code)
++ [Step 4: Build and Run the Code](#sample-dotnetcore-run)
++ [Step 5: Create and Set Up a \.NET Core Console Application Project That Uses the AWS SDK for \.NET](#sample-dotnetcore-sdk)
++ [Step 6: Add AWS SDK Code](#sample-dotnetcore-sdk-code)
++ [Step 7: Build and Run the AWS SDK Code](#sample-dotnetcore-sdk-run)
++ [Step 8: Clean Up](#sample-dotnetcore-clean-up)
 
 ## Prerequisites<a name="sample-dotnetcore-prereqs"></a>
 
 Before you use this sample, be sure to meet the following requirements\.
-+  **You must have an existing AWS Cloud9 development environment\.** This sample assumes you already have an AWS Cloud9 EC2 development environment that is connected to an Amazon EC2 instance running Amazon Linux\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment](create-environment.md) for details\.
-+  **You have the AWS Cloud IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment](open-environment.md) for details\.
++  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Required Tools<a name="sample-dotnetcore-setup"></a>
 
 In this step, you install the \.NET Core 2 SDK into your environment, which is required to run this sample\.
 
-**Note**  
-The following procedure shows how to install the \.NET Core 2 SDK in an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux\. To set up an SSH environment connected to an Amazon EC2 instance running Ubuntu Server with the \.NET Core 2 SDK already installed, skip this procedure and watch the 8\-minute video [Setting Up a \.NET and PowerShell Development Environment with AWS Cloud9 and Amazon EC2](https://www.youtube.com/watch?v=3ZdvbGArONk) on the YouTube website instead\.
-
-1. Confirm whether the \.NET Core 2 SDK is already installed in your environment\. To do this, in a terminal session in the AWS Cloud9 IDE, run the \.NET Core command line interface \(CLI\) with the ** `-help` ** option\.
+1. Confirm whether the \.NET Core 2 SDK is already installed in your environment\. To do this, in a terminal session in the AWS Cloud9 IDE, run the \.NET Core command line interface \(CLI\) with the ** `--version` ** option\.
 
    ```
-   dotnet -help
+   dotnet --version
    ```
 
    If the \.NET Command Line Tools version is displayed, and the version is 2\.0 or greater, skip ahead to [Step 2: Create a \.NET Core Console Application Project](#sample-dotnetcore-app)\. If the version is less than 2\.0, or if an error such as `bash: dotnet: command not found` is displayed, continue on to install the \.NET Core 2 SDK\.
 
-1. In a terminal session in the AWS Cloud9 IDE, run the following commands to help ensure the latest security updates and bug fixes are installed, and to install a `libunwind` package that the \.NET Core 2 SDK needs\. \(To start a new terminal session, on the menu bar, choose **Window, New Terminal**\.\)
+1. For Amazon Linux, in a terminal session in the AWS Cloud9 IDE, run the following commands to help ensure the latest security updates and bug fixes are installed, and to install a `libunwind` package that the \.NET Core 2 SDK needs\. \(To start a new terminal session, on the menu bar, choose **Window, New Terminal**\.\)
 
    ```
    sudo yum -y update
    sudo yum -y install libunwind
    ```
 
-1. Get the URL for the \.NET Core 2 SDK file to download into your environment\. To get this URL, do the following from a web browser on your local computer \(not from the IDE\):
-
-   1. Go to [\.NET downloads](https://www.microsoft.com/net/download) on the Microsoft website\.
-
-   1. On the **\.NET downloads** page, choose the **Linux** tab\. In the **\.NET Core** section, under **Other Linux downloads**, choose the link next to **Binaries** in the **Build apps \- SDK** column that starts with **x64**\.
-
-   1. On the **Thanks for downloading \.NET Core SDK** page, if a download dialog box appears, close it or choose **Cancel**\. \(Do not download the \.NET Core 2 SDK file to your local computer\.\)
-
-   1. Right\-click the **Try again** link, and choose the command that copies the download URL to your system clipboard\. For example, the download URL might be as follows\.
-
-      ```
-      https://download.microsoft.com/download/E/8/A/E8AF2EE0-5DDA-4420-A395-D1A50EEFD83E/dotnet-sdk-2.1.401-linux-x64.tar.gz
-      ```
-
-1. Back in the IDE, download the \.NET Core 2 SDK file into your environment\. To do this, run the ** `wget` ** command in the terminal with the download URL you copied earlier\.
+   For Ubuntu Server, in a terminal session in the AWS Cloud9 IDE, run the following command to help ensure the latest security updates and bug fixes are installed\. \(To start a new terminal session, on the menu bar, choose **Window, New Terminal**\.\)
 
    ```
-   wget https://download.microsoft.com/download/E/8/A/E8AF2EE0-5DDA-4420-A395-D1A50EEFD83E/dotnet-sdk-2.1.401-linux-x64.tar.gz
+   sudo apt -y update
    ```
 
-1. Extract the \.NET Core 2 SDK download file into a subdirectory named `dotnet` within the home directory of your environment\. To do this, run the ** `mkdir` ** command with the path to the new `dotnet` subdirectory to create\. Then run the ** `tar` ** command with the name and location of the \.NET Core 2 SDK file to extract along with the path to the `dotnet` subdirectory\.
+1. Download the \.NET Core 2 SDK installer script into your environment by running the following command\.
 
    ```
-   mkdir -p $HOME/dotnet
-   tar zxf dotnet-sdk-2.1.401-linux-x64.tar.gz -C $HOME/dotnet
+   curl -O https://dot.net/v1/dotnet-install.sh
    ```
 
-   For the ** `mkdir` ** command, `-p` creates intermediate directories as needed\. The ** `tar` ** command uses the following options\.
-   +  `z` specifies to extract a file of type `tar.gz`\.
-   +  `x` extracts the file\.
-   +  `f` specifies the name and location of the file to extract\.
-   +  `-C` extracts the file to the specified location\.
+1. Make the installer script executable by the current user by running the following command\.
 
-1. In the `.bash_profile` file for the environment, add the `$HOME/dotnet` subdirectory to the `PATH` variable for the environment, as follows\.
+   ```
+   sudo chmod u=rx dotnet-install.sh
+   ```
 
-   1. Open the `.bash_profile` file for editing by using the ** `vi` ** command\.
+1. Run the installer script, which downloads and installs the \.NET Core 2 SDK, by running the following command\.
+
+   ```
+   ./dotnet-install.sh -c Current
+   ```
+
+1. Add the \.NET Core 2 SDK to your `PATH`\. To do this, in the shell profile for the environment \(for example, the `.bashrc` file\), add the `$HOME/.dotnet` subdirectory to the `PATH` variable for the environment, as follows\.
+
+   1. Open the `.bashrc` file for editing by using the ** `vi` ** command\.
 
       ```
-      vi ~/.bash_profile
+      vi ~/.bashrc
       ```
 
-   1. Using the down arrow or `j` key, move to the line that starts with `PATH`\.
+   1. For Amazon Linux, using the down arrow or `j` key, move to the line that starts with `export PATH`\.
+
+      For Ubuntu Server, move to the last line of the file by typing `G`\.
 
    1. Using the right arrow or `$` key, move to the end of that line\.
 
    1. Switch to insert mode by pressing the `i` key\. \(`-- INSERT ---` will appear at the end of the display\.\)
 
-   1. Add the `~/dotnet` subdirectory to the ** `PATH` ** variable by typing `:$HOME/dotnet`\. Be sure to include the colon character \(`:`\)\. The line should now look similar to the following\.
+   1. For Amazon Linux, add the `$HOME/.dotnet` subdirectory to the ** `PATH` ** variable by typing `:$HOME/.dotnet`\. Be sure to include the colon character \(`:`\)\. The line should now look similar to the following\.
 
       ```
-      PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/dotnet
+      export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/dotnet
+      ```
+
+      For Ubuntu Server, press the right arrow key and then press `Enter` twice, followed by typing the following line by itself at the end of the file\.
+
+      ```
+      export PATH=$HOME/.dotnet:$PATH
       ```
 
    1. Save the file\. To do this, press the `Esc` key \(`-- INSERT ---` will disappear from the end of the display\), type `:wq` \(to write to and then quit the file\), and then press `Enter`\.
 
-1. Load the \.NET Core 2 SDK by sourcing the `.bash_profile` file\.
+1. Load the \.NET Core 2 SDK by sourcing the `.bashrc` file\.
 
    ```
-   . ~/.bash_profile
+   . ~/.bashrc
    ```
 
 1. Confirm the \.NET Core 2 SDK is loaded by running \.NET Core CLI with the ** `--help` ** option\.
@@ -110,10 +108,10 @@ The following procedure shows how to install the \.NET Core 2 SDK in an EC2 envi
 
    If successful, the \.NET Core 2 SDK version number is displayed, with additional usage information\.
 
-1. If you no longer want to keep the \.NET Core 2 SDK file in your environment, you can delete it as follows\.
+1. If you no longer want to keep the \.NET Core 2 SDK installer script in your environment, you can delete it as follows\.
 
    ```
-   rm dotnet-sdk-2.1.200-linux-x64.tar.gz
+   rm dotnet-install.sh
    ```
 
 ## Step 2: Create a \.NET Core Console Application Project<a name="sample-dotnetcore-app"></a>
@@ -247,7 +245,7 @@ You can enhance this sample to use the AWS SDK for \.NET to create an Amazon S3 
 
 In this new project, you add a reference to the AWS SDK for \.NET\. The AWS SDK for \.NET provides a convenient way to interact with AWS services such as Amazon S3, from your \.NET code\. You then set up AWS credentials management in your environment\. The AWS SDK for \.NET needs these credentials to interact with AWS services\.
 
-**To create the project**
+### To create the project<a name="sample-dotnetcore-sdk-create"></a>
 
 1. In the terminal, run the following commands to change to the root directory of the environment, create a directory for a project named `s3`, and then switch to that new directory\.
 
@@ -273,11 +271,11 @@ In this new project, you add a reference to the AWS SDK for \.NET\. The AWS SDK 
 **Note**  
 For the names and versions of other AWS related packages in NuGet, see [NuGet packages tagged with aws\-sdk](https://www.nuget.org/packages?q=Tags%3A%22aws-sdk%22) on the NuGet website\.
 
-### To set up AWS credentials management<a name="w3aac21c27c19b9"></a>
+### To set up AWS credentials management<a name="sample-dotnetcore-sdk-creds"></a>
 
 Each time you use the AWS SDK for \.NET to call an AWS service, you must provide a set of AWS credentials with the call\. These credentials determine whether the AWS SDK for \.NET has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-To store your credentials within the environment, follow the instructions in [Call AWS Services from an Environment](credentials.md), and then return to this topic\.
+To store your credentials within the environment, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
 For additional information, see [Configuring AWS Credentials](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.
 
@@ -419,4 +417,4 @@ In this step, you build the project and its dependencies into a set of binary fi
 
 ## Step 8: Clean Up<a name="sample-dotnetcore-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Delete an Environment](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

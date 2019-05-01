@@ -1,6 +1,6 @@
 # Working with Language Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)<a name="projects"></a>
 
-The AWS Cloud9 IDE provides project productivity features for some languages in addition to those languages listed in [Language Support](language-support.md)\. To use these features, you use the IDE to create or identify a *language project* \(or *project*\) based on that language\. A project is a collection of related files, folders, and settings in the IDE for an AWS Cloud9 development environment\.
+The AWS Cloud9 IDE provides project productivity features for some languages in addition to those languages listed in [Language Support in the AWS Cloud9 Integrated Development Environment \(IDE\)](language-support.md)\. To use these features, you use the IDE to create or identify a *language project* \(or *project*\) based on that language\. A project is a collection of related files, folders, and settings in the IDE for an AWS Cloud9 development environment\.
 
 To use the IDE to create a language project in your environment, see [Create a Language Project](#projects-create)\.
 
@@ -11,9 +11,9 @@ The AWS Cloud9 IDE provides the following project productivity features by progr
 
 ****  
 
-|  **Language**  |  [Autocomplete](#projects-features-autocomplete)  |  [Gutter Icons](#projects-features-gutter-icons)  |  [Find References](#projects-features-find-refs)  |  [Go to Definition](#projects-features-go-to-def)  |  [Go to Symbol](#projects-features-go-to-symbol)  | 
-| --- | --- | --- | --- | --- | --- | 
-|  TypeScript  |  X  |  X  |  X  |  X  |  X  | 
+|  **Language**  |  [Autocomplete](#projects-features-autocomplete)  |  [Gutter Icons](#projects-features-gutter-icons)  |  [Quick Fixes](#projects-features-quick-fixes)  |  [Find References](#projects-features-find-refs)  |  [Go to Definition](#projects-features-go-to-def)  |  [Go to Symbol](#projects-features-go-to-symbol)  | 
+| --- | --- | --- | --- | --- | --- | --- | 
+|  TypeScript  |  X  |  X  |  X  |  X  |  X  |  X  | 
 
 ### Autocomplete<a name="projects-features-autocomplete"></a>
 
@@ -30,6 +30,10 @@ To close the list without inserting a symbol, press `Esc`\.
 Icons might appear in the gutter for the active file\. These icons highlight possible issues such as warnings and errors in code before you run it\.
 
 For more information about an issue, pause your mouse pointer on the issue's icon\.
+
+### Quick Fixes<a name="projects-features-quick-fixes"></a>
+
+In the active file in the editor, you can display information about coding errors and warnings, with possible fixes that you can automatically apply to that code\. To display error or warning information and possible fixes, choose any part of the code that has a red dotted underline \(for errors\), or a gray dotted underline \(for warnings\)\. Or, with the cursor resting on code that has a red or gray dotted underline, press `Option-Enter` \(for macOS\), or `Alt-Enter` \(for Linux or Windows\)\. To apply a proposed fix, choose the fix in the list, or use the arrow keys to select the fix and then press `Enter`\. To turn choosing quick fixes with mouse clicks on or off, choose **AWS Cloud9**, **Preferences**, **User Settings**, **Language**, **Hints & Warnings**, **Show Available Quick Fixes on Click**\.
 
 ### Find References<a name="projects-features-find-refs"></a>
 
@@ -92,7 +96,7 @@ For example, you might use the IDE to search for references and definitions from
 
 ### Create a TypeScript Language Project<a name="projects-create-typescript"></a>
 
-1. Ensure you have TypeScript installed in the environment\. For more information, see [Step 1: Install Required Tools](sample-typescript.md#sample-typescript-install) in [TypeScript Sample](sample-typescript.md)\.
+1. Ensure you have TypeScript installed in the environment\. For more information, see [Step 1: Install Required Tools](sample-typescript.md#sample-typescript-install) in the [TypeScript Sample for AWS Cloud9](sample-typescript.md)\.
 
 1. From a terminal session in the IDE for the environment, switch to the directory where you want to create the project\. If the directory doesn't exist, create it and then switch to it\. For example, the following commands create a directory named `my-demo-project` at the root of the environment \(in `~/environment`\), and then switch to that directory\.
 

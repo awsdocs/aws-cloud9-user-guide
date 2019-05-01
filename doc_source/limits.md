@@ -6,15 +6,29 @@ The following tables list limits in AWS Cloud9 and related AWS services\.
 
 ## AWS Cloud9 Limits<a name="limits-core"></a>
 
+The following table provides the default limits for AWS Cloud9 for an AWS account\. Unless otherwise noted, each limit is Region\-specific\.
+
+To request an increase for a limit that is adjustable, do the following:
+
+1. Open the [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase) page on the AWS Support Center website, and sign in if necessary\.
+
+1. Continue following the on\-screen instructions to complete the request\. If the request is urgent, choose **Phone** as the method of contact instead of **Web**\.
+
+1. Choose **Submit**\.
+
+These increases are not granted immediately, so it might take a couple of days for your increase to become effective\.
+
 
 ****  
 
-|  |  | 
-| --- |--- |
-|  Maximum number of AWS Cloud9 EC2 development environments  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/limits.html)  | 
-|  Maximum number of SSH environments  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/limits.html)  | 
-|  Maximum number of members in an environment  |  8 per user per Region  | 
-|  Maximum editable file size  |  8 MB  | 
+| Resource | Default Limit | Adjustable | 
+| --- | --- | --- | 
+|  Maximum number of AWS Cloud9 EC2 development environments  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/limits.html)  |  Yes  | 
+|  Maximum number of SSH environments  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/limits.html)  |  Yes  | 
+|  Maximum number of members in an environment  |  The default maximum number of members is equal to the memory of the instance for that environment divided by 60 MB, with results rounded down\. For example, an instance with 1 GiB of memory can have a maximum of 17 members \(which is 1 GiB divided by 60 MB, rounded down\)\. If AWS Cloud9 cannot determine the memory of an instance, it defaults to a maximum of 8 users for each environment associated with that instance\. The absolute maximum number of members for an environment is 25\.  |  No1  | 
+|  Maximum editable file size  |  8 MB  |  No  | 
+
+1 You can [move an environment](move-environment.md#move-environment-move) to attempt to increase the default maximum number of members\. However, the absolute maximum number of members for an environment is still 25\.
 
 ## Related AWS Service Limits<a name="limits-related"></a>
 

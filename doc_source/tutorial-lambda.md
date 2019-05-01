@@ -4,24 +4,26 @@ In this tutorial, you use the AWS Cloud9 IDE to create a function in AWS Lambda 
 
 **Note**  
 Completing this tutorial might result in charges to your AWS account\. These include possible charges for Amazon EC2, Lambda, and API Gateway\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/), [AWS Lambda Pricing](https://aws.amazon.com/lambda/pricing/), and [Amazon API Gateway Pricing](https://aws.amazon.com/api-gateway/pricing/)\.
-+  [Prerequisites](#tutorial-lambda-prereqs) 
-+  [Step 1: Create and Open the Environment](#tutorial-lambda-create-environment) 
-+  [Step 2: Create the Lambda Function and API](#tutorial-lambda-create-function) 
-+  [Step 3: Add Code to the Function](#tutorial-lambda-add-code) 
-+  [Step 4: Run the Function Locally](#tutorial-lambda-run-local-function) 
-+  [Step 5: Debug the Function Locally](#tutorial-lambda-debug-local-function) 
-+  [Step 6: Run the API Locally](#tutorial-lambda-run-local-api) 
-+  [Step 7: Debug the API Locally](#tutorial-lambda-debug-local-api) 
-+  [Step 8: Run the Function in Production](#tutorial-lambda-run-deployed-function) 
-+  [Step 9: Run the API in Production](#tutorial-lambda-run-deployed-api) 
-+  [Step 10: Change the Function Locally](#tutorial-lambda-change-function) 
-+  [Step 11: Deploy the Changed Function into Production](#tutorial-lambda-deploy-function) 
-+  [Step 12: Clean Up](#tutorial-lambda-clean-up) 
-+  [Next Steps](#tutorial-lambda-next-steps) 
+
+**Topics**
++ [Prerequisites](#tutorial-lambda-prereqs)
++ [Step 1: Create and Open the Environment](#tutorial-lambda-create-environment)
++ [Step 2: Create the Lambda Function and API](#tutorial-lambda-create-function)
++ [Step 3: Add Code to the Function](#tutorial-lambda-add-code)
++ [Step 4: Run the Function Locally](#tutorial-lambda-run-local-function)
++ [Step 5: Debug the Function Locally](#tutorial-lambda-debug-local-function)
++ [Step 6: Run the API Locally](#tutorial-lambda-run-local-api)
++ [Step 7: Debug the API Locally](#tutorial-lambda-debug-local-api)
++ [Step 8: Run the Function in Production](#tutorial-lambda-run-deployed-function)
++ [Step 9: Run the API in Production](#tutorial-lambda-run-deployed-api)
++ [Step 10: Change the Function Locally](#tutorial-lambda-change-function)
++ [Step 11: Deploy the Changed Function into Production](#tutorial-lambda-deploy-function)
++ [Step 12: Clean Up](#tutorial-lambda-clean-up)
++ [Next Steps](#tutorial-lambda-next-steps)
 
 ## Prerequisites<a name="tutorial-lambda-prereqs"></a>
 
-To successfully complete this tutorial, you must first complete the steps in [Getting Started](get-started.md)\.
+To successfully complete this tutorial, you must first complete the steps in [Getting Started with AWS Cloud9](get-started.md)\.
 
 ## Step 1: Create and Open the Environment<a name="tutorial-lambda-create-environment"></a>
 
@@ -29,12 +31,12 @@ In this step, you use the AWS Cloud9 console to create and then open an AWS Clou
 
 If you already have an environment, open it, and then skip ahead to [Step 2: Create the Lambda Function and API](#tutorial-lambda-create-function)\.
 
-In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your apps\. In this tutorial, you create a special kind of environment called an *EC2 environment*\. For this kind of environment, AWS Cloud9 launches and manages a new Amazon EC2 instance running Amazon Linux, creates the environment, and then connects the environment to the newly\-launched instance\. When you open the environment, AWS Cloud9 displays the AWS Cloud9 IDE that enables you to work with the files and tools in that environment\.
+In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your apps\. In this tutorial, you create a special kind of environment called an *EC2 environment*\. For this kind of environment, AWS Cloud9 launches and manages a new Amazon EC2 instance running Amazon Linux or Ubuntu Server, creates the environment, and then connects the environment to the newly\-launched instance\. When you open the environment, AWS Cloud9 displays the AWS Cloud9 IDE that enables you to work with the files and tools in that environment\.
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
-   + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
-   + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
+   + If your organization uses AWS Single Sign\-On \(AWS SSO\), see your AWS account administrator for sign\-in instructions\.
+   + If you're using an AWS Educate Starter Account, see [Step 2: Sign In to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
    + If you're a student in a classroom, see your instructor for sign\-in instructions\.
 
 1. In the top navigation bar, choose the AWS Region to create the environment in\.  
@@ -57,6 +59,8 @@ In AWS Cloud9, a *development environment* \(or just *environment*\) is a place 
 1. For **Instance type**, leave the default choice of **t2\.micro**\. This choice has relatively low RAM and vCPUs, which is sufficient for this tutorial\.
 **Note**  
 Choosing an instance type with greater compute resources might result in more charges to your AWS account\.
+
+1. For **Platform**, choose the type of Amazon EC2 instance that AWS Cloud9 will create and then connect to this environment: **Amazon Linux** or **Ubuntu**\.
 
 1. For **Cost\-saving setting**, leave the default choice of **After 30 minutes**\. This is the amount of time until AWS Cloud9 shuts down the Amazon EC2 instance for the environment, after all web browser instances that are connected to the IDE for the environment have been closed\.
 **Note**  
@@ -555,14 +559,14 @@ Explore any or all of the following topics to continue getting familiar with AWS
 
 |  |  | 
 | --- |--- |
-|  Learn more about how to use AWS Cloud9 with Lambda  |   [Advanced AWS Lambda Tutorial](tutorial-lambda-advanced.md) and [Working with AWS Lambda Functions](lambda-functions.md)   | 
-|  Learn more about the AWS Cloud9 IDE  |   [IDE Tutorial](tutorial.md) and [Working with the IDE](ide.md)   | 
-|  Invite others to use your environment with you, in real time and with text chat support  |   [Working with Shared Environments](share-environment.md)   | 
-|  Create SSH environments \(environments that use cloud compute instances or servers that you create, instead of an Amazon EC2 instances that AWS Cloud9 creates for you\)\.  |   [Creating an Environment](create-environment.md) and [SSH Environment Host Requirements](ssh-settings.md)   | 
-|  Use AWS Cloud9 with Amazon Lightsail  |   [Working with Amazon Lightsail Instances](lightsail-instances.md)   | 
-|  Use AWS Cloud9 with AWS CodeStar  |   [Working with AWS CodeStar Projects](codestar-projects.md)   | 
-|  Use AWS Cloud9 with AWS CodePipeline  |   [Working with AWS CodePipeline](codepipeline-repos.md)   | 
-|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages  |   [Samples](samples.md)   | 
+|  Learn more about how to use AWS Cloud9 with Lambda  |   [Advanced AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda-advanced.md) and [Working with AWS Lambda Functions in the AWS Cloud9 Integrated Development Environment \(IDE\)](lambda-functions.md)   | 
+|  Learn more about the AWS Cloud9 IDE  |   [IDE Tutorial for AWS Cloud9](tutorial.md) and [Working with the AWS Cloud9 Integrated Development Environment \(IDE\)](ide.md)   | 
+|  Invite others to use your environment with you, in real time and with text chat support  |   [Working with Shared Environments in AWS Cloud9](share-environment.md)   | 
+|  Create SSH environments \(environments that use cloud compute instances or servers that you create, instead of an Amazon EC2 instances that AWS Cloud9 creates for you\)\.  |   [Creating an Environment in AWS Cloud9](create-environment.md) and [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)   | 
+|  Use AWS Cloud9 with Amazon Lightsail  |   [Working with Amazon Lightsail Instances in the AWS Cloud9 Integrated Development Environment \(IDE\)](lightsail-instances.md)   | 
+|  Use AWS Cloud9 with AWS CodeStar  |   [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](codestar-projects.md)   | 
+|  Use AWS Cloud9 with AWS CodePipeline  |   [Working with AWS CodePipeline in the AWS Cloud9 Integrated Development Environment \(IDE\)](codepipeline-repos.md)   | 
+|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages  |   [Samples for AWS Cloud9](samples.md)   | 
 |  Work with code for intelligent robotics applications in AWS RoboMaker\.  |   [Developing with AWS Cloud9](https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html) in the *AWS RoboMaker Developer Guide*   | 
 
 To get help with AWS Cloud9 from the community, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\)

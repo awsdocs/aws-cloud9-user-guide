@@ -1,9 +1,11 @@
 # VPC Settings for AWS Cloud9 Development Environments<a name="vpc-settings"></a>
 
 Every AWS Cloud9 development environment associated with an Amazon Virtual Private Cloud \(Amazon VPC\) must meet specific VPC requirements\. These environments include EC2 environments, as well as SSH environments associated with AWS cloud compute instances \(for example Amazon EC2 and Amazon Lightsail instances\) that run within a VPC\.
-+  [Amazon VPC Requirements for AWS Cloud9](#vpc-settings-requirements) 
-+  [Create an Amazon VPC for AWS Cloud9](#vpc-settings-create-vpc) 
-+  [Create a Subnet for AWS Cloud9](#vpc-settings-create-subnet) 
+
+**Topics**
++ [Amazon VPC Requirements for AWS Cloud9](#vpc-settings-requirements)
++ [Create an Amazon VPC for AWS Cloud9](#vpc-settings-create-vpc)
++ [Create a Subnet for AWS Cloud9](#vpc-settings-create-subnet)
 
 ## Amazon VPC Requirements for AWS Cloud9<a name="vpc-settings-requirements"></a>
 
@@ -242,13 +244,13 @@ aws ec2 describe-security-groups --output table --region us-east-2 --group-ids s
 In the preceding command, replace `us-east-2` with the AWS Region that contains the instance, and replace `sg-12a3b456` with the security group ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
 ### Minimum Inbound and Outbound Traffic Settings for AWS Cloud9<a name="vpc-settings-requirements-traffic-settings"></a>
-+  **Inbound**: All IP addresses using SSH over port 22\. However, you can restrict these IP addresses to only those that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges](ip-ranges.md)\.
++  **Inbound**: All IP addresses using SSH over port 22\. However, you can restrict these IP addresses to only those that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
 **Note**  
-For EC2 environments created on or after July 31 2018, AWS Cloud9 uses security groups to automatically restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges](ip-ranges.md)\.
-+  **Inbound \(network ACLs only\)**: For EC2 environments, and for SSH environments associated with Amazon EC2 instances running Amazon Linux, all IP addresses using TCP over ports 32768\-61000\. For more information, and for port ranges for other Amazon EC2 instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports) in the *Amazon VPC User Guide*\.
+For EC2 environments created on or after July 31 2018, AWS Cloud9 uses security groups to automatically restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
++  **Inbound \(network ACLs only\)**: For EC2 environments, and for SSH environments associated with Amazon EC2 instances running Amazon Linux or Ubuntu Server, all IP addresses using TCP over ports 32768\-61000\. For more information, and for port ranges for other Amazon EC2 instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports) in the *Amazon VPC User Guide*\.
 +  **Outbound**: All traffic sources using any protocol and port\.
 
-You can set this behavior at the security group level\. For an additional level of security, you can also use a network ACL\. For more information, see [Comparison of Security Groups and Network ACLs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Security.html#VPC_Security_Comparison) in the *Amazon VPC User Guide*\.
+You can set this behavior at the security group level\. For an additional level of security, you can also use a network ACL\. For more information, see [Comparison of Security Groups and Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html#VPC_Security_Comparison) in the *Amazon VPC User Guide*\.
 
 For example, to add inbound and outbound rules to a security group, you could set up those rules as follows\.
 
@@ -259,10 +261,10 @@ Inbound rules:
 
 |  **Type**  |  **Protocol**  |  **Port Range**  |  **Source**  | 
 | --- | --- | --- | --- | 
-|  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see the following note and [Inbound SSH IP Address Ranges](ip-ranges.md)\.\)  | 
+|  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see the following note and [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.\)  | 
 
 **Note**  
-For EC2 environments created on or after July 31 2018, AWS Cloud9 automatically adds an inbound rule to restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges](ip-ranges.md)\.
+For EC2 environments created on or after July 31 2018, AWS Cloud9 automatically adds an inbound rule to restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
 
 Outbound rules:
 
@@ -282,8 +284,8 @@ Inbound rules:
 
 |  **Rule \#**  |  **Type**  |  **Protocol**  |  **Port Range**  |  **Source**  |  **Allow / Deny**  | 
 | --- | --- | --- | --- | --- | --- | 
-|  100  |  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see [Inbound SSH IP Address Ranges](ip-ranges.md)\.\)  |  ALLOW  | 
-|  200  |  Custom TCP Rule  |  TCP \(6\)  |  32768\-61000 \(For Amazon Linux instances\. For other instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports)\.\)  |  0\.0\.0\.0/0  |  ALLOW  | 
+|  100  |  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.\)  |  ALLOW  | 
+|  200  |  Custom TCP Rule  |  TCP \(6\)  |  32768\-61000 \(For Amazon Linux and Ubuntu Server instances\. For other instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports)\.\)  |  0\.0\.0\.0/0  |  ALLOW  | 
 |   `*`   |  ALL Traffic  |  ALL  |  ALL  |  0\.0\.0\.0/0  |  DENY  | 
 
 Outbound rules:
@@ -297,9 +299,9 @@ Outbound rules:
 |   `*`   |  ALL Traffic  |  ALL  |  ALL  |  0\.0\.0\.0/0  |  DENY  | 
 
 For more information about security groups and network ACLs, see the following in the *Amazon VPC User Guide*\.
-+  [Security](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Security.html) 
-+  [Security Groups for your VPC](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_SecurityGroups.html) 
-+  [Network ACLs](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html) 
++  [Security](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Security.html) 
++  [Security Groups for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) 
++  [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) 
 
 ### Create a Security Group in a VPC<a name="vpc-settings-requirements-security-group-vpc-create"></a>
 
@@ -385,7 +387,7 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
 1. For **Step 1: Select a VPC Configuration**, with **VPC with a Single Public Subnet** already selected, choose **Select**\.
 
-1. For **Step 2: VPC with a Single Public Subnet**, we recommend that you leave the following default settings\. \(However, you can change the CIDR settings if you have custom CIDRs you want to use\. For more information, see [VPC and Subnet Sizing](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\.\)
+1. For **Step 2: VPC with a Single Public Subnet**, we recommend that you leave the following default settings\. \(However, you can change the CIDR settings if you have custom CIDRs you want to use\. For more information, see [VPC and Subnet Sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\.\)
    +  **IPv4 CIDR block**: **10\.0\.0\.0/16** 
    +  **IPv6 CIDR block**: **No IPv6 CIDR Block** 
    +  **Public subnet's IPv4 CIDR**: **10\.0\.0\.0/24** 
@@ -420,7 +422,7 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
    1. For **Rule \# 100**, for **Type**, choose **SSH \(22\)**\.
 
-   1. For **Source**, type one of the CIDR blocks in the [Inbound SSH IP Address Ranges](ip-ranges.md) list that matches the AWS Region for this VPC\.
+   1. For **Source**, type one of the CIDR blocks in the [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md) list that matches the AWS Region for this VPC\.
 
    1. Choose **Add another rule**\.
 
@@ -428,15 +430,15 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
    1. For **Type**, choose **SSH \(22\)**\.
 
-   1. For **Source**, type the other CIDR block in the [Inbound SSH IP Address Ranges](ip-ranges.md) list that matches the AWS Region for this VPC\.
+   1. For **Source**, type the other CIDR block in the [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md) list that matches the AWS Region for this VPC\.
 
-   1. At minimum, you must also allow incoming traffic from all IP addresses using TCP over ports 32768\-61000 for Amazon Linux instance types\. \(For background, and for port ranges for other Amazon EC2 instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports) in the *Amazon VPC User Guide*\)\. To do this, choose **Add another rule**\.
+   1. At minimum, you must also allow incoming traffic from all IP addresses using TCP over ports 32768\-61000 for Amazon Linux and Ubuntu Server instance types\. \(For background, and for port ranges for other Amazon EC2 instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports) in the *Amazon VPC User Guide*\)\. To do this, choose **Add another rule**\.
 
    1. For **Rule \#**, type `300`\.
 
    1. For **Type**, choose **Custom TCP Rule**\.
 
-   1. For **Port Range**, type `32768-61000` \(for Amazon Linux instance types\)\.
+   1. For **Port Range**, type `32768-61000` \(for Amazon Linux and Ubuntu Server instance types\)\.
 
    1. For **Source**, type `0.0.0.0/0`\.
 
@@ -471,6 +473,6 @@ Some organizations may not allow you to create subnets on your own\. If you cann
 
 1. For **IPv4 CIDR block**, type the range of IP addresses for the subnet to use, in CIDR format\. This range of IP addresses must be a subset of IP addresses in the VPC\.
 
-   For information about CIDR blocks, see [VPC and Subnet Sizing](https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\. See also [3\.1\. Basic Concept and Prefix Notation](http://tools.ietf.org/html/rfc4632#section-3.1) in RFC 4632 or [IPv4 CIDR blocks](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) in Wikipedia\.
+   For information about CIDR blocks, see [VPC and Subnet Sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\. See also [3\.1\. Basic Concept and Prefix Notation](http://tools.ietf.org/html/rfc4632#section-3.1) in RFC 4632 or [IPv4 CIDR blocks](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) in Wikipedia\.
 
 1. After you create the subnet, be sure to associate it with a compatible route table and an internet gateway, as well as security groups, a network ACL, or both\. For more information, see the requirements in [Amazon VPC Requirements for AWS Cloud9](#vpc-settings-requirements)\.
