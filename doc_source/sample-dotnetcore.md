@@ -83,7 +83,7 @@ In this step, you install the \.NET Core 2 SDK into your environment, which is r
    1. For Amazon Linux, add the `$HOME/.dotnet` subdirectory to the ** `PATH` ** variable by typing `:$HOME/.dotnet`\. Be sure to include the colon character \(`:`\)\. The line should now look similar to the following\.
 
       ```
-      export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/dotnet
+      export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.dotnet
       ```
 
       For Ubuntu Server, press the right arrow key and then press `Enter` twice, followed by typing the following line by itself at the end of the file\.
