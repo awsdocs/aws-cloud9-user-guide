@@ -21,7 +21,7 @@ For an AWS Educate Starter account, note the following:
 + If the account runs out of AWS promotional credit, the account is deactivated\.
 + You can't turn the account into a regular AWS account\.
 
-For more information, see [What is the difference between the AWS Account and AWS Educate Starter Account](https://www.awseducate.com/faqs#fa0Po000000C0eH1EAJ) on the *AWS Educate Frequently Asked Questions* website\. To watch a related 5\-minute video, see [What's the difference between a regular AWS account and an AWS Educate Starter Account](https://www.youtube.com/watch?v=fJ-npJNpgWI) on the YouTube website\.
+For more information, see [What is the difference between the AWS Account and AWS Educate Starter Account](https://www.awseducate.com/faqs#fa0Po000000C0eH1EAJ) on the *AWS Educate Frequently Asked Questions* website\.
 +  [Create an AWS Educate Starter Account](#setup-student-create-account-starter) 
 +  [Create a Regular AWS Account and Apply for AWS Educate](#setup-student-create-account-regular) 
 

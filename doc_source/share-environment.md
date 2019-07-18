@@ -100,6 +100,9 @@ Before a user can become an environment owner or member, that user must meet one
 
 ### Attach an AWS Managed Policy for AWS Cloud9 to a Group Using the AWS CLI<a name="share-environment-member-roles-cli"></a>
 
+**Note**  
+If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+
 Run the IAM `attach-group-policy` command to attach the AWS managed policy for AWS Cloud9 to the group, specifying the group's name and the Amazon Resource Name \(ARN\) of the policy, for example:
 
 ```
@@ -143,6 +146,9 @@ Removing your permanent AWS access credentials from your environment and using t
 1. Contact the user to let them know they can open this environment and begin using it\.
 
 ## Have an AWS Cloud9 Administrator in the Same Account as the Environment Invite Themself or Others<a name="share-environment-admin-user"></a>
+
+**Note**  
+If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 The following types of users can invite themselves \(or other users in the same AWS account\) to any environment in the same account\.
 + The **AWS account root user**\.

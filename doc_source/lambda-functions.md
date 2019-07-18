@@ -444,7 +444,6 @@ And running the **Run Local** command for that function from the **Lambda** sect
   }
 }
 ```
-For more details, see [Lambda Environment Variables](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/advanced_usage.md#lambda-environment-variables) in the [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli) repository on GitHub\.
 
 **Invoke a Lambda function locally with environment variables and their values that the caller provides dynamically at run time**  
 You cannot use the **Run Local** command for such a function from the **Lambda** section of the **AWS Resources** window\.   
@@ -512,7 +511,6 @@ The following is output:
   }
 }
 ```
-For more details, including how to use a shell's environment variables instead of a separate JSON file, see [Lambda Environment Variables](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/advanced_usage.md#lambda-environment-variables) in the [AWS SAM CLI](https://github.com/awslabs/aws-sam-cli) repository on GitHub\.
 
 **Invoke a Lambda function remotely that already has predefined environment variable and their values**  
 Run the **Run Remote** command for that function from the **Lambda** section of the **AWS Resources** window\.   

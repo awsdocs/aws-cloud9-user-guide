@@ -1,8 +1,8 @@
 # AWS CodeCommit Sample for AWS Cloud9<a name="sample-codecommit"></a>
 
-This sample enables you to set up an AWS Cloud9 development environment to interact with a remote code repository in AWS CodeCommit\. AWS CodeCommit is a source code control service that enables you to privately store and manage Git repositories in the AWS Cloud\. For more information about AWS CodeCommit, see the [AWS CodeCommit User Guide](https://docs.aws.amazon.com/codecommit/latest/userguide/)\.
+This sample enables you to set up an AWS Cloud9 development environment to interact with a remote code repository in CodeCommit\. CodeCommit is a source code control service that enables you to privately store and manage Git repositories in the AWS Cloud\. For more information about CodeCommit, see the [AWS CodeCommit User Guide](https://docs.aws.amazon.com/codecommit/latest/userguide/)\.
 
-Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and AWS CodeCommit\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [AWS CodeCommit Pricing](https://aws.amazon.com/codecommit/pricing/)\.
+Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and CodeCommit\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [AWS CodeCommit Pricing](https://aws.amazon.com/codecommit/pricing/)\.
 +  [Prerequisites](#sample-codecommit-prereqs) 
 +  [Step 1: Set Up Your IAM Group with Required Access Permissions](#sample-codecommit-permissions) 
 +  [Step 2: Create a Repository in AWS CodeCommit](#sample-codecommit-create-repo) 
@@ -19,7 +19,7 @@ Before you use this sample, be sure to meet the following requirements\.
 
 ## Step 1: Set Up Your IAM Group with Required Access Permissions<a name="sample-codecommit-permissions"></a>
 
-If your AWS credentials are associated with an IAM administrator user in your AWS account, and you want to use that user to work with AWS CodeCommit, skip ahead to [Step 2: Create a Repository in AWS CodeCommit](#sample-codecommit-create-repo)\.
+If your AWS credentials are associated with an IAM administrator user in your AWS account, and you want to use that user to work with CodeCommit, skip ahead to [Step 2: Create a Repository in AWS CodeCommit](#sample-codecommit-create-repo)\.
 
 You can complete this step using the [AWS Management Console](#sample-codecommit-permissions-console) or the [AWS Command Line Interface \(AWS CLI\)](#sample-codecommit-permissions-cli)\.
 
@@ -38,8 +38,8 @@ You can complete this step using the [AWS Management Console](#sample-codecommit
 1. On the **Permissions** tab, for **Managed Policies**, choose **Attach Policy**\.
 
 1. In the list of policy names, select one of the following boxes:
-   + Select **AWSCodeCommitPowerUser** for access to all of the functionality of AWS CodeCommit and repository\-related resources, except it does not allow deletion of AWS CodeCommit repositories or create or delete repository\-related resources in other AWS services, such as Amazon CloudWatch Events\.
-   + Select **AWSCodeCommitFullAccess** for full control over AWS CodeCommit repositories and related resources in the AWS account, including the ability to delete repositories\.
+   + Select **AWSCodeCommitPowerUser** for access to all of the functionality of CodeCommit and repository\-related resources, except it does not allow deletion of CodeCommit repositories or create or delete repository\-related resources in other AWS services, such as Amazon CloudWatch Events\.
+   + Select **AWSCodeCommitFullAccess** for full control over CodeCommit repositories and related resources in the AWS account, including the ability to delete repositories\.
 
    \(If you don't see either of these policy names in the list, type the policy name in the **Filter** box to display it\.\)
 
@@ -58,24 +58,24 @@ aws iam attach-group-policy --group-name MyGroup --policy-arn POLICY_ARN
 ```
 
 In the preceding command, replace `MyGroup` with the name of the group\. Replace `POLICY_ARN` with the ARN of the AWS managed policy, as follows:
-+  `arn:aws:iam::aws:policy/AWSCodeCommitPowerUser` for access to all of the functionality of AWS CodeCommit and repository\-related resources, except it does not allow deletion of AWS CodeCommit repositories or create or delete repository\-related resources in other AWS services, such as Amazon CloudWatch Events\.
-+  `arn:aws:iam::aws:policy/AWSCodeCommitFullAccess` for full control over AWS CodeCommit repositories and related resources in the AWS account, including the ability to delete repositories\.
++  `arn:aws:iam::aws:policy/AWSCodeCommitPowerUser` for access to all of the functionality of CodeCommit and repository\-related resources, except it does not allow deletion of CodeCommit repositories or create or delete repository\-related resources in other AWS services, such as Amazon CloudWatch Events\.
++  `arn:aws:iam::aws:policy/AWSCodeCommitFullAccess` for full control over CodeCommit repositories and related resources in the AWS account, including the ability to delete repositories\.
 
 To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies for AWS CodeCommit](https://docs.aws.amazon.com/codecommit/latest/userguide/auth-and-access-control-iam-identity-based-access-control.html#managed-policies) in the *AWS CodeCommit User Guide*\.
 
-## Step 2: Create a Repository in AWS CodeCommit<a name="sample-codecommit-create-repo"></a>
+## Step 2: Create a Repository in CodeCommit<a name="sample-codecommit-create-repo"></a>
 
-In this step, you create a remote code repository in AWS CodeCommit by using the AWS CodeCommit console\.
+In this step, you create a remote code repository in CodeCommit by using the CodeCommit console\.
 
-If you already have a AWS CodeCommit repository, skip ahead to [Step 3: Connect Your Environment to the Remote Repository](#sample-codecommit-connect-repo)\.
+If you already have a CodeCommit repository, skip ahead to [Step 3: Connect Your Environment to the Remote Repository](#sample-codecommit-connect-repo)\.
 
 You can complete this step using the [AWS Management Console](#sample-codecommit-create-repo-console) or the [AWS Command Line Interface \(AWS CLI\)](#sample-codecommit-create-repo-cli)\.
 
-### Create a Repository in AWS CodeCommit Using the Console<a name="sample-codecommit-create-repo-console"></a>
+### Create a Repository in CodeCommit Using the Console<a name="sample-codecommit-create-repo-console"></a>
 
 1. If you are signed in to the AWS Management Console as an IAM administrator user from the previous step, and you do not want to use the IAM administrator user to create the repository, sign out of the AWS Management Console\.
 
-1. Open the AWS CodeCommit console, at [https://console\.aws\.amazon\.com/codecommit](https://console.aws.amazon.com/codecommit)\.
+1. Open the CodeCommit console, at [https://console\.aws\.amazon\.com/codecommit](https://console.aws.amazon.com/codecommit)\.
 
 1. In the console's navigation bar, use the region selector to choose the AWS Region you want to create the repository in \(for example, **US East \(Ohio\)**\)\.
 
@@ -89,7 +89,7 @@ You can complete this step using the [AWS Management Console](#sample-codecommit
 
 Skip ahead to [Step 3: Connect Your Environment to the Remote Repository](#sample-codecommit-connect-repo)\.
 
-### Create a Repository in AWS CodeCommit Using the AWS CLI<a name="sample-codecommit-create-repo-cli"></a>
+### Create a Repository in CodeCommit Using the AWS CLI<a name="sample-codecommit-create-repo-cli"></a>
 
 Run the AWS CodeCommit `create-repository` command, specifying the repository's name, an optional description, and the AWS Region to create the repository in, for example:
 
@@ -103,7 +103,7 @@ If you choose to use a different repository name, substitute it throughout this 
 
 ## Step 3: Connect Your Environment to the Remote Repository<a name="sample-codecommit-connect-repo"></a>
 
-In this step, you use the AWS Cloud9 IDE to connect to the AWS CodeCommit repository you created or identified in the previous step\.
+In this step, you use the AWS Cloud9 IDE to connect to the CodeCommit repository you created or identified in the previous step\.
 
 Complete one of the following sets of procedures, depending on the type of AWS Cloud9 development environment you have\.
 
@@ -117,7 +117,7 @@ Complete one of the following sets of procedures, depending on the type of AWS C
 
 ## Step 4: Clone the Remote Repository into Your Environment<a name="sample-codecommit-clone-repo"></a>
 
-In this step, you use the AWS Cloud9 IDE to clone the remote repository in AWS CodeCommit into your environment\.
+In this step, you use the AWS Cloud9 IDE to clone the remote repository in CodeCommit into your environment\.
 
 To clone the repository, run the ** `git clone` ** command, supplying the repository's clone URL, shown here as ` CLONE_URL `\.
 
@@ -133,7 +133,7 @@ If your repository doesn't have any files in it, a warning message is displayed,
 
 ## Step 5: Add Files to the Repository<a name="sample-codecommit-add-files"></a>
 
-In this step, you create three simple files in the cloned repository in your environment\. Then you add the files to the Git staging area in your cloned repository, commit the staged files, and push the commit to your remote repository in AWS CodeCommit\.
+In this step, you create three simple files in the cloned repository in your environment\. Then you add the files to the Git staging area in your cloned repository, commit the staged files, and push the commit to your remote repository in CodeCommit\.
 
 If the cloned repository already has files in it, you're done and can skip the rest of this sample\.
 
@@ -211,24 +211,24 @@ To confirm you are saving this file in the correct directory, in the **Save As**
    git commit -m "Added information about birds, insects, and reptiles."
    ```
 
-1. Push the commit to your remote repository in AWS CodeCommit by running the ** `git push` ** command\.
+1. Push the commit to your remote repository in CodeCommit by running the ** `git push` ** command\.
 
    ```
    git push -u origin master
    ```
 
-1. Confirm whether the files were successfully pushed\. Open the AWS CodeCommit console, if it isn't already open, at [https://console\.aws\.amazon\.com/codecommit](https://console.aws.amazon.com/codecommit)\.
+1. Confirm whether the files were successfully pushed\. Open the CodeCommit console, if it isn't already open, at [https://console\.aws\.amazon\.com/codecommit](https://console.aws.amazon.com/codecommit)\.
 
 1. In the top navigation bar, near the right edge, choose the AWS Region where you created the repository \(for example, **US East \(Ohio\)**\)\.
 
 1. On the **Dashboard** page, choose **MyDemoCloud9Repo**\. The three files are displayed\.
 
-To continue experimenting with your AWS CodeCommit repository, see [Browse the Contents of Your Repository](https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started-cc.html#getting-started-cc-browse) in the *AWS CodeCommit User Guide*\.
+To continue experimenting with your CodeCommit repository, see [Browse the Contents of Your Repository](https://docs.aws.amazon.com/codecommit/latest/userguide/getting-started-cc.html#getting-started-cc-browse) in the *AWS CodeCommit User Guide*\.
 
-If you're new to Git and you don't want to mess up your AWS CodeCommit repository, experiment with a sample Git repository on the [Try Git](https://try.github.io/) website\.
+If you're new to Git and you don't want to mess up your CodeCommit repository, experiment with a sample Git repository on the [Try Git](https://try.github.io/) website\.
 
 ## Step 6: Clean Up<a name="sample-codecommit-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the AWS CodeCommit repository\. For instructions, see [Delete an AWS CodeCommit Repository](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-delete-repository.html) in the *AWS CodeCommit User Guide*\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the CodeCommit repository\. For instructions, see [Delete an AWS CodeCommit Repository](https://docs.aws.amazon.com/codecommit/latest/userguide/how-to-delete-repository.html) in the *AWS CodeCommit User Guide*\.
 
 You should also delete the environment\. For instructions, see [Deleting an Environment](delete-environment.md)\.

@@ -37,6 +37,7 @@ Explore the following resources to learn about using AWS Cloud9 for some common 
 |  Work with source code repositories in AWS CodeCommit\.  |   [AWS CodeCommit Sample for AWS Cloud9](sample-codecommit.md)   | 
 |  Work with source code repositories in GitHub\.  |   [GitHub Sample for AWS Cloud9](sample-github.md)   | 
 |  Work with NoSQL databases in Amazon DynamoDB\.  |   [Amazon DynamoDB Sample for AWS Cloud9](sample-dynamodb.md)   | 
+|  Work with LAMP \(Linux, Apache HTTP Server, MySQL, and PHP\) stacks\.  |   [LAMP Sample for AWS Cloud9](sample-lamp.md)   | 
 |  Work with WordPress websites\.  |   [WordPress Sample for AWS Cloud9](sample-wordpress.md)   | 
 |  Work with code for Java and the AWS SDK for Java\.  |   [Java Sample for AWS Cloud9](sample-java.md)   | 
 |  Work with code for C\+\+ and the AWS SDK for C\+\+\.  |   [C\+\+ Sample for AWS Cloud9](sample-cplusplus.md)   | 

@@ -1,9 +1,13 @@
 # AWS Cloud9 SSH Development Environment Host Requirements<a name="ssh-settings"></a>
 
+To instruct AWS Cloud9 to connect an environment to an existing cloud compute instance or your own server, you create an *AWS Cloud9 SSH development environment*\. However, before you create an SSH environment, you should consider the benefits of creating EC2 environments instead\. 
+
 When you create an EC2 environment, AWS Cloud9 creates a new environment, requests Amazon EC2 to launch a new instance, and then connects the newly launched instance to the new environment\. Creating an EC2 environment has the following benefits:
 +  **Automatic instance launching\.** When you create an EC2 environment, AWS Cloud9 requests Amazon EC2 to create a new instance at the same time\. In an SSH environment, you must provide an existing cloud compute instance \(for example an Amazon EC2 instance\) or your own server yourself\.
 +  **Automatic instance shutdown\.** By default, AWS Cloud9 automatically shuts down the EC2 environment 30 minutes after all web browser instances that are connected to the IDE for the EC2 environment are closed\. \(You can change this behavior at any time\.\) This helps reduce additional charges to your AWS account for using Amazon EC2\.
 +  **Automatic instance cleanup\.** When you delete an EC2 environment, the connected Amazon EC2 instance is automatically deleted\. This also helps reduce additional charges to your AWS account for using Amazon EC2\. In an SSH environment that is connected to cloud compute instance, you must remember to delete the instance yourself\.
+
+If you want to create an EC2 environment instead, see [Creating an EC2 Environment](create-environment.md#create-environment-main)\. Otherwise, continue reading for information about creating SSH environments\.
 
 ## When and How to Create an SSH Environment<a name="when-and-how-to-create-an-envsshtitle"></a>
 

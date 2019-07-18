@@ -171,6 +171,7 @@ For best results, we recommend that the login name is associated with administra
    + It must be reachable over the public Internet using SSH\.
    + It must allow inbound access by any IP address over the specified port\.
    + The public SSH key value that was copied into the `~/.ssh/authorized_keys` file on the existing instance or server must also be copied into the `~/.ssh/authorized_keys` file on the jump host\.
+   + Netcat must be installed\.
 
 1. Choose **Copy key to clipboard**\. \(This is between **View public SSH key** and **Advanced settings**\.\) Paste the public SSH key value that was copied, into the `~/.ssh/authorized_keys` file on the existing instance or server that you connected to earlier in this procedure\. \(`~` represents the home directory for the login name that you specified for **User** earlier in this procedure\.\)
 **Note**  

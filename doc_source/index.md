@@ -69,6 +69,7 @@ Amazon's trademarks and trade dress may not be used in
    + [GitHub Sample for AWS Cloud9](sample-github.md)
    + [Amazon DynamoDB Sample for AWS Cloud9](sample-dynamodb.md)
    + [AWS CDK Sample for AWS Cloud9](sample-cdk.md)
+   + [LAMP Sample for AWS Cloud9](sample-lamp.md)
    + [WordPress Sample for AWS Cloud9](sample-wordpress.md)
    + [Java Sample for AWS Cloud9](sample-java.md)
    + [C++ Sample for AWS Cloud9](sample-cplusplus.md)

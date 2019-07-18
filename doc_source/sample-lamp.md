@@ -268,7 +268,7 @@ The following fifth through eighth commands enable the network ACL to alow incom
    
    aws ec2 authorize-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --protocol tcp --cidr 0.0.0.0/0 --port 80 # Add an inbound rule to the security group to allow all incoming IPv4-based traffic over port 80.
    
-   aws ec2 authorize-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --ip-permissions IpProtocol=tcp,Ipv6Ranges='[{CidrIpv6=::/0}]',FromPort=80,ToPort=80 # Add an inbound rule to the securty group to allow all incoming IPv6-based traffic over port 80.
+   aws ec2 authorize-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --ip-permissions IpProtocol=tcp,Ipv6Ranges='[{CidrIpv6=::/0}]',FromPort=80,ToPort=80 # Add an inbound rule to the security group to allow all incoming IPv6-based traffic over port 80.
    
    MY_SUBNET_ID=$(aws ec2 describe-instances --instance-id $MY_INSTANCE_ID --query 'Reservations[].Instances[0].SubnetId' --output text) # Get the ID of the subnet associated with the instance, and store it temporarily.
    
@@ -302,7 +302,7 @@ MY_SECURITY_GROUP_ID=$(aws ec2 describe-instances --instance-id $MY_INSTANCE_ID 
 
 aws ec2 revoke-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --protocol tcp --cidr 0.0.0.0/0 --port 80 # Delete the existing inbound rule from the security group to block all incoming IPv4-based traffic over port 80.
 
-aws ec2 revoke-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --ip-permissions IpProtocol=tcp,Ipv6Ranges='[{CidrIpv6=::/0}]',FromPort=80,ToPort=80 # Delete the existing inbound rule from the securty group to block all incoming IPv6-based traffic over port 80.
+aws ec2 revoke-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --ip-permissions IpProtocol=tcp,Ipv6Ranges='[{CidrIpv6=::/0}]',FromPort=80,ToPort=80 # Delete the existing inbound rule from the security group to block all incoming IPv6-based traffic over port 80.
 
 MY_SUBNET_ID=$(aws ec2 describe-instances --instance-id $MY_INSTANCE_ID --query 'Reservations[].Instances[0].SubnetId' --output text) # Get the ID of the subnet associated with the instance, and store it temporarily.
 

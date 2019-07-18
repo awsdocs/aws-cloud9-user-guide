@@ -717,6 +717,13 @@ Note that the preceding access permission is already included in the AWS managed
 
 ## AWS Managed Temporary Credentials<a name="auth-and-access-control-temporary-managed-credentials"></a>
 
+
+****  
+
+|  | 
+| --- |
+|  If you're just looking for the list of actions that AWS managed temporary credentials supports, skip ahead to [Actions Supported by AWS Managed Temporary Credentials](#auth-and-access-control-temporary-managed-credentials-supported)\.  | 
+
 For an AWS Cloud9 EC2 development environment, AWS Cloud9 makes temporary AWS access credentials available to you in the environment\. We call these *AWS managed temporary credentials*\. This provides the following benefits:
 + You don't need to store the permanent AWS access credentials of an AWS entity \(for example, an IAM user\) anywhere in the environment\. This prevents those credentials from being accessed by environment members without your knowledge and approval\.
 + You don't need to manually set up, manage, or attach an instance profile to the Amazon EC2 instance that connects to the environment\. \(An instance profile is another approach for managing temporary AWS access credentials\.\)
@@ -774,6 +781,7 @@ For an AWS Cloud9 EC2 development environment, AWS managed temporary credentials
   +  `iam:GetPolicy` 
   +  `iam:GetPolicyVersion` 
   +  `iam:GetRole` 
+  +  `iam:GetRolePolicy` 
   +  `iam:GetSSHPublicKey` 
   +  `iam:GetUser` 
   +  `iam:List*` 

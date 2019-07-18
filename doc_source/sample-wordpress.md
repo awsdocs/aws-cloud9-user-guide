@@ -9,7 +9,8 @@ Creating this sample might result in charges to your AWS account\. These include
 + [Step 1: Install the Required Tools](#sample-wordpress-install-tools)
 + [Step 2: Set Up MySQL](#sample-wordpress-setup-mysql)
 + [Step 3: Set Up the WordPress Website](#sample-wordpress-setup-wordpress)
-+ [Step 4: Clean Up](#sample-wordpress-clean-up)
++ [Step 4: Share the WordPress Website Over the Internet](#sample-wordpress-share-wordpress)
++ [Step 5: Clean Up](#sample-wordpress-clean-up)
 
 ## Prerequisites<a name="sample-wordpress-prereqs"></a>
 
@@ -274,6 +275,217 @@ In the **Information needed** section, for **Username** and **Password**, enter 
 
    To return to the website's home page at any time, be sure to add `/wordpress/` to the end of the existing URL, and then press `Enter`\. \(Or, from the website's dashboard, choose ***My Site's Name*, Visit Site**\)\.
 
-## Step 4: Clean Up<a name="sample-wordpress-clean-up"></a>
+## Step 4: Share the WordPress Website Over the Internet<a name="sample-wordpress-share-wordpress"></a>
+
+In this step, you set up the Apache HTTP Server with recommended ports, file locations, owners, and access permissions for the WordPress website\. 
+
+You then enable incoming web traffic to view that website by setting up the security group in Amazon EC2 and network access control list \(network ACL\) in Amazon Virtual Private Cloud \(Amazon VPC\) that are associated with this EC2 environment\. Each EC2 environment must be associated with both a security group in Amazon EC2 and a network ACL in Amazon VPC\. However, while the default network ACL in an AWS account allows all incoming and outgoing traffic for the environment, the default security group allows only incoming traffic using SSH over port 22\. For more information, see [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
+
+You then finish this step by successfully viewing the website from outside of the AWS Cloud9 IDE\.
+
+1. Stop the WordPress website\. To do this, on the **PHP \(built\-in web server\)** runner tab in the AWS Cloud9 IDE, choose **Stop**\.
+
+1. Make backup copies of key Apache HTTP Server configuration files that you'll be modifying later in this procedure, in case you accidentally make the original files inoperable\. To do this, run the following file copy commands\.
+
+   For Amazon Linux, run the following single file copy command only:
+
+   ```
+   sudo cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.bak
+   ```
+
+   For Ubuntu Server, run the following three file copy commands, one after another in the following order:
+
+   ```
+   sudo cp /etc/apache2/ports.conf /etc/apache2/ports.conf.bak
+   
+   sudo cp /etc/apache2/sites-enabled/000-default.conf /etc/apache2/sites-enabled/000-default.conf.bak
+   
+   sudo cp /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
+   ```
+
+1. Bind Apache HTTP Server to port 8080, instead of the default port of 80\. To do this, run the following file search\-and\-replace command\.
+
+   For Amazon Linux:
+
+   ```
+   sudo sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo sed -i 's/Listen 80/Listen 8080/g' /etc/apache2/ports.conf
+   ```
+
+1. Add or change virtual host settings to listen on port 8080, instead of the default port of 80\. To do this, run the following file append or search\-and\-replace command\.
+
+   For Amazon Linux, append the virtual host settings to the existing configuration file:
+
+   ```
+   sudo echo -e "<VirtualHost *:8080>\n    DocumentRoot /var/www/html\n</VirtualHost>" | sudo tee -a /etc/httpd/conf/httpd.conf
+   ```
+
+   For Ubuntu Server, search and replace existing virtual host settings in an existing configuration file:
+
+   ```
+   sudo sed -i 's/<VirtualHost \*:80>/<VirtualHost \*:8080>/g' /etc/apache2/sites-enabled/000-default.conf
+   ```
+
+1. Restart the Apache HTTP Server to have it use the new settings\. To do this, run the following command\.
+
+   For Amazon Linux \(you might need to run this command twice\):
+
+   ```
+   sudo service httpd restart && sudo service httpd status
+   ```
+
+   For Ubuntu Server \(to return to the command prompt, press `q`\):
+
+   ```
+   sudo service apache2 restart && sudo service apache2 status
+   ```
+
+1. View the Apache HTTP Server default information webpage from within the AWS Cloud9 IDE\. To do this, on the main menu bar, choose **Preview, Preview Running Application**\. A new window opens in the IDE and displays the Apache HTTP Server default information webpage\.
+
+1. Now switch the Apache HTTP Server to use the WordPress website's root directory by running the following file search\-and\-replace command\.
+
+   For Amazon Linux:
+
+   ```
+   sudo sed -i 's/<Directory "\/var\/www\/html">/<Directory "\/home\/ec2-user\/environment\/wordpress">/g' /etc/httpd/conf/httpd.conf
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo sed -i 's/<Directory \/var\/www\/>/<Directory \/home\/ubuntu\/environment\/wordpress\/>/g' /etc/apache2/apache2.conf
+   ```
+
+1. Switch the Apache HTTP Server to specify using the document root for the WordPress website by running the following file search\-and\-replace command\.
+
+   For Amazon Linux:
+
+   ```
+   sudo sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/home\/ec2-user\/environment\/wordpress/g' /etc/httpd/conf/httpd.conf
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/home\/ubuntu\/environment\/wordpress/g' /etc/apache2/sites-enabled/000-default.conf
+   ```
+
+1. Set up the website root with recommended owners and access permissions\. To do this, run the following six commands, one at a time in the following order\. To understand what each command does, read the information after the `#` character after each command\.
+
+   For Amazon Linux:
+
+   ```
+   sudo groupadd web-content # Create a group named web-content.
+   
+   sudo usermod -G web-content -a ec2-user # Add the user ec2-user (your default user for this environment) to the group web-content.
+   
+   sudo usermod -G web-content -a apache # Add the user apache (Apache HTTP Server) to the group web-content.
+   
+   sudo chown -R ec2-user:web-content /home/ec2-user/environment/wordpress # Change the owner of /home/ec2-user/environment/wordpress and its files to user ec2-user and group web-content.
+   
+   sudo find /home/ec2-user/environment/wordpress -type f -exec chmod u=rw,g=rx,o=rx {} \; # Change all file permissions within /home/ec2-user/environment/wordpress to user read/write, group read-only, and others read/execute. 
+   
+   sudo find /home/ec2-user/environment/wordpress -type d -exec chmod u=rwx,g=rx,o=rx {} \; # Change /home/ec2-user/environment/wordpress directory permissions to user read/write/execute, group read/execute, and others read/execute.
+   ```
+
+   For Ubuntu Server:
+
+   ```
+   sudo groupadd web-content # Create a group named web-content.
+   
+   sudo usermod -G web-content -a ubuntu # Add the user ubuntu (your default user for this environment) to the group web-content.
+   
+   sudo usermod -G web-content -a www-data # Add the user www-data (Apache HTTP Server) to the group web-content.
+   
+   sudo chown -R ubuntu:web-content /home/ubuntu/environment/wordpress # Change the owner of /home/ubuntu/environment/wordpress and its files to user ubuntu and group web-content.
+   
+   sudo find /home/ubuntu/environment/wordpress -type f -exec chmod u=rw,g=rx,o=rx {} \; # Change all file permissions within /home/ubuntu/environment/wordpress to user read/write, group read-only, and others read/execute. 
+   
+   sudo find /home/ubuntu/environment/wordpress -type d -exec chmod u=rwx,g=rx,o=rx {} \; # Change /home/ubuntu/environment/wordpress directory permissions to user read/write/execute, group read/execute, and others read/execute.
+   ```
+
+1. Restart the Apache HTTP Server to have it use the new settings\. To do this, run the following command\.
+
+   For Amazon Linux \(you might need to run this command twice\):
+
+   ```
+   sudo service httpd restart && sudo service httpd status
+   ```
+
+   For Ubuntu Server \(to return to the command prompt, press `q`\):
+
+   ```
+   sudo service apache2 restart && sudo service apache2 status
+   ```
+
+1. View the WordPress website from within the AWS Cloud9 IDE\. To do this, on the main menu bar, choose **Preview, Preview Running Application**\. A new window opens in the IDE and displays a **Not Found** page \(which is expected at this point\)\.
+
+1. Open the WordPress website in a new tab within the same web browser as the AWS Cloud9 IDE\. To do this, on the address bar in the new window, choose **Pop Out Into New Window**\. The new tab displays the same **Not Found** page \(which is still expected at this point\)\.
+
+1. In the new tab within the same web browser as the AWS Cloud9 IDE, add `/index.php` to the end of the existing URL, and then press `Enter`\. The WordPress website's home page is displayed\.
+
+1. Enable incoming web traffic over port 8080 to view the new webpage by setting up the network ACL in Amazon VPC and the security group Amazon EC2 that is associated with this EC2 environment\. To do this, run the following eight commands, one at a time in the following order\. To understand what each command does, read the information after the `#` character for each command\.
+**Important**  
+Running the following commands enables incoming web traffic over port 8080 for **all** EC2 environments and Amazon EC2 instances that are associated with the security group and network ACL for this environment\. This might result in unexpectedly enabling incoming web traffic over port 8080 for EC2 environments and Amazon EC2 instances other than this one\.
+**Note**  
+The following second through fourth commands enable the security group to allow incoming web traffic over port 8080\. If you have a default security group, which only allows incoming SSH traffic over port 22, then you must run the first command followed by these second through fourth commands\. However, if you have a custom security group already allows incoming web traffic over port 8080, you can safely skip running those commands\.  
+The following fifth through eighth commands enable the network ACL to alow incoming web traffic over port 8080\. If you have a default network ACL, which already allows all incoming traffic over all ports, then you can safely skip running those commands\. However, if you have a custom network ACL that doesn't allow incoming web traffic over port 80, then you must run the first command followed by these fifth through eighth commands\. 
+
+   ```
+   MY_INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id) # Get the ID of the instance for the environment, and store it temporarily.
+              
+   MY_SECURITY_GROUP_ID=$(aws ec2 describe-instances --instance-id $MY_INSTANCE_ID --query 'Reservations[].Instances[0].SecurityGroups[0].GroupId' --output text) # Get the ID of the security group associated with the instance, and store it temporarily.
+   
+   aws ec2 authorize-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --protocol tcp --cidr 0.0.0.0/0 --port 8080 # Add an inbound rule to the security group to allow all incoming IPv4-based traffic over port 8080.
+   
+   aws ec2 authorize-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --ip-permissions IpProtocol=tcp,Ipv6Ranges='[{CidrIpv6=::/0}]',FromPort=8080,ToPort=8080 # Add an inbound rule to the security group to allow all incoming IPv6-based traffic over port 8080.
+   
+   MY_SUBNET_ID=$(aws ec2 describe-instances --instance-id $MY_INSTANCE_ID --query 'Reservations[].Instances[0].SubnetId' --output text) # Get the ID of the subnet associated with the instance, and store it temporarily.
+   
+   MY_NETWORK_ACL_ID=$(aws ec2 describe-network-acls --filters Name=association.subnet-id,Values=$MY_SUBNET_ID --query 'NetworkAcls[].Associations[0].NetworkAclId' --output text) # Get the ID of the network ACL associated with the subnet, and store it temporarily.
+   
+   aws ec2 create-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress --protocol tcp --rule-action allow --rule-number 10000 --cidr-block 0.0.0.0/0 --port-range From=8080,To=8080 # Add an inbound rule to the network ACL to allow all IPv4-based traffic over port 8080. Advanced users: change this suggested rule number as desired.
+   
+   aws ec2 create-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress --protocol tcp --rule-action allow --rule-number 10100 --ipv6-cidr-block ::/0 --port-range From=8080,To=8080 # Add an inbound rule to the network ACL to allow all IPv6-based traffic over port 8080. Advanced users: change this suggested rule number as desired.
+   ```
+
+1. Get the URL to the `index.php` file within the web server root\. To do this, run the following command, and use a new web browser tab or a different web browser separate from the AWS Cloud9 IDE to go to the URL that is displayed\. If successful, the webpage displays the WordPress website home page\.
+
+   ```
+   MY_PUBLIC_IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4) && echo http://$MY_PUBLIC_IP:8080/index.php # Get the URL to the index.php file within the web server root.
+   ```
+
+## Step 5: Clean Up<a name="sample-wordpress-clean-up"></a>
+
+If you want to keep using this environment but you want to disable incoming web traffic over port 8080, then run the following eight commands, one at a time in the following order, to delete the corresponding incoming traffic rules that you set earlier in the security group and network ACL that are associated with the environment\. To understand what each command does, read the information after the `#` character for each command\.
+
+**Important**  
+Running the following commands disables incoming web traffic over port 8080 for **all** EC2 environments and Amazon EC2 instances that are associated with the security group and network ACL for this environment\. This might result in unexpectedly disabling incoming web traffic over port 8080 for EC2 environments and Amazon EC2 instances other than this one\.
+
+**Note**  
+The following fifth through eighth commands remove existing rules in order to block the network ACL from allowing incoming web traffic over port 8080\. If you have a default network ACL, which already allows all incoming traffic over all ports, then you can safely skip running those commands\. However, if you have a custom network ACL with existing rules that allow incoming web traffic over port 8080 and you want to delete those rules, then you must run the first command followed by these fifth through eighth commands\. 
+
+```
+MY_INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id) # Get the ID of the instance for the environment, and store it temporarily.
+           
+MY_SECURITY_GROUP_ID=$(aws ec2 describe-instances --instance-id $MY_INSTANCE_ID --query 'Reservations[].Instances[0].SecurityGroups[0].GroupId' --output text) # Get the ID of the security group associated with the instance, and store it temporarily.
+
+aws ec2 revoke-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --protocol tcp --cidr 0.0.0.0/0 --port 8080 # Delete the existing inbound rule from the security group to block all incoming IPv4-based traffic over port 8080.
+
+aws ec2 revoke-security-group-ingress --group-id $MY_SECURITY_GROUP_ID --ip-permissions IpProtocol=tcp,Ipv6Ranges='[{CidrIpv6=::/0}]',FromPort=8080,ToPort=8080 # Delete the existing inbound rule from the security group to block all incoming IPv6-based traffic over port 8080.
+
+MY_SUBNET_ID=$(aws ec2 describe-instances --instance-id $MY_INSTANCE_ID --query 'Reservations[].Instances[0].SubnetId' --output text) # Get the ID of the subnet associated with the instance, and store it temporarily.
+
+MY_NETWORK_ACL_ID=$(aws ec2 describe-network-acls --filters Name=association.subnet-id,Values=$MY_SUBNET_ID --query 'NetworkAcls[].Associations[0].NetworkAclId' --output text) # Get the ID of the network ACL associated with the subnet, and store it temporarily.
+
+aws ec2 delete-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress --rule-number 10000 # Delete the existing inbound rule from the network ACL to block all IPv4-based traffic over port 8080. Advanced users: if you originally created this rule with a different number, change this suggested rule number to match.
+
+aws ec2 delete-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress --rule-number 10100 # Delete the existing inbound rule from the network ACL to block all IPv6-based traffic over port 8080. Advanced users: if you originally created this rule with a different number, change this suggested rule number to match.
+```
 
 To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

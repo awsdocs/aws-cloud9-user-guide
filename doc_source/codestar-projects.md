@@ -39,6 +39,6 @@ For this step, follow one of the following sets of instructions, depending on th
 
 |  **Environment type**  |  **Repository type**  |  **Instructions**  | 
 | --- | --- | --- | 
-|  EC2 environment  |  AWS CodeCommit  |   [Create an AWS Cloud9 Environment for a Project](https://docs.aws.amazon.com/codestar/latest/userguide/setting-up-ide-cloud9.html#setting-up-ide-cloud9-create) in the *AWS CodeStar User Guide*   | 
-|  SSH environment  |  AWS CodeCommit  |   [AWS CodeCommit Sample](sample-codecommit.md)   | 
+|  EC2 environment  |  CodeCommit  |   [Create an AWS Cloud9 Environment for a Project](https://docs.aws.amazon.com/codestar/latest/userguide/setting-up-ide-cloud9.html#setting-up-ide-cloud9-create) in the *AWS CodeStar User Guide*   | 
+|  SSH environment  |  CodeCommit  |   [AWS CodeCommit Sample](sample-codecommit.md)   | 
 |  EC2 or SSH environment  |  GitHub  |   [Use GitHub with AWS Cloud9](https://docs.aws.amazon.com/codestar/latest/userguide/setting-up-ide-cloud9.html#setting-up-ide-cloud9-github) in the *AWS CodeStar User Guide*   | 

@@ -164,7 +164,7 @@ To confirm you are saving this file in the correct directory, in the **Save As**
    git commit -m "Added information about birds, insects, and reptiles."
    ```
 
-1. Push the commit to your remote repository in AWS CodeCommit by running the ** `git push` ** command\.
+1. Push the commit to your remote repository in CodeCommit by running the ** `git push` ** command\.
 
    ```
    git push

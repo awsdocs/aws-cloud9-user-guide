@@ -2,16 +2,25 @@
 
 Here is a list of significant changes to the *AWS Cloud9 User Guide*\.
 
-**Latest documentation update:** April 19, 2019
+The following table describes important changes to the *AWS Cloud9 User Guide* after March 2019\. For notification about updates to this documentation, you can subscribe to an RSS feed\.
+
+| Change | Description | Date | 
+| --- |--- |--- |
+| [AWS Cloud9 also available in the EU \(Frankfurt\) Region](#history) | AWS Cloud9 is now also available in the EU \(Frankfurt\) Region\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html?id=docs_gateway#cloud9_region) in the *Amazon Web Services General Reference*\. | May 15, 2019 | 
+| [LAMP sample added](#history) | Added a new sample demonstrating how to use AWS Cloud9 with LAMP \(Linux, Apache HTTP Server, MySQL, and PHP\)\. For more information, see the [LAMP Sample for AWS Cloud9](https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-lamp.html)\. | May 10, 2019 | 
+| [WordPress sample added](#history) | Added a new sample demonstrating how to use AWS Cloud9 with WordPress\. For more information, see the [WordPress Sample for AWS Cloud9](https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-wordpress.html)\. | April 19, 2019 | 
+| [AWS Cloud9 also available in the Asia Pacific \(Tokyo\) Region](#history) | AWS Cloud9 is now also available in the Asia Pacific \(Tokyo\) Region\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html?id=docs_gateway#cloud9_region) in the *Amazon Web Services General Reference*\. | April 4, 2019 | 
+| [Information about support for Ubuntu Server in EC2 environments added](#history) | Instructions for using the AWS Cloud9 console to create AWS Cloud9 EC2 development environments that connect to Ubuntu Server were added\. For more information, see [Creating an EC2 Environment](https://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment.html#create-environment-main)\.Note that currently you cannot use code to create AWS Cloud9 EC2 development environments that connect to Ubuntu Server, for example by using the AWS CLI, AWS CloudFormation, the AWS SDKs, the Tools for Windows PowerShell, or the AWS Cloud9 API\. Support for these methods is expected in the future\. | April 2, 2014 | 
+
+## Earlier Updates<a name="history-earlier-updates"></a>
+
+The following table describes important changes to the *AWS Cloud9 User Guide* before April 2019\.
 
 
 ****  
 
 |  **Change**  |  **Description**  |  **Date Changed**  | 
 | --- | --- | --- | 
-|  WordPress sample added  |  Added a new sample demonstrating how to use AWS Cloud9 with WordPress\. For more information, see the [WordPress Sample for AWS Cloud9](sample-wordpress.md)\.  |  April 19, 2019  | 
-|  AWS Cloud9 also available in the Asia Pacific \(Tokyo\) Region  |  AWS Cloud9 is now also available in the Asia Pacific \(Tokyo\) Region\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *Amazon Web Services General Reference*\.  |  April 4, 2019  | 
-|  Information about support for Ubuntu Server in EC2 environments added  |  Instructions for using the AWS Cloud9 console to create AWS Cloud9 EC2 development environments that connect to Ubuntu Server were added\. For more information, see [Creating an Environment in AWS Cloud9](create-environment.md)\.  Note that currently you cannot use code to create AWS Cloud9 EC2 development environments that connect to Ubuntu Server, for example by using the AWS CLI, AWS CloudFormation, the AWS SDKs, the Tools for Windows PowerShell, or the AWS Cloud9 API\. Support for these methods is expected in the future\.  |  April 2, 2019  | 
 |  Getting started instructions added for students, educators, and enterprises  |  Instructions for getting started with AWS Cloud9 have been expanded to include steps for students, educators, and enterprises\. For more information, see [Getting Started with AWS Cloud9](get-started.md)\.  |  February 7, 2019  | 
 |  AWS CloudTrail support added  |  AWS CloudTrail now supports AWS Cloud9\. For more information, see [Logging AWS Cloud9 API Calls with AWS CloudTrail](cloudtrail.md)\.  |  January 21, 2019  | 
 |  Shared VPCs support added  |  AWS Cloud9 now supports shared VPCs in Amazon VPC\. For more information, see [Amazon VPC Requirements for AWS Cloud9](vpc-settings.md#vpc-settings-requirements)\.  |  December 7, 2018  | 

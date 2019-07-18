@@ -5,7 +5,7 @@ Use the following information to help you identify and address issues with AWS C
 If your issue is not listed, or if you need additional help, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\) You can also [contact us](https://aws.amazon.com/contact-us/) directly\.
 
 **Topics**
-+ [Environment Creation Error: "AWS is currently verifying your AWS account"](#troubleshooting-account-verification)
++ [Environment Creation Error: "We are unable to create EC2 instances \.\.\."](#troubleshooting-account-verification)
 + [Environment Creation Error: "Not authorized to perform sts:AssumeRole"](#troubleshooting-sts-assume-role)
 + [Console Error: "User is not authorized to perform action on resource"](#troubleshooting-access-not-authorized)
 + [Federated Identities Cannot Create Environments](#troubleshooting-federated-service-role)
@@ -24,13 +24,13 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Previewing a File Returns a 499 Error](#troubleshooting-file-preview-script-block)
 + [Environment Deletion Error: "One or more environments failed to delete"](#troubleshooting-delete-environment)
 
-## Environment Creation Error: "AWS is currently verifying your AWS account"<a name="troubleshooting-account-verification"></a>
+## Environment Creation Error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
- **Issue:** When you try to create an AWS Cloud9 development environment, a message appears with the phrase "AWS is currently verifying your AWS account", and the environment isn't created\.
+ **Issue:** When you try to create an AWS Cloud9 development environment, a message appears with the phrase "We are unable to create EC2 instances in your account during account verification and activation\." 
 
- **Cause:** AWS is currently verifying your AWS account\. Until this verification is complete, you can't create this or other environments\. This verification could take up to two hours or longer\.
+ **Cause:** AWS is currently verifying and activating your AWS account\. Until activation is complete, which could take up to 24 hours, you can't create this or other environments\. 
 
- **Solution:** Try creating the environment again later\. If you're still receiving this message after more than two hours, email [aws\-verification@amazon\.com](mailto:aws-verification@amazon.com)\. Note that for each environment that fails to create, AWS CloudFormation creates a related stack in your account\. To help prevent a stack creation limit from being reached in your account, you can safely delete these failed stacks\. For more information, see [Deleting a Stack on the AWS CloudFormation Console](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) in the *AWS CloudFormation User Guide*\.
+ **Solution:** Try creating the environment again later\. If you're still receiving this message after 24 hours, email [aws\-verification@amazon\.com](mailto:aws-verification@amazon.com)\. Be advised that AWS CloudFormation creates a related stack in your account, even though the attempt to create an environment fails\. These stacks count against the stack creation limit in your account\. To help avoid the stack creation limit, you can safely delete these failed stacks\. For more information, see [Deleting a Stack on the AWS CloudFormation Console](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) in the *AWS CloudFormation User Guide*\.
 
 ## Environment Creation Error: "Not authorized to perform sts:AssumeRole"<a name="troubleshooting-sts-assume-role"></a>
 

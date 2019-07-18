@@ -8,6 +8,7 @@ Experiment with these samples to increase your knowledge and confidence using AW
 + [GitHub Sample](sample-github.md)
 + [Amazon DynamoDB Sample](sample-dynamodb.md)
 + [AWS CDK Sample](sample-cdk.md)
++ [LAMP Sample](sample-lamp.md)
 + [WordPress Sample](sample-wordpress.md)
 + [Java Sample](sample-java.md)
 + [C\+\+ Sample](sample-cplusplus.md)

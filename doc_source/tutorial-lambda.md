@@ -82,6 +82,13 @@ The Lambda function returns information about the day or time you specify, for e
 
 Currently, you can use the IDE to automatically create functions that use only Node\.js or Python\. This function uses Node\.js\.
 
+1. Make sure you have completed the prerequisites for work with Lambda functions in the AWS Cloud9 IDE for the environment\. This includes checking to see whether you must: 
+   + Set up your IAM group with required access permissions\.
+   + Set up your environment with AWS access credentials\.
+   + Create an execution rule for your Lambda functions\.
+
+   For more information, see [Prepare to Work with Lambda Functions](lambda-functions.md#lambda-functions-prepare)\.
+
 1. With the IDE open from the previous step, set the AWS Region that you want to create the function in\. To do this, on the menu bar, choose **AWS Cloud9, Preferences**\.
 
 1. In the navigation pane of the **Preferences** tab, choose **AWS Settings**\.

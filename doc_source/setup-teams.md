@@ -84,6 +84,9 @@ This step covers adding customer\-managed policies to IAM groups only\. To add c
 
 ### Add Customer\-Managed Policies to a Group Using the AWS CLI<a name="setup-teams-add-policy-cli"></a>
 
+**Note**  
+If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+
 Run the IAM `attach-group-policy` command, specifying the group's name and the Amazon Resource Name \(ARN\) of the policy\.
 
 ```

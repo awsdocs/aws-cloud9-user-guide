@@ -81,6 +81,9 @@ Skip ahead to [Step 2\.2: Create an IAM User and Add the User to the Group with 
 
 ### Step 2\.1: Create an IAM Group with the AWS CLI<a name="setup-create-iam-resources-group-cli"></a>
 
+**Note**  
+If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+
 1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
    +  [Quick Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) 
@@ -135,6 +138,9 @@ If you do not choose **Download \.csv**, this is the only time you can view the 
 1. Repeat this procedure for each additional IAM user that you want to create, and then skip ahead to [Step 3: Add AWS Cloud9 Access Permissions to the Group](#setup-give-user-access)\.
 
 ### Step 2\.2: Create an IAM User and Add the User to the Group with the AWS CLI<a name="setup-create-iam-resources-user-cli"></a>
+
+**Note**  
+If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Run the IAM `create-user` command to create the user, specifying the new user's name \(for example, `MyCloud9User`\)\.
 
@@ -219,6 +225,9 @@ To learn about AWS access permissions that you can add to a group in addition to
 Skip ahead to [Step 4: Sign in to the AWS Cloud9 Console](#setup-sign-in-ide)\.
 
 ### Add AWS Cloud9 Access Permissions to the Group with the AWS CLI<a name="setup-give-user-access-cli"></a>
+
+**Note**  
+If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
