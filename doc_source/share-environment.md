@@ -11,14 +11,12 @@ To invite a user to participate in an environment you own, follow one of these s
 | --- | --- | 
 |  A user in the same AWS account as the environment\.  |   [Invite a User in the Same Account as the Environment](#share-environment-invite-user)   | 
 |  An AWS Cloud9 administrator in the same AWS account as the environment, specifically: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/share-environment.html)  |  To invite the AWS Cloud9 administrator yourself, see [Invite a User in the Same Account as the Environment](#share-environment-invite-user)\. To have the AWS Cloud9 administrator invite themself \(or others in the same AWS account\), see [Have an AWS Cloud9 Administrator in the Same Account as the Environment Invite Themself or Others](#share-environment-admin-user)\.  | 
-|  A user in a different AWS account than the environment\.  |   [Invite a User in a Different Account Than the Environment](#share-environment-invite-user-cross-account)   | 
 
 ## Contents<a name="share-environment-contents"></a>
 +  [Shared Environment Usage Scenarios](#share-environment-about) 
 +  [About Environment Member Access Roles](#share-environment-member-roles) 
 +  [Invite a User in the Same Account as the Environment](#share-environment-invite-user) 
 +  [Have an AWS Cloud9 Administrator in the Same Account as the Environment Invite Themself or Others](#share-environment-admin-user) 
-+  [Invite a User in a Different Account Than the Environment](#share-environment-invite-user-cross-account) 
 +  [Open a Shared Environment](#share-environment-open) 
 +  [See a List of Environment Members](#share-environment-members-list) 
 +  [Open the Active File of an Environment Member](#share-environment-active-file) 
@@ -176,134 +174,6 @@ aws cloud9 create-environment-membership --environment-id 12a34567b8cd9012345ef6
 
 **Note**  
 If you're using the aws\-shell, omit the `aws` prefix from the preceding commands\.
-
-## Invite a User in a Different Account Than the Environment<a name="share-environment-invite-user-cross-account"></a>
-
-Use the instructions in this section to share an AWS Cloud9 development environment that you own in your AWS account with a user in a different account\.
-
-### Prerequisites<a name="prerequisites"></a>
-
-Before you complete the steps in the section, be sure you have the following\.
-+ Two AWS accounts\. One account contains the environment you want to share\. To reduce confusion, we refer to this account as "your account" and as "account `111111111111`" in this section's examples\. A separate account contains the user you want to share the environment with\. To reduce confusion, we refer to this account as "the other account" and as "account `999999999999`" in this section's examples\.
-+ An IAM group in the other account `999999999999`, which we refer to as `AWSCloud9CrossAccountGroup` in this section's examples\. \(To use a different group in that account, substitute its name throughout this section's examples\)\.
-+ A user in the other account `999999999999`, which we refer to as `AWSCloud9CrossAccountUser` in this section's examples\. This user is a member of the `AWSCloud9CrossAccountGroup` group in the other account\. \(To use a different user in that account, substitute its name throughout this section's examples\)\.
-+ An environment in your account `111111111111` that you want to allow the user in the other account `999999999999` to access\.
-
-### Step 1: Create an IAM Role in Your Account to Allow Access from the Other Account<a name="step-1-create-an-iam-role-in-your-account-to-allow-access-from-the-other-account"></a>
-
-In this step, you create an IAM role in your account `111111111111`\. This role allows users in the other account `999999999999` to access your account using the permissions you specify\.
-
-1. Sign in to the AWS Management Console using your AWS account `111111111111`\.
-
-   We recommend you sign in using credentials for an IAM administrator user in your AWS account\. If you can't do this, check with your AWS account administrator\.
-
-1. Open the IAM console\. To do this, on the global navigation bar, choose **Services**, and then choose **IAM**\.
-
-1. In the service navigation pane, choose **Roles**\.
-
-1. On the **Roles** page, choose **Create role**\.
-
-1. On the **Select type of trusted entity** page, choose the **Another AWS account** tile\.
-
-1. In **Specify accounts that can use this role**, for **Account ID**, type the ID of the other AWS account: `999999999999`\. \(Leave the **Options** boxes cleared\.\)
-
-1. Choose **Next: Permissions**\.
-
-1. On the **Attach permissions policies** page, select the box next to the policy \(or policies\) that contain the permissions you want the other AWS account to have in your account\. For this example, choose **AWSCloud9EnvironmentMember**\. \(If you can't find it, type `AWSCloud9EnvironmentMember` in the **Search** box to display it\.\) This particular policy allows users in the other account to become read\-only or read/write members in shared environments in your account after you invite them\.
-
-1. Choose **Review**\.
-
-1. On the **Review** page, for **Role name**, type a name for the role\. For this example, type **AWSCloud9EnvironmentMemberCrossAccountRole**\. \(To use a different name for the role, substitute it throughout this section's examples\)\.
-
-1. Choose **Create role**\.
-
-1. In the list of roles that is displayed, choose **AWSCloud9EnvironmentMemberCrossAccountRole**\.
-
-1. On the **Summary** page, copy the value of **Role ARN**, for example, **arn:aws:iam::111111111111:role/AWSCloud9EnvironmentMemberCrossAccountRole**\. You need this value for Step 3 in this section\.
-
-### Step 2: Add the User in the Other Account as a Member of Your Environment<a name="step-2-add-the-user-in-the-other-account-as-a-memtitle-of-your-envtitle"></a>
-
-Now that you have an IAM role in your account `111111111111`, and know the name of the user in other account `999999999999`, you can add the user as a member of the environment\.
-
-1. If you're not already signed in to the AWS Management Console as the owner of the environment in your account `111111111111`, sign in now\.
-
-1. Open the IDE for the environment\. \(If you're not sure how to do this, see [Opening an Environment](open-environment.md)\.\)
-
-1. On the menu bar, choose **Share**\.
-
-1. In the **Share this environment** dialog box, for **Invite Members**, type `arn:aws:sts::111111111111:assumed-role/AWSCloud9EnvironmentMemberCrossAccountRole/AWSCloud9CrossAccountUser`, where:
-   +  `111111111111` is the actual ID of your AWS account\.
-   +  `AWSCloud9EnvironmentMemberCrossAccountRole` is the name of the IAM role in your account `111111111111`, as specified earlier in Step 1 of this section\.
-   +  `AWSCloud9CrossAccountUser` is the name of the user in the other account `999999999999`\.
-
-1. Choose **Invite**, and follow the onscreen instructions to complete the invitation process\.
-
-### Step 3: Grant Access in the Other Account to Use the IAM Role in Your Account<a name="step-3-grant-access-in-the-other-account-to-use-the-iam-role-in-your-account"></a>
-
-In this step, you allow the user in the other account `999999999999` to use the IAM role you created in your account `111111111111`\.
-
-1. If you're still signed in to the AWS Management Console using your AWS account `111111111111`, sign out now\.
-
-1. Sign in to the AWS Management Console using the other AWS account `999999999999`\.
-
-   We recommend you sign in using credentials for an IAM administrator user in the other account\. If you can't do this, check with your AWS account administrator\.
-
-1. Open the IAM console\. To do this, on the global navigation bar, choose **Services**, and then choose **IAM**\.
-
-1. In the service navigation pane, choose **Groups**\.
-
-1. In the list of groups that is displayed, choose **AWSCloud9CrossAccountGroup**\.
-
-1. On the **Permissions** tab, expand **Inline Policies**, and then choose the link at the end of "To create one, click here\."
-
-1. On the **Set Permissions** page, choose **Custom Policy**, and then choose **Select**\.
-
-1. On the **Review Policy** page, for **Policy Name**, type a name for the policy\. For this example, we suggest typing **AWSCloud9CrossAccountGroupPolicy**\. \(You can use a different name for the policy\)\.
-
-1. For **Policy Document**, type the following, substituting `111111111111` for the actual ID of your AWS account\.
-
-   ```
-   {
-     "Version": "2012-10-17",
-     "Statement": {
-       "Effect": "Allow",
-       "Action": "sts:AssumeRole",
-       "Resource": "arn:aws:iam::111111111111:role/AWSCloud9EnvironmentMemberCrossAccountRole"
-     }
-   }
-   ```
-
-1. Choose **Apply Policy**\.
-
-### Step 4: Use the Other Account to Open the Shared Environment in Your Account<a name="step-4-use-the-other-account-to-open-the-shared-envtitle-in-your-account"></a>
-
-In this step, the user in the other account `999999999999` uses the IAM role in your account `111111111111` to open the shared environment that's also in your account\.
-
-1. If you're not already signed in to the AWS Management Console as the user named **AWSCloud9CrossAccountUser** in the other AWS account `999999999999`, sign in now\.
-
-1. On the global navigation bar, choose **AWSCloud9CrossAccountUser**, and then choose **Switch Role**\.
-
-1. On the **Switch role** page, choose **Switch Role**\.
-
-1. For **Account**, type your AWS account ID: `111111111111`\.
-
-1. For **Role**, type `AWSCloud9EnvironmentMemberCrossAccountRole`\.
-
-1. For **Display Name**, type a name that helps you more easily identify this role for later use, or leave the suggested display name\.
-
-1. Choose **Switch Role**\. In the global navigation bar, **AWSCloud9CrossAccountUser** is replaced with the **Display Name** value and also changes its background color\.
-
-1. On the global navigation bar, choose **Services**, and then choose **Cloud9**\.
-
-1. On the global navigation bar, choose the AWS Region that contains the environment\.
-
-1. In the service navigation pane, choose **Shared with you**\.
-
-1. In the card for the environment that you want to open, choose **Open IDE**\.
-
-You can switch back to using the original user identity `AWSCloud9CrossAccountUser`\. With the AWS Management Console still open for this step, on the global navigation bar choose the **Display Name** value from earlier in this step\. Then choose **Back to AWSCloud9CrossAccountUser**\.
-
-To use the **AWSCloud9EnvironmentMemberCrossAccountRole** role again, with the AWS Management Console still open for this step, on the global navigation bar choose **AWSCloud9CrossAccountUser**\. For **Role History**, choose the **Display Name** value from earlier in this step\.
 
 ## Open a Shared Environment<a name="share-environment-open"></a>
 

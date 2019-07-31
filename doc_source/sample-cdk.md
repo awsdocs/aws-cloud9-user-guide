@@ -4,8 +4,6 @@ This sample shows you how to work with the AWS Cloud Development Kit \(AWS CDK\)
 
 The AWS CDK includes the AWS Construct Library that you can use to quickly resolve many tasks on AWS\. For example, you can use the `Fleet` construct to fully and securely deploy code to a fleet of hosts\. You can create your own constructs to model various elements of your architectures, share them with others, or publish them to the community\. For more information, see the [AWS Cloud Development Kit User Guide](https://awslabs.github.io/aws-cdk/)\.
 
- *The AWS CDK is currently in developer preview and we look forward to community feedback and collaboration\!* 
-
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2, Amazon SNS, and Amazon SQS\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/), [Amazon SNS Pricing](https://aws.amazon.com/sns/pricing/), and [Amazon SQS Pricing](https://aws.amazon.com/sqs/pricing/)\.
 
 **Topics**
