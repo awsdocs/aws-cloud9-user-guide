@@ -23,6 +23,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"](#troubleshooting-ide-low-memory)
 + [Previewing a File Returns a 499 Error](#troubleshooting-file-preview-script-block)
 + [Environment Deletion Error: "One or more environments failed to delete"](#troubleshooting-delete-environment)
++ [Console Warning: "Switching to the minimal code completion engine\.\.\."](#troubleshooting-minimal-code-completion)
 
 ## Environment Creation Error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -347,3 +348,14 @@ If the stack is still displays displayed with **DELETE\_FAILED** after a few min
 Manually deleting a failed stack's resources doesn't remove the stack itself from your AWS account\.
 
 To manually delete these resources, in the AWS CloudFormation console, choose the failed stack, and then select the **Resources** section\. Go to the console in AWS for each resource in this list, and then use that console to manually delete the resource\.
+
+## Console Warning: "Switching to the minimal code completion engine\.\.\."<a name="troubleshooting-minimal-code-completion"></a>
+
+**Issue:** When working in the AWS Cloud9 console \(for example, when opening the IDE or refreshing the IDE's web page\), you see this message: "One or more sessions or collaborators are active on this environment\. Switching to the minimal code completion engine to conserve memory\." In correlation with this message, the code\-completion behavior might be slow or intermittent\.
+
+**Cause:** Running the code\-completion engine takes memory and CPU cycles from the environment\. Additionally, a separate code\-completion engine is required for each collaborator and each additional session\. To avoid using too many resources, especially on small instance sizes like t2\.nano and t2\.micro, AWS Cloud9 switches to the minimal code\-completion engine\.
+
+**Recommended solution:** If you will be collaborating often and for long periods of time, choose a larger Amazon EC2 instance when creating your EC2 environment \(or connect your SSH environment to an instance with more capacity\)\.
+
+**Note**  
+Choosing a larger Amazon EC2 instance might result in additional charges to your AWS account\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
