@@ -139,7 +139,7 @@ Although you are attaching a role to the instance, the role contains an instance
 
 1. Back in the environment, use the AWS CLI to run the `aws configure` command or the aws\-shell to run the `configure` command\. Do not specify any values for **AWS Access Key ID** or **AWS Secret Access Key** \(press `Enter` after each of these prompts\)\. For **Default region name**, specify the AWS Region closest to you or the region where your AWS resources are located\. For example, `us-east-2` for the US East \(Ohio\) Region\. For a list of regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\. Optionally, specify a value for **Default output format** \(for example, `json`\)\.
 
-You can now start calling AWS services from your environment\. To use the AWS CLI, the aws\-shell, or both to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [samples](samples.md)\.
+You can now start calling AWS services from your environment\. To use the AWS CLI, the aws\-shell, or both to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [tutorials and samples](tutorials.md)\.
 
 ### Attach an Instance Profile to an Instance with the AWS CLI<a name="credentials-temporary-attach-cli"></a>
 
@@ -164,7 +164,7 @@ If you're using [AWS managed temporary credentials](auth-and-access-control.md#a
 
 1. Back in the environment, use the AWS CLI to run the `aws configure` command or the aws\-shell to run the `configure` command\. Do not specify any values for **AWS Access Key ID** or **AWS Secret Access Key** \(press `Enter` after each of these prompts\)\. For **Default region name**, specify the AWS Region closest to you or the region where your AWS resources are located\. For example, `us-east-2` for the US East \(Ohio\) Region\. For a list of regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\. Optionally, specify a value for **Default output format** \(for example, `json`\)\.
 
-You can now start calling AWS services from your environment\. To use the AWS CLI, the aws\-shell, or both to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [samples](samples.md)\.
+You can now start calling AWS services from your environment\. To use the AWS CLI, the aws\-shell, or both to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [tutorials and samples](tutorials.md)\.
 
 ## Create and Store Permanent Access Credentials in an Environment<a name="credentials-permanent-create"></a>
 
@@ -250,4 +250,4 @@ The following procedure shows how to store your permanent access credentials by 
       . ~/.bashrc
       ```
 
-You can now start calling AWS services from your environment\. To use the AWS CLI or the aws\-shell to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [samples](samples.md)\.
+You can now start calling AWS services from your environment\. To use the AWS CLI or the aws\-shell to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [tutorials and samples](tutorials.md)\.

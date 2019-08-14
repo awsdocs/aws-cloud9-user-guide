@@ -22,7 +22,7 @@ Before you start this tutorial, we recommend that you first complete the compani
 **Note**  
 If you don't want to complete that entire tutorial first, you must at least complete the following steps in that tutorial or else create the equivalent AWS resources\.  
  [Prerequisites](tutorial-lambda.md#tutorial-lambda-prereqs): This includes deciding which user in an AWS account or organization you'll use to complete this tutorial\.
- [Step 1: Create and Open the Environment](tutorial-lambda.md#tutorial-lambda-create-environment): This includes creating an AWS Cloud9 EC2 development environment and opening the AWS Cloud9 IDE for that environment\.
+ [Step 1: Create and Open the Environment](tutorial-lambda-create-environment.md): This includes creating an AWS Cloud9 EC2 development environment and opening the AWS Cloud9 IDE for that environment\.
 
 ## Step 1: Create the Lambda Function and API<a name="tutorial-lambda-advanced-create-function"></a>
 
@@ -391,13 +391,13 @@ Explore any or all of the following topics to continue getting familiar with AWS
 |  |  | 
 | --- |--- |
 |  Learn more about how to use AWS Cloud9 with Lambda  |   [Working with AWS Lambda Functions](lambda-functions.md)   | 
-|  Learn more about the AWS Cloud9 IDE  |   [IDE Tutorial](tutorial.md) and [Working with the IDE](ide.md)   | 
+|  Learn more about the AWS Cloud9 IDE  |   [Tutorial: First Look at the IDE](tutorial.md) and [Working with the IDE](ide.md)   | 
 |  Invite others to use your environment with you, in real time and with text chat support  |   [Working with Shared Environments](share-environment.md)   | 
 |  Create SSH environments \(environments that use cloud compute instances or servers that you create, instead of an Amazon EC2 instances that AWS Cloud9 creates for you\)\.  |   [Creating an Environment](create-environment.md) and [SSH Environment Host Requirements](ssh-settings.md)   | 
 |  Use AWS Cloud9 with Amazon Lightsail  |   [Working with Amazon Lightsail Instances](lightsail-instances.md)   | 
 |  Use AWS Cloud9 with AWS CodeStar  |   [Working with AWS CodeStar Projects](codestar-projects.md)   | 
 |  Use AWS Cloud9 with AWS CodePipeline  |   [Working with AWS CodePipeline](codepipeline-repos.md)   | 
-|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages  |   [Samples](samples.md)   | 
+|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages  |   [Tutorials and Samples](tutorials.md)   | 
 |  Work with code for intelligent robotics applications in AWS RoboMaker\.  |   [Developing with AWS Cloud9](https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html) in the *AWS RoboMaker Developer Guide*   | 
 
 To get help with AWS Cloud9 from the community, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\)

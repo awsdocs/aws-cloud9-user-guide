@@ -7,7 +7,7 @@ When you create an EC2 environment, AWS Cloud9 creates a new environment, reques
 +  **Automatic instance shutdown\.** By default, AWS Cloud9 automatically shuts down the EC2 environment 30 minutes after all web browser instances that are connected to the IDE for the EC2 environment are closed\. \(You can change this behavior at any time\.\) This helps reduce additional charges to your AWS account for using Amazon EC2\.
 +  **Automatic instance cleanup\.** When you delete an EC2 environment, the connected Amazon EC2 instance is automatically deleted\. This also helps reduce additional charges to your AWS account for using Amazon EC2\. In an SSH environment that is connected to cloud compute instance, you must remember to delete the instance yourself\.
 
-If you want to create an EC2 environment instead, see [Creating an EC2 Environment](create-environment.md#create-environment-main)\. Otherwise, continue reading for information about creating SSH environments\.
+If you want to create an EC2 environment instead, see [Creating an EC2 Environment](create-environment-main.md)\. Otherwise, continue reading for information about creating SSH environments\.
 
 ## When and How to Create an SSH Environment<a name="when-and-how-to-create-an-envsshtitle"></a>
 
@@ -48,7 +48,7 @@ To connect to your own server to verify and meet requirements, you could search 
   +  [Step 1: Install Required Tools](sample-nodejs.md#sample-nodejs-install) in the *Node\.js Sample*\.
   +  [Installing Node\.js via package manager](https://nodejs.org/en/download/package-manager/) on the Node\.js website\.
   +  [Node Version Manager](http://nvm.sh) on GitHub\.
-+ The path to the directory on the existing instance or server that you want AWS Cloud9 to start from after login must have its access permissions set to `rwxr-xr-x`\. This means read\-write\-execute permissions for the owner that corresponds to the login name that you specify in the [create environment wizard](create-environment.md#create-environment-ssh) for **User** on the **Configure settings** page, read\-execute permissions for the group that this owner belongs to, and read\-execute permissions for others\.
++ The path to the directory on the existing instance or server that you want AWS Cloud9 to start from after login must have its access permissions set to `rwxr-xr-x`\. This means read\-write\-execute permissions for the owner that corresponds to the login name that you specify in the [create environment wizard](create-environment-ssh.md) for **User** on the **Configure settings** page, read\-execute permissions for the group that this owner belongs to, and read\-execute permissions for others\.
 
   For example, if the directory's path is `~` \(where `~` represents the home directory for the login name that you specify for **User** on the **Configure settings** page\), you can set these permissions on the directory by running the ** `chmod` ** command on the instance or server, as follows\.
 
@@ -58,4 +58,4 @@ To connect to your own server to verify and meet requirements, you could search 
 +  [Download and run the AWS Cloud9 Installer](installer.md#installer-download-run) on the existing instance or server\.
 + Optionally, you can restrict inbound traffic over SSH to only the IP addresses that AWS Cloud9 uses\. To do this, set inbound SSH traffic to the IP ranges as described in [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
 
-After you are sure your instance or server meets the preceding requirements, [create an SSH environment](create-environment.md#create-environment-ssh) for AWS Cloud9 to connect it to\.
+After you are sure your instance or server meets the preceding requirements, [create an SSH environment](create-environment-ssh.md) for AWS Cloud9 to connect it to\.

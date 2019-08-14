@@ -297,5 +297,5 @@ The AWS Cloud9 console is displayed, and you can begin using AWS Cloud9\.
 | --- | --- | 
 |  Restrict AWS Cloud9 usage for others in your AWS account, to control costs\.  |   [Additional Setup Options](setup-teams.md)   | 
 |  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an Environment](create-environment.md)   | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [IDE Tutorial](tutorial.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
 |  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 

@@ -1,4 +1,4 @@
-# Additional Setup Options for AWS Cloud9<a name="setup-teams"></a>
+# Additional Setup Options for AWS Cloud9 \(Team and Enterprise\)<a name="setup-teams"></a>
 
 This topic assumes you have already completed the setup steps in [Team Setup](setup.md) or [Enterprise Setup](setup-enterprise.md)\.
 
@@ -297,5 +297,5 @@ For additional examples, see the [Customer\-Managed Policy Examples](auth-and-ac
 |  **Task**  |  **See this topic**  | 
 | --- | --- | 
 |  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an Environment](create-environment.md)   | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [IDE Tutorial](tutorial.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
 |  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 

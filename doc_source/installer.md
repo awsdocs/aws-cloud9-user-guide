@@ -17,7 +17,7 @@ This topic describes how to download and run this installer script on the target
    wget -O - https://raw.githubusercontent.com/c9/install/master/install.sh | bash
    ```
 
-1. If a **Done** message displays with no errors, you can [create the SSH environment](create-environment.md#create-environment-ssh)\.
+1. If a **Done** message displays with no errors, you can [create the SSH environment](create-environment-ssh.md)\.
 
    If an error message displays, see the next section for troubleshooting information\.
 

@@ -33,6 +33,8 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 
  **Solution:** Try creating the environment again later\. If you're still receiving this message after 24 hours, email [aws\-verification@amazon\.com](mailto:aws-verification@amazon.com)\. Be advised that AWS CloudFormation creates a related stack in your account, even though the attempt to create an environment fails\. These stacks count against the stack creation limit in your account\. To help avoid the stack creation limit, you can safely delete these failed stacks\. For more information, see [Deleting a Stack on the AWS CloudFormation Console](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-delete-stack.html) in the *AWS CloudFormation User Guide*\.
 
+\([back to top](#troubleshooting)\)
+
 ## Environment Creation Error: "Not authorized to perform sts:AssumeRole"<a name="troubleshooting-sts-assume-role"></a>
 
  **Issue:** When you try to create a new environment, you see this error: "Not authorized to perform sts:AssumeRole," and the environment is not created\.
@@ -50,6 +52,8 @@ If you cannot do this, check with your AWS account administrator\.
 
 After you run this command, try creating the environment again\.
 
+\([back to top](#troubleshooting)\)
+
 ## Console Error: "User is not authorized to perform action on resource"<a name="troubleshooting-access-not-authorized"></a>
 
  **Issue:** When you try to use the AWS Cloud9 console to create or manage an AWS Cloud9 development environment, you see an error that contains a phrase similar to "User arn:aws:iam::123456789012:user/MyUser is not authorized to perform cloud9:action on resource arn:aws:cloud9:us\-east\-2:123456789012:environment:12a34567b8cd9012345ef67abcd890e1," where:
@@ -63,6 +67,8 @@ After you run this command, try creating the environment again\.
 +  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
 +  [Step 6\. Enable Groups and Users within the Organization to Use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
 +  [About Environment Member Access Roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
+
+\([back to top](#troubleshooting)\)
 
 ## Federated Identities Cannot Create Environments<a name="troubleshooting-federated-service-role"></a>
 
@@ -83,6 +89,8 @@ iam create-service-linked-role --aws-service-name cloud9.amazonaws.com
 ```
 
 For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html) in the *IAM User Guide*\.
+
+\([back to top](#troubleshooting)\)
 
 ## Cannot Open an Environment<a name="troubleshooting-env-loading"></a>
 
@@ -123,6 +131,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 + If the environment is associated with an AWS cloud compute instance, restart the instance, make sure the instance is running and has passed all system checks, and then try opening the environment again\. For details, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and [Viewing Status Checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#viewing_status) in the *Amazon EC2 User Guide for Linux Instances*\.
 + If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)\.
 
+\([back to top](#troubleshooting)\)
+
 ## The AWS Cloud9 Installer Hangs or Fails<a name="troubleshooting-ssh-installer"></a>
 
  **Issue:** When you [download and run the AWS Cloud9 Installer](installer.md#installer-download-run), one or more error messages display, and the installer script does not show `Done`\.
@@ -130,6 +140,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Cause:** The AWS Cloud9 Installer has encountered one or more errors that it cannot recover from and therefore fails\.
 
  **Solution:** See common issues, their possible causes, and recommended solutions, in [Troubleshooting the AWS Cloud9 Installer](installer.md#installer-troubleshooting)\.
+
+\([back to top](#troubleshooting)\)
 
 ## SSH Environment Error: "Python version 2\.7 is required to install pty\.js"<a name="troubleshooting-python-ssh"></a>
 
@@ -140,6 +152,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Solution:** Install Python version 2\.7 in the environment\. To check your version, from your server's terminal, run the command ** `python --version` **\. To install Python 2\.7 on your server, see one of the following:
 +  [Step 1: Install Required Tools](sample-python.md#sample-python-install) in the *Python Sample*\.
 +  [Download Python](https://www.python.org/downloads/) on the Python website and [Installing Packages](https://packaging.python.org/installing/) in the *Python Packaging User Guide*\.
+
+\([back to top](#troubleshooting)\)
 
 ## Application Preview Tab Displays an Error or is Blank<a name="troubleshooting-app-preview"></a>
 
@@ -166,6 +180,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 + If you are trying to go to an address that contains an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`, try going to the following address instead: `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/`, where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\. Note that you can also try to go to this address outside of the IDE, but it works only when the IDE for the environment is open and the application is running in the same web browser\.
 + After you are sure that all of the preceding conditions are met, try stopping the application and then starting it again\.
 + If you stopped the application and then started it again, try choosing **Preview, Preview Running Application** or **Tools, Preview, Preview Running Application** on the menu bar again\. Or try choosing the **Refresh** button \(the circular arrow\) on the corresponding application preview tab, if the tab is already visible\.
+
+\([back to top](#troubleshooting)\)
 
 ## Cannot Display Your Running Application Outside of the IDE<a name="troubleshooting-app-sharing"></a>
 
@@ -196,6 +212,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 + If the application is running in an SSH environment for your own server, ensure your server and the associated network allow traffic over the protocols, ports, and IP addresses that the application requires\. If you cannot make changes to your server or the associated network, see your server or network administrator\.
 + Try running the application from a terminal in the environment by running the `curl` command, followed by the URL\. If this command displays an error message, there might be some other issue that is not related to AWS Cloud9\.
 
+\([back to top](#troubleshooting)\)
+
 ## After Reloading an Environment, You Must Refresh Application Preview<a name="troubleshooting-app-preview-refresh"></a>
 
  **Issue:** After you reload an environment that displays an application preview tab, the tab doesn't display the application preview\.
@@ -203,6 +221,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Cause:** Sometimes users write code that can run an infinite loop or that otherwise uses so much memory that the AWS Cloud9 IDE can pause or stop when the application preview is running\. To keep this from happening, AWS Cloud9 doesn't reload application preview tabs whenever an environment is reloaded\.
 
  **Solution:** After you reload an environment that displays an application preview tab, to display the application preview, choose the **Click to load the page** button on the tab\.
+
+\([back to top](#troubleshooting)\)
 
 ## Unable to Preview Application in the AWS Cloud9 IDE with HTTP<a name="troubleshooting-app-preview-http"></a>
 
@@ -212,6 +232,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
  **Solution:** To view an application preview with an address starting with `http` instead of `https`, change `https` in the address box of the tab to `http` and then press `Enter`\. Then choose the `Open your page in a new tab` button\. This displays the application preview in a separate web browser tab using HTTP\.
 
+\([back to top](#troubleshooting)\)
+
 ## Cannot Run Some Commands or Scripts in an EC2 Environment<a name="troubleshooting-rhel-ubuntu"></a>
 
  **Issue:** After you open an AWS Cloud9 EC2 development environment, you cannot install some types of packages, run commands such as `yum` or `apt`, or run scripts containing commands that typically work with other Linux operating systems\.
@@ -219,6 +241,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Cause:** The Amazon EC2 instances that AWS Cloud9 uses for an EC2 environment rely on either Amazon Linux \(which is based on Red Hat Enterprise Linux \(RHEL\)\) or Ubuntu Server\.
 
  **Solution:** If you install or manage packages or run commands or scripts in the IDE for an EC2 environment, ensure they are compatible with either RHEL \(for Amazon Linux\) or Ubuntu Server, depending on the instance for that environment\.
+
+\([back to top](#troubleshooting)\)
 
 ## AWS CLI / aws\-shell Error: "The security token included in the request is invalid" in an EC2 environment<a name="troubleshooting-cli-invalid-token"></a>
 
@@ -234,6 +258,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
 For more information, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.
 
+\([back to top](#troubleshooting)\)
+
 ## Amazon EC2 Instances Are Not Automatically Updated<a name="troubleshooting-update-ami"></a>
 
  **Issue:** Recent system updates are not automatically applied to an Amazon EC2 instance that connects to an AWS Cloud9 development environment\.
@@ -247,6 +273,8 @@ Apply system updates to the Amazon EC2 instance on a regular basis by following 
 To run commands on the instance, you can use a terminal session in the AWS Cloud9 IDE from the environment that is connected to the instance\.
 
 Alternatively, you can use an SSH remote access utility such as **ssh** or PuTTY to connect to the instance\. To do this, from your local computer, use an SSH key pair creation utility such as **ssh\-keygen** or PuTTYgen\. Use the AWS Cloud9 IDE from the environment that is connected to the instance to store the generated public key on the instance\. Then use the SSH remote access utility along with the generate private key to access the instance\. For more information, see your utility's documentation\.
+
+\([back to top](#troubleshooting)\)
 
 ## Lambda Local Function Run Error: Cannot Install SAM Local<a name="troubleshooting-install-sam-local"></a>
 
@@ -276,6 +304,8 @@ sam –-version                   # Verify that your installation worked.
 ```
 
 For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs/aws-sam-cli/blob/develop/README.md) repository on the GitHub website\.
+
+\([back to top](#troubleshooting)\)
 
 ## IDE Warning: "This Environment is Running Low on Memory" or "This Environment Has High CPU Load"<a name="troubleshooting-ide-low-memory"></a>
 
@@ -312,6 +342,8 @@ For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs
   ```
 + Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving or Resizing an Environment in AWS Cloud9](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
 
+\([back to top](#troubleshooting)\)
+
 ## Previewing a File Returns a 499 Error<a name="troubleshooting-file-preview-script-block"></a>
 
  **Issue:** When you try to use the AWS Cloud9 IDE to preview a file that contains a `<script>` element containing the `src` attribute and with the `type` attribute set to `module`, a 499 error occurs and the script doesn't run as expected\.
@@ -319,6 +351,8 @@ For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs
  **Cause:** File preview fetch requests in the AWS Cloud9 IDE require cookies to be sent by the web browser to authenticate\. By default, web browsers send cookies for regular script requests, but not for module script requests, unless you add the `crossorigin` attribute\.
 
  **Solution:** Add the `crossorigin` attribute to the `<script>` element\. For example, `<script type="module" src="index.js" crossorigin></script>`\. Then save the changed file, and try to preview the it again\.
+
+\([back to top](#troubleshooting)\)
 
 ## Environment Deletion Error: "One or more environments failed to delete"<a name="troubleshooting-delete-environment"></a>
 
@@ -349,6 +383,8 @@ Manually deleting a failed stack's resources doesn't remove the stack itself fro
 
 To manually delete these resources, in the AWS CloudFormation console, choose the failed stack, and then select the **Resources** section\. Go to the console in AWS for each resource in this list, and then use that console to manually delete the resource\.
 
+\([back to top](#troubleshooting)\)
+
 ## Console Warning: "Switching to the minimal code completion engine\.\.\."<a name="troubleshooting-minimal-code-completion"></a>
 
 **Issue:** When working in the AWS Cloud9 console \(for example, when opening the IDE or refreshing the IDE's web page\), you see this message: "One or more sessions or collaborators are active on this environment\. Switching to the minimal code completion engine to conserve memory\." In correlation with this message, the code\-completion behavior might be slow or intermittent\.
@@ -359,3 +395,5 @@ To manually delete these resources, in the AWS CloudFormation console, choose th
 
 **Note**  
 Choosing a larger Amazon EC2 instance might result in additional charges to your AWS account\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
+
+\([back to top](#troubleshooting)\)

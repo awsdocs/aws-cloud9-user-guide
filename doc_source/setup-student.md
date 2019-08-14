@@ -165,8 +165,14 @@ Although you can sign in to the AWS Cloud9 console with the email address and pa
 
 ****  
 
-|  **Task**  |  **See this topic**  | 
+|  **Task for learning**  |  **See this topic**  | 
+| --- | --- | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
+
+
+****  
+
+|  **More advanced task**  |  **See this topic**  | 
 | --- | --- | 
 |  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an Environment](create-environment.md)   | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [IDE Tutorial](tutorial.md)   | 
 |  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 
