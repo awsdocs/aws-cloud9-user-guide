@@ -25,7 +25,7 @@ Explore the following resources to learn about using AWS Cloud9 for some common 
 |  Work with code for \.NET Core and the AWS SDK for \.NET\.  |   [\.NET Core Sample for AWS Cloud9](sample-dotnetcore.md)   | 
 |  Work with code for Node\.js and the AWS SDK for JavaScript\.  |   [Node\.js Sample for AWS Cloud9](sample-nodejs.md)   | 
 |  Work with code for PHP and the AWS SDK for PHP\.  |   [PHP Sample for AWS Cloud9](sample-php.md)   | 
-|  Work with code for Ruby and the AWS SDK for Ruby\.  |   [Ruby Sample for AWS Cloud9](sample-ruby.md)   | 
+|  Work with code for Ruby and the AWS SDK for Ruby\.  |   [Tutorial: Ruby in AWS Cloud9](tutorial-ruby.md)   | 
 |  Work with code for Go and the AWS SDK for Go\.  |   [Go Sample for AWS Cloud9](sample-go.md)   | 
 |  Work with code for TypeScript and the AWS SDK for JavaScript\.  |   [TypeScript Sample for AWS Cloud9](sample-typescript.md)   | 
 |  Work with code for the AWS Cloud Development Kit \(AWS CDK\)\.  |   [AWS CDK Sample for AWS Cloud9](sample-cdk.md)   | 

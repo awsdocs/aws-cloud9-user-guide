@@ -20,7 +20,7 @@ Experiment with these tutorials to increase your knowledge and confidence using 
 + [\.NET Core Sample](sample-dotnetcore.md)
 + [Node\.js Sample](sample-nodejs.md)
 + [PHP Sample](sample-php.md)
-+ [Ruby Sample](sample-ruby.md)
++ [Tutorial: Ruby](tutorial-ruby.md)
 + [Go Sample](sample-go.md)
 + [TypeScript Sample](sample-typescript.md)
 + [Docker Sample](sample-docker.md)
