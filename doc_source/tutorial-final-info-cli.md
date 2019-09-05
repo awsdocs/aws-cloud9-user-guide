@@ -1,6 +1,6 @@
-# Related Information<a name="tutorial-final-info"></a>
+# Related Information<a name="tutorial-final-info-cli"></a>
 
-The following is some additional information for [Tutorial: Hello AWS Cloud9 \(console\)](tutorial.md)\.
+The following is some additional information for [Tutorial: Hello AWS Cloud9 \(CLI\)](tutorial-basic-cli.md)\.
 + When you create an EC2 environment, the environment doesn't contain any sample code by default\. To create an environment along with sample code, see one of the following topics instead\.
   +  [Working with Amazon Lightsail Instances in the AWS Cloud9 Integrated Development Environment \(IDE\)](lightsail-instances.md) 
   +  [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](codestar-projects.md) 

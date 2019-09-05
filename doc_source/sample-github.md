@@ -179,7 +179,7 @@ You will not see your password or personal access token whenever you enter it in
 ## Step 6: Keep Working with the IDE and GitHub<a name="sample-github-explore"></a>
 
 Use the AWS Cloud9 IDE and GitHub to keep working with your code\. Here are some things to try\.
-+ Use the **Environment** window and editor tabs in the IDE to view, change, and save code\. For more information, see [Step 2\.3: Environment Window](tutorial-tour-ide.md#tutorial-environment) and [Step 2\.4: Editor, Tabs, and Panes](tutorial-tour-ide.md#tutorial-editor) in *[Tutorial: First Look at the IDE](tutorial.md)*\.
++ Use the **Environment** window and editor tabs in the IDE to view, change, and save code\. For more information, see [Step 3: Environment Window](tour-ide.md#tour-ide-environment) and [Step 4: Editor, Tabs, and Panes](tour-ide.md#tour-ide-editor) in *[Tour the IDE](tour-ide.md)*\.
 + Use the IDE to run, debug, and build your code\. For more information, see [Working with Builders, Runners, and Debuggers in the AWS Cloud9 Integrated Development Environment \(IDE\)](build-run-debug.md)\.
 + Use Git in the terminal session in the IDE to continue pushing more code changes to the GitHub repository, as well as periodically pull code changes from others from the repository\. For more information, see [Pushing to a Remote](https://help.github.com/articles/pushing-to-a-remote/) and [Fetching a remote](https://help.github.com/articles/fetching-a-remote/) on the GitHub Help website\.
 + Use additional Git commands as you need them\. For a list of these commands, see [Git cheatsheet](https://help.github.com/articles/git-cheatsheet/) on the GitHub Help website\.

@@ -1,15 +1,10 @@
 # Step 1: Create an Environment<a name="tutorial-create-environment"></a>
 
-\(Part of: [Tutorial: First Look at the IDE](tutorial.md)\)
+\(Part of: [Hello AWS Cloud9 \(console\)](tutorial.md)\)
 
 In this step, you use AWS Cloud9 console to create and then open an AWS Cloud9 development environment\.
 
-If you already have an environment, open it, and then skip ahead to [Step 2: Tour the IDE](tutorial-tour-ide.md)\.
-
-In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*\. For this kind of environment, AWS Cloud9 creates and manages a new Amazon EC2 instance running Amazon Linux or Ubuntu Server, creates the environment, and then connects the environment to the newly\-created instance\. When you open the environment, AWS Cloud9 displays the AWS Cloud9 IDE that enables you to work with the files and tools in that environment\.
-
-**Note**  
-This tutorial uses the AWS Cloud9 *console* to create a blank EC2 environment\. You can also create the EC2 environment with the *AWS CLI*, as described in the [CLI supplement](tutorial-basic-cli.md) for this tutorial\. If you do wish to use the AWS CLI instead of the console, see [step 1](tutorial-basic-cli.md#tutorial-create-environment-cli-step1) of that supplement\.
+In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment* and then work with the files and tools in that environment\.
 
 ## Create an EC2 Environment with the Console<a name="tutorial-create-environment-console"></a>
 
@@ -64,4 +59,4 @@ If AWS Cloud9 doesn't display the IDE after at least five minutes, there might b
 
 ## Next Step<a name="tutorial-create-env-next"></a>
 
-[Step 2: Tour the IDE](tutorial-tour-ide.md)
+[Step 2: Basic Tour of the IDE](tutorial-tour-ide.md)

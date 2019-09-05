@@ -9,7 +9,7 @@ In this topic, you create and set up a Linux\-based Lightsail instance that is c
 **Note**  
 Completing these procedures might result in charges to your AWS account\. These include possible charges for services such as Lightsail\. For more information, see [Amazon Lightsail Pricing](https://aws.amazon.com/lightsail/pricing/)\.  
 To create and set up a more advanced solution that includes a toolchain with the AWS Cloud9 IDE, source control, build, deployment, virtual servers or serverless resources, and more, skip the rest of this topic, and see [Working with AWS CodeStar Projects](codestar-projects.md) instead\.  
-To use the AWS Cloud9 IDE to work with an Amazon EC2 instance running Amazon Linux or Ubuntu Server that contains no sample code, skip the rest of this topic, and see [Tutorial: First Look at the IDE](tutorial.md) instead\.
+To use the AWS Cloud9 IDE to work with an Amazon EC2 instance running Amazon Linux or Ubuntu Server that contains no sample code, skip the rest of this topic, and see [Getting Started: Basic Tutorials](tutorials-basic.md) instead\.
 +  [Step 1: Create a Linux\-Based Lightsail Instance](#lightsail-instances-create) 
 +  [Step 2: Set up the Instance to Use It with AWS Cloud9](#lightsail-instances-setup) 
 +  [Step 3: Create and Connect to an AWS Cloud9 SSH Development Environment](#lightsail-instances-environment) 
@@ -162,7 +162,7 @@ If AWS Cloud9 doesn't display the IDE after at least five minutes, there might b
 
 Now that the IDE appears for the new environment, you can use the terminal session in the IDE instead of the Lightsail terminal session\. The IDE provides a rich code editing experience with support for several programming languages and runtime debuggers, as well as color themes, shortcut keybindings, programming language\-specific syntax coloring and code formatting, and more\.
 
-To learn how to use the IDE, see [Step 2: Tour the IDE](tutorial-tour-ide.md) in *[Tutorial: First Look at the IDE](tutorial.md)*\.
+To learn how to use the IDE, see [Tour the AWS Cloud9 IDE](tour-ide.md)\.
 
 To learn how to change the code on your instance, we recommend the following resources\.
 +  **All** [Getting the application password for your 'powered by Bitnami' Lightsail image](https://lightsail.aws.amazon.com/ls/docs/how-to/article/log-in-to-your-bitnami-application-running-on-amazon-lightsail) on the Lightsail website

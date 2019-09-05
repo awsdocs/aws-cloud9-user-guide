@@ -50,7 +50,7 @@ For a more detailed list of what you can do with AWS Cloud9, see the next sectio
 
 ## How Do I Get Started?<a name="how-to-get-started"></a>
 
-To start using AWS Cloud9, follow the steps in [Getting Started with AWS Cloud9](get-started.md) and \(optionally\) [Tutorial: First Look at the AWS Cloud9 IDE](tutorial.md)\.
+To start using AWS Cloud9, follow the steps in [Setting Up AWS Cloud9](setting-up.md) and then perform the [basic tutorial](tutorials-basic.md)\.
 
 ## Additional Topics<a name="w14aab7c23"></a>
 + [What Can I Do with AWS Cloud9?](what-can-i-do.md)

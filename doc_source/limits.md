@@ -10,9 +10,13 @@ The following table provides the default limits for AWS Cloud9 for an AWS accoun
 
 To request an increase for a limit that is adjustable, do the following:
 
-1. Open the [Create case](https://console.aws.amazon.com/support/home#/case/create?issueType=service-limit-increase) page on the AWS Support Center website, and sign in if necessary\.
+1. Sign in to AWS and open the [Create case](https://console.aws.amazon.com/support/cases#/create) page on the [AWS Support Center website](https://console.aws.amazon.com/support/home)\.
 
-1. Continue following the on\-screen instructions to complete the request\. If the request is urgent, choose **Phone** as the method of contact instead of **Web**\.
+1. Select **Service limit increase**\.
+
+1. Under **Case classification**, choose *cloud9* from the **Limit type** list\.
+
+1. Fill out the rest of the fields as appropriate\. If the request is urgent, choose **Phone** as the method of contact instead of **Web**\.
 
 1. Choose **Submit**\.
 

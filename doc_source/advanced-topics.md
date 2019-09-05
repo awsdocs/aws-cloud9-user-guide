@@ -6,7 +6,6 @@
 
 **Topics**
 + [EC2 Environments versus SSH Environments](ec2-env-versus-ssh-env.md)
-+ [CLI Supplement for Tutorial: First Look at the IDE](tutorial-basic-cli.md)
 + [Amazon VPC Settings](vpc-settings.md)
 + [SSH Environment Host Requirements](ssh-settings.md)
 + [AWS Cloud9 Installer](installer.md)

@@ -1,14 +1,11 @@
 # Step 3: Clean Up<a name="tutorial-clean-up"></a>
 
-\(Previous step: [Step 2: Tour the IDE](tutorial-tour-ide.md)\)
+\(Previous step: [Step 2: Basic Tour of the IDE](tutorial-tour-ide.md)\)
 
 To prevent ongoing charges to your AWS account related to this tutorial, you should delete the environment\.
 
 **Warning**  
 Deleting an environment cannot be undone\.
-
-**Note**  
-This tutorial uses the AWS Cloud9 *console* to delete the EC2 environment\. You can also delete the EC2 environment with the *AWS CLI*, as described in the [CLI supplement](tutorial-basic-cli.md) for this tutorial\. If you do wish to use the AWS CLI instead of the console, see [step 3](tutorial-basic-cli.md#tutorial-clean-up-cli-step3) of that supplement\.
 
 ## Delete the Environment with the AWS Cloud9 Console<a name="tutorial-clean-up-console"></a>
 
@@ -28,4 +25,4 @@ However, if you used an SSH environment instead of following the tutorial, and t
 
 ## Next Step<a name="tutorial-clean-up-next"></a>
 
-[Wrapping Up](tutorial-final-info.md)
+[Related Information](tutorial-final-info.md)

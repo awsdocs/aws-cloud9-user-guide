@@ -1,6 +1,6 @@
-# Step 2: Basic Tour of the IDE<a name="tutorial-tour-ide"></a>
+# Step 2: Basic Tour of the IDE<a name="tutorial-tour-ide-cli-step2"></a>
 
-\(Previous step: [Step 1: Create an Environment](tutorial-create-environment.md)\)
+\(Previous step: [Step 1: Create an Environment](tutorial-create-environment-cli-step1.md)\)
 
 This part of the tutorial introduces some of the ways in which you can use the AWS Cloud9 IDE to create and test applications\.
 + You can use an **Editor** window to create and edit code\.
@@ -10,13 +10,13 @@ This part of the tutorial introduces some of the ways in which you can use the A
 You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and Samples](tutorials.md) for other computer languages\.
 
 **Topics**
-+ [Setup](#w14aac11c13c25b5b9)
-+ [Write Some Code](#w14aac11c13c25b5c11)
-+ [Run Your Code](#w14aac11c13c25b5c13)
-+ [Debug Your Code](#w14aac11c13c25b5c15)
-+ [Next Step](#tutorial-tour-ide-next)
++ [Setup](#w14aac11c15c25b5b9)
++ [Write Some Code](#w14aac11c15c25b5c11)
++ [Run Your Code](#w14aac11c15c25b5c13)
++ [Debug Your Code](#w14aac11c15c25b5c15)
++ [Next Step](#tutorial-tour-ide-cli-step2-next)
 
-## Setup<a name="w14aac11c13c25b5b9"></a>
+## Setup<a name="w14aac11c15c25b5b9"></a>
 
 Most of the tools you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
 
@@ -36,7 +36,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    found 0 vulnerabilities
    ```
 
-## Write Some Code<a name="w14aac11c13c25b5c11"></a>
+## Write Some Code<a name="w14aac11c15c25b5c11"></a>
 
 Begin by writing some code\.
 
@@ -68,7 +68,7 @@ Begin by writing some code\.
 
 1. Save the file as `hello-cloud9.js` \(**File**, **Save**\)\.
 
-## Run Your Code<a name="w14aac11c13c25b5c13"></a>
+## Run Your Code<a name="w14aac11c15c25b5c13"></a>
 
 Next, you can run your code\.
 
@@ -100,7 +100,7 @@ Depending on the programming language you are using, there might be multiple way
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-terminal.png)
 
-## Debug Your Code<a name="w14aac11c13c25b5c15"></a>
+## Debug Your Code<a name="w14aac11c15c25b5c15"></a>
 
 Finally, you can debug your code by using the **Debugger** window\.
 
@@ -124,6 +124,6 @@ Finally, you can debug your code by using the **Debugger** window\.
 1. Select **Stop** in the **Run Configuration** window to stop the debugger\.  
 ![\[Stop debugger.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-debug-stop.png)
 
-## Next Step<a name="tutorial-tour-ide-next"></a>
+## Next Step<a name="tutorial-tour-ide-cli-step2-next"></a>
 
-[Step 3: Clean Up](tutorial-clean-up.md)
+[Step 3: Clean Up](tutorial-clean-up-cli-step3.md)

@@ -297,5 +297,5 @@ For additional examples, see the [Customer\-Managed Policy Examples](auth-and-ac
 |  **Task**  |  **See this topic**  | 
 | --- | --- | 
 |  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an Environment](create-environment.md)   | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 |  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 

@@ -1,4 +1,4 @@
-# Getting Started with AWS Cloud9<a name="get-started"></a>
+# Setting Up AWS Cloud9<a name="setting-up"></a>
 
 To start using AWS Cloud9, follow one of these sets of procedures, depending on how you plan to use AWS Cloud9\.
 

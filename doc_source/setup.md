@@ -1,6 +1,6 @@
 # Team Setup for AWS Cloud9<a name="setup"></a>
 
-This topic explains how to use [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/) to enable multiple users within a single AWS account to use AWS Cloud9\. To set up to use AWS Cloud9 for any other usage pattern, see [Getting Started with AWS Cloud9](get-started.md) for the correct instructions\.
+This topic explains how to use [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/) to enable multiple users within a single AWS account to use AWS Cloud9\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\.
 
 These instructions assume that you have \(or will have\) administrative access to a single AWS account\. For more information, see [The AWS Account Root User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) and [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. If you already have an AWS account but you do not have administrative access to it, see your AWS account administrator\.
 
@@ -297,5 +297,5 @@ The AWS Cloud9 console is displayed, and you can begin using AWS Cloud9\.
 | --- | --- | 
 |  Restrict AWS Cloud9 usage for others in your AWS account, to control costs\.  |   [Additional Setup Options](setup-teams.md)   | 
 |  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an Environment](create-environment.md)   | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 |  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 

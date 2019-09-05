@@ -1,6 +1,6 @@
 # Individual User Setup for AWS Cloud9<a name="setup-express"></a>
 
-This topic explains how to set up to use AWS Cloud9 as the only individual in your AWS account, and you are not a student\. To set up to use AWS Cloud9 for any other usage pattern, see [Getting Started with AWS Cloud9](get-started.md) for the correct instructions\. To learn about who qualifies as a student, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
+This topic explains how to set up to use AWS Cloud9 as the only individual in your AWS account, and you are not a student\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\. To learn about who qualifies as a student, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
 
 To use AWS Cloud9 as the only individual in your AWS account, create an AWS account if you don't already have one, and then sign in to the AWS Cloud9 console\.
 
@@ -46,7 +46,7 @@ Although you can sign in to the AWS Cloud9 console with the email address and pa
 
 |  **Task for learning**  |  **See this topic**  | 
 | --- | --- | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 
 
 ****  

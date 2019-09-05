@@ -1,16 +1,16 @@
-# Wrapping Up<a name="tutorial-lambda-next-steps"></a>
+# Related Information<a name="tutorial-lambda-next-steps"></a>
 
-The following is some final information about the [AWS Lambda tutorial](tutorial-lambda.md)\.
+The following is some additional information for the [AWS Lambda tutorial](tutorial-lambda.md)\.
 
 Explore any or all of the following topics to continue getting familiar with AWS Cloud9\.
 
 
 ****  
 
-|  |  | 
-| --- |--- |
+|  **To\.\.\.**  |  **See this topic**  | 
+| --- | --- | 
 |  Learn more about how to use AWS Cloud9 with Lambda  |   [Advanced AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda-advanced.md) and [Working with AWS Lambda Functions in the AWS Cloud9 Integrated Development Environment \(IDE\)](lambda-functions.md)   | 
-|  Learn more about the AWS Cloud9 IDE  |   [Tutorial: First Look at the IDE](tutorial.md) and [Working with the AWS Cloud9 Integrated Development Environment \(IDE\)](ide.md)   | 
+|  Learn more about the AWS Cloud9 IDE  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 |  Invite others to use your environment with you, in real time and with text chat support  |   [Working with Shared Environments in AWS Cloud9](share-environment.md)   | 
 |  Create SSH environments \(environments that use cloud compute instances or servers that you create, instead of an Amazon EC2 instances that AWS Cloud9 creates for you\)\.  |   [Creating an Environment in AWS Cloud9](create-environment.md) and [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)   | 
 |  Use AWS Cloud9 with Amazon Lightsail  |   [Working with Amazon Lightsail Instances in the AWS Cloud9 Integrated Development Environment \(IDE\)](lightsail-instances.md)   | 

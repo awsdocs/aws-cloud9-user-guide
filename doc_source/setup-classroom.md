@@ -1,6 +1,6 @@
 # Classroom Setup for AWS Cloud9<a name="setup-classroom"></a>
 
-This topic explains how an educator can set up for students to use AWS Cloud9 in a virtual classroom\. To set up to use AWS Cloud9 for any other usage pattern, see [Getting Started with AWS Cloud9](get-started.md) for the correct instructions\. To learn about who qualifies as an educator, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
+This topic explains how an educator can set up for students to use AWS Cloud9 in a virtual classroom\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\. To learn about who qualifies as an educator, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
 +  [Step 1: Create an AWS Account and Apply for AWS Educate](#setup-classroom-create-account) 
 +  [Step 2: Set Up Your Virtual Classroom for AWS Cloud9](#setup-classroom-virtual) 
 +  [Step 3: Enter Your Virtual Classroom](#setup-classroom-sign-in-classroom) 
@@ -196,7 +196,7 @@ To return to your AWS Educate ECP, go to the AWS Educate Site Login website, at 
 
 |  **Task for learning**  |  **See this topic**  | 
 | --- | --- | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 
 
 ****  

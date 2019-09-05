@@ -1,6 +1,6 @@
 # Enterprise Setup for AWS Cloud9<a name="setup-enterprise"></a>
 
-This topic explains how to use [AWS Single Sign\-On \(SSO\)](https://aws.amazon.com/single-sign-on/) to enable one or more AWS accounts to use AWS Cloud9 within an enterprise\. To set up to use AWS Cloud9 for any other usage pattern, see [Getting Started with AWS Cloud9](get-started.md) for the correct instructions\.
+This topic explains how to use [AWS Single Sign\-On \(SSO\)](https://aws.amazon.com/single-sign-on/) to enable one or more AWS accounts to use AWS Cloud9 within an enterprise\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\.
 
 These instructions assume that you have \(or will have\) administrative access to the organization in AWS Organizations\. If you don't already have administrative access to the organization in AWS Organizations, see your AWS account administrator\. For more information, see the following resources:
 +  [Managing Access Permissions for Your AWS Organization](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions_overview.html) in the *AWS Organizations User Guide* \(AWS SSO requires the use of AWS Organizations\)
@@ -189,5 +189,5 @@ The AWS Cloud9 console is displayed, and you can begin using AWS Cloud9\.
 |  **Task**  |  **See this topic**  | 
 | --- | --- | 
 |  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an Environment](create-environment.md)   | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Tutorial: First Look at the IDE](tutorial.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 |  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 

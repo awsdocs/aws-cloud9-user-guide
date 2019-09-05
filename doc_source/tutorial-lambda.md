@@ -7,7 +7,7 @@ Completing this tutorial might result in charges to your AWS account\. These inc
 
 ## Prerequisites<a name="tutorial-lambda-prereqs"></a>
 
-To successfully complete this tutorial, you must first complete the steps in [Getting Started with AWS Cloud9](get-started.md)\.
+To successfully complete this tutorial, you must first complete the steps in [Setting Up AWS Cloud9](setting-up.md)\.
 
 ## Steps<a name="tutorial-lambda-steps"></a>
 + [Step 1: Create and Open the Environment](tutorial-lambda-create-environment.md)
@@ -19,4 +19,4 @@ To successfully complete this tutorial, you must first complete the steps in [Ge
 + [Step 7: Run the API in Production](tutorial-lambda-run-deployed-api.md)
 + [Step 8: Change the Function and Deploy the Change](tutorial-lambda-change-and-deploy.md)
 + [Step 9: Clean Up](tutorial-lambda-clean-up.md)
-+ [Wrapping Up](tutorial-lambda-next-steps.md)
++ [Related Information](tutorial-lambda-next-steps.md)

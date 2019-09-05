@@ -49,4 +49,4 @@ Deleting an environment cannot be undone\. Also, when you delete an EC2 environm
 
 ## Next Step<a name="tutorial-lambda-clean-up-next"></a>
 
-[Wrapping Up](tutorial-lambda-next-steps.md)
+[Related Information](tutorial-lambda-next-steps.md)

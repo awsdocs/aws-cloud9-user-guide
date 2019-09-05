@@ -9,7 +9,7 @@ You can create an AWS Cloud9 EC2 development environment with the [AWS Cloud9 co
 
 ## Prerequisites<a name="create-env-ec2-prereq"></a>
 
-Complete the steps in [Getting Started with AWS Cloud9](get-started.md) so that you can sign in to the AWS Cloud9 console and create environments\.
+Complete the steps in [Setting Up AWS Cloud9](setting-up.md) so that you can sign in to the AWS Cloud9 console and create environments\.
 
 ## Create an EC2 Environment with the Console<a name="create-environment-console"></a>
 

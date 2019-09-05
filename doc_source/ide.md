@@ -5,6 +5,7 @@ An *integrated development environment \(IDE\)* provides a set of coding product
 Learn how to work with the AWS Cloud9 IDE by reading one or more of these topics\.
 
 **Topics**
++ [Tour the IDE](tour-ide.md)
 + [Language Support](language-support.md)
 + [Menu Commands Reference](menu-commands.md)
 + [Finding and Replacing Text](find-replace-text.md)
