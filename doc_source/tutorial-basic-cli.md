@@ -1,6 +1,6 @@
 # Tutorial: Hello AWS Cloud9 \(CLI\)<a name="tutorial-basic-cli"></a>
 
-This tutorial provides a basic first look at the AWS Cloud9\. It uses the [AWS Command Line Interface \(AWS CLI\)](https://docs.aws.amazon.com/cli/latest/userguide/), which allows you to set up and tear down the resources you need by using commands instead of a [graphical user interface](tutorial.md)\.
+This tutorial provides a basic first look at AWS Cloud9\. It uses the [AWS Command Line Interface \(AWS CLI\)](https://docs.aws.amazon.com/cli/latest/userguide/), which allows you to set up and tear down the resources you need by using commands instead of a [graphical user interface](tutorial.md)\.
 
 In this tutorial, you set up an AWS Cloud9 development environment and then use the AWS Cloud9 IDE to code, run, and debug your first application\.
 

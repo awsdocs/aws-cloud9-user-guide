@@ -392,4 +392,4 @@ Compare your results to the following\.
 
 **Warning**  
 Remember that having an AWS Cloud9 development environment might result in charges to your AWS account\. These include possible charges for Amazon EC2 if you are using an EC2 environment\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.  
-There are additional topics in the section *[Working with the IDE](ide.md)* that you might want to explore\. However, when you are finished touring the AWS Cloud9 IDE and no longer need the environment, be sure to delete it, as described in [Deleting an Environment](delete-environment.md)\.
+There are additional topics in the parent section \(*[Working with the IDE](ide.md)*\) that you might want to explore\. However, when you are finished touring the AWS Cloud9 IDE and no longer need the environment, be sure to delete it and its associated resources, as described in [Deleting an Environment](delete-environment.md)\.

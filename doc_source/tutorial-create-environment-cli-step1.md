@@ -40,8 +40,6 @@ Currently, you cannot use the AWS CLI to create an Ubuntu Server\-based EC2 envi
 
    If you try to open the environment, but AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
-To learn more about what you can do with an environment after you finish this tutorial, see [Working with Environments in AWS Cloud9](environments.md)\.
-
 ## Next Step<a name="tutorial-create-environment-cli-step1-next"></a>
 
 [Step 2: Basic Tour of the IDE](tutorial-tour-ide-cli-step2.md)
