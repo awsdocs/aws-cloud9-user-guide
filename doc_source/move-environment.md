@@ -76,7 +76,7 @@ For more information about the preceding procedure, see [Changing the Instance T
    For Amazon Linux:
 
    ```
-   #!/bin/bash
+   #!/bin/bash -e
    
    # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
    SIZE=${1:=20}
@@ -97,23 +97,30 @@ For more information about the preceding procedure, see [Changing the Instance T
    while [ "$(aws ec2 describe-volumes-modifications --volume-id $VOLUMEID --filters Name=modification-state,Values="optimizing","completed" | jq '.VolumesModifications | length')" != "1" ]; do
      sleep 1
    done
-   
-   # Rewrite the partition table so that the partition takes up all the space that it can.
-   sudo growpart /dev/xvda 1
-   
-   # Expand the size of the file system.
-   sudo resize2fs /dev/xvda1
+
+   # Rewrite the partition table and expand the size of the file system
+   if [ -e /dev/nvme0n1p1 ]; then
+       sudo growpart /dev/nvme0n1 1
+       sudo resize2fs /dev/nvme0n1p1
+   else
+       sudo growpart /dev/xvda 1
+       sudo resize2fs /dev/xvda1
+   fi
+
+   # Show the result
+   df -h /
    ```
 
    For Ubuntu Server:
 
    ```
-   #!/bin/bash
+   #!/bin/bash -e
    
    # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
    SIZE=${1:=20}
    
    # Install the jq command-line JSON processor.
+   sudo apt update
    sudo apt install -y jq
    
    # Get the ID of the envrionment host Amazon EC2 instance.
@@ -129,12 +136,18 @@ For more information about the preceding procedure, see [Changing the Instance T
    while [ "$(aws ec2 describe-volumes-modifications --volume-id $VOLUMEID --filters Name=modification-state,Values="optimizing","completed" | jq '.VolumesModifications | length')" != "1" ]; do
      sleep 1
    done
-   
-   # Rewrite the partition table so that the partition takes up all the space that it can.
-   sudo growpart /dev/xvda 1
-   
-   # Expand the size of the file system.
-   sudo resize2fs /dev/xvda1
+
+   # Rewrite the partition table and expand the size of the file system
+   if [ -e /dev/nvme0n1p1 ]; then
+       sudo growpart /dev/nvme0n1 1
+       sudo resize2fs /dev/nvme0n1p1
+   else
+       sudo growpart /dev/xvda 1
+       sudo resize2fs /dev/xvda1
+   fi
+
+   # Show the result
+   df -h /
    ```
 
 1. From a terminal session in the IDE, switch to the directory that contains the `resize.sh` file\. Then run the following command, replacing 20 with the desired size in GiB to resize the Amazon EBS volume to\.
