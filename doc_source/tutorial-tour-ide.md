@@ -3,26 +3,26 @@
 \(Previous step: [Step 1: Create an Environment](tutorial-create-environment.md)\)
 
 This part of the tutorial introduces some of the ways in which you can use the AWS Cloud9 IDE to create and test applications\.
-+ You can use an **Editor** window to create and edit code\.
-+ You can use a **Terminal** window or a **Run Configuration** window to run your code without debugging it\.
++ You can use an **editor** window to create and edit code\.
++ You can use a **terminal** window or a **Run Configuration** window to run your code without debugging it\.
 + You can use the **Debugger** window to debug your code\.
 
-You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and Samples](tutorials.md) for other computer languages\.
+You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and Samples](tutorials.md) for other programming languages\.
 
 **Topics**
-+ [Setup](#w14aac11c13c25b5b9)
++ [Get Your Environment Ready](#w14aac11c13c25b5b9)
 + [Write Some Code](#w14aac11c13c25b5c11)
 + [Run Your Code](#w14aac11c13c25b5c13)
 + [Debug Your Code](#w14aac11c13c25b5c15)
 + [Next Step](#tutorial-tour-ide-next)
 
-## Setup<a name="w14aac11c13c25b5b9"></a>
+## Get Your Environment Ready<a name="w14aac11c13c25b5b9"></a>
 
 Most of the tools you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
 
 1. On the menu bar \(at the top of the AWS Cloud9 IDE\), choose **Window**, **New Terminal** \(or use an existing terminal window\)\.
 
-1. In the terminal window \(one of the tabs in the bottom portion of the IDE\), type:
+1. In the terminal window \(one of the tabs in the bottom portion of the IDE\), enter the following\.
 
    ```
    npm install readline-sync
@@ -66,37 +66,37 @@ Begin by writing some code\.
    console.log("Goodbye!");
    ```
 
-1. Save the file as `hello-cloud9.js` \(**File**, **Save**\)\.
+1. Choose **File**, **Save**, and then save the file as `hello-cloud9.js`\.
 
 ## Run Your Code<a name="w14aac11c13c25b5c13"></a>
 
 Next, you can run your code\.
 
-Depending on the programming language you are using, there might be multiple ways in which you can run code\. For this tutorial, we are using JavaScript, which can be run using a terminal window or a **Run Configuration** window\.
+Depending on the programming language you are using, there might be multiple ways in which you can run code\. For this tutorial, we are using JavaScript, which you can run using a terminal window or a **Run Configuration** window\.
 
-**Run the Code Using a Run Configuration Window**
+**To Run the Code Using a Run Configuration Window**
 
 1. On the menu bar, choose **Run**, **Run Configurations**, **New Run Configuration**\.
 
-1. In the new **Run Configuration** window \(one of the tabs in the bottom portion of the IDE\), enter `hello-cloud9.js` in the **Command** field, and then select **Run**\.
+1. In the new **Run Configuration** window \(one of the tabs in the bottom portion of the IDE\), enter `hello-cloud9.js` in the **Command** field, and then choose **Run**\.
 
-1. Be sure that the **Run Configuration** prompt is active and then interact with the application by typing a number at the prompt\.
+1. Be sure that the **Run Configuration** prompt is active, and then interact with the application by entering a number at the prompt\.
 
-1. See the output from your code in the **Run Configuration** window\. It should be similar to the following\.
+1. View the output from your code in the **Run Configuration** window\. It should be similar to the following\.
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-run-config.png)
 
-**Run the Code Using a Terminal Window**
+**To Run the Code Using a Terminal Window**
 
 1. Go to the terminal window that you used earlier \(or open a new one\)\.
 
-1. In the terminal window, type `ls` at the terminal prompt and verify that your code file is in the list of files\.
+1. In the terminal window, enter `ls` at the terminal prompt, and verify that your code file is in the list of files\.
 
-1. Type `node hello-cloud9.js` at the prompt to start the application\.
+1. Enter `node hello-cloud9.js` at the prompt to start the application\.
 
-1. Interact with the application by typing a number at the prompt\.
+1. Interact with the application by entering a number at the prompt\.
 
-1. See the output from your code in the terminal window\. It should be similar to the following\.
+1. View the output from your code in the terminal window\. It should be similar to the following\.
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-terminal.png)
 
@@ -107,7 +107,7 @@ Finally, you can debug your code by using the **Debugger** window\.
 1. Add a breakpoint to your code at line 10 \(`if (input === 'q')`\) by choosing the margin next to line 10\. A red circle is displayed next to that line number, as follows\.  
 ![\[Adding a breakpoint to the code.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-debug-breakpoint.png)
 
-1. Open the **Debugger** window by choosing the **Debugger** button on the right\-hand side of the IDE\. Alternatively, choose **Window**, **Debugger** on the menu bar\.
+1. Open the **Debugger** window by choosing the **Debugger** button on the right side of the IDE\. Alternatively, choose **Window**, **Debugger** on the menu bar\.
 
    Then, put a watch on the `input` variable by choosing **Type an expression here** in the **Watch Expressions** section of the **Debugger** window\.  
 ![\[Debugger window, set watch\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-debug-watch.png)
@@ -116,7 +116,7 @@ Finally, you can debug your code by using the **Debugger** window\.
 
    Alternately, you can open a new **Run Configuration** window and start running the code by choosing **Run**, **Run With**, **Node\.js**, from the menu bar\.
 
-1. When you enter a number at the **Run Configuration** prompt, the code pauses at line 10\. The **Debugger** window shows the value you typed in **Watch Expressions**\.  
+1. Enter a number at the **Run Configuration** prompt and see that the code pauses at line 10\. The **Debugger** window shows the value you entered in **Watch Expressions**\.  
 ![\[Program stops at breakpoint\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-debug-break.png)
 
 1. In the **Debugger** window, choose **Resume**, which is the blue arrow icon that is highlighted in the previous screenshot\.

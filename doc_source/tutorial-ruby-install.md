@@ -1,6 +1,6 @@
 # Step 1: Install Required Tools<a name="tutorial-ruby-install"></a>
 
-\(Part of: [Tutorial: Ruby](tutorial-ruby.md)\)
+\(First step of [Tutorial: Ruby in AWS Cloud9](tutorial-ruby.md)\)
 
 In this step, you install Ruby, which is required to run this tutorial\.
 

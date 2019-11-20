@@ -7,7 +7,7 @@ Explore any or all of the following topics to continue getting familiar with AWS
 
 ****  
 
-|  **To\.\.\.**  |  **See this topic**  | 
+|  **Task**  |  **See this topic**  | 
 | --- | --- | 
 |  Learn more about how to use AWS Cloud9 with Lambda  |   [Advanced AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda-advanced.md) and [Working with AWS Lambda Functions in the AWS Cloud9 Integrated Development Environment \(IDE\)](lambda-functions.md)   | 
 |  Learn more about the AWS Cloud9 IDE  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 

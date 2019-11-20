@@ -58,7 +58,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Working with Language Projects in the AWS Cloud9 Integrated Development Environment (IDE)](projects.md)
    + [Working with Custom Environment Variables in the AWS Cloud9 Integrated Development Environment (IDE)](env-vars.md)
    + [Working with Project Settings in the AWS Cloud9 Integrated Development Environment (IDE)](settings-project.md)
-   + [Working with User Settings in the AWS Cloud9 Integrated Development Environment (IDE)](settings-user.md)
+   + [Working with User Settings in the AWS Cloud9 IDE](settings-user.md)
    + [Working with AWS Project and User Settings in the AWS Cloud9 Integrated Development Environment (IDE)](settings-aws.md)
    + [Working with Keybindings in the AWS Cloud9 Integrated Development Environment (IDE)](settings-keybindings.md)
    + [Working with Themes in the AWS Cloud9 Integrated Development Environment (IDE)](settings-theme.md)

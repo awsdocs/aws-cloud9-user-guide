@@ -79,7 +79,7 @@ For more information about the preceding procedure, see [Changing the Instance T
    #!/bin/bash
    
    # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
-   SIZE=${1:=20}
+   SIZE=${1:-20}
    
    # Install the jq command-line JSON processor.
    sudo yum -y install jq
@@ -111,7 +111,7 @@ For more information about the preceding procedure, see [Changing the Instance T
    #!/bin/bash
    
    # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
-   SIZE=${1:=20}
+   SIZE=${1:-20}
    
    # Install the jq command-line JSON processor.
    sudo apt install -y jq

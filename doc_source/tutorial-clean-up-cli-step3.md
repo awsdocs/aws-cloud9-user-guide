@@ -15,7 +15,7 @@ Deleting an environment cannot be undone\.
    aws cloud9 delete-environment --region MY-REGION --environment-id 12a34567b8cd9012345ef67abcd890e1
    ```
 
-   In the preceding command, replace `MY-REGION` with the region in which the environment was created and `12a34567b8cd9012345ef67abcd890e1` with the ID of the environment to delete\.
+   In the preceding command, replace `MY-REGION` with the AWS Region in which the environment was created and `12a34567b8cd9012345ef67abcd890e1` with the ID of the environment to delete\.
 
    If you didn't save the ID when you created the environment, the ID can be found by using the AWS Cloud9 console\. Select the name of the environment in the console, then find the last part of the **Environment ARN**\.
 

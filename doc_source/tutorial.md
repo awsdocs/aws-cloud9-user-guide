@@ -1,6 +1,6 @@
 # Tutorial: Hello AWS Cloud9 \(console\)<a name="tutorial"></a>
 
-This tutorial provides a basic first look at AWS Cloud9\. It uses the AWS Cloud9 console, which allows you to perform the steps of the tutorial in a graphical user interface rather than [typing commands](tutorial-basic-cli.md)\.
+This tutorial provides a first look at AWS Cloud9\. It uses the AWS Cloud9 console, which enables you to perform the steps of the tutorial in a graphical user interface instead of [a command line tool](tutorial-basic-cli.md)\.
 
 In this tutorial, you set up an AWS Cloud9 development environment and then use the AWS Cloud9 IDE to code, run, and debug your first application\.
 

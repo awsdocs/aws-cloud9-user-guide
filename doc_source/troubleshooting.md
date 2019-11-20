@@ -12,6 +12,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Cannot Open an Environment](#troubleshooting-env-loading)
 + [The AWS Cloud9 Installer Hangs or Fails](#troubleshooting-ssh-installer)
 + [SSH Environment Error: "Python version 2\.7 is required to install pty\.js"](#troubleshooting-python-ssh)
++ [Application Preview or File Preview Notice: "Third\-party cookies disabled"](#troubleshooting-preview)
 + [Application Preview Tab Displays an Error or is Blank](#troubleshooting-app-preview)
 + [Cannot Display Your Running Application Outside of the IDE](#troubleshooting-app-sharing)
 + [After Reloading an Environment, You Must Refresh Application Preview](#troubleshooting-app-preview-refresh)
@@ -97,23 +98,13 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Issue:** When you try to open an environment, the IDE does not display for a long time \(after at least five minutes\)\.
 
  **Possible causes:** 
-+ Your web browser does not have third\-party cookies enabled\.
 + The IAM user that is signed in to the AWS Cloud9 console does not have the required AWS access permissions to open the environment\.
-+ If the environment is associated with an AWS cloud compute instance \(for example an Amazon EC2 instance\), the instance's associated VPC is not set to the correct settings for AWS Cloud9\.
-+ If the environment is associated with an AWS cloud compute instance, the instance is transitioning between states or is failing automated status checks, during the time when AWS Cloud9 is trying to connect to the instance\.
++ If the environment is associated with an AWS cloud compute instance \(for example an Amazon EC2 instance\):
+  + The instance's associated VPC is not set to the correct settings for AWS Cloud9\.
+  + The instance is transitioning between states or is failing automated status checks, during the time when AWS Cloud9 is trying to connect to the instance\.
 + If the environment is an SSH environment, the associated cloud compute instance or your own server is not set up correctly to allow AWS Cloud9 to access it\.
 
  **Recommended solutions:** 
-+ Enable third\-party cookies in your web browser, and then try opening the environment again\. To enable third\-party cookies:
-  + For Apple Safari, see [Manage cookies and website data in Safari](https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac) on the Apple Support website\.
-  + For Google Chrome, see **Change your cookie settings** in [Clear, enable, and manage cookies in Chrome](https://support.google.com/chrome/answer/95647) on the Google Chrome Help website\.
-  + For Internet Explorer, see **To block or allow all cookies** in [Description of Cookies](https://support.microsoft.com/help/260971/description-of-cookies) on the Microsoft Support website\.
-  + For Mozilla Firefox, see the **Accept third party cookies** setting in [Enable and disable cookies that websites use to track your preferences](https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences) on the Mozilla Support website\.
-  + For other web browsers, see their web browser's documentation\.
-
-  If you want to restrict enabling third\-party cookies only for AWS Cloud9 and your web browser allows this, specify the following domains, depending on the supported AWS Regions where you want to use AWS Cloud9\.  
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/troubleshooting.html)
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
   +  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
   +  [AWS Managed \(Predefined\) Policies for AWS Cloud9](auth-and-access-control.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
@@ -123,12 +114,15 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
   +  [Troubleshoot IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html) in the *IAM User Guide*
 
   If the signed\-in IAM user still cannot open the environment, you could try signing out and then signing back in as either the AWS account root user or an IAM administrator user in the account\. Then try opening the environment again\. If you are able to open the environment in this way, then there is most likely a problem with the IAM user's access permissions\.
-+ If the environment is associated with an AWS cloud compute instance \(for example an Amazon EC2 instance\), make sure the instance's associated VPC is set to the correct settings for AWS Cloud9, and then try opening the environment again\. For details, see [Amazon VPC Requirements for AWS Cloud9](vpc-settings.md#vpc-settings-requirements)\.
++ If the environment is associated with an AWS cloud compute instance \(for example an Amazon EC2 instance\):
+  + Make sure the instance's associated VPC is set to the correct settings for AWS Cloud9, and then try opening the environment again\. For details, see [Amazon VPC Requirements for AWS Cloud9](vpc-settings.md#vpc-settings-requirements)\.
 
-  If the AWS cloud compute instance's associated VPC is set to the correct settings for AWS Cloud9 and you still cannot open the environment, the instance's security group might be preventing access to AWS Cloud9\. Check the security group to make sure that at minimum, inbound SSH traffic is allowed over port 22 for all IP addresses \(`Anywhere` or `0.0.0.0/0`\)\. For instructions, see [Describing Your Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#describing-security-group) and [Updating Security Group Rules](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#updating-security-group-rules) in the *Amazon EC2 User Guide for Linux Instances*\.
+    If the AWS cloud compute instance's associated VPC is set to the correct settings for AWS Cloud9 and you still cannot open the environment, the instance's security group might be preventing access to AWS Cloud9\. **As a troubleshooting technique only**, check the security group to make sure that at minimum, inbound SSH traffic is allowed over port 22 for all IP addresses \(`Anywhere` or `0.0.0.0/0`\)\. For instructions, see [Describing Your Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#describing-security-group) and [Updating Security Group Rules](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#updating-security-group-rules) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-  For additional VPC troubleshooting steps, watch the related 5\-minute video [AWS Knowledge Center Videos: What can I check if I cannot connect to an instance in a VPC?](https://www.youtube.com/watch?v=--BoDeCF5Dw) on the YouTube website\.
-+ If the environment is associated with an AWS cloud compute instance, restart the instance, make sure the instance is running and has passed all system checks, and then try opening the environment again\. For details, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and [Viewing Status Checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#viewing_status) in the *Amazon EC2 User Guide for Linux Instances*\.
+    For additional VPC troubleshooting steps, watch the related 5\-minute video [AWS Knowledge Center Videos: What can I check if I cannot connect to an instance in a VPC?](https://www.youtube.com/watch?v=--BoDeCF5Dw) on the YouTube website\.
+**Warning**  
+When you have finished troubleshooting, be sure to set the inbound rules to an appropriate address range, as described in [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
+  + Restart the instance, make sure the instance is running and has passed all system checks, and then try opening the environment again\. For details, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and [Viewing Status Checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#viewing_status) in the *Amazon EC2 User Guide for Linux Instances*\.
 + If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)\.
 
 \([back to top](#troubleshooting)\)
@@ -155,9 +149,40 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
 \([back to top](#troubleshooting)\)
 
+## Application Preview or File Preview Notice: "Third\-party cookies disabled"<a name="troubleshooting-preview"></a>
+
+**Issue:** When you attempt to preview [an application](app-preview.md) or [a file](file-preview.md), a notice is displayed with the following message: "Preview functionality is disabled because your browser has third\-party cookies disabled\."
+
+**Cause:** Although third\-party cookies are not needed to open the AWS Cloud9 IDE, you must enable third\-party cookies to use the Application Preview or File Preview features\.
+
+**Solution:** Enable third\-party cookies in your web browser, reload your IDE, and then try opening the preview again\.
++ Apple Safari: [Manage cookies and website data in Safari](https://support.apple.com/guide/safari/manage-cookies-and-website-data-sfri11471/mac) on the Apple Support website\.
++ Google Chrome: **Change your cookie settings** in [Clear, enable, and manage cookies in Chrome](https://support.google.com/chrome/answer/95647) on the Google Chrome Help website\.
++ Internet Explorer: **Block or allow cookies** in [Delete and manage cookies](https://support.microsoft.com/en-us/help/17442) on the Microsoft Support website\.
++ Microsoft Edge: [Blocking third\-party cookies](https://support.microsoft.com/en-us/help/4464209/issue-with-blocking-third-party-cookies) on the Microsoft Support website\.
++ Mozilla Firefox: **Accept third party cookies** setting in [Enable and disable cookies that websites use to track your preferences](https://support.mozilla.org/kb/enable-and-disable-cookies-website-preferences) on the Mozilla Support website\.
++ Any other web browser: see that web browser's documentation\.
+
+To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows this granularity\), specify the following domains, depending on the supported AWS Regions where you want to use AWS Cloud9\.
+
+
+****  
+
+|  **AWS Region**  |  **Domains**  | 
+| --- | --- | 
+| US East \(Ohio\) |   `*.vfs.cloud9.us-east-2.amazonaws.com`   `vfs.cloud9.us-east-2.amazonaws.com`   | 
+|  US East \(N\. Virginia\)  |   `*.vfs.cloud9.us-east-1.amazonaws.com`   `vfs.cloud9.us-east-1.amazonaws.com`   | 
+| US West \(Oregon\) |   `*.vfs.cloud9.us-west-2.amazonaws.com`   `vfs.cloud9.us-west-2.amazonaws.com`   | 
+|  Asia Pacific \(Singapore\)  |   `*.vfs.cloud9.ap-southeast-1.amazonaws.com`   `vfs.cloud9.ap-southeast-1.amazonaws.com`   | 
+|  Asia Pacific \(Tokyo\)  |   `*.vfs.cloud9.ap-northeast-1.amazonaws.com`   `vfs.cloud9.ap-northeast-1.amazonaws.com`   | 
+| EU \(Frankfurt\) |   `*.vfs.cloud9.eu-central-1.amazonaws.com`   `vfs.cloud9.eu-central-1.amazonaws.com`   | 
+| EU \(Ireland\) |   `*.vfs.cloud9.eu-west-1.amazonaws.com`   `vfs.cloud9.eu-west-1.amazonaws.com`   | 
+
+\([back to top](#troubleshooting)\)
+
 ## Application Preview Tab Displays an Error or is Blank<a name="troubleshooting-app-preview"></a>
 
- **Issue:** On the menu bar in the IDE, when you choose **Preview, Preview Running Application** or **Tools, Preview, Preview Running Application** to try to display your application in a preview tab in the IDE, the tab displays an error, or the tab is blank\.
+ **Issue:** On the menu bar in the IDE, when you choose **Preview, Preview Running Application** or **Tools, Preview, Preview Running Application** to try to display your application on a preview tab in the IDE, the tab displays an error, or the tab is blank\.
 
  **Possible causes:** 
 + Your application is not running in the IDE\.
@@ -167,17 +192,17 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 + Your application is running with an IP other than `127.0.0.1`, `localhost`, or `0.0.0.0`\.
 + The port \(`8080`, `8081`, or `8082`\) is not specified in the URL on the preview tab\.
 + Your network blocks inbound traffic to ports `8080`, `8081`, or `8082`\.
-+ You are trying to go to an address that contains an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. The default built\-in behavior of the AWS Cloud9 IDE is that this will attempt to go to your local computer, instead of attempting to go the instance or your own server that is connected to the environment\.
++ You are trying to go to an address that contains an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. The default, built\-in behavior of the AWS Cloud9 IDE is that this will attempt to go to your local computer instead of attempting to go the instance or your own server that is connected to the environment\.
 
  **Recommended solutions:** 
 + Ensure that the application is running in the IDE\.
-+ Ensure that the application is running using HTTP\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
-+ Ensure that the application is running over only one port\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
-+ Ensure that the application is running over port `8080`, `8081`, or `8082`\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
-+ Ensure that the application is running with an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. For some examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Ensure that the application is running using HTTP\. For examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Ensure that the application is running over only one port\. For examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Ensure that the application is running over port `8080`, `8081`, or `8082`\. For examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
++ Ensure that the application is running with an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. For examples in Node\.js and Python, see [Run an Application](app-preview.md#app-preview-run-app)\.
 + Add `:8080`, `:8081`, or `:8082` to the URL on the preview tab\.
 + Ensure that your network allows inbound traffic over ports `8080`, `8081`, or `8082`\. If you cannot make changes to your network, see your network administrator\.
-+ If you are trying to go to an address that contains an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`, try going to the following address instead: `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/`, where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\. Note that you can also try to go to this address outside of the IDE, but it works only when the IDE for the environment is open and the application is running in the same web browser\.
++ If you are trying to go to an address that contains an IP of `127.0.0.1`, `localhost`, or `0.0.0.0`, try going to the following address instead: `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/`, where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\. You can also try to go to this address outside of the IDE, but it works only when the IDE for the environment is open and the application is running in the same web browser\.
 + After you are sure that all of the preceding conditions are met, try stopping the application and then starting it again\.
 + If you stopped the application and then started it again, try choosing **Preview, Preview Running Application** or **Tools, Preview, Preview Running Application** on the menu bar again\. Or try choosing the **Refresh** button \(the circular arrow\) on the corresponding application preview tab, if the tab is already visible\.
 

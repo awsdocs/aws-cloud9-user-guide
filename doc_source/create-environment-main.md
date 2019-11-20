@@ -22,15 +22,17 @@ Complete the steps in [Setting Up AWS Cloud9](setting-up.md) so that you can sig
 1. After you sign in to the AWS Cloud9 console, in the top navigation bar, choose an AWS Region to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *AWS General Reference*\.  
 ![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
 
-1. If a welcome page is displayed, for **New AWS Cloud9 environment**, choose **Create environment**\. Otherwise, choose **Create environment**\.  
-![\[Choosing the Next step button if welcome page is displayed\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-welcome-new-env.png)
+1. Choose the large **Create environment** button in one of the locations shown below\.
 
-   Or:  
-![\[Choosing the Create environment button if welcome page is not displayed\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-new-env.png)
+   If you have no AWS Cloud9 environments yet, the button is shown on a welcome page\.  
+![\[Welcome page in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-welcome-new-env.png)
 
-1. On the **Name environment** page, for **Name**, type a name for your environment\.
+   If you already have AWS Cloud9 environments, the button is shown as follows\.  
+![\[Create environment button in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-new-env.png)
 
-1. To add a description to your environment, type it in **Description**\.
+1. On the **Name environment** page, for **Name**, enter a name for your environment\.
+
+1. To add a description to your environment, enter it in **Description**\.
 
 1. Choose **Next step**\.
 
@@ -38,19 +40,19 @@ Complete the steps in [Setting Up AWS Cloud9](setting-up.md) so that you can sig
 **Warning**  
 Choosing **Create a new instance for environment \(EC2\)** might result in possible charges to your AWS account for Amazon EC2\.
 
-1. For **Instance type**, choose an instance type with the amount of RAM and vCPUs you think you need for the kinds of tasks you want to do\. Or leave the default choice\.
-**Note**  
+1. For **Instance type**, choose an instance type with the amount of RAM and vCPUs you think you need for the kinds of tasks you want to do\.
+**Warning**  
 Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\.
 
-1. For **Platform**, choose the type of Amazon EC2 instance that AWS Cloud9 will create and then connect to this environment: **Amazon Linux** or **Ubuntu**\.
+1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux** or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
 
-1. For **Cost\-saving setting**, choose the amount of time until AWS Cloud9 shuts down the Amazon EC2 instance for the environment after all web browser instances that are connected to the IDE for the environment have been closed\. Or leave the default choice\.
-**Note**  
+1. Choose a value for **Cost\-saving setting**\. When all web browser instances that are connected to the IDE for the environment are closed, AWS Cloud9 waits this amount of time and then shuts down the Amazon EC2 instance for the environment\. 
+**Warning**  
 Choosing a longer time period might result in more charges to your AWS account\.
 
 1. Expand **Network settings \(advanced\)**\.
 
-1. AWS Cloud9 uses Amazon Virtual Private Cloud \(Amazon VPC\) to communicate with the newly\-created Amazon EC2 instance\. Depending on how Amazon VPC is set up, do one of the following\.  
+1. AWS Cloud9 uses Amazon Virtual Private Cloud \(Amazon VPC\) to communicate with the newly created Amazon EC2 instance\. Depending on how Amazon VPC is set up, do one of the following\.  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)  
 ****    

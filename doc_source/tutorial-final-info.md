@@ -1,19 +1,19 @@
 # Related Information<a name="tutorial-final-info"></a>
 
-The following is some additional information for [Tutorial: Hello AWS Cloud9 \(console\)](tutorial.md)\.
-+ When you create an EC2 environment, the environment doesn't contain any sample code by default\. To create an environment along with sample code, see one of the following topics instead\.
+The following is additional information for [Tutorial: Hello AWS Cloud9 \(console\)](tutorial.md)\.
++ When you create an EC2 environment, the environment doesn't contain any sample code by default\. To create an environment with sample code, see one of the following topics:
   +  [Working with Amazon Lightsail Instances in the AWS Cloud9 Integrated Development Environment \(IDE\)](lightsail-instances.md) 
   +  [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](codestar-projects.md) 
-+ During creation of the AWS Cloud9 development environment, you directed AWS Cloud9 to create a new Amazon EC2 instance\. AWS Cloud9 created the new instance and then connected the environment to it\. As an alternative, you can use an existing cloud compute instance or your own server \(which is called an *SSH environment*\)\. For more information, see [Creating an Environment in AWS Cloud9](create-environment.md)\.
++ During creation of the AWS Cloud9 development environment, you directed AWS Cloud9 to create an Amazon EC2 instance\. AWS Cloud9 created the instance and then connected the environment to it\. As an alternative, you can use an existing cloud compute instance or your own server \(which is called an *SSH environment*\)\. For more information, see [Creating an Environment in AWS Cloud9](create-environment.md)\.
 
-## Optional Next Steps<a name="tutorial-next-steps"></a>
+**Optional Next Steps**
 
 Explore any or all of the following topics to continue getting familiar with AWS Cloud9\.
 
 
 ****  
 
-|  **To\.\.\.**  |  **See this topic**  | 
+|  **Task**  |  **See this topic**  | 
 | --- | --- | 
 | Learn more about what you can do with an environment\. | [Working with Environments in AWS Cloud9](environments.md) | 
 | Try other computer languages\. | [Tutorials and Samples for AWS Cloud9](tutorials.md) | 

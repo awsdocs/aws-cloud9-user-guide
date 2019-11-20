@@ -414,11 +414,11 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
    1. Select the box for the VPC you just created\.
 
-   1. On the **Summary** tab, choose the link next to **Network ACL**\.
+   1. On the **Description** tab, choose the link next to **Network ACL**\.
 
    1. Select the box next to the network ACL that is displayed\.
 
-   1. On the **Inbound Rules** tab, choose **Edit**\.
+   1. On the **Inbound Rules** tab, choose **Edit inbound rules**\.
 
    1. For **Rule \# 100**, for **Type**, choose **SSH \(22\)**\.
 
