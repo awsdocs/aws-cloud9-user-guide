@@ -175,8 +175,8 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
 | US West \(Oregon\) |   `*.vfs.cloud9.us-west-2.amazonaws.com`   `vfs.cloud9.us-west-2.amazonaws.com`   | 
 |  Asia Pacific \(Singapore\)  |   `*.vfs.cloud9.ap-southeast-1.amazonaws.com`   `vfs.cloud9.ap-southeast-1.amazonaws.com`   | 
 |  Asia Pacific \(Tokyo\)  |   `*.vfs.cloud9.ap-northeast-1.amazonaws.com`   `vfs.cloud9.ap-northeast-1.amazonaws.com`   | 
-| EU \(Frankfurt\) |   `*.vfs.cloud9.eu-central-1.amazonaws.com`   `vfs.cloud9.eu-central-1.amazonaws.com`   | 
-| EU \(Ireland\) |   `*.vfs.cloud9.eu-west-1.amazonaws.com`   `vfs.cloud9.eu-west-1.amazonaws.com`   | 
+| Europe \(Frankfurt\) |   `*.vfs.cloud9.eu-central-1.amazonaws.com`   `vfs.cloud9.eu-central-1.amazonaws.com`   | 
+| Europe \(Ireland\) |   `*.vfs.cloud9.eu-west-1.amazonaws.com`   `vfs.cloud9.eu-west-1.amazonaws.com`   | 
 
 \([back to top](#troubleshooting)\)
 

@@ -4,6 +4,7 @@
 
 In this step, you use the AWS Cloud9 console to create and then open an AWS Cloud9 development environment\.
 
+**Note**  
 If you already have an environment, open it, and then skip ahead to [Step 2: Create the Lambda Function and API](tutorial-lambda-create-function.md)\.
 
 In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*\. For this kind of environment, AWS Cloud9 launches and manages a new Amazon EC2 instance running Amazon Linux or Ubuntu Server, creates the environment, and then connects the environment to the newly\-launched instance\. When you open the environment, AWS Cloud9 displays the AWS Cloud9 IDE that enables you to work with the files and tools in that environment\.

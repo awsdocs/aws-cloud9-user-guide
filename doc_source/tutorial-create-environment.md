@@ -4,6 +4,9 @@
 
 In this step, you use the AWS Cloud9 console to create and then open an AWS Cloud9 development environment\.
 
+**Note**  
+If you have already created the environment that you want to use for this tutorial, open that environment and skip ahead to [Step 2: Basic Tour of the IDE](tutorial-tour-ide.md)\.
+
 In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*, and then work with the files and tools in that environment\.
 
 ## Create an EC2 Environment with the Console<a name="tutorial-create-environment-console"></a>
