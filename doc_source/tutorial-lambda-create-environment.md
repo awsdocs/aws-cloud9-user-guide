@@ -49,6 +49,8 @@ Choosing a longer time period might result in more charges to your AWS account\.
 1. Choose **Next step**\.
 
 1. On the **Review** page, choose **Create environment**\. Wait while AWS Cloud9 creates your environment\. This can take several minutes\.
+**Note**  
+If account creation fails, a banner is displayed at the top of the console webpage\. Additionally, the card for the environment, if it exists, indicates that environment creation failed\.
 
 After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for the environment\.
 

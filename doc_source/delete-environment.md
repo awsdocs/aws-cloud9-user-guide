@@ -25,10 +25,14 @@ When you delete an environment, AWS Cloud9 deletes the environment permanently\.
 ![\[Deleting an environment from the environments list\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-delete-env-card.png)
 
 1. In the **Delete** dialog box, type `Delete`, and then choose **Delete**\.
+   + **EC2 environment**
 
-   If the environment was an EC2 environment, AWS Cloud9 also terminates the Amazon EC2 instance that was connected to that environment\.
+     AWS Cloud9 also terminates the Amazon EC2 instance that was connected to that environment\.
+**Note**  
+If account deletion fails, a banner is displayed at the top of the console webpage\. Additionally, the card for the environment, if it exists, indicates that environment deletion failed\.
+   + **SSH environment**
 
-   However, if the environment was an SSH environment, and that environment was connected to an Amazon EC2 instance, AWS Cloud9 doesn't terminate that instance\. If you don't terminate that instance later, your AWS account might continue to have ongoing charges for Amazon EC2 related to that instance\.
+     If the environment was connected to an Amazon EC2 instance, AWS Cloud9 doesn't terminate that instance\. If you don't terminate that instance later, your AWS account might continue to have ongoing charges for Amazon EC2 related to that instance\.
 
 1. If the environment was an SSH environment, AWS Cloud9 leaves behind a hidden subdirectory on the cloud compute instance or your own server that was connected to that environment\. You can now safely delete that subdirectory if you want to\. The subdirectory is named `.c9`\. It is located in the **Environment path** directory that you specified when you created the environment\.
 
