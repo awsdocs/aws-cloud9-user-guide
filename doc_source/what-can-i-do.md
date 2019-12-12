@@ -19,7 +19,7 @@ Explore the following resources to learn about using AWS Cloud9 for some common 
 |  Work with WordPress websites\.  |   [WordPress Sample for AWS Cloud9](sample-wordpress.md)   | 
 |  Work with code for Java and the AWS SDK for Java\.  |   [Java Sample for AWS Cloud9](sample-java.md)   | 
 |  Work with code for C\+\+ and the AWS SDK for C\+\+\.  |   [C\+\+ Sample for AWS Cloud9](sample-cplusplus.md)   | 
-|  Work with code for Python and the AWS SDK for Python \(Boto\)\.  |   [Python Sample for AWS Cloud9](sample-python.md)   | 
+|  Work with code for Python and the AWS SDK for Python \(Boto\)\.  |   [Python Tutorial for AWS Cloud9](sample-python.md)   | 
 |  Work with code for \.NET Core and the AWS SDK for \.NET\.  |   [\.NET Core Sample for AWS Cloud9](sample-dotnetcore.md)   | 
 |  Work with code for Node\.js and the AWS SDK for JavaScript\.  |   [Node\.js Sample for AWS Cloud9](sample-nodejs.md)   | 
 |  Work with code for PHP and the AWS SDK for PHP\.  |   [PHP Sample for AWS Cloud9](sample-php.md)   | 

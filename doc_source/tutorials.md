@@ -16,7 +16,7 @@ Experiment with these tutorials to increase your knowledge and confidence using 
 + [WordPress Sample](sample-wordpress.md)
 + [Java Sample](sample-java.md)
 + [C\+\+ Sample](sample-cplusplus.md)
-+ [Python Sample](sample-python.md)
++ [Python Tutorial](sample-python.md)
 + [\.NET Core Sample](sample-dotnetcore.md)
 + [Node\.js Sample](sample-nodejs.md)
 + [PHP Sample](sample-php.md)

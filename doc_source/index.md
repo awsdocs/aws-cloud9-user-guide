@@ -99,7 +99,7 @@ Amazon's trademarks and trade dress may not be used in
    + [WordPress Sample for AWS Cloud9](sample-wordpress.md)
    + [Java Sample for AWS Cloud9](sample-java.md)
    + [C++ Sample for AWS Cloud9](sample-cplusplus.md)
-   + [Python Sample for AWS Cloud9](sample-python.md)
+   + [Python Tutorial for AWS Cloud9](sample-python.md)
    + [.NET Core Sample for AWS Cloud9](sample-dotnetcore.md)
    + [Node.js Sample for AWS Cloud9](sample-nodejs.md)
    + [PHP Sample for AWS Cloud9](sample-php.md)

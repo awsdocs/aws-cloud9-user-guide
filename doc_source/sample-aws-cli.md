@@ -55,7 +55,7 @@ If you want to install the aws\-shell, do the following:
 
 1. To install the aws\-shell, you use pip\. To use pip, you must have Python installed\.
 
-   To check whether Python is already installed \(and to install it if needed\), follow the instructions in [Step 1: Install Required Tools](sample-python.md#sample-python-install) in the *Python Sample*, and then return to this topic\.
+   To check whether Python is already installed \(and to install it if needed\), follow the instructions in [Step 1: Install Python 3\.6](sample-python.md#sample-python-install) in the *Python Sample*, and then return to this topic\.
 
    To check whether pip is already installed, in the terminal, run the ** `pip --version` ** command\. If pip is installed, the version number is displayed\. If pip is not installed, install it by run these three commands, one at a time, in the terminal\.
 

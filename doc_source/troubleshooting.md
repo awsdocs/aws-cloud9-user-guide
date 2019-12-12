@@ -144,7 +144,7 @@ When you have finished troubleshooting, be sure to set the inbound rules to an a
  **Cause:** To work as expected, an SSH environment requires that Python version 2\.7 is installed\.
 
  **Solution:** Install Python version 2\.7 in the environment\. To check your version, from your server's terminal, run the command ** `python --version` **\. To install Python 2\.7 on your server, see one of the following:
-+  [Step 1: Install Required Tools](sample-python.md#sample-python-install) in the *Python Sample*\.
++  [Step 1: Install Python 3\.6](sample-python.md#sample-python-install) in the *Python Sample*\.
 +  [Download Python](https://www.python.org/downloads/) on the Python website and [Installing Packages](https://packaging.python.org/installing/) in the *Python Packaging User Guide*\.
 
 \([back to top](#troubleshooting)\)
