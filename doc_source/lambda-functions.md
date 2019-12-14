@@ -971,7 +971,7 @@ If you do not follow this procedure, the error "Parameters: \[ProjectId\] must h
 
 ### Upload Code for a Lambda Function That is Part of an AWS Serverless Application Repository Project with Parameters<a name="lambda-function-upload-code-sam-params"></a>
 
-If you [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](#lambda-functions-create-repo), and that project requires you to specify parameters during the upload, see coverage of the AWS CloudFormation `deploy` command in [](#lambda-functions-create-repo) for upload instructions\.
+If you [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](#lambda-functions-create-repo), and that project requires you to specify parameters during the upload, see coverage of the AWS CloudFormation `deploy` command in [Create and Deploy Lambda Functions with the AWS Serverless Application Repository](#lambda-functions-create-repo) for upload instructions\.
 
 If you do not follow that procedure, an error will display that required parameters are missing, and the code will not upload\.
 
@@ -1054,7 +1054,7 @@ To convert the local version of an existing Lambda function into a serverless ap
 ![\[Convert to SAM command in the Lambda section of the AWS Resources window\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-lambda-convert.png)
 
 AWS Cloud9 does the following:
-+ In the function's folder in the **Environment** window, the `DeploymentMethod` setting in the `.application.json` file changes from `lambda` to `cloudformation`\. This means that now AWS Cloud9 will instruct AWS SAM to use AWS CloudFormation whenever you use the IDE to upload the function's code as part of the serverless application\. \(`lambda` means that AWS Cloud9 will instruct Lambda to deploy the function instead\.\) To upload the function code, see [](#lambda-functions-upload-code)\.
++ In the function's folder in the **Environment** window, the `DeploymentMethod` setting in the `.application.json` file changes from `lambda` to `cloudformation`\. This means that now AWS Cloud9 will instruct AWS SAM to use AWS CloudFormation whenever you use the IDE to upload the function's code as part of the serverless application\. \(`lambda` means that AWS Cloud9 will instruct Lambda to deploy the function instead\.\) To upload the function code, see [Upload Code for a Lambda Function](#lambda-functions-upload-code)\.
 + In the **Lambda** section of the **AWS Resources** window, in the **Local Functions** list, AWS Cloud9 adds the existing Lambda function to a new serverless application \(represented by a Lambda icon inside of a folder\)\. The serverless application has the same name as the function\.
 
 When you upload the function's code as described in [Upload Code for a Lambda Function](#lambda-functions-upload-code), because the function upload method is no longer Lambda but now AWS SAM using AWS CloudFormation, AWS Cloud9 creates a new remote version of the function in Lambda and adds it to the **Remote Functions** list\. AWS Cloud9 gives the remote version a name that is different from the original Lambda function\. For example, if the serverless application and the function are both named `myDemoFunction`, the remote version name of your function would be `cloud9-myDemoFunction-myDemoFunction-RANDOM_ID`, where `RANDOM_ID` is a randomly determined ID\.
