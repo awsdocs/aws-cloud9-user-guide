@@ -170,13 +170,19 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
 
 |  **AWS Region**  |  **Domains**  | 
 | --- | --- | 
-| US East \(Ohio\) |   `*.vfs.cloud9.us-east-2.amazonaws.com`   `vfs.cloud9.us-east-2.amazonaws.com`   | 
 |  US East \(N\. Virginia\)  |   `*.vfs.cloud9.us-east-1.amazonaws.com`   `vfs.cloud9.us-east-1.amazonaws.com`   | 
+| US East \(Ohio\) |   `*.vfs.cloud9.us-east-2.amazonaws.com`   `vfs.cloud9.us-east-2.amazonaws.com`   | 
 | US West \(Oregon\) |   `*.vfs.cloud9.us-west-2.amazonaws.com`   `vfs.cloud9.us-west-2.amazonaws.com`   | 
+|  Asia Pacific \(Mumbai\)  |   `*.vfs.cloud9.ap-south-1.amazonaws.com`   `vfs.cloud9.ap-south-1.amazonaws.com`   | 
+|  Asia Pacific \(Seoul\)  |   `*.vfs.cloud9.ap-northeast-2.amazonaws.com`   `vfs.cloud9.ap-northeast-2.amazonaws.com`   | 
 |  Asia Pacific \(Singapore\)  |   `*.vfs.cloud9.ap-southeast-1.amazonaws.com`   `vfs.cloud9.ap-southeast-1.amazonaws.com`   | 
+|  Asia Pacific \(Sydney\)  |   `*.vfs.cloud9.ap-southeast-2.amazonaws.com`   `vfs.cloud9.ap-southeast-2.amazonaws.com`   | 
 |  Asia Pacific \(Tokyo\)  |   `*.vfs.cloud9.ap-northeast-1.amazonaws.com`   `vfs.cloud9.ap-northeast-1.amazonaws.com`   | 
+|  Canada \(Central\)  |   `*.vfs.cloud9.ca-central-1.amazonaws.com`   `vfs.cloud9.ca-central-1.amazonaws.com`   | 
 | Europe \(Frankfurt\) |   `*.vfs.cloud9.eu-central-1.amazonaws.com`   `vfs.cloud9.eu-central-1.amazonaws.com`   | 
 | Europe \(Ireland\) |   `*.vfs.cloud9.eu-west-1.amazonaws.com`   `vfs.cloud9.eu-west-1.amazonaws.com`   | 
+|  Europe \(London\)  |   `*.vfs.cloud9.eu-west-2.amazonaws.com`   `vfs.cloud9.eu-west-2.amazonaws.com`   | 
+|  Europe \(Stockholm\)  |   `*.vfs.cloud9.eu-north-1.amazonaws.com`   `vfs.cloud9.eu-north-1.amazonaws.com`   | 
 
 \([back to top](#troubleshooting)\)
 
