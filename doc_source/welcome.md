@@ -6,7 +6,7 @@ The AWS Cloud9 IDE offers a rich code\-editing experience with support for sever
 
 You access the AWS Cloud9 IDE through a web browser\. You can configure the IDE to your preferences\. You can switch color themes, bind shortcut keys, enable programming language\-specific syntax coloring and code formatting, and more\.
 
-\(Got it\! I'm ready to try AWS Cloud9\. [How Do I Get Started?](#how-to-get-started)\)
+\(**Got it\!** I'm ready to try AWS Cloud9\. [How Do I Get Started?](#how-to-get-started)\)
 
 ## How Does AWS Cloud9 Work?<a name="how-does-it-work"></a>
 

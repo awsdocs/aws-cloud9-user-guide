@@ -46,11 +46,15 @@ Choosing instance types with more RAM and vCPUs might result in additional charg
 **Warning**  
 Choosing a longer time period might result in more charges to your AWS account\.
 
+1. Add up to 50 tags by supplying a **Key** and a **Value** for each tag\. The tags will be attached to the AWS Cloud9 environment as resource tags, and are propagated to the following underlying resources: the AWS CloudFormation stack, the Amazon EC2 instance, and Amazon EC2 security groups\. You can find information about tags in [Control Access Using AWS Resource Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *[IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)*\. Also see the [advanced information](tags.md) about tags\.
+**Warning**  
+If you update these tags after you create them, the changes are NOT automatically propagated to the underlying resources\. For more information, see [Propagating Tag Updates to Underlying Resources](tags.md#tags-propagate) in the advanced information about [tags](tags.md)\.
+
 1. Choose **Next step**\.
 
 1. On the **Review** page, choose **Create environment**\. Wait while AWS Cloud9 creates your environment\. This can take several minutes\.
 **Note**  
-If account creation fails, a banner is displayed at the top of the console webpage\. Additionally, the card for the environment, if it exists, indicates that environment creation failed\.
+If account creation fails, a banner is displayed at the top of the console page\. Additionally, the card for the environment, if it exists, indicates that environment creation failed\.
 
 After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for the environment\.
 

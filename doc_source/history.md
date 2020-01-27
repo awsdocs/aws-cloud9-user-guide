@@ -8,6 +8,7 @@ The following table describes important changes to the *AWS Cloud9 User Guide* a
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Tags](tags.md) | Use tags to help you control access to AWS Cloud9 resources and help you manage billing information\. | January 22, 2020 | 
 | [Added Region support to AWS Cloud9](#history) | AWS Cloud9 is now also available in the following Regions: Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Sydney\), Canada \(Central\), Europe \(London\), Europe \(Stockholm\) | December 18, 2019 | 
 | [Updated: Troubleshooting, Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) | Third\-party cookies are no longer needed to open the IDE\. | November 6, 2019 | 
 | [Added: Troubleshooting, Third\-party cookies disabled](troubleshooting.md#troubleshooting-preview) | Although third\-party cookies are no longer needed to open the IDE, they are needed to use the Application Preview or File Preview features\. Information about this behavior has been added to the Troubleshooting topic\. | November 6, 2019 | 
