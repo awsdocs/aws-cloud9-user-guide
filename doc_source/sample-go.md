@@ -84,16 +84,16 @@ import (
 )
 
 func main() {
-  fmt.Printf("Hello, World!\n")
+  fmt.Println("Hello, World!")
 
-  fmt.Printf("The sum of 2 and 3 is 5.\n")
+  fmt.Println("The sum of 2 and 3 is 5")
 
   first, _ := strconv.Atoi(os.Args[1])
   second, _ := strconv.Atoi(os.Args[2])
   sum := first + second
 
-  fmt.Printf("The sum of %s and %s is %s.",
-    os.Args[1], os.Args[2], strconv.Itoa(sum))
+  fmt.Printf("The sum of %d and %d is %d.",
+    first, second, sum)
 }
 ```
 
