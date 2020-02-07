@@ -29,6 +29,7 @@ To invite a user to participate in an environment you own, follow one of these s
 +  [Change the Access Role of an Environment Member](#share-environment-change-access) 
 +  [Remove Your User From a Shared Environment](#share-environment-delete-you) 
 +  [Remove Another Environment Member](#share-environment-delete-member) 
++  [Scrolling in a Shared Terminal](#share-environment-scrolling) 
 +  [Environment Sharing Best Practices](#share-environment-best-practices) 
 
 ## Shared Environment Usage Scenarios<a name="share-environment-about"></a>
@@ -370,6 +371,31 @@ To use code to remove a member from an environment, call the AWS Cloud9 delete e
 |  AWS SDK for Ruby  |   [delete\_environment\_membership](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/Cloud9/Client.html#delete_environment_membership-instance_method)   | 
 |  AWS Tools for Windows PowerShell  |   [Remove\-C9EnvironmentMembership](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-C9EnvironmentMembership.html)   | 
 |  AWS Cloud9 API  |   [DeleteEnvironmentMembership](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_DeleteEnvironmentMembership.html)   | 
+
+## Scrolling in a Shared Terminal<a name="share-environment-scrolling"></a>
+
+A shared environment terminal window behaves like `tmux` (a terminal multiplexer, a successor to `screen`)\.
+The man page for tmux describes the default key bindings.  The copy mode allows for scrollback.
+
+http://man.openbsd.org/OpenBSD-current/man1/tmux.1#DEFAULT_KEY_BINDINGS
+
+>     DEFAULT KEY BINDINGS
+>         tmux may be controlled from an attached client by using a key combination of a prefix key,
+>         `C-b' (Ctrl-b) by default, followed by a command key.
+>
+>         The default command key bindings are:
+>     ...
+>               ?           List all key bindings.
+>     ...
+>               [           Enter copy mode to copy text or view the history.
+>     ...
+>               Page Up     Enter copy mode and scroll one page up.
+
+Typical usage:
+
+1. Enter copy mode - <kbd>Control</kbd>+<kbd>b</kbd> , <kbd>[</kbd>
+1. Scroll as needed with arrow keys <kbd>↑</kbd>, <kbd>↓</kbd>, <kbd>←</kbd>, and <kbd>→</kbd> and with <kbd>PageUp</kbd> and <kbd>PageDown</kbd>.
+1. To leave copy mode, press <kbd>ESC</kbd>.
 
 ## Environment Sharing Best Practices<a name="share-environment-best-practices"></a>
 
