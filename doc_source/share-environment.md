@@ -374,7 +374,7 @@ To use code to remove a member from an environment, call the AWS Cloud9 delete e
 
 ## Scrolling in a Shared Terminal<a name="share-environment-scrolling"></a>
 
-A shared environment terminal window behaves like `tmux` (a terminal multiplexer, a successor to `screen`)\.
+A shared environment terminal window behaves like a `tmux` session; `tmux` is a terminal multiplexer, a successor to `screen`)\.  
 The man page for tmux describes the default key bindings.  The copy mode allows for scrollback.
 
 http://man.openbsd.org/OpenBSD-current/man1/tmux.1#DEFAULT_KEY_BINDINGS
