@@ -27,7 +27,7 @@ To make it easier to use the following procedures, you can obtain the environmen
 
 You will need to propagate tag updates to one or more of the following locations, depending on what you'll use the tags for\.
 
-### Propagating Tag Updates through the AWS CloudFormation Stack<a name="w14aac25c25c15c11"></a>
+### Propagating Tag Updates to the AWS CloudFormation Stack<a name="w14aac25c25c15c11"></a>
 
 **Note**  
 When you update tags through the AWS CloudFormation stack, those updates are automatically propagated to the Amazon EC2 instance and Amazon EC2 security groups that are associated with the stack\.
