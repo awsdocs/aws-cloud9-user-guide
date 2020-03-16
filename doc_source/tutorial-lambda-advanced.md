@@ -168,7 +168,7 @@ In this step, you use the IDE to debug the function on the instance\. Currently,
 
 1. With the IDE still displayed for the environment, open the `index.js` file\.
 
-1. Create a breakpoint for the debugger\. To do this, in the editor, click inside the gutter next to the line of code that starts with `sns.publish` on line 45\. A red circle is displayed, representing the breakpoint\.
+1. Create a breakpoint for the debugger\. To do this, in the editor, click inside the gutter next to the line of code that starts with `sns.publish` on line 48\. A red circle is displayed, representing the breakpoint\.
 
 1. On the edge of the IDE, choose **Debugger**\.
 
