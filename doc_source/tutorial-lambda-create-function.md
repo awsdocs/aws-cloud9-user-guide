@@ -33,7 +33,7 @@ Currently, you can use the IDE to automatically create functions that use only N
 
 1. Choose **Next**\.
 
-1. For **Select runtime**, choose **Node\.js 6\.10**\.
+1. For **Select runtime**, choose **Node\.js 12\.x**\.
 
 1. For **Select blueprint**, choose **empty\-nodejs**\. This creates some starter code that you work with in the next step\.
 
