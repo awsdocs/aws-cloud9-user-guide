@@ -98,11 +98,20 @@ For more information about the preceding procedure, see [Changing the Instance T
      sleep 1
    done
    
+   DISK=/dev/xvda
+   FILESYSTEM=/dev/xvda1
+   
+   # Some instance types have nvme disk instead of xvda.
+   if [ ! -e "$DISK" ] && [ -e "/dev/nvme0n1" ]; then
+     DISK=/dev/nvme0n1
+     FILESYSTEM=/dev/nvme0n1p1
+   fi
+   
    # Rewrite the partition table so that the partition takes up all the space that it can.
-   sudo growpart /dev/xvda 1
+   sudo growpart $DISK 1
    
    # Expand the size of the file system.
-   sudo resize2fs /dev/xvda1
+   sudo resize2fs $FILESYSTEM
    ```
 
    For Ubuntu Server:
@@ -130,11 +139,20 @@ For more information about the preceding procedure, see [Changing the Instance T
      sleep 1
    done
    
+   DISK=/dev/xvda
+   FILESYSTEM=/dev/xvda1
+   
+   # Some instance types have nvme disk instead of xvda.
+   if [ ! -e "$DISK" ] && [ -e "/dev/nvme0n1" ]; then
+     DISK=/dev/nvme0n1
+     FILESYSTEM=/dev/nvme0n1p1
+   fi
+   
    # Rewrite the partition table so that the partition takes up all the space that it can.
-   sudo growpart /dev/xvda 1
+   sudo growpart $DISK 1
    
    # Expand the size of the file system.
-   sudo resize2fs /dev/xvda1
+   sudo resize2fs $FILESYSTEM
    ```
 
 1. From a terminal session in the IDE, switch to the directory that contains the `resize.sh` file\. Then run the following command, replacing 20 with the desired size in GiB to resize the Amazon EBS volume to\.
