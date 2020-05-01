@@ -137,9 +137,17 @@ Add code that uses Amazon S3 to create a bucket, list your available buckets, an
 In the AWS Cloud9 IDE, create a file with the following content and save the file with the name `s3.py`\.
 
 ```
-import boto3
 import sys
+import boto3
 from botocore.exceptions import ClientError
+
+
+def get_s3(region=None):
+    """
+    Get a Boto 3 Amazon S3 resource with a specific AWS Region or with your
+    default AWS Region.
+    """
+    return boto3.resource('s3', region_name=region) if region else boto3.resource('s3')
 
 
 def list_my_buckets(s3):
@@ -147,7 +155,7 @@ def list_my_buckets(s3):
 
 
 def create_and_delete_my_bucket(bucket_name, region, keep_bucket):
-    s3 = boto3.resource('s3', region_name=region)
+    s3 = get_s3(region)
 
     list_my_buckets(s3)
 
@@ -182,7 +190,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('bucket_name', help='The name of the bucket to create.')
     parser.add_argument('region', help='The region in which to create your bucket.')
-    parser.add_argument('--keep_bucket', help='Keeps the created bucket. When not specified, the bucket is deleted.',
+    parser.add_argument('--keep_bucket', help='Keeps the created bucket. When not '
+                                              'specified, the bucket is deleted '
+                                              'at the end of the demo.',
                         action='store_true')
 
     args = parser.parse_args()

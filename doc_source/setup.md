@@ -218,7 +218,7 @@ We recommend that you add only a limited number of users to the AWS Cloud9 admin
 **Note**  
 If you have more than one group you want to add AWS Cloud9 access permissions to, repeat this procedure for each of those groups\.
 
-To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](auth-and-access-control.md#auth-and-access-control-managed-policies)\.
+To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies)\.
 
 To learn about AWS access permissions that you can add to a group in addition to access permissions that are required by AWS Cloud9, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) and [Understanding Permissions Granted by a Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_understand.html) in the *IAM User Guide*\.
 
@@ -266,7 +266,7 @@ We recommend that you add only a limited number of users to the AWS Cloud9 admin
 **Note**  
 If you have more than one group you want to add AWS Cloud9 access permissions to, repeat this procedure for each of those groups\.
 
-To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](auth-and-access-control.md#auth-and-access-control-managed-policies)\.
+To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies)\.
 
 To learn about AWS access permissions that you can add to a group in addition to access permissions that are required by AWS Cloud9, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) and [Understanding Permissions Granted by a Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_understand.html) in the *IAM User Guide*\.
 

@@ -71,7 +71,12 @@ For more information about the preceding procedure, see [Changing the Instance T
 
 1. Open the environment that is associated with the Amazon EC2 instance for the Amazon EBS volume that you want to resize\.
 
-1. In the AWS Cloud9 IDE for the environment, create a file with the following contents, and then save the file with the extension `.sh`, for example, `resize.sh`\.
+1. In the AWS Cloud9 IDE for the environment, create a file with the following contents, and then save the file with the extension `.sh` \(`resize.sh`, for example\)\.
+**Note**  
+If you're using Amazon EBS volumes exposed as NVMe block devices on Nitro\-based instances, make the following changes in the script provided below:  
+Replace `sudo growpart /dev/xvda 1` with `sudo growpart /dev/nvme0n1`\.
+Replace `sudo resize2fs /dev/xdva1` with `sudo resize2fs /dev/nvme0n1p1`\.
+For a list of instances based on the Nitro system, see [Nitro\-based Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    For Amazon Linux:
 

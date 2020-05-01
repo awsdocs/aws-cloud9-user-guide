@@ -27,10 +27,10 @@ To make it easier to use the following procedures, you can obtain the environmen
 
 You will need to propagate tag updates to one or more of the following locations, depending on what you'll use the tags for\.
 
-### Propagating Tag Updates through the AWS CloudFormation Stack<a name="w14aac25c25c15c11"></a>
+### Propagating Tag Updates to the AWS CloudFormation Stack<a name="w26aac25c27c15c11"></a>
 
 **Note**  
-When you update tags through the AWS CloudFormation stack, those updates are automatically propagated to the Amazon EC2 instance and Amazon EC2 security groups that are associated with the stack\.
+When you update tags to the AWS CloudFormation stack, those updates are automatically propagated to the Amazon EC2 instance and Amazon EC2 security groups that are associated with the stack\.
 
 1. Navigate to the [AWS CloudFormation console\.](https://console.aws.amazon.com/cloudformation)
 
@@ -42,7 +42,7 @@ When you update tags through the AWS CloudFormation stack, those updates are aut
 
 You can also update tags using the [https://docs.aws.amazon.com/cli/latest/reference/cloudformation/describe-stacks.html](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/describe-stacks.html) and [https://docs.aws.amazon.com/cli/latest/reference/cloudformation/update-stack.html](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/update-stack.html) CLI commands\.
 
-### Propagating Tag Updates to the Amazon EC2 Instance<a name="w14aac25c25c15c13"></a>
+### Propagating Tag Updates to the Amazon EC2 Instance<a name="w26aac25c27c15c13"></a>
 
 1. Navigate to the [Amazon EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances) console\.
 
@@ -52,7 +52,7 @@ You can also update tags using the [https://docs.aws.amazon.com/cli/latest/refer
 
 You can also update tags using the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html), [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html), and [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html) CLI commands\.
 
-### Propagating Tag Updates to Amazon EC2 Security Groups<a name="w14aac25c25c15c15"></a>
+### Propagating Tag Updates to Amazon EC2 Security Groups<a name="w26aac25c27c15c15"></a>
 
 1. Navigate to the [Amazon EC2 Security Groups](https://console.aws.amazon.com/ec2/home#SecurityGroups) console\.
 

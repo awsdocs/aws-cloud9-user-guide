@@ -287,7 +287,7 @@ For an AWS Cloud9 users group, detach the `AWSCloud9User` managed policy from th
 
 Note that the preceding customer\-managed policy allows those users to create SSH environments\. To prevent those users from creating SSH environments altogether, remove `"cloud9:CreateEnvironmentSSH",` from the preceding customer\-managed policy\.
 
-For additional examples, see the [Customer\-Managed Policy Examples](auth-and-access-control.md#auth-and-access-control-customer-policies-examples) in [Authentication and Access Control](auth-and-access-control.md)\.
+For additional examples, see [Customer\-Managed Policy Examples](auth-and-access-control.md#auth-and-access-control-customer-policies-examples)\.
 
 ## Next Steps<a name="setup-teams-next-steps"></a>
 

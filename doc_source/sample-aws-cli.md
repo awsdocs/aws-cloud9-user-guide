@@ -27,7 +27,7 @@ Before you use this sample, be sure to meet the following requirements\.
 
 In this step, you use the AWS Cloud9 IDE to install the AWS CLI, the aws\-shell, or both in your environment so you can run commands to interact with AWS\.
 
-If you are using an AWS Cloud9 EC2 development environment and you only want to use the AWS CLI, you can skip ahead to [Step 3: Run Some Basic Commands with the AWS CLI or the aws\-shell in Your Environment](#sample-aws-cli-run)\. This is because the AWS CLI is already installed in an EC2 environment, and a set of AWS access credentials is already set up in the environment\. For more information, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.
+If you are using an AWS Cloud9 EC2 development environment and you only want to use the AWS CLI, you can skip ahead to [Step 3: Run Some Basic Commands with the AWS CLI or the aws\-shell in Your Environment](#sample-aws-cli-run)\. This is because the AWS CLI is already installed in an EC2 environment, and a set of AWS access credentials is already set up in the environment\. For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.
 
 If you are not using an EC2 environment, do the following to install the AWS CLI:
 
@@ -75,7 +75,7 @@ If you want to install the aws\-shell, do the following:
 
 Each time you use the AWS CLI or the aws\-shell to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS CLI or the aws\-shell has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-If you are using an AWS Cloud9 EC2 development environment, you can skip ahead to [Step 3: Run Some Basic Commands with the AWS CLI or the aws\-shell in Your Environment](#sample-aws-cli-run)\. This is because credentials are already set up in an EC2 environment\. For more information, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.
+If you are using an AWS Cloud9 EC2 development environment, you can skip ahead to [Step 3: Run Some Basic Commands with the AWS CLI or the aws\-shell in Your Environment](#sample-aws-cli-run)\. This is because credentials are already set up in an EC2 environment\. For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.
 
 If you are not using an EC2 environment, you must manually store your credentials within the environment\. To do this, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 

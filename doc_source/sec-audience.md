@@ -1,0 +1,9 @@
+# Audience<a name="sec-audience"></a>
+
+How you use AWS Identity and Access Management \(IAM\) differs, depending on the work you do in AWS Cloud9\.
+
+**Service user** \- If you use the AWS Cloud9 service to do your job, then your administrator provides you with the credentials and permissions that you need\. As you use more AWS Cloud9 features to do your work, you might need additional permissions\. Understanding how access is managed can help you request the right permissions from your administrator\. If you cannot access a feature in AWS Cloud9, see [Troubleshooting AWS Cloud9](troubleshooting.md)\.
+
+**Service administrator** \- If you're in charge of AWS Cloud9 resources at your company, you probably have full access to AWS Cloud9\. It's your job to determine which AWS Cloud9 features and resources your employees should access\. You must then submit requests to your IAM administrator to change the permissions of your service users\. Review the information on this page to understand the basic concepts of IAM\. To learn more about how your company can use IAM with AWS Cloud9, see [How AWS Cloud9 works with IAM](how-cloud9-with-iam.md)\.
+
+**IAM administrator** \- If you use the AWS Cloud9 service to do your job, then your administrator provides you with the credentials and permissions that you need\. As you use more AWS Cloud9 features to do your work, you might need additional permissions\. Understanding how access is managed can help you request the right permissions from your administrator\. If you cannot access a feature in AWS Cloud9, see [Troubleshooting AWS Cloud9](troubleshooting.md)\.

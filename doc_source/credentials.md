@@ -16,7 +16,7 @@ There are several ways to provide credentials to your environment\. The followin
 
 | Environment type | Approach | 
 | --- | --- | 
-|  EC2  |  Use AWS managed temporary credentials\. We recommend this approach for an EC2 environment\. AWS managed temporary credentials manage AWS access credentials in an EC2 environment on your behalf, while also following AWS security best practices\.  **If you are using an EC2 environment, you can skip the rest of this topic, as AWS managed temporary credentials are already set up for you in the environment\.**  For more information, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.  | 
+|  EC2  |  Use AWS managed temporary credentials\. We recommend this approach for an EC2 environment\. AWS managed temporary credentials manage AWS access credentials in an EC2 environment on your behalf, while also following AWS security best practices\.  **If you are using an EC2 environment, you can skip the rest of this topic, as AWS managed temporary credentials are already set up for you in the environment\.**  For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.  | 
 |  EC2  |  Attach an IAM instance profile to the instance\. You should only use this approach if for some reason you can't use AWS managed temporary credentials\. Similar to AWS managed temporary credentials, an instance profile manages AWS access credentials on your behalf\. However, you must create, manage, and attach the instance profile to the Amazon EC2 instance yourself\. For instructions, see [Create and Use an Instance Profile to Manage Temporary Credentials](#credentials-temporary)\.  | 
 |  EC2 or SSH  |  Store your permanent AWS access credentials within the environment\. This approach is less secure than using temporary AWS access credentials\. However, it is the only supported approach for an SSH environment\. For instructions, see [Create and Store Permanent Access Credentials in an Environment](#credentials-permanent-create)\.  | 
 |  EC2 or SSH  |  Insert your permanent AWS access credentials directly into your code\. We discourage this approach because it doesn't follow AWS security best practices\. Because we discourage this approach, we do not cover it in this topic\.  | 
@@ -25,7 +25,7 @@ There are several ways to provide credentials to your environment\. The followin
 
 **Note**  
 You cannot use this procedure for an AWS Cloud9 SSH development environment\. Instead, skip ahead to [Create and Store Permanent Access Credentials in an Environment](#credentials-permanent-create)\.  
-We recommend using AWS managed temporary credentials instead of an instance profile\. Follow these instructions only if for some reason you cannot use AWS managed temporary credentials\. For more information, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.
+We recommend using AWS managed temporary credentials instead of an instance profile\. Follow these instructions only if for some reason you cannot use AWS managed temporary credentials\. For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.
 
 In this procedure, you will use IAM and Amazon EC2 to create and attach an IAM instance profile to the Amazon EC2 instance that connects to your environment\. This instance profile will manage temporary credentials on your behalf\. This procedure assumes you have already created a environment in AWS Cloud9\. To create a environment, see [Create an Environment](create-environment.md)\.
 
@@ -169,7 +169,7 @@ You can now start calling AWS services from your environment\. To use the AWS CL
 ## Create and Store Permanent Access Credentials in an Environment<a name="credentials-permanent-create"></a>
 
 **Note**  
-If you are using an AWS Cloud9 EC2 development environment, we recommend you use AWS managed temporary credentials instead of AWS permanent access credentials\. To work with AWS managed temporary credentials, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.
+If you are using an AWS Cloud9 EC2 development environment, we recommend you use AWS managed temporary credentials instead of AWS permanent access credentials\. To work with AWS managed temporary credentials, see [AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.
 
 In this section, you use AWS Identity and Access Management \(IAM\) to generate a set of permanent credentials that the AWS CLI, the aws\-shell, or your code can use when calling AWS services\. This set includes an AWS access key ID and an AWS secret access key, which are unique to your user in your AWS account\. If you already have an AWS access key ID and an AWS secret access key, note those credentials, and then skip ahead to [Store Permanent Access Credentials in an Environment](#credentials-permanent-create-store)\.
 

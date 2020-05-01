@@ -107,7 +107,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Recommended solutions:** 
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
   +  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
-  +  [AWS Managed \(Predefined\) Policies for AWS Cloud9](auth-and-access-control.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
+  +  [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies) in *Authentication and Access Control* 
   +  [Customer\-Managed Policy Examples for Teams Using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
   +  [Customer\-Managed Policy Examples](auth-and-access-control.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
   +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
@@ -280,14 +280,14 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
  **Issue:** When you try to use the AWS Command Line Interface \(AWS CLI\) or the aws\-shell to run a command in the AWS Cloud9 IDE for an EC2 environment, an error displays: "The security token included in the request is invalid\."
 
  **Possible causes:** 
-+ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those AWS managed temporary credentials\. For a list of allowed commands, see [Actions Supported by AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials-supported)\.
++ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those AWS managed temporary credentials\. For a list of allowed commands, see [Actions supported by AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials-supported)\.
 + If you have AWS managed temporary credentials enabled and the environment is a shared environment, the environment owner has not opened the environment within the past 12 hours so that AWS Cloud9 can refresh AWS managed temporary credentials in the environment\. \(AWS Cloud9 sets this 12\-hour limit as an AWS security best practice\.\)
 
  **Recommended solutions:** 
 + If you have AWS managed temporary credentials enabled, run allowed commands only\. If you must run a command that is not allowed by AWS managed temporary credentials, one approach would be to configure the AWS CLI or aws\-shell in the environment with a set of permanent credentials, which removes this limitation\. For instructions, see [Create and Store Permanent Access Credentials in an Environment](credentials.md#credentials-permanent-create)\.
 + Have the environment owner open the environment so that AWS Cloud9 can refresh temporary credentials in the environment\.
 
-For more information, see [AWS Managed Temporary Credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials)\.
+For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.
 
 \([back to top](#troubleshooting)\)
 
