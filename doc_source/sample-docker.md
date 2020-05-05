@@ -120,9 +120,7 @@ In this step, you use a Dockerfile to build a Docker image onto the instance\. T
 
    1. Type `:wq` \(to write to the `/tmp/Dockerfile` file, save the file, and then exit ** `vi` **\), and then press `Enter`\.
 **Note**  
-Some additional Docker images are available in the [c9/templates](https://github.com/c9/templates) repository on the GitHub website\. The following table lists the available images and their content and definitions\. To use a different Docker image from this repository, replace `cloud9/ws-nodejs` in the Dockerfile with one of the following image IDs\.    
-****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/sample-docker.html)
+You can access a frequently updated list of Docker images from AWS CodeBuild\. For more information, see [Docker images provided by CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html) in the *AWS CodeBuild User Guide*\.
 
 1. On the instance, create a file that contains the AWS Cloud9 SSH public key for the Docker container to use\. To do this, in the same directory as the `Dockerfile` file, create a file named `authorized_keys`, for example, by running the ** `touch` ** command\.
 

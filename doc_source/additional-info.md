@@ -6,7 +6,6 @@ This topic provides more information to help you learn about AWS Cloud9\.
 + [Related Videos](#related-videos)
 + [Related Topics on the AWS Site](#related-web-pages)
 + [Pricing](#pricing)
-+ [About Cloud9 Versions](#versions)
 + [I Have Additional Questions or Need Help](#questions-help)
 
 ## Related Videos<a name="related-videos"></a>
@@ -35,14 +34,6 @@ For more information, see the following\.
 + AWS service pricing: See [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/), [Amazon EBS Pricing](https://aws.amazon.com/ebs/pricing/), [AWS Lambda Pricing](https://aws.amazon.com/lambda/pricing/), and [AWS Pricing](https://aws.amazon.com/pricing/)\.
 + The AWS Free Tier: See [Using the AWS Free Tier](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html) and [Tracking Your Free Tier Usage](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html) in the *AWS Billing and Cost Management User Guide*\.
 + Educational pricing: See the [AWS Educate](https://aws.amazon.com/education/awseducate/) program\.
-
-## About Cloud9 Versions<a name="versions"></a>
-
-**There are two versions of Cloud9**: *c9\.io* and *AWS Cloud9*\. This *AWS Cloud9 User Guide* covers only AWS Cloud9\.
-
-**c9\.io is available only to existing c9\.io users**, with limited functionality and for only a limited amount of time\. For information about the current and future state of c9\.io, see [Cloud9 now runs on and integrates with AWS](https://c9.io/announcement) on the c9\.io website\.
-
-**c9\.io and AWS Cloud9 are not interoperable**\. You can't use an account or workspace in c9\.io with an account or environment in AWS Cloud9\.
 
 ## I Have Additional Questions or Need Help<a name="questions-help"></a>
 
