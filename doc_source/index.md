@@ -119,7 +119,7 @@ Amazon's trademarks and trade dress may not be used in
    + [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)
    + [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)
    + [Using the AWS Cloud9 Installer](installer.md)
-   + [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)
+   + [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)
    + [Amazon Machine Image (AMI) Contents for an AWS Cloud9 EC2 Development Environment](ami-contents.md)
    + [Access Permissions Reference for AWS Cloud9](auth-and-access-control.md)
    + [Using Service-Linked Roles for AWS Cloud9](using-service-linked-roles.md)

@@ -56,6 +56,6 @@ To connect to your own server to verify and meet requirements, you could search 
   sudo chmod u=rwx,g=rx,o=rx ~
   ```
 +  [Download and run the AWS Cloud9 Installer](installer.md#installer-download-run) on the existing instance or server\.
-+ Optionally, you can restrict inbound traffic over SSH to only the IP addresses that AWS Cloud9 uses\. To do this, set inbound SSH traffic to the IP ranges as described in [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
++ Optionally, you can restrict inbound traffic over SSH to only the IP addresses that AWS Cloud9 uses\. To do this, set inbound SSH traffic to the IP ranges as described in [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
 
 After you are sure your instance or server meets the preceding requirements, [create an SSH environment](create-environment-ssh.md) for AWS Cloud9 to connect it to\.

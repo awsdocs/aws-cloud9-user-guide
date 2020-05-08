@@ -244,9 +244,9 @@ aws ec2 describe-security-groups --output table --region us-east-2 --group-ids s
 In the preceding command, replace `us-east-2` with the AWS Region that contains the instance, and replace `sg-12a3b456` with the security group ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
 ### Minimum Inbound and Outbound Traffic Settings for AWS Cloud9<a name="vpc-settings-requirements-traffic-settings"></a>
-+  **Inbound**: All IP addresses using SSH over port 22\. However, you can restrict these IP addresses to only those that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
++  **Inbound**: All IP addresses using SSH over port 22\. However, you can restrict these IP addresses to only those that AWS Cloud9 uses\. For more information, see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
 **Note**  
-For EC2 environments created on or after July 31 2018, AWS Cloud9 uses security groups to automatically restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
+For EC2 environments created on or after July 31 2018, AWS Cloud9 uses security groups to automatically restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
 +  **Inbound \(network ACLs only\)**: For EC2 environments, and for SSH environments associated with Amazon EC2 instances running Amazon Linux or Ubuntu Server, all IP addresses using TCP over ports 32768\-61000\. For more information, and for port ranges for other Amazon EC2 instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports) in the *Amazon VPC User Guide*\.
 +  **Outbound**: All traffic sources using any protocol and port\.
 
@@ -261,10 +261,10 @@ Inbound rules:
 
 |  **Type**  |  **Protocol**  |  **Port Range**  |  **Source**  | 
 | --- | --- | --- | --- | 
-|  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see the following note and [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.\)  | 
+|  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see the following note and [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.\)  | 
 
 **Note**  
-For EC2 environments created on or after July 31 2018, AWS Cloud9 automatically adds an inbound rule to restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
+For EC2 environments created on or after July 31 2018, AWS Cloud9 automatically adds an inbound rule to restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
 
 Outbound rules:
 
@@ -284,7 +284,7 @@ Inbound rules:
 
 |  **Rule \#**  |  **Type**  |  **Protocol**  |  **Port Range**  |  **Source**  |  **Allow / Deny**  | 
 | --- | --- | --- | --- | --- | --- | 
-|  100  |  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.\)  |  ALLOW  | 
+|  100  |  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.\)  |  ALLOW  | 
 |  200  |  Custom TCP Rule  |  TCP \(6\)  |  32768\-61000 \(For Amazon Linux and Ubuntu Server instances\. For other instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports)\.\)  |  0\.0\.0\.0/0  |  ALLOW  | 
 |   `*`   |  ALL Traffic  |  ALL  |  ALL  |  0\.0\.0\.0/0  |  DENY  | 
 
@@ -422,7 +422,7 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
    1. For **Rule \# 100**, for **Type**, choose **SSH \(22\)**\.
 
-   1. For **Source**, type one of the CIDR blocks in the [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md) list that matches the AWS Region for this VPC\.
+   1. For **Source**, type one of the CIDR blocks in the [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md) list that matches the AWS Region for this VPC\.
 
    1. Choose **Add another rule**\.
 
@@ -430,7 +430,7 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
    1. For **Type**, choose **SSH \(22\)**\.
 
-   1. For **Source**, type the other CIDR block in the [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md) list that matches the AWS Region for this VPC\.
+   1. For **Source**, type the other CIDR block in the [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md) list that matches the AWS Region for this VPC\.
 
    1. At minimum, you must also allow incoming traffic from all IP addresses using TCP over ports 32768\-61000 for Amazon Linux and Ubuntu Server instance types\. \(For background, and for port ranges for other Amazon EC2 instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports) in the *Amazon VPC User Guide*\)\. To do this, choose **Add another rule**\.
 

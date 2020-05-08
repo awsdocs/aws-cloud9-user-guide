@@ -121,7 +121,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
     For additional VPC troubleshooting steps, watch the related 5\-minute video [AWS Knowledge Center Videos: What can I check if I cannot connect to an instance in a VPC?](https://www.youtube.com/watch?v=--BoDeCF5Dw) on the YouTube website\.
 **Warning**  
-When you have finished troubleshooting, be sure to set the inbound rules to an appropriate address range, as described in [Inbound SSH IP Address Ranges for AWS Cloud9](ip-ranges.md)\.
+When you have finished troubleshooting, be sure to set the inbound rules to an appropriate address range, as described in [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
   + Restart the instance, make sure the instance is running and has passed all system checks, and then try opening the environment again\. For details, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and [Viewing Status Checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#viewing_status) in the *Amazon EC2 User Guide for Linux Instances*\.
 + If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)\.
 
@@ -172,7 +172,9 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
 | --- | --- | 
 |  US East \(N\. Virginia\)  |   `*.vfs.cloud9.us-east-1.amazonaws.com`   `vfs.cloud9.us-east-1.amazonaws.com`   | 
 | US East \(Ohio\) |   `*.vfs.cloud9.us-east-2.amazonaws.com`   `vfs.cloud9.us-east-2.amazonaws.com`   | 
+| US West \(N\. California\) |   `*.vfs.cloud9.us-west-1.amazonaws.com`   `vfs.cloud9.us-west-1.amazonaws.com`   | 
 | US West \(Oregon\) |   `*.vfs.cloud9.us-west-2.amazonaws.com`   `vfs.cloud9.us-west-2.amazonaws.com`   | 
+|  Asia Pacific \(Hong Kong\)  |   `*.vfs.cloud9.ap-east-1.amazonaws.com`   `vfs.cloud9.ap-east-1.amazonaws.com`   | 
 |  Asia Pacific \(Mumbai\)  |   `*.vfs.cloud9.ap-south-1.amazonaws.com`   `vfs.cloud9.ap-south-1.amazonaws.com`   | 
 |  Asia Pacific \(Seoul\)  |   `*.vfs.cloud9.ap-northeast-2.amazonaws.com`   `vfs.cloud9.ap-northeast-2.amazonaws.com`   | 
 |  Asia Pacific \(Singapore\)  |   `*.vfs.cloud9.ap-southeast-1.amazonaws.com`   `vfs.cloud9.ap-southeast-1.amazonaws.com`   | 
@@ -182,7 +184,10 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
 | Europe \(Frankfurt\) |   `*.vfs.cloud9.eu-central-1.amazonaws.com`   `vfs.cloud9.eu-central-1.amazonaws.com`   | 
 | Europe \(Ireland\) |   `*.vfs.cloud9.eu-west-1.amazonaws.com`   `vfs.cloud9.eu-west-1.amazonaws.com`   | 
 |  Europe \(London\)  |   `*.vfs.cloud9.eu-west-2.amazonaws.com`   `vfs.cloud9.eu-west-2.amazonaws.com`   | 
+|  Europe \(Paris\)  |   `*.vfs.cloud9.eu-west-3.amazonaws.com`   `vfs.cloud9.eu-west-3.amazonaws.com`   | 
 |  Europe \(Stockholm\)  |   `*.vfs.cloud9.eu-north-1.amazonaws.com`   `vfs.cloud9.eu-north-1.amazonaws.com`   | 
+|  Middle East \(Bahrain\)  |   `*.vfs.cloud9.me-south-1.amazonaws.com`   `vfs.cloud9.me-south-1.amazonaws.com`   | 
+|  South America \(São Paulo\)  |   `*.vfs.cloud9.sa-east-1.amazonaws.com`   `vfs.cloud9.sa-east-1.amazonaws.com`   | 
 
 \([back to top](#troubleshooting)\)
 

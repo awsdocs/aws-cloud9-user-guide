@@ -1,11 +1,16 @@
-# Inbound SSH IP Address Ranges for AWS Cloud9<a name="ip-ranges"></a>
+# Inbound SSH IP address ranges for AWS Cloud9<a name="ip-ranges"></a>
 
 You can restrict incoming traffic to just the IP address ranges that AWS Cloud9 uses to connect over SSH to AWS cloud compute instances \(for example Amazon EC2 instances\) in an Amazon VPC or your own servers in your network\.
 
 **Note**  
 For an EC2 environment created on or after July 31 2018, you can skip this topic\. This is because AWS Cloud9 automatically restricts inbound SSH traffic for that environment to only those IP addresses that are described later in this topic\. AWS Cloud9 does this by automatically adding a rule to the security group that is associated with the Amazon EC2 instance for the environment\. This rule restricts inbound SSH traffic over port 22 to only those IP addresses for the associated AWS Region\.
 
-These IP address ranges are in the `ip-ranges.json` file, as described in [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *AWS General Reference*\. To find the IP ranges in that file:
+IP address ranges for most AWS Regions are in the `ip-ranges.json` file, as described in [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *AWS General Reference*\.
+
+**Note**  
+ See [below](#non-file-IP) for IP address ranges for the Asia Pacific \(Hong Kong\)  and Middle East \(Bahrain\) Regions that are not currently included in the `ip-ranges.json` file\. 
+
+ To find the IP ranges in the `ip-ranges.json` file:
 + For Windows, using the AWS Tools for Windows PowerShell, run the following command\.
 
   ```
@@ -22,3 +27,16 @@ These IP ranges might change occasionally\. Whenever there's a change, we send n
 To use these IP address ranges when configuring environments that use AWS cloud compute instances, see [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\. Also, if you choose to restrict incoming traffic for EC2 environments, or for SSH environments associated with Amazon EC2 instances running Amazon Linux or Ubuntu Server, be sure to also allow at minimum all IP addresses using TCP over ports 32768\-61000\. For more information, as well as port ranges for other AWS cloud compute instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports) in the *Amazon VPC User Guide*\.
 
 To use these IP address ranges when configuring SSH environments that use your own network, see your network's documentation or your network administrator\.
+
+## IP addresses not in `ip-ranges.json`<a name="non-file-IP"></a>
+
+AWS Cloud9 IP address ranges for the following AWS Regions are currently not provided in the `ip-ranges.json` file: Asia Pacific \(Hong Kong\) and Middle East \(Bahrain\)\. The table below lists the IP ranges for those Regions\.
+
+**Note**  
+Each region has two IP address ranges to support AWS Cloud9's control plane \(information routing\) and data plane \(information processing\) services\. 
+
+
+| AWS Region | Code | IP ranges \(CIDR notation\) | 
+| --- | --- | --- | 
+|  Asia Pacific \(Hong Kong\)  |  `ap-east1`  |  `18.163.201.96/27` `18.163.139.32/27`  | 
+|  Middle East \(Bahrain\)  |  `me-south-1`  |  `15.185.141.160/27` `15.185.91.32/27`  | 

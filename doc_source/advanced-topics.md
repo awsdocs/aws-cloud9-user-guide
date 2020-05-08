@@ -9,7 +9,7 @@
 + [Amazon VPC Settings](vpc-settings.md)
 + [SSH Environment Host Requirements](ssh-settings.md)
 + [AWS Cloud9 Installer](installer.md)
-+ [Inbound SSH IP Address Ranges](ip-ranges.md)
++ [Inbound SSH IP address ranges](ip-ranges.md)
 + [AMI Contents](ami-contents.md)
 + [Authentication and Access Control](auth-and-access-control.md)
 + [Using Service\-Linked Roles](using-service-linked-roles.md)
