@@ -5,7 +5,7 @@ You create an AWS Cloud9 SSH development environment with the AWS Cloud9 console
 ## Prerequisites<a name="prerequisites"></a>
 + Make sure you completed the steps in [Setting Up AWS Cloud9](setting-up.md) first, so that you can sign in to the AWS Cloud9 console and create environments\.
 + Identify an existing cloud compute instance \(for example an Amazon EC2 instance in your AWS account\), or your own server, that you want AWS Cloud9 to connect to the environment\.
-+ Make sure that the existing instance or your own server meets all of the [SSH Host Requirements](ssh-settings.md#ssh-settings-requirements)\. This includes having specific versions of Python, Node\.js, and other components installed; setting specific permissions on the directory that you want AWS Cloud9 to start from after login; and setting up any associated Amazon Virtual Private Cloud\.
++ Make sure that the existing instance or your own server meets all of the [SSH host requirements](ssh-settings.md#ssh-settings-requirements)\. This includes having specific versions of Python, Node\.js, and other components installed; setting specific permissions on the directory that you want AWS Cloud9 to start from after login; and setting up any associated Amazon Virtual Private Cloud\.
 
 ## Create the SSH Environment<a name="create-the-envsshtitle"></a>
 

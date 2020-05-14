@@ -50,7 +50,7 @@ Currently, you can use the IDE to create functions that use only Node\.js or Pyt
 
 1. Choose **Next**\.
 
-1. For **Select runtime**, choose **Node\.js 6\.10**\.
+1. For **Select runtime**, choose **Node\.js 12\.x**\.
 
 1. For **Select blueprint**, choose **sns\-send\-message**\. \(You might need to scroll through the list of blueprints to see it\.\)
 

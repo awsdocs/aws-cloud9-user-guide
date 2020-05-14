@@ -17,12 +17,12 @@ The AWS Cloud9 IDE supports many programming languages\. The following table lis
 |  HTML  |  X  |  X  |  X  |  |  X  |  | 
 |  Java  |  X  |  |  X  |  |  X 5   |  | 
 |  JavaScript  |  X  |  X  |  X  |  X  |  X  |  | 
-|  Node\.js6  |  X  |  X  |  X  |  X  |  X  |  X   | 
-|  PHP  |  X  |  X  |  X  |  X  |  X 7   |  X  | 
-|  Python  |  X  |  X  |  X  |  X  |  X 8   |  X  | 
+|  Node\.js  |  X  |  X  |  X  |  X  |  X  |  X   | 
+|  PHP  |  X  |  X  |  X  |  X  |  X 6   |  X  | 
+|  Python  |  X  |  X  |  X  |  X  |  X 7   |  X  | 
 |  Ruby  |  X  |  X  |  X  |  X  |  X 5   |  | 
 |  Shell script  |  X  |  X  |  X  |  X  |  X 5   |  | 
-|  TypeScript9  |  X  |  X  |  X  |  X  |  X   |  | 
+|  TypeScript8  |  X  |  X  |  X  |  X  |  X   |  | 
 
  **Notes** 
 
@@ -36,10 +36,8 @@ The AWS Cloud9 IDE supports many programming languages\. The following table lis
 
  5 This feature supports only local functions for this language\.
 
- 6 The AWS Cloud9 IDE supports these features for Node\.js up to version 12\.16\.1\.
+ 6 To specify paths for AWS Cloud9 to use for completion of custom PHP code, in the AWS Cloud9 IDE turn on the **Project, PHP Support, Enable PHP code completion** setting in **Preferences**, and then add the paths to the custom code to the **Project, PHP Support, PHP Completion Include Paths** setting\.
 
- 7 To specify paths for AWS Cloud9 to use for completion of custom PHP code, in the AWS Cloud9 IDE turn on the **Project, PHP Support, Enable PHP code completion** setting in **Preferences**, and then add the paths to the custom code to the **Project, PHP Support, PHP Completion Include Paths** setting\.
+ 7 To specify paths for AWS Cloud9 to use for completion of custom Python code, in the AWS Cloud9 IDE turn on the **Project, Python Support, Enable Python code completion** setting in **Preferences**, and then add the paths to the custom code to the **Project, Python Support, PYTHONPATH** setting\.
 
- 8 To specify paths for AWS Cloud9 to use for completion of custom Python code, in the AWS Cloud9 IDE turn on the **Project, Python Support, Enable Python code completion** setting in **Preferences**, and then add the paths to the custom code to the **Project, Python Support, PYTHONPATH** setting\.
-
- 9 The AWS Cloud9 IDE provides additional support for some programming languages, such as TypeScript \(version 3\.7\.5 supported in the AWS Cloud9 IDE\), within the context of a language project\. For more information, see [Working with Language Projects](projects.md)\.
+ 8 The AWS Cloud9 IDE provides additional support for some programming languages, such as TypeScript \(version 3\.7\.5 supported in the AWS Cloud9 IDE\), within the context of a language project\. For more information, see [Working with Language Projects](projects.md)\.

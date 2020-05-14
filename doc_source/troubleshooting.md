@@ -25,6 +25,8 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Previewing a File Returns a 499 Error](#troubleshooting-file-preview-script-block)
 + [Environment Deletion Error: "One or more environments failed to delete"](#troubleshooting-delete-environment)
 + [Console Warning: "Switching to the minimal code completion engine\.\.\."](#troubleshooting-minimal-code-completion)
++ [AWS Cloud9 Installer doesn't finish after displaying: "Package Cloud9 IDE 1"](#cloud9-installer-failed)
++ [VPC error for EC2\-Classic accounts: "Unable to access your environment"](#ec2-classic-issue)
 
 ## Environment Creation Error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -123,7 +125,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 **Warning**  
 When you have finished troubleshooting, be sure to set the inbound rules to an appropriate address range, as described in [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
   + Restart the instance, make sure the instance is running and has passed all system checks, and then try opening the environment again\. For details, see [Reboot Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-reboot.html) and [Viewing Status Checks](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-system-instance-status-check.html#viewing_status) in the *Amazon EC2 User Guide for Linux Instances*\.
-+ If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [AWS Cloud9 SSH Development Environment Host Requirements](ssh-settings.md)\.
++ If the environment is an SSH environment, make sure the associated cloud compute instance or your own server is set up correctly to allow AWS Cloud9 to access it, and then try opening the environment again\. For details, see [AWS Cloud9 SSH Development Environment host requirements](ssh-settings.md)\.
 
 \([back to top](#troubleshooting)\)
 
@@ -376,7 +378,7 @@ For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs
   ```
   sudo swapon /var/swapfile
   ```
-+ Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving or Resizing an Environment in AWS Cloud9](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
++ Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving an environment or resizing an Amazon EBS volume](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
 
 \([back to top](#troubleshooting)\)
 
@@ -433,3 +435,41 @@ To manually delete these resources, in the AWS CloudFormation console, choose th
 Choosing a larger Amazon EC2 instance might result in additional charges to your AWS account\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
 \([back to top](#troubleshooting)\)
+
+## AWS Cloud9 Installer doesn't finish after displaying: "Package Cloud9 IDE 1"<a name="cloud9-installer-failed"></a>
+
+**Issue:** AWS Cloud9 is installed on your existing EC2 instance or own server as part of the process of creating an SSH development environment\. The installation stalls after you see this message on the **AWS Cloud9 Installer** dialog box: "Package Cloud9 IDE 1"\. If you click the **Cancel** button, you see the message: "Installation Failed\." This error occurs when AWS Cloud9 packages can't be installed on the customer's SSH host\.
+
+**Cause:** An SSH host requirement is to have Node\.js installed\. We currently support versions from **Node\.js 0\.6\.16** to **Node\.js 12\.x** An installation error can occur if you have a version of Node\.js version on your host that's not supported by AWS Cloud9\.
+
+**Recommended solution: **Install a version of **Node\.js** supported by AWS Cloud9 on your SSH host\.
+
+## VPC error for EC2\-Classic accounts: "Unable to access your environment"<a name="ec2-classic-issue"></a>
+
+**Issue:** EC2\-Classic was introduced in the original release of Amazon EC2\. If you're using an AWS account that was set up before 2013\-12\-04, this error may occur if you don't explicitly configure a *virtual private cloud* \(Amazon VPC\) and subnet when creating an AWS Cloud9 EC2 development environment\.
+
+ If you accept the default VPC settings, the EC2 instance is launched into the EC2\-Classic network and not into a subnet of the default VPC\. The following message is displayed when the creation of the environment fails: 
+
+ Environment Error
+
+Unable to access your environment
+
+The environment creation failed with the error: The following resource\(s\) failed to create: \[Instance\]\. \. Rollback requested by user\.\.
+
+You can confirm that the error is caused by the EC2 instance not being in the default VPC\. Use AWS CloudFormation to view the stack event history for the development environment:
+
+1. Access the AWS CloudFormation Console\. For more information, see [Logging In to the AWS CloudFormation Console\.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-login.html)
+
+1. In the AWS CloudFormation Console, choose **Stacks**\.
+
+1. In the **Stacks** page, click the name of the development environment that failed to create\.
+
+1. In the **Stack details** page, choose the **Events** tab and check for the following entry****:
+
+    Status: CREATE\_FAILED
+
+   Status reason: The AssociatePublicIpAddress parameter is only supported by VPC launches\. \[\.\.\.\] 
+
+**Cause:** An AWS Cloud9 development environment must be associated with an Amazon VPC that meets specific VPC requirements\. For accounts with EC2\-Classic enabled, accepting the default network settings when [ creating an EC2 environment](create-environment.md) means that the required EC2 instance is not launched into the VPC\. The instance is instead launched into the EC2\-Classic network\.
+
+ **Recommended solution:** With an EC2\-Classic account, you must select a VPC and subnet when [ creating an EC2 environment](create-environment.md)\. On the **Configure settings** page, use the **Network settings \(advanced\)** section to select the VPC and subnet that you can launch your EC2 instance into\.

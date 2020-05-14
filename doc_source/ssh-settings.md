@@ -1,4 +1,4 @@
-# AWS Cloud9 SSH Development Environment Host Requirements<a name="ssh-settings"></a>
+# AWS Cloud9 SSH Development Environment host requirements<a name="ssh-settings"></a>
 
 To instruct AWS Cloud9 to connect an environment to an existing cloud compute instance or your own server, you create an *AWS Cloud9 SSH development environment*\. However, before you create an SSH environment, you should consider the benefits of creating EC2 environments instead\. 
 
@@ -9,7 +9,7 @@ When you create an EC2 environment, AWS Cloud9 creates a new environment, reques
 
 If you want to create an EC2 environment instead, see [Creating an EC2 Environment](create-environment-main.md)\. Otherwise, continue reading for information about creating SSH environments\.
 
-## When and How to Create an SSH Environment<a name="when-and-how-to-create-an-envsshtitle"></a>
+## When and how to create an SSH Environment<a name="when-and-how-to-create-an-envsshtitle"></a>
 
 You must create an SSH environment instead of an EC2 environment whenever any of the following is true:
 
@@ -27,7 +27,7 @@ You must create an SSH environment instead of an EC2 environment whenever any of
 **Note**  
 Launching an Amazon EC2 instance might result in possible charges to your AWS account for Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
-## SSH Host Requirements<a name="ssh-settings-requirements"></a>
+## SSH host requirements<a name="ssh-settings-requirements"></a>
 
 The existing cloud compute instance or your own server must meet the following requirements for AWS Cloud9 to connect it to an SSH environment\.
 + It must run Linux\. \(AWS Cloud9 doesn't support Windows\.\)
@@ -44,7 +44,11 @@ For AWS Elastic Beanstalk, see [Listing and Connecting to Server Instances](http
 For AWS OpsWorks, see [Using SSH to Log In to a Linux Instance](https://docs.aws.amazon.com/opsworks/latest/userguide/workinginstances-ssh.html) in the *AWS OpsWorks User Guide*\.
 For other AWS services, see the service's [documentation](https://aws.amazon.com/documentation/)\.
 To connect to your own server to verify and meet requirements, you could search the internet using a phrase such as "connect to a server by using the ssh command" \(from macOS or Linux\) or "connect to a server by using PuTTY" \(from Windows\)\.
-+ It must have Node\.js installed, and the **version must be 0\.6\.16 or later**\. To check the version, from the existing instance's or server's terminal, run the command ** `node --version` **\. To install Node\.js on the instance or server, see one of the following:
++ It must have Node\.js installed\. We currently support versions from **Node\.js 0\.6\.16** to **Node\.js 12\.x**\.
+**Warning**  
+AWS Cloud9 installation problems may occur when creating an SSH environment if you use a Node\.js version that's not supported by AWS Cloud9\.
+
+   To check the version, from the existing instance's or server's terminal, run the command ** `node --version` **\. To install Node\.js on the instance or server, see one of the following:
   +  [Step 1: Install Required Tools](sample-nodejs.md#sample-nodejs-install) in the *Node\.js Sample*\.
   +  [Installing Node\.js via package manager](https://nodejs.org/en/download/package-manager/) on the Node\.js website\.
   +  [Node Version Manager](http://nvm.sh) on GitHub\.

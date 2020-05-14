@@ -1,4 +1,4 @@
-# Moving or Resizing an Environment in AWS Cloud9<a name="move-environment"></a>
+# Moving an environment or resizing an Amazon EBS volume<a name="move-environment"></a>
 
 You can move an AWS Cloud9 development environment from one Amazon EC2 instance to another\. For example, you might want to do one of the following\.
 + Transfer an environment from an Amazon EC2 instance that is broken, or behaving in unexpected ways, to a healthy instance\.
@@ -16,7 +16,7 @@ This topic only covers moving an environment from one Amazon EC2 instance to ano
 
 **Topics**
 + [Moving an Environment](#move-environment-move)
-+ [Resizing an Environment](#move-environment-resize)
++ [Resizing an Amazon EBS volume used by an Environment](#move-environment-resize)
 
 ## Moving an Environment<a name="move-environment-move"></a>
 
@@ -67,79 +67,58 @@ If you did not choose a different instance type for **Instance Type** earlier in
 
 For more information about the preceding procedure, see [Changing the Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-## Resizing an Environment<a name="move-environment-resize"></a>
+## Resizing an Amazon EBS volume used by an Environment<a name="move-environment-resize"></a>
 
-1. Open the environment that is associated with the Amazon EC2 instance for the Amazon EBS volume that you want to resize\.
+1. Open the environment that's associated with the Amazon EC2 instance for the Amazon EBS volume that you want to resize\.
 
 1. In the AWS Cloud9 IDE for the environment, create a file with the following contents, and then save the file with the extension `.sh` \(`resize.sh`, for example\)\.
 **Note**  
-If you're using Amazon EBS volumes exposed as NVMe block devices on Nitro\-based instances, make the following changes in the script provided below:  
-Replace `sudo growpart /dev/xvda 1` with `sudo growpart /dev/nvme0n1`\.
-Replace `sudo resize2fs /dev/xdva1` with `sudo resize2fs /dev/nvme0n1p1`\.
-For a list of instances based on the Nitro system, see [Nitro\-based Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances) in the *Amazon EC2 User Guide for Linux Instances*\.
-
-   For Amazon Linux:
+This script works for Amazon EBS volumes connected to EC2 instances running Amazon Linux or Ubuntu Server\.  
+ The script also resizes Amazon EBS volumes exposed as NVMe block devices on Nitro\-based instances\. For a list of instances based on the Nitro system, see [Nitro\-based Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    ```
-   #!/bin/bash
+   # !/bin/bash
    
    # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
    SIZE=${1:-20}
    
-   # Install the jq command-line JSON processor.
-   sudo yum -y install jq
-   
-   # Get the ID of the envrionment host Amazon EC2 instance.
+   # Get the ID of the environment host Amazon EC2 instance.
    INSTANCEID=$(curl http://169.254.169.254/latest/meta-data//instance-id)
    
    # Get the ID of the Amazon EBS volume associated with the instance.
-   VOLUMEID=$(aws ec2 describe-instances --instance-id $INSTANCEID | jq -r .Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId)
+   VOLUMEID=$(aws ec2 describe-instances \
+     --instance-id $INSTANCEID \
+     --query "Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId" \
+     --output text)
    
    # Resize the EBS volume.
    aws ec2 modify-volume --volume-id $VOLUMEID --size $SIZE
    
    # Wait for the resize to finish.
-   while [ "$(aws ec2 describe-volumes-modifications --volume-id $VOLUMEID --filters Name=modification-state,Values="optimizing","completed" | jq '.VolumesModifications | length')" != "1" ]; do
-     sleep 1
+   while [ \
+     "$(aws ec2 describe-volumes-modifications \
+       --volume-id $VOLUMEID \
+       --filters Name=modification-state,Values="optimizing","completed" \
+       --query "length(VolumesModifications)"\
+       --output text)" != "1" \ ]; do
+   sleep 1
    done
    
-   # Rewrite the partition table so that the partition takes up all the space that it can.
-   sudo growpart /dev/xvda 1
+   if [ $(readlink -f /dev/xvda) = "/dev/xvda" ]
+   then
+     # Rewrite the partition table so that the partition takes up all the space that it can.
+     sudo growpart /dev/xvda 1
+    
+     # Expand the size of the file system.
+     sudo resize2fs /dev/xvda1
    
-   # Expand the size of the file system.
-   sudo resize2fs /dev/xvda1
-   ```
-
-   For Ubuntu Server:
-
-   ```
-   #!/bin/bash
+   else
+     # Rewrite the partition table so that the partition takes up all the space that it can.
+     sudo growpart /dev/nvme0n1 1
    
-   # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
-   SIZE=${1:-20}
-   
-   # Install the jq command-line JSON processor.
-   sudo apt install -y jq
-   
-   # Get the ID of the envrionment host Amazon EC2 instance.
-   INSTANCEID=$(curl http://169.254.169.254/latest/meta-data//instance-id)
-   
-   # Get the ID of the Amazon EBS volume associated with the instance.
-   VOLUMEID=$(aws ec2 describe-instances --instance-id $INSTANCEID | jq -r .Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId)
-   
-   # Resize the EBS volume.
-   aws ec2 modify-volume --volume-id $VOLUMEID --size $SIZE
-   
-   # Wait for the resize to finish.
-   while [ "$(aws ec2 describe-volumes-modifications --volume-id $VOLUMEID --filters Name=modification-state,Values="optimizing","completed" | jq '.VolumesModifications | length')" != "1" ]; do
-     sleep 1
-   done
-   
-   # Rewrite the partition table so that the partition takes up all the space that it can.
-   sudo growpart /dev/xvda 1
-   
-   # Expand the size of the file system.
-   sudo resize2fs /dev/xvda1
+     # Expand the size of the file system.
+     sudo resize2fs /dev/nvme0n1p1
+   fi
    ```
 
 1. From a terminal session in the IDE, switch to the directory that contains the `resize.sh` file\. Then run the following command, replacing 20 with the desired size in GiB to resize the Amazon EBS volume to\.

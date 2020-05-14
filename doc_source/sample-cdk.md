@@ -55,7 +55,7 @@ In this step, you install all of the tools in your environment that the AWS CDK 
 
    If successful, the output contains the ** `nvm` ** version number, and you can skip ahead to [Step 1\.2: Install Node\.js](#sample-cdk-install-nodejs)\.
 
-1. Download and install ** `nvm` **\. To do this, run the following command\.
+1. Download and install ** `nvm` **\. To do this, run the install script\. In this example, v0\.33\.0 is installed, but you can check for the latest version of ** `nvm` ** [here](https://github.com/nvm-sh/nvm#installing-and-updating)\.
 
    ```
    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
@@ -69,29 +69,31 @@ In this step, you install all of the tools in your environment that the AWS CDK 
 
 ### Step 1\.2: Install Node\.js<a name="sample-cdk-install-nodejs"></a>
 
-1. Confirm whether you already have Node\.js installed, and if you do, confirm that the installed version is 8\.12\.0 or greater\. **This sample has been tested with Node\.js 8\.12\.0\.** To check, with the terminal session still open in the IDE, run the ** `node` ** command with the ** `--version` ** option\.
+1. Confirm whether you already have Node\.js installed, and if you do, confirm that the installed version is 10\.3\.0 or greater\. **This sample has been tested with Node\.js 10\.3\.0\.** To check, with the terminal session still open in the IDE, run the ** `node` ** command with the ** `--version` ** option\.
 
    ```
    node --version
    ```
 
-   If you do have Node\.js installed, the output contains the version number\. If the version number is v8\.12\.0, skip ahead to [Step 1\.3: Install TypeScript](#sample-cdk-install-typescript)\.
+   If you do have Node\.js installed, the output contains the version number\. If the version number is v10\.3\.0, skip ahead to [Step 1\.3: Install TypeScript](#sample-cdk-install-typescript)\.
 
-1. Install Node\.js 8\.12\.0 by running the ** `nvm` ** command with the ** `install` ** action and the version number, as follows\.
-
-   ```
-   nvm install v8.12.0
-   ```
-
-1. Start using Node\.js 8\.12\.0\. To do this, run the ** `nvm` ** command along with the ** `alias` ** action, the version number to alias, and the version to use for that alias, as follows\.
+1. Install Node\.js 10\.3\.0 by running the ** `nvm` ** command with the ** `install` ** action\.
+**Note**  
+You can also run **`nvm install stable`** to install the LTS \(long\-term support\) version of Node\.js\. AWS Cloud9 support tracks the LTS version of Node\.js\. 
 
    ```
-   nvm alias default 8.12.0
+   nvm install v10.3.0
+   ```
+
+1. Start using Node\.js 10\.3\.0\. To do this, run the ** `nvm` ** command along with the ** `alias` ** action, the version number to alias, and the version to use for that alias, as follows\.
+
+   ```
+   nvm alias default 10.3.0
    ```
 **Note**  
-The preceding command sets Node\.js 8\.12\.0 as the default version of Node\.js\. Alternatively, you can run the ** `nvm` ** command along with the ** `use` ** action instead of the ** `alias` ** action \(for example, ** `nvm use 8.12.0` **\)\. However, the ** `use` ** action causes that version of Node\.js to run only while the current terminal session is running\.
+The preceding command sets Node\.js 10\.3\.0 as the default version of Node\.js\. Alternatively, you can run the ** `nvm` ** command along with the ** `use` ** action instead of the ** `alias` ** action \(for example, ** `nvm use 10.3.0` **\)\. However, the ** `use` ** action causes that version of Node\.js to run only while the current terminal session is running\.
 
-1. To confirm that you're using Node\.js 8\.12\.0, run the ** `node --version` ** command again\. If the correct version is installed, the output contains version v8\.12\.0\.
+1. To confirm that you're using Node\.js 10\.3\.0, run the ** `node --version` ** command again\. If the correct version is installed, the output contains version v10\.3\.0\.
 
 ### Step 1\.3: Install TypeScript<a name="sample-cdk-install-typescript"></a>
 
