@@ -277,7 +277,7 @@ Each time you use the AWS SDK for \.NET to call an AWS service, you must provide
 
 To store your credentials within the environment, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Configuring AWS Credentials](https://docs.aws.amazon.com/sdk-for-net/latest/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.
+For additional information, see [Configuring AWS Credentials](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.
 
 ## Step 6: Add AWS SDK Code<a name="sample-dotnetcore-sdk-code"></a>
 

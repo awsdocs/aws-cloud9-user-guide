@@ -77,7 +77,7 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
  The script also resizes Amazon EBS volumes exposed as NVMe block devices on Nitro\-based instances\. For a list of instances based on the Nitro system, see [Nitro\-based Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    ```
-   # !/bin/bash
+   #!/bin/bash
    
    # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
    SIZE=${1:-20}
@@ -100,7 +100,7 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
        --volume-id $VOLUMEID \
        --filters Name=modification-state,Values="optimizing","completed" \
        --query "length(VolumesModifications)"\
-       --output text)" != "1" \ ]; do
+       --output text)" != "1" ]; do
    sleep 1
    done
    

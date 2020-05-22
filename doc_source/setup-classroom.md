@@ -10,7 +10,7 @@ This topic explains how an educator can set up for students to use AWS Cloud9 in
 
 In this step, you create an AWS account\. Then you apply for AWS Educate\. During the application process, you provide AWS Educate with your AWS account ID\.
 
-If you already have an AWS account, skip ahead to step 6 of this procedure to apply for AWS Educate\. If you're not sure whether your department or institution already has an existing AWS account for you, or whether you should create a new one on your own, check with your department's or institution's AWS account administrator\.
+If you already have an AWS account, skip ahead to step 5 of this procedure to apply for AWS Educate\. If you're not sure whether your department or institution already has an existing AWS account for you, or whether you should create a new one on your own, check with your department's or institution's AWS account administrator\.
 
 If you are already a member of AWS Educate, skip ahead to [Step 2: Set Up Your Virtual Classroom for AWS Cloud9](#setup-classroom-virtual)\.
 
