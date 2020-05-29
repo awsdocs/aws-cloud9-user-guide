@@ -438,17 +438,17 @@ Choosing a larger Amazon EC2 instance might result in additional charges to your
 
 ## AWS Cloud9 Installer doesn't finish after displaying: "Package Cloud9 IDE 1"<a name="cloud9-installer-failed"></a>
 
-**Issue:** AWS Cloud9 is installed on your existing EC2 instance or own server as part of the process of creating an SSH development environment\. The installation stalls after you see this message on the **AWS Cloud9 Installer** dialog box: "Package Cloud9 IDE 1"\. If you click the **Cancel** button, you see the message: "Installation Failed\." This error occurs when AWS Cloud9 packages can't be installed on the customer's SSH host\.
+**Issue:** AWS Cloud9 is installed on your existing Amazon EC2 instance or on your own server as part of the process of creating an SSH development environment\. The installation stalls after you see this message in the **AWS Cloud9 Installer** dialog box: "Package Cloud9 IDE 1"\. If you choose **Cancel**, you see the following message: "Installation Failed\." This error occurs when AWS Cloud9 packages can't be installed on the customer's SSH host\.
 
-**Cause:** An SSH host requirement is to have Node\.js installed\. We currently support versions from **Node\.js 0\.6\.16** to **Node\.js 12\.x** An installation error can occur if you have a version of Node\.js version on your host that's not supported by AWS Cloud9\.
+**Cause:** An SSH host requires that you have Node\.js installed\. We currently support versions from **Node\.js 0\.6\.16** to **Node\.js 12\.x** An installation error can occur if you have a version of Node\.js on your host that AWS Cloud9 doesn't support\.
 
-**Recommended solution: **Install a version of **Node\.js** supported by AWS Cloud9 on your SSH host\.
+**Recommended solution: **Install a version of **Node\.js** that AWS Cloud9 supports on your SSH host\.
 
 ## VPC error for EC2\-Classic accounts: "Unable to access your environment"<a name="ec2-classic-issue"></a>
 
-**Issue:** EC2\-Classic was introduced in the original release of Amazon EC2\. If you're using an AWS account that was set up before 2013\-12\-04, this error may occur if you don't explicitly configure a *virtual private cloud* \(Amazon VPC\) and subnet when creating an AWS Cloud9 EC2 development environment\.
+**Issue:** EC2\-Classic was introduced in the original release of Amazon EC2\. If you're using an AWS account that was set up before December 4, 2013, this error might occur if you don't explicitly configure a *virtual private cloud* \(Amazon VPC\) and subnet when creating an AWS Cloud9 EC2 development environment\.
 
- If you accept the default VPC settings, the EC2 instance is launched into the EC2\-Classic network and not into a subnet of the default VPC\. The following message is displayed when the creation of the environment fails: 
+ If you accept the default VPC settings, the Amazon EC2 instance is launched into the EC2\-Classic network and not into a subnet of the default VPC\. The following message is displayed when the creation of the environment fails: 
 
  Environment Error
 
@@ -456,20 +456,20 @@ Unable to access your environment
 
 The environment creation failed with the error: The following resource\(s\) failed to create: \[Instance\]\. \. Rollback requested by user\.\.
 
-You can confirm that the error is caused by the EC2 instance not being in the default VPC\. Use AWS CloudFormation to view the stack event history for the development environment:
+You can confirm that the error is caused by the EC2 instance not being in the default VPC\. Use AWS CloudFormation to view the stack event history for the development environment\.
 
-1. Access the AWS CloudFormation Console\. For more information, see [Logging In to the AWS CloudFormation Console\.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-login.html)
+1. Open the AWS CloudFormation console\. For more information, see [Logging in to the AWS CloudFormation console\.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-login.html)
 
-1. In the AWS CloudFormation Console, choose **Stacks**\.
+1. In the AWS CloudFormation console, choose **Stacks**\.
 
-1. In the **Stacks** page, click the name of the development environment that failed to create\.
+1. On the **Stacks** page, choose the name of the development environment that failed to create\.
 
-1. In the **Stack details** page, choose the **Events** tab and check for the following entry****:
+1. On the **Stack details** page, choose the **Events** tab and check for the following entry****:
 
     Status: CREATE\_FAILED
 
    Status reason: The AssociatePublicIpAddress parameter is only supported by VPC launches\. \[\.\.\.\] 
 
-**Cause:** An AWS Cloud9 development environment must be associated with an Amazon VPC that meets specific VPC requirements\. For accounts with EC2\-Classic enabled, accepting the default network settings when [ creating an EC2 environment](create-environment.md) means that the required EC2 instance is not launched into the VPC\. The instance is instead launched into the EC2\-Classic network\.
+**Cause:** An AWS Cloud9 development environment must be associated with an Amazon VPC that meets specific VPC requirements\. For accounts with EC2\-Classic enabled, accepting the default network settings when [creating an EC2 environment](create-environment.md) means that the required EC2 instance isn't launched into the VPC\. Instead, the instance is launched into the EC2\-Classic network\.
 
- **Recommended solution:** With an EC2\-Classic account, you must select a VPC and subnet when [ creating an EC2 environment](create-environment.md)\. On the **Configure settings** page, use the **Network settings \(advanced\)** section to select the VPC and subnet that you can launch your EC2 instance into\.
+ **Recommended solution:** With an EC2\-Classic account, you must select a VPC and subnet when [creating an EC2 environment](create-environment.md)\. On the **Configure settings** page, in the **Network settings \(advanced\)** section, select the VPC and subnet that you can launch your EC2 instance into\.

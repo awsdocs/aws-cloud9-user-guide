@@ -21,7 +21,7 @@ Before you use this sample, be sure to meet the following requirements\.
 
 ## Step 1: Install Required Tools<a name="sample-cdk-install"></a>
 
-In this step, you install all of the tools in your environment that the AWS CDK needs to run a sample that is written in the TypeScript programming language:
+In this step, you install all of the tools in your environment that the AWS CDK needs to run a sample that is written in the TypeScript programming language\.
 
 1.  [Node Version Manager](#sample-cdk-install-nvm), or ** `nvm` **, which you use to install Node\.js later\.
 
@@ -79,13 +79,13 @@ In this step, you install all of the tools in your environment that the AWS CDK 
 
 1. Install Node\.js 10\.3\.0 by running the ** `nvm` ** command with the ** `install` ** action\.
 **Note**  
-You can also run **`nvm install stable`** to install the LTS \(long\-term support\) version of Node\.js\. AWS Cloud9 support tracks the LTS version of Node\.js\. 
+You can also run **`nvm install stable`** to install the long\-term support \(LTS\) version of Node\.js\. AWS Cloud9 support tracks the LTS version of Node\.js\. 
 
    ```
    nvm install v10.3.0
    ```
 
-1. Start using Node\.js 10\.3\.0\. To do this, run the ** `nvm` ** command along with the ** `alias` ** action, the version number to alias, and the version to use for that alias, as follows\.
+1. Start using Node\.js 10\.3\.0\. To do this, run the ** `nvm` ** command with the ** `alias` ** action, the version number to alias, and the version to use for that alias, as follows\.
 
    ```
    nvm alias default 10.3.0
