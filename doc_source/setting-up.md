@@ -22,5 +22,5 @@ For general information about AWS Cloud9, see [What Is AWS Cloud9?](welcome.md)\
 + [Team Setup](setup.md)
 + [Enterprise Setup](setup-enterprise.md)
 + [Additional Setup Options \(Team and Enterprise\)](setup-teams.md)
-+ [Individual Student Setup](setup-student.md)
++ [Individual student setup](setup-student.md)
 + [Classroom Setup](setup-classroom.md)
