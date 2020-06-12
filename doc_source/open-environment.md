@@ -10,6 +10,8 @@ This procedure assumes you have already created an AWS Cloud9 development enviro
    + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
    + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
    + If you're a student in a classroom, see your instructor for sign\-in instructions\.
+**Important**  
+If you [sign out of your AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/sign-out-account/), the AWS Cloud9 IDE can still be accessed for up to five minutes afterwards\. Access is then denied when the required permissions expire\.
 
 1. In the top navigation bar, choose the AWS Region where the environment is located\.  
 ![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
