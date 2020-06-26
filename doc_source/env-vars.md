@@ -33,7 +33,7 @@ You can set custom user environment variables in the `~/.bash_profile` file in y
 export MY_ENV_VAR='.bash_profile file'
 ```
 
-If you then choose the **Run**, **Run With**, **Shell script** command on the menu bar, type `./script.sh` in the **Command** box of the runner tab, and then choose **Run**, the runner tab displays `.bash_profile file`\. \(This assumes you created the `script.sh` file as described earlier\.\)
+If you then run `sh ./script.sh` from the command line, the terminal displays `.bash_profile file`\. \(This assumes you created the `script.sh` file as described earlier\.\)
 
 ## Set Local Custom Environment Variables<a name="env-vars-local"></a>
 
@@ -43,9 +43,9 @@ You can set local custom environment variables in a terminal session by running 
 export MY_ENV_VAR='Command line export'
 ```
 
-If you then choose the **Run**, **Run With**, **Shell script** command on the menu bar, type `./script.sh` in the **Command** box of the runner tab, and then choose **Run**, the runner tab displays `Command line export`\. \(This assumes you created the `script.sh` file as described earlier\.\)
+If you then run `sh ./script.sh` from the command line, the terminal displays `Command line export`\. \(This assumes you created the `script.sh` file as described earlier\.\)
 
-If you set the same custom environment variable in your `~/.bash_profile` file and with the ** `export` ** command, then when you try to get the customer environment variable's value, the `~/.bash_profile` file setting takes priority\.
+If you set the same custom environment variable with the ** `export` ** command and in your `~/.bash_profile` file, then when you try to get the custom environment variable's value, the ** `export` ** command setting takes priority\.
 
 ## Set Custom User Environment Variables in \~/\.bashrc<a name="env-vars-bashrc"></a>
 
@@ -55,7 +55,7 @@ You can set custom user environment variables in the `~/.bashrc` file in your en
 export MY_ENV_VAR='.bashrc file'
 ```
 
-If you then choose the **Run**, **Run With**, **Shell script** command on the menu bar, type `./script.sh` in the **Command** box of the runner tab, and then choose **Run**, the runner tab displays `.bashrc file`\. \(This assumes you created the `script.sh` file as described earlier\.\)
+If you then run `sh ./script.sh` from the command line, the terminal displays `.bashrc file`\. \(This assumes you created the `script.sh` file as described earlier\.\)
 
 If you set the same custom environment variable with the ** `export` ** command and in your `~/.bashrc` file, then when you try to get the custom environment variable's value, the ** `export` ** command setting takes priority\.
 
