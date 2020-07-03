@@ -9,7 +9,7 @@ Following this tutorial might result in charges to your AWS account\. These incl
 + [Step 1: Install Python 3\.6](#sample-python-install)
 + [Step 2: Add Code](#sample-python-code)
 + [Step 3: Run the Code](#sample-python-run)
-+ [Step 4: Install and Configure the AWS SDK for Python \(Boto 3\)](#sample-python-sdk)
++ [Step 4: Install and Configure the AWS SDK for Python \(Boto3\)](#sample-python-sdk)
 + [Step 5: Add AWS SDK Code](#sample-python-sdk-code)
 + [Step 6: Run the AWS SDK Code](#sample-python-sdk-run)
 + [Step 7: Clean Up](#sample-python-clean-up)
@@ -92,9 +92,9 @@ print('The sum of {0} and {1} is {2}.'.format(sys.argv[1], sys.argv[2], sum))
 **Note**  
 You can create custom runners for specific versions of Python\. For details, see [Create a Builder or Runner](build-run-debug.md#build-run-debug-create-builder-runner)\.
 
-## Step 4: Install and Configure the AWS SDK for Python \(Boto 3\)<a name="sample-python-sdk"></a>
+## Step 4: Install and Configure the AWS SDK for Python \(Boto3\)<a name="sample-python-sdk"></a>
 
-The AWS SDK for Python \(Boto 3\) enables you to use Python code to interact with AWS services like Amazon S3\. For example, you can use the SDK to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
+The AWS SDK for Python \(Boto3\) enables you to use Python code to interact with AWS services like Amazon S3\. For example, you can use the SDK to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
 ### Install pip<a name="sample-python-sdk-install-pip"></a>
 
@@ -111,24 +111,24 @@ rm get-pip.py                                # Delete the install script.
 
 For more information, see [Installation](https://pip.pypa.io/en/stable/installing/) on the `pip` website\.
 
-### Install the AWS SDK for Python \(Boto 3\)<a name="sample-python-sdk-install-sdk"></a>
+### Install the AWS SDK for Python \(Boto3\)<a name="sample-python-sdk-install-sdk"></a>
 
-After you install `pip`, install the AWS SDK for Python \(Boto 3\) by running the ** `pip install` ** command\.
+After you install `pip`, install the AWS SDK for Python \(Boto3\) by running the ** `pip install` ** command\.
 
 ```
 sudo python36 -m pip install boto3  # Install boto3 for Python 3.6.
 python -m pip show boto3            # Verify boto3 is installed for the current version of Python.
 ```
 
-For more information, see the "Installation" section of [Quickstart](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html) in the AWS SDK for Python \(Boto 3\)\.
+For more information, see the "Installation" section of [Quickstart](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html) in the AWS SDK for Python \(Boto3\)\.
 
 ### Set Up Credentials in Your Environment<a name="sample-python-sdk-credentials"></a>
 
-Each time you use the AWS SDK for Python \(Boto 3\) to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the SDK has the necessary permissions to make the call\. If the credentials don't cover the necessary permissions, the call fails\.
+Each time you use the AWS SDK for Python \(Boto3\) to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the SDK has the necessary permissions to make the call\. If the credentials don't cover the necessary permissions, the call fails\.
 
 To store your credentials within the environment, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Credentials](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html) in the AWS SDK for Python \(Boto 3\)\.
+For additional information, see [Credentials](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html) in the AWS SDK for Python \(Boto3\)\.
 
 ## Step 5: Add AWS SDK Code<a name="sample-python-sdk-code"></a>
 

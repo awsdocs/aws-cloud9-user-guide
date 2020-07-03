@@ -12,5 +12,5 @@ Learn how to work with an environment in AWS Cloud9 by reading one or more of th
 + [Call AWS Services from an Environment](credentials.md)
 + [Changing Environment Settings](change-environment.md)
 + [Working with Shared Environments](share-environment.md)
-+ [Moving an environment or resizing an Amazon EBS volume](move-environment.md)
++ [Moving an environment and resizing/encrypting Amazon EBS volumes](move-environment.md)
 + [Deleting an Environment](delete-environment.md)

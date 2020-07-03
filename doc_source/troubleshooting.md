@@ -378,7 +378,7 @@ For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs
   ```
   sudo swapon /var/swapfile
   ```
-+ Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving an environment or resizing an Amazon EBS volume](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
++ Move or resize the environment to an instance or server with more compute resources\. To move or resize Amazon EC2 instances, see [Moving an environment and resizing/encrypting Amazon EBS volumes](move-environment.md)\. For other instance or server types, refer to your instance's or server's documentation\.
 
 \([back to top](#troubleshooting)\)
 

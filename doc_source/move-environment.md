@@ -1,4 +1,4 @@
-# Moving an environment or resizing an Amazon EBS volume<a name="move-environment"></a>
+# Moving an environment and resizing/encrypting Amazon EBS volumes<a name="move-environment"></a>
 
 You can move an AWS Cloud9 development environment from one Amazon EC2 instance to another\. For example, you might want to do one of the following\.
 + Transfer an environment from an Amazon EC2 instance that is broken, or behaving in unexpected ways, to a healthy instance\.
@@ -15,10 +15,11 @@ Before you move or resize an environment, you might want to try stopping some ru
 This topic only covers moving an environment from one Amazon EC2 instance to another or resizing an Amazon EBS volume\. To resize an environment from one of your own servers to another or to change the storage space for one of your own servers, refer to your server's documentation\.
 
 **Topics**
-+ [Moving an Environment](#move-environment-move)
-+ [Resizing an Amazon EBS volume used by an Environment](#move-environment-resize)
++ [Moving an environment](#move-environment-move)
++ [Resizing an Amazon EBS volume used by an environment](#move-environment-resize)
++ [Encrypt Amazon EBS volumes used by AWS Cloud9](#encrypting-volumes)
 
-## Moving an Environment<a name="move-environment-move"></a>
+## Moving an environment<a name="move-environment-move"></a>
 
 Before you start the move process, note the following\.
 + You cannot move an environment to an Amazon EC2 instance of the same type\. When you move, you must choose a different Amazon EC2 instance type for the new instance\.
@@ -67,7 +68,7 @@ If you did not choose a different instance type for **Instance Type** earlier in
 
 For more information about the preceding procedure, see [Changing the Instance Type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-## Resizing an Amazon EBS volume used by an Environment<a name="move-environment-resize"></a>
+## Resizing an Amazon EBS volume used by an environment<a name="move-environment-resize"></a>
 
 1. Open the environment that's associated with the Amazon EC2 instance for the Amazon EBS volume that you want to resize\.
 
@@ -126,3 +127,84 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    ```
    sh resize.sh 20
    ```
+
+## Encrypt Amazon EBS volumes used by AWS Cloud9<a name="encrypting-volumes"></a>
+
+With EBS encryption the following types of data are encrypted:
++ Data at rest inside the volume
++ All data moving between the volume and the instance
++ All snapshots created from the volume
++ All volumes created from those snapshots
+
+You have two encryption options for Amazon EBS volumes that are used by AWS Cloud9 EC2 development environments:
++ **Encryption by default**: You can configure your AWS account to enforce the encryption of the new EBS volumes and snapshot copies that you create\. Encryption by default is enabled at the level of an AWS Region, so you cannot enable for individual volumes or snapshots in that Region\. Moreover, because Amazon EBS encrypts the volume that's created when you launch an instance, you must enable this setting before the creation of an EC2 environment\.
+
+  For more information, see [ Encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) in the *Amazon EC2 User Guide for Linux Instances*\. 
++ **Encryption of an existing Amazon EBS volume used by an EC2 environment**: You can encrypt specific Amazon EBS volumes that have already been created for EC2 instances\. This option involves using the AWS Key Management Service to manage access to the encrypted volume\. For the relevant procedure, see [Encrypt an existing Amazon EBS volume used by AWS Cloud9](#encrypting-existing-volume)
+
+### Encrypt an existing Amazon EBS volume used by AWS Cloud9<a name="encrypting-existing-volume"></a>
+
+Encrypting an existing Amazon EBS volume involves using AWS KMS to create a customer master key \(CMK\)\. After creating a snapshot of the volume to be replaced, you then use the CMK to encrypt a copy of the snapshot\. Next, you create a new encrypted volume with that snapshot\. You now replace the unencrypted volume by detaching it from the EC2 instance and attaching the encrypted volume\. Finally, you must update the key policy for the customer\-managed CMK to enable access for the AWS Cloud9 service role\. 
+
+**Note**  
+ The following procedure focuses on using a customer managed CMK to encrypt a volume\. You can also use an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) for an AWS service in your account \(the alias for Amazon EBS is `aws/ebs`\)\. If you choose this default option for encryption, skip the first step that creates a customer managed CMK\. Also skip the step that updates the key policy \(you cannot change the key policy for an AWS managed CMK\)\.<a name="creating-encrypted-volume"></a>
+
+1. In the AWS Key Management Service console, create a symmetric customer master key \(CMK\)\. For details, see [Creating symmetric CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *AWS Key Management Service Developer Guide*\.
+
+1. In the EC2 Console, stop the Amazon EBS\-backed instance used by the environment\. You can [stop the instance using the console or the command line](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.
+
+1. In the navigation pane of the EC2 console, choose **Snapshots** [to create a snapshot of the existing volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-snapshot.html#ebs-create-snapshot) you want to encrypt\.
+
+1. In the navigation pane of the EC2 console, choose **Snapshots** [to copy the snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)\. In the **Copy snapshot** dialog box, do the following to enable encryption:
+   + Enable the **Encrypt this snapshot** setting\. 
+   + For **Master Key**, select the CMK you created earlier\. \(If you're using an AWS managed CMK, keep the `(default) aws/ebs` setting\.\)
+
+1. [Create a new volume from the encrypted snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html#ebs-create-volume-from-snapshot)\. 
+**Note**  
+New EBS volumes that are created from encrypted snapshots are automatically encrypted\. 
+
+1. [Detach the old Amazon EBS volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-detaching-volume.html) from the Amazon EC2 instance\. 
+
+1. [Attach the new encrypted volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html) to the Amazon EC2 instance\.
+
+1. Update the key policy for the CMK [using the AWS Management Console default view, AWS Management Console policy view, or the AWS KMS API](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to)\. Add the key policy statements below to allow the AWS Cloud9 service, `AWSServiceRoleForAWSCloud9`, to access the CMK\.
+**Note**  
+Skip this step if you're using an AWS managed CMK\.
+
+   ```
+   {
+       "Sid": "Allow use of the key",
+       "Effect": "Allow",
+       "Principal": {
+           "AWS": "arn:{Partition}:iam::{AccountId}:role/aws-service-role/cloud9.amazonaws.com/AWSServiceRoleForAWSCloud9"
+       },
+       "Action": [
+           "kms:Encrypt",
+           "kms:Decrypt",
+           "kms:ReEncrypt*",
+           "kms:GenerateDataKey*",
+           "kms:DescribeKey"
+       ],
+       "Resource": "*"
+      },
+      {
+       "Sid": "Allow attachment of persistent resources",
+       "Effect": "Allow",
+       "Principal": {
+           "AWS": "arn:{Partition}:iam::{AccountId}:role/aws-service-role/cloud9.amazonaws.com/AWSServiceRoleForAWSCloud9"
+       },
+       "Action": [
+           "kms:CreateGrant",
+           "kms:ListGrants",
+           "kms:RevokeGrant"
+       ],
+       "Resource": "*",
+       "Condition": {
+           "Bool": {
+               "kms:GrantIsForAWSResource": "true"
+           }
+       }
+   }
+   ```
+
+1. [Restart the EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.

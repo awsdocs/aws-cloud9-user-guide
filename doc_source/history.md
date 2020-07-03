@@ -8,6 +8,7 @@ The following table describes important changes to the *AWS Cloud9 User Guide* a
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Amazon EBS encryption](move-environment.md#encrypting-volumes) |  New section explaining how to encrypt Amazon EBS volumes for EC2 instances used by AWS Cloud9 development environments\. | July 3, 2020 | 
 | [Added Region support to AWS Cloud9](#history) | AWS Cloud9 is now also available in the following Regions: US West \(N\. California\), Asia Pacific \(Hong Kong\), Europe \(Paris\), Middle East \(Bahrain\), and South America \(São Paulo\)\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html?id=docs_gateway#cloud9_region) in the *Amazon Web Services General Reference*\. | May 7, 2020 | 
 | [Security](security.md) | Security chapter added to the AWS Cloud9 User Guide\. | April 30, 2020 | 
 | [Tags](tags.md) | Use tags to help you control access to AWS Cloud9 resources and help you manage billing information\. | January 22, 2020 | 

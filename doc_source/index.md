@@ -43,7 +43,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Calling AWS Services from an Environment in AWS Cloud9](credentials.md)
    + [Changing Environment Settings in AWS Cloud9](change-environment.md)
    + [Working with Shared Environments in AWS Cloud9](share-environment.md)
-   + [Moving an environment or resizing an Amazon EBS volume](move-environment.md)
+   + [Moving an environment and resizing/encrypting Amazon EBS volumes](move-environment.md)
    + [Deleting an Environment in AWS Cloud9](delete-environment.md)
 + [Working with the AWS Cloud9 Integrated Development Environment (IDE)](ide.md)
    + [Tour the AWS Cloud9 IDE](tour-ide.md)

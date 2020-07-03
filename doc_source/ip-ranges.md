@@ -8,7 +8,7 @@ For an EC2 environment created on or after July 31 2018, you can skip this topic
 IP address ranges for most AWS Regions are in the `ip-ranges.json` file, as described in [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *AWS General Reference*\.
 
 **Note**  
- See [below](#non-file-IP) for IP address ranges for the Asia Pacific \(Hong Kong\)  and Middle East \(Bahrain\) Regions that are not currently included in the `ip-ranges.json` file\. 
+ See [below](#non-file-IP) for IP address ranges for the Asia Pacific \(Hong Kong\), Europe \(Milan\), and Middle East \(Bahrain\) Regions that are not currently included in the `ip-ranges.json` file\. 
 
  To find the IP ranges in the `ip-ranges.json` file:
 + For Windows, using the AWS Tools for Windows PowerShell, run the following command\.
@@ -30,7 +30,7 @@ To use these IP address ranges when configuring SSH environments that use your o
 
 ## IP addresses not in `ip-ranges.json`<a name="non-file-IP"></a>
 
-AWS Cloud9 IP address ranges for the following AWS Regions are currently not provided in the `ip-ranges.json` file: Asia Pacific \(Hong Kong\) and Middle East \(Bahrain\)\. The following table lists the IP ranges for those Regions\.
+AWS Cloud9 IP address ranges for the following AWS Regions are currently not provided in the `ip-ranges.json` file: Asia Pacific \(Hong Kong\), Europe \(Milan\), and Middle East \(Bahrain\)\. The following table lists the IP ranges for those Regions\.
 
 **Note**  
 Each Region has two IP address ranges to support the AWS Cloud9 control plane \(information routing\) and data plane \(information processing\) services\. 
@@ -39,4 +39,5 @@ Each Region has two IP address ranges to support the AWS Cloud9 control plane \(
 | AWS Region | Code | IP ranges \(CIDR notation\) | 
 | --- | --- | --- | 
 |  Asia Pacific \(Hong Kong\)  |  `ap-east1`  |  `18.163.201.96/27` `18.163.139.32/27`  | 
+|  Europe \(Milan\)  |  `eu-south-1`  |  `15.161.135.64/27` `15.161.135.96/27`  | 
 |  Middle East \(Bahrain\)  |  `me-south-1`  |  `15.185.141.160/27` `15.185.91.32/27`  | 
