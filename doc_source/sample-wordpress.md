@@ -16,7 +16,7 @@ Creating this sample might result in charges to your AWS account\. These include
 
 Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
-+  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install the Required Tools<a name="sample-wordpress-install-tools"></a>
 
@@ -279,7 +279,7 @@ In the **Information needed** section, for **Username** and **Password**, enter 
 
 In this step, you set up the Apache HTTP Server with recommended ports, file locations, owners, and access permissions for the WordPress website\. 
 
-You then enable incoming web traffic to view that website by setting up the security group in Amazon EC2 and network access control list \(network ACL\) in Amazon Virtual Private Cloud \(Amazon VPC\) that are associated with this EC2 environment\. Each EC2 environment must be associated with both a security group in Amazon EC2 and a network ACL in Amazon VPC\. However, while the default network ACL in an AWS account allows all incoming and outgoing traffic for the environment, the default security group allows only incoming traffic using SSH over port 22\. For more information, see [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
+You then enable incoming web traffic to view that website by setting up the security group in Amazon EC2 and network access control list \(network ACL\) in Amazon Virtual Private Cloud \(Amazon VPC\) that are associated with this EC2 environment\. Each EC2 environment must be associated with both a security group in Amazon EC2 and a network ACL in Amazon VPC\. However, while the default network ACL in an AWS account allows all incoming and outgoing traffic for the environment, the default security group allows only incoming traffic using SSH over port 22\. For more information, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
 
 You then finish this step by successfully viewing the website from outside of the AWS Cloud9 IDE\.
 

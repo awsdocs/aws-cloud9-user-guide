@@ -1,20 +1,20 @@
-# Additional Information about AWS Cloud9<a name="additional-info"></a>
+# Additional information about AWS Cloud9<a name="additional-info"></a>
 
 This topic provides more information to help you learn about AWS Cloud9\.
 
 **Topics**
-+ [Related Videos](#related-videos)
-+ [Related Topics on the AWS Site](#related-web-pages)
++ [Related videos](#related-videos)
++ [Related topics on the AWS Site](#related-web-pages)
 + [Pricing](#pricing)
-+ [I Have Additional Questions or Need Help](#questions-help)
++ [I have additional questions or need help](#questions-help)
 
-## Related Videos<a name="related-videos"></a>
+## Related videos<a name="related-videos"></a>
 +  [AWS re:Invent 2017 \- Introducing AWS Cloud9: Werner Vogels Keynote](https://www.youtube.com/watch?v=fwFoU_Wb-fU) \(9 minutes, YouTube website\)
 +  [AWS re:Invent Launchpad 2017 \- AWS Cloud9](https://www.youtube.com/watch?v=NNqVBo9k8n4), \(15 minutes, YouTube website\)
 +  [Introducing AWS Cloud9 \- AWS Online Tech Talks](https://www.youtube.com/watch?v=FvclLeg2vEQ) \(33 minutes, YouTube website\)
 +  [AWS Sydney Summit 2018: AWS Cloud9 and AWS CodeStar](https://www.youtube.com/watch?v=B-nbl0qYsQg) \(25 minutes, YouTube website\)
 
-## Related Topics on the AWS Site<a name="related-web-pages"></a>
+## Related topics on the AWS Site<a name="related-web-pages"></a>
 +  [Introducing AWS Cloud9](https://aws.amazon.com/about-aws/whats-new/2017/11/introducing-aws-cloud9/)
 +  [AWS Cloud9 – Cloud Developer Environments](http://aws.amazon.com/blogs/aws/aws-cloud9-cloud-developer-environments/)
 +  [AWS Cloud9 Overview](https://aws.amazon.com/cloud9/)
@@ -35,7 +35,7 @@ For more information, see the following\.
 + The AWS Free Tier: See [Using the AWS Free Tier](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-free-tier.html) and [Tracking Your Free Tier Usage](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/tracking-free-tier-usage.html) in the *AWS Billing and Cost Management User Guide*\.
 + Educational pricing: See the [AWS Educate](https://aws.amazon.com/education/awseducate/) program\.
 
-## I Have Additional Questions or Need Help<a name="questions-help"></a>
+## I have additional questions or need help<a name="questions-help"></a>
 
 To ask questions or seek help from the AWS Cloud9 community, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\)
 

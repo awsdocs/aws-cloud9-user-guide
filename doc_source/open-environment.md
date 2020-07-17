@@ -1,4 +1,4 @@
-# Opening an Environment in AWS Cloud9<a name="open-environment"></a>
+# Opening an environment in AWS Cloud9<a name="open-environment"></a>
 
 This procedure describes how to open an environment in AWS Cloud9\.
 
@@ -18,7 +18,7 @@ If you [sign out of your AWS Account](https://aws.amazon.com/premiumsupport/know
 
 1. In the list of environments, for the environment you want to open, do one of the following\.
    + Inside of the card, choose the **Open IDE** link\.  
-![\[Choosing an environment using the Open IDE link\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-open-ide.png)
+![\[Choosing an environment using the Open IDE link\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/open-environment-context.png)
    + Select the card, and then choose the **Open IDE** button\.  
 ![\[Choosing an environment using the Open IDE button\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-open-ide-card.png)
 

@@ -58,7 +58,7 @@ If account creation fails, a banner is displayed at the top of the console page\
 
 After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for the environment\.
 
-If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
+If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
 ## Next Step<a name="tutorial-lambda-create-env-next"></a>
 

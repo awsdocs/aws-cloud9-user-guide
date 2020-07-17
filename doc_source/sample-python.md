@@ -24,7 +24,7 @@ Before you use this tutorial, be sure to meet the following requirements\.
   If you have a different type of environment or operating system, you might need to adapt this tutorial's instructions\.
 + **You have opened the AWS Cloud9 IDE for that environment**
 
-  When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
+  When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Install Python 3\.6<a name="sample-python-install"></a>
 

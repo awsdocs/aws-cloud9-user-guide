@@ -6,7 +6,7 @@
 
 **Topics**
 + [EC2 Environments versus SSH Environments](ec2-env-versus-ssh-env.md)
-+ [Amazon VPC Settings](vpc-settings.md)
++ [Amazon VPC settings](vpc-settings.md)
 + [SSH Environment Host Requirements](ssh-settings.md)
 + [AWS Cloud9 Installer](installer.md)
 + [Inbound SSH IP address ranges](ip-ranges.md)

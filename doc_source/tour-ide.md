@@ -4,22 +4,22 @@ This topic provides a basic tour of the AWS Cloud9 integrated development enviro
 
 **Topics**
 + [Prerequisites](#tour-ide-prereqs)
-+ [Step 1: Menu Bar](#tour-ide-menu-bar)
++ [Step 1: Menu bar](#tour-ide-menu-bar)
 + [Step 2: Dashboard](#tour-ide-dashboard)
-+ [Step 3: Environment Window](#tour-ide-environment)
-+ [Step 4: Editor, Tabs, and Panes](#tour-ide-editor)
++ [Step 3: Environment window](#tour-ide-environment)
++ [Step 4: Editor, tabs, and panes](#tour-ide-editor)
 + [Step 5: Console](#tour-ide-console)
-+ [Step 6: Open Files Section](#tour-ide-open-files)
++ [Step 6: Open files section](#tour-ide-open-files)
 + [Step 7: Gutter](#tour-ide-gutter)
-+ [Step 8: Status Bar](#tour-ide-status-bar)
-+ [Step 9: Outline Window](#tour-ide-outline)
-+ [Step 10: Go Window](#tour-ide-go)
-+ [Step 11: Immediate Tab](#tour-ide-immediate)
-+ [Step 12: Process List](#tour-ide-process-list)
++ [Step 8: Status bar](#tour-ide-status-bar)
++ [Step 9: Outline window](#tour-ide-outline)
++ [Step 10: Go window](#tour-ide-go)
++ [Step 11: Immediate tab](#tour-ide-immediate)
++ [Step 12: Process list](#tour-ide-process-list)
 + [Step 13: Preferences](#tour-ide-preferences)
 + [Step 14: Terminal](#tour-ide-terminal)
-+ [Step 15: Debugger Window](#tour-ide-debugger)
-+ [Final Thoughts](#tour-ide-cleanup)
++ [Step 15: Debugger window](#tour-ide-debugger)
++ [Final thoughts](#tour-ide-cleanup)
 
 ## Prerequisites<a name="tour-ide-prereqs"></a>
 
@@ -28,7 +28,7 @@ To go on this tour, you must have an AWS account and an open AWS Cloud9 developm
 **Warning**  
 Having an AWS Cloud9 development environment might result in charges to your AWS account\. These include possible charges for Amazon EC2 if you are using an EC2 environment\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
-## Step 1: Menu Bar<a name="tour-ide-menu-bar"></a>
+## Step 1: Menu bar<a name="tour-ide-menu-bar"></a>
 
 The *menu bar*, at the top edge of the IDE, contains common commands for working with files and code and changing IDE settings\. You can also preview and run code from the menu bar\.
 
@@ -92,7 +92,7 @@ To open to the IDE for your environment, choose **Open IDE** inside of the **my\
 **Note**  
 It can take a few moments for the IDE to display again\.
 
-## Step 3: Environment Window<a name="tour-ide-environment"></a>
+## Step 3: Environment window<a name="tour-ide-environment"></a>
 
 The **Environment** window shows a list of your folders and files in the environment\. You can also show different types of files, such as hidden files\.
 
@@ -106,7 +106,7 @@ To show or hide hidden files, in the **Environment** window, choose the gear ico
 
 ![\[Showing hidden files using the Environmentwindow\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-show-hidden-files.png)
 
-## Step 4: Editor, Tabs, and Panes<a name="tour-ide-editor"></a>
+## Step 4: Editor, tabs, and panes<a name="tour-ide-editor"></a>
 
 The *editor* is where you can do things such as write code, run a terminal session, and change IDE settings\. Each instance of an open file, terminal session, and so on is represented by a *tab*\. Tabs can be grouped into *panes*\. Tabs are shown at the edge of their pane\.
 
@@ -138,7 +138,7 @@ To expand or shrink the console, choose the resize icon, which is at the edge of
 
 ![\[Expanding the size of the console display\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-console-resize.png)
 
-## Step 6: Open Files Section<a name="tour-ide-open-files"></a>
+## Step 6: Open files section<a name="tour-ide-open-files"></a>
 
 The **Open Files** section shows a list of all files that are currently open in the editor\. **Open Files** is part of the **Environment** window\.
 
@@ -156,7 +156,7 @@ The *gutter*, at the edge of each file in the editor, shows things like line num
 
 To show or hide the gutter, choose **View**, **Gutter** on the menu bar\.
 
-## Step 8: Status Bar<a name="tour-ide-status-bar"></a>
+## Step 8: Status bar<a name="tour-ide-status-bar"></a>
 
 The *status bar*, at the edge of each file in the editor, shows things like line and character numbers, file type preference, space and tab settings, and related editor settings\.
 
@@ -176,7 +176,7 @@ To change the file type preference, in the status bar, choose a different file t
 
 ![\[Changing file type preference in the AWS Cloud9 IDE status bar\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-text-color.gif)
 
-## Step 9: Outline Window<a name="tour-ide-outline"></a>
+## Step 9: Outline window<a name="tour-ide-outline"></a>
 
 You can use the **Outline** window to quickly go to a specific file location\.
 
@@ -209,7 +209,7 @@ In the **Outline** window, choose **say\_hello\(i\)**, and then choose **say\_go
 
 ![\[Outline window in AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-outline.gif)
 
-## Step 10: Go Window<a name="tour-ide-go"></a>
+## Step 10: Go window<a name="tour-ide-go"></a>
 
 You can use the **Go** window to open a file in the editor, go to a symbol's definition, run a command, or go to a line in the active file in the editor\.
 
@@ -233,7 +233,7 @@ If the active file in the editor is part of a supported language project, symbol
 
 To see the keybindings for each of these actions based on the current keyboard mode and operating system, see each of the available **Go To** commands on the **Go** menu in the menu bar\.
 
-## Step 11: Immediate Tab<a name="tour-ide-immediate"></a>
+## Step 11: Immediate tab<a name="tour-ide-immediate"></a>
 
 The **Immediate** tab enables you to test small snippets of JavaScript code\. To see how the **Immediate** tab works, do the following\.
 
@@ -248,7 +248,7 @@ The **Immediate** tab enables you to test small snippets of JavaScript code\. To
    ```  
 ![\[Running code in the Immediate tab\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-immediate.png)
 
-## Step 12: Process List<a name="tour-ide-process-list"></a>
+## Step 12: Process list<a name="tour-ide-process-list"></a>
 
 The **Process List** shows all of the running processes\. You can stop or even forcibly stop processes that you don't want to run anymore\. To see how the **Process List** window works, do the following\.
 
@@ -285,12 +285,12 @@ You can also try running additional commands\. For example, try commands such as
 
 ![\[Using the terminal in the AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-terminal.gif)
 
-## Step 15: Debugger Window<a name="tour-ide-debugger"></a>
+## Step 15: Debugger window<a name="tour-ide-debugger"></a>
 
 You can use the **Debugger** window to debug your code\. For example, you can step through running code a portion at a time, watch the values of variables over time, and explore the call stack\.
 
 **Note**  
-This procedure is similar to [Step 2: Basic Tour of the IDE](tutorial-tour-ide.md) from either of the [basic IDE tutorials](tutorials-basic.md)\.
+This procedure is similar to [Step 2: Basic tour of the IDE](tutorial-tour-ide.md) from either of the [basic IDE tutorials](tutorials-basic.md)\.
 
 To show or hide the **Debugger** window and the **Debugger** button, choose **Window**, **Debugger** on the menu bar\.
 
@@ -388,7 +388,7 @@ Compare your results to the following\.
 
 ![\[Using the debugger\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-debugger.gif)
 
-## Final Thoughts<a name="tour-ide-cleanup"></a>
+## Final thoughts<a name="tour-ide-cleanup"></a>
 
 **Warning**  
 Remember that having an AWS Cloud9 development environment might result in charges to your AWS account\. These include possible charges for Amazon EC2 if you are using an EC2 environment\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.  

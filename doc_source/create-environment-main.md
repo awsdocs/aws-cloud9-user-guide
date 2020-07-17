@@ -58,7 +58,7 @@ Choosing a longer time period might result in more charges to your AWS account\.
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
 
-   For more information about these choices, see [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
+   For more information about these choices, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
 
 1. Add up to 50 tags by supplying a **Key** and a **Value** for each tag\. The tags will be attached to the AWS Cloud9 environment as resource tags, and are propagated to the following underlying resources: the AWS CloudFormation stack, the Amazon EC2 instance, and Amazon EC2 security groups\. You can find information about tags in [Control Access Using AWS Resource Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *[IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)*\. Also see the [advanced information](tags.md) about tags\.
 **Warning**  
@@ -72,7 +72,7 @@ If account creation fails, a banner is displayed at the top of the console page\
 
 After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for the environment\.
 
-If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
+If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
 ## Creating an EC2 Environment with Code<a name="create-environment-code"></a>
 

@@ -15,6 +15,6 @@ To successfully complete this tutorial, you must first complete the steps in [Se
 
 ## Steps<a name="tutorial-steps"></a>
 + [Step 1: Create an Environment](tutorial-create-environment.md)
-+ [Step 2: Basic Tour of the IDE](tutorial-tour-ide.md)
-+ [Step 3: Clean Up](tutorial-clean-up.md)
-+ [Related Information](tutorial-final-info.md)
++ [Step 2: Basic tour of the IDE](tutorial-tour-ide.md)
++ [Step 3: Clean up](tutorial-clean-up.md)
++ [Related information](tutorial-final-info.md)

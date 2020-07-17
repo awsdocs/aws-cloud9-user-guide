@@ -18,7 +18,7 @@ Creating this sample might result in charges to your AWS account\. These include
 
 Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
-+  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
 Start with the following step, depending on what you already have\.
 
@@ -179,7 +179,7 @@ You will not see your password or personal access token whenever you enter it in
 ## Step 6: Keep Working with the IDE and GitHub<a name="sample-github-explore"></a>
 
 Use the AWS Cloud9 IDE and GitHub to keep working with your code\. Here are some things to try\.
-+ Use the **Environment** window and editor tabs in the IDE to view, change, and save code\. For more information, see [Step 3: Environment Window](tour-ide.md#tour-ide-environment) and [Step 4: Editor, Tabs, and Panes](tour-ide.md#tour-ide-editor) in *[Tour the IDE](tour-ide.md)*\.
++ Use the **Environment** window and editor tabs in the IDE to view, change, and save code\. For more information, see [Step 3: Environment window](tour-ide.md#tour-ide-environment) and [Step 4: Editor, tabs, and panes](tour-ide.md#tour-ide-editor) in *[Tour the IDE](tour-ide.md)*\.
 + Use the IDE to run, debug, and build your code\. For more information, see [Working with Builders, Runners, and Debuggers in the AWS Cloud9 Integrated Development Environment \(IDE\)](build-run-debug.md)\.
 + Use Git in the terminal session in the IDE to continue pushing more code changes to the GitHub repository, as well as periodically pull code changes from others from the repository\. For more information, see [Pushing to a Remote](https://help.github.com/articles/pushing-to-a-remote/) and [Fetching a remote](https://help.github.com/articles/fetching-a-remote/) on the GitHub Help website\.
 + Use additional Git commands as you need them\. For a list of these commands, see [Git cheatsheet](https://help.github.com/articles/git-cheatsheet/) on the GitHub Help website\.

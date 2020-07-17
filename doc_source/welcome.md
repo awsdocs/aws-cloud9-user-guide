@@ -56,4 +56,4 @@ To start using AWS Cloud9, follow the steps in [Setting Up AWS Cloud9](setting-u
 
 ## Additional Topics<a name="welcome-additional-info"></a>
 + [What Can I Do with AWS Cloud9?](what-can-i-do.md)
-+ [Additional Information about AWS Cloud9](additional-info.md)
++ [Additional information about AWS Cloud9](additional-info.md)

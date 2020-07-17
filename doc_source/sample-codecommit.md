@@ -15,7 +15,7 @@ Creating this sample might result in charges to your AWS account\. These include
 
 Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
-+  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an Environment in AWS Cloud9](open-environment.md) for details\.
++  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Step 1: Set Up Your IAM Group with Required Access Permissions<a name="sample-codecommit-permissions"></a>
 
@@ -133,7 +133,7 @@ If your repository doesn't have any files in it, a warning message is displayed,
 
 ## Step 5: Add Files to the Repository<a name="sample-codecommit-add-files"></a>
 
-In this step, you create three simple files in the cloned repository in your environment\. Then you add the files to the Git staging area in your cloned repository, commit the staged files, and push the commit to your remote repository in CodeCommit\.
+In this step, you create three simple files in the cloned repository in your AWS Cloud9 environment\. Then you add the files to the Git staging area in your cloned repository, commit the staged files, and push the commit to your remote repository in CodeCommit\.
 
 If the cloned repository already has files in it, you're done and can skip the rest of this sample\.
 
@@ -141,7 +141,7 @@ If the cloned repository already has files in it, you're done and can skip the r
 
 1. Create a new file\. On the menu bar, choose **File**, **New File**\.
 
-1. Type the following content into the file, and then choose **File**, **Save** to save the file as `bird.txt` in the `MyDemoCloud9Repo` directory in your environment\.
+1. Type the following content into the file, and then choose **File**, **Save** to save the file as `bird.txt` in the `MyDemoCloud9Repo` directory in your AWS Cloud9 environment\.
 
    ```
    bird.txt

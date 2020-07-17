@@ -1,4 +1,4 @@
-# Step 2: Basic Tour of the IDE<a name="tutorial-tour-ide"></a>
+# Step 2: Basic tour of the IDE<a name="tutorial-tour-ide"></a>
 
 \(Previous step: [Step 1: Create an Environment](tutorial-create-environment.md)\)
 
@@ -10,13 +10,13 @@ This part of the tutorial introduces some of the ways in which you can use the A
 You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and Samples](tutorials.md) for other programming languages\.
 
 **Topics**
-+ [Get Your Environment Ready](#w30aac11c13c25b5b9)
-+ [Write Some Code](#w30aac11c13c25b5c11)
-+ [Run Your Code](#w30aac11c13c25b5c13)
-+ [Debug Your Code](#w30aac11c13c25b5c15)
-+ [Next Step](#tutorial-tour-ide-next)
++ [Get your environment ready](#w30aac11c13c25b5b9)
++ [Write code](#w30aac11c13c25b5c11)
++ [Run your code](#w30aac11c13c25b5c13)
++ [Debug your code](#w30aac11c13c25b5c15)
++ [Next step](#tutorial-tour-ide-next)
 
-## Get Your Environment Ready<a name="w30aac11c13c25b5b9"></a>
+## Get your environment ready<a name="w30aac11c13c25b5b9"></a>
 
 Most of the tools you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
 
@@ -28,7 +28,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    npm install readline-sync
    ```
 
-   Verify that the result is similar to the following\.
+   Verify that the result is similar to the following \(If `npm WARN` messages are also displayed, you can ignore them\):
 
    ```
    + readline-sync@1.4.10
@@ -36,7 +36,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    found 0 vulnerabilities
    ```
 
-## Write Some Code<a name="w30aac11c13c25b5c11"></a>
+## Write code<a name="w30aac11c13c25b5c11"></a>
 
 Begin by writing some code\.
 
@@ -68,13 +68,13 @@ Begin by writing some code\.
 
 1. Choose **File**, **Save**, and then save the file as `hello-cloud9.js`\.
 
-## Run Your Code<a name="w30aac11c13c25b5c13"></a>
+## Run your code<a name="w30aac11c13c25b5c13"></a>
 
 Next, you can run your code\.
 
 Depending on the programming language you are using, there might be multiple ways in which you can run code\. For this tutorial, we are using JavaScript, which you can run using a terminal window or a **Run Configuration** window\.
 
-**To Run the Code Using a Run Configuration Window**
+**To run the code using a Run Configuration window**
 
 1. On the menu bar, choose **Run**, **Run Configurations**, **New Run Configuration**\.
 
@@ -86,7 +86,7 @@ Depending on the programming language you are using, there might be multiple way
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-run-config.png)
 
-**To Run the Code Using a Terminal Window**
+**To run the code using a terminal window**
 
 1. Go to the terminal window that you used earlier \(or open a new one\)\.
 
@@ -100,7 +100,7 @@ Depending on the programming language you are using, there might be multiple way
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-terminal.png)
 
-## Debug Your Code<a name="w30aac11c13c25b5c15"></a>
+## Debug your code<a name="w30aac11c13c25b5c15"></a>
 
 Finally, you can debug your code by using the **Debugger** window\.
 
@@ -124,6 +124,6 @@ Finally, you can debug your code by using the **Debugger** window\.
 1. Select **Stop** in the **Run Configuration** window to stop the debugger\.  
 ![\[Stop debugger.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-debug-stop.png)
 
-## Next Step<a name="tutorial-tour-ide-next"></a>
+## Next step<a name="tutorial-tour-ide-next"></a>
 
-[Step 3: Clean Up](tutorial-clean-up.md)
+[Step 3: Clean up](tutorial-clean-up.md)

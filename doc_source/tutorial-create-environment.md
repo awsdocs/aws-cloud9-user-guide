@@ -5,11 +5,11 @@
 In this step, you use the AWS Cloud9 console to create and then open an AWS Cloud9 development environment\.
 
 **Note**  
-If you have already created the environment that you want to use for this tutorial, open that environment and skip ahead to [Step 2: Basic Tour of the IDE](tutorial-tour-ide.md)\.
+If you have already created the environment that you want to use for this tutorial, open that environment and skip ahead to [Step 2: Basic tour of the IDE](tutorial-tour-ide.md)\.
 
 In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*, and then work with the files and tools in that environment\.
 
-## Create an EC2 Environment with the Console<a name="tutorial-create-environment-console"></a>
+## Create an EC2 Environment with the console<a name="tutorial-create-environment-console"></a>
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
@@ -52,7 +52,7 @@ Choosing a longer time period might result in more charges to your AWS account\.
 
    AWS Cloud9 uses Amazon Virtual Private Cloud \(Amazon VPC\) to communicate with the newly created Amazon EC2 instance\. For this tutorial, we recommend that you don't change the preselected default settings\. With the default settings, AWS Cloud9 attempts to automatically use the default VPC with its single subnet in the same AWS account and AWS Region as the new environment\.
 
-   You can find more information about Amazon VPC choices in [Create an EC2 Environment with the Console](create-environment-main.md#create-environment-vpc-step), and in [VPC Settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
+   You can find more information about Amazon VPC choices in [Create an EC2 Environment with the Console](create-environment-main.md#create-environment-vpc-step), and in [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
 
 1. Add up to 50 tags by supplying a **Key** and a **Value** for each tag\. The tags will be attached to the AWS Cloud9 environment as resource tags, and are propagated to the following underlying resources: the AWS CloudFormation stack, the Amazon EC2 instance, and Amazon EC2 security groups\. You can find information about tags in [Control Access Using AWS Resource Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *[IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)*\. Also see the [advanced information](tags.md) about tags\.
 **Warning**  
@@ -66,8 +66,8 @@ If account creation fails, a banner is displayed at the top of the console page\
 
 After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for the environment\.
 
-If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
+If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
-## Next Step<a name="tutorial-create-env-next"></a>
+## Next step<a name="tutorial-create-env-next"></a>
 
-[Step 2: Basic Tour of the IDE](tutorial-tour-ide.md)
+[Step 2: Basic tour of the IDE](tutorial-tour-ide.md)

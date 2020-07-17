@@ -1,13 +1,13 @@
-# VPC Settings for AWS Cloud9 Development Environments<a name="vpc-settings"></a>
+# VPC settings for AWS Cloud9 Development Environments<a name="vpc-settings"></a>
 
 Every AWS Cloud9 development environment associated with an Amazon Virtual Private Cloud \(Amazon VPC\) must meet specific VPC requirements\. These environments include EC2 environments, as well as SSH environments associated with AWS cloud compute instances \(for example Amazon EC2 and Amazon Lightsail instances\) that run within a VPC\.
 
 **Topics**
-+ [Amazon VPC Requirements for AWS Cloud9](#vpc-settings-requirements)
++ [Amazon VPC requirements for AWS Cloud9](#vpc-settings-requirements)
 + [Create an Amazon VPC for AWS Cloud9](#vpc-settings-create-vpc)
-+ [Create a Subnet for AWS Cloud9](#vpc-settings-create-subnet)
++ [Create a subnet for AWS Cloud9](#vpc-settings-create-subnet)
 
-## Amazon VPC Requirements for AWS Cloud9<a name="vpc-settings-requirements"></a>
+## Amazon VPC requirements for AWS Cloud9<a name="vpc-settings-requirements"></a>
 
 The Amazon VPC that AWS Cloud9 uses requires the following settings\. If you're already familiar with these requirements and just want to quickly create a compatible VPC, skip ahead to [Create an Amazon VPC for AWS Cloud9](#vpc-settings-create-vpc)\.
 
@@ -18,16 +18,16 @@ Use the following checklist to confirm that the VPC meets **all** of the followi
 
 |  **Criteria**  |  **How to confirm**  |  **Additional resources**  | 
 | --- | --- | --- | 
-|  The VPC can be in the same AWS account and AWS Region as the AWS Cloud9 development environment\. —OR— The VPC can be a shared VPC in a different AWS account than the environment\. \(However, the VPC must be in the same AWS Region as the environment\)\.  |   [View a List of VPCs For an AWS Region](#vpc-settings-requirements-list-vpcs)   |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
+|  The VPC can be in the same AWS account and AWS Region as the AWS Cloud9 development environment\. —OR— The VPC can be a shared VPC in a different AWS account than the environment\. \(However, the VPC must be in the same AWS Region as the environment\)\.  |   [View a list of VPCs for an AWS Region](#vpc-settings-requirements-list-vpcs)   |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
 |  The VPC must have a public subnet\. \(A subnet is public if its traffic is routed to an internet gateway\.\)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
 |  The subnet must have a route table with a minimum set of routes\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
 |  The associated security groups for the VPC \(or for the AWS cloud compute instance, depending on your architecture\) must allow a minimum set of inbound and outbound traffic\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
-|  For an additional layer of security, if the VPC has a network ACL, the network ACL must allow a minimum set of inbound and outbound traffic\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |   [Create a Network ACL](#vpc-settings-requirements-network-acl-create)   | 
+|  For an additional layer of security, if the VPC has a network ACL, the network ACL must allow a minimum set of inbound and outbound traffic\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |   [Create a network ACL](#vpc-settings-requirements-network-acl-create)   | 
 
 **Note**  
 For the following procedures, if you use the Amazon VPC or Amazon EC2 consoles, we recommend you sign in to the AWS Management Console and open the Amazon VPC console \([https://console\.aws\.amazon\.com/vpc](https://console.aws.amazon.com/vpc)\) or Amazon EC2 console \([https://console\.aws\.amazon\.com/ec2](https://console.aws.amazon.com/ec2)\) using credentials for an IAM administrator user in your AWS account\. If you use the AWS CLI or the aws\-shell, we recommend you configure the AWS CLI or the aws\-shell with the credentials for an IAM administrator user in your AWS account\. If you can't do this, check with your AWS account administrator\.
 
-### View a List of VPCs For an AWS Region<a name="vpc-settings-requirements-list-vpcs"></a>
+### View a list of VPCs for an AWS Region<a name="vpc-settings-requirements-list-vpcs"></a>
 
 To use the Amazon VPC console, in the AWS navigation bar, choose the AWS Region that AWS Cloud9 will create the environment in\. Then choose **Your VPCs** in the navigation pane\.
 
@@ -41,7 +41,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that AWS Cloud
 
 The output contains the list of VPC IDs\.
 
-### View a List of Subnets for a VPC<a name="vpc-settings-requirements-subnets-view"></a>
+### View a list of subnets for a VPC<a name="vpc-settings-requirements-subnets-view"></a>
 
 To use the Amazon VPC console, choose **Your VPCs** in the navigation pane\. Note the VPC's ID in the **VPC ID** column\. Then choose **Subnets** in the navigation pane, and look for subnets that contain that ID in the **VPC** column\.
 
@@ -55,7 +55,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 In the output, look for subnets that match the VPC's ID\.
 
-### Confirm Whether a Subnet is Public<a name="vpc-settings-requirements-subnet-public"></a>
+### Confirm whether a subnet is public<a name="vpc-settings-requirements-subnet-public"></a>
 
 To use the Amazon VPC console, choose **Subnets** in the navigation pane\. Select the box next to the subnet you want AWS Cloud9 to use\. On the **Route Table** tab, if there is an entry in the **Target** column that starts with **igw\-**, the subnet is public\.
 
@@ -79,7 +79,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 In the output, if there is at least one result that starts with `igw-`, the VPC contains an internet gateway\.
 
-### View or Change Settings For an Internet Gateway<a name="vpc-settings-requirements-internet-gateway-view"></a>
+### View or change settings for an internet gateway<a name="vpc-settings-requirements-internet-gateway-view"></a>
 
 To use the Amazon VPC console, choose **Internet Gateways** in the navigation pane\. Select the box next to the internet gateway\. To see the settings, look at each of the tabs\. To change a setting on a tab, choose **Edit** if applicable, and then follow the on\-screen directions\.
 
@@ -91,7 +91,7 @@ aws ec2 describe-internet-gateways --output table --region us-east-2 --internet-
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the internet gateway, and replace `igw-1234ab5c` with the internet gateway ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### Create an Internet Gateway<a name="vpc-settings-requirements-internet-gateway-create"></a>
+### Create an internet gateway<a name="vpc-settings-requirements-internet-gateway-create"></a>
 
 To use the Amazon VPC console, choose **Internet Gateways** in the navigation pane\. Choose **Create internet gateway**, and then follow the on\-screen directions\.
 
@@ -105,7 +105,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 The output contains the ID of the new internet gateway\.
 
-### Attach an Internet Gateway to a VPC<a name="vpc-settings-requirements-internet-gateway-attach"></a>
+### Attach an internet gateway to a VPC<a name="vpc-settings-requirements-internet-gateway-attach"></a>
 
 To use the Amazon VPC console, choose **Internet Gateways** in the navigation pane\. Select the box next to the internet gateway\. Choose **Actions, Attach to VPC** if available, and then follow the on\-screen directions\.
 
@@ -117,7 +117,7 @@ aws ec2 attach-internet-gateway --region us-east-2 --internet-gateway-id igw-a1b
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the internet gateway, replace `igw-a1b2cdef` with the internet gateway ID, and replace `vpc-1234ab56` with the VPC ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### Confirm Whether a Subnet Has a Route Table<a name="vpc-settings-requirements-subnet-route-table"></a>
+### Confirm whether a subnet has a route table<a name="vpc-settings-requirements-subnet-route-table"></a>
 
 To use the Amazon VPC console, choose **Subnets** in the navigation pane\. Select the box next to the VPC's public subnet that you want AWS Cloud9 to use\. On the **Route table** tab, if there is a value for **Route Table**, the public subnet has a route table\.
 
@@ -141,7 +141,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 In the output, if there is at least one result, the VPC has at least one route table\.
 
-### Attach a Route Table to a Subnet<a name="vpc-settings-requirements-route-table-attach"></a>
+### Attach a route table to a subnet<a name="vpc-settings-requirements-route-table-attach"></a>
 
 To use the Amazon VPC console, choose **Route Tables** in the navigation pane\. Select the box next to the route table that you want to attach\. On the **Subnet Associations** tab, choose **Edit**, select the box next to the subnet you want to attach it to, and then choose **Save**\.
 
@@ -153,7 +153,7 @@ aws ec2 associate-route-table --region us-east-2 --subnet-id subnet-12a3456b --r
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the route table, replace `subnet-12a3456b` with the subnet ID, and replace `rtb-ab12cde3` with the route table ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### Create a Route Table<a name="vpc-settings-requirements-route-table-create"></a>
+### Create a route table<a name="vpc-settings-requirements-route-table-create"></a>
 
 To use the Amazon VPC console, choose **Route Tables** in the navigation pane\. Choose **Create Route Table**, and then follow the on\-screen directions\.
 
@@ -167,7 +167,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 The output contains the ID of the new route table\.
 
-### View or Change Settings For a Route Table<a name="vpc-settings-requirements-route-table-view"></a>
+### View or change settings for a route table<a name="vpc-settings-requirements-route-table-view"></a>
 
 To use the Amazon VPC console, choose **Route Tables** in the navigation pane\. Select the box next to the route table\. To see the settings, look at each of the tabs\. To change a setting on a tab, choose **Edit**, and then follow the on\-screen directions\.
 
@@ -179,7 +179,7 @@ aws ec2 describe-route-tables --output table --region us-east-2 --route-table-id
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the route table, and replace `rtb-ab12cde3` with the route table ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### Minumum Suggested Route Table Settings for AWS Cloud9<a name="vpc-settings-requirements-route-table-settings"></a>
+### Minimum suggested route table settings for AWS Cloud9<a name="vpc-settings-requirements-route-table-settings"></a>
 
 
 ****  
@@ -191,7 +191,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 In these settings, ` CIDR-BLOCK ` is the subnet's CIDR block, and `igw-INTERNET-GATEWAY-ID ` is the ID of a compatible internet gateway\.
 
-### View a List of Security Groups for a VPC<a name="vpc-settings-requirements-security-groups-vpc-view"></a>
+### View a list of security groups for a VPC<a name="vpc-settings-requirements-security-groups-vpc-view"></a>
 
 To use the Amazon VPC console, choose **Security Groups** in the navigation pane\. In the **Search Security Groups** box, type the VPC's ID or name, and then press `Enter`\. Security groups for that VPC appear in the list of search results\.
 
@@ -205,7 +205,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 The output contains the list of security group IDs for that VPC\.
 
-### View a List of Security Groups For an AWS Cloud Compute Instance<a name="vpc-settings-requirements-security-groups-instance-view"></a>
+### View a list of security groups for an AWS cloud compute instance<a name="vpc-settings-requirements-security-groups-instance-view"></a>
 
 To use the Amazon EC2 console, expand **Instances** in the navigation pane, and then choose **Instances**\. In the list of instances, select the box next to the instance\. Security groups for that instance appear in the **Description** tab next to **Security groups**\.
 
@@ -219,7 +219,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 The output contains the list of security group IDs for that instance\.
 
-### View or Change Settings For a Security Group in a VPC<a name="vpc-settings-requirements-security-group-vpc-view"></a>
+### View or change settings for a security group in a VPC<a name="vpc-settings-requirements-security-group-vpc-view"></a>
 
 To use the Amazon VPC console, choose **Security Groups** in the navigation pane\. Select the box next to the security group\. To see the settings, look at each of the tabs\. To change a setting on a tab, choose **Edit** if applicable, and then follow the on\-screen directions\.
 
@@ -231,7 +231,7 @@ aws ec2 describe-security-groups --output table --region us-east-2 --group-ids s
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the instance, and replace `sg-12a3b456` with the security group ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### View or Change Settings For a Security Group For an AWS Cloud Compute Instance<a name="vpc-settings-requirements-security-group-instance-view"></a>
+### View or change settings for a security group for an AWS cloud compute instance<a name="vpc-settings-requirements-security-group-instance-view"></a>
 
 To use the Amazon EC2 console, expand **Instances** in the navigation pane, and then choose **Instances**\. In the list of instances, select the box next to the instance\. In the **Description** tab, for **Security groups**, choose the security group\. Look at each of the tabs\. To change a setting on a tab, choose **Edit** if applicable, and then follow the on\-screen directions\.
 
@@ -243,7 +243,7 @@ aws ec2 describe-security-groups --output table --region us-east-2 --group-ids s
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the instance, and replace `sg-12a3b456` with the security group ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### Minimum Inbound and Outbound Traffic Settings for AWS Cloud9<a name="vpc-settings-requirements-traffic-settings"></a>
+### Minimum inbound and outbound traffic settings for AWS Cloud9<a name="vpc-settings-requirements-traffic-settings"></a>
 +  **Inbound**: All IP addresses using SSH over port 22\. However, you can restrict these IP addresses to only those that AWS Cloud9 uses\. For more information, see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
 **Note**  
 For EC2 environments created on or after July 31 2018, AWS Cloud9 uses security groups to automatically restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
@@ -303,7 +303,7 @@ For more information about security groups and network ACLs, see the following i
 +  [Security Groups for your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) 
 +  [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) 
 
-### Create a Security Group in a VPC<a name="vpc-settings-requirements-security-group-vpc-create"></a>
+### Create a security group in a VPC<a name="vpc-settings-requirements-security-group-vpc-create"></a>
 
 To use the Amazon VPC or Amazon EC2 consoles, do one of the following\.
 + In the Amazon VPC console, choose **Security Groups** in the navigation pane\. Choose **Create Security Group**, and then follow the on\-screen directions\.
@@ -317,7 +317,7 @@ aws ec2 create-security-group --region us-east-2 --vpc-id vpc-1234ab56
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the VPC, and replace `vpc-1234ab56` with the VPC ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### Confirm Whether a VPC Has at Least One Network ACL<a name="vpc-settings-requirements-network-acl-confirm"></a>
+### Confirm whether a VPC has at least one network ACL<a name="vpc-settings-requirements-network-acl-confirm"></a>
 
 To use the Amazon VPC console, choose **Your VPCs** in the navigation pane\. Select the box next to the VPC you want AWS Cloud9 to use\. On the **Summary** tab, if there is a value for **Network ACL**, the VPC has at least one network ACL\.
 
@@ -331,7 +331,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 If the output contains at least one entry in the list, the VPC has at least one network ACL\.
 
-### View a List of Network ACLs For a VPC<a name="vpc-settings-requirements-network-acls-view"></a>
+### View a list of network ACLs for a VPC<a name="vpc-settings-requirements-network-acls-view"></a>
 
 To use the Amazon VPC console, choose **Network ACLs** in the navigation pane\. In the **Search Network ACLs** box, type the VPC's ID or name, and then press `Enter`\. Network ACLs for that VPC appear in the list of search results\.
 
@@ -345,7 +345,7 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 
 The output contains a list of network ACLs for that VPC\.
 
-### View or Change Settings For a Network ACL<a name="vpc-settings-requirements-network-acl-view"></a>
+### View or change settings for a network ACL<a name="vpc-settings-requirements-network-acl-view"></a>
 
 To use the Amazon VPC console, choose **Network ACLs** in the navigation pane\. Select the box next to the network ACL\. To see the settings, look at each of the tabs\. To change a setting on a tab, choose **Edit** if applicable, and then follow the on\-screen directions\.
 
@@ -357,7 +357,7 @@ aws ec2 describe-network-acls --output table --region us-east-2 --network-acl-id
 
 In the preceding command, replace `us-east-2` with the AWS Region that contains the network ACL, and replace `acl-1234ab56` with the network ACL ID\. To run the preceding command with the aws\-shell, omit `aws`\.
 
-### Create a Network ACL<a name="vpc-settings-requirements-network-acl-create"></a>
+### Create a network ACL<a name="vpc-settings-requirements-network-acl-create"></a>
 
 To use the Amazon VPC console, choose **Network ACLs** in the navigation pane\. Choose **Create Network ACL**, and then follow the on\-screen directions\.
 
@@ -446,14 +446,14 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
    1. You might need to add more inbound or outbound rules to the network ACL, depending on how you plan to use AWS Cloud9\. See the documentation for the web services or APIs you want to allow to communicate into or out of the VPC for the **Type**, **Protocol**, **Port Range**, and **Source** values to specify for these rules\.
 
-## Create a Subnet for AWS Cloud9<a name="vpc-settings-create-subnet"></a>
+## Create a subnet for AWS Cloud9<a name="vpc-settings-create-subnet"></a>
 
 You can use the Amazon VPC console to create a subnet for a VPC that is compatible with AWS Cloud9\.
 
 If you followed the previous procedure to create a VPC for AWS Cloud9, you do not also need to follow this procedure\. This is because the **Create new VPC** wizard creates a subnet for you automatically\.
 
 **Important**  
-The AWS account must already have a compatible VPC in the same AWS Region for the environment\. For more information, see the VPC requirements in [Amazon VPC Requirements for AWS Cloud9](#vpc-settings-requirements)\.
+The AWS account must already have a compatible VPC in the same AWS Region for the environment\. For more information, see the VPC requirements in [Amazon VPC requirements for AWS Cloud9](#vpc-settings-requirements)\.
 For this procedure, we recommend you sign in to the AWS Management Console, and then open the Amazon VPC console using credentials for an IAM administrator user in your AWS account\. If you can't do this, check with your AWS account administrator\.
 Some organizations may not allow you to create subnets on your own\. If you cannot create a subnet, check with your AWS account administrator or network administrator\.
 
@@ -475,4 +475,4 @@ Some organizations may not allow you to create subnets on your own\. If you cann
 
    For information about CIDR blocks, see [VPC and Subnet Sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\. See also [3\.1\. Basic Concept and Prefix Notation](http://tools.ietf.org/html/rfc4632#section-3.1) in RFC 4632 or [IPv4 CIDR blocks](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) in Wikipedia\.
 
-1. After you create the subnet, be sure to associate it with a compatible route table and an internet gateway, as well as security groups, a network ACL, or both\. For more information, see the requirements in [Amazon VPC Requirements for AWS Cloud9](#vpc-settings-requirements)\.
+1. After you create the subnet, be sure to associate it with a compatible route table and an internet gateway, as well as security groups, a network ACL, or both\. For more information, see the requirements in [Amazon VPC requirements for AWS Cloud9](#vpc-settings-requirements)\.
