@@ -1,4 +1,4 @@
-# \.NET Core Sample for AWS Cloud9<a name="sample-dotnetcore"></a>
+# \.NET Core sample for AWS Cloud9<a name="sample-dotnetcore"></a>
 
 This sample enables you to run some \.NET Core code in an AWS Cloud9 development environment\.
 
@@ -6,14 +6,14 @@ Creating this sample might result in charges to your AWS account\. These include
 
 **Topics**
 + [Prerequisites](#sample-dotnetcore-prereqs)
-+ [Step 1: Install Required Tools](#sample-dotnetcore-setup)
-+ [Step 2: Create a \.NET Core Console Application Project](#sample-dotnetcore-app)
-+ [Step 3: Add Code](#sample-dotnetcore-code)
-+ [Step 4: Build and Run the Code](#sample-dotnetcore-run)
-+ [Step 5: Create and Set Up a \.NET Core Console Application Project That Uses the AWS SDK for \.NET](#sample-dotnetcore-sdk)
-+ [Step 6: Add AWS SDK Code](#sample-dotnetcore-sdk-code)
-+ [Step 7: Build and Run the AWS SDK Code](#sample-dotnetcore-sdk-run)
-+ [Step 8: Clean Up](#sample-dotnetcore-clean-up)
++ [Step 1: Install required tools](#sample-dotnetcore-setup)
++ [Step 2: Create a \.NET Core console application project](#sample-dotnetcore-app)
++ [Step 3: Add code](#sample-dotnetcore-code)
++ [Step 4: Build and run the code](#sample-dotnetcore-run)
++ [Step 5: Create and set up a \.NET Core console application project that uses the AWS SDK for \.NET](#sample-dotnetcore-sdk)
++ [Step 6: Add AWS SDK code](#sample-dotnetcore-sdk-code)
++ [Step 7: Build and run the AWS SDK code](#sample-dotnetcore-sdk-run)
++ [Step 8: Clean up](#sample-dotnetcore-clean-up)
 
 ## Prerequisites<a name="sample-dotnetcore-prereqs"></a>
 
@@ -21,19 +21,19 @@ Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an Environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
-## Step 1: Install Required Tools<a name="sample-dotnetcore-setup"></a>
+## Step 1: Install required tools<a name="sample-dotnetcore-setup"></a>
 
-In this step, you install the \.NET Core 2 SDK into your environment, which is required to run this sample\.
+In this step, you install the \.NET Core SDK into your environment, which is required to run this sample\.
 
-1. Confirm whether the \.NET Core 2 SDK is already installed in your environment\. To do this, in a terminal session in the AWS Cloud9 IDE, run the \.NET Core command line interface \(CLI\) with the ** `--version` ** option\.
+1. Confirm whether the latest version of the \.NET Core SDK is already installed in your environment\. To do this, in a terminal session in the AWS Cloud9 IDE, run the \.NET Core command line interface \(CLI\) with the ** `--version` ** option\.
 
    ```
    dotnet --version
    ```
 
-   If the \.NET Command Line Tools version is displayed, and the version is 2\.0 or greater, skip ahead to [Step 2: Create a \.NET Core Console Application Project](#sample-dotnetcore-app)\. If the version is less than 2\.0, or if an error such as `bash: dotnet: command not found` is displayed, continue on to install the \.NET Core 2 SDK\.
+   If the \.NET Command Line Tools version is displayed, and the version is 2\.0 or greater, skip ahead to [Step 2: Create a \.NET Core console application project](#sample-dotnetcore-app)\. If the version is less than 2\.0, or if an error such as `bash: dotnet: command not found` is displayed, continue on to install the \.NET Core SDK\.
 
-1. For Amazon Linux, in a terminal session in the AWS Cloud9 IDE, run the following commands to help ensure the latest security updates and bug fixes are installed, and to install a `libunwind` package that the \.NET Core 2 SDK needs\. \(To start a new terminal session, on the menu bar, choose **Window, New Terminal**\.\)
+1. For Amazon Linux, in a terminal session in the AWS Cloud9 IDE, run the following commands to help ensure the latest security updates and bug fixes are installed, and to install a `libunwind` package that the \.NET Core SDK needs\. \(To start a new terminal session, on the menu bar, choose **Window, New Terminal**\.\)
 
    ```
    sudo yum -y update
@@ -46,10 +46,10 @@ In this step, you install the \.NET Core 2 SDK into your environment, which is r
    sudo apt -y update
    ```
 
-1. Download the \.NET Core 2 SDK installer script into your environment by running the following command\.
+1. Download the \.NET Core SDK installer script into your environment by running the following command\.
 
    ```
-   curl -O https://dot.net/v1/dotnet-install.sh
+   wget https://dot.net/v1/dotnet-install.sh
    ```
 
 1. Make the installer script executable by the current user by running the following command\.
@@ -58,13 +58,13 @@ In this step, you install the \.NET Core 2 SDK into your environment, which is r
    sudo chmod u=rx dotnet-install.sh
    ```
 
-1. Run the installer script, which downloads and installs the \.NET Core 2 SDK, by running the following command\.
+1. Run the installer script, which downloads and installs the \.NET Core SDK, by running the following command\.
 
    ```
    ./dotnet-install.sh -c Current
    ```
 
-1. Add the \.NET Core 2 SDK to your `PATH`\. To do this, in the shell profile for the environment \(for example, the `.bashrc` file\), add the `$HOME/.dotnet` subdirectory to the `PATH` variable for the environment, as follows\.
+1. Add the \.NET Core SDK to your `PATH`\. To do this, in the shell profile for the environment \(for example, the `.bashrc` file\), add the `$HOME/.dotnet` subdirectory to the `PATH` variable for the environment, as follows\.
 
    1. Open the `.bashrc` file for editing by using the ** `vi` ** command\.
 
@@ -94,27 +94,27 @@ In this step, you install the \.NET Core 2 SDK into your environment, which is r
 
    1. Save the file\. To do this, press the `Esc` key \(`-- INSERT ---` will disappear from the end of the display\), type `:wq` \(to write to and then quit the file\), and then press `Enter`\.
 
-1. Load the \.NET Core 2 SDK by sourcing the `.bashrc` file\.
+1. Load the \.NET Core SDK by sourcing the `.bashrc` file\.
 
    ```
    . ~/.bashrc
    ```
 
-1. Confirm the \.NET Core 2 SDK is loaded by running \.NET Core CLI with the ** `--help` ** option\.
+1. Confirm the \.NET Core SDK is loaded by running \.NET Core CLI with the ** `--help` ** option\.
 
    ```
    dotnet --help
    ```
 
-   If successful, the \.NET Core 2 SDK version number is displayed, with additional usage information\.
+   If successful, the \.NET Core SDK version number is displayed, with additional usage information\.
 
-1. If you no longer want to keep the \.NET Core 2 SDK installer script in your environment, you can delete it as follows\.
+1. If you no longer want to keep the \.NET Core SDK installer script in your environment, you can delete it as follows\.
 
    ```
    rm dotnet-install.sh
    ```
 
-## Step 2: Create a \.NET Core Console Application Project<a name="sample-dotnetcore-app"></a>
+## Step 2: Create a \.NET Core console application project<a name="sample-dotnetcore-app"></a>
 
 In this step, you use \.NET Core to create a project named `hello`\. This project contains all of the files that \.NET Core needs to run a simple application from the terminal in the IDE\. The application's code is written in C\#\.
 
@@ -135,7 +135,7 @@ In this step, you use \.NET Core to create a project named `hello`\. This projec
    + The `hello/hello.csproj` file contains information about the console application project\.
    + The `hello/Program.cs` file contains the application's code to run\.
 
-## Step 3: Add Code<a name="sample-dotnetcore-code"></a>
+## Step 3: Add code<a name="sample-dotnetcore-code"></a>
 
 In this step, you add some code to the application\.
 
@@ -165,7 +165,7 @@ namespace hello
 }
 ```
 
-## Step 4: Build and Run the Code<a name="sample-dotnetcore-run"></a>
+## Step 4: Build and run the code<a name="sample-dotnetcore-run"></a>
 
 In this step, you build the project and its dependencies into a set of binary files, including a runnable application file\. Then you run the application\.
 
@@ -193,9 +193,11 @@ In this step, you build the project and its dependencies into a set of binary fi
 1. With the contents of the `Program.cs` file displayed in the editor, choose **Run, Build System, \.NET Core**\. Then choose **Run, Build**\.
 
    This builder adds a subdirectory named `bin` and adds a subdirectory named `Debug` to the `hello/obj` subdirectory\. Note the following three key files\.
-   + The `hello/bin/Debug/netcoreapp2.0/hello.dll` file is the runnable application file\.
-   + The `hello/bin/Debug/netcoreapp2.0/hello.deps.json` file lists the application's dependencies\.
-   + The `hello/bin/Debug/netcoreapp2.0/hello.runtimeconfig.json` file specifies the shared runtime and its version for the application\.
+   + The `hello/bin/Debug/netcoreapp3.1/hello.dll` file is the runnable application file\.
+   + The `hello/bin/Debug/netcoreapp3.1/hello.deps.json` file lists the application's dependencies\.
+   + The `hello/bin/Debug/netcoreapp3.1/hello.runtimeconfig.json` file specifies the shared runtime and its version for the application\.
+**Note**  
+The folder name, `netcoreapp3.1`, reflects the version of the \.NET Core SDK used in this example\. You may see a different number in the folder name depending on the version you've installed\.
 
 1. Create a runner for \.NET Core as follows\.
 
@@ -229,7 +231,7 @@ In this step, you build the project and its dependencies into a set of binary fi
 
    1. Choose **Run**\.
 
-      By default, this runner instructs \.NET Core to run the `hello.dll` file in the `hello/bin/Debug/netcoreapp2.0` directory\.
+      By default, this runner instructs \.NET Core to run the `hello.dll` file in the `hello/bin/Debug/netcoreapp3.1` directory\.
 
       Compare your output to the following\.
 
@@ -239,7 +241,7 @@ In this step, you build the project and its dependencies into a set of binary fi
       The sum of 5 and 9 is 14.
       ```
 
-## Step 5: Create and Set Up a \.NET Core Console Application Project That Uses the AWS SDK for \.NET<a name="sample-dotnetcore-sdk"></a>
+## Step 5: Create and set up a \.NET Core console application project that uses the AWS SDK for \.NET<a name="sample-dotnetcore-sdk"></a>
 
 You can enhance this sample to use the AWS SDK for \.NET to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
@@ -279,7 +281,7 @@ To store your credentials within the environment, follow the instructions in [Ca
 
 For additional information, see [Configuring AWS Credentials](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.
 
-## Step 6: Add AWS SDK Code<a name="sample-dotnetcore-sdk-code"></a>
+## Step 6: Add AWS SDK code<a name="sample-dotnetcore-sdk-code"></a>
 
 In this step, you add code to interact with Amazon S3 to create a bucket, delete the bucket you just created, and then list your available buckets\.
 
@@ -385,7 +387,7 @@ namespace s3
 }
 ```
 
-## Step 7: Build and Run the AWS SDK Code<a name="sample-dotnetcore-sdk-run"></a>
+## Step 7: Build and run the AWS SDK code<a name="sample-dotnetcore-sdk-run"></a>
 
 In this step, you build the project and its dependencies into a set of binary files, including a runnable application file\. Then you run the application\.
 
@@ -401,7 +403,7 @@ In this step, you build the project and its dependencies into a set of binary fi
 
    1. Choose **Run**\.
 
-      By default, this runner instructs \.NET Core to run the `s3.dll` file in the `s3/bin/Debug/netcoreapp2.0` directory\.
+      By default, this runner instructs \.NET Core to run the `s3.dll` file in the `s3/bin/Debug/netcoreapp3.1` directory\.
 
       Compare your results to the following output\.
 
@@ -415,6 +417,6 @@ In this step, you build the project and its dependencies into a set of binary fi
       My buckets now are:
       ```
 
-## Step 8: Clean Up<a name="sample-dotnetcore-clean-up"></a>
+## Step 8: Clean up<a name="sample-dotnetcore-clean-up"></a>
 
 To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.

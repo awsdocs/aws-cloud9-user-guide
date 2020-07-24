@@ -17,13 +17,13 @@ Experiment with these tutorials to increase your knowledge and confidence using 
 + [Java Sample](sample-java.md)
 + [C\+\+ Sample](sample-cplusplus.md)
 + [Python Tutorial](sample-python.md)
-+ [\.NET Core Sample](sample-dotnetcore.md)
++ [\.NET Core sample](sample-dotnetcore.md)
 + [Node\.js Sample](sample-nodejs.md)
 + [PHP Sample](sample-php.md)
 + [Tutorial: Ruby](tutorial-ruby.md)
 + [Go Sample](sample-go.md)
 + [TypeScript Sample](sample-typescript.md)
-+ [Docker Sample](sample-docker.md)
++ [Docker sample](sample-docker.md)
 + [Related Samples](#samples-additonal)
 
 ## Related Samples<a name="samples-additonal"></a>

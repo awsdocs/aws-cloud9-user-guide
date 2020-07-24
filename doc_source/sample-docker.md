@@ -1,4 +1,4 @@
-# Docker Sample for AWS Cloud9<a name="sample-docker"></a>
+# Docker sample for AWS Cloud9<a name="sample-docker"></a>
 
 This sample shows you how to connect an AWS Cloud9 SSH development environment to a running Docker container inside of an Amazon Linux instance in Amazon EC2\. This enables you to use the AWS Cloud9 IDE to work with code and files inside of a Docker container and to run commands on that container\. For information about Docker, see [What is Docker](https://www.docker.com/what-docker) on the Docker website\.
 
@@ -6,19 +6,19 @@ Creating this sample might result in charges to your AWS account\. These include
 
 **Topics**
 + [Prerequisites](#sample-docker-prereqs)
-+ [Step 1: Install and Run Docker](#sample-docker-install)
-+ [Step 2: Build the Image](#sample-docker-build)
-+ [Step 3: Run the Container](#sample-docker-run)
-+ [Step 4: Create the Environment](#sample-docker-env)
-+ [Step 5: Run the Code](#sample-docker-code)
-+ [Step 6: Clean Up](#sample-docker-clean-up)
++ [Step 1: Install and run Docker](#sample-docker-install)
++ [Step 2: Build the image](#sample-docker-build)
++ [Step 3: Run the container](#sample-docker-run)
++ [Step 4: Create the environment](#sample-docker-env)
++ [Step 5: Run the code](#sample-docker-code)
++ [Step 6: Clean up](#sample-docker-clean-up)
 
 ## Prerequisites<a name="sample-docker-prereqs"></a>
 +  **You should have an Amazon EC2 instance running Amazon Linux or Ubuntu Server\.** This sample assumes you already have an Amazon EC2 instance running Amazon Linux or Ubuntu Server in your AWS account\. To launch an Amazon EC2 instance, see [Launch a Linux Virtual Machine](https://aws.amazon.com/getting-started/tutorials/launch-a-virtual-machine/)\. In the **Choose an Amazon Machine Image \(AMI\)** page of the wizard, choose an AMI whose display name starts with **Amazon Linux AMI** or **Ubuntu Server**\.
 +  **If the Amazon EC2 instance runs within an Amazon VPC, there are additional requirements\.** See [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
 +  **The Amazon EC2 instance should have at least 8 to 16 GB of free disk space available\.** This sample uses Docker images that are over 3 GB in size and can use additional increments of 3 GB or more of disk space to build images\. If you try to run this sample on a disk that has 8 GB of free space or less, we've found that the Docker image might not build or the Docker container might not run\. To check the instance's free disk space, you can run a command such as ** `df -h` ** \(for "disk filesystem information in human\-readable format"\) on the instance\. To increase an existing instance's disk size, see [Modifying a Volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-modify-volume.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-## Step 1: Install and Run Docker<a name="sample-docker-install"></a>
+## Step 1: Install and run Docker<a name="sample-docker-install"></a>
 
 In this step, you check if Docker is installed on the Amazon EC2 instance, and install Docker if it isn't already installed\. After you install Docker, you run it on the instance\.
 
@@ -62,7 +62,7 @@ In this step, you check if Docker is installed on the Amazon EC2 instance, and i
 
    If Docker is running, information about Docker is displayed\.
 
-## Step 2: Build the Image<a name="sample-docker-build"></a>
+## Step 2: Build the image<a name="sample-docker-build"></a>
 
 In this step, you use a Dockerfile to build a Docker image onto the instance\. This sample uses an image that includes Node\.js and a sample chat server application\.
 
@@ -75,19 +75,25 @@ In this step, you use a Dockerfile to build a Docker image onto the instance\. T
 1. Add the following contents to the `Dockerfile` file\.
 
    ```
-   # Build a Docker image based on the cloud9/ws-nodejs Docker image.
-   FROM cloud9/ws-nodejs
+   # Build a Docker image based on the Amazon Linux 2 Docker image.
+   FROM amazonlinux:2
+   
+   # install common tools
+   RUN yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+   RUN yum update -y
+   RUN yum install -y sudo bash curl wget git man-db nano vim bash-completion tmux  gcc gcc-c++ make tar
    
    # Enable the Docker container to communicate with AWS Cloud9 by
    # installing SSH.
-   RUN apt update && apt install -y openssh-server
+   RUN yum install -y openssh-server
    
    # Ensure that Node.js is installed.
-   RUN apt install -y nodejs && ln -s /usr/bin/nodejs /usr/bin/node
+   RUN yum install -y nodejs
    
-   # Disable password authentication by turning off the
-   # Pluggable Authentication Module (PAM).
-   RUN sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+   # Create user and enable root access
+   RUN useradd --uid 1000 --shell /bin/bash -m --home-dir /home/ubuntu ubuntu && \
+       sed -i 's/%wheel\s.*/%wheel ALL=NOPASSWD:ALL/' /etc/sudoers && \
+       usermod -a -G wheel ubuntu
    
    # Add the AWS Cloud9 SSH public key to the Docker container.
    # This assumes a file named authorized_keys containing the
@@ -99,11 +105,16 @@ In this step, you use a Dockerfile to build a Docker image onto the instance\. T
    chmod 700 /home/ubuntu/.ssh && \
    chmod 600 /home/ubuntu/.ssh/authorized_keys
    
-   # Start SSH in the Docker container.
-   CMD /usr/sbin/sshd -D
-   
    # Update the password to a random one for the user ubuntu.
    RUN echo "ubuntu:$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 32 | head -n 1)" | chpasswd
+   
+   # pre-install Cloud9 dependencies
+   USER ubuntu
+   RUN curl https://d2j6vhu5uywtq3.cloudfront.net/static/c9-install.sh | bash
+   
+   USER root
+   # Start SSH in the Docker container.
+   CMD ssh-keygen -A && /usr/sbin/sshd -D
    ```
 
    To add the preceding contents to the `Dockerfile` file, you could use the ** `vi` ** utility on the instance as follows\.
@@ -166,13 +177,13 @@ You can access a frequently updated list of Docker images from AWS CodeBuild\. F
 
    If successful, the output displays an entry where the `REPOSITORY` field is set to `cloud9-image` and the `TAG` field is set to `latest`\.
 
-1. Make a note of the Amazon EC2 instance's public IP address\. You'll need it for [Step 4: Create the Environment](#sample-docker-env)\. If you're not sure what the public IP address of the instance is, you can run the following command on the instance to get it\.
+1. Make a note of the Amazon EC2 instance's public IP address\. You'll need it for [Step 4: Create the environment](#sample-docker-env)\. If you're not sure what the public IP address of the instance is, you can run the following command on the instance to get it\.
 
    ```
    curl http://169.254.169.254/latest/meta-data/public-ipv4
    ```
 
-## Step 3: Run the Container<a name="sample-docker-run"></a>
+## Step 3: Run the container<a name="sample-docker-run"></a>
 
 In this step, you run a Docker container on the instance\. This container is based on the image you built in the previous step\.
 
@@ -215,13 +226,13 @@ If you ever want to log out of the running container, run the ** `exit` ** comma
    sudo chmod u=rwx,g=rx,o=rx ~
    ```
 
-1. Make a note of the path to the directory on the running container that contains the Node\.js binary, as you'll need it for [Step 4: Create the Environment](#sample-docker-env)\. If you're not sure what this path is, run the following command on the running container to get it\.
+1. Make a note of the path to the directory on the running container that contains the Node\.js binary, as you'll need it for [Step 4: Create the environment](#sample-docker-env)\. If you're not sure what this path is, run the following command on the running container to get it\.
 
    ```
    which node
    ```
 
-## Step 4: Create the Environment<a name="sample-docker-env"></a>
+## Step 4: Create the environment<a name="sample-docker-env"></a>
 
 In this step, you use AWS Cloud9 to create an AWS Cloud9 SSH development environment and connect it to the running Docker container\. After AWS Cloud9 creates the environment, it displays the AWS Cloud9 IDE so that you can start working with the files and code in the container\.
 
@@ -266,9 +277,9 @@ In this step, you use AWS Cloud9 to create an AWS Cloud9 SSH development environ
 1. When the **AWS Cloud9 Installer** dialog box displays **Installation Completed**, choose **Next**, and then choose **Finish**\. The AWS Cloud9 IDE appears for the running container, and you can start working with the container's files and code\.
 
 **Note**  
-If the container stops running, you can no longer use the IDE to access the container until you start running the container again\. To do this, go back to [Step 3: Run the Container](#sample-docker-run)\.
+If the container stops running, you can no longer use the IDE to access the container until you start running the container again\. To do this, go back to [Step 3: Run the container](#sample-docker-run)\.
 
-## Step 5: Run the Code<a name="sample-docker-code"></a>
+## Step 5: Run the code<a name="sample-docker-code"></a>
 
 In this step, you use the AWS Cloud9 IDE to run a sample application inside the running Docker container\.
 
@@ -278,15 +289,15 @@ In this step, you use the AWS Cloud9 IDE to run a sample application inside the 
 
 1. On the application preview tab, for **Your Name**, type your name\. For **Message**, type a message\. Then choose **Send**\. The chat server adds your name and message to the list\.
 
-## Step 6: Clean Up<a name="sample-docker-clean-up"></a>
+## Step 6: Clean up<a name="sample-docker-clean-up"></a>
 
 In this step, you delete the environment and remove AWS Cloud9 and Docker support files from the Amazon EC2 instance\. Also, to prevent ongoing charges to your AWS account after you're done using this sample, you should terminate the Amazon EC2 instance that is running Docker\.
 
-### Step 6\.1: Delete the Environment<a name="step-6-1-delete-the-envtitle"></a>
+### Step 6\.1: Delete the environment<a name="step-6-1-delete-the-envtitle"></a>
 
 To delete the environment, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
 
-### Step 6\.2: Remove AWS Cloud9 Support Files from the Container<a name="step-6-2-remove-ac9-support-files-from-the-container"></a>
+### Step 6\.2: Remove AWS Cloud9 support files from the container<a name="step-6-2-remove-ac9-support-files-from-the-container"></a>
 
 After you delete the environment, some AWS Cloud9 support files still remain in the container\. If you want to keep using the container but no longer need these support files, delete the `.c9` folder from the directory on the container that you specified AWS Cloud9 to start from after it logs in\. For example, if the directory is `~`, run the ** `rm` ** command with the ** `-r` ** option as follows\.
 
@@ -294,7 +305,7 @@ After you delete the environment, some AWS Cloud9 support files still remain in 
 sudo rm -r ~/.c9
 ```
 
-### Step 6\.3: Remove Docker Support Files from the Instance<a name="step-6-3-remove-docker-support-files-from-the-instance"></a>
+### Step 6\.3: Remove Docker support files from the instance<a name="step-6-3-remove-docker-support-files-from-the-instance"></a>
 
 If you no longer want to keep the Docker container, the Docker image, and Docker on the Amazon EC2 instance, but you want to keep the instance, you can remove these Docker support files as follows\.
 
@@ -338,6 +349,6 @@ If you no longer want to keep the Docker container, the Docker image, and Docker
    sudo rm /tmp/authorized_keys
    ```
 
-### Step 6\.4: Terminate the Instance<a name="step-6-4-terminate-the-instance"></a>
+### Step 6\.4: Terminate the instance<a name="step-6-4-terminate-the-instance"></a>
 
 To terminate the Amazon EC2 instance, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\.
