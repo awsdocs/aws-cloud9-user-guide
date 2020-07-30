@@ -142,4 +142,4 @@ Amazon's trademarks and trade dress may not be used in
 + [Troubleshooting AWS Cloud9](troubleshooting.md)
 + [Supported Browsers for AWS Cloud9](browsers.md)
 + [Limits for AWS Cloud9](limits.md)
-+ [Document History for the AWS Cloud9 User Guide](history.md)
++ [Document history for the AWS Cloud9 User Guide](history.md)

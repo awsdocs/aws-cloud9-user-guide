@@ -1,28 +1,29 @@
-# Document History for the AWS Cloud9 User Guide<a name="history"></a>
+# Document history for the AWS Cloud9 User Guide<a name="history"></a>
 
 This topic contains a list of significant changes to the *AWS Cloud9 User Guide*\. For notification about updates to this documentation, you can subscribe to the [RSS feed](https://docs.aws.amazon.com/cloud9/latest/user-guide/aws-cloud9-user-guide-updates.rss)\.
 
-**Recent Updates**
+**Recent updates**
 
 The following table describes important changes to the *AWS Cloud9 User Guide* after March 2019\. 
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [AWS Cloud9 also available in the Europe \(Milan\) Region](#history) | AWS Cloud9 is now also available in the Europe \(Milan\) Region\. For more information about service endpoints and service quotas associated with this and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | July 29, 2020 | 
 | [Amazon EBS encryption](move-environment.md#encrypting-volumes) |  New section explaining how to encrypt Amazon EBS volumes for EC2 instances used by AWS Cloud9 development environments\. | July 3, 2020 | 
-| [Added Region support to AWS Cloud9](#history) | AWS Cloud9 is now also available in the following Regions: US West \(N\. California\), Asia Pacific \(Hong Kong\), Europe \(Paris\), Middle East \(Bahrain\), and South America \(São Paulo\)\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html?id=docs_gateway#cloud9_region) in the *Amazon Web Services General Reference*\. | May 7, 2020 | 
+| [Added Region support to AWS Cloud9](#history) | AWS Cloud9 is now also available in the following Regions: US West \(N\. California\), Asia Pacific \(Hong Kong\), Europe \(Paris\), Middle East \(Bahrain\), and South America \(São Paulo\)\. For more information about service endpoints and service quotas associated with these and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | May 7, 2020 | 
 | [Security](security.md) | Security chapter added to the AWS Cloud9 User Guide\. | April 30, 2020 | 
 | [Tags](tags.md) | Use tags to help you control access to AWS Cloud9 resources and help you manage billing information\. | January 22, 2020 | 
-| [Added Region support to AWS Cloud9](#history) | AWS Cloud9 is now also available in the following Regions: Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Sydney\), Canada \(Central\), Europe \(London\), and Europe \(Stockholm\)\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html?id=docs_gateway#cloud9_region) in the *Amazon Web Services General Reference*\. | December 18, 2019 | 
+| [Added Region support to AWS Cloud9](#history) | AWS Cloud9 is now also available in the following Regions: Asia Pacific \(Mumbai\), Asia Pacific \(Seoul\), Asia Pacific \(Sydney\), Canada \(Central\), Europe \(London\), and Europe \(Stockholm\)\. For more information about service endpoints and service quotas associated with these and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | December 18, 2019 | 
 | [Updated: Troubleshooting, Cannot Open an Environment](troubleshooting.md#troubleshooting-env-loading) | Third\-party cookies are no longer needed to open the IDE\. | November 6, 2019 | 
 | [Added: Troubleshooting, Third\-party cookies disabled](troubleshooting.md#troubleshooting-preview) | Although third\-party cookies are no longer needed to open the IDE, they are needed to use the Application Preview or File Preview features\. Information about this behavior has been added to the Troubleshooting topic\. | November 6, 2019 | 
-| [Document Organization](#history) | Organization changes were applied to the user guide to assist in navigation, especially for first\-time users\. | August 15, 2019 | 
-| [AWS Cloud9 also available in the Europe \(Frankfurt\) Region](#history) | AWS Cloud9 is now also available in the Europe \(Frankfurt\) Region\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html?id=docs_gateway#cloud9_region) in the *Amazon Web Services General Reference*\. | May 15, 2019 | 
+| [Document organization](#history) | Organization changes were applied to the user guide to assist in navigation, especially for first\-time users\. | August 15, 2019 | 
+| [AWS Cloud9 also available in the Europe \(Frankfurt\) Region](#history) | AWS Cloud9 is now also available in the Europe \(Frankfurt\) Region\. For more information about service endpoints and service quotas associated with this and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | May 15, 2019 | 
 | [LAMP sample added](#history) | Added a new sample demonstrating how to use AWS Cloud9 with LAMP \(Linux, Apache HTTP Server, MySQL, and PHP\)\. For more information, see the [LAMP Sample for AWS Cloud9](https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-lamp.html)\. | May 10, 2019 | 
 | [WordPress sample added](#history) | Added a new sample demonstrating how to use AWS Cloud9 with WordPress\. For more information, see the [WordPress Sample for AWS Cloud9](https://docs.aws.amazon.com/cloud9/latest/user-guide/sample-wordpress.html)\. | April 19, 2019 | 
-| [AWS Cloud9 also available in the Asia Pacific \(Tokyo\) Region](#history) | AWS Cloud9 is now also available in the Asia Pacific \(Tokyo\) Region\. For more information, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html?id=docs_gateway#cloud9_region) in the *Amazon Web Services General Reference*\. | April 4, 2019 | 
+| [AWS Cloud9 also available in the Asia Pacific \(Tokyo\) Region](#history) | AWS Cloud9 is now also available in the Asia Pacific \(Tokyo\) Region\. For more information about service endpoints and service quotas associated with this and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | April 4, 2019 | 
 | [Information about support for Ubuntu Server in EC2 environments added](#history) | Instructions for using the AWS Cloud9 console to create AWS Cloud9 EC2 development environments that connect to Ubuntu Server were added\. For more information, see [Creating an EC2 Environment](https://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment.html#create-environment-main)\.Note that currently you cannot use code to create AWS Cloud9 EC2 development environments that connect to Ubuntu Server, for example by using the AWS CLI, AWS CloudFormation, the AWS SDKs, the Tools for Windows PowerShell, or the AWS Cloud9 API\. Support for these methods is expected in the future\. | April 2, 2019 | 
 
-**Earlier Updates**
+**Earlier updates**
 
 The following table describes important changes to the *AWS Cloud9 User Guide* before April 2019\.
 
