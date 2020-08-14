@@ -1,6 +1,6 @@
-# Team Setup for AWS Cloud9<a name="setup"></a>
+# Team setup for AWS Cloud9<a name="setup"></a>
 
-This topic explains how to use [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/) to enable multiple users within a single AWS account to use AWS Cloud9\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\.
+This topic explains how to use [AWS Identity and Access Management \(IAM\)](https://aws.amazon.com/iam/) to enable multiple users within a single AWS account to use AWS Cloud9\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting up AWS Cloud9](setting-up.md) for the correct instructions\.
 
 These instructions assume that you have \(or will have\) administrative access to a single AWS account\. For more information, see [The AWS Account Root User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_root-user.html) and [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\. If you already have an AWS account but you do not have administrative access to it, see your AWS account administrator\.
 
@@ -23,7 +23,7 @@ To enable multiple users in a single AWS account to start using AWS Cloud9, star
 |  Yes  |  No  |   [Step 2: Create an IAM Group and User, and Add the User to the Group](#setup-create-iam-resources)   | 
 |  Yes  |  Yes  |   [Step 3: Add AWS Cloud9 Access Permissions to the Group](#setup-give-user-access)   | 
 
-## Step 1: Create an AWS Account<a name="setup-create-account"></a>
+## Step 1: Create an AWS account<a name="setup-create-account"></a>
 
 **Note**  
 Your organization might already have an AWS account set up for you\. If your organization has an AWS account administrator, check with that person before starting the following procedure\. If you already have an AWS account, skip ahead to [Step 2: Create an IAM Group and User, and Add the User to the Group](#setup-create-iam-resources)\.
@@ -42,7 +42,7 @@ To watch a 4\-minute video related to the following procedure, see [Creating an 
 
 After you finish creating the account, AWS will send you a confirmation email\. Do not go to the next step until you get this confirmation\.
 
-## Step 2: Create an IAM Group and User, and Add the User to the Group<a name="setup-create-iam-resources"></a>
+## Step 2: Create an IAM group and user, and add the user to the group<a name="setup-create-iam-resources"></a>
 
 In this step, you create a group and a user in AWS Identity and Access Management \(IAM\), add the user to the group, and then use the user to access AWS Cloud9\. This is an AWS security best practice\. For more information, see [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\.
 
@@ -55,7 +55,7 @@ You can complete these tasks using the [AWS Management Console](#setup-create-ia
 
 To watch a 9\-minute video related to the following console procedures, see [How do I set up an IAM user and sign in to the AWS Management Console using IAM credentials](https://www.youtube.com/watch?v=XMi5fXL2Hes) on the YouTube website\.
 
-### Step 2\.1: Create an IAM Group with the Console<a name="setup-create-iam-resources-group-console"></a>
+### Step 2\.1: Create an IAM group with the console<a name="setup-create-iam-resources-group-console"></a>
 
 1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com](https://console.aws.amazon.com)\.
 **Note**  
@@ -79,10 +79,10 @@ We recommend that you repeat this procedure to create at least two groups: one g
 
 Skip ahead to [Step 2\.2: Create an IAM User and Add the User to the Group with the Console](#setup-create-iam-resources-user-console)\.
 
-### Step 2\.1: Create an IAM Group with the AWS CLI<a name="setup-create-iam-resources-group-cli"></a>
+### Step 2\.1: Create an IAM group with the AWS CLI<a name="setup-create-iam-resources-group-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
@@ -100,7 +100,7 @@ We recommend that you repeat this procedure to create at least two groups: one g
 
 Skip ahead to [Step 2\.2: Create an IAM User and Add the User to the Group with the AWS CLI](#setup-create-iam-resources-user-cli)\.
 
-### Step 2\.2: Create an IAM User and Add the User to the Group with the Console<a name="setup-create-iam-resources-user-console"></a>
+### Step 2\.2: Create an IAM user and add the user to the group with the console<a name="setup-create-iam-resources-user-console"></a>
 
 1. With the IAM console open from the previous procedure, in the navigation pane, choose **Users**\.
 
@@ -137,10 +137,10 @@ If you do not choose **Download \.csv**, this is the only time you can view the 
 
 1. Repeat this procedure for each additional IAM user that you want to create, and then skip ahead to [Step 3: Add AWS Cloud9 Access Permissions to the Group](#setup-give-user-access)\.
 
-### Step 2\.2: Create an IAM User and Add the User to the Group with the AWS CLI<a name="setup-create-iam-resources-user-cli"></a>
+### Step 2\.2: Create an IAM User and add the user to the group with the AWS CLI<a name="setup-create-iam-resources-user-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Run the IAM `create-user` command to create the user, specifying the new user's name \(for example, `MyCloud9User`\)\.
 
@@ -174,7 +174,7 @@ If you're using [AWS managed temporary credentials](auth-and-access-control.md#a
 
 1. Repeat this procedure for each additional IAM user that you want to create\.
 
-## Step 3: Add AWS Cloud9 Access Permissions to the Group<a name="setup-give-user-access"></a>
+## Step 3: Add AWS Cloud9 access permissions to the group<a name="setup-give-user-access"></a>
 
 By default, most IAM groups and users don't have access to any AWS services, including AWS Cloud9\. \(An exception is IAM administrator groups and IAM administrator users, which have access to all AWS services in their AWS account by default\.\) In this step, you use IAM to add AWS Cloud9 access permissions directly to an IAM group to which one or more users belong, so that you can ensure those users can access AWS Cloud9\.
 
@@ -183,7 +183,7 @@ Your organization might already have a group set up for you with the appropriate
 
 You can complete this task using the [AWS Management Console](#setup-give-user-access-console) or the [AWS CLI](#setup-give-user-access-cli)\.
 
-### Add AWS Cloud9 Access Permissions to the Group with the Console<a name="setup-give-user-access-console"></a>
+### Add AWS Cloud9 access permissions to the group with the console<a name="setup-give-user-access-console"></a>
 
 1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com/](https://console.aws.amazon.com/)\.
 **Note**  
@@ -218,16 +218,16 @@ We recommend that you add only a limited number of users to the AWS Cloud9 admin
 **Note**  
 If you have more than one group you want to add AWS Cloud9 access permissions to, repeat this procedure for each of those groups\.
 
-To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies)\.
+To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.
 
 To learn about AWS access permissions that you can add to a group in addition to access permissions that are required by AWS Cloud9, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) and [Understanding Permissions Granted by a Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_understand.html) in the *IAM User Guide*\.
 
 Skip ahead to [Step 4: Sign in to the AWS Cloud9 Console](#setup-sign-in-ide)\.
 
-### Add AWS Cloud9 Access Permissions to the Group with the AWS CLI<a name="setup-give-user-access-cli"></a>
+### Add AWS Cloud9 access permissions to the group with the AWS CLI<a name="setup-give-user-access-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
@@ -266,11 +266,11 @@ We recommend that you add only a limited number of users to the AWS Cloud9 admin
 **Note**  
 If you have more than one group you want to add AWS Cloud9 access permissions to, repeat this procedure for each of those groups\.
 
-To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies)\.
+To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.
 
 To learn about AWS access permissions that you can add to a group in addition to access permissions that are required by AWS Cloud9, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) and [Understanding Permissions Granted by a Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_understand.html) in the *IAM User Guide*\.
 
-## Step 4: Sign In to the AWS Cloud9 Console<a name="setup-sign-in-ide"></a>
+## Step 4: Sign in to the AWS Cloud9 console<a name="setup-sign-in-ide"></a>
 
 After you complete the previous steps in this topic, you and your users are ready to sign in to the AWS Cloud9 console and start using it\.
 
@@ -288,7 +288,7 @@ If you don't see an option for entering the AWS account number, choose **Sign in
 
 The AWS Cloud9 console is displayed, and you can begin using AWS Cloud9\.
 
-## Next Steps<a name="setup-next-steps"></a>
+## Next steps<a name="setup-next-steps"></a>
 
 
 ****  

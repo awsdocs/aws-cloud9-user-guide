@@ -11,7 +11,7 @@ For an overview of IAM users and why they are important for the security of your
 AWS Cloud9 follows the [shared responsibility model](https://aws.amazon.com/compliance/shared-responsibility-model/) through the specific Amazon Web Services \(AWS\) services it supports\. For AWS service security information, see the [AWS service security documentation page](https://docs.aws.amazon.com/security/?id=docs_gateway#aws-security) and [AWS services that are in scope of AWS compliance efforts by compliance program](https://aws.amazon.com/compliance/services-in-scope/)\.
 
 **Topics**
-+ [Audience](sec-audience.md)
-+ [Authenticating with identities](sec-auth-identities.md)
-+ [Managing access using policies](sec-auth-with-identities.md)
++ [Audience](audience.md)
++ [Authenticating with identities](auth-identities.md)
++ [Managing access using policies](auth-with-identities.md)
 + [How AWS Cloud9 works with IAM](how-cloud9-with-iam.md)

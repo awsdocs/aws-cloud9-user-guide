@@ -174,7 +174,7 @@ This command adds several folders to the `node_modules` folder from [Step 3: Run
 
 Each time you use the AWS SDK for JavaScript in Node\.js to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for JavaScript in Node\.js has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
+In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
 For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
 

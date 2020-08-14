@@ -16,7 +16,7 @@ Currently, you cannot use the AWS CLI to create an Ubuntu Server\-based EC2 envi
    +  [Quick Configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) 
 
    We recommend you configure the AWS CLI using credentials for one of the following:
-   + The IAM user you created in [Team Setup for AWS Cloud9](setup.md)\.
+   + The IAM user you created in [Team setup for AWS Cloud9](setup.md)\.
    + An IAM administrator user in your AWS account, if you will be working regularly with AWS Cloud9 resources for multiple users across the account\. If you cannot configure the AWS CLI as an IAM administrator user, check with your AWS account administrator\. For more information, see [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
    + An AWS account root user, but only if you will always be the only one using your own AWS account, and you don't need to share your environments with anyone else\. For more information, see [Creating, Disabling, and Deleting Access Keys for Your AWS Account](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html#create-aws-access-key) in the *Amazon Web Services General Reference*\.
    + For other options, see your AWS account administrator or classroom instructor\.
@@ -24,7 +24,7 @@ Currently, you cannot use the AWS CLI to create an Ubuntu Server\-based EC2 envi
 1. In the following AWS Cloud9 command, provide a value for `--region` and `--subnet-id`\. Then run the command and make note of the "environmentId" value for later cleanup\.
 
    ```
-   aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --region MY-REGION --subnet-id subnet-12a3456b
+   aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --region MY-REGION --conection-type CONNECT_SSM --subnet-id subnet-12a3456b
    ```
 
    In the preceding command:
@@ -32,6 +32,7 @@ Currently, you cannot use the AWS CLI to create an Ubuntu Server\-based EC2 envi
    +  `--description` represents an optional description for the environment\.
    +  `--instance-type` represents the type of Amazon EC2 instance AWS Cloud9 will launch and connect to the new environment\. This example specifies `t2.micro`, which has relatively low RAM and vCPUs and is sufficient for this tutorial\. Specifying instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\. For a list of available instance types, see the create environment wizard in the AWS Cloud9 console\.
    +  `--region` represents the ID of the AWS Region for AWS Cloud9 to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *Amazon Web Services General Reference*\.
+   +  `--connection-type CONNECT_SSM` specifies that AWS Cloud9 connects to its EC2 instance through Systems Manager\. This option ensures no inbound traffic to the instance is allowed\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
    +  `--subnet-id` represents the subnet you want AWS Cloud9 to use\. Replace `subnet-12a3456b` with the ID of the subnet of an Amazon Virtual Private Cloud \(VPC\), which must be compatible with AWS Cloud9\. For more information, see [Create an Amazon VPC for AWS Cloud9](vpc-settings.md#vpc-settings-create-vpc) in *[VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)*\.
    + By default, AWS Cloud9 shuts down the Amazon EC2 instance for the environment 30 minutes after all web browser instances that are connect to the IDE for the environment have been closed\. To change this, add `--automatic-stop-time-minutes` and the number of minutes\. A shorter time period might result in fewer charges to your AWS account\. Likewise, a longer time might result in more charges\.
    + By default, the entity that calls this command owns the environment\. To change this, add `--owner-id` and the Amazon Resource Name \(ARN\) of the owning entity\.

@@ -1,6 +1,6 @@
-# Enterprise Setup for AWS Cloud9<a name="setup-enterprise"></a>
+# Enterprise setup for AWS Cloud9<a name="setup-enterprise"></a>
 
-This topic explains how to use [AWS Single Sign\-On \(SSO\)](https://aws.amazon.com/single-sign-on/) to enable one or more AWS accounts to use AWS Cloud9 within an enterprise\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\.
+This topic explains how to use [AWS Single Sign\-On \(SSO\)](https://aws.amazon.com/single-sign-on/) to enable one or more AWS accounts to use AWS Cloud9 within an enterprise\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting up AWS Cloud9](setting-up.md) for the correct instructions\.
 
 These instructions assume that you have \(or will have\) administrative access to the organization in AWS Organizations\. If you don't already have administrative access to the organization in AWS Organizations, see your AWS account administrator\. For more information, see the following resources:
 +  [Managing Access Permissions for Your AWS Organization](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions_overview.html) in the *AWS Organizations User Guide* \(AWS SSO requires the use of AWS Organizations\)
@@ -31,7 +31,7 @@ To enable one or more AWS accounts to start using AWS Cloud9 within an enterpris
 |  Yes  |  Yes  |  Yes  |  Yes  |  No  |   [Step 5\. Set Up Groups and Users Within the Organization](#setup-enterprise-set-up-groups-users)   | 
 |  Yes  |  Yes  |  Yes  |  Yes  |  Yes  |   [Step 6\. Enable Groups and Users Within the Organization to Use AWS Cloud9](#setup-enterprise-groups-users-access)   | 
 
-## Step 1: Create a Master Account for the Organization<a name="setup-enterprise-create-account"></a>
+## Step 1: Create a master account for the organization<a name="setup-enterprise-create-account"></a>
 
 **Note**  
 Your enterprise might already have a master account set up for you\. If your enterprise has an AWS account administrator, check with that person before starting the following procedure\. If you already have a master account, skip ahead to [Step 2: Create an Organization for the Master Account](#setup-enterprise-create-organization)\.
@@ -52,7 +52,7 @@ To create a master account:
 
 After you finish creating the account, AWS will send you a confirmation email\. Do not go to the next step until you get this confirmation\.
 
-## Step 2: Create an Organization for the Master Account<a name="setup-enterprise-create-organization"></a>
+## Step 2: Create an organization for the master account<a name="setup-enterprise-create-organization"></a>
 
 **Note**  
 Your enterprise might already have AWS Organizations set up to use the master account\. If your enterprise has an AWS account administrator, check with that person before starting the following procedure\. If you already have AWS Organizations set up to use the master account, skip ahead to [Step 3: Add Member Accounts to the Organization](#setup-enterprise-add-to-organization)\.
@@ -67,7 +67,7 @@ To create an organization in AWS Organizations for the master AWS account, follo
 
 To watch a 4\-minute video related to these procedures, see [AWS Knowledge Center Videos: How do I get started with AWS Organizations](https://www.youtube.com/watch?v=mScBPL8VV48) on the YouTube website\.
 
-## Step 3: Add Member Accounts to the Organization<a name="setup-enterprise-add-to-organization"></a>
+## Step 3: Add member accounts to the organization<a name="setup-enterprise-add-to-organization"></a>
 
 **Note**  
 Your enterprise might already have AWS Organizations set up with the wanted member accounts\. If your enterprise has an AWS account administrator, check with that person before starting the following procedure\. If you already have AWS Organizations set up with the wanted member accounts, skip ahead to [Step 4: Enable AWS SSO Across the Organization](#setup-enterprise-set-up-sso)\.
@@ -81,7 +81,7 @@ To add member accounts to the organization in AWS Organizations, follow one or b
 +  [Creating an AWS Account in Your Organization](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html) 
 +  [Inviting an AWS Account to Join Your Organization](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html) 
 
-## Step 4: Enable AWS SSO across the Organization<a name="setup-enterprise-set-up-sso"></a>
+## Step 4: Enable AWS SSO across the organization<a name="setup-enterprise-set-up-sso"></a>
 
 **Note**  
 Your enterprise might already have AWS Organizations set up to use AWS SSO\. If your enterprise has an AWS account administrator, check with that person before starting the following procedure\. If you already have AWS Organizations set up to use AWS SSO, skip ahead to [Step 5\. Set Up Groups and Users Within the Organization](#setup-enterprise-set-up-groups-users)\.
@@ -92,7 +92,7 @@ In this step, you enable the organization in AWS Organizations to use AWS SSO\. 
 
 1.  [Enable AWS SSO](https://docs.aws.amazon.com/singlesignon/latest/userguide/step1.html) 
 
-## Step 5\. Set Up Groups and Users within the Organization<a name="setup-enterprise-set-up-groups-users"></a>
+## Step 5\. Set up groups and users within the organization<a name="setup-enterprise-set-up-groups-users"></a>
 
 **Note**  
 Your enterprise might already have AWS Organizations set up with groups and users from either an AWS SSO directory or an AWS Managed Microsoft AD or AD Connector directory that is managed in AWS Directory Service\. If your enterprise has an AWS account administrator, check with that person before starting the following procedure\. If you already have AWS Organizations set up with groups and users from either an AWS SSO directory or AWS Directory Service, skip ahead to [Step 6\. Enable Groups and Users within the Organization to Use AWS Cloud9](#setup-enterprise-groups-users-access)\.
@@ -100,14 +100,14 @@ Your enterprise might already have AWS Organizations set up with groups and user
 In this step, you either create groups and users in an AWS SSO directory for the organization, or you connect to an AWS Managed Microsoft AD or AD Connector directory that is managed in AWS Directory Service for the organization\. In a later step, you give groups the necessary access permissions to use AWS Cloud9\.
 + If you're using an AWS SSO directory for the organization, follow these sets of instructions in the *AWS Single Sign\-On User Guide*\. Repeat these steps as many times as needed until you have all of the groups and users you want:
 
-  1.  [Add Groups](https://docs.aws.amazon.com/singlesignon/latest/userguide/addgroups.html)\. We recommend creating at least one group for any AWS Cloud9 administrators across the organization, and then repeating this step to create another group for all AWS Cloud9 users across the organization\. Optionally, you might also repeat this step to create a third group for all users across the organization with whom you want to share existing AWS Cloud9 development environments, but not allow them to create environments on their own\. For ease of use, we recommend naming these groups `AWSCloud9Administrators`, `AWSCloud9Users`, and `AWSCloud9EnvironmentMembers`, respectively\. For more information, see [AWS Managed \(Predefined\) Policies for AWS Cloud9](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies)\.
+  1.  [Add Groups](https://docs.aws.amazon.com/singlesignon/latest/userguide/addgroups.html)\. We recommend creating at least one group for any AWS Cloud9 administrators across the organization, and then repeating this step to create another group for all AWS Cloud9 users across the organization\. Optionally, you might also repeat this step to create a third group for all users across the organization with whom you want to share existing AWS Cloud9 development environments, but not allow them to create environments on their own\. For ease of use, we recommend naming these groups `AWSCloud9Administrators`, `AWSCloud9Users`, and `AWSCloud9EnvironmentMembers`, respectively\. For more information, see [AWS Managed \(Predefined\) Policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.
 
   1.  [Add Users](https://docs.aws.amazon.com/singlesignon/latest/userguide/addusers.html)\. 
 
   1.  [Add Users to Groups](https://docs.aws.amazon.com/singlesignon/latest/userguide/adduserstogroups.html)\. Add any AWS Cloud9 administrators to the `AWSCloud9Administrators` group, repeat this step to add AWS Cloud9 users to the `AWSCloud9Users` group, and optionally repeat this step to add any remaining users to the `AWSCloud9EnvironmentMembers` group\. Adding users to groups is an AWS security best practice that can help you better control, track, and troubleshoot issues with AWS resource access\.
 + If you're using an AWS Managed Microsoft AD or AD Connector directory that you manage in AWS Directory Service for the organization, follow the instructions in [Connect to Your Microsoft AD Directory](https://docs.aws.amazon.com/singlesignon/latest/userguide/manage-your-directory-connected.html) in the *AWS Single Sign\-On User Guide*\.
 
-## Step 6\. Enable Groups and Users within the Organization to Use AWS Cloud9<a name="setup-enterprise-groups-users-access"></a>
+## Step 6\. Enable groups and users within the organization to use AWS Cloud9<a name="setup-enterprise-groups-users-access"></a>
 
 By default, most users and groups in an organization in AWS Organizations don't have access to any AWS services, including AWS Cloud9\. In this step, you use AWS SSO to allow groups and users across an organization in AWS Organizations to use AWS Cloud9 within any combination of participating accounts\.
 
@@ -119,7 +119,7 @@ By default, most users and groups in an organization in AWS Organizations don't 
 
 1. Select **Create a custom permission set**\.
 
-1. Enter a **Name** for this permission set\. We recommend creating at least one permission set for any AWS Cloud9 administrators across the organization, and then repeating steps 3 through 10 in this procedure to create another permission set for all AWS Cloud9 users across the organization\. Optionally, you might also repeat steps 3 through 10 in this procedure to create a third permission set for all users across the organization with whom you want to share existing AWS Cloud9 development environments, but not allow them to create environments on their own\. For ease of use, we recommend naming these permission sets `AWSCloud9AdministratorsPerms`, `AWSCloud9UsersPerms`, and `AWSCloud9EnvironmentMembersPerms`, respectively\. For more information, see [AWS Managed \(Predefined\) Policies for AWS Cloud9](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies)\.
+1. Enter a **Name** for this permission set\. We recommend creating at least one permission set for any AWS Cloud9 administrators across the organization, and then repeating steps 3 through 10 in this procedure to create another permission set for all AWS Cloud9 users across the organization\. Optionally, you might also repeat steps 3 through 10 in this procedure to create a third permission set for all users across the organization with whom you want to share existing AWS Cloud9 development environments, but not allow them to create environments on their own\. For ease of use, we recommend naming these permission sets `AWSCloud9AdministratorsPerms`, `AWSCloud9UsersPerms`, and `AWSCloud9EnvironmentMembersPerms`, respectively\. For more information, see [AWS Managed \(Predefined\) Policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.
 
 1. Enter an optional **Description** for the permission set\.
 
@@ -156,7 +156,7 @@ We recommend assigning AWS Cloud9 access permissions to groups instead of to ind
 
 1. Repeat steps 11 through 17 in this procedure for any additional AWS Cloud9 access permissions that you want to assign to AWS accounts across the organization\.
 
-## Step 7: Start Using AWS Cloud9<a name="setup-enterprise-sign-in-ide"></a>
+## Step 7: Start using AWS Cloud9<a name="setup-enterprise-sign-in-ide"></a>
 
 After you complete the previous steps in this topic, you and your users are ready to sign in to AWS SSO and start using AWS Cloud9\.
 
@@ -181,7 +181,7 @@ This combination of URL, user name, and password might change depending on diffe
 
 The AWS Cloud9 console is displayed, and you can begin using AWS Cloud9\.
 
-## Next Steps<a name="setup-enterprise-next-steps"></a>
+## Next steps<a name="setup-enterprise-next-steps"></a>
 
 
 ****  

@@ -85,7 +85,7 @@ This step covers adding customer\-managed policies to IAM groups only\. To add c
 ### Add Customer\-Managed Policies to a Group Using the AWS CLI<a name="setup-teams-add-policy-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](auth-and-access-control.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 Run the IAM `attach-group-policy` command, specifying the group's name and the Amazon Resource Name \(ARN\) of the policy\.
 
@@ -287,7 +287,7 @@ For an AWS Cloud9 users group, detach the `AWSCloud9User` managed policy from th
 
 Note that the preceding customer\-managed policy allows those users to create SSH environments\. To prevent those users from creating SSH environments altogether, remove `"cloud9:CreateEnvironmentSSH",` from the preceding customer\-managed policy\.
 
-For additional examples, see [Customer\-Managed Policy Examples](auth-and-access-control.md#auth-and-access-control-customer-policies-examples)\.
+For additional examples, see [Customer\-managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples)\.
 
 ## Next Steps<a name="setup-teams-next-steps"></a>
 

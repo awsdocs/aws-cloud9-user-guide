@@ -9,9 +9,9 @@ You can create an AWS Cloud9 EC2 development environment with the [AWS Cloud9 co
 
 ## Prerequisites<a name="create-env-ec2-prereq"></a>
 
-Complete the steps in [Setting Up AWS Cloud9](setting-up.md) so that you can sign in to the AWS Cloud9 console and create environments\.
+Complete the steps in [Setting up AWS Cloud9](setting-up.md) so that you can sign in to the AWS Cloud9 console and create environments\.
 
-## Create an EC2 Environment with the Console<a name="create-environment-console"></a>
+## Create an EC2 Environment with the console<a name="create-environment-console"></a>
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
@@ -36,9 +36,14 @@ Complete the steps in [Setting Up AWS Cloud9](setting-up.md) so that you can sig
 
 1. Choose **Next step**\.
 
-1. On the **Configure settings** page, for **Environment type**, choose **Create a new instance for environment \(EC2\)**\.
+1. On the **Configure settings** page, for **Environment type**, choose one of the following options to create an EC2\-backed environment:
+   + **Create a new EC2 instance for environment \(direct access\)**: Choose this option to launch an Amazon EC2 instance that AWS Cloud9 can connect to directly over SSH\.
+
+                      —OR—
+   + **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**: Choose this option to launch an Amazon EC2 instance that doesn't require any open inbound ports\. AWS Cloud9 connects to the instance through [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
+     + If you select the **access via Systems Manager** option, a service role and an IAM instance profile are automatically created to allow Systems Manager to interact with the EC2 instance on your behalf\. You can view the names of both in the **Service role and instance profile for Systems Manager access** section further down the interface\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
 **Warning**  
-Choosing **Create a new instance for environment \(EC2\)** might result in possible charges to your AWS account for Amazon EC2\.
+Creating an EC2 instance for your environment might result in possible charges to your AWS account for Amazon EC2\. There is no additional cost to use Systems Manager to manage connections to your EC2 instance\.
 
 1. For **Instance type**, choose an instance type with the amount of RAM and vCPUs you think you need for the kinds of tasks you want to do\.
 **Warning**  
@@ -54,7 +59,10 @@ Choosing a longer time period might result in more charges to your AWS account\.
 
 1. <a name="create-environment-vpc-step"></a>AWS Cloud9 uses Amazon Virtual Private Cloud \(Amazon VPC\) to communicate with the newly created Amazon EC2 instance\. Depending on how Amazon VPC is set up, do one of the following\.  
 ****    
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)  
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
+**Note**  
+If you selected **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**, an information icon is displayed beside the **Create new VPC** button\. If you pause on the icon, a message states that "For a no\-ingress EC2 instance, attach an internet gateway to your new VPC so the instance's SSM Agent can connect to Systems Manager\."  
+ For more information, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
 
@@ -74,7 +82,7 @@ After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for th
 
 If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
-## Creating an EC2 Environment with Code<a name="create-environment-code"></a>
+## Creating an EC2 Environment with code<a name="create-environment-code"></a>
 
 To use code to create an EC2 environment in AWS Cloud9, call the AWS Cloud9 create EC2 environment operation, as follows\.
 

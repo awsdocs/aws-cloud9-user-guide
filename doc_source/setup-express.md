@@ -1,10 +1,10 @@
-# Individual User Setup for AWS Cloud9<a name="setup-express"></a>
+# Individual user setup for AWS Cloud9<a name="setup-express"></a>
 
-This topic explains how to set up to use AWS Cloud9 as the only individual in your AWS account, and you are not a student\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\. To learn about who qualifies as a student, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
+This topic explains how to set up to use AWS Cloud9 as the only individual in your AWS account, and you are not a student\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting up AWS Cloud9](setting-up.md) for the correct instructions\. To learn about who qualifies as a student, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
 
 To use AWS Cloud9 as the only individual in your AWS account, create an AWS account if you don't already have one, and then sign in to the AWS Cloud9 console\.
 
-## Step 1: Create an AWS Account<a name="setup-express-create-account"></a>
+## Step 1: Create an AWS account<a name="setup-express-create-account"></a>
 
 If you already have an AWS account, skip ahead to [Step 2: Sign in to the AWS Cloud9 Console with the AWS Account Root User](#setup-express-sign-in-ide)\.
 
@@ -22,7 +22,7 @@ To watch a 4\-minute video related to the following procedure, see [Creating an 
 
 After you finish creating the account, AWS will send you a confirmation email\. Do not go to the next step until you get this confirmation\.
 
-## Step 2: Sign In to the AWS Cloud9 Console with the AWS Account Root User<a name="setup-express-sign-in-ide"></a>
+## Step 2: Sign in to the AWS Cloud9 console with the AWS account root user<a name="setup-express-sign-in-ide"></a>
 
 After you complete the previous step, you're ready to sign in to the AWS Cloud9 console with an AWS account root user and start using AWS Cloud9\.
 
@@ -39,7 +39,7 @@ The AWS Cloud9 console is displayed, and you can now start using AWS Cloud9\.
 **Important**  
 Although you can sign in to the AWS Cloud9 console with the email address and password that you used when you created your AWS account \(we call this an AWS account *root user*\), this isn't an AWS security best practice\. In the future, we recommend that you sign in as an administrator user in AWS Identity and Access Management \(IAM\) in your AWS account instead\. For more information, see [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide* and [AWS Tasks That Require AWS Account Root User Credentials](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html) in the *Amazon Web Services General Reference*\.
 
-## Next Steps<a name="setup-express-next-steps"></a>
+## Next steps<a name="setup-express-next-steps"></a>
 
 
 ****  

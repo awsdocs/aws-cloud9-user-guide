@@ -1,4 +1,4 @@
-# Audience<a name="sec-audience"></a>
+# Audience<a name="audience"></a>
 
 How you use AWS Identity and Access Management \(IAM\) differs, depending on the work you do in AWS Cloud9\.
 

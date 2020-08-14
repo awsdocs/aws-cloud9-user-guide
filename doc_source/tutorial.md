@@ -11,7 +11,7 @@ Completing this tutorial might result in charges to your AWS account\. These inc
 
 ## Prerequisites<a name="tutorial-prereqs"></a>
 
-To successfully complete this tutorial, you must first complete the steps in [Setting Up AWS Cloud9](setting-up.md)\.
+To successfully complete this tutorial, you must first complete the steps in [Setting up AWS Cloud9](setting-up.md)\.
 
 ## Steps<a name="tutorial-steps"></a>
 + [Step 1: Create an Environment](tutorial-create-environment.md)

@@ -27,6 +27,8 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Console warning: "Switching to the minimal code completion engine\.\.\."](#troubleshooting-minimal-code-completion)
 + [AWS Cloud9 installer doesn't finish after displaying: "Package Cloud9 IDE 1"](#cloud9-installer-failed)
 + [VPC error for EC2\-Classic accounts: "Unable to access your environment"](#ec2-classic-issue)
++ [Unable to open AWS Cloud9 environment: "This environment cannot be currently accessed by collaborators\. Please wait until the removal of managed temporary credentials is complete, or contact the owner of this environment\."](#collaborator-access-credentials)
++ [Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation](#cfn-no-ingress-failed)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -67,8 +69,8 @@ After you run this command, try creating the environment again\.
  **Cause:** The user you signed in to the AWS Cloud9 console with doesn't have the correct AWS access permissions to perform the action\.
 
  **Solution:** Ensure the user has the correct AWS access permissions, and then try to perform the action again\. For more information, see one or more of the following:
-+  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
-+  [Step 6\. Enable Groups and Users within the Organization to Use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
++  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
++  [Step 6\. Enable groups and users within the organization to use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
 +  [About Environment Member Access Roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
 
 \([back to top](#troubleshooting)\)
@@ -108,10 +110,10 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 
  **Recommended solutions:** 
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
-  +  [Step 3: Add AWS Cloud9 Access Permissions to the Group](setup.md#setup-give-user-access) in *Team Setup* 
-  +  [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#sec-auth-and-access-control-managed-policies) in *Authentication and Access Control* 
+  +  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
+  +  [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
   +  [Customer\-Managed Policy Examples for Teams Using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
-  +  [Customer\-Managed Policy Examples](auth-and-access-control.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
+  +  [Customer\-managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
   +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
   +  [Troubleshoot IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html) in the *IAM User Guide*
 
@@ -288,14 +290,14 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
  **Issue:** When you try to use the AWS Command Line Interface \(AWS CLI\) or the aws\-shell to run a command in the AWS Cloud9 IDE for an EC2 environment, an error displays: "The security token included in the request is invalid\."
 
  **Possible causes:** 
-+ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those AWS managed temporary credentials\. For a list of allowed commands, see [Actions supported by AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials-supported)\.
++ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those AWS managed temporary credentials\. For a list of allowed commands, see [Actions supported by AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials-supported)\.
 + If you have AWS managed temporary credentials enabled and the environment is a shared environment, the environment owner has not opened the environment within the past 12 hours so that AWS Cloud9 can refresh AWS managed temporary credentials in the environment\. \(AWS Cloud9 sets this 12\-hour limit as an AWS security best practice\.\)
 
  **Recommended solutions:** 
-+ If you have AWS managed temporary credentials enabled, run allowed commands only\. If you must run a command that is not allowed by AWS managed temporary credentials, one approach would be to configure the AWS CLI or aws\-shell in the environment with a set of permanent credentials, which removes this limitation\. For instructions, see [Create and Store Permanent Access Credentials in an Environment](credentials.md#credentials-permanent-create)\.
++ If you have AWS managed temporary credentials enabled, run allowed commands only\. If you must run a command that is not allowed by AWS managed temporary credentials, one approach would be to configure the AWS CLI or aws\-shell in the environment with a set of permanent credentials, which removes this limitation\. For instructions, see [Create and store permanent access credentials in an Environment](credentials.md#credentials-permanent-create)\.
 + Have the environment owner open the environment so that AWS Cloud9 can refresh temporary credentials in the environment\.
 
-For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.
+For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
 
 \([back to top](#troubleshooting)\)
 
@@ -445,6 +447,8 @@ Choosing a larger Amazon EC2 instance might result in additional charges to your
 
 **Recommended solution: **Install a version of **Node\.js** that AWS Cloud9 supports on your SSH host\.
 
+\([back to top](#troubleshooting)\)
+
 ## VPC error for EC2\-Classic accounts: "Unable to access your environment"<a name="ec2-classic-issue"></a>
 
 **Issue:** EC2\-Classic was introduced in the original release of Amazon EC2\. If you're using an AWS account that was set up before December 4, 2013, this error might occur if you don't explicitly configure a *virtual private cloud* \(Amazon VPC\) and subnet when creating an AWS Cloud9 EC2 development environment\.
@@ -474,3 +478,54 @@ You can confirm that the error is caused by the EC2 instance not being in the de
 **Cause:** An AWS Cloud9 development environment must be associated with an Amazon VPC that meets specific VPC requirements\. For accounts with EC2\-Classic enabled, accepting the default network settings when [creating an EC2 environment](create-environment.md) means that the required EC2 instance isn't launched into the VPC\. Instead, the instance is launched into the EC2\-Classic network\.
 
  **Recommended solution:** With an EC2\-Classic account, you must select a VPC and subnet when [creating an EC2 environment](create-environment.md)\. On the **Configure settings** page, in the **Network settings \(advanced\)** section, select the VPC and subnet that you can launch your EC2 instance into\.
+
+\([back to top](#troubleshooting)\)
+
+## Unable to open AWS Cloud9 environment: "This environment cannot be currently accessed by collaborators\. Please wait until the removal of managed temporary credentials is complete, or contact the owner of this environment\."<a name="collaborator-access-credentials"></a>
+
+**Issue:** If a new collaborator is added to an environment by someone who is not the environment owner, AWS managed temporary credentials are disabled\. The credentials are disabled by the deletion of the `~/.aws/credentials` file\. While the deletion of the `~/.aws/credentials` file is progressing, new collaborators can't access the AWS Cloud9 environment\.
+
+**Cause:** Preventing access to the environment during the deletion of AWS managed temporary credentials is a security measure\. It allows environment owners to confirm that only trusted collaborators have access to managed credentials\. If they're satisfied that the list of collaborators is valid, environment owners can re\-enable managed credentials so they can be shared\. For more information, see [Controlling access to AWS managed temporary credentials](how-cloud9-with-iam.md#temporary-managed-credentials-control)\.
+
+**Recommended solutions:** You can wait for the deletion of the `~/.aws/credentials` file to complete before again trying to open the AWS Cloud9 environment\. The maximum waiting time for credentials expiry is 15 minutes\. Alternatively, ask the environment owner to re\-enable or disable the managed temporary credentials\. After the credentials are re\-enabled or disabled, collaborators can immediately access the environment\.
+
+**Note**  
+You can identify an environment owner by reviewing the card for an environment in the **Your environments** page on the console\. The environment owner is also listed in the **Environment details** page\.
+
+\([back to top](#troubleshooting)\)
+
+## Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation<a name="cfn-no-ingress-failed"></a>
+
+**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create a new EC2 environment, users receive a `AccessDeniedException` and informed that they're "not authorized to perform: ssm:StartSession on resource" \.
+
+**Cause:** The user lacks the permission to call the StartSession API that's required as part of the configuration for EC2 environments that use Systems Manager for no\-ingress instances\.
+
+**Recommended solution: **Add the following permission to the policy of the IAM entity creating the environment with AWS CloudFormation: 
+
+```
+       
+            {
+            "Effect": "Allow",
+            "Action": "ssm:StartSession",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringLike": {
+                    "ssm:resourceTag/aws:cloud9:environment": "*"
+                },
+                "StringEquals": {
+                    "aws:CalledViaFirst": "cloudformation.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": [
+                "arn:aws:ssm:*:*:document/*"
+            ]
+        }
+```
+
+\([back to top](#troubleshooting)\)

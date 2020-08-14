@@ -1,4 +1,4 @@
-# Authenticating with identities<a name="sec-auth-identities"></a>
+# Authenticating with identities<a name="auth-identities"></a>
 
 You can access AWS as any of the following types of identities\.
 
@@ -28,7 +28,7 @@ You can use an IAM role in your account to grant an AWS service permissions to a
 Instead of storing access keys within an Amazon EC2 instance for use by applications running on the instance and making AWS API requests, you can use an IAM role to manage temporary credentials for these applications\. To assign an AWS role to an Amazon EC2 instance and make it available to all of its applications, you can create an *instance profile* that is attached to the instance\. An instance profile contains the role and enables programs running on the Amazon EC2 instance to get temporary credentials\. For more information, see [Create and Use an Instance Profile to Manage Temporary Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/credentials.html#credentials-temporary) and [Using an IAM Role to Grant Permissions to Applications Running on Amazon EC2 Instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html) in the *IAM User Guide*\.
 
 **Note**  
-Instead of attaching an instance profile to an Amazon EC2 instance that connects to an environment, AWS Cloud9 can automatically set up and manage temporary credentials on your behalf in an EC2 environment\. For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#sec-auth-and-access-control-temporary-managed-credentials)\.
+Instead of attaching an instance profile to an Amazon EC2 instance that connects to an environment, AWS Cloud9 can automatically set up and manage temporary credentials on your behalf in an EC2 environment\. For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
 
  **Federated user access** 
 

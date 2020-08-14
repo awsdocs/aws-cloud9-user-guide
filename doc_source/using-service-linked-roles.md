@@ -21,62 +21,118 @@ The role permissions policy allows AWS Cloud9 to complete the following actions 
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "cloudformation:CreateStack",
-        "cloudformation:DescribeStacks",
-        "ec2:CreateSecurityGroup",
-        "ec2:DescribeInstances",
-        "ec2:DescribeSecurityGroups",
-        "ec2:DescribeVpcs",
-        "ec2:RunInstances"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:AuthorizeSecurityGroupIngress",
-        "ec2:DeleteSecurityGroup",
-        "ec2:TerminateInstances"
-      ],
-      "Resource": "*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "cloudformation:DeleteStack"
-      ],
-      "Resource": "arn:aws:cloudformation:*:*:stack/aws-cloud9-*"
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateTags"
-      ],
-      "Resource": "arn:aws:ec2:*:*:instance/*",
-      "Condition": {
-        "StringLike": {
-          "aws:RequestTag/Name": "aws-cloud9-*"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:RunInstances",
+                "ec2:CreateSecurityGroup",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceStatus",
+                "cloudformation:CreateStack",
+                "cloudformation:DescribeStacks",
+                "cloudformation:DescribeStackEvents",
+                "cloudformation:DescribeStackResources"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:TerminateInstances",
+                "ec2:DeleteSecurityGroup",
+                "ec2:AuthorizeSecurityGroupIngress"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloudformation:DeleteStack"
+            ],
+            "Resource": "arn:aws:cloudformation:*:*:stack/aws-cloud9-*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateTags"
+            ],
+            "Resource": [
+                "arn:aws:ec2:*:*:instance/*",
+                "arn:aws:ec2:*:*:security-group/*"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "aws:RequestTag/Name": "aws-cloud9-*"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringLike": {
+                    "ec2:ResourceTag/aws:cloudformation:stack-name": "aws-cloud9-*"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": [
+                "arn:aws:ssm:*:*:document/AWS-StartSSHSession"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": [
+                "arn:aws:ec2:*:*:instance/*"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "ssm:resourceTag/aws:cloudformation:stack-name": [
+                        "aws-cloud9-*"
+                    ]
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListInstanceProfiles"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:instance-profile/cloud9/*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:role/service-role/AWSCloud9SSMAccessRole"
+            ],
+            "Condition": {
+                "StringLike": {
+                    "iam:PassedToService": "ec2.amazonaws.com"
+                }
+            }
         }
-      }
-    },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:StartInstances"
-      ],
-      "Resource": "*",
-      "Condition": {
-        "StringLike": {
-          "ec2:ResourceTag/aws:cloudformation:stack-name": "aws-cloud9-*"
-        }
-      }
-    }
-  ]
+    ]
 }
 ```
 

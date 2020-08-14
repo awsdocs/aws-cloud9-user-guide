@@ -34,9 +34,14 @@ In AWS Cloud9, a *development environment* \(or just *environment*\) is a place 
 
 1. Choose **Next step**\.
 
-1. On the **Configure settings** page, for **Environment type**, choose **Create a new instance for environment \(EC2\)**\.
+1. On the **Configure settings** page, for **Environment type**, choose one of the following options to create an EC2\-backed environment:
+   + **Create a new EC2 instance for environment \(direct access\)**: Choose this option to launch an Amazon EC2 instance that AWS Cloud9 can connect to directly over SSH\.
+
+                      —OR—
+   + **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**: Choose this option to launch an Amazon EC2 instance that doesn't require any open inbound ports\. AWS Cloud9 connects to the instance through [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
+     + If you select the **access via Systems Manager** option, a service role and an IAM instance profile are automatically created to allow Systems Manager to interact with the EC2 instance on your behalf\. You can view the names of both in the **Service role and instance profile for Systems Manager access** section further down the interface\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
 **Warning**  
-Choosing **Create a new instance for environment \(EC2\)** might result in possible charges to your AWS account for Amazon EC2\.
+Creating an EC2 instance for your environment might result in possible charges to your AWS account for Amazon EC2\. There is no additional cost to use Systems Manager to manage connections to your EC2 instance\.
 
 1. For **Instance type**, leave the default choice\. This choice has relatively low RAM and vCPUs, which is sufficient for this tutorial\.
 **Warning**  

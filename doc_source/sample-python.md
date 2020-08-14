@@ -126,7 +126,7 @@ For more information, see the "Installation" section of [Quickstart](http://boto
 
 Each time you use the AWS SDK for Python \(Boto3\) to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the SDK has the necessary permissions to make the call\. If the credentials don't cover the necessary permissions, the call fails\.
 
-To store your credentials within the environment, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
+To store your credentials within the environment, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
 For additional information, see [Credentials](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html) in the AWS SDK for Python \(Boto3\)\.
 

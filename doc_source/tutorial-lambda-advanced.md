@@ -397,7 +397,7 @@ Explore any or all of the following topics to continue getting familiar with AWS
 |  Use AWS Cloud9 with Amazon Lightsail  |   [Working with Amazon Lightsail Instances](lightsail-instances.md)   | 
 |  Use AWS Cloud9 with AWS CodeStar  |   [Working with AWS CodeStar Projects](codestar-projects.md)   | 
 |  Use AWS Cloud9 with AWS CodePipeline  |   [Working with AWS CodePipeline](codepipeline-repos.md)   | 
-|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages  |   [Tutorials and Samples](tutorials.md)   | 
+|  Use AWS Cloud9 with the AWS CLI, the aws\-shell, AWS CodeCommit, the AWS Cloud Development Kit \(AWS CDK\), GitHub, or Amazon DynamoDB, as well as Node\.js, Python, or other programming languages  |   [Tutorials and samples](tutorials.md)   | 
 |  Work with code for intelligent robotics applications in AWS RoboMaker\.  |   [Developing with AWS Cloud9](https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html) in the *AWS RoboMaker Developer Guide*   | 
 
 To get help with AWS Cloud9 from the community, see the [AWS Cloud9 Discussion Forum](https://forums.aws.amazon.com/forum.jspa?forumID=268)\. \(When you enter this forum, AWS might require you to sign in\.\)

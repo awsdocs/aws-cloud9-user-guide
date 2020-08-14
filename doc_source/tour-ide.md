@@ -23,7 +23,7 @@ This topic provides a basic tour of the AWS Cloud9 integrated development enviro
 
 ## Prerequisites<a name="tour-ide-prereqs"></a>
 
-To go on this tour, you must have an AWS account and an open AWS Cloud9 development environment\. To learn how to do these things, you can follow the steps in [Getting Started: Basic Tutorials for AWS Cloud9](tutorials-basic.md)\. Alternatively, you can explore separate related topics such as [Setting Up AWS Cloud9](setting-up.md) and [Working with Environments in AWS Cloud9](environments.md)\.
+To go on this tour, you must have an AWS account and an open AWS Cloud9 development environment\. To learn how to do these things, you can follow the steps in [Getting Started: Basic Tutorials for AWS Cloud9](tutorials-basic.md)\. Alternatively, you can explore separate related topics such as [Setting up AWS Cloud9](setting-up.md) and [Working with Environments in AWS Cloud9](environments.md)\.
 
 **Warning**  
 Having an AWS Cloud9 development environment might result in charges to your AWS account\. These include possible charges for Amazon EC2 if you are using an EC2 environment\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.

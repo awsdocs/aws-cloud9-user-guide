@@ -7,7 +7,7 @@ This part of the tutorial introduces some of the ways in which you can use the A
 + You can use a **terminal** window or a **Run Configuration** window to run your code without debugging it\.
 + You can use the **Debugger** window to debug your code\.
 
-You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and Samples](tutorials.md) for other programming languages\.
+You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and samples](tutorials.md) for other programming languages\.
 
 **Topics**
 + [Get your environment ready](#w32aac11c13c25b5b9)

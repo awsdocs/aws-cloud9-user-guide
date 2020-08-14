@@ -1,4 +1,4 @@
-# Managing access using policies<a name="sec-auth-with-identities"></a>
+# Managing access using policies<a name="auth-with-identities"></a>
 
 You can have valid credentials to authenticate your requests, but unless you have permissions, you cannot create or access AWS Cloud9 resources\. For example, you must have permissions to create, share, or delete an AWS Cloud9 development environment\.
 

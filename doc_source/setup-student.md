@@ -1,6 +1,6 @@
 # Individual student setup for AWS Cloud9<a name="setup-student"></a>
 
-This topic explains how to set up to use AWS Cloud9 as a student, with you as the only individual using your account with AWS\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting Up AWS Cloud9](setting-up.md) for the correct instructions\. To learn about who qualifies as a student, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
+This topic explains how to set up to use AWS Cloud9 as a student, with you as the only individual using your account with AWS\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting up AWS Cloud9](setting-up.md) for the correct instructions\. To learn about who qualifies as a student, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
 +  [Step 1: Create an AWS Educate Starter Account](#setup-student-create-account) 
 + [Step 2: Use an AWS Educate Starter Account to sign in to the AWS Cloud9 console](#setup-student-sign-in-ide)
 +  [Next steps](#setup-student-next-steps)

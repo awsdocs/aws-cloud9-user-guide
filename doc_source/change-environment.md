@@ -1,11 +1,11 @@
-# Changing Environment Settings in AWS Cloud9<a name="change-environment"></a>
+# Changing environment settings in AWS Cloud9<a name="change-environment"></a>
 
 You can change the preferences or settings for an AWS Cloud9 development environment\.
 +  [Change Environment Preferences](#change-environment-single) 
 +  [Change Environment Settings with the Console](#change-environment-description) 
 +  [Change Environment Settings with Code](#change-environment-description-code) 
 
-## Change Environment Preferences<a name="change-environment-single"></a>
+## Change environment preferences<a name="change-environment-single"></a>
 
 1. Open the environment you want to change settings for\. To open an environment, see [Opening an Environment](open-environment.md)\.
 
@@ -18,7 +18,7 @@ You can change the preferences or settings for an AWS Cloud9 development environ
 **Note**  
 For more information, see [Project Setting Changes You Can Make](settings-project.md#settings-project-change)\.
 
-## Change Environment Settings with the Console<a name="change-environment-description"></a>
+## Change environment settings with the console<a name="change-environment-description"></a>
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
@@ -62,7 +62,7 @@ If your environment is not displayed in the console, try doing one or more of th
 + In the top navigation bar, choose a different AWS Region\.  
 ![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
 
-## Change Environment Settings with Code<a name="change-environment-description-code"></a>
+## Change environment settings with code<a name="change-environment-description-code"></a>
 
 To use code to change the settings of an environment in AWS Cloud9, call the AWS Cloud9 update environment operation, as follows\.
 

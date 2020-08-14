@@ -13,7 +13,7 @@ Currently, you can use the IDE to automatically create functions that use only N
    + Set up your environment with AWS access credentials\.
    + Create an execution rule for your Lambda functions\.
 
-   For more information, see [Prepare to Work with Lambda Functions](lambda-functions.md#lambda-functions-prepare)\.
+   For more information, see [Prepare to work with Lambda functions](lambda-functions.md#lambda-functions-prepare)\.
 
 1. With the IDE open from the previous step, set the AWS Region that you want to create the function in\. To do this, on the menu bar, choose **AWS Cloud9, Preferences**\.
 

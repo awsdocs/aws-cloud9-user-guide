@@ -245,7 +245,7 @@ In this step, you instruct the AWS CDK to create a AWS CloudFormation stack temp
 
    If successful, the output displays that the `HelloCdkStack` stack deployed without errors\.
 **Note**  
-If the output displays a message that the stack does not define an environment and that AWS credentials could not be obtained from standard locations or no region was configured, make sure that your AWS credentials are set correctly in the IDE, and then run the ** `cdk deploy` ** command again\. For more information, see [Calling AWS Services from an Environment in AWS Cloud9](credentials.md)\.
+If the output displays a message that the stack does not define an environment and that AWS credentials could not be obtained from standard locations or no region was configured, make sure that your AWS credentials are set correctly in the IDE, and then run the ** `cdk deploy` ** command again\. For more information, see [Calling AWS services from an environment in AWS Cloud9](credentials.md)\.
 
 1. To confirm that the Amazon SNS topic and Amazon SQS queue were successfully deployed, send a message to the topic, and then check the queue for the received message\. To do this, you can use a tool such as the AWS Command Line Interface \(AWS CLI\) or the aws\-shell\. For more information about these tools, see the [AWS Command Line Interface and aws\-shell Sample for AWS Cloud9](sample-aws-cli.md)\.
 

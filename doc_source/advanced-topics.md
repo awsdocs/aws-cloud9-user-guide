@@ -11,7 +11,6 @@
 + [AWS Cloud9 Installer](installer.md)
 + [Inbound SSH IP address ranges](ip-ranges.md)
 + [AMI Contents](ami-contents.md)
-+ [Authentication and Access Control](auth-and-access-control.md)
 + [Using Service\-Linked Roles](using-service-linked-roles.md)
 + [Logging API Calls with CloudTrail](cloudtrail.md)
 + [Tags](tags.md)

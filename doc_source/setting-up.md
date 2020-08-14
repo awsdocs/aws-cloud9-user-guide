@@ -1,4 +1,4 @@
-# Setting Up AWS Cloud9<a name="setting-up"></a>
+# Setting up AWS Cloud9<a name="setting-up"></a>
 
 To start using AWS Cloud9, follow one of these sets of procedures, depending on how you plan to use AWS Cloud9\.
 
@@ -18,8 +18,8 @@ To start using AWS Cloud9, follow one of these sets of procedures, depending on 
 For general information about AWS Cloud9, see [What Is AWS Cloud9?](welcome.md)\.
 
 **Topics**
-+ [Individual User Setup](setup-express.md)
-+ [Team Setup](setup.md)
++ [Individual user setup](setup-express.md)
++ [Team setup](setup.md)
 + [Enterprise Setup](setup-enterprise.md)
 + [Additional Setup Options \(Team and Enterprise\)](setup-teams.md)
 + [Individual student setup](setup-student.md)

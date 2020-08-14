@@ -12,7 +12,7 @@ AWS CodeStar provides additional features along with pipelines, such as project 
 +  [Step 3: Prepare to Work with AWS CodePipeline](#codepipeline-repos-setup) 
 +  [Step 4: Create a Pipeline in AWS CodePipeline](#codepipeline-repos-create-pipeline) 
 
-## Step 1: Create or Identify Your Source Code Repository<a name="codepipeline-repos-create-source-code"></a>
+## Step 1: Create or identify your source code repository<a name="codepipeline-repos-create-source-code"></a>
 
 In this step, you create or identify a source code repository that is compatible with CodePipeline\.
 
@@ -29,7 +29,7 @@ Your source code repository must be one of the following repository types that C
   +  [Step 1: Create a GitHub Account](sample-github.md#sample-github-create-account) 
   +  [Step 2: Create a GitHub Repository](sample-github.md#sample-github-create-repo) 
 
-## Step 2: Create an AWS Cloud9 Development Environment, Connect It to the Code Repository, and Upload Your Code<a name="codepipeline-repos-connect-to-repo"></a>
+## Step 2: Create an AWS Cloud9 Development Environment, connect it to the code repository, and upload your code<a name="codepipeline-repos-connect-to-repo"></a>
 
 In this step, you create an AWS Cloud9 development environment in the AWS Cloud9 console\. You then connect the environment to the repository that CodePipeline will use\. Finally, you use the AWS Cloud9 IDE for the environment to upload your source code to the repository\.
 
@@ -48,7 +48,7 @@ To connect the environment to the repository, and then upload your source code t
 
 After you connect the environment to the repository, whenever you push source code changes from the AWS Cloud9 IDE to the repository, CodePipeline automatically sends those changes through related pipelines to be built, tested, and deployed\. You create a related pipeline later in this topic\.
 
-## Step 3: Prepare to Work with AWS CodePipeline<a name="codepipeline-repos-setup"></a>
+## Step 3: Prepare to work with AWS CodePipeline<a name="codepipeline-repos-setup"></a>
 
 In this step, you attach a specific AWS managed policy to the IAM group you created or identified in [Team Setup](setup.md)\. This enables the group's users to begin creating and working with pipelines in CodePipeline\.
 
@@ -56,7 +56,7 @@ If you have used CodePipeline before, skip ahead to [Step 4: Create a Pipeline i
 
 For this step, follow these instructions in [Step 3: Use an IAM Managed Policy to Assign AWS CodePipeline Permissions to the IAM User](https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html#assign-permissions) in the *AWS CodePipeline User Guide*, and then return to this topic\.
 
-## Step 4: Create a Pipeline in AWS CodePipeline<a name="codepipeline-repos-create-pipeline"></a>
+## Step 4: Create a pipeline in AWS CodePipeline<a name="codepipeline-repos-create-pipeline"></a>
 
 In this step, you create a pipeline in CodePipeline that uses the repository you created or identified earlier in this topic\.
 

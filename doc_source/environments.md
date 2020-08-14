@@ -8,6 +8,7 @@ Learn how to work with an environment in AWS Cloud9 by reading one or more of th
 
 **Topics**
 + [Creating an Environment](create-environment.md)
++ [Accessing no\-ingress EC2 instances with Systems Manager](ec2-ssm.md)
 + [Opening an Environment](open-environment.md)
 + [Call AWS Services from an Environment](credentials.md)
 + [Changing Environment Settings](change-environment.md)

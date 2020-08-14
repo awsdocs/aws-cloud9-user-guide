@@ -277,7 +277,7 @@ For the names and versions of other AWS related packages in NuGet, see [NuGet pa
 
 Each time you use the AWS SDK for \.NET to call an AWS service, you must provide a set of AWS credentials with the call\. These credentials determine whether the AWS SDK for \.NET has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
-To store your credentials within the environment, follow the instructions in [Calling AWS Services from an Environment in AWS Cloud9](credentials.md), and then return to this topic\.
+To store your credentials within the environment, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
 For additional information, see [Configuring AWS Credentials](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.
 
