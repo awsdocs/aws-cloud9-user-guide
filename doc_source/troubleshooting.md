@@ -487,16 +487,16 @@ You can confirm that the error is caused by the EC2 instance not being in the de
 
 **Cause:** Preventing access to the environment during the deletion of AWS managed temporary credentials is a security measure\. It allows environment owners to confirm that only trusted collaborators have access to managed credentials\. If they're satisfied that the list of collaborators is valid, environment owners can re\-enable managed credentials so they can be shared\. For more information, see [Controlling access to AWS managed temporary credentials](how-cloud9-with-iam.md#temporary-managed-credentials-control)\.
 
-**Recommended solutions:** You can wait for the deletion of the `~/.aws/credentials` file to complete before again trying to open the AWS Cloud9 environment\. The maximum waiting time for credentials expiry is 15 minutes\. Alternatively, ask the environment owner to re\-enable or disable the managed temporary credentials\. After the credentials are re\-enabled or disabled, collaborators can immediately access the environment\.
+**Recommended solutions:** You can wait for the deletion of the `~/.aws/credentials` file to complete before again trying to open the AWS Cloud9 environment\. The maximum waiting time for credentials expiry is 15 minutes\. Alternatively, ask the environment owner to re\-enable or disable the managed temporary credentials\. After the credentials are re\-enabled or disabled, collaborators can immediately access the environment\. \(By toggling the state of managed credentials to ENABLED or DISABLED, the environment owner ensures the credentials don't remain in an intermediate state that prevents collaborators from accessing the environment\.\)
 
 **Note**  
-You can identify an environment owner by reviewing the card for an environment in the **Your environments** page on the console\. The environment owner is also listed in the **Environment details** page\.
+If the environment owner and collaborator belong to the same AWS account, the collaborator can identify the environment owner to contact by reviewing the card for an environment in the **Your environments** page on the console\. The environment owner is also listed in the **Environment details** page\.
 
 \([back to top](#troubleshooting)\)
 
 ## Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation<a name="cfn-no-ingress-failed"></a>
 
-**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create a new EC2 environment, users receive a `AccessDeniedException` and informed that they're "not authorized to perform: ssm:StartSession on resource" \.
+**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create a new EC2 environment, users receive an `AccessDeniedException` and informed that they're "not authorized to perform: ssm:StartSession on resource"\.
 
 **Cause:** The user lacks the permission to call the StartSession API that's required as part of the configuration for EC2 environments that use Systems Manager for no\-ingress instances\.
 

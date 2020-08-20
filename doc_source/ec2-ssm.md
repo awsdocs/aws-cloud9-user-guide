@@ -1,23 +1,28 @@
 # Accessing no\-ingress EC2 instances with AWS Systems Manager<a name="ec2-ssm"></a>
 
-When you create a new Amazon EC2 instance for an AWS Cloud9 development environment with the console or the command\-line interface, you're launching that instance into a private subnet that's part of a virtual private cloud \(VPC\)\. There are two options for enabling an AWS Cloud9 environment to connect to its EC2 instance:
+A "no\-ingress EC2 instance" created for an EC2 environment enables AWS Cloud9 to connect to its EC2 instance without the need to open any inbound ports on that instance\. You can select the no\-ingress option when creating an EC2 environment with the [console](create-environment-main.md#create-environment-console) or the [command\-line interface](tutorial-create-environment-cli-step1.md)\. 
+
+![\[Selecting a new no-ingress EC2 instance for your environment\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/EC2-options-with-SSM.png)
+
+When selecting an environment type in the **Environment settings** section of the console, you can choose a new EC2 instance that requires inbound connectivity or a new no\-ingress EC2 instance that doesn't:
 + **[Create a new EC2 instance for environment \(direct access\)](create-environment-main.md#create-environment-console)**: With this setup, the security group for the instance has a rule to allow incoming networking traffic\. An open inbound port enables AWS Cloud9 to connect over SSH to its instance\. Incoming network traffic is restricted to [ IP addresses approved for AWS Cloud9 connections](ip-ranges.md)\.
++ **[Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)](create-environment-main.md#create-environment-console)**: With this setup, the security group for the instance has no inbound rule\. This means no inbound traffic originating from another host to the instance is allowed\. So AWS Cloud9 doesn't directly connect to the instance over SSH\. Instead, the environment connects through AWS Systems Manager Session Manager\. For more information, see [Using Systems Manager Session Manager for secure and convenient access control](#ssm-benefits)\.
 
-                   —OR—
-+ **[Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)](create-environment-main.md#create-environment-console)**: With this setup, the security group for the instance has no inbound rule\. This means no inbound traffic originating from another host to the instance is allowed\. So AWS Cloud9 doesn't directly connect to the instance over SSH\. Instead, the environment connects through AWS Systems Manager Session Manager\. 
+**Note**  
+You also have a third option of selecting **Create and run in remote server \(SSH connection\)**\. For more information about having AWS Cloud9 connect to an *existing* EC2 instance or your own server, see [Creating an SSH Environment](create-environment-ssh.md)\.
 
-These connection options for your EC2 environment are available in the **Environment settings** page:
+If creating an environment using [AWS CLI](tutorial-create-environment-cli-step1.md), you can configure a no\-ingress EC2 instance by setting the `--connection-type CONNECT_SSM` option when calling the `create-environment-ec2` command\. For more information about creating the required service role and instance profile, see [Managing instance profiles for Systems Manager with AWS CLI](#aws-cli-instance-profiles)\. 
 
-![\[Selecting an EC2 instance for your environment\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/EC2-options-with-SSM.png)
-
-And if you create an environment using AWS CLI, you can configure a no\-ingress EC2 instance by setting the `--connection-type CONNECT_SSM` option when calling the `create-environment-ec2` command\.
-
-**Important**  
-The option to use Systems Manager for no\-ingress connections is currently available only when creating new EC2 environments\.
+After you complete the creation of an environment that uses a no\-ingress EC2 instance, confirm the following:
++ Systems Manager Session Manager has permissions to perform actions on the EC2 instance on your behalf \(see [Managing Systems Manager permissions](#service-role-ssm)\)\.
++ AWS Cloud9 users can access the instance managed by Session Manager \(see [Giving users access to instances managed by Session Manager](#access-ec2-session)\)\.
 
 ## Using Systems Manager Session Manager for secure and convenient access control<a name="ssm-benefits"></a>
 
-Secure connections between AWS Cloud9 and its EC2 instance are handled by [Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\. Session Manager is a fully managed Systems Manager capability that enables AWS Cloud9 to connect to its EC2 instance without the need to open inbound ports\.
+Secure connections between AWS Cloud9 and its EC2 instance are handled by [Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\. Session Manager is a fully managed Systems Manager capability that enables AWS Cloud9 to connect to its EC2 instance without the need to open inbound ports\. 
+
+**Important**  
+The option to use Systems Manager for no\-ingress connections is currently available only when creating new EC2 environments\.
 
  With the start of a Session Manager session, a connection is made to the target instance\. With the connection in place, the environment can now interact with the instance through the Systems Manager service\. And the Systems Manager service communicates with the instance through the Systems Manager Agent \([SSM Agent](https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-agent.html)\)\. SSM Agent is installed, by default, on instances used by EC2 environments\.
 
