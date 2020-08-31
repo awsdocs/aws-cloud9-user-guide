@@ -6,7 +6,7 @@ Following this tutorial might result in charges to your AWS account\. These incl
 
 **Topics**
 + [Prerequisites](#sample-python-prereqs)
-+ [Step 1: Install Python 3\.6](#sample-python-install)
++ [Step 1: Install Python](#sample-python-install)
 + [Step 2: Add Code](#sample-python-code)
 + [Step 3: Run the Code](#sample-python-run)
 + [Step 4: Install and Configure the AWS SDK for Python \(Boto3\)](#sample-python-sdk)
@@ -26,9 +26,9 @@ Before you use this tutorial, be sure to meet the following requirements\.
 
   When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
-## Step 1: Install Python 3\.6<a name="sample-python-install"></a>
+## Step 1: Install Python<a name="sample-python-install"></a>
 
-1. In a terminal session in the AWS Cloud9 IDE, confirm whether Python 3\.6 is already installed by running the ** `python --version` ** command\. \(To start a new terminal session, on the menu bar choose **Window**, **New Terminal**\.\) If Python 3\.6 is installed, skip ahead to [Step 2: Add Code](#sample-python-code)\.
+1. In a terminal session in the AWS Cloud9 IDE, confirm whether Python 3\.6 is already installed by running the ** `python --version` ** command\. \(To start a new terminal session, on the menu bar choose **Window**, **New Terminal**\.\) If Python is installed, skip ahead to [Step 2: Add Code](#sample-python-code)\.
 
 1. Run the ** `yum update`** \(for Amazon Linux\) or **`apt update`** \(for Ubuntu Server\) command to help ensure the latest security updates and bug fixes are installed\.
 
@@ -44,7 +44,7 @@ Before you use this tutorial, be sure to meet the following requirements\.
    sudo apt update
    ```
 
-1. Install Python 3\.6 by running the ** `install` ** command\.
+1. Install Python by running the ** `install` ** command\.
 
    For Amazon Linux:
 

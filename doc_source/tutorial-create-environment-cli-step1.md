@@ -24,7 +24,7 @@ Currently, you cannot use the AWS CLI to create an Ubuntu Server\-based EC2 envi
 1. In the following AWS Cloud9 command, provide a value for `--region` and `--subnet-id`\. Then run the command and make note of the "environmentId" value for later cleanup\.
 
    ```
-   aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --region MY-REGION --conection-type CONNECT_SSM --subnet-id subnet-12a3456b
+   aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --region MY-REGION --connection-type CONNECT_SSM --subnet-id subnet-12a3456b
    ```
 
    In the preceding command:

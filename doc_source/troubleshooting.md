@@ -148,7 +148,7 @@ When you have finished troubleshooting, be sure to set the inbound rules to an a
  **Cause:** To work as expected, an SSH environment requires that Python version 2\.7 is installed\.
 
  **Solution:** Install Python version 2\.7 in the environment\. To check your version, from your server's terminal, run the command ** `python --version` **\. To install Python 2\.7 on your server, see one of the following:
-+  [Step 1: Install Python 3\.6](sample-python.md#sample-python-install) in the *Python Sample*\.
++  [Step 1: Install Python](sample-python.md#sample-python-install) in the *Python Sample*\.
 +  [Download Python](https://www.python.org/downloads/) on the Python website and [Installing Packages](https://packaging.python.org/installing/) in the *Python Packaging User Guide*\.
 
 \([back to top](#troubleshooting)\)
@@ -327,26 +327,7 @@ Alternatively, you can use an SSH remote access utility such as **ssh** or PuTTY
 
 To see how AWS Cloud9 is doing with attempting to install SAM Local, choose **Window, Installer** on the menu bar\.
 
-To install SAM Local yourself, run the following commands, one at a time in the following order, from a terminal session in the IDE\.
-
-```
-npm install -g aws-sam-local        # Use Node Package Manager (npm) to install SAM Local as a global package in the environment.
-ln -sfn $(which sam) ~/.c9/bin/sam  # Create a symbolic link (a shortcut) from the path that AWS Cloud9 expects to where SAM Local is installed.
-```
-
-If, after running the previous commands, you're still having SAM Local install issues, try running the following additional commands, one at a time in the following order, from a terminal session in the IDE\.
-
-```
-npm uninstall -g aws-sam-local  # Use npm to uninstall the globally-installed SAM Local from the environment.
-rm -rf $(which sam)             # Remove the related symbolic link.
-pip install --user aws-sam-cli  # Use pip to re-install the AWS SAM CLI from the context of the user (not globally).
-hash -r                         # Reset the bash cache (removes all current tracked aliases).
-sam –-version                   # Verify that your installation worked.
-```
-
-For more information, see the [awslabs/aws\-sam\-cli](https://github.com/awslabs/aws-sam-cli/blob/develop/README.md) repository on the GitHub website\.
-
-\([back to top](#troubleshooting)\)
+To install SAM Local yourself, follow the instructions provided by [Installing the AWS SAM CLI on Linux](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-linux.html) in the *AWS Serverless Application Model Developer Guide\.* 
 
 ## IDE warning: "This environment is running low on memory" or "This environment has high CPU load"<a name="troubleshooting-ide-low-memory"></a>
 
