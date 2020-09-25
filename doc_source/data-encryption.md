@@ -15,7 +15,7 @@ Information that you manipulate, collect, and store\. The following are examples
  Data that AWS Cloud9 manipulates, collects, and stores\. The following are examples of this type of data:
 + IDE settings such as tab states, open files, and IDE preferences
 + AWS Cloud9 development environment metadata such as environment names and descriptions
-+ AWS Cloud service API, and console logs
++ AWS Cloud9 service API, and console logs
 + Service logs such as HTTP requests
 
 AWS Cloud9 also transmits some of your content and data through its data plane service\. This includes your files, terminal input, output text, and some IDE commands \(for example, for saving files\)\.

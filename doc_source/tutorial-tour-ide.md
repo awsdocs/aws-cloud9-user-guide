@@ -28,7 +28,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    npm install readline-sync
    ```
 
-   Verify that the result is similar to the following \(If `npm WARN` messages are also displayed, you can ignore them\):
+   Verify that the result is similar to the following \(If `npm WARN` messages are also displayed, you can ignore them\)\.
 
    ```
    + readline-sync@1.4.10

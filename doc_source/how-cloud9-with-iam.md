@@ -844,4 +844,4 @@ AWS managed temporary credentials also expire automatically every 15 minutes\. F
 Only the environment owner can re\-enable AWS managed temporary credentials so that they can be shared with other members\. When the environment owner opens the IDE, a dialog box confirms that AWS managed temporary credentials are disabled\. The environment owner can re\-enable the credentials for all members or keep them disabled for all members\.
 
 **Warning**  
-To comply with best security practices, keep the managed temporary credentials disabled if you're not certain about the identity of the last user added to the environment\. You can check the list of members with Read\-Write permissions in the [**Collaborate**](share-environment.md#share-environment-members-list) window\. 
+To comply with best security practices, keep the managed temporary credentials disabled if you're not certain about the identity of the last user added to the environment\. You can check the list of members with read/write permissions in the [Collaborate](share-environment.md#share-environment-members-list) window\. 

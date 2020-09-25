@@ -1,6 +1,6 @@
 # Step 2: Basic Tour of the IDE<a name="tutorial-tour-ide-cli-step2"></a>
 
-\(Previous step: [Step 1: Create an Environment](tutorial-create-environment-cli-step1.md)\)
+\(Previous step: [Step 1: Create an environment](tutorial-create-environment-cli-step1.md)\)
 
 This part of the tutorial introduces some of the ways in which you can use the AWS Cloud9 IDE to create and test applications\.
 + You can use an **editor** window to create and edit code\.
@@ -28,7 +28,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    npm install readline-sync
    ```
 
-   Verify that the result is similar to the following \(If `npm WARN` messages are also displayed, you can ignore them\):
+   Verify that the result is similar to the following \(If `npm WARN` messages are also displayed, you can ignore them\)\.
 
    ```
    + readline-sync@1.4.10

@@ -31,7 +31,7 @@ Amazon's trademarks and trade dress may not be used in
       + [Step 3: Clean up](tutorial-clean-up.md)
       + [Related information](tutorial-final-info.md)
    + [Tutorial: Hello AWS Cloud9 (CLI)](tutorial-basic-cli.md)
-      + [Step 1: Create an Environment](tutorial-create-environment-cli-step1.md)
+      + [Step 1: Create an environment](tutorial-create-environment-cli-step1.md)
       + [Step 2: Basic Tour of the IDE](tutorial-tour-ide-cli-step2.md)
       + [Step 3: Clean Up](tutorial-clean-up-cli-step3.md)
       + [Related Information](tutorial-final-info-cli.md)

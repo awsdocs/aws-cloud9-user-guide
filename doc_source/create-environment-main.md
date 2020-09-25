@@ -3,7 +3,7 @@
 **Note**  
 Completing this procedure might result in charges to your AWS account\. These include possible charges for Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
-In this procedure, AWS Cloud9 creates an EC2 environment, creates a new Amazon EC2 instance, and then connects the environment to this newly\-created instance\. AWS Cloud9 manages this instance's lifecycle, including starting, stopping, and restarting the instance as needed\. If you ever delete this environment, AWS Cloud9 automatically terminates this instance\.
+In this procedure, AWS Cloud9 creates an EC2 environment, creates a new Amazon EC2 instance, and then connects the environment to this newly created instance\. AWS Cloud9 manages this instance's lifecycle, including starting, stopping, and restarting the instance as needed\. If you ever delete this environment, AWS Cloud9 automatically terminates this instance\.
 
 You can create an AWS Cloud9 EC2 development environment with the [AWS Cloud9 console](#create-environment-console) or with [code](#create-environment-code)\.
 
@@ -37,10 +37,8 @@ Complete the steps in [Setting up AWS Cloud9](setting-up.md) so that you can sig
 1. Choose **Next step**\.
 
 1. On the **Configure settings** page, for **Environment type**, choose one of the following options to create an EC2\-backed environment:
-   + **Create a new EC2 instance for environment \(direct access\)**: Choose this option to launch an Amazon EC2 instance that AWS Cloud9 can connect to directly over SSH\.
-
-                      —OR—
-   + **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**: Choose this option to launch an Amazon EC2 instance that doesn't require any open inbound ports\. AWS Cloud9 connects to the instance through [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
+   + **Create a new EC2 instance for environment \(direct access\)** – Launches an Amazon EC2 instance that AWS Cloud9 can connect to directly over SSH\.
+   + **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)** – Launches an Amazon EC2 instance that doesn't require any open inbound ports\. AWS Cloud9 connects to the instance through [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
      + If you select the **access via Systems Manager** option, a service role and an IAM instance profile are automatically created to allow Systems Manager to interact with the EC2 instance on your behalf\. You can view the names of both in the **Service role and instance profile for Systems Manager access** section further down the interface\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
 **Warning**  
 Creating an EC2 instance for your environment might result in possible charges to your AWS account for Amazon EC2\. There is no additional cost to use Systems Manager to manage connections to your EC2 instance\.
