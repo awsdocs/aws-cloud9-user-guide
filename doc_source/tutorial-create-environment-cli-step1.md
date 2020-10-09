@@ -6,10 +6,11 @@ In this step, you use the AWS CLI to create an AWS Cloud9 development environmen
 
 In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*, and then work with the files and tools in that environment\.
 
-## Create an EC2 Environment with the AWS CLI<a name="tutorial-create-environment-cli"></a>
+## Create an EC2 environment with the AWS CLI<a name="tutorial-create-environment-cli"></a>
 
-**Note**  
-Currently, you cannot use the AWS CLI to create an Ubuntu Server\-based EC2 environment—only Amazon Linux\. \(We are evaluating support for Ubuntu Server\.\)
+**Important**  
+Currently, only environments connected to Amazon Linux can be created with the AWS CLI\. You can't use the AWS CLI to create an Amazon Linux 2\-based or an Ubuntu Server\-based environment\.   
+We're planning to support Amazon Linux 2 and are evaluating support for Ubuntu Server\. In the meantime, for EC2 environments backed by Amazon Linux 2 or Ubuntu Server, use the [console option](create-environment-main.md#create-environment-console)\.
 
 1. Install and configure the AWS CLI, if you have not done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 

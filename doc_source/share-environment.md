@@ -38,7 +38,7 @@ A shared environment is good for the following\.
 + Computer science classes\. This is useful when teachers or teaching assistants want to access a student's environment to review their homework or fix issues with their environment in real time\. Students can also work together with their classmates on shared homework projects, writing code together in a single environment in real time\. They can do this even though they might be in different locations using different computer operating systems and web browser types\.
 + Any other situation where multiple users need to collaborate on the same code in real time\.
 
-## About Environment Member Access Roles<a name="share-environment-member-roles"></a>
+## About environment member Access Roles<a name="share-environment-member-roles"></a>
 
 Before you share an environment or participate in a shared environment in AWS Cloud9, you should understand the access permission levels for a shared environment\. We call these permission levels *environment member access roles*\.
 
@@ -195,7 +195,7 @@ If the **Collaborate** window is not visible, choose the **Collaborate** button\
 
 ![\[The Collaborate window in the AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-collaborate.png)
 
-## See a List of Environment Members<a name="share-environment-members-list"></a>
+## See a List of environment members<a name="share-environment-members-list"></a>
 
 With the shared environment open, in the **Collaborate** window, expand **Environment Members**, if the list of members is not visible\.
 
@@ -225,13 +225,13 @@ To use code to get a list of environment members, call the AWS Cloud9 describe e
 |  AWS Tools for Windows PowerShell  |   [Get\-C9EnvironmentMembershipList](https://docs.aws.amazon.com/powershell/latest/reference/items/Get-C9EnvironmentMembershipList.html)   | 
 |  AWS Cloud9 API  |   [DescribeEnvironmentMemberships](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_DescribeEnvironmentMemberships.html)   | 
 
-## Open the Active File of an Environment Member<a name="share-environment-active-file"></a>
+## Open the Active File of an environment member<a name="share-environment-active-file"></a>
 
 With the shared environment open, in the menu bar, choose the member name\. Then choose **Open Active File**\.
 
 ![\[The Open Active File command in the AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-collaborate-active-file.png)
 
-## Open the Open File of an Environment Member<a name="share-environment-open-file"></a>
+## Open the Open File of an environment member<a name="share-environment-open-file"></a>
 
 1. With the shared environment open, in the **Collaborate** window, expand **Environment Members**, if the list of members is not visible\.
 
@@ -241,13 +241,13 @@ With the shared environment open, in the menu bar, choose the member name\. Then
 
 ![\[Opening a team member's file in the AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-collaborate-open-file.png)
 
-## Go to the Active Cursor of an Environment Member<a name="share-environment-active-cursor"></a>
+## Go to the Active Cursor of an environment member<a name="share-environment-active-cursor"></a>
 
 1. With the shared environment open, in the **Collaborate** window, expand **Environment Members**, if the list of members is not visible\.
 
 1. Right\-click the member name, and then choose **Show Location**\.
 
-## Chat with Other Environment Members<a name="share-environment-chat"></a>
+## Chat with Other environment members<a name="share-environment-chat"></a>
 
 With the shared environment open, at the bottom of the **Collaborate** window, for **Enter your message here**, type your chat message, and then press `Enter`\.
 
@@ -271,7 +271,7 @@ With the shared environment open, in the **Collaborate** window, right\-click an
 **Note**  
 When you delete all chat messages, they are deleted from the environment for all members\.
 
-## Change the Access Role of an Environment Member<a name="share-environment-change-access"></a>
+## Change the Access Role of an environment member<a name="share-environment-change-access"></a>
 
 1. Open the environment that you own and that contains the member whose access role you want to change, if the environment is not already open\. For more information, see [Opening an Environment in AWS Cloud9](open-environment.md)\.
 
@@ -336,7 +336,7 @@ To use code to remove your user from a shared environment, call the AWS Cloud9 d
 |  AWS Tools for Windows PowerShell  |   [Remove\-C9EnvironmentMembership](https://docs.aws.amazon.com/powershell/latest/reference/items/Remove-C9EnvironmentMembership.html)   | 
 |  AWS Cloud9 API  |   [DeleteEnvironmentMembership](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_DeleteEnvironmentMembership.html)   | 
 
-## Remove Another Environment Member<a name="share-environment-delete-member"></a>
+## Remove Another environment member<a name="share-environment-delete-member"></a>
 
 **Note**  
 To remove any member other than your user from an environment, you must be signed in to AWS Cloud9 using the credentials of the environment owner\.  

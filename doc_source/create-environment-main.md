@@ -11,7 +11,7 @@ You can create an AWS Cloud9 EC2 development environment with the [AWS Cloud9 co
 
 Complete the steps in [Setting up AWS Cloud9](setting-up.md) so that you can sign in to the AWS Cloud9 console and create environments\.
 
-## Create an EC2 Environment with the console<a name="create-environment-console"></a>
+## Create an EC2 environment with the console<a name="create-environment-console"></a>
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
@@ -47,7 +47,10 @@ Creating an EC2 instance for your environment might result in possible charges t
 **Warning**  
 Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\.
 
-1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux** or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
+1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux**, **Amazon Linux 2**, or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
+**Important**  
+We recommend that you choose the **Amazon Linux 2** option for your EC2 environment\. As well as providing a secure, stable, and high\-performance execution environment for developing and running cloud and enterprise applications, Amazon Linux 2 AMI includes long\-term support through 2023\.  
+The older Amazon Linux AMI will end\-of\-life its standard support on December 31, 2020 and enter a maintenance support phase\. For more information, see the [Amazon Linux 2 page](https://aws.amazon.com/amazon-linux-2/)\.
 
 1. Choose a value for **Cost\-saving setting**\. When all web browser instances that are connected to the IDE for the environment are closed, AWS Cloud9 waits this amount of time and then shuts down the Amazon EC2 instance for the environment\. 
 **Warning**  
@@ -80,12 +83,13 @@ After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for th
 
 If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
 
-## Creating an EC2 Environment with code<a name="create-environment-code"></a>
+## Creating an environment with code<a name="create-environment-code"></a>
 
 To use code to create an EC2 environment in AWS Cloud9, call the AWS Cloud9 create EC2 environment operation, as follows\.
 
-**Note**  
-Currently, you cannot use code to create an Ubuntu Server\-based EC2 environment, for example by using the AWS CLI, AWS CloudFormation, the AWS SDKs, the Tools for Windows PowerShell, or the AWS Cloud9 API\. Currently, you can only use code to create an EC2 environment that is connected to Amazon Linux\. Using code to create an Ubuntu Server\-based EC2 environment is expected in the future\.
+**Important**  
+Currently, only environments connected to Amazon Linux can be created with code\. You can't use code to create an Amazon Linux 2\-based or an Ubuntu Server\-based EC2 environment\. \(Creating an environment with code refers to using the AWS CLI, AWS CloudFormation, the AWS SDKs, the AWS Tools for PowerShell, or the AWS Cloud9 API\.\)  
+We're planning code\-creation support for Amazon Linux 2 and are evaluating support for Ubuntu Server\. In the meantime, for EC2 environments backed by Amazon Linux 2 or Ubuntu Server, use the [console option](#create-environment-console)\.
 
 
 ****  

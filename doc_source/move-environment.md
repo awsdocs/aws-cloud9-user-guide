@@ -76,7 +76,7 @@ For more information about the preceding procedure, see [Changing the instance t
 
 1. In the AWS Cloud9 IDE for the environment, create a file with the following contents, and then save the file with the extension `.sh` \(for example, `resize.sh`\)\.
 **Note**  
-This script works for Amazon EBS volumes connected to EC2 instances running Amazon Linux or Ubuntu Server\.  
+This script works for Amazon EBS volumes connected to EC2 instances running Amazon Linux 2, Amazon Linux, or Ubuntu Server\.  
  The script also resizes Amazon EBS volumes exposed as NVMe block devices on Nitro\-based instances\. For a list of instances based on the Nitro system, see [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    ```
@@ -107,20 +107,37 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    sleep 1
    done
    
+   #Check if we're on an NVMe filesystem
    if [ $(readlink -f /dev/xvda) = "/dev/xvda" ]
    then
      # Rewrite the partition table so that the partition takes up all the space that it can.
      sudo growpart /dev/xvda 1
-    
+   
      # Expand the size of the file system.
-     sudo resize2fs /dev/xvda1
+     # Check if we are on AL2
+     STR=$(cat /etc/os-release)
+     SUB="VERSION_ID=\"2\""
+     if [[ "$STR" == *"$SUB"* ]]
+     then
+       sudo xfs_growfs -d /
+     else
+       sudo resize2fs /dev/xvda1
+     fi
    
    else
      # Rewrite the partition table so that the partition takes up all the space that it can.
      sudo growpart /dev/nvme0n1 1
    
      # Expand the size of the file system.
-     sudo resize2fs /dev/nvme0n1p1
+     # Check if we're on AL2
+     STR=$(cat /etc/os-release)
+     SUB="VERSION_ID=\"2\""
+     if [[ "$STR" == *"$SUB"* ]]
+     then
+       sudo xfs_growfs -d /
+     else
+       sudo resize2fs /dev/nvme0n1p1
+     fi
    fi
    ```
 

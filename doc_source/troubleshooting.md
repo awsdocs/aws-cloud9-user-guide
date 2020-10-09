@@ -29,6 +29,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [VPC error for EC2\-Classic accounts: "Unable to access your environment"](#ec2-classic-issue)
 + [Unable to open AWS Cloud9 environment: "This environment cannot be currently accessed by collaborators\. Please wait until the removal of managed temporary credentials is complete, or contact the owner of this environment\."](#collaborator-access-credentials)
 + [Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation](#cfn-no-ingress-failed)
++ [Unable to connect to EC2 environment because VPC's IP addresses are used by Docker](#docker-bridge)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -71,7 +72,7 @@ After you run this command, try creating the environment again\.
  **Solution:** Ensure the user has the correct AWS access permissions, and then try to perform the action again\. For more information, see one or more of the following:
 +  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
 +  [Step 6\. Enable groups and users within the organization to use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
-+  [About Environment Member Access Roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
++  [About environment member Access Roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
 
 \([back to top](#troubleshooting)\)
 
@@ -508,5 +509,19 @@ If the environment owner and collaborator belong to the same AWS account, the co
             ]
         }
 ```
+
+\([back to top](#troubleshooting)\)
+
+## Unable to connect to EC2 environment because VPC's IP addresses are used by Docker<a name="docker-bridge"></a>
+
+**Issue:** For an EC2 environment, if you launch the EC2 instance into an Amazon VPC \(virtual private cloud\) that uses the IPv4 Classless Inter\-Domain Routing \(CIDR\) block `172.17.0.0/16`, the connection may stall when you try to open that environment\.
+
+**Cause:** Docker uses a link layer device called a bridge network that enables containers connected to the same bridge network to communicate\. AWS Cloud9 creates containers that use a default bridge for container communication\. The default bridge typically uses the `172.17.0.0/16` subnet for container networking\.
+
+If the VPC subnet for your environment's instance uses the same address range that's already used by Docker, an IP address conflict can occur\. So when AWS Cloud9 tries to connect its instance, that connection is routed by the gateway route table to the Docker bridge instead of the EC2 instance\. This prevents AWS Cloud9 from connecting to the EC2 instance that backs the development environment\.
+
+**Recommended solution: ** To resolve an IP address conflict caused by Amazon VPC and Docker using the same IPv4 CIDR address block, configure a new VPC for the instance backing your EC2 environment\. For this new VPC, configure a CIDR block that's different from `172.17.0.0/16`\. \(You cannot change the IP address range of an existing VPC or subnet\.\) 
+
+For configuration information, see [VPC and subnet sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the Amazon VPC User Guide\. 
 
 \([back to top](#troubleshooting)\)

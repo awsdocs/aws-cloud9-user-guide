@@ -1,6 +1,6 @@
 # Step 2: Basic tour of the IDE<a name="tutorial-tour-ide"></a>
 
-\(Previous step: [Step 1: Create an Environment](tutorial-create-environment.md)\)
+\(Previous step: [Step 1: Create an environment](tutorial-create-environment.md)\)
 
 This part of the tutorial introduces some of the ways in which you can use the AWS Cloud9 IDE to create and test applications\.
 + You can use an **editor** window to create and edit code\.

@@ -1,4 +1,4 @@
-# Step 1: Create an Environment<a name="tutorial-create-environment"></a>
+# Step 1: Create an environment<a name="tutorial-create-environment"></a>
 
 \(First step of [Tutorial: Hello AWS Cloud9 \(console\)](tutorial.md)\)
 
@@ -45,7 +45,10 @@ Creating an EC2 instance for your environment might result in possible charges t
 **Warning**  
 Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\.
 
-1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux** or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
+1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux**, **Amazon Linux 2**, or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
+**Important**  
+We recommend that you choose the **Amazon Linux 2** option for your EC2 environment\. As well as providing a secure, stable, and high\-performance execution environment for developing and running cloud and enterprise applications, Amazon Linux 2 AMI includes long\-term support through 2023\.  
+The older Amazon Linux AMI will end\-of\-life its standard support on December 31, 2020 and enter a maintenance support phase\. For more information, see the [Amazon Linux 2 page](https://aws.amazon.com/amazon-linux-2/)\.
 
 1. Choose a value for **Cost\-saving setting**\. When all web browser instances that are connected to the IDE for the environment are closed, AWS Cloud9 waits this amount of time and then shuts down the Amazon EC2 instance for the environment\. 
 **Warning**  
