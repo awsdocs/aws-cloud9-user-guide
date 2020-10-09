@@ -86,7 +86,7 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    SIZE=${1:-20}
    
    # Get the ID of the environment host Amazon EC2 instance.
-   INSTANCEID=$(curl http://169.254.169.254/latest/meta-data//instance-id)
+   INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
    
    # Get the ID of the Amazon EBS volume associated with the instance.
    VOLUMEID=$(aws ec2 describe-instances \
