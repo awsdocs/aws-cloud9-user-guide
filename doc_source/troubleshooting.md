@@ -28,6 +28,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [AWS Cloud9 installer doesn't finish after displaying: "Package Cloud9 IDE 1"](#cloud9-installer-failed)
 + [VPC error for EC2\-Classic accounts: "Unable to access your environment"](#ec2-classic-issue)
 + [Unable to open AWS Cloud9 environment: "This environment cannot be currently accessed by collaborators\. Please wait until the removal of managed temporary credentials is complete, or contact the owner of this environment\."](#collaborator-access-credentials)
++ [Error message reporting "Instance profile AWSCloud9SSMInstanceProfile does not exist in account" when creating EC2 environment using AWS CloudFormation](#cfn-no-instanceprofile)
 + [Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation](#cfn-no-ingress-failed)
 + [Unable to connect to EC2 environment because VPC's IP addresses are used by Docker](#docker-bridge)
 
@@ -476,39 +477,23 @@ If the environment owner and collaborator belong to the same AWS account, the co
 
 \([back to top](#troubleshooting)\)
 
+## Error message reporting "Instance profile AWSCloud9SSMInstanceProfile does not exist in account" when creating EC2 environment using AWS CloudFormation<a name="cfn-no-instanceprofile"></a>
+
+**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create an EC2 environment, users receive an error message that Instance profile AWSCloud9SSMInstanceProfile does not exist in account\. 
+
+**Cause:** When creating a no\-ingress EC2 environment, you must create the service role `AWSCloud9SSMAccessRole` and the instance profile `AWSCloud9SSMInstanceProfile`\. These IAM resources enable Systems Manager to manage the EC2 instance that backs your development environment\. 
+
+ If you create a no\-ingress environment with the console, `AWSCloud9SSMAccessRole` and `AWSCloud9SSMInstanceProfile` are created automatically\. But when using AWS CloudFormation or AWS CLI to create your first no\-ingress environment, you must create these IAM resources manually\. 
+
+**Recommended solution: ** For information on editing your AWS CloudFormation template and updating IAM permissions, see [Using AWS CloudFormation to create no\-ingress EC2 environments](ec2-ssm.md#cfn-role-and-permissions)
+
 ## Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation<a name="cfn-no-ingress-failed"></a>
 
 **Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create an EC2 environment, users receive an `AccessDeniedException` and are informed that they're "not authorized to perform: ssm:StartSession on resource"\.
 
 **Cause:** The user lacks the permission to call the `StartSession` API that's required as part of the configuration for EC2 environments that use Systems Manager for no\-ingress instances\.
 
-**Recommended solution: **Add the following permission to the policy of the IAM entity creating the environment with AWS CloudFormation\. 
-
-```
-       
-            {
-            "Effect": "Allow",
-            "Action": "ssm:StartSession",
-            "Resource": "arn:aws:ec2:*:*:instance/*",
-            "Condition": {
-                "StringLike": {
-                    "ssm:resourceTag/aws:cloud9:environment": "*"
-                },
-                "StringEquals": {
-                    "aws:CalledViaFirst": "cloudformation.amazonaws.com"
-                }
-            }
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ssm:StartSession"
-            ],
-            "Resource": [
-                "arn:aws:ssm:*:*:document/*"
-            ]
-        }
-```
+**Recommended solution: ** For information on editing your AWS CloudFormation template and updating IAM permissions, see [Using AWS CloudFormation to create no\-ingress EC2 environments](ec2-ssm.md#cfn-role-and-permissions)\.
 
 \([back to top](#troubleshooting)\)
 

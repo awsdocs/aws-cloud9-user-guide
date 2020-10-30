@@ -93,21 +93,30 @@ console.log('The sum of ' + process.argv[2] + ' and ' +
 
 ## Step 4: Install and Configure the AWS SDK for JavaScript in Node\.js<a name="sample-nodejs-sdk"></a>
 
+When running Node\.js scripts in AWS Cloud9, you can choose between AWS SDK for JavaScript version 3 \(V3\) and the older AWS SDK for JavaScript version 2 \(V2\)\. As with V2, V3 enables you to easily work with Amazon Web Services, but has been written in TypeScript and adds several frequently requested features, such as modularized packages\.
+
+------
+#### [ AWS SDK for JavaScript \(V3\) ]
+
 You can enhance this sample to use the AWS SDK for JavaScript in Node\.js to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
-In this step, you install and configure the AWS SDK for JavaScript in Node\.js, which provides a convenient way to interact with AWS services such as Amazon S3, from your JavaScript code\. After you install the AWS SDK for JavaScript in Node\.js, you must set up credentials management in your environment\. The AWS SDK for JavaScript in Node\.js needs these credentials to interact with AWS services\.
+In this step, you install and configure the Amazon S3 service client module of the AWS SDK for JavaScript in Node\.js, which provides a convenient way to interact with the Amazon S3 AWS service, from your JavaScript code\.
 
-### To install the AWS SDK for JavaScript in Node\.js<a name="sample-nodejs-sdk-install"></a>
+If you want to use other AWS services, you need to install them separately\. For more information on installing AWS modules, see [in the *AWS Developer Guide \(V3\)*\.](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started-browser.html)
 
-Use npm to run the ** `install` ** command\.
+ After you install the AWS SDK for JavaScript in Node\.js, you must set up credentials management in your environment\. The AWS SDK for JavaScript in Node\.js needs these credentials to interact with AWS services\.
+
+**To install the AWS SDK for JavaScript in Node\.js**
+
+Use npm to run the **`install`** command\.
 
 ```
-npm install aws-sdk
+npm install @aws-sdk/client-s3
 ```
 
-For more information, see [Installing the SDK for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/installing-jssdk.html) in the *AWS SDK for JavaScript Developer Guide*\.
+For more information, see [Installing the SDK for JavaScript](https://docs-aws.amazon.com/sdk-for-javascript/v3/developer-guide/installing-jssdk) in the *AWS SDK for JavaScript Developer Guide*\.
 
-### To set up credentials management in your environment<a name="sample-nodejs-sdk-creds"></a>
+**To set up credentials management in your environment**
 
 Each time you use the AWS SDK for JavaScript in Node\.js to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for JavaScript in Node\.js has the appropriate permissions to make that call\. If the credentials do not cover the appropriate permissions, the call will fail\.
 
@@ -115,7 +124,109 @@ In this step, you store your credentials within the environment\. To do this, fo
 
 For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
 
+------
+#### [ AWS SDK for JavaScript \(V2\) ]
+
+You can enhance this sample to use the AWS SDK for JavaScript in Node\.js to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
+
+In this step, you install and configure the AWS SDK for JavaScript in Node\.js, which provides a convenient way to interact with AWS services such as Amazon S3, from your JavaScript code\. After you install the AWS SDK for JavaScript in Node\.js, you must set up credentials management in your environment\. The AWS SDK for JavaScript in Node\.js needs these credentials to interact with AWS services\.
+
+**To install the AWS SDK for JavaScript in Node\.js**
+
+Use npm to run the **`install`** command\.
+
+```
+npm install aws-sdk
+```
+
+For more information, see [Installing the SDK for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/installing-jssdk.html) in the *AWS SDK for JavaScript Developer Guide*\.
+
+**To set up credentials management in your environment**
+
+Each time you use the AWS SDK for JavaScript in Node\.js to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for JavaScript in Node\.js has the appropriate permissions to make that call\. If the credentials do not cover the appropriate permissions, the call will fail\.
+
+In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
+
+For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
+
+------
+
 ## Step 5: Add AWS SDK Code<a name="sample-nodejs-sdk-code"></a>
+
+------
+#### [ AWS SDK for JavaScript \(V3\) ]
+
+In this step, you add some more code, this time to interact with Amazon S3 to create a bucket, list your available buckets, and then delete the bucket you just created\. You will run this code later\.
+
+In the AWS Cloud9 IDE, create a file with this content, and save the file with the name `s3.js`\.
+
+```
+if (process.argv.length < 4) {
+  console.log(
+    "Usage: node s3.js <the bucket name> <the AWS Region to use>\n" +
+      "Example: node s3.js my-test-bucket us-east-2"
+  );
+  process.exit(1);
+}
+const {
+  S3Client,
+  ListBucketsCommand,
+  CreateBucketCommand,
+  DeleteBucketCommand
+} = require("@aws-sdk/client-s3");
+
+const async = require("async"); // To call AWS operations asynchronously.
+
+const bucket_name = process.argv[2];
+const region = process.argv[3];
+
+const s3 = new S3Client({ region });
+
+const create_bucket_params = {
+  Bucket: bucket_name,
+  CreateBucketConfiguration: {
+    LocationConstraint: region,
+  },
+};
+
+const delete_bucket_params = { Bucket: bucket_name };
+
+// List all of your available buckets in this AWS Region.
+
+const run = async () => {
+  try {
+    const data = await s3.send(new ListBucketsCommand({}));
+    console.log("My buckets now are:\n");
+
+    for (var i = 0; i < data.Buckets.length; i++) {
+      console.log(data.Buckets[i].Name);
+    }
+  } catch (err) {
+    console.log("Error", err);
+  }
+  try {
+    console.log("\nCreating a bucket named " + bucket_name + "...\n");
+    const data = await s3.send(new CreateBucketCommand(create_bucket_params));
+    console.log("My buckets now are:\n");
+
+    for (var i = 0; i < data.Buckets.length; i++) {
+      console.log(data.Buckets[i].Name);
+    }
+  } catch (err) {
+    console.log(err.code + ": " + err.message);
+  }
+  try {
+    console.log("\nDeleting the bucket named " + bucket_name + "...\n");
+    const data = await s3.send(new DeleteBucketCommand(delete_bucket_params));
+  } catch (err) {
+    console.log(err.code + ": " + err.message);
+  }
+};
+run();
+```
+
+------
+#### [ AWS SDK for JavaScript \(V2\) ]
 
 In this step, you add some more code, this time to interact with Amazon S3 to create a bucket, list your available buckets, and then delete the bucket you just created\. You will run this code later\.
 
@@ -200,6 +311,8 @@ if (process.argv.length < 4) {
     listMyBuckets
   ]);
 ```
+
+------
 
 ## Step 6: Run the AWS SDK Code<a name="sample-nodejs-sdk-run"></a>
 

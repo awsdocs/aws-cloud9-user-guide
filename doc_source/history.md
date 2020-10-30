@@ -8,6 +8,7 @@ The following table describes important changes to the *AWS Cloud9 User Guide* a
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [AWS CloudFormation and no\-ingress EC2 environments](ec2-ssm.md#cfn-role-and-permissions) | Expanded documentation on creating no\-ingress EC2 environments using AWS CloudFormation templates\. | October 29, 2020 | 
 | [Amazon Linux 2\-based EC2 environments](create-environment-main.md#create-environment-console) | When creating an EC2 environment in the console, you can now choose the Amazon Linux 2 AMI for the EC2 instance\. | October 7, 2020 | 
 | [No\-ingress EC2 instances with Systems Manager](ec2-ssm.md) | Added support for accessing private EC2 instances with AWS Systems Manager\. | August 12, 2020 | 
 | [AWS Cloud9 also available in the Europe \(Milan\) Region](#history) | AWS Cloud9 is now also available in the Europe \(Milan\) Region\. For more information about service endpoints and service quotas associated with this and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | July 29, 2020 | 

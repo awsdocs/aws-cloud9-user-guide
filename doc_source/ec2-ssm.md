@@ -1,6 +1,6 @@
 # Accessing no\-ingress EC2 instances with AWS Systems Manager<a name="ec2-ssm"></a>
 
-A "no\-ingress EC2 instance" created for an EC2 environment enables AWS Cloud9 to connect to its Amazon EC2 instance without the need to open any inbound ports on that instance\. You can select the no\-ingress option when creating an EC2 environment by using the [console](create-environment-main.md#create-environment-console) or the [command\-line interface](tutorial-create-environment-cli-step1.md)\. 
+A "no\-ingress EC2 instance" that's created for an EC2 environment enables AWS Cloud9 to connect to its Amazon EC2 instance without the need to open any inbound ports on that instance\. You can select the no\-ingress option when creating an EC2 environment by using the [console](create-environment-main.md#create-environment-console) or the [command\-line interface](tutorial-create-environment-cli-step1.md)\. 
 
 ![\[Selecting a new no-ingress EC2 instance for your environment\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/EC2-options-with-SSM.png)
 
@@ -52,10 +52,10 @@ You can also create a no\-ingress EC2 environment with the AWS CLI\. When you ca
 + Run the following AWS CLI commands to create the service role and instance profile\.
 
   ```
-      aws iam create-role --role-name AWSCloud9SSMAccessRole --path /service-role/ --assume-role-policy-document '{"Version": "2012-10-17","Statement": [{"Effect": "Allow","Principal": {"Service": ["ec2.amazonaws.com","cloud9.amazonaws.com"]      },"Action": "sts:AssumeRole"}]}'
-      aws iam attach-role-policy --role-name AWSCloud9SSMAccessRole --policy-arn arn:aws:iam::aws:policy/AWSCloud9SSMInstanceProfile
-      aws iam create-instance-profile --instance-profile-name AWSCloud9SSMInstanceProfile --path /cloud9/
-      aws iam add-role-to-instance-profile --instance-profile-name AWSCloud9SSMInstanceProfile --role-name AWSCloud9SSMAccessRole
+  aws iam create-role --role-name AWSCloud9SSMAccessRole --path /service-role/ --assume-role-policy-document '{"Version": "2012-10-17","Statement": [{"Effect": "Allow","Principal": {"Service": ["ec2.amazonaws.com","cloud9.amazonaws.com"]      },"Action": "sts:AssumeRole"}]}'
+  aws iam attach-role-policy --role-name AWSCloud9SSMAccessRole --policy-arn arn:aws:iam::aws:policy/AWSCloud9SSMInstanceProfile
+  aws iam create-instance-profile --instance-profile-name AWSCloud9SSMInstanceProfile --path /cloud9/
+  aws iam add-role-to-instance-profile --instance-profile-name AWSCloud9SSMInstanceProfile --role-name AWSCloud9SSMAccessRole
   ```
 
 ## Giving users access to instances managed by Session Manager<a name="access-ec2-session"></a>
@@ -100,14 +100,68 @@ The following managed policies also include these policy statements: `AWSCloud9A
         }
 ```
 
-### Giving permissions to create no\-ingress EC2 environments with AWS CloudFormation<a name="cfn-permissions"></a>
+## Using AWS CloudFormation to create no\-ingress EC2 environments<a name="cfn-role-and-permissions"></a>
 
-To create a no\-ingress Amazon EC2 environment using an [AWS CloudFormation resource for AWS Cloud9](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html), you need to add permissions to a policy for the IAM entity creating the stack\. 
+When using an [AWS CloudFormation template](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html) to define a no\-ingress Amazon EC2 development environment, do the following before creating the stack:
 
-**Warning**  
- If the permissions are not added before trying to create a no\-ingress EC2 environment, an `AccessDeniedException` error is returned\.
+1. Create the `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile` instance profile\. For more information, see [Creating service role and instance profile with an AWS CloudFormation template](#creating-cfn-instance-profile)\.
 
-Add the following permissions to the policy for the IAM entity calling AWS CloudFormation\.
+1. Update the policy for the IAM entity calling AWS CloudFormation so it can start a Session Manager session that connects to the EC2 instance\. For more information, see [Adding Systems Manager permissions to an IAM policy](#updating-IAM-policy)\.
+
+### Creating service role and instance profile with an AWS CloudFormation template<a name="creating-cfn-instance-profile"></a>
+
+You need to create the service role `AWSCloud9SSMAccessRole` and the instance profile `AWSCloud9SSMInstanceProfile` to enable Systems Manager to manage the EC2 instance that backs your development environment\. 
+
+If you've previously created `AWSCloud9SSMAccessRole` and `AWSCloud9SSMInstanceProfile` by creating a no\-ingress EC2 environment [with the console](#using-the-console) or [running AWS CLI commands](#aws-cli-instance-profiles), the service role and instance profile are already available for use\.
+
+**Note**  
+If you try to create an AWS CloudFormation stack for a no\-ingress EC2 environment without first creating the required service role and instance profile, the stack is not created and the following error message is displayed:   
+Instance profile AWSCloud9SSMInstanceProfile does not exist in account\.
+
+When creating a no\-ingress EC2 environment for the first time using AWS CloudFormation, you can define the `AWSCloud9SSMAccessRole` and `AWSCloud9SSMInstanceProfile` as IAM resources in the template\.
+
+This excerpt from a sample template shows how you can define these resources\. \(The `AssumeRole` action returns security credentials that provides access to both the AWS Cloud9 environment and its EC2 instance\.\) 
+
+```
+AWSTemplateFormatVersion: 2010-09-09
+Resources: 
+  AWSCloud9SSMAccessRole:
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+              - cloud9.amazonaws.com
+              - ec2.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Description: 'Service linked role for AWS Cloud9'
+      Path: '/service-role/'
+      ManagedPolicyArns: 
+        - arn:aws:iam::aws:policy/AWSCloud9SSMInstanceProfile
+      RoleName: 'AWSCloud9SSMAccessRole'
+
+  AWSCloud9SSMInstanceProfile:
+    Type: "AWS::IAM::InstanceProfile"
+    Properties: 
+      InstanceProfileName: AWSCloud9SSMInstanceProfile
+      Path: "/cloud9/"
+      Roles: 
+        - 
+          Ref: AWSCloud9SSMAccessRole
+```
+
+### Adding Systems Manager permissions to an IAM policy<a name="updating-IAM-policy"></a>
+
+After [defining a service role and instance profile](#creating-cfn-instance-profile) in the [AWS CloudFormation template](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html), you also need to ensure that the IAM entity creating the stack has permission to start a Session Manager session\. \(A session is a connection made to the EC2 instance using Session Manager\.\) 
+
+**Note**  
+ If you don't add permissions to start a Session Manager session before creating a stack for a no\-ingress EC2 environment, an `AccessDeniedException` error is returned\.
+
+Add the following permissions to the policy for the IAM entity calling AWS CloudFormation:
 
 ```
 {
@@ -136,7 +190,7 @@ Add the following permissions to the policy for the IAM entity calling AWS Cloud
 
 ## Configuring VPC endpoints for private connectivity<a name="configure-no-egress"></a>
 
-When you launch an instance into a private subnet with the **access via Systems Manager** option, its security group doesn't have an inbound rule to allow incoming network traffic\. The security group does, however, have an outbound rule that permits outbound \(or egress\) traffic from the instance\. This is required to download packages and libraries required to keep the AWS Cloud9 IDE up to date\. 
+When you launch an instance into a subnet with the **access via Systems Manager** option, its security group doesn't have an inbound rule to allow incoming network traffic\. The security group does, however, have an outbound rule that permits outbound \(or egress\) traffic from the instance\. This is required to download packages and libraries required to keep the AWS Cloud9 IDE up to date\. 
 
 To prevent outbound as well as inbound traffic for the instance, you need to create and configure Amazon VPC endpoints for Systems Manager\. An interface VPC endpoint \(interface endpoint\) enables you to connect to services powered by [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html), a technology that enables you to privately access Amazon EC2 and Systems Manager APIs by using private IP addresses\. To configure VPC endpoints to use Systems Manager, follow the instructions provided by this [Knowledge Center resource](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints/)\.
 
