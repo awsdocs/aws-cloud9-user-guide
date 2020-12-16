@@ -78,7 +78,7 @@ Depending on the programming language you are using, there might be multiple way
 
 1. On the menu bar, choose **Run**, **Run Configurations**, **New Run Configuration**\.
 
-1. In the new **Run Configuration** window \(one of the tabs in the bottom portion of the IDE\), enter `hello-cloud9.js` in the **Command** field, and then choose **Run**\.
+1. In the new **Run Configuration** window \(one of the tabs in the bottom portion of the IDE\), enter `node hello-cloud9.js` in the **Command** field, and then choose **Run**\.
 
 1. Be sure that the **Run Configuration** prompt is active, and then interact with the application by entering a number at the prompt\.
 
