@@ -1,4 +1,4 @@
-# Supported Browsers for AWS Cloud9<a name="browsers"></a>
+# Supported browsers for AWS Cloud9<a name="browsers"></a>
 
 The following table lists the supported browsers for AWS Cloud9\.
 

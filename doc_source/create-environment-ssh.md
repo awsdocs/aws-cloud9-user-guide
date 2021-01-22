@@ -69,3 +69,6 @@ To see the public SSH key value that was copied, expand **View public SSH key**\
 1. On the **Review** page, choose **Create environment**\. Wait while AWS Cloud9 creates your environment\. This can take several minutes\.
 
 If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated network\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
+
+**Note**  
+If your environment is using a proxy to access the Internet, you must provide proxy details to AWS Cloud9 so it can install dependencies\. For more information, see [Notice: Failed to install dependencies for collaboration support](troubleshooting.md#proxy-failed-dependencies)\.

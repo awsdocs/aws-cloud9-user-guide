@@ -20,6 +20,8 @@ Information that you manipulate, collect, and store\. The following are examples
 
 AWS Cloud9 also transmits some of your content and data through its data plane service\. This includes your files, terminal input, output text, and some IDE commands \(for example, for saving files\)\.
 
+ 
+
 ## Encryption at rest<a name="encryption-at-rest"></a>
 
 Encryption at rest refers to protecting your data from unauthorized access by encrypting data while stored\. Any customer data stored in an AWS Cloud9 environment such as code files, packages, or dependencies is always stored in the customer's resources\. If the customer uses an Amazon EC2 environment, the data is stored in the associated Amazon Elastic Block Store \(Amazon EBS\) volume that exists in their AWS account\. If the customer uses an SSH environment, the data is stored in local storage on their Linux server\. 
@@ -35,7 +37,7 @@ Encryption in transit refers to protecting your data from being intercepted whil
 + **WSS \(WebSocket Secure\)** – Enables secure two\-way communications through WebSockets between the customer's web browser and the AWS Cloud9 service\.
 + **Encrypted SSH \(Secure Shell\)**: Enables secure transmission of data between the client's web browser and the AWS Cloud9 service\.
 
-Use of HTTPS, WSS, and SSH protocols depends on your using a browser supported by AWS Cloud9\. See [Supported Browsers for AWS Cloud9](browsers.md)\.
+Use of HTTPS, WSS, and SSH protocols depends on your using a browser supported by AWS Cloud9\. See [Supported browsers for AWS Cloud9](browsers.md)\.
 
 **Note**  
 Encryption protocols are implemented by default in AWS Cloud9\. Customers cannot change encryption\-in\-transit settings\.

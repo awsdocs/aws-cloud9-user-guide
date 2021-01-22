@@ -73,7 +73,7 @@ You can now start using AWS Cloud9\. Go to [Next Steps](#setup-student-next-step
 
 |  **Task for learning**  |  **See this topic**  | 
 | --- | --- | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting started: basic tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 
 
 ****  

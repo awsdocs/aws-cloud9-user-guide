@@ -7,7 +7,7 @@ AWS CodeStar is a cloud\-based service for creating, managing, and working with 
 **Note**  
 Completing these procedures might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2, AWS CodeStar, and AWS services supported by AWS CodeStar\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/), [AWS CodeStar Pricing](https://aws.amazon.com/codestar/pricing/), and [Cloud Services Pricing](https://aws.amazon.com/pricing/services/)\.  
 To use the AWS Cloud9 IDE to work with a newly\-launched Amazon EC2 instance preconfigured with a popular app or framework such as WordPress, MySQL, PHP, Node\.js, Nginx, Drupal, or Joomla, or a Linux distribution such as Ubuntu, Debian, FreeBSD, or openSUSE, you can use Amazon Lightsail along with AWS Cloud9\. To do this, skip the rest of this topic, and see [Working with Amazon Lightsail Instances](lightsail-instances.md) instead\.  
-To use the AWS Cloud9 IDE to work with a newly\-launched Amazon EC2 instance running Amazon Linux that contains no sample code, skip the rest of this topic, and see [Getting Started: Basic Tutorials](tutorials-basic.md) instead\.
+To use the AWS Cloud9 IDE to work with a newly\-launched Amazon EC2 instance running Amazon Linux that contains no sample code, skip the rest of this topic, and see [Getting started: basic tutorials](tutorials-basic.md) instead\.
 +  [Step 1: Prepare to Work with AWS CodeStar Projects](#codestar-projects-setup) 
 +  [Step 2: Create a Project in AWS CodeStar](#codestar-projects-create-project) 
 +  [Step 3: Create an AWS Cloud9 Development Environment and Connect It to the Project](#codestar-projects-connect-to-project) 

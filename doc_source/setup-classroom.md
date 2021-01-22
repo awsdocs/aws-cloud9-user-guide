@@ -196,7 +196,7 @@ To return to your AWS Educate ECP, go to the AWS Educate Site Login website, at 
 
 |  **Task for learning**  |  **See this topic**  | 
 | --- | --- | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting started: basic tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 
 
 ****  

@@ -1,4 +1,4 @@
-# Advanced Topics for AWS Cloud9<a name="advanced-topics"></a>
+# Advanced topics for AWS Cloud9<a name="advanced-topics"></a>
 
 **These topics contain the following types of information:**
 + Information that is used for advanced configuration and decision making\.

@@ -61,9 +61,12 @@ Choosing a longer time period might result in more charges to your AWS account\.
 1. <a name="create-environment-vpc-step"></a>AWS Cloud9 uses Amazon Virtual Private Cloud \(Amazon VPC\) to communicate with the newly created Amazon EC2 instance\. Depending on how Amazon VPC is set up, do one of the following\.  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
-**Note**  
-If you selected **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**, an information icon is displayed beside the **Create new VPC** button\. If you pause on the icon, a message states that "For a no\-ingress EC2 instance, attach an internet gateway to your new VPC so the instance's SSM Agent can connect to Systems Manager\."  
- For more information, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.  
+**Important**  
+If you selected **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**, you can launch your instance into a public or private subnet\.  
+**Public subnet**: Attach an internet gateway to it to allow the instance's SSM agent to communicate with Systems Manager\.
+**Private subnet**: Create a NAT gateway to enable the instance to communicate with the internet and other AWS services\.
+You should also be aware that currently you can't use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.  
+ For more information on configuring subnets, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
 
@@ -82,6 +85,9 @@ If account creation fails, a banner is displayed at the top of the console page\
 After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for the environment\.
 
 If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
+
+**Note**  
+If your environment is using a proxy to access the Internet, you must provide proxy details to AWS Cloud9 so it can install dependencies\. For more information, see [Notice: Failed to install dependencies for collaboration support](troubleshooting.md#proxy-failed-dependencies)\.
 
 ## Creating an environment with code<a name="create-environment-code"></a>
 
@@ -107,3 +113,6 @@ We're planning code\-creation support for Amazon Linux 2 and are evaluating supp
 |  AWS SDK for Ruby  |   [create\_environment\_ec2](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/Cloud9/Client.html#create_environment_ec2-instance_method)   | 
 |  AWS Tools for Windows PowerShell  |   [New\-C9EnvironmentEC2](https://docs.aws.amazon.com/powershell/latest/reference/items/New-C9EnvironmentEC2.html)   | 
 |  AWS Cloud9 API  |   [CreateEnvironmentEC2](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_CreateEnvironmentEC2.html)   | 
+
+**Note**  
+If your environment is using a proxy to access the Internet, you must provide proxy details to AWS Cloud9 so it can install dependencies\. For more information, see [Notice: Failed to install dependencies for collaboration support](troubleshooting.md#proxy-failed-dependencies)\.

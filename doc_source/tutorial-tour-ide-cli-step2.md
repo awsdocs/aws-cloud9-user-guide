@@ -10,13 +10,13 @@ This part of the tutorial introduces some of the ways in which you can use the A
 You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and samples](tutorials.md) for other programming languages\.
 
 **Topics**
-+ [Get your environment ready](#w34aac11c15c25b5b9)
-+ [Write code](#w34aac11c15c25b5c11)
-+ [Run your code](#w34aac11c15c25b5c13)
-+ [Debug your code](#w34aac11c15c25b5c15)
++ [Get your environment ready](#w35aac11c15c25b5b9)
++ [Write code](#w35aac11c15c25b5c11)
++ [Run your code](#w35aac11c15c25b5c13)
++ [Debug your code](#w35aac11c15c25b5c15)
 + [Next Step](#tutorial-tour-ide-cli-step2-next)
 
-## Get your environment ready<a name="w34aac11c15c25b5b9"></a>
+## Get your environment ready<a name="w35aac11c15c25b5b9"></a>
 
 Most of the tools you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
 
@@ -36,7 +36,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    found 0 vulnerabilities
    ```
 
-## Write code<a name="w34aac11c15c25b5c11"></a>
+## Write code<a name="w35aac11c15c25b5c11"></a>
 
 Begin by writing some code\.
 
@@ -68,7 +68,7 @@ Begin by writing some code\.
 
 1. Choose **File**, **Save**, and then save the file as `hello-cloud9.js`\.
 
-## Run your code<a name="w34aac11c15c25b5c13"></a>
+## Run your code<a name="w35aac11c15c25b5c13"></a>
 
 Next, you can run your code\.
 
@@ -100,7 +100,7 @@ Depending on the programming language you are using, there might be multiple way
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-terminal.png)
 
-## Debug your code<a name="w34aac11c15c25b5c15"></a>
+## Debug your code<a name="w35aac11c15c25b5c15"></a>
 
 Finally, you can debug your code by using the **Debugger** window\.
 

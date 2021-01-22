@@ -1,7 +1,7 @@
 # AWS Cloud9 User Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -14,8 +14,8 @@ Amazon's trademarks and trade dress may not be used in
 
 -----
 ## Contents
-+ [What Is AWS Cloud9?](welcome.md)
-   + [What Can I Do with AWS Cloud9?](what-can-i-do.md)
++ [What is AWS Cloud9?](welcome.md)
+   + [What can I do with AWS Cloud9?](what-can-i-do.md)
    + [Additional information about AWS Cloud9](additional-info.md)
 + [Setting up AWS Cloud9](setting-up.md)
    + [Individual user setup for AWS Cloud9](setup-express.md)
@@ -24,7 +24,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Additional Setup Options for AWS Cloud9 (Team and Enterprise)](setup-teams.md)
    + [Individual student setup for AWS Cloud9](setup-student.md)
    + [Classroom Setup for AWS Cloud9](setup-classroom.md)
-+ [Getting Started: Basic Tutorials for AWS Cloud9](tutorials-basic.md)
++ [Getting started: basic tutorials for AWS Cloud9](tutorials-basic.md)
    + [Tutorial: Hello AWS Cloud9 (console)](tutorial.md)
       + [Step 1: Create an environment](tutorial-create-environment.md)
       + [Step 2: Basic tour of the IDE](tutorial-tour-ide.md)
@@ -35,8 +35,8 @@ Amazon's trademarks and trade dress may not be used in
       + [Step 2: Basic Tour of the IDE](tutorial-tour-ide-cli-step2.md)
       + [Step 3: Clean Up](tutorial-clean-up-cli-step3.md)
       + [Related Information](tutorial-final-info-cli.md)
-+ [Working with Environments in AWS Cloud9](environments.md)
-   + [Creating an Environment in AWS Cloud9](create-environment.md)
++ [Working with environments in AWS Cloud9](environments.md)
+   + [Creating an environment in AWS Cloud9](create-environment.md)
       + [Creating an EC2 Environment](create-environment-main.md)
       + [Creating an SSH Environment](create-environment-ssh.md)
    + [Accessing no-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)
@@ -78,6 +78,16 @@ Amazon's trademarks and trade dress may not be used in
    + [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment (IDE)](codestar-projects.md)
    + [Working with AWS Lambda functions in the AWS Cloud9 Integrated Development Environment (IDE)](lambda-functions.md)
    + [Working with AWS CodePipeline in the AWS Cloud9 Integrated Development Environment (IDE)](codepipeline-repos.md)
++ [AWS Toolkit](toolkit-welcome.md)
+   + [Navigating and configuring the AWS Toolkit](toolkit-navigation.md)
+   + [Working with API Gateway using the AWS Toolkit](api-gateway-toolkit.md)
+   + [Working with AWS CloudFormation stacks using AWS Toolkit](cloudformation-toolkit.md)
+   + [Working with AWS Lambda functions using the AWS Toolkit](lambda-toolkit.md)
+   + [Working with Amazon S3 using AWS Toolkit](s3-toolkit.md)
+      + [Working with Amazon S3 buckets](work-with-S3-buckets.md)
+      + [Working with Amazon S3 objects](work-with-S3-objects.md)
+   + [Working with AWS serverless applications using the AWS Toolkit](serverless-apps-toolkit.md)
+      + [Configuration options for debugging serverless applications](sam-debug-config-ref.md)
 + [Tutorials and samples for AWS Cloud9](tutorials.md)
    + [AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda.md)
       + [Step 1: Create and Open the Environment](tutorial-lambda-create-environment.md)
@@ -115,7 +125,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Go Sample for AWS Cloud9](sample-go.md)
    + [TypeScript Sample for AWS Cloud9](sample-typescript.md)
    + [Docker sample for AWS Cloud9](sample-docker.md)
-+ [Advanced Topics for AWS Cloud9](advanced-topics.md)
++ [Advanced topics for AWS Cloud9](advanced-topics.md)
    + [EC2 Environments versus SSH Environments in AWS Cloud9](ec2-env-versus-ssh-env.md)
    + [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)
    + [AWS Cloud9 SSH Development Environment host requirements](ssh-settings.md)
@@ -140,6 +150,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Configuration and vulnerability analysis in AWS Cloud9](vulnerability-analysis-and-management.md)
    + [Security best practices for AWS Cloud9](security-best-practices.md)
 + [Troubleshooting AWS Cloud9](troubleshooting.md)
-+ [Supported Browsers for AWS Cloud9](browsers.md)
++ [Supported browsers for AWS Cloud9](browsers.md)
 + [Limits for AWS Cloud9](limits.md)
 + [Document history for the AWS Cloud9 User Guide](history.md)

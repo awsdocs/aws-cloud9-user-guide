@@ -31,6 +31,8 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Error message reporting "Instance profile AWSCloud9SSMInstanceProfile does not exist in account" when creating EC2 environment using AWS CloudFormation](#cfn-no-instanceprofile)
 + [Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation](#cfn-no-ingress-failed)
 + [Unable to connect to EC2 environment because VPC's IP addresses are used by Docker](#docker-bridge)
++ [Error when running AWS Toolkit: "Your environment is running out of inodes, please increase 'fs\.inotify\.max\_user\_watches' limit\."](#toolkit-iodes-)
++ [Notice: Failed to install dependencies for collaboration support](#proxy-failed-dependencies)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -438,6 +440,8 @@ Choosing a larger Amazon EC2 instance might result in additional charges to your
 
  If you accept the default VPC settings, the Amazon EC2 instance is launched into the EC2\-Classic network and not into a subnet of the default VPC\. The following message is displayed when the creation of the environment fails: 
 
+
+
  Environment Error
 
 Unable to access your environment
@@ -461,6 +465,8 @@ You can confirm that the error is caused by the EC2 instance not being in the de
 **Cause:** An AWS Cloud9 development environment must be associated with an Amazon VPC that meets specific VPC requirements\. For accounts with EC2\-Classic enabled, accepting the default network settings when [creating an EC2 environment](create-environment.md) means that the required EC2 instance isn't launched into the VPC\. Instead, the instance is launched into the EC2\-Classic network\.
 
  **Recommended solution:** With an EC2\-Classic account, you must select a VPC and subnet when [creating an EC2 environment](create-environment.md)\. On the **Configure settings** page, in the **Network settings \(advanced\)** section, select the VPC and subnet that you can launch your EC2 instance into\.
+
+
 
 \([back to top](#troubleshooting)\)
 
@@ -508,5 +514,58 @@ If the VPC subnet for your environment's instance uses the same address range th
 **Recommended solution: ** To resolve an IP address conflict caused by Amazon VPC and Docker using the same IPv4 CIDR address block, configure a new VPC for the instance backing your EC2 environment\. For this new VPC, configure a CIDR block that's different from `172.17.0.0/16`\. \(You cannot change the IP address range of an existing VPC or subnet\.\) 
 
 For configuration information, see [VPC and subnet sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the Amazon VPC User Guide\. 
+
+\([back to top](#troubleshooting)\)
+
+## Error when running AWS Toolkit: "Your environment is running out of inodes, please increase 'fs\.inotify\.max\_user\_watches' limit\."<a name="toolkit-iodes-"></a>
+
+**Issue:** A file watcher utility used by AWS Toolkit is approaching its current limit of files it can watch\.
+
+**Cause:** AWS Toolkit uses a file watcher utility that monitors changes to files and directories\. A warning message appears when the utility is nearly at its current limit of files it can watch\.
+
+**Recommended solution: ** To increase the maximum number of files that can be handled by file watcher, do the following: 
+
+1. Start a terminal session by choosing **Window**, **New Terminal** on the menu bar\.
+
+1. Enter the following at the command line:
+
+   ```
+   sudo bash -c 'echo "fs.inotify.max_user_watches=524288" >> /etc/sysctl.conf' && sudo sysctl -p
+   ```
+
+\([back to top](#troubleshooting)\)
+
+## Notice: Failed to install dependencies for collaboration support<a name="proxy-failed-dependencies"></a>
+
+**Issue:** AWS Cloud9 needs internet acccess to download dependencies\. If AWS Cloud9 cannot download those dependencies, you will see a `Notice` dialog box with the following error\.
+
+```
+Failed to install dependencies for collaboration support
+      
+Please try to resolve this problem and refresh the page to enable collaboration support. A common cause is a lack of available disk space. Error was:
+      
+Error downloading from location
+<LINK> to <LOCATION>
+Problem was: Error: connect ETIMEDOUT <IPADDRESS>
+```
+
+**Possible causes:** If your AWS Cloud9 environment is using a proxy to access the Internet, AWS Cloud9 needs the proxy details to install dependencies\. This error will appear if you have not provided your proxy details to AWS Cloud9\.
+
+**Recommended solutions:** To provide your proxy details to AWS Cloud9, append the following to your environment's `~/.bashrc` file\.
+
+```
+export http_proxy=<proxy url for http>
+export https_proxy=<proxy url for https>
+```
+
+For example, if your http proxy URL is `http://172.31.26.80:3128` and your https proxy URL is `https://172.31.26.80:3129`, add the following lines to your `~/.bashrc` file\.
+
+```
+export http_proxy=http://172.31.26.80:3128
+export https_proxy=https://172.31.26.80:3129
+```
+
+**Note**  
+If these environment variables are present in `/etc/profile` but not `~/.bashrc`, AWS Cloud9 cannot use them as `/etc/profile` is intended only for login shells\. Because `/etc/profile` also loads `~/.bashrc`, putting the configuration in `~/.bashrc` will ensure the environment variables are available to both login shells and AWS Cloud9\.
 
 \([back to top](#troubleshooting)\)

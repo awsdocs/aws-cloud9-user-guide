@@ -46,7 +46,7 @@ Although you can sign in to the AWS Cloud9 console with the email address and pa
 
 |  **Task for learning**  |  **See this topic**  | 
 | --- | --- | 
-|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
+|  Learn how to use the AWS Cloud9 IDE\.  |   [Getting started: basic tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 
 
 ****  

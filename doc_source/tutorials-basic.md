@@ -1,4 +1,4 @@
-# Getting Started: Basic Tutorials for AWS Cloud9<a name="tutorials-basic"></a>
+# Getting started: basic tutorials for AWS Cloud9<a name="tutorials-basic"></a>
 
 Are you new to AWS Cloud9? If you haven't done so already, take a look at the general information about AWS Cloud9 in [What Is AWS Cloud9](welcome.md)\.
 

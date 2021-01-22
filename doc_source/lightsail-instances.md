@@ -9,7 +9,7 @@ In this topic, you create and set up a Linux\-based Lightsail instance that is c
 **Note**  
 Completing these procedures might result in charges to your AWS account\. These include possible charges for services such as Lightsail\. For more information, see [Amazon Lightsail Pricing](https://aws.amazon.com/lightsail/pricing/)\.  
 To create and set up a more advanced solution that includes a toolchain with the AWS Cloud9 IDE, source control, build, deployment, virtual servers or serverless resources, and more, skip the rest of this topic, and see [Working with AWS CodeStar Projects](codestar-projects.md) instead\.  
-To use the AWS Cloud9 IDE to work with an Amazon EC2 instance running Amazon Linux or Ubuntu Server that contains no sample code, skip the rest of this topic, and see [Getting Started: Basic Tutorials](tutorials-basic.md) instead\.
+To use the AWS Cloud9 IDE to work with an Amazon EC2 instance running Amazon Linux or Ubuntu Server that contains no sample code, skip the rest of this topic, and see [Getting started: basic tutorials](tutorials-basic.md) instead\.
 +  [Step 1: Create a Linux\-Based Lightsail Instance](#lightsail-instances-create) 
 +  [Step 2: Set up the Instance to Use It with AWS Cloud9](#lightsail-instances-setup) 
 +  [Step 3: Create and Connect to an AWS Cloud9 SSH Development Environment](#lightsail-instances-environment) 

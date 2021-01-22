@@ -751,6 +751,10 @@ For an AWS Cloud9 EC2 development environment, AWS Cloud9 makes temporary AWS ac
 + AWS Cloud9 continually renews its temporary credentials, so a single set of credentials can be used only for a limited time\. This is an AWS security best practice\. For more information, see [Creating and updating AWS managed temporary credentials](#auth-and-access-control-temporary-managed-credentials-create-update)\.
 + AWS Cloud9 puts additional restrictions on how its temporary credentials can be used to access AWS actions and resources from the environment\. This is also an AWS security best practice\.
 
+**Important**  
+Currently, if your environment’s EC2 instance is launched into a **private subnet**, you can't use AWS managed temporary credentials to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.  
+For more information about when you can launch an EC2 instance into a private subnet, see [Create a subnet for AWS Cloud9](vpc-settings.md#vpc-settings-create-subnet)\.
+
 Here's how AWS managed temporary credentials work whenever an EC2 environment tries to access an AWS service on behalf of an AWS entity \(for example, an IAM user\):
 
 1. AWS Cloud9 checks to see if the calling AWS entity \(for example, the IAM user\) has permissions to take the requested action for the requested resource in AWS\. If the permission doesn't exist or is explicitly denied, the request fails\.

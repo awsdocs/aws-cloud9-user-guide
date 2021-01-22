@@ -1,9 +1,9 @@
-# What Can I Do with AWS Cloud9?<a name="what-can-i-do"></a>
+# What can I do with AWS Cloud9?<a name="what-can-i-do"></a>
 
 Explore the following resources to learn about using AWS Cloud9 for some common scenarios\.
 
 
-**Key Scenarios**  
+**Key scenarios**  
 
 |  **Scenario**  |  **Resources**  | 
 | --- | --- | 

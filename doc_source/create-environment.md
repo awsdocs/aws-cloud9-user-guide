@@ -1,4 +1,4 @@
-# Creating an Environment in AWS Cloud9<a name="create-environment"></a>
+# Creating an environment in AWS Cloud9<a name="create-environment"></a>
 
 To create an AWS Cloud9 development environment, follow one of these sets of procedures, depending on how you plan to use AWS Cloud9\.
 

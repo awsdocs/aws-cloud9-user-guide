@@ -391,7 +391,7 @@ Explore any or all of the following topics to continue getting familiar with AWS
 |  |  | 
 | --- |--- |
 |  Learn more about how to use AWS Cloud9 with Lambda  |   [Working with AWS Lambda Functions](lambda-functions.md)   | 
-|  Learn more about the AWS Cloud9 IDE  |   [Getting Started: Basic Tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
+|  Learn more about the AWS Cloud9 IDE  |   [Getting started: basic tutorials](tutorials-basic.md) and [Working with the IDE](ide.md)   | 
 |  Invite others to use your environment with you, in real time and with text chat support  |   [Working with Shared Environments](share-environment.md)   | 
 |  Create SSH environments \(environments that use cloud compute instances or servers that you create, instead of an Amazon EC2 instances that AWS Cloud9 creates for you\)\.  |   [Creating an Environment](create-environment.md) and [SSH Environment Host Requirements](ssh-settings.md)   | 
 |  Use AWS Cloud9 with Amazon Lightsail  |   [Working with Amazon Lightsail Instances](lightsail-instances.md)   | 

@@ -1,6 +1,6 @@
 # Tutorials and samples for AWS Cloud9<a name="tutorials"></a>
 
-Are you new to AWS Cloud9? Take a tour of the IDE in [Getting Started: Basic Tutorials](tutorials-basic.md)\.
+Are you new to AWS Cloud9? Take a tour of the IDE in [Getting started: basic tutorials](tutorials-basic.md)\.
 
 Experiment with these tutorials to increase your knowledge and confidence using AWS Cloud9 with various programming languages and AWS services\.
 

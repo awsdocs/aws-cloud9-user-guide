@@ -6,6 +6,7 @@ Every AWS Cloud9 development environment associated with an Amazon Virtual Priva
 + [Amazon VPC requirements for AWS Cloud9](#vpc-settings-requirements)
 + [Create an Amazon VPC for AWS Cloud9](#vpc-settings-create-vpc)
 + [Create a subnet for AWS Cloud9](#vpc-settings-create-subnet)
++ [Configuring a subnet as public or private](#public-private-subnet)
 
 ## Amazon VPC requirements for AWS Cloud9<a name="vpc-settings-requirements"></a>
 
@@ -19,13 +20,14 @@ Use the following checklist to confirm that the VPC meets **all** of the followi
 |  **Criteria**  |  **How to confirm**  |  **Additional resources**  | 
 | --- | --- | --- | 
 |  The VPC can be in the same AWS account and AWS Region as the AWS Cloud9 development environment\. —OR— The VPC can be a shared VPC in a different AWS account than the environment\. \(However, the VPC must be in the same AWS Region as the environment\)\.  |   [View a list of VPCs for an AWS Region](#vpc-settings-requirements-list-vpcs)   |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
-|  The VPC must have a public subnet\. \(A subnet is public if its traffic is routed to an internet gateway\.\) If you're accessing a no\-ingress Amazon EC2 instance using Systems Manager, you must attach an internet gateway to the VPC so the instance's SSM Agent can connect to Systems Manager\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
-|  The subnet must have a route table with a minimum set of routes\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
+|  The VPC must have a public subnet\. \(A subnet is public if its traffic is routed to an internet gateway\.\) If your environment is accessing its EC2 instance directly though SSH, the instance can be launched into a public subnet only\.  If you're accessing a [no\-ingress Amazon EC2 instance](ec2-ssm.md) using Systems Manager, the instance can be launched into either a public or a private subnet\.  If you're using a public subnet, attach an internet gateway to the VPC so the instance's SSM Agent can connect to Systems Manager\.  If you're using a private subnet, allow the subnet's instance to communicate with the internet by hosting a NAT gateway in a public subnet\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
+|  The public subnet must have a route table with a minimum set of routes\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
 |  The associated security groups for the VPC \(or for the AWS cloud compute instance, depending on your architecture\) must allow a minimum set of inbound and outbound traffic\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  | 
 |  For an additional layer of security, if the VPC has a network ACL, the network ACL must allow a minimum set of inbound and outbound traffic\.  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/vpc-settings.html)  |   [Create a network ACL](#vpc-settings-requirements-network-acl-create)   | 
 
 **Note**  
-For the following procedures, if you use the Amazon VPC or Amazon EC2 consoles, we recommend you sign in to the AWS Management Console and open the Amazon VPC console \([https://console\.aws\.amazon\.com/vpc](https://console.aws.amazon.com/vpc)\) or Amazon EC2 console \([https://console\.aws\.amazon\.com/ec2](https://console.aws.amazon.com/ec2)\) using credentials for an IAM administrator user in your AWS account\. If you use the AWS CLI or the aws\-shell, we recommend you configure the AWS CLI or the aws\-shell with the credentials for an IAM administrator user in your AWS account\. If you can't do this, check with your AWS account administrator\.
+For the following procedures, if you use the Amazon VPC or Amazon EC2 consoles, we recommend you sign in to the AWS Management Console and open the Amazon VPC console \([https://console\.aws\.amazon\.com/vpc](https://console.aws.amazon.com/vpc)\) or Amazon EC2 console \([https://console\.aws\.amazon\.com/ec2](https://console.aws.amazon.com/ec2)\) using credentials for an IAM administrator user in your AWS account\.  
+If you use the AWS CLI or the aws\-shell, we recommend you configure the AWS CLI or the aws\-shell with the credentials for an IAM administrator user in your AWS account\. If you can't do this, check with your AWS account administrator\.
 
 ### View a list of VPCs for an AWS Region<a name="vpc-settings-requirements-list-vpcs"></a>
 
@@ -56,6 +58,9 @@ In the preceding command, replace `us-east-2` with the AWS Region that contains 
 In the output, look for subnets that match the VPC's ID\.
 
 ### Confirm whether a subnet is public<a name="vpc-settings-requirements-subnet-public"></a>
+
+**Note**  
+Even if you're launching your environment's instance into a private subnet, your VPC still requires a configured public subnet where you can create the network address translation \(NAT\) gateway\. The NAT gateway allows instances in a private subnet to connect to the internet\.
 
 To use the Amazon VPC console, choose **Subnets** in the navigation pane\. Select the box next to the subnet you want AWS Cloud9 to use\. On the **Route Table** tab, if there is an entry in the **Target** column that starts with **igw\-**, the subnet is public\.
 
@@ -258,6 +263,8 @@ You can set this behavior at the security group level\. For an additional level 
 For example, to add inbound and outbound rules to a security group, you could set up those rules as follows\.
 
 
+
+
 **Inbound rules**  
 
 |  **Type**  |  **Protocol**  |  **Port range**  |  **Source**  | 
@@ -266,6 +273,8 @@ For example, to add inbound and outbound rules to a security group, you could se
 
 **Note**  
 For EC2 environments created on or after July 31 2018, AWS Cloud9 automatically adds an inbound rule to restrict inbound IP addresses using SSH over port 22 to only those addresses that AWS Cloud9 uses\. For more information, see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.
+
+
 
 
 **Outbound rules**  
@@ -277,6 +286,8 @@ For EC2 environments created on or after July 31 2018, AWS Cloud9 automatically 
 If you also choose to add inbound and outbound rules to a network ACL, you could set up those rules as follows\.
 
 
+
+
 **Inbound rules**  
 
 |  **Rule \#**  |  **Type**  |  **Protocol**  |  **Port range**  |  **Source**  |  **Allow / Deny**  | 
@@ -284,6 +295,8 @@ If you also choose to add inbound and outbound rules to a network ACL, you could
 |  100  |  SSH \(22\)  |  TCP \(6\)  |  22  |  0\.0\.0\.0 \(But see [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)\.\)  |  ALLOW  | 
 |  200  |  Custom TCP Rule  |  TCP \(6\)  |  32768\-61000 \(For Amazon Linux and Ubuntu Server instances\. For other instance types, see [Ephemeral Ports](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html#VPC_ACLs_Ephemeral_Ports)\.\)  |  0\.0\.0\.0/0  |  ALLOW  | 
 |   `*`   |  ALL Traffic  |  ALL  |  ALL  |  0\.0\.0\.0/0  |  DENY  | 
+
+
 
 
 **Outbound rules**  
@@ -443,14 +456,22 @@ Some organizations may not allow you to create VPCs on your own\. If you cannot 
 
 ## Create a subnet for AWS Cloud9<a name="vpc-settings-create-subnet"></a>
 
-You can use the Amazon VPC console to create a subnet for a VPC that is compatible with AWS Cloud9\.
+You can use the Amazon VPC console to create a subnet for a VPC that's compatible with AWS Cloud9\. Whether you can create a private or public subnet for your EC2 instance depends on how your environment connects to it: 
++ **Direct access through SSH:** public subnet only
++ **Access through Systems Manager**: public or private subnet
+
+The option to launch your environment's EC2 into a private subnet is available only if you create a "no\-ingress" EC2 environment using [the console, command line, or AWS CloudFormation](ec2-ssm.md)\.
+
+You follow the [same steps to create a subnet](#create-subnet-proc) that can be made public or private\. If the subnet is then associated with a route table that has a route to an internet gateway, it becomes a public subnet\. But if the subnet is associated with a route table that does not have a route to an internet gateway, it becomes a private subnet\. For more information, see [Configuring a subnet as public or private](#public-private-subnet) 
 
 If you followed the previous procedure to create a VPC for AWS Cloud9, you do not also need to follow this procedure\. This is because the **Create new VPC** wizard creates a subnet for you automatically\.
 
 **Important**  
 The AWS account must already have a compatible VPC in the same AWS Region for the environment\. For more information, see the VPC requirements in [Amazon VPC requirements for AWS Cloud9](#vpc-settings-requirements)\.
 For this procedure, we recommend you sign in to the AWS Management Console, and then open the Amazon VPC console using credentials for an IAM administrator user in your AWS account\. If you can't do this, check with your AWS account administrator\.
-Some organizations may not allow you to create subnets on your own\. If you cannot create a subnet, check with your AWS account administrator or network administrator\.
+Some organizations may not allow you to create subnets on your own\. If you cannot create a subnet, check with your AWS account administrator or network administrator\.<a name="create-subnet-proc"></a>
+
+**To create a subnet**
 
 1. If the Amazon VPC console isn't already open, sign in to the AWS Management Console and open the Amazon VPC console at [https://console\.aws\.amazon\.com/vpc](https://console.aws.amazon.com/vpc)\.
 
@@ -470,4 +491,42 @@ Some organizations may not allow you to create subnets on your own\. If you cann
 
    For information about CIDR blocks, see [VPC and subnet sizing](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html#VPC_Sizing) in the *Amazon VPC User Guide*\. See also [3\.1\. Basic Concept and Prefix Notation](http://tools.ietf.org/html/rfc4632#section-3.1) in RFC 4632 or [IPv4 CIDR blocks](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks) in Wikipedia\.
 
-1. After you create the subnet, be sure to associate it with a compatible route table and an internet gateway, as well as security groups, a network ACL, or both\. For more information, see the requirements in [Amazon VPC requirements for AWS Cloud9](#vpc-settings-requirements)\.
+After you create the subnet, [configure it as either a public or private subnet](#public-private-subnet)\.
+
+## Configuring a subnet as public or private<a name="public-private-subnet"></a>
+
+After you create a subnet, you can make it public or private by specifying how it communicates with the internet\.
+
+ A public subnet has a public IP address and an internet gateway \(IGW\) is attached to it that allows communication between the subnet's instance and the internet and other AWS services\.
+
+ An instance in a private subnet has a private IP address and a network address translation \(NAT\) gateway is used to send traffic back and forth between the subnet's instance and the internet and other AWS services\. The NAT gateway must be hosted in a public subnet\.
+
+------
+#### [ Public subnet ]
+
+Configuring a subnet as public involves attaching an internet gateway \(IGW\) to it, configuring a route table to specify a route to that IGW, and defining settings in a security group to control inbound and outbound traffic\.
+
+ Guidance on carrying out these tasks is provided in [Create an Amazon VPC for AWS Cloud9](#vpc-settings-create-vpc)\. 
+
+**Note**  
+Even if your environment's instance is launched in a private subnet, your VPC must feature at least one public subnet\. This is because the NAT gateway that forwards traffic to and from the instance must be hosted in a public subnet\. 
+
+------
+#### [ Private subnet ]
+
+If you're creating a no\-ingress instance that's accessed through Systems Manager, you can launch it into a private subnet\. Because a private subnet doesn't have a public IP address, a NAT gateway is required to map the private IP address to a public address for requests, and then map the public IP address back to the private address for the response\.
+
+**Warning**  
+You are charged for creating and using a NAT gateway in your account\. NAT gateway hourly usage and data processing rates apply\. Amazon EC2 charges for data transfer also apply\. For more information, see [Amazon VPC Pricing](https://aws.amazon.com/vpc/pricing/https://aws.amazon.com/vpc/pricing/                   )\. 
+
+Before creating and configuring the NAT gateway, you must do the following:
++ Create a public VPC subnet to host the NAT gateway\.
++ Provision an [Elastic IP address](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-eips.html#WorkWithEIPs) that can be assigned to the NAT gateway\. 
++ For the private subnet, clear the **Enable auto\-assign public IPv4 address** check box so that the instance launched into it is assigned a private IP address\. For more information, see [IP Addressing in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\.
+
+For the steps in this task, see [Working with NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with) in the * Amazon VPC User Guide*\.
+
+**Important**  
+Currently, if your environment’s EC2 instance is launched into a private subnet, you can't use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.
+
+------
