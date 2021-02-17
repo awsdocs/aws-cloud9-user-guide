@@ -50,16 +50,16 @@ The table below describes the options available on the **Toolkit** menu\.
 |  **Hide region from the Explorer**  |  Hides an AWS Region in the **AWS Explorer** window\. For more information, see [Using AWS Explorer to work with services and resources in multiple AWS Regions](#working-with-aws-explorer)  | 
 |  **Create new SAM Application**  |  Generates a set of code files for a new AWS serverless application\. For more information on creating and deploying SAM applications, see [Working with AWS serverless applications using the AWS Toolkit](serverless-apps-toolkit.md)\.  | 
 |  **Deploy SAM Application**  |  Deploys a serverless application to AWS\. For more information on creating and deploying SAM applications, see [Working with AWS serverless applications using the AWS Toolkit](serverless-apps-toolkit.md)\.  | 
-| **View Quick Start**  | Opens the Quick Start guide\. | 
+|  **View Quick Start**  |  Opens the Quick Start guide\.  | 
 |  **View Toolkit Documentation**  |  Opens the user guide for AWS Toolkit\.  | 
-| **View Source on GitHub**  | Opens the GitHub repository for the AWS Toolkit\. | 
-| **Create a New Issue on GitHub** | Opens the AWS Toolkit's New Issue page on Github | 
-| **Submit Quick Feedback**  | Submit private, one\-way feedback to the AWS Toolkit development team\. For issues that require conversations or bug fixes, please submit an issue in Github by selecting the **Create a New Issue on Github** menu option\. | 
-| **About AWS Toolkit**  |  Displays information about the version of the Toolkit running and the Amazon operating system it's configured for\.  | 
+|  **View Source on GitHub**  |  Opens the GitHub repository for the AWS Toolkit\.  | 
+|  **Create a New Issue on GitHub**  |  Opens the AWS Toolkit's New Issue page on Github  | 
+|  **Submit Quick Feedback**  |  Submit private, one\-way feedback to the AWS Toolkit development team\. For issues that require conversations or bug fixes, please submit an issue in Github by selecting the **Create a New Issue on Github** menu option\.  | 
+|  **About AWS Toolkit**  |  Displays information about the version of the Toolkit running and the Amazon operating system it's configured for\.  | 
 
 ## Modifying AWS Toolkit settings using the AWS Configuration pane<a name="configuration-options"></a>
 
-To access the **AWS Configuration** pane, choose the **AWS Cloud9**, **Preferences**\. Next, in the **Preferences** window, under **Project Settings**, choose **AWS Configuration\.** 
+To access the **AWS Configuration** pane, choose **AWS Cloud9**, **Preferences**\. Next, in the **Preferences** window, under **Project Settings**, choose **AWS Configuration\.** 
 
 ![\[Labelled screenshot showing the location of the AWS Configuration menu for the AWS Toolkit\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)
 
@@ -74,7 +74,7 @@ The table below describes the options available on the **AWS Configuration** pan
 |  **AWS: On Default Region Missing**  |  Indicates the action to take if the default AWS Region for the selected credentials profile is not available in the **AWS Explorer** window\. Users can select from three options: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/toolkit-navigation.html)  | 
 |  **AWS > S3: Max Items Per Page**  |  Specifies how many Amazon S3 objects or folders are displayed at one time in the \. When the maximum number is displayed, you can choose **Load More** to display the next batch\.  The range of accepted values for this field is between 3 and 1000\. This setting applies only to the number of objects or folders displayed at one time\. All the buckets you've created are displayed at once\. \(By default, you can create up to 100 buckets in each of your AWS accounts\.\)   | 
 |  **AWS > Samcli: Location**  |  Indicates the location of the SAM CLI that's used to create, build, package, and deploy [serverless applications](serverless-apps-toolkit.md)\.  | 
-|  **AWS > Samcli > Debug > Attach> Retry: Maximum:**  | Specifies how many times the Toolkit tries to attach the SAM CLI debugger before giving up\. The default limit is 30 tries\.\(When you locally invoke a Lambda function in debug mode within the AWS SAMCLI, you can then attach a debugger to it\.\) | 
-|  **AWS > Samcli > Debug > Attach> Timeout: Millis:**  | Specifies how long the Toolkit tries to attach the SAM CLI debugger before giving up\. The default timeout is 30,0000 milliseconds \(30 seconds\)\. \(When you locally invoke a Lambda function in debug mode within the AWS SAMCLI, you can then attach a debugger to it\.\) | 
-|  **AWS : Log Level:**  | Sets the category of workflow events that are logged\. Available level are: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/toolkit-navigation.html)  | 
-|  **AWS : Telemetry**  | Enables or disables the sending of usage data to AWS\. Enabled by default | 
+|  **AWS > Samcli > Debug > Attach> Retry: Maximum:**  |  Specifies how many times the Toolkit tries to attach the SAM CLI debugger before giving up\. The default limit is 30 tries\. \(When you locally invoke a Lambda function in debug mode within the AWS SAMCLI, you can then attach a debugger to it\.\)  | 
+|  **AWS > Samcli > Debug > Attach> Timeout: Millis:**  |  Specifies how long the Toolkit tries to attach the SAM CLI debugger before giving up\. The default timeout is 30,0000 milliseconds \(30 seconds\)\. \(When you locally invoke a Lambda function in debug mode within the AWS SAMCLI, you can then attach a debugger to it\.\)  | 
+|  **AWS : Log Level:**  |  Sets the category of workflow events that are logged\. Available level are: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/toolkit-navigation.html)  | 
+|  **AWS : Telemetry**  |  Enables or disables the sending of usage data to AWS\. Enabled by default  | 

@@ -43,4 +43,4 @@ The AWS Toolkit extension uses the AWS SAM CLI to build and debug serverless app
 | Property | Description | Default value | 
 | --- | --- | --- | 
 | `credentials` |  Selects a specific profile \(for example, `profile:default`\) from your credential file to get AWS credentials\.   | The AWS credentials provided by your existing shared AWS config file or shared AWS credentials file\. | 
-| `region` |  Sets the AWS Region of the service \(for example, us\-east\-1\)\.  | The default AWS Region associated with the active credentials profile\.  | 
+| `Region` |  Sets the AWS Region of the service \(for example, us\-east\-1\)\.  | The default AWS Region associated with the active credentials profile\.  | 

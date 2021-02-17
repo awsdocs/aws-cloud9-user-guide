@@ -252,8 +252,8 @@ If enabled, AWS Cloud9 attempts to complete Python code\. To set the paths for A
 ** **Python Version** **  
 Specifies the version of Python to use\.
 
-** **Pylint command\-line options** **  
-Options for AWS Cloud9 to use for Pylint wih Python code\. For more information, see the [Pylint User Manual](https://pylint.readthedocs.io/en/latest/) on the Pylint website\.
+** **Pylint command line options** **  
+Options for AWS Cloud9 to use for Pylint with Python code\. For more information, see the [Pylint User Manual](https://pylint.readthedocs.io/en/latest/) on the Pylint website\.
 
 ** **PYTHONPATH** **  
 The paths to Python libraries and packages for AWS Cloud9 to use\. For example, if you have custom Python libraries and packages in the `~/environment` directory, add `~/environment` to this path\.

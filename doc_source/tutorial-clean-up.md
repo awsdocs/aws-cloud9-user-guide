@@ -17,7 +17,7 @@ Deleting an environment cannot be undone\.
    + Select the **my\-demo\-environment** card, and then choose **Delete**\.  
 ![\[Deleting an environment in the environments list\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-delete-env-card.png)
 
-1. In the **Delete** dialog box, enter `Delete`, and then choose **Delete**\. The delete operation will take a few minutes\.
+1. In the **Delete** dialog box, enter `Delete`, and then choose **Delete**\. The delete operation takes a few minutes\.
 
 **Note**  
 If you followed this tutorial exactly, then the environment was an EC2 environment and AWS Cloud9 also terminates the Amazon EC2 instance that was connected to that environment\.  

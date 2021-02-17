@@ -8,6 +8,7 @@ The following table describes important changes to the *AWS Cloud9 User Guide* a
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Visual source control available through Git panel](source-control-gitpanel.md) | As a developer, you can use Git panel to run Git commands in a user interface\. | February 1, 2021 | 
 | [Launch environment instances into private subnets](ec2-ssm.md#ssm-benefits) | Added support for EC2 instances accessed through Systems Manager to be launched into private subnets\. | January 21, 2021 | 
 | [Integration for AWS Toolkit](toolkit-welcome.md) | The AWS Toolkit now enables developers to navigate and interact with AWS services through the AWS Explorer window\. | December 11, 2020 | 
 | [AWS CloudFormation and no\-ingress EC2 environments](ec2-ssm.md#cfn-role-and-permissions) | Expanded documentation on creating no\-ingress EC2 environments using AWS CloudFormation templates\. | October 29, 2020 | 

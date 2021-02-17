@@ -97,7 +97,7 @@ The preceding command sets Node\.js 10\.3\.0 as the default version of Node\.js\
 
 ### Step 1\.3: Install TypeScript<a name="sample-cdk-install-typescript"></a>
 
-1. Confirm whether you already have TypeScript installed\. To do this, with the terminal session still open in the IDE, run the command\-line TypeScript compiler with the ** `--version` ** option\.
+1. Confirm whether you already have TypeScript installed\. To do this, with the terminal session still open in the IDE, run the command line TypeScript compiler with the ** `--version` ** option\.
 
    ```
    tsc --version
@@ -295,4 +295,4 @@ If successful, the output displays that the `HelloCdkStack` stack was deleted wi
 
 ### Step 4\.2: Delete the Environment<a name="step-4-2-delete-the-envtitle"></a>
 
-To delete the environment, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
+To delete the environment, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

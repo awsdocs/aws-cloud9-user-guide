@@ -29,7 +29,7 @@ To close the list without inserting a symbol, press `Esc`\.
 
 Icons might appear in the gutter for the active file\. These icons highlight possible issues such as warnings and errors in code before you run it\.
 
-For more information about an issue, pause your mouse pointer on the issue's icon\.
+For more information about an issue, pause your pointer on the issue's icon\.
 
 ### Quick Fixes<a name="projects-features-quick-fixes"></a>
 

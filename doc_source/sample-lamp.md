@@ -126,7 +126,7 @@ You then finish this step by starting Apache HTTP Server and then MySQL\.
 
 In this step, you set up MySQL to follow MySQL security best practices\. These security best practices include setting a password for root accounts, removing root accounts that are accessible from outside the local host, removing anonymous user accounts, removing the test database, and removing privileges that permit anyone to access databases with names that start with `test_`\. 
 
-You then finish this step by practicing the starting and then exiting of the MySQL command\-line client\.
+You then finish this step by practicing the starting and then exiting of the MySQL command line client\.
 
 1. Implement MySQL security best practices for the MySQL installation by running the following command in a terminal session in the AWS Cloud9 IDE\.
 
@@ -174,13 +174,13 @@ You then finish this step by practicing the starting and then exiting of the MyS
 
    1. **Reload privilege tables now** – Type `y`, and then press `Enter`\.
 
-1. To interact directly with MySQL, start the MySQL command\-line client as the root user by running the following command\. When prompted, type the root user's password that you set earlier, and then press `Enter`\. \(The prompt changes to `mysql>` while you are in the MySQL command\-line client\.\)
+1. To interact directly with MySQL, start the MySQL command line client as the root user by running the following command\. When prompted, type the root user's password that you set earlier, and then press `Enter`\. \(The prompt changes to `mysql>` while you are in the MySQL command line client\.\)
 
    ```
    sudo mysql -uroot -p
    ```
 
-1. To exit the MySQL command\-line client, run the following command\. \(The prompt changes back to `$`\.\)
+1. To exit the MySQL command line client, run the following command\. \(The prompt changes back to `$`\.\)
 
    ```
    exit;
@@ -259,7 +259,7 @@ You then finish this step by successfully viewing the webpage from outside of th
 Running the following commands enables incoming web traffic over port 80 for **all** EC2 environments and Amazon EC2 instances that are associated with the security group and network ACL for this environment\. This might result in unexpectedly enabling incoming web traffic over port 80 for EC2 environments and Amazon EC2 instances other than this one\.
 **Note**  
 The following second through fourth commands enable the security group to allow incoming web traffic over port 80\. If you have a default security group, which only allows incoming SSH traffic over port 22, then you must run the first command followed by these second through fourth commands\. However, if you have a custom security group already allows incoming web traffic over port 80, you can safely skip running those commands\.  
-The following fifth through eighth commands enable the network ACL to alow incoming web traffic over port 80\. If you have a default network ACL, which already allows all incoming traffic over all ports, then you can safely skip running those commands\. However, if you have a custom network ACL that doesn't allow incoming web traffic over port 80, then you must run the first command followed by these fifth through eighth commands\. 
+The following fifth through eighth commands enable the network ACL to allow incoming web traffic over port 80\. If you have a default network ACL, which already allows all incoming traffic over all ports, then you can safely skip running those commands\. However, if you have a custom network ACL that doesn't allow incoming web traffic over port 80, then you must run the first command followed by these fifth through eighth commands\. 
 
    ```
    MY_INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id) # Get the ID of the instance for the environment, and store it temporarily.
@@ -313,4 +313,4 @@ aws ec2 delete-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress -
 aws ec2 delete-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress --rule-number 10100 # Delete the existing inbound rule from the network ACL to block all IPv6-based traffic over port 80. Advanced users: if you originally created this rule with a different number, change this suggested rule number to match.
 ```
 
-If you are done using this environment, you should delete it to prevent ongoing charges to your AWS account\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
+If you are done using this environment, you should delete it to prevent ongoing charges to your AWS account\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

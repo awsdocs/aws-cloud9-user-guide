@@ -295,7 +295,7 @@ In this step, you delete the environment and remove AWS Cloud9 and Docker suppor
 
 ### Step 6\.1: Delete the environment<a name="step-6-1-delete-the-envtitle"></a>
 
-To delete the environment, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
+To delete the environment, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.
 
 ### Step 6\.2: Remove AWS Cloud9 support files from the container<a name="step-6-2-remove-ac9-support-files-from-the-container"></a>
 

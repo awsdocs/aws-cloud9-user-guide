@@ -1,13 +1,13 @@
 # Moving an environment and resizing or encrypting Amazon EBS volumes<a name="move-environment"></a>
 
-You can move an AWS Cloud9 development environment from one Amazon EC2 instance to another\. For example, you might want to do the following:
+You can move an AWS Cloud9 development environment from one Amazon EC2 instance to another\. For example, you might want to do the following actions:
 + Transfer an environment from an Amazon EC2 instance that is impaired or performing in unexpected ways compared with a healthy instance\.
-+ Transfer an environment from an older instance to one that has the latest system updates\.
++ Transfer an environment from an existing instance to one that has the latest system updates\.
 + Increase or decrease an instance's compute resources because the environment is overused or underused on the current instance\.
 
-You can also resize the Amazon Elastic Block Store \(Amazon EBS\) volume that is associated with an Amazon EC2 instance for an environment\. For example, you might want to do the following:
-+ Increase a volume's size because you're running out of storage space on the instance\.
-+ Decrease a volume's size because you don't want to pay for extra storage space that you aren't using\.
+You can also resize the Amazon Elastic Block Store \(Amazon EBS\) volume that is associated with an Amazon EC2 instance for an environment\. For example, you might want to do one or both of the following actions:
++ Increase the size of a volume because you're running out of storage space on the instance\.
++ Decrease the size of a volume because you don't want to pay for extra storage space that you aren't using\.
 
 Before you move or resize an environment, you can try stopping some running processes in the environment or adding a swap file to the environment\. For more information on dealing with low memory or high CPU usage, see the relevant issue in [*Troubleshooting*](troubleshooting.md#troubleshooting-ide-low-memory)\.
 
@@ -23,24 +23,24 @@ Finally, you can encrypt Amazon EBS resources to ensure the security of both dat
 
 ## Move an environment<a name="move-environment-move"></a>
 
-Before you start the move process, note the following:
+Before you start the move process, note the following conditions:
 + You can't move an environment to an Amazon EC2 instance of the same type\. When you move, you must choose a different Amazon EC2 instance type for the new instance\.
-+ You must stop the Amazon EC2 instance that is associated with an environment before you can change the instance type\. While the instance is stopped, you and any members won't be able to use the environment that is associated with the stopped instance\.
++ You must stop the Amazon EC2 instance that is associated with an environment before you can change the instance type\. While the instance is stopped, you and any members can't use the environment that is associated with the stopped instance\.
 + AWS moves the instance to new hardware, however, the instance's ID doesn't change\.
 + If the instance is running in an Amazon VPC and has a public IPv4 address, AWS releases the address and give it a new public IPv4 address\. The instance retains its private IPv4 addresses, any Elastic IP addresses, and any IPv6 addresses\.
 + Plan for downtime while your instance is stopped\. The process might take several minutes\.
 
 **To move an environment**
 
-1. \(Optional\) If the new instance type requires drivers that are not installed on the existing instance, you must connect to your instance and install those drivers first\. For more information, see [Compatibility for resizing instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html#resize-limitations) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. \(Optional\) If the new instance type requires drivers thataren't installed on the existing instance, you must connect to your instance and install those drivers first\. For more information, see [Compatibility for resizing instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html#resize-limitations) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Close all web browser tabs that are currently displaying the environment\.
 **Important**  
-If you don't close all of the web browser tabs that are currently displaying the environment, AWS Cloud9 might interfere with allowing you to fully complete this procedure\. Specifically, AWS Cloud9 might try at the wrong time during this procedure to restart the Amazon EC2 instance that's associated with the environment\. The instance must stay stopped until the very last step in this procedure\.
+If you don't close all of the web browser tabs that are currently displaying the environment, AWS Cloud9 might interfere with allowing you to complete this procedure\. Specifically, AWS Cloud9 might try at the wrong time during this procedure to restart the Amazon EC2 instance that's associated with the environment\. The instance must stay stopped until the very last step in this procedure\.
 
 1. Sign in to the AWS Management Console, if you're not already signed in, at [https://console\.aws\.amazon\.com](https://console.aws.amazon.com)\.
 
-   We recommend you sign in using credentials for an IAM administrator user in your AWS account\. If you can't do this, check with your AWS account administrator\.
+   We recommend you sign in using IAM administrator\-level credentials in your AWS account\. If you can't do this, check with your AWS account administrator\.
 
 1. Open the Amazon EC2 console\. To do this, in the **Services** list, choose **EC2**\.
 
@@ -56,7 +56,7 @@ If you don't close all of the web browser tabs that are currently displaying the
 
 1. In the **Change Instance Type** dialog box, choose the new **Instance Type** for the environment to use\.
 **Note**  
-If the instance type you want doesn't appear in the list, it's not compatible with the instance's configuration \(for example, because of its virtualization type\)\.
+If the instance type you want doesn't appear in the list, it's not compatible with the configuration of the instance \(for example, because of its virtualization type\)\.
 
 1. \(Optional\) If the instance type that you chose supports EBS–optimization, select **EBS\-optimized** to enable EBS–optimization, or clear **EBS\-optimized** to disable EBS–optimization\.
 **Note**  
@@ -82,7 +82,7 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    ```
    #!/bin/bash
    
-   # Specify the desired volume size in GiB as a command-line argument. If not specified, default to 20 GiB.
+   # Specify the desired volume size in GiB as a command line argument. If not specified, default to 20 GiB.
    SIZE=${1:-20}
    
    # Get the ID of the environment host Amazon EC2 instance.
@@ -141,15 +141,22 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    fi
    ```
 
-1. From a terminal session in the IDE, switch to the directory that contains the `resize.sh` file\. Then run the following command, replacing 20 with the size in GiB you want to resize the Amazon EBS volume to\.
+1. From a terminal session in the IDE, switch to the directory that contains the `resize.sh` file\. Then run either of the following commands, replacing `20` with the size in GiB you want to resize the Amazon EBS volume to:
+   + 
 
-   ```
-   sh resize.sh 20
-   ```
+     ```
+     bash resize.sh 20
+     ```
+   + 
+
+     ```
+     chmod +x resize.sh
+     ./resize.sh 20
+     ```
 
 ## Encrypt Amazon EBS volumes used by AWS Cloud9<a name="encrypting-volumes"></a>
 
-Amazon EBS encryption encrypts the following types of data:
+Amazon EBS encryption encrypts the following data:
 + Data at rest in the volume
 + All data moving between the volume and the instance
 + All snapshots created from the volume
@@ -165,10 +172,10 @@ Encrypting an existing Amazon EBS volume involves using AWS KMS to create a cust
 
  Next, you create an encrypted volume with that snapshot\. Then you replace the unencrypted volume by detaching it from the EC2 instance and attaching the encrypted volume\. 
 
-Finally, you must update the key policy for the customer\-managed CMK to enable access for the AWS Cloud9 service role\. 
+Finally, you must update the key policy for the customer managed CMK to enable access for the AWS Cloud9 service role\. 
 
 **Note**  
- The following procedure focuses on using a customer\-managed CMK to encrypt a volume\. You can also use an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) for an AWS service in your account \(the alias for Amazon EBS is `aws/ebs`\)\. If you choose this default option for encryption, skip step 1 where you create a customer managed CMK\. Also skip step 8 where you update the key policy \(you cannot change the key policy for an AWS managed CMK\)\.<a name="creating-encrypted-volume"></a>
+ The following procedure focuses on using a customer managed CMK to encrypt a volume\. You can also use an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) for an AWS service in your account \(the alias for Amazon EBS is `aws/ebs`\)\. If you choose this default option for encryption, skip step 1 where you create a customer managed CMK\. Also skip step 8 where you update the key policy \(you can't change the key policy for an AWS managed CMK\)\.<a name="creating-encrypted-volume"></a>
 
 **To encrypt an existing Amazon EBS volume**
 

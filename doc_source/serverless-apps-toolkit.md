@@ -132,7 +132,7 @@ The Lambda handlers that are detected by context\-aware links depend on the lang
 **Note**  
 If you see Docker mentioned in error messages, see this [note](#docker-problem)\.
 
-### Running and debugging local Amazon API Gateway resources<a name="w35aac23c23b9c20"></a>
+### Running and debugging local Amazon API Gateway resources<a name="w36aac25c23b9c20"></a>
 
 You can run or debug AWS SAM API Gateway local resources, specified in `template.yaml`, by running an AWS Cloud9 launch configuration of `type=aws-sam` with the `invokeTarget.target=api`\.
 

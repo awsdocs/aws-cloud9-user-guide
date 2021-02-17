@@ -419,4 +419,4 @@ In this step, you build the project and its dependencies into a set of binary fi
 
 ## Step 8: Clean up<a name="sample-dotnetcore-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

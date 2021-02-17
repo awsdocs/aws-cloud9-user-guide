@@ -13,28 +13,28 @@ View or update tags using one or more of the following methods\.
 + Use the following AWS Cloud9 API actions: [ListTagsForResource](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_ListTagsForResource.html), [TagResource](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_TagResource.html), and [UntagResource](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_UntagResource.html)\.
 
 **Warning**  
-Tags that you create or update for AWS Cloud9 by using the preceding methods are NOT automatically propagated to underlying resources\. For information about how to do this, see the next section, [Propagating Tag Updates to Underlying Resources](#tags-propagate)\.
+Tags that you create or update for AWS Cloud9 by using the preceding methods are not automatically propagated to underlying resources\. For information about how to do this, see the next section, [Propagating tag updates to underlying resources](#tags-propagate)\.
 
-## Propagating Tag Updates to Underlying Resources<a name="tags-propagate"></a>
+## Propagating tag updates to underlying resources<a name="tags-propagate"></a>
 
 When you use AWS Cloud9 CLI commands or API actions to add, modify, or remove the tags that are attached to an AWS Cloud9 environment, those changes aren't automatically propagated to underlying resources such as the AWS CloudFormation stack, the Amazon EC2 instance, and Amazon EC2 security groups\. You must manually propagate those changes\.
 
-To make it easier to use the following procedures, you can obtain the environment ID for the environment you're interested in\. If you wish to do this, do so as follows:
+To make it easier to use the following procedures, you can obtain the environment ID for the environment you're interested in\. If you want to do this, follow these steps:
 
-1. In the [AWS Cloud9 console](https://console.aws.amazon.com/cloud9/), select the environment you're interested in, and then choose **View Details**\.
+1. In the [AWS Cloud9 console](https://console.aws.amazon.com/cloud9/), select the environment that you're interested in, and then choose **View Details**\.
 
 1. Look for the **Environment ARN** property and record the environment ID, which is the part of the environment ARN after "**environment:**"\.
 
-You will need to propagate tag updates to one or more of the following locations, depending on what you'll use the tags for\.
+You need to propagate tag updates to one or more of the following locations, depending on what you'll use the tags for\.
 
-### Propagating Tag Updates to the AWS CloudFormation Stack<a name="w35aac27c25c15c11"></a>
+### Propagating tag updates to the AWS CloudFormation stack<a name="w36aac29c27c15c11"></a>
 
 **Note**  
 When you update tags to the AWS CloudFormation stack, those updates are automatically propagated to the Amazon EC2 instance and Amazon EC2 security groups that are associated with the stack\.
 
 1. Navigate to the [AWS CloudFormation console\.](https://console.aws.amazon.com/cloudformation)
 
-1. Find and choose the stack that corresponds to the AWS Cloud9 environment you're interested in\. If you recorded the environment ID, you can use it to filter for the environment\.
+1. Find and choose the stack that corresponds to the AWS Cloud9 environment that you're interested in\. If you recorded the environment ID, you can use it to filter for the environment\.
 
 1. On the **Stack info** tab, in the **Tags** section, review the list of tags\.
 
@@ -42,7 +42,7 @@ When you update tags to the AWS CloudFormation stack, those updates are automati
 
 You can also update tags using the [https://docs.aws.amazon.com/cli/latest/reference/cloudformation/describe-stacks.html](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/describe-stacks.html) and [https://docs.aws.amazon.com/cli/latest/reference/cloudformation/update-stack.html](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/update-stack.html) CLI commands\.
 
-### Propagating Tag Updates to the Amazon EC2 Instance<a name="w35aac27c25c15c13"></a>
+### Propagating tag updates to the Amazon EC2 instance<a name="w36aac29c27c15c13"></a>
 
 1. Navigate to the [Amazon EC2 Instances](https://console.aws.amazon.com/ec2/home#Instances) console\.
 
@@ -52,11 +52,11 @@ You can also update tags using the [https://docs.aws.amazon.com/cli/latest/refer
 
 You can also update tags using the [describe\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-tags.html), [create\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/create-tags.html), and [delete\-tags](https://docs.aws.amazon.com/cli/latest/reference/ec2/delete-tags.html) CLI commands\.
 
-### Propagating Tag Updates to Amazon EC2 Security Groups<a name="w35aac27c25c15c15"></a>
+### Propagating tag updates to Amazon EC2 security groups<a name="w36aac29c27c15c15"></a>
 
 1. Navigate to the [Amazon EC2 Security Groups](https://console.aws.amazon.com/ec2/home#SecurityGroups) console\.
 
-1. Find and select the security group that corresponds to the AWS Cloud9 environment you're interested in\. If you recorded the environment ID earlier, you can use it to filter for the environment\.
+1. Find and select the security group that corresponds to the AWS Cloud9 environment that you're interested in\. If you recorded the environment ID earlier, you can use it to filter for the environment\.
 
 1. Open the **Tags** tab to view and update tags as necessary\.
 

@@ -176,7 +176,7 @@ In this step, you use the IDE to debug the function on the instance\. Currently,
 **Note**  
 If you completed the previous Lambda tutorial, you can delete any of those watch expressions that might still be there\. To do this, simply right\-click an expression, and then choose **Remove Watch Expression**\.
 
-1. On the run tab from the previous step, choose the icon that looks like a bug\. \(It will switch from grey to green\.\)
+1. On the run tab from the previous step, choose the icon that looks like a bug\. \(It will switch from gray to green\.\)
 
 1. Choose **Run**\.
 
@@ -211,7 +211,7 @@ You can also do this by choosing the **Lambda \(local\)** list on the run tab fr
    }
    ```
 
-1. If the bug icon is green, choose it to turn it off\. \(It switches back to grey\.\)
+1. If the bug icon is green, choose it to turn it off\. \(It switches back to gray\.\)
 
 1. Choose **Run**\.
 
@@ -245,7 +245,7 @@ In this step, you use the IDE to have API Gateway debug the Lambda function on t
 
 1. Ensure that the **Watch Expressions** area of the **Debugger** window is still watching `event['subject']`, `context['memoryLimitInMB']`, and `sns.endpoint.hostname`\.
 
-1. On the run tab from the previous step, choose the icon that looks like a bug\. \(It switches from grey to green\.\)
+1. On the run tab from the previous step, choose the icon that looks like a bug\. \(It switches from gray to green\.\)
 
 1. Choose **Run**\.
 

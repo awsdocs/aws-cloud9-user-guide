@@ -9,7 +9,7 @@ Creating this sample might result in charges to your AWS account\. These include
 + [Step 1: Install the Required Tools](#sample-wordpress-install-tools)
 + [Step 2: Set Up MySQL](#sample-wordpress-setup-mysql)
 + [Step 3: Set Up the WordPress Website](#sample-wordpress-setup-wordpress)
-+ [Step 4: Share the WordPress Website Over the Internet](#sample-wordpress-share-wordpress)
++ [Step 4: Share the WordPress website over the internet](#sample-wordpress-share-wordpress)
 + [Step 5: Clean Up](#sample-wordpress-clean-up)
 
 ## Prerequisites<a name="sample-wordpress-prereqs"></a>
@@ -201,7 +201,7 @@ You then finish this step by setting up MySQL to store and retrieve information 
 
    1. **Reload privilege tables now** – Type `y`, and then press `Enter`\.
 
-1. Start the MySQL command\-line client as the root user by running the following command\. When prompted, type the root user's password that you set earlier, and then press `Enter`\. \(The prompt changes to `mysql>` while you are in the MySQL command\-line client\.\)
+1. Start the MySQL command line client as the root user by running the following command\. When prompted, type the root user's password that you set earlier, and then press `Enter`\. \(The prompt changes to `mysql>` while you are in the MySQL command line client\.\)
 
    ```
    sudo mysql -uroot -p
@@ -219,7 +219,7 @@ You then finish this step by setting up MySQL to store and retrieve information 
    GRANT ALL PRIVILEGES ON *.* TO 'my_user_name'@'localhost' IDENTIFIED BY 'my_password';
    ```
 
-1. Exit the MySQL command\-line client by running the following command\. \(The prompt changes back to `$`\.\)
+1. Exit the MySQL command line client by running the following command\. \(The prompt changes back to `$`\.\)
 
    ```
    exit;
@@ -275,7 +275,7 @@ In the **Information needed** section, for **Username** and **Password**, enter 
 
    To return to the website's home page at any time, be sure to add `/wordpress/` to the end of the existing URL, and then press `Enter`\. \(Or, from the website's dashboard, choose ***My Site's Name*, Visit Site**\)\.
 
-## Step 4: Share the WordPress Website Over the Internet<a name="sample-wordpress-share-wordpress"></a>
+## Step 4: Share the WordPress website over the internet<a name="sample-wordpress-share-wordpress"></a>
 
 In this step, you set up the Apache HTTP Server with recommended ports, file locations, owners, and access permissions for the WordPress website\. 
 
@@ -434,7 +434,7 @@ You then finish this step by successfully viewing the website from outside of th
 Running the following commands enables incoming web traffic over port 8080 for **all** EC2 environments and Amazon EC2 instances that are associated with the security group and network ACL for this environment\. This might result in unexpectedly enabling incoming web traffic over port 8080 for EC2 environments and Amazon EC2 instances other than this one\.
 **Note**  
 The following second through fourth commands enable the security group to allow incoming web traffic over port 8080\. If you have a default security group, which only allows incoming SSH traffic over port 22, then you must run the first command followed by these second through fourth commands\. However, if you have a custom security group already allows incoming web traffic over port 8080, you can safely skip running those commands\.  
-The following fifth through eighth commands enable the network ACL to alow incoming web traffic over port 8080\. If you have a default network ACL, which already allows all incoming traffic over all ports, then you can safely skip running those commands\. However, if you have a custom network ACL that doesn't allow incoming web traffic over port 80, then you must run the first command followed by these fifth through eighth commands\. 
+The following fifth through eighth commands enable the network ACL to allow incoming web traffic over port 8080\. If you have a default network ACL, which already allows all incoming traffic over all ports, then you can safely skip running those commands\. However, if you have a custom network ACL that doesn't allow incoming web traffic over port 80, then you must run the first command followed by these fifth through eighth commands\. 
 
    ```
    MY_INSTANCE_ID=$(curl http://169.254.169.254/latest/meta-data/instance-id) # Get the ID of the instance for the environment, and store it temporarily.
@@ -488,4 +488,4 @@ aws ec2 delete-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress -
 aws ec2 delete-network-acl-entry --network-acl-id $MY_NETWORK_ACL_ID --ingress --rule-number 10100 # Delete the existing inbound rule from the network ACL to block all IPv6-based traffic over port 8080. Advanced users: if you originally created this rule with a different number, change this suggested rule number to match.
 ```
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

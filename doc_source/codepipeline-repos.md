@@ -25,9 +25,7 @@ Your source code repository must be one of the following repository types that C
 +  **Amazon S3**\. If you already have a bucket in Amazon S3 that you want to use, skip ahead to [Step 2: Create an AWS Cloud9 Development Environment, Connect It to the Code Repository, and Upload Your Code](#codepipeline-repos-connect-to-repo)\. Otherwise, to use Amazon S3, follow these instructions in the *Amazon Simple Storage Service Getting Started Guide* in this order, and then return to this topic:
   +  [Sign Up for Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/gsg/SigningUpforS3.html) 
   +  [Create a Bucket](https://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html) 
-+  **GitHub**\. If you already have a repository in GitHub that you want to use, skip ahead to [Step 2: Create an AWS Cloud9 Development Environment, Connect It to the Code Repository, and Upload Your Code](#codepipeline-repos-connect-to-repo)\. Otherwise, to use GitHub, follow these instructions in the *GitHub Sample* in this order, and then return to this topic:
-  +  [Step 1: Create a GitHub Account](sample-github.md#sample-github-create-account) 
-  +  [Step 2: Create a GitHub Repository](sample-github.md#sample-github-create-repo) 
++  **GitHub**\. If you already have a repository in GitHub, you can clone it and create a local copy on your development environment using the [Git panel](source-control-gitpanel.md) interface\. If you don't yet have an account or repository set up on GitHub, refer to the [relevant documentation](https://docs.github.com/en/github) for instructions\.
 
 ## Step 2: Create an AWS Cloud9 Development Environment, connect it to the code repository, and upload your code<a name="codepipeline-repos-connect-to-repo"></a>
 
@@ -44,7 +42,7 @@ To connect the environment to the repository, and then upload your source code t
 | --- | --- | 
 |  CodeCommit  |  Follow these instructions in the *AWS CodeCommit Sample*: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/codepipeline-repos.html)  | 
 |  Amazon S3  |  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/codepipeline-repos.html)  | 
-|  GitHub  |  Follow these instructions in the *GitHub Sample*: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/codepipeline-repos.html)  | 
+|  GitHub  |  You can clone a repository hosted on GitHub and interact with by using the [Git panel](source-control-gitpanel.md) interface\.  | 
 
 After you connect the environment to the repository, whenever you push source code changes from the AWS Cloud9 IDE to the repository, CodePipeline automatically sends those changes through related pipelines to be built, tested, and deployed\. You create a related pipeline later in this topic\.
 

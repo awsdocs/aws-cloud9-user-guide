@@ -86,7 +86,7 @@ Whenever a run pauses, you can do the following in the **Debugger** window, as s
 +  **View the list of local variables**: See the **Local Variables** area\.
 +  **Disable individual breakpoints**: In **Breakpoints**, clear the boxes that correspond to the breakpoints you want to disable\. To enable the breakpoints again, select the boxes you cleared earlier\.
 
-Whenever a run pauses, you can also pause your mouse pointer on any displayed piece of code \(for example, a variable\) to show any available information about it in a tooltip\.
+Whenever a run pauses, you can also pause your pointer on any displayed piece of code \(for example, a variable\) to show any available information about it in a tooltip\.
 
 ## Change a Built\-In Runner<a name="build-run-debug-change-runner"></a>
 

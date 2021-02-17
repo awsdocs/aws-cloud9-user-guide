@@ -2,21 +2,21 @@
 
 \(Previous step: [Step 1: Create an environment](tutorial-create-environment.md)\)
 
-This part of the tutorial introduces some of the ways in which you can use the AWS Cloud9 IDE to create and test applications\.
+This part of the tutorial introduces some of the ways that you can use the AWS Cloud9 IDE to create and test applications\.
 + You can use an **editor** window to create and edit code\.
 + You can use a **terminal** window or a **Run Configuration** window to run your code without debugging it\.
 + You can use the **Debugger** window to debug your code\.
 
-You will perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and samples](tutorials.md) for other programming languages\.
+Perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and samples](tutorials.md) for other programming languages\.
 
 **Topics**
-+ [Get your environment ready](#w35aac11c13c25b5b9)
-+ [Write code](#w35aac11c13c25b5c11)
-+ [Run your code](#w35aac11c13c25b5c13)
-+ [Debug your code](#w35aac11c13c25b5c15)
++ [Get your environment ready](#w36aac11c13c25b5b9)
++ [Write code](#w36aac11c13c25b5c11)
++ [Run your code](#w36aac11c13c25b5c13)
++ [Debug your code](#w36aac11c13c25b5c15)
 + [Next step](#tutorial-tour-ide-next)
 
-## Get your environment ready<a name="w35aac11c13c25b5b9"></a>
+## Get your environment ready<a name="w36aac11c13c25b5b9"></a>
 
 Most of the tools you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
 
@@ -36,7 +36,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    found 0 vulnerabilities
    ```
 
-## Write code<a name="w35aac11c13c25b5c11"></a>
+## Write code<a name="w36aac11c13c25b5c11"></a>
 
 Begin by writing some code\.
 
@@ -68,11 +68,11 @@ Begin by writing some code\.
 
 1. Choose **File**, **Save**, and then save the file as `hello-cloud9.js`\.
 
-## Run your code<a name="w35aac11c13c25b5c13"></a>
+## Run your code<a name="w36aac11c13c25b5c13"></a>
 
 Next, you can run your code\.
 
-Depending on the programming language you are using, there might be multiple ways in which you can run code\. For this tutorial, we are using JavaScript, which you can run using a terminal window or a **Run Configuration** window\.
+Depending on the programming language that you're using, there might be multiple ways in which you can run code\. This tutorial uses JavaScript, which you can run using a terminal window or a **Run Configuration** window\.
 
 **To run the code using a Run Configuration window**
 
@@ -100,7 +100,7 @@ Depending on the programming language you are using, there might be multiple way
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-terminal.png)
 
-## Debug your code<a name="w35aac11c13c25b5c15"></a>
+## Debug your code<a name="w36aac11c13c25b5c15"></a>
 
 Finally, you can debug your code by using the **Debugger** window\.
 

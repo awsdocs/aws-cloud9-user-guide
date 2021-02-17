@@ -113,4 +113,4 @@ To continue experimenting with the AWS CLI, see [Working with Amazon Web Service
 
 If you're using the aws\-shell, you can stop using it by running the ** `.exit` ** or ** `.quit` ** command\.
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

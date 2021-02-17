@@ -233,4 +233,4 @@ Amazon S3 bucket names must be unique across AWS—not just your AWS account\.
 
 ## Step 7: Clean Up<a name="sample-python-clean-up"></a>
 
-To prevent ongoing charges to your AWS account after you're done with this tutorial, delete the AWS Cloud9 environment\. For instructions, see [Deleting an Environment in AWS Cloud9](delete-environment.md)\.
+To prevent ongoing charges to your AWS account after you're done with this tutorial, delete the AWS Cloud9 environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

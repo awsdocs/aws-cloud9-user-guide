@@ -29,7 +29,7 @@ If the AWS Toolkit isn't available in your environment, you can enable it in the
 
 1. In the **AWS Resources** pane, turn on **AWS AWS Toolkit** so that it displays a check mark on a green background\. 
 
-   When you enable the AWS Toolkit, the IDE refreshes to show the updated **Enable AWS Tookit** setting and the AWS Toolkit option at the side of the IDE below the **Environment** option\.
+   When you enable the AWS Toolkit, the IDE refreshes to show the updated **Enable AWS Toolkit** setting and the AWS Toolkit option at the side of the IDE below the **Environment** option\.
 
 
 

@@ -75,7 +75,7 @@ After you run this command, try creating the environment again\.
  **Solution:** Ensure the user has the correct AWS access permissions, and then try to perform the action again\. For more information, see one or more of the following:
 +  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
 +  [Step 6\. Enable groups and users within the organization to use AWS Cloud9](setup-enterprise.md#setup-enterprise-groups-users-access) in *Enterprise Setup* 
-+  [About environment member Access Roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
++  [About environment member access roles](share-environment.md#share-environment-member-roles) in *Working with Shared Environments* 
 
 \([back to top](#troubleshooting)\)
 
@@ -116,8 +116,8 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
   +  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
   +  [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
-  +  [Customer\-Managed Policy Examples for Teams Using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
-  +  [Customer\-managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
+  +  [Customer managed policy examples for teams Using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
+  +  [Customer managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
   +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
   +  [Troubleshoot IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html) in the *IAM User Guide*
 
@@ -247,12 +247,12 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
  **Recommended solutions:** 
 + Ensure that the application is running in the IDE\.
 + Ensure that the application is not running with an IP of `127.0.0.1` or `localhost`\. For some examples in Node\.js and Python, see [Run an application](app-preview.md#app-preview-run-app)\.
-+ If the application is running on an AWS cloud compute instance \(for example an Amazon EC2 instance\), ensure all security groups that are associated with the corresponding instance allow inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 2: Set up the security group for the instance](app-preview.md#app-preview-share-security-group) in *Share a Running Application over the Internet*\. See also [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
-+ If the application is running on an AWS cloud compute instance, and a network ACL exists for the subnet in the VPC that is associated with the corresponding instance, ensure that network ACL allows inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 3: Set up the subnet for the instance](app-preview.md#app-preview-share-subnet) in *Share a Running Application over the Internet*\. See also [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
-+ Ensure that the requesting URL, including the protocol \(and port, if it must be specified\), is correct\. For more information, see [Step 5: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a Running Application over the Internet*\.
++ If the application is running on an AWS cloud compute instance \(for example an Amazon EC2 instance\), ensure all security groups that are associated with the corresponding instance allow inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 2: Set up the security group for the instance](app-preview.md#app-preview-share-security-group) in *Share a running application over the internet*\. See also [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
++ If the application is running on an AWS cloud compute instance, and a network ACL exists for the subnet in the VPC that is associated with the corresponding instance, ensure that network ACL allows inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 3: Set up the subnet for the instance](app-preview.md#app-preview-share-subnet) in *Share a running application over the internet*\. See also [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
++ Ensure that the requesting URL, including the protocol \(and port, if it must be specified\), is correct\. For more information, see [Step 5: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a running application over the internet*\.
 + We do not recommend requesting a URL with the format `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/` \(where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\)\. This URL works only when the IDE for the environment is open and the application is running in the same web browser\.
 + If you are trying to go to an address that contains an IP of `127.0.0.1` or `localhost`, try going to the correct non\-local address for the running application instead\. For more information, see [Share a running application over the internet](app-preview.md#app-preview-share)\.
-+ If the application is running on an AWS cloud compute instance, determine whether the instance's public IP address has changed\. The instance's public IP address might change anytime the instance restarts\. To prevent this IP address from changing, you can allocate an Elastic IP address and assign it to the running instance\. For more information, see [Step 5: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a Running Application over the Internet*\.
++ If the application is running on an AWS cloud compute instance, determine whether the instance's public IP address has changed\. The instance's public IP address might change anytime the instance restarts\. To prevent this IP address from changing, you can allocate an Elastic IP address and assign it to the running instance\. For more information, see [Step 5: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a running application over the internet*\.
 + If the web request originates from a VPN, ensure that VPN allows traffic over the protocols, ports, and IP addresses that the application requires\. If you cannot make changes to your VPN, see your network administrator\. Or make the web request from a different network if possible\.
 + If the application is running in an SSH environment for your own server, ensure your server and the associated network allow traffic over the protocols, ports, and IP addresses that the application requires\. If you cannot make changes to your server or the associated network, see your server or network administrator\.
 + Try running the application from a terminal in the environment by running the `curl` command, followed by the URL\. If this command displays an error message, there might be some other issue that is not related to AWS Cloud9\.
@@ -293,15 +293,14 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
 
  **Issue:** When you try to use the AWS Command Line Interface \(AWS CLI\) or the aws\-shell to run a command in the AWS Cloud9 IDE for an EC2 environment, an error displays: "The security token included in the request is invalid\."
 
- **Possible causes:** 
-+ If you have AWS managed temporary credentials enabled, you are trying to run a command that is not allowed with those AWS managed temporary credentials\. For a list of allowed commands, see [Actions supported by AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials-supported)\.
-+ If you have AWS managed temporary credentials enabled and the environment is a shared environment, the environment owner has not opened the environment within the past 12 hours so that AWS Cloud9 can refresh AWS managed temporary credentials in the environment\. \(AWS Cloud9 sets this 12\-hour limit as an AWS security best practice\.\)
+ **Cause:** An invalid security token can result if you have AWS managed temporary credentials enabled and one of the following occurred: 
++ You tried to run a command that's not allowed by AWS managed temporary credentials\. For a list of allowed commands, see [Actions supported by AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials-supported)\.
++ The AWS managed temporary credentials automatically expired after 15 minutes\.
++ The AWS managed temporary credentials for a shared environment were deactivated because a new member was added by someone other than the environment owner\.
 
  **Recommended solutions:** 
-+ If you have AWS managed temporary credentials enabled, run allowed commands only\. If you must run a command that is not allowed by AWS managed temporary credentials, one approach would be to configure the AWS CLI or aws\-shell in the environment with a set of permanent credentials, which removes this limitation\. For instructions, see [Create and store permanent access credentials in an Environment](credentials.md#credentials-permanent-create)\.
-+ Have the environment owner open the environment so that AWS Cloud9 can refresh temporary credentials in the environment\.
-
-For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
++ Run only those commands that are allowed by AWS managed temporary credentials\. If you need to run a command that's not allowed by AWS managed temporary credentials, you can configure the AWS CLI or aws\-shell in the environment with a set of permanent credentials, which removes this limitation\. For instructions, see [Create and store permanent access credentials in an Environment](credentials.md#credentials-permanent-create)\.
++ For deactivated or expired credentials, ensure the environment owner opens the environment so that AWS Cloud9 can refresh temporary credentials in the environment\. For more information, see [Controlling access to AWS managed temporary credentials](how-cloud9-with-iam.md#temporary-managed-credentials-control)\.
 
 \([back to top](#troubleshooting)\)
 
@@ -537,7 +536,7 @@ For configuration information, see [VPC and subnet sizing](https://docs.aws.amaz
 
 ## Notice: Failed to install dependencies for collaboration support<a name="proxy-failed-dependencies"></a>
 
-**Issue:** AWS Cloud9 needs internet acccess to download dependencies\. If AWS Cloud9 cannot download those dependencies, you will see a `Notice` dialog box with the following error\.
+**Issue:** AWS Cloud9 needs internet access to download dependencies\. If AWS Cloud9 cannot download those dependencies, you will see a `Notice` dialog box with the following error\.
 
 ```
 Failed to install dependencies for collaboration support
@@ -549,7 +548,7 @@ Error downloading from location
 Problem was: Error: connect ETIMEDOUT <IPADDRESS>
 ```
 
-**Possible causes:** If your AWS Cloud9 environment is using a proxy to access the Internet, AWS Cloud9 needs the proxy details to install dependencies\. This error will appear if you have not provided your proxy details to AWS Cloud9\.
+**Possible causes:** If your AWS Cloud9 environment is using a proxy to access the internet, AWS Cloud9 needs the proxy details to install dependencies\. This error will appear if you have not provided your proxy details to AWS Cloud9\.
 
 **Recommended solutions:** To provide your proxy details to AWS Cloud9, append the following to your environment's `~/.bashrc` file\.
 

@@ -9,7 +9,6 @@ Experiment with these tutorials to increase your knowledge and confidence using 
 + [Advanced AWS Lambda Tutorial](tutorial-lambda-advanced.md)
 + [AWS CLI and aws\-shell Sample](sample-aws-cli.md)
 + [AWS CodeCommit Sample](sample-codecommit.md)
-+ [GitHub Sample](sample-github.md)
 + [Amazon DynamoDB Sample](sample-dynamodb.md)
 + [AWS CDK Sample](sample-cdk.md)
 + [LAMP Sample](sample-lamp.md)

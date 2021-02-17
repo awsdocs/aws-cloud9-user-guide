@@ -1,6 +1,6 @@
 # Managing access using policies<a name="auth-with-identities"></a>
 
-You can have valid credentials to authenticate your requests, but unless you have permissions, you cannot create or access AWS Cloud9 resources\. For example, you must have permissions to create, share, or delete an AWS Cloud9 development environment\.
+You can have valid credentials to authenticate your requests, but unless you have permissions, you can't create or access AWS Cloud9 resources\. For example, you must have permissions to create, share, or delete an AWS Cloud9 development environment\.
 
 Every AWS resource is owned by an AWS account, and permissions to create or access a resource are governed by permissions policies\. An account administrator can attach permissions policies to IAM identities \(that is, users, groups, and roles\)\.
 

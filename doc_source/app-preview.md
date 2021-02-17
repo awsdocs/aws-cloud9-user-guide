@@ -18,8 +18,8 @@ Before you can preview your application from within the IDE, it must be running 
 **Note**  
 You don't have to run using HTTP over port `8080`, `8081`, or `8082` with the IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. However, you won't be able to preview your running application from within the IDE\.  
 If you run with the IP of `0.0.0.0`, anyone can potentially access your running application\. For approaches to address this issue, see the following:  
- [Step 2: Set Up the Security Group for the Instance](#app-preview-share-security-group) in *Share a Running Application over the Internet* 
- [Step 3: Set Up the Subnet for the Instance](#app-preview-share-subnet) in *Share a Running Application over the Internet* 
+ [Step 2: Set up the security group for the instance](#app-preview-share-security-group) in *Share a running application over the internet* 
+ [Step 3: Set up the subnet for the instance](#app-preview-share-subnet) in *Share a running application over the internet* 
 
 To write the code to run your application on a specific port and IP, see your application's documentation\.
 

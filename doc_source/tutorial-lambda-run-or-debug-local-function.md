@@ -78,7 +78,7 @@ In this step, you use the IDE to debug the function on the instance\. Currently,
 1. Add four expressions for the debugger to watch\. To do this, in the **Watch Expressions** area, for **Type an expression here**, type `event.option`, and then press `Enter`\. Do this three more times, typing `event.period`, `sc`, and `response.body`\.  
 ![\[Adding watch expressions\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-lambda-watch-expressions.png)
 
-1. On the run tab that AWS Cloud9 opened in [Step 4\.1: Run the Function Locally](#tutorial-lambda-run-local-function), choose the icon that looks like a bug\. \(It switches from grey to green\.\)  
+1. On the run tab that AWS Cloud9 opened in [Step 4\.1: Run the Function Locally](#tutorial-lambda-run-local-function), choose the icon that looks like a bug\. \(It switches from gray to green\.\)  
 ![\[The debug icon.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/debug-button.png)  
 ![\[Turning on debugging.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/debug-icon-on.png)
 

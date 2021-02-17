@@ -1,13 +1,13 @@
 # Calling AWS services from an environment in AWS Cloud9<a name="credentials"></a>
 
-You can call AWS services from an AWS Cloud9 development environment\. For example, you can:
+You can call AWS services from an AWS Cloud9 development environment\. For example, you can do the following actions:
 + Upload and download data in Amazon Simple Storage Service \(Amazon S3\) buckets\.
 + Send broadcast notifications through Amazon Simple Notification Service \(Amazon SNS\) topics\.
 + Read and write data in Amazon DynamoDB \(DynamoDB\) databases\.
 
 You can call AWS services from your environment in several ways\. For example, you can use the AWS Command Line Interface \(AWS CLI\) or the aws\-shell to run commands from a terminal session\. You can also call AWS services from code you run within your environment, using AWS SDKs for programming languages such as JavaScript, Python, Ruby, PHP, Go, and C\+\+\. For more information, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md), the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/), and the [AWS SDKs](https://aws.amazon.com/tools/#sdk)\.
 
-Each time the AWS CLI, the aws\-shell, or your code calls an AWS service, the AWS CLI, the aws\-shell, or your code must provide a set of AWS access credentials along with the call\. These credentials determine whether the caller has the appropriate permissions to make the call\. If the credentials don't cover the appropriate permissions, the call will fail\.
+Each time the AWS CLI, the aws\-shell, or your code calls an AWS service, the AWS CLI, the aws\-shell, or your code must provide a set of AWS access credentials along with the call\. These credentials determine whether the caller has the appropriate permissions to make the call\. If the credentials don't cover the appropriate permissions, the call fails\.
 
 There are several ways to provide credentials to your environment\. The following table describes some approaches\.
 
@@ -16,18 +16,18 @@ There are several ways to provide credentials to your environment\. The followin
 
 | Environment type | Approach | 
 | --- | --- | 
-|  EC2  |  Use AWS managed temporary credentials\. We recommend this approach for an EC2 environment\. AWS managed temporary credentials manage AWS access credentials in an EC2 environment on your behalf, while also following AWS security best practices\.  **If you are using an EC2 environment, you can skip the rest of this topic, as AWS managed temporary credentials are already set up for you in the environment\.**  For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.  | 
+|  EC2  |  Use AWS managed temporary credentials\. We recommend this approach for an EC2 environment\. AWS managed temporary credentials manage AWS access credentials in an EC2 environment on your behalf, while also following AWS security best practices\.  **If you're using an EC2 environment, you can skip the rest of this topic\. This is because AWS managed temporary credentials are already set up for you in the environment\.**  For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.  | 
 |  EC2  |  Attach an IAM instance profile to the instance\. You should only use this approach if for some reason you can't use AWS managed temporary credentials\. Similar to AWS managed temporary credentials, an instance profile manages AWS access credentials on your behalf\. However, you must create, manage, and attach the instance profile to the Amazon EC2 instance yourself\. For instructions, see [Create and Use an Instance Profile to Manage Temporary Credentials](#credentials-temporary)\.  | 
-|  EC2 or SSH  |  Store your permanent AWS access credentials within the environment\. This approach is less secure than using temporary AWS access credentials\. However, it is the only supported approach for an SSH environment\. For instructions, see [Create and Store Permanent Access Credentials in an Environment](#credentials-permanent-create)\.  | 
+|  EC2 or SSH  |  Store your permanent AWS access credentials within the environment\. This approach is less secure than using temporary AWS access credentials\. However, it's the only supported approach for an SSH environment\. For instructions, see [Create and Store Permanent Access Credentials in an Environment](#credentials-permanent-create)\.  | 
 |  EC2 or SSH  |  Insert your permanent AWS access credentials directly into your code\. We discourage this approach because it doesn't follow AWS security best practices\. Because we discourage this approach, we do not cover it in this topic\.  | 
 
 ## Create and use an instance profile to manage temporary credentials<a name="credentials-temporary"></a>
 
 **Note**  
-You cannot use this procedure for an AWS Cloud9 SSH development environment\. Instead, skip ahead to [Create and Store Permanent Access Credentials in an Environment](#credentials-permanent-create)\.  
-We recommend using AWS managed temporary credentials instead of an instance profile\. Follow these instructions only if for some reason you cannot use AWS managed temporary credentials\. For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
+You can't use this procedure for an AWS Cloud9 SSH development environment\. Instead, skip ahead to [Create and Store Permanent Access Credentials in an Environment](#credentials-permanent-create)\.  
+We recommend that you use AWS managed temporary credentials instead of an instance profile\. Follow these instructions only if for some reason you can't use AWS managed temporary credentials\. For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
 
-In this procedure, you will use IAM and Amazon EC2 to create and attach an IAM instance profile to the Amazon EC2 instance that connects to your environment\. This instance profile will manage temporary credentials on your behalf\. This procedure assumes you have already created a environment in AWS Cloud9\. To create a environment, see [Create an Environment](create-environment.md)\.
+This procedure uses IAM and Amazon EC2 to create and attach an IAM instance profile to the Amazon EC2 instance that connects to your environment\. This instance profile manages temporary credentials on your behalf\. This procedure assumes you have already created an environment in AWS Cloud9\. To create an environment, see [Create an Environment](create-environment.md)\.
 
 You can complete these tasks with the [IAM and Amazon EC2 consoles](#credentials-temporary-create-console) or the [AWS Command Line Interface \(AWS CLI\)](#credentials-temporary-create-cli)\.
 
@@ -38,7 +38,7 @@ If you already have an IAM role that contains an instance profile, skip ahead to
 
 1. Sign in to the IAM console, at [https://console\.aws\.amazon\.com/iam](https://console.aws.amazon.com/iam)\.
 
-   For this step, we recommend you sign in using credentials for an IAM administrator user in your AWS account\. If you cannot do this, check with your AWS account administrator\.
+   For this step, we recommend you sign in using IAM administrator\-level credentials in your AWS account\. If you can't do this, check with your AWS account administrator\.
 
 1. In the navigation bar, choose **Roles**\.
 **Note**  
@@ -56,7 +56,7 @@ You cannot use the IAM console to create an instance profile by itself\. You mus
 **Note**  
 The **AdministratorAccess** policy allows unrestricted access to all AWS actions and resources across your AWS account\. It should be used only for experimentation purposes\. For more information, see [IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html) in the *IAM User Guide*\.
 
-1. On the **Review** page, for **Role Name**, type a name for the role \(for example `my-demo-cloud9-instance-profile`\)\.
+1. On the **Review** page, for **Role Name**, type a name for the role \(for example, `my-demo-cloud9-instance-profile`\)\.
 
 1. Choose **Create Role**\.
 
@@ -66,12 +66,12 @@ Skip ahead to [Attach an Instance Profile to an Instance with the Amazon EC2 Con
 
 **Note**  
 If you already have an IAM role that contains an instance profile, skip ahead to [Attach an Instance Profile to an Instance with the AWS CLI](#credentials-temporary-attach-cli)\.  
-For this topic, we recommend you configure the AWS CLI using credentials for an IAM administrator user in your AWS account\. If you cannot do this, check with your AWS account administrator\.
+For this topic, we recommend you configure the AWS CLI using IAM administrator\-level credentials in your AWS account\. If you cannot do this, check with your AWS account administrator\.
 
 **Note**  
 If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
-1. Define a trust relationship in AWS for the instance profile's required IAM role\. To do this, create and then save a file with the following contents \(for example, as `my-demo-cloud9-instance-profile-role-trust.json`\)\.
+1. Define a trust relationship in AWS for the instance profile's required IAM role\. To do this, create and then save a file with the following contents \(for example, `my-demo-cloud9-instance-profile-role-trust.json`\)\.
 
    ```
    {
@@ -91,13 +91,13 @@ If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-
 
 1. Using the terminal or command prompt, switch to the directory where you just saved this file\.
 
-1. Create an IAM role for the instance profile\. To do this, run the IAM `create-role` command, specifying a name for the new IAM role \(for example, `my-demo-cloud9-instance-profile-role`\), and the name of the file you just saved\.
+1. Create an IAM role for the instance profile\. To do this, run the IAM `create-role` command, specifying a name for the new IAM role \(for example, `my-demo-cloud9-instance-profile-role`\), and the name of the file that you just saved\.
 
    ```
    aws iam create-role --role-name my-demo-cloud9-instance-profile-role --assume-role-policy-document file://my-demo-cloud9-instance-profile-role-trust.json
    ```
 
-1. Attach AWS access permissions to the instance profile's IAM role\. To do this, run the IAM `attach-role-policy` command, specifying the name of the existing IAM role and the Amazon Resource Name \(ARN\) of the AWS managed policy named `AdministratorAccess`\.
+1. Attach AWS access permissions to the instance profile IAM role\. To do this, run the IAM `attach-role-policy` command, specifying the name of the existing IAM role and the Amazon Resource Name \(ARN\) of the AWS managed policy named `AdministratorAccess`\.
 
    ```
    aws iam attach-role-policy --role-name my-demo-cloud9-instance-profile-role --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
@@ -123,9 +123,9 @@ Skip ahead to [Create an Instance Profile with the AWS CLI](#credentials-tempora
 
 1. Sign in to the Amazon EC2 console, at [https://console\.aws\.amazon\.com/ec2](https://console.aws.amazon.com/ec2)\.
 
-   For this step, we recommend you sign in using credentials for an IAM administrator user in your AWS account\. If you cannot do this, check with your AWS account administrator\.
+   For this step, we recommend that you sign in using IAM administrator\-level credentials in your AWS account\. If you cannot do this, check with your AWS account administrator\.
 
-1. In the navigation bar, be sure the region selector displays the AWS Region that matches the one for your environment\. For example, if you created your environment in the US East \(Ohio\) region, choose **US East \(Ohio\)** in the region selector here as well\.
+1. In the navigation bar, be sure the Region selector displays the AWS Region that matches the one for your environment\. For example, if you created your environment in the US East \(Ohio\) Region, choose **US East \(Ohio\)** in the Region selector here as well\.
 
 1. Choose the **Running Instances** link or, in the navigation pane, expand **Instances**, and then choose **Instances**\.
 
@@ -137,7 +137,7 @@ Although you are attaching a role to the instance, the role contains an instance
 
 1. On the **Attach/Replace IAM Role** page, for **IAM role**, choose the name of the role you identified or that you created in the previous procedure, and then choose **Apply**\.
 
-1. Back in the environment, use the AWS CLI to run the `aws configure` command or the aws\-shell to run the `configure` command\. Do not specify any values for **AWS Access Key ID** or **AWS Secret Access Key** \(press `Enter` after each of these prompts\)\. For **Default region name**, specify the AWS Region closest to you or the region where your AWS resources are located\. For example, `us-east-2` for the US East \(Ohio\) Region\. For a list of regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\. Optionally, specify a value for **Default output format** \(for example, `json`\)\.
+1. Back in the environment, use the AWS CLI to run the `aws configure` command or the aws\-shell to run the `configure` command\. Do not specify any values for **AWS Access Key ID** or **AWS Secret Access Key** \(press `Enter` after each of these prompts\)\. For **Default region name**, specify the AWS Region closest to you or the Region where your AWS resources are located\. For example, `us-east-2` for the US East \(Ohio\) Region\. For a list of Regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\. Optionally, specify a value for **Default output format** \(for example, `json`\)\.
 
 You can now start calling AWS services from your environment\. To use the AWS CLI, the aws\-shell, or both to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [tutorials and samples](tutorials.md)\.
 
@@ -152,9 +152,9 @@ If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-
    aws ec2 associate-iam-instance-profile --iam-instance-profile Name=my-demo-cloud9-instance-profile --region us-east-2 --instance-id i-12a3b45678cdef9a0
    ```
 
-   In the preceding command, replace `us-east-2` with the AWS Region ID for the instance and `i-12a3b45678cdef9a0` with the instance's ID\.
+   In the preceding command, replace `us-east-2` with the AWS Region ID for the instance and `i-12a3b45678cdef9a0` with the instance ID\.
 
-   To get the instance's ID, you could for example run the Amazon EC2 `describe-instances` command, specifying the name and AWS Region ID of the environment\.
+   To get the instance ID, you can, for example, run the Amazon EC2 `describe-instances` command, specifying the name and AWS Region ID of the environment\.
 
    ```
    aws ec2 describe-instances --region us-east-2 --filters Name=tag:Name,Values=*my-environment* --query "Reservations[*].Instances[*].InstanceId" --output text
@@ -162,14 +162,14 @@ If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-
 
    In the preceding command, replace `us-east-2` with the AWS Region ID for the instance and `my-environment` with the name of the environment\.
 
-1. Back in the environment, use the AWS CLI to run the `aws configure` command or the aws\-shell to run the `configure` command\. Do not specify any values for **AWS Access Key ID** or **AWS Secret Access Key** \(press `Enter` after each of these prompts\)\. For **Default region name**, specify the AWS Region closest to you or the region where your AWS resources are located\. For example, `us-east-2` for the US East \(Ohio\) Region\. For a list of regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\. Optionally, specify a value for **Default output format** \(for example, `json`\)\.
+1. Back in the environment, use the AWS CLI to run the `aws configure` command or the aws\-shell to run the `configure` command\. Do not specify any values for **AWS Access Key ID** or **AWS Secret Access Key** \(press `Enter` after each of these prompts\)\. For **Default region name**, specify the AWS Region closest to you or the Region where your AWS resources are located\. For example, `us-east-2` for the US East \(Ohio\) Region\. For a list of Regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\. Optionally, specify a value for **Default output format** \(for example, `json`\)\.
 
 You can now start calling AWS services from your environment\. To use the AWS CLI, the aws\-shell, or both to call AWS services, see the [AWS CLI and aws\-shell Sample](sample-aws-cli.md)\. To call AWS services from your code, see our other [tutorials and samples](tutorials.md)\.
 
 ## Create and store permanent access credentials in an Environment<a name="credentials-permanent-create"></a>
 
 **Note**  
-If you are using an AWS Cloud9 EC2 development environment, we recommend you use AWS managed temporary credentials instead of AWS permanent access credentials\. To work with AWS managed temporary credentials, see [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
+If you're using an AWS Cloud9 EC2 development environment, we recommend that you use AWS managed temporary credentials instead of AWS permanent access credentials\. To work with AWS managed temporary credentials, see [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
 
 In this section, you use AWS Identity and Access Management \(IAM\) to generate a set of permanent credentials that the AWS CLI, the aws\-shell, or your code can use when calling AWS services\. This set includes an AWS access key ID and an AWS secret access key, which are unique to your user in your AWS account\. If you already have an AWS access key ID and an AWS secret access key, note those credentials, and then skip ahead to [Store Permanent Access Credentials in an Environment](#credentials-permanent-create-store)\.
 
@@ -179,7 +179,7 @@ You can create a set of permanent credentials with the [IAM console](#credential
 
 1. Sign in to the IAM console, at [https://console\.aws\.amazon\.com/iam](https://console.aws.amazon.com/iam)\.
 
-   For this step, we recommend you sign in using credentials for an IAM administrator user in your AWS account\. If you cannot do this, check with your AWS account administrator\.
+   For this step, we recommend that you sign in using IAM administrator\-level credentials in your AWS account\. If you can't do this, check with your AWS account administrator\.
 
 1. In the navigation bar, choose **Users**\.
 
@@ -189,14 +189,14 @@ You can create a set of permanent credentials with the [IAM console](#credential
 
 1. For **Access keys**, choose **Create access key**\.
 
-1. In the **Create access key** page, choose **Show**, and make a note of the **Access key ID** and **Secret access key** values\. We recommend you also choose **Download \.csv file** and save these credentials in a secure location\.
+1. In the **Create access key** page, choose **Show**, and make a note of the **Access key ID** and **Secret access key** values\. We recommend that you also choose **Download \.csv file** and save these credentials in a secure location\.
 
 Skip ahead to [Store Permanent Access Credentials in an Environment](#credentials-permanent-create-store)\.
 
 ### Create permanent access credentials with the AWS CLI<a name="credentials-permanent-create-cli"></a>
 
 **Note**  
-For this section, we recommend you configure the AWS CLI using credentials for an IAM administrator user in your AWS account\. If you cannot do this, check with your AWS account administrator\.
+For this section, we recommend that you configure the AWS CLI using IAM administrator\-level credentials in your AWS account\. If you cannot do this, check with your AWS account administrator\.
 
 **Note**  
 If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.

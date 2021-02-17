@@ -50,7 +50,7 @@ For more information, see [Project Setting Changes You Can Make](settings-projec
      + You cannot change **Type** or **Environment ARN**\.
      + For **Permissions** or **Number of members**, see [Change the Access Role of an Environment Member](share-environment.md#share-environment-change-access), [Remove Your User](share-environment.md#share-environment-change-access), [Invite an IAM User](share-environment.md#share-environment-invite-user), and [Remove Another Environment Member](share-environment.md#share-environment-delete-member)\.
 
-If your environment is not displayed in the console, try doing one or more of the following actions to try to display it\.
+If your environment isn't displayed in the console, try doing one or more of the following actions to have it be displayed\.
 + In the side navigation bar, choose one or more of the following\.
   + Choose **Your environments** to display all environments that your AWS entity owns within the selected AWS Region and AWS account\.
   + Choose **Shared with you** to display all environments your AWS entity has been invited to within the selected AWS Region and AWS account\.
@@ -58,7 +58,7 @@ If your environment is not displayed in the console, try doing one or more of th
 ![\[Environment list scope in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-env-list.png)
 + Choose the previous arrow, next arrow, or page number button to display more environments in the current scope\.  
 ![\[Environment list page control in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-find-env.png)
-+ If you think you should be a member of an environment, but the environment is not displayed in the **Shared with you** list, check with the environment owner\.
++ If you think you should be a member of an environment, but the environment isn't displayed in the **Shared with you** list, check with the environment owner\.
 + In the top navigation bar, choose a different AWS Region\.  
 ![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
 

@@ -44,7 +44,7 @@ AWS Cloud9 provides a set of operations to work with AWS Cloud9 resources\. For 
 The AWS account owns the resources that are created in the account, regardless of who created the resources\. 
 
 For example:
-+ If you use the root account credentials of your AWS account to create an AWS Cloud9 development environment \(which, although possible, is not recommend as an AWS security best practice\), your AWS account is the owner of the environment\.
++ If you use the root account credentials of your AWS account to create an AWS Cloud9 development environment \(which, although possible, isn't recommend as an AWS security best practice\), your AWS account is the owner of the environment\.
 + If you create an IAM user in your AWS account and grant permissions to create an environment to that user, the user can create an environment\. However, your AWS account, to which the user belongs, owns the environment\.
 + If you create an IAM role in your AWS account with permissions to create an environment, anyone who can assume the role can create an environment\. Your AWS account, to which the role belongs, owns the environment\.
 
@@ -74,11 +74,11 @@ For details on what each of these API actions does, see the *AWS Cloud9 API Refe
 
 You cannot attach a resource\-based policy to an AWS Cloud9 resource directly\. Instead, AWS Cloud9 attaches the appropriate resource\-based policies to AWS Cloud9 resources as you add, modify, update, or delete environment members\.
 
-To grant a user permissions to perform actions on AWS Cloud9 resources, you attach a permissions policy to an IAM group that the user belongs to\. We recommend you attach an AWS managed \(predefined\) policy for AWS Cloud9 whenever possible\. AWS managed policies are easier and faster to attach\. They also contain predefined sets of access permissions for common usage scenarios and user types, such as full administration of an environment, environment users, and users who have only read\-only access to an environment\. For a list of AWS managed policies for AWS Cloud9, see [AWS managed \(predefined\) policies for AWS Cloud9](#auth-and-access-control-managed-policies)\.
+To grant a user permissions to perform actions on AWS Cloud9 resources, you attach a permissions policy to an IAM group that the user belongs to\. We recommend that you attach an AWS managed \(predefined\) policy for AWS Cloud9 whenever possible\. AWS managed policies are easier and faster to attach\. They also contain predefined sets of access permissions for common usage scenarios and user types, such as full administration of an environment, environment users, and users who have only read\-only access to an environment\. For a list of AWS managed policies for AWS Cloud9, see [AWS managed \(predefined\) policies for AWS Cloud9](#auth-and-access-control-managed-policies)\.
 
-For more detailed usage scenarios and unique user types, you can create and attach your own customer\-managed policies\. See [Additional Setup Options for AWS Cloud9 \(Team and Enterprise\)](setup-teams.md) and [Creating customer\-managed policies for AWS Cloud9](#auth-and-access-control-customer-policies)\.
+For more detailed usage scenarios and unique user types, you can create and attach your own customer managed policies\. See [Additional Setup Options for AWS Cloud9 \(Team and Enterprise\)](setup-teams.md) and [Creating customer managed policies for AWS Cloud9](#auth-and-access-control-customer-policies)\.
 
-To attach an IAM policy \(AWS managed or customer\-managed\) to an IAM identity, see [Attaching IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#attach-managed-policy-console) in the *IAM User Guide*\.
+To attach an IAM policy \(AWS managed or customer managed\) to an IAM identity, see [Attaching IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#attach-managed-policy-console) in the *IAM User Guide*\.
 
 ## AWS managed \(predefined\) policies for AWS Cloud9<a name="auth-and-access-control-managed-policies"></a>
 
@@ -287,15 +287,15 @@ The following AWS managed policies, which you can attach to IAM identities in yo
   }
   ```
 
-## Creating customer\-managed policies for AWS Cloud9<a name="auth-and-access-control-customer-policies"></a>
+## Creating customer managed policies for AWS Cloud9<a name="auth-and-access-control-customer-policies"></a>
 
-If none of the AWS managed policies meet your access control requirements, you can create and attach your own customer\-managed policies\.
+If none of the AWS managed policies meet your access control requirements, you can create and attach your own customer managed policies\.
 
-To create a customer\-managed policy, see [Create an IAM Policy \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) in the *IAM User Guide*\.
+To create a customer managed policy, see [Create an IAM Policy \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) in the *IAM User Guide*\.
 
 **Topics**
 + [Specifying policy elements: effects, principals, actions, and resources](#auth-and-access-control-customer-policies-specifying-policy-elements)
-+ [Customer\-managed policy examples](#auth-and-access-control-customer-policies-examples)
++ [Customer managed policy examples](#auth-and-access-control-customer-policies-examples)
 + [AWS Cloud9 permissions reference](#auth-and-access-control-ref)
 
 ### Specifying policy elements: effects, principals, actions, and resources<a name="auth-and-access-control-customer-policies-specifying-policy-elements"></a>
@@ -303,7 +303,7 @@ To create a customer\-managed policy, see [Create an IAM Policy \(Console\)](htt
 For each AWS Cloud9 resource, the service defines a set of API operations\. To grant permissions for these API operations, AWS Cloud9 defines a set of actions that you can specify in a policy\.
 
 The following are the basic policy elements:
-+  `Effect` – You specify the effect, either allow or deny, when the user requests the action\. If you don't explicitly grant access to \(allow\) a resource, access is implicitly denied\. You can also explicitly deny access to a resource\. You might do this to ensure a user cannot access a resource, even if a different policy grants access\.
++  `Effect` – You specify the effect, either allow or deny, when the user requests the action\. If you don't explicitly grant access to \(allow\) a resource, access is implicitly denied\. You can also explicitly deny access to a resource\. You might do this to ensure a user can't access a resource, even if a different policy grants access\.
 +  `Principal` – In identity\-based policies \(IAM policies\), the user the policy is attached to is the implicit principal\. For resource\-based policies, you specify the user, account, service, or other entity that you want to receive permissions\.
 +  `Resource` – Use an ARN to identify the resource that the policy applies to\.
 +  `Action` – Use action keywords to identify resource operations you want to allow or deny\. For example, the `cloud9:CreateEnvironmentEC2` permission gives the user permissions to perform the `CreateEnvironmentEC2` operation\.
@@ -312,11 +312,11 @@ To learn more about IAM policy syntax and descriptions, see the [IAM JSON Policy
 
 For a table showing all of the AWS Cloud9 API actions and the resources they apply to, see the [AWS Cloud9 permissions reference](#auth-and-access-control-ref)\.
 
-### Customer\-managed policy examples<a name="auth-and-access-control-customer-policies-examples"></a>
+### Customer managed policy examples<a name="auth-and-access-control-customer-policies-examples"></a>
 
 In this section, you can find example policies that grant permissions for AWS Cloud9 actions\. You can adapt the following example IAM policies to allow or explicitly deny AWS Cloud9 access for your IAM identities\.
 
-To create or attach a customer\-managed policy to an IAM identity, see [Create an IAM Policy \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Attaching IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#attach-managed-policy-console) in the *IAM User Guide*\.
+To create or attach a customer managed policy to an IAM identity, see [Create an IAM Policy \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create.html#access_policies_create-start) and [Attaching IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#attach-managed-policy-console) in the *IAM User Guide*\.
 
 **Note**  
 The following examples use the US East \(Ohio\) Region \(`us-east-2`\), a fictitious AWS account ID \(`123456789012`\), and a fictitious AWS Cloud9 development environment ID \(`81e900317347585a0601e04c8d52eaEX`\)\.
@@ -399,7 +399,7 @@ The following example IAM policy statement, attached to an IAM entity, allows th
 ```
 
 **Note**  
-If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, that AWS managed policy will override the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
+If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, that AWS managed policy overrides the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
 
 #### Create EC2 environments in specific Amazon VPC subnets<a name="auth-and-access-control-customer-policies-examples-ec2-subnets"></a>
 
@@ -427,7 +427,7 @@ The following example IAM policy statement, attached to an IAM entity, allows th
 ```
 
 **Note**  
-If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, that AWS managed policy will override the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
+If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, that AWS managed policy overrides the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
 
 #### Create an EC2 environments with a specific environment name<a name="auth-and-access-control-customer-policies-examples-ec2-name"></a>
 
@@ -452,11 +452,11 @@ The following example IAM policy statement, attached to an IAM entity, allows th
 ```
 
 **Note**  
-If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, that AWS managed policy will override the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
+If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, that AWS managed policy overrides the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
 
 #### Create SSH environments only<a name="auth-and-access-control-customer-policies-examples-no-ec2"></a>
 
-The following example IAM policy statement, attached to an IAM entity, allows that entity to create AWS Cloud9 SSH development environments in their account\. However, the entity cannot create AWS Cloud9 EC2 development environments\.
+The following example IAM policy statement, attached to an IAM entity, allows that entity to create AWS Cloud9 SSH development environments in their account\. However, the entity can't create AWS Cloud9 EC2 development environments\.
 
 ```
 {
@@ -556,7 +556,7 @@ The following example IAM policy statement, attached to an IAM entity, allows th
 ```
 
 **Note**  
-If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, those AWS managed policies will override the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
+If the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` is already attached to the IAM entity, those AWS managed policies overrides the behavior of the preceding IAM policy statement\. This is because those AWS managed policies are more permissive\.
 
 #### Prevent sharing environments<a name="auth-and-access-control-customer-policies-examples-no-collaboration"></a>
 
@@ -685,7 +685,7 @@ The following example IAM policy statement, attached to an IAM entity, explicitl
 
 ### AWS Cloud9 permissions reference<a name="auth-and-access-control-ref"></a>
 
-You can use the following table as a reference when you are setting up access control and writing permissions policies to attach to an IAM identity \(identity\-based policies\)\.
+You can use the following table as a reference when you're setting up access control and writing permissions policies to attach to an IAM identity \(identity\-based policies\)\.
 
 You can use AWS\-wide condition keys in your AWS Cloud9 policies to express conditions\. For a list, see [IAM JSON Policy Elements: Condition](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) in the *IAM User Guide*\.
 
@@ -771,7 +771,7 @@ The owner of an EC2 environment can turn on or off AWS managed temporary credent
 
 1. Use **AWS managed temporary credentials** to turn AWS managed temporary credentials on or off\.
 
-If you turn off AWS managed temporary credentials, by default the environment cannot access any AWS services, regardless of the AWS entity who makes the request\. If you cannot or do not want to turn on AWS managed temporary credentials for an environment, but you still need the environment to access AWS services, consider the following alternatives:
+If you turn off AWS managed temporary credentials, by default the environment cannot access any AWS services, regardless of the AWS entity who makes the request\. If you can't or don't want to turn on AWS managed temporary credentials for an environment, but you still need the environment to access AWS services, consider the following alternatives:
 + Attach an instance profile to the Amazon EC2 instance that connects to the environment\. For instructions, see [Create and Use an Instance Profile to Manage Temporary Credentials](credentials.md#credentials-temporary)\.
 + Store your permanent AWS access credentials in the environment, for example, by setting special environment variables or by running the `aws configure` command\. For instructions, see [Create and store permanent access credentials in an Environment](credentials.md#credentials-permanent-create)\.
 
@@ -821,7 +821,7 @@ For an AWS Cloud9 EC2 development environment, AWS managed temporary credentials
   +  `sts:DecodeAuthorizationMessage` 
 + All supported AWS actions are restricted to the IP address of the environment\. This is an AWS security best practice\.
 
-If AWS Cloud9 doesn't support an action or resource that you need an EC2 environment to access, or if AWS managed temporary credentials is turned off for an EC2 environment and you cannot turn it back on, consider the following alternatives:
+If AWS Cloud9 doesn't support an action or resource that you need an EC2 environment to access, or if AWS managed temporary credentials is turned off for an EC2 environment and you can't turn it back on, consider the following alternatives:
 + Attach an instance profile to the Amazon EC2 instance that connects to the EC2 environment\. For instructions, see [Create and use an instance profile to manage temporary credentials](credentials.md#credentials-temporary)\.
 + Store your permanent AWS access credentials in the EC2 environment, for example, by setting special environment variables or by running the `aws configure` command\. For instructions, see [Create and store permanent access credentials in an Environment](credentials.md#credentials-permanent-create)\.
 
@@ -840,7 +840,7 @@ AWS managed temporary credentials are updated under any of the following conditi
 
 ### Controlling access to AWS managed temporary credentials<a name="temporary-managed-credentials-control"></a>
 
-A collaborator with AWS managed temporary credentials can use AWS Cloud9 to interact with other AWS services\. So to ensure that only trusted collaborators are provided with AWS managed temporary credentials, these credentials are disabled if a new member is added by anyone other than the environment owner\. \(The credentials are disabled by the deletion of the `~/.aws/credentials` file\.\) 
+A collaborator with AWS managed temporary credentials can use AWS Cloud9 to interact with other AWS services\. To ensure that only trusted collaborators are provided with AWS managed temporary credentials, these credentials are disabled if a new member is added by anyone other than the environment owner\. \(The credentials are disabled by the deletion of the `~/.aws/credentials` file\.\) 
 
 **Important**  
 AWS managed temporary credentials also expire automatically every 15 minutes\. For the credentials to be refreshed so that collaborators can continue to use them, the environment owner must be connected to AWS Cloud9 environment through the IDE\. 

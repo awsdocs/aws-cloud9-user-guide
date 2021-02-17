@@ -1,6 +1,6 @@
 # Accessing no\-ingress EC2 instances with AWS Systems Manager<a name="ec2-ssm"></a>
 
-A "no\-ingress EC2 instance" that's created for an EC2 environment enables AWS Cloud9 to connect to its Amazon EC2 instance without the need to open any inbound ports on that instance\. You can select the no\-ingress option when creating an EC2 environment by using the [console](create-environment-main.md#create-environment-console), the [command\-line interface](tutorial-create-environment-cli-step1.md), or a [AWS CloudFormation stack](#cfn-role-and-permissions)\.
+A "no\-ingress EC2 instance" that's created for an EC2 environment enables AWS Cloud9 to connect to its Amazon EC2 instance without the need to open any inbound ports on that instance\. You can select the no\-ingress option when creating an EC2 environment using the [console](create-environment-main.md#create-environment-console), the [command line interface](tutorial-create-environment-cli-step1.md), or a [AWS CloudFormation stack](#cfn-role-and-permissions)\.
 
 **Important**  
 There are no additional charges for using Systems Manager Session Manager to manage connections to your EC2 instance\.
@@ -24,7 +24,7 @@ After you complete the creation of an environment that uses a no\-ingress EC2 in
 
 Allowing [Session Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html) to handle the secure connection between AWS Cloud9 and its EC2 instance offers two key benefits: 
 + No requirement to open inbound ports for the instance
-+ Option to launch the instance into a private subnet
++ Option to launch the instance into a public or private subnet
 
 ------
 #### [ No open inbound ports ]
@@ -39,18 +39,26 @@ The option to use Systems Manager for no\-ingress connections is currently avail
  SSM Agent is installed, by default, on all instances used by EC2 environments\.
 
 ------
-#### [ Private subnets ]
+#### [ Private/public subnets ]
 
-When selecting a subnet for your instance in the **Network settings \(advanced\)** section, you can select a private subnet if your environment's instance is accessed through Systems Manager\. The interface text reminds you to add a network address translation \(NAT\) gateway to allow the instance to connect to AWS Cloud9 and the internet\.
+When selecting a subnet for your instance in the **Network settings \(advanced\)** section, you can select a private or public subnet if the instance for your environment is accessed through Systems Manager\.
 
 ![\[Selecting a new no-ingress EC2 instance for your environment\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/private-subnet-option.png)
 
-The advantage of using the NAT gateway is that it prevents the internet from initiating a connection to the instance in the private subnet\. Because your environment's instance is assigned a private IP address instead of a public one, the NAT gateway forwards traffic from the instance to the internet or other AWS services, and then sends the response back to the instance\.
+**Private subnets**
 
-For more information on configuring private subnets and using NAT gateways, see [Create a subnet for AWS Cloud9](vpc-settings.md#vpc-settings-create-subnet)\. 
+For a private subnet, the interface text reminds that you to add a network address translation \(NAT\) gateway to allow the instance to connect to AWS Cloud9 and the internet\.
+
+The advantage of using the NAT gateway is that it prevents the internet from initiating a connection to the instance in the private subnet\. Because the instance for your environment is assigned a private IP address instead of a public one, the NAT gateway forwards traffic from the instance to the internet or other AWS services, and then sends the response back to the instance\.
 
 **Important**  
-Currently, if your environment’s EC2 instance is launched into a private subnet, you can't use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.
+Currently, if the EC2 instance for your environment is launched into a private subnet, you can't use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.
+
+**Public subnets**
+
+If your development environment is using SSM to access an EC2 instance, ensure that the instance is assigned a public IP address by the public subnet it's launched into\. To do so, you can specify your own IP address or enable the automatic assignment of a public IP address\. For the steps involved in modifying auto\-assign IP settings, see [IP Addressing in your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-ip-addressing.html) in the *Amazon VPC User Guide*\. 
+
+For more information on configuring private and public subnets for your environment instances, see [Create a subnet for AWS Cloud9](vpc-settings.md#vpc-settings-create-subnet)\. 
 
 ------
 
@@ -58,7 +66,7 @@ Currently, if your environment’s EC2 instance is launched into a private subne
 
 By default, Systems Manager doesn't have permission to perform actions on EC2 instances\. Access is provided through an AWS Identity and Access Management \(IAM\) instance profile\. \(An instance profile is a container that passes IAM role information to an EC2 instance at launch\.\)
 
-When you create the no\-ingress EC2 instance using the AWS Cloud9 console, both the service role \(`AWSCloud9SSMAccessRole`\) and the IAM instance profile \(`AWSCloud9SSMInstanceProfile`\) are created automatically for you\. \(You can view `AWSCloud9SSMAccessRole` in the IAM Management console\. Instance profiles are not displayed in the IAM console\.\) 
+When you create the no\-ingress EC2 instance using the AWS Cloud9 console, both the service role \(`AWSCloud9SSMAccessRole`\) and the IAM instance profile \(`AWSCloud9SSMInstanceProfile`\) are created automatically for you\. \(You can view `AWSCloud9SSMAccessRole` in the IAM Management console\. Instance profiles aren't displayed in the IAM console\.\) 
 
 **Important**  
  If you create a no\-ingress EC2 environment for the first time with AWS CLI, you must explicitly define the required service role and instance profile\. For more information, see [Managing instance profiles for Systems Manager with the AWS CLI](#aws-cli-instance-profiles)\.
@@ -72,8 +80,8 @@ For extra security protection, the AWS Cloud9 service\-linked role, `AWSServiceR
 
 You can also create a no\-ingress EC2 environment with the AWS CLI\. When you call `create-environment-ec2`, set the `--connection-type` option to `CONNECT_SSM`\.
 
- If you use this option, the `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile` are not automatically created\. So to create the required service profile and instance profile, do one of the following: 
-+ Create an EC2 environment using the console once to automatically create the `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile`\. After they're created, the service role and instance profile are available for any additional EC2 Environments created using the AWS CLI\. 
+ If you use this option, the `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile` aren't automatically created\. So to create the required service profile and instance profile, do one of the following: 
++ Create an EC2 environment using the console once have the `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile` created automatically afterward\. After they're created, the service role and instance profile are available for any additional EC2 Environments created using the AWS CLI\. 
 + Run the following AWS CLI commands to create the service role and instance profile\.
 
   ```
@@ -85,15 +93,15 @@ You can also create a no\-ingress EC2 environment with the AWS CLI\. When you ca
 
 ## Giving users access to instances managed by Session Manager<a name="access-ec2-session"></a>
 
-To open an AWS Cloud9 environment that's connected to an EC2 instance through Systems Manager, a user must have permission for the API operation, `StartSession`\. This operation initiates a connection to the managed EC2 instance for a Session Manager session\. You can give users access by using an AWS Cloud9\-specific managed policy \(recommended\) or by editing an IAM policy and adding the necessary permissions\. 
+To open an AWS Cloud9 environment that's connected to an EC2 instance through Systems Manager, a user must have permission for the API operation, `StartSession`\. This operation initiates a connection to the managed EC2 instance for a Session Manager session\. You can give users access by using an AWS Cloud9 specific managed policy \(recommended\) or by editing an IAM policy and adding the necessary permissions\. 
 
 
 ****  
 
 | Method | Description | 
 | --- | --- | 
-|  Use AWS Cloud9\-specific managed policy  | We recommend using AWS managed policies to allow users to access EC2 instances managed by Systems Manager\. Managed policies provide a set of permissions for standard AWS Cloud9 use cases and can be easily attached to an IAM entity\.All the managed policies also include the permissions to run the `StartSession` API operation\. The following are managed policies specific to AWS Cloud9: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html) For more information, see [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.  | 
-|  Edit an IAM policy and add required policy statements  | To edit an existing policy, you can add a permissions for the `StartSession` API\. To edit a policy using the AWS Management Console or AWS CLI, follow the instructions provided by [Editing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/#edit-managed-policy-console) in the *IAM User Guide*\.When editing the policy, add the [policy statement](#policy-statement) \(see the following\) that allows the `ssm:startSession` API operation to run\. | 
+|  Use AWS Cloud9\-specific managed policy  |  We recommend using AWS managed policies to allow users to access EC2 instances managed by Systems Manager\. Managed policies provide a set of permissions for standard AWS Cloud9 use cases and can be easily attached to an IAM entity\. All the managed policies also include the permissions to run the `StartSession` API operation\. The following are managed policies specific to AWS Cloud9: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html) For more information, see [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.  | 
+|  Edit an IAM policy and add required policy statements  |  To edit an existing policy, you can add a permissions for the `StartSession` API\. To edit a policy using the AWS Management Console or AWS CLI, follow the instructions provided by [Editing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/#edit-managed-policy-console) in the *IAM User Guide*\. When editing the policy, add the [policy statement](#policy-statement) \(see the following\) that allows the `ssm:startSession` API operation to run\.  | 
 
 The following permissions enable you to run the `StartSession` API operation\. The `ssm:resourceTag` condition key specifies that a Session Manager session can be started for any instance \(`Resource: arn:aws:ec2:*:*:instance/*`\) on the condition that the instance is an AWS Cloud9 EC2 development environment \(`aws:cloud9:environment`\)\. 
 
@@ -140,7 +148,7 @@ You need to create the service role `AWSCloud9SSMAccessRole` and the instance pr
 If you've previously created `AWSCloud9SSMAccessRole` and `AWSCloud9SSMInstanceProfile` by creating a no\-ingress EC2 environment [with the console](#using-the-console) or [running AWS CLI commands](#aws-cli-instance-profiles), the service role and instance profile are already available for use\.
 
 **Note**  
-If you try to create an AWS CloudFormation stack for a no\-ingress EC2 environment without first creating the required service role and instance profile, the stack is not created and the following error message is displayed:   
+If you try to create an AWS CloudFormation stack for a no\-ingress EC2 environment without first creating the required service role and instance profile, the stack isn't created and the following error message is displayed:   
 Instance profile AWSCloud9SSMInstanceProfile does not exist in account\.
 
 When creating a no\-ingress EC2 environment for the first time using AWS CloudFormation, you can define the `AWSCloud9SSMAccessRole` and `AWSCloud9SSMInstanceProfile` as IAM resources in the template\.
@@ -215,10 +223,10 @@ Add the following permissions to the policy for the IAM entity calling AWS Cloud
 
 ## Configuring VPC endpoints for private connectivity<a name="configure-no-egress"></a>
 
-When you launch an instance into a subnet with the **access via Systems Manager** option, its security group doesn't have an inbound rule to allow incoming network traffic\. The security group does, however, have an outbound rule that permits outbound \(or egress\) traffic from the instance\. This is required to download packages and libraries required to keep the AWS Cloud9 IDE up to date\. 
+When you launch an instance into a subnet with the **access via Systems Manager** option, its security group doesn't have an inbound rule to allow incoming network traffic\. The security group does, however, have an outbound rule that permits outbound traffic from the instance\. This is required to download packages and libraries required to keep the AWS Cloud9 IDE up to date\. 
 
 To prevent outbound as well as inbound traffic for the instance, you need to create and configure Amazon VPC endpoints for Systems Manager\. An interface VPC endpoint \(interface endpoint\) enables you to connect to services powered by [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html), a technology that enables you to privately access Amazon EC2 and Systems Manager APIs by using private IP addresses\. To configure VPC endpoints to use Systems Manager, follow the instructions provided by this [Knowledge Center resource](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints/)\.
 
 **Warning**  
-If you configure a security group that does not permit inbound or outbound networking traffic, the EC2 instance that supports your AWS Cloud9 IDE does not have internet access by default\. So you're unable to download and install the packages and libraries that ensure your development environment remains up to date\. Moreover, some AWS services, such as AWS Lambda functions, might not work as intended without internet access\.  
+If you configure a security group that doesn't permit inbound or outbound networking traffic, the EC2 instance that supports your AWS Cloud9 IDE doesn't have internet access by default\. So, you can't download and install the packages and libraries that ensure your development environment remains up to date\. Moreover, some AWS services, such as AWS Lambda functions, might not work as intended without internet access\.  
 With AWS PrivateLink there are data processing charges for each gigabyte processed through the VPC endpoint, regardless of the traffic’s source or destination\. For more information, see [AWS PrivateLink pricing](https://aws.amazon.com/privatelink/pricing/)\.

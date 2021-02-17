@@ -23,7 +23,7 @@ You can also do this by choosing the **Lambda \(local\)** list on the run tab fr
    }
    ```
 
-1. If the bug icon is green, choose it to turn it off\. \(It switches back to grey\.\)  
+1. If the bug icon is green, choose it to turn it off\. \(It switches back to gray\.\)  
 ![\[Turning off debugging\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/debug-icon-off.png)
 
 1. Choose **Run**\.
@@ -78,7 +78,7 @@ In this step, you use the IDE to have API Gateway debug the Lambda function on t
 
 1. Ensure that the **Watch Expressions** area of the **Debugger** window is still watching `event.option`, `event.period`, `sc`, and `response.body`\.
 
-1. On the run tab from the previous step, choose the icon that looks like a bug\. \(It switches from grey to green\.\)
+1. On the run tab from the previous step, choose the icon that looks like a bug\. \(It switches from gray to green\.\)
 
 1. In the **Body** pane on the run tab, ensure the following is still visible\.
 

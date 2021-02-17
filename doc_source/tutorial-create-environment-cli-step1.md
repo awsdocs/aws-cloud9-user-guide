@@ -4,7 +4,7 @@
 
 In this step, you use the AWS CLI to create an AWS Cloud9 development environment\.
 
-In AWS Cloud9, a *development environment* \(or just *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*, and then work with the files and tools in that environment\.
+In AWS Cloud9, a *development environment* \(or only an *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*, and then work with the files and tools in that environment\.
 
 ## Create an EC2 environment with the AWS CLI<a name="tutorial-create-environment-cli"></a>
 
@@ -18,7 +18,7 @@ We're planning to support Amazon Linux 2 and are evaluating support for Ubuntu S
 
    You can configure the AWS CLI using credentials for one of the following:
    + The IAM user you created in [Team setup for AWS Cloud9](setup.md)\.
-   + An IAM administrator user in your AWS account, if you will be working regularly with AWS Cloud9 resources for multiple users across the account\. If you cannot configure the AWS CLI as an IAM administrator user, check with your AWS account administrator\. For more information, see [Creating your first IAM admin user and group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
+   + An IAM administrator in your AWS account, if you will be working regularly with AWS Cloud9 resources for multiple users across the account\. If you cannot configure the AWS CLI as an IAM administrator, check with your AWS account administrator\. For more information, see [Creating your first IAM admin user and group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
    + An AWS account root user, but only if you will always be the only one using your own AWS account, and you don't need to share your environments with anyone else\. We don't recommend this option as it isn't an AWS security best practice\. For more information, see [Creating, Disabling, and Deleting Access Keys for Your AWS Account](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html#create-aws-access-key) in the *Amazon Web Services General Reference*\.
    + For other options, see your AWS account administrator or classroom instructor\.
 

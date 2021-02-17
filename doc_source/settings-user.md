@@ -107,7 +107,7 @@ AWS Cloud9 underlines text entered by other environment members with related hig
 **Go to File** in the **Go** window displays matching file contents as you type\.
 
 ** **Enable Preview on Tree Selection** **  
-AWS Cloud9 displays the chosen file with a single mouse click instead of a double mouse click\.
+AWS Cloud9 displays the chosen file with a single click instead of a double click\.
 
 ** **Hidden File Pattern** **  
 The types of files for AWS Cloud9 to treat as hidden\.

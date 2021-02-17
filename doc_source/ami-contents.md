@@ -2,6 +2,10 @@
 
 Use the following information to get details about Amazon Machine Images \(AMIs\) that AWS Cloud9 uses for an EC2 environment\.
 
+**Important**  
+If your environment's Amazon EC2 instance is based on an Amazon Linux 2 AMI or an Amazon Linux AMI template, security updates are installed on the instance immediately after it's launched\. And security patches are then automatically applied to the instance every hour\. These updates are applied by a background process and don't affect your use of the instance\.  
+For an Ubuntu EC2 environment, security updates are also installed on the instance immediately after it's launched\. Then the `unattended-upgrades` package automatically installs available updates daily\. 
+
 **Topics**
 + [Amazon Linux 2/Amazon Linux](#ami-contents-amazon-linux)
 + [Ubuntu Server](#ami-contents-ubuntu-server)
@@ -9,9 +13,9 @@ Use the following information to get details about Amazon Machine Images \(AMIs\
 ## Amazon Linux 2/Amazon Linux<a name="ami-contents-amazon-linux"></a>
 
 **Important**  
-We recommend that you choose the **Amazon Linux 2** option when [creating an Amazon EC2 environment using the console](create-environment-main.md#create-environment-console)\. As well as providing a secure, stable, and high\-performance execution environment for developing and running cloud and enterprise applications, Amazon Linux 2 AMI includes long\-term support through 2023\.  
- The older Amazon Linux AMI will end\-of\-life its standard support on December 31,2020 and enter a maintenance support phase\. For more information, see the [Amazon Linux 2 page](https://aws.amazon.com/amazon-linux-2/)\.  
- Unless otherwise specified, references to Amazon Linux in the text below refer to both Amazon Linux and Amazon Linux 2 instances\.
+We recommend that you choose the **Amazon Linux 2** option when [creating an Amazon EC2 environment using the console](create-environment-main.md#create-environment-console)\. As well as providing a secure, stable, and high\-performance runtime environment, Amazon Linux 2 AMI includes long\-term support through 2023\.  
+The standard support for the previous version of Amazon Linux AMI was discontinued on December 31,2020\. Now this previous version only receives maintenance support\. For more information, see the [Amazon Linux 2 page](https://aws.amazon.com/amazon-linux-2/)\.  
+Unless otherwise specified, references to Amazon Linux in this topic refer to both Amazon Linux and Amazon Linux 2 instances\.
 
 To display the version of an Amazon Linux instance, run the following command from the AWS Cloud9 IDE for the connected environment or from an SSH utility such as the ssh command or PuTTY\.
 
