@@ -5,8 +5,6 @@ Are you new to AWS Cloud9? Take a tour of the IDE in [Getting started: basic tut
 Experiment with these tutorials to increase your knowledge and confidence using AWS Cloud9 with various programming languages and AWS services\.
 
 **Topics**
-+ [AWS Lambda Tutorial](tutorial-lambda.md)
-+ [Advanced AWS Lambda Tutorial](tutorial-lambda-advanced.md)
 + [AWS CLI and aws\-shell Sample](sample-aws-cli.md)
 + [AWS CodeCommit Sample](sample-codecommit.md)
 + [Amazon DynamoDB Sample](sample-dynamodb.md)

@@ -22,9 +22,19 @@ AWS Cloud9 supports logging the following actions as events in CloudTrail log fi
 +  `DeleteEnvironmentMembership` 
 +  `DescribeEnvironmentMemberships` 
 +  `DescribeEnvironments` 
++  `DescribeEnvironmentStatus` 
 +  `ListEnvironments` 
++  `ListTagsForResource` 
++  `TagResource` 
++  `UntagResource` 
 +  `UpdateEnvironment` 
 +  `UpdateEnvironmentMembership` 
+
+**Note**  
+Some CloudTrail events for AWS Cloud9 are not triggered by public API operations\. Instead, the following events are initiated by internal updates affecting user authentication and managed temporary credentials:  
+`DisableManagedCredentialsByCollaborator`
+`EnvironmentTokenSuccessfullyCreated`
+`ManagedCredentialsUpdatedOnEnvironment`
 
 Every event or log entry contains information about who generated the request\. The identity information helps you determine the following:
 + Whether the request was made with root or AWS Identity and Access Management \(IAM\) user credentials\.
@@ -43,7 +53,11 @@ A trail is a configuration that enables delivery of events as log files to an Am
 +  [DeleteEnvironmentMembership](#cloudtrail-understanding-entries-deleteenvironmentmembership) 
 +  [DescribeEnvironmentMemberships](#cloudtrail-understanding-entries-describeenvironmentmemberships) 
 +  [DescribeEnvironments](#cloudtrail-understanding-entries-describeenvironments) 
++  [DescribeEnvironmentStatus](#cloudtrail-understanding-entries-describeenvironmentstatus) 
 +  [ListEnvironments](#cloudtrail-understanding-entries-listenvironments) 
++  [ListTagsForResource](#cloudtrail-understanding-entries-listtagsforresource) 
++  [TagResource](#cloudtrail-understanding-entries-tagresource) 
++  [UntagResource](#cloudtrail-understanding-entries-untagresource) 
 +  [UpdateEnvironment](#cloudtrail-understanding-entries-updateenvironment) 
 +  [UpdateEnvironmentMembership](#cloudtrail-understanding-entries-updateenvironmentmembership) 
 
@@ -377,6 +391,54 @@ The following example shows a CloudTrail log entry that demonstrates the `Descri
  }
 ```
 
+### DescribeEnvironmentStatus<a name="cloudtrail-understanding-entries-describeenvironmentstatus"></a>
+
+The following example shows a CloudTrail log entry that demonstrates the `DescribeEnvironmentStatus` action\.
+
+```
+{
+    "eventVersion": "1.08",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+        "arn": "arn:aws:sts::123456789012:myuser_role",
+        "accountId": "123456789012",
+        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+                "arn": "arn:aws:sts::123456789012:myuser_role",
+                "accountId": "123456789012",
+                "userName": "barshane_role"
+            },
+            "webIdFederationData": {},
+            "attributes": {
+                "mfaAuthenticated": "false",
+                "creationDate": "2021-03-12T15:10:54Z"
+            }
+        }
+    },
+    "eventTime": "2021-03-12T15:13:31Z",
+    "eventSource": "cloud9.amazonaws.com",
+    "eventName": "DescribeEnvironmentStatus",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "XX.XX.XXX.XX",
+    "userAgent": "aws-internal/3 aws-sdk-java/1.11.951 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation",
+    "requestParameters": {
+        "environmentId": "31ea8a12746a4221b7d8e07d9ef6ee21"
+    },
+    "responseElements": null,
+    "requestID": "68b163fb-aa88-4f40-bafd-4a18bf24cbd5",
+    "eventID": "c0fc52a9-7331-4ad0-a8ee-157995dfb5e6",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "eventCategory": "Management",
+    "recipientAccountId": "123456789012"
+}
+```
+
 ### ListEnvironments<a name="cloudtrail-understanding-entries-listenvironments"></a>
 
 The following example shows a CloudTrail log entry that demonstrates the `ListEnvironments` action\.
@@ -416,10 +478,158 @@ The following example shows a CloudTrail log entry that demonstrates the `ListEn
        "eventID": "8a906445-1b2a-47e9-8d7c-5b242EXAMPLE",
        "readOnly": true,
        "eventType": "AwsApiCall",
-       "recipientAccountId": "111122223333"
+       "recipientAccountId": "123456789012"
      }
    ]
  }
+```
+
+### ListTagsForResource<a name="cloudtrail-understanding-entries-listtagsforresource"></a>
+
+The following example shows a CloudTrail log entry that demonstrates the `ListTagsForResource` action\.
+
+```
+{
+    "eventVersion": "1.08",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+        "arn": "arn:aws:sts::123456789012:myuser_role",
+        "accountId": "123456789012",
+        "accessKeyId": "AIDACKCEVSQ6C2EXAMPLE",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+                "arn": "123456789012:myuser_role",
+                "accountId": "123456789012",
+                "userName": "barshane_role"
+            },
+            "webIdFederationData": {},
+            "attributes": {
+                "mfaAuthenticated": "false",
+                "creationDate": "2021-03-23T16:41:51Z"
+            }
+        }
+    },
+    "eventTime": "2021-03-23T16:42:58Z",
+    "eventSource": "cloud9.amazonaws.com",
+    "eventName": "ListTagsForResource",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "XX.XX.XXX.XX",
+    "userAgent": "aws-internal/3 aws-sdk-java/1.11.976 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+    "requestParameters": {
+        "resourceARN": "arn:aws:cloud9:us-east-1:123456789012:environment:3XXXXXXXXX6a4221b7d8e07d9ef6ee21"
+    },
+    "responseElements": {
+        "tags": "HIDDEN_DUE_TO_SECURITY_REASONS"
+    },
+    "requestID": "5750a344-8462-4020-82f9-f1d500a75162",
+    "eventID": "188d572d-9a14-4082-b98b-0389964c7c30",
+    "readOnly": true,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "eventCategory": "Management",
+    "recipientAccountId": "123456789012"
+}
+```
+
+### TagResource<a name="cloudtrail-understanding-entries-tagresource"></a>
+
+The following example shows a CloudTrail log entry that demonstrates the `TagResource` action\.
+
+```
+{
+    "eventVersion": "1.08",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+        "arn": "arn:aws:sts:: 123456789012:myuser_role",
+        "accountId": "123456789012",
+        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+                "arn": "arn:aws:iam::123456789012:role/myuser_role",
+                "accountId": "123456789012",
+                "userName": "MyUser"
+            },
+            "webIdFederationData": {},
+            "attributes": {
+                "mfaAuthenticated": "false",
+                "creationDate": "2021-03-23T15:03:57Z"
+            }
+        }
+    },
+    "eventTime": "2021-03-23T15:08:16Z",
+    "eventSource": "cloud9.amazonaws.com",
+    "eventName": "TagResource",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "54.XXX.XXX.XXX",
+    "userAgent": "aws-internal/3 aws-sdk-java/1.11.976 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+    "requestParameters": {
+        "resourceARN": "arn:aws:cloud9:us-east-1:123456789012:environment:3XXXXXXXXX6a4221b7d8e07d9ef6ee21",
+        "tags": "HIDDEN_DUE_TO_SECURITY_REASONS"
+    },
+    "responseElements": null,
+    "requestID": "658e9d70-91c2-41b8-9a69-c6b4cc6a9456",
+    "eventID": "022b2893-73d1-44cb-be6f-d3faa68e83b1",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "eventCategory": "Management",
+    "recipientAccountId": "123456789012"
+}
+```
+
+### UntagResource<a name="cloudtrail-understanding-entries-untagresource"></a>
+
+The following example shows a CloudTrail log entry that demonstrates the `UntagResource` action\.
+
+```
+{
+    "eventVersion": "1.08",
+    "userIdentity": {
+        "type": "AssumedRole",
+        "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+        "arn": "arn:aws:sts::123456789012/MyUser",
+        "accountId": "123456789012",
+        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+        "sessionContext": {
+            "sessionIssuer": {
+                "type": "Role",
+                "principalId": "AIDACKCEVSQ6C2EXAMPLE",
+                "arn": "arn:aws:iam::123456789012:MyUser",
+                "accountId": "123456789012",
+                "userName": "MyUser"
+            },
+            "webIdFederationData": {},
+            "attributes": {
+                "mfaAuthenticated": "false",
+                "creationDate": "2021-03-23T15:58:36Z"
+            }
+        }
+    },
+    "eventTime": "2021-03-23T16:05:08Z",
+    "eventSource": "cloud9.amazonaws.com",
+    "eventName": "UntagResource",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "3.XX.XX.XXX",
+    "userAgent": "aws-internal/3 aws-sdk-java/1.11.976 Linux/4.9.230-0.1.ac.224.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.282-b08 java/1.8.0_282 vendor/Oracle_Corporation cfg/retry-mode/legacy",
+    "requestParameters": {
+        "resourceARN": "arn:aws:cloud9:us-east-1:123456789012:environment:3XXXXXXXXX6a4221b7d8e07d9ef6ee21",
+        "tagKeys": "HIDDEN_DUE_TO_SECURITY_REASONS"
+    },
+    "responseElements": null,
+    "requestID": "0eadaef3-dc0a-4cd7-85f6-135b8529f75f",
+    "eventID": "41f2f2e2-4b17-43d4-96fc-9857981ca1de",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "eventCategory": "Management",
+    "recipientAccountId": "123456789012"
+}
 ```
 
 ### UpdateEnvironment<a name="cloudtrail-understanding-entries-updateenvironment"></a>
@@ -481,7 +691,7 @@ The following example shows a CloudTrail log entry that demonstrates the `Update
         "principalId": "AIDACKCEVSQ6C2EXAMPLE",
         "arn": "arn:aws:iam::111122223333:user/MyUser",
         "accountId": "111122223333",
-        "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
+    "accessKeyId": "AKIAIOSFODNN7EXAMPLE",
         "userName": "MyUser",
         "sessionContext": {
           "attributes": {
@@ -508,13 +718,12 @@ The following example shows a CloudTrail log entry that demonstrates the `Update
           "permissions": "read-only",
           "userId": "AIDACKCEVSQ6C2EXAMPLE",
           "userArn": "arn:aws:iam::111122223333:user/MyUser"
-        }
+           }
       },
       "requestID": "f0e629fb-fd37-49bd-b2cc-e9822EXAMPLE",
       "eventID": "8a906445-1b2a-47e9-8d7c-5b242EXAMPLE",
       "eventType": "AwsApiCall",
       "recipientAccountId": "111122223333"
     }
-  ]
-}
+  ]}
 ```

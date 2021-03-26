@@ -25,7 +25,10 @@ To write the code to run your application on a specific port and IP, see your ap
 
 To run your application, see [Run Your Code](build-run-debug.md#build-run-debug-run)\.
 
-To test this behavior, for example you could add the following JavaScript code to a file with a name such as `server.js` in the root of your environment\. This code runs a server using Node\.js, as follows\.
+To test this behavior, for example you could add the following JavaScript code to a file with a name such as `server.js` in the root of your environment\. This code runs a server using Node\.js\.
+
+**Note**  
+The code below indicates that `text/html` is the `Content-Type` of the returned content\. Specify a different `Content-Type` to return content in another format \(`text/css` for a CSS file, for example\)\.
 
 ```
 var http = require('http');

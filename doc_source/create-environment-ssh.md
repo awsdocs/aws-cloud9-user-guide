@@ -26,10 +26,14 @@ To connect to your own server, you could search the internet using a phrase such
 1. After you sign in to the AWS Cloud9 console, in the top navigation bar, choose an AWS Region to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *AWS General Reference*\.  
 ![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
 
-1. If a welcome page is displayed, for **New AWS Cloud9 environment**, choose **Create environment**\. Otherwise, choose **Create environment**\.  
-![\[Choosing the Next step button if the welcome page is displayed\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-welcome-new-env.png)
+1. If this is the first time you're creating a development environment, a welcome page is displayed\. In the **New AWS Cloud9 environment** panel, choose **Create environment**\.
 
-   Or:  
+   If you've previously created development environments, you can also expand the pane on the left of the screen, choose **Your environments**, and then choose **Create environment**\.
+
+   In the **welcome** page:  
+![\[Choosing the Create environment button if the welcome page is displayed\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-welcome-new-env.png)
+
+   Or in the **Your environments** page:  
 ![\[Choosing the Create environment button if the welcome page isn't displayed\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-new-env.png)
 
 1. On the **Name environment** page, for **Name**, type a name for your environment\.

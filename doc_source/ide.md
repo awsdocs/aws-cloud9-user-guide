@@ -9,7 +9,7 @@ Learn how to work with the AWS Cloud9 IDE by reading one or more of these topics
 + [Language Support](language-support.md)
 + [Menu Commands Reference](menu-commands.md)
 + [Finding and Replacing Text](find-replace-text.md)
-+ [Previewing Files](file-preview.md)
++ [Previewing files](file-preview.md)
 + [Previewing running applications](app-preview.md)
 + [Working with File Revisions](file-revisions.md)
 + [Working with Image Files](images.md)

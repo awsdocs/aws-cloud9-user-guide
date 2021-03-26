@@ -1,4 +1,4 @@
-# EC2 Environments compared with SSH Environments in AWS Cloud9<a name="ec2-env-versus-ssh-env"></a>
+# EC2 environments compared with SSH environments in AWS Cloud9<a name="ec2-env-versus-ssh-env"></a>
 
 As discussed in the [introduction for environments and computing resources](welcome.md#env-intro) and [working with environments](environments.md), your AWS Cloud9 environments can be set up as either EC2 environments or SSH environments\.
 
@@ -16,3 +16,4 @@ The following table highlights both the similarities and differences between usi
 |  The instance has access to hundreds of useful packages, with some common packages already installed and configured, such as Git, Docker, Node\.js, and Python\.  |  You might need to download, install, and configure additional packages to complete common tasks\.  | 
 |  You maintain the instance, for example by periodically applying system updates\.  |  You maintain the instance or your own server\.  | 
 |  When you delete the environment, AWS Cloud9 automatically terminates the associated instance\.  |  When you delete the environment, the instance or your own server remains\.  | 
+|  [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials-supported) are available in EC2 environments, allowing you to easily turn on or off all AWS actions for all AWS resources in the caller's AWS account \(with some restrictions\)\. You can don't need to configure instance profiles for your environment's Amazon EC2 instance or store permanent AWS access credentials of an AWS entity \(for example, an IAM user\)\.  |  [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials-supported) aren't available in SSH environments\. You must use [AWS Identity and Access Management](security-iam.md) to manage the permissions that allow you to work with both AWS Cloud9 and other AWS services and resources\.  | 

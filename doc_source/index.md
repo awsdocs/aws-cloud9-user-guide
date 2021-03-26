@@ -1,7 +1,7 @@
 # AWS Cloud9 User Guide
 
 -----
-*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -51,7 +51,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Language Support in the AWS Cloud9 Integrated Development Environment (IDE)](language-support.md)
    + [Menu Bar Commands Reference for the AWS Cloud9 Integrated Development Environment (IDE)](menu-commands.md)
    + [Finding and Replacing Text in the AWS Cloud9 Integrated Development Environment (IDE)](find-replace-text.md)
-   + [Previewing Files in the AWS Cloud9 Integrated Development Environment (IDE)](file-preview.md)
+   + [Previewing files in the AWS Cloud9 Integrated Development Environment (IDE)](file-preview.md)
    + [Previewing running applications in the AWS Cloud9 Integrated Development Environment (IDE)](app-preview.md)
    + [Working with File Revisions in the AWS Cloud9 Integrated Development Environment (IDE)](file-revisions.md)
    + [Working with Images Files in the AWS Cloud9 Integrated Development Environment (IDE)](images.md)
@@ -76,7 +76,6 @@ Amazon's trademarks and trade dress may not be used in
 + [Working with other AWS services](working-with-other-services.md)
    + [Working with Amazon Lightsail instances in the AWS Cloud9 Integrated Development Environment (IDE)](lightsail-instances.md)
    + [Working with AWS CodeStar Projects in the AWS Cloud9 Integrated Development Environment (IDE)](codestar-projects.md)
-   + [Working with AWS Lambda functions in the AWS Cloud9 Integrated Development Environment (IDE)](lambda-functions.md)
    + [Working with AWS CodePipeline in the AWS Cloud9 Integrated Development Environment (IDE)](codepipeline-repos.md)
 + [Visual source control with Git panel](source-control-gitpanel.md)
    + [Managing source control with Git panel](using-gitpanel.md)
@@ -92,18 +91,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Working with AWS serverless applications using the AWS Toolkit](serverless-apps-toolkit.md)
       + [Configuration options for debugging serverless applications](sam-debug-config-ref.md)
 + [Tutorials and samples for AWS Cloud9](tutorials.md)
-   + [AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda.md)
-      + [Step 1: Create and Open the Environment](tutorial-lambda-create-environment.md)
-      + [Step 2: Create the Lambda Function and API](tutorial-lambda-create-function.md)
-      + [Step 3: Add Code to the Function](tutorial-lambda-add-code.md)
-      + [Step 4: Run or Debug the Function Locally](tutorial-lambda-run-or-debug-local-function.md)
-      + [Step 5: Run or Debug the API Locally](tutorial-lambda-run-or-debug-local-api.md)
-      + [Step 6: Run the Function in Production](tutorial-lambda-run-deployed-function.md)
-      + [Step 7: Run the API in Production](tutorial-lambda-run-deployed-api.md)
-      + [Step 8: Change the Function and Deploy the Change](tutorial-lambda-change-and-deploy.md)
-      + [Step 9: Clean Up](tutorial-lambda-clean-up.md)
-      + [Related Information](tutorial-lambda-next-steps.md)
-   + [Advanced AWS Lambda Tutorial for AWS Cloud9](tutorial-lambda-advanced.md)
    + [AWS Command Line Interface and aws-shell Sample for AWS Cloud9](sample-aws-cli.md)
    + [AWS CodeCommit sample for AWS Cloud9](sample-codecommit.md)
    + [Amazon DynamoDB Sample for AWS Cloud9](sample-dynamodb.md)
@@ -128,9 +115,9 @@ Amazon's trademarks and trade dress may not be used in
    + [TypeScript Sample for AWS Cloud9](sample-typescript.md)
    + [Docker sample for AWS Cloud9](sample-docker.md)
 + [Advanced topics for AWS Cloud9](advanced-topics.md)
-   + [EC2 Environments compared with SSH Environments in AWS Cloud9](ec2-env-versus-ssh-env.md)
+   + [EC2 environments compared with SSH environments in AWS Cloud9](ec2-env-versus-ssh-env.md)
    + [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)
-   + [AWS Cloud9 SSH Development Environment host requirements](ssh-settings.md)
+   + [SSH environment host requirements](ssh-settings.md)
    + [Using the AWS Cloud9 Installer](installer.md)
    + [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)
    + [Amazon Machine Image (AMI) contents for an AWS Cloud9 EC2 Development Environment](ami-contents.md)

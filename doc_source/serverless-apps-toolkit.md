@@ -22,6 +22,8 @@ This example shows how to create a serverless application with the AWS Toolkit b
 1. Click the menu icon across from the **AWS: Explorer** heading, and choose **Create new SAM Application**\.
 
 1. Choose the runtime for your SAM application\. For this example, choose **nodejs12\.x**\.
+**Note**  
+If you select one of the runtimes with "\(Image\)", your application is package type `Image`\. If you select one of the runtimes without "\(Image\)", your application is type `Zip`\. For more information about the difference between `Image` and `Zip` package types, see [Lambda deployment packages](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html) in the *AWS Lambda Developer Guide*\.
 
 1. Choose one of the following templates for your serverless app:\.
    + **AWS SAM Hello World**: A basic template with a Lambda function that returns the classic "Hello World" message\.
@@ -47,7 +49,7 @@ You start to configure debug behavior by using inline actions to identify an eli
 
 **Note**  
 In this example, we're debugging an application that uses JavaScript\. But you can use debugging features available in the AWS Toolkit with the following languages and runtimes:  
-JavaScript – Node\.js 10\.*x*, 12\.*x*
+JavaScript – Node\.js 10\.*x*, 12\.*x*, 14\.*x*
 Python – 3\.7, 3\.8 \(Python 2\.7 and 3\.6 serverless applications can be run but not debugged by the AWS Toolkit\.\)
 Your language choice also affects how context\-aware links indicate eligible Lambda handlers\. For more information, see [Running and debugging serverless functions directly from code](#run-debug-no-template)\.
 
@@ -97,9 +99,8 @@ The Lambda handlers that are detected by context\-aware links depend on the lang
 
 |  Language/runtime  | Criteria for Lambda functions to be identified by context\-aware links | 
 | --- | --- | 
-|  C\# \(dotnetcore2\.1\)  | The function has the following features:[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html) | 
-|  JavaScript \(Node\.js 10\.x and 12\.x\)  |  The function has the following features: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html)  | 
-|  Python \(node\.js 10\.x and 12\.x\)  |  The function has the following features: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html)  | 
+|  JavaScript \(Node\.js 10\.x, 12\.x, and 14\.x\)  |  The function has the following features: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html)  | 
+|  Python \(3\.7 and 3\.8\)  |  The function has the following features: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/serverless-apps-toolkit.html)  | 
 
 ### To run and debug a serverless application directly from the application code
 
@@ -132,7 +133,7 @@ The Lambda handlers that are detected by context\-aware links depend on the lang
 **Note**  
 If you see Docker mentioned in error messages, see this [note](#docker-problem)\.
 
-### Running and debugging local Amazon API Gateway resources<a name="w36aac25c23b9c20"></a>
+### Running and debugging local Amazon API Gateway resources<a name="w37aac25c23b9c21"></a>
 
 You can run or debug AWS SAM API Gateway local resources, specified in `template.yaml`, by running an AWS Cloud9 launch configuration of `type=aws-sam` with the `invokeTarget.target=api`\.
 
@@ -250,6 +251,7 @@ This example shows how to deploy the serverless application that was created in 
 ### Prerequisites<a name="deploy-sam-prereq"></a>
 + Be sure to choose a globally unique Amazon S3 bucket name\.
 + Ensure that the credentials you configured in include the appropriate read/write access to the following services: Amazon S3, AWS CloudFormation, AWS Lambda, and Amazon API Gateway\.
++ For applications with deployment type `Image`, ensure you have both a globally unique Amazon S3 bucket name and an Amazon ECR repository URI to use for the deployment\.
 
 ### Deploying a serverless application<a name="deploy-sam-proc"></a>
 
@@ -262,6 +264,8 @@ This example shows how to deploy the serverless application that was created in 
 1. Enter the name of an Amazon S3 bucket this deployment can use\. The bucket must be in the AWS Region you're deploying to\.
 **Warning**  
 The Amazon S3 bucket name must be globally unique across all existing bucket names in Amazon S3\. Therefore, you should add a unique identifier to the name given in the following example \(or choose a different name\)\.
+
+1. If your serverless application includes a function with package type `Image`, enter the name of an Amazon ECR repository that this deployment can use\. The repository must be in the Region that you're deploying to\.
 
 1. Enter a name for the deployed stack, either a new stack name or an existing stack name\.
 

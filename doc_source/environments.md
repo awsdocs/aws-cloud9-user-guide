@@ -2,7 +2,7 @@
 
 A *development environment* is a place in AWS Cloud9 where you store your project's files and where you run the tools to develop your applications\.
 
-AWS Cloud9 provides two types of development environments: *EC2 environments* and *SSH environments*\. To understand the key similarities and differences between these development environments, see [EC2 Environments compared with SSH Environments in AWS Cloud9](ec2-env-versus-ssh-env.md)\.
+AWS Cloud9 provides two types of development environments: *EC2 environments* and *SSH environments*\. To understand the key similarities and differences between these development environments, see [EC2 environments compared with SSH environments in AWS Cloud9](ec2-env-versus-ssh-env.md)\.
 
 Learn how to work with an environment in AWS Cloud9 by reading one or more of these topics\.
 

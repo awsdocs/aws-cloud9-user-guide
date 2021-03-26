@@ -1,4 +1,4 @@
-# AWS Cloud9 SSH Development Environment host requirements<a name="ssh-settings"></a>
+# SSH environment host requirements<a name="ssh-settings"></a>
 
 To instruct AWS Cloud9 to connect an environment to an existing cloud compute instance or your own server, you create an *AWS Cloud9 SSH development environment*\. However, before you create an SSH environment, you should consider the benefits of creating EC2 environments instead\. 
 
@@ -6,6 +6,9 @@ When you create an EC2 environment, AWS Cloud9 creates a new environment, reques
 +  **Automatic instance launching\.** When you create an EC2 environment, AWS Cloud9 requests Amazon EC2 to create a new instance at the same time\. In an SSH environment, you must provide an existing cloud compute instance \(for example, an Amazon EC2 instance\) or your own server yourself\.
 +  **Automatic instance shutdown\.** By default, AWS Cloud9 automatically shuts down the EC2 environment 30 minutes after all web browser instances that are connected to the IDE for the EC2 environment are closed\. You can change this behavior at any time\. This helps reduce the possibility of having additional charges applied to your AWS account for using Amazon EC2\.
 +  **Automatic instance cleanup\.** When you delete an EC2 environment, the connected Amazon EC2 instance is automatically deleted\. This also helps reduce the possibility of additional charges applied to your AWS account for using Amazon EC2\. In an SSH environment that's connected to a cloud compute instance, you must remember to delete the instance yourself\.
++  **AWS managed temporary credentials\.** For an EC2 environment, you can easily turn on or off all AWS actions for all AWS resources in the caller's AWS account \(with some restrictions\)\. You can don't need to configure instance profiles for your environment's Amazon EC2 instance or store permanent AWS access credentials of an AWS entity \(for example, an IAM user\)\.
+
+  For more information, see [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
 
 If you want to create an EC2 environment instead, see [Creating an EC2 Environment](create-environment-main.md)\. Otherwise, continue reading for information about creating SSH environments\.
 

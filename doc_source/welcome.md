@@ -16,7 +16,7 @@ From the diagram \(starting at the bottom\), you use the **AWS Cloud9 IDE**, run
 
 ![\[Diagram that provides an overview of how AWS Cloud9 works\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)
 
-### AWS Cloud9 environments<a name="w36aab7c13b9"></a>
+### AWS Cloud9 environments<a name="w37aab7c13b9"></a>
 
 An *AWS Cloud9 environment* is a place where you store your project's files and where you run the tools to develop your applications\.
 
@@ -33,7 +33,7 @@ Behind the scenes, there are a couple of ways you can connect your environments 
 + You can instruct AWS Cloud9 to create an Amazon EC2 instance, and then connect the environment to that newly created EC2 instance\. This type of setup is called an *EC2 environment*\.
 + You can instruct AWS Cloud9 to connect an environment to an existing cloud compute instance or to your own server\. This type of setup is called an *SSH environment*\.
 
-EC2 environments and SSH environments have some similarities and some differences\. If you're new to AWS Cloud9, we recommend that you use an EC2 environment because AWS Cloud9 takes care of much of the configuration for you\. As you learn more about AWS Cloud9, and want to understand these similarities and differences better, see [EC2 Environments compared with SSH Environments in AWS Cloud9](ec2-env-versus-ssh-env.md)\.
+EC2 environments and SSH environments have some similarities and some differences\. If you're new to AWS Cloud9, we recommend that you use an EC2 environment because AWS Cloud9 takes care of much of the configuration for you\. As you learn more about AWS Cloud9, and want to understand these similarities and differences better, see [EC2 environments compared with SSH environments in AWS Cloud9](ec2-env-versus-ssh-env.md)\.
 
 For more information about how AWS Cloud9 works, see these related [videos](additional-info.md#related-videos) and [webpages](additional-info.md#related-web-pages)\.
 
