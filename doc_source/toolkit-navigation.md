@@ -45,7 +45,7 @@ The table below describes the options available on the **Toolkit** menu\.
 | Menu option | Description | 
 | --- | --- | 
 |  **Refresh AWS Explorer**  |  Choose this option to refresh **AWS Explorer** to show any AWS services that have been modified since you last opened the window\.  | 
-|  **Connect to AWS**  |  Connects AWS Toolkit to an AWS account\.   | 
+|  **Connect to AWS**  |  Connects AWS Toolkit to an AWS account using credtials stored in a *profile*\. For more information, see [Managing access credentials for AWS Toolkit](toolkit-welcome.md#credentials-for-toolkit)\.  | 
 |  **Show region in the Explorer**  |  Displays an AWS Region in the **AWS Explorer** window\. For more information, see [Using AWS Explorer to work with services and resources in multiple AWS Regions](#working-with-aws-explorer)\.  | 
 |  **Hide region from the Explorer**  |  Hides an AWS Region in the **AWS Explorer** window\. For more information, see [Using AWS Explorer to work with services and resources in multiple AWS Regions](#working-with-aws-explorer)  | 
 |  **Create new SAM Application**  |  Generates a set of code files for a new AWS serverless application\. For more information on creating and deploying SAM applications, see [Working with AWS serverless applications using the AWS Toolkit](serverless-apps-toolkit.md)\.  | 

@@ -4,12 +4,12 @@ This sample enables you to set up an AWS Cloud9 development environment to inter
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and CodeCommit\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [AWS CodeCommit Pricing](https://aws.amazon.com/codecommit/pricing/)\.
 +  [Prerequisites](#sample-codecommit-prereqs) 
-+  [Step 1: Set Up Your IAM Group with Required Access Permissions](#sample-codecommit-permissions) 
-+  [Step 2: Create a Repository in AWS CodeCommit](#sample-codecommit-create-repo) 
-+  [Step 3: Connect Your Environment to the Remote Repository](#sample-codecommit-connect-repo) 
-+  [Step 4: Clone the Remote Repository into Your Environment](#sample-codecommit-clone-repo) 
-+  [Step 5: Add Files to the Repository](#sample-codecommit-add-files) 
-+  [Step 6: Clean Up](#sample-codecommit-clean-up) 
++  [Step 1: Set up your IAM group with required access permissions](#sample-codecommit-permissions) 
++  [Step 2: Create a repository in AWS CodeCommit](#sample-codecommit-create-repo) 
++  [Step 3: Connect your environment to the remote repository](#sample-codecommit-connect-repo) 
++  [Step 4: Clone the remote repository into your environment](#sample-codecommit-clone-repo) 
++  [Step 5: Add files to the repository](#sample-codecommit-add-files) 
++  [Step 6: Clean up](#sample-codecommit-clean-up) 
 
 ## Prerequisites<a name="sample-codecommit-prereqs"></a>
 
@@ -101,7 +101,7 @@ In the preceding command, replace `us-east-2` with the ID of the AWS Region to c
 
 If you choose to use a different repository name, substitute it throughout this sample\.
 
-## Step 3: Connect your Environment to the remote repository<a name="sample-codecommit-connect-repo"></a>
+## Step 3: Connect your environment to the remote repository<a name="sample-codecommit-connect-repo"></a>
 
 In this step, you use the AWS Cloud9 IDE to connect to the CodeCommit repository you created or identified in the previous step\.
 

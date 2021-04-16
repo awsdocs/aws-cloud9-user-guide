@@ -33,6 +33,8 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Unable to connect to EC2 environment because VPC's IP addresses are used by Docker](#docker-bridge)
 + [Error when running AWS Toolkit: "Your environment is running out of inodes, please increase 'fs\.inotify\.max\_user\_watches' limit\."](#toolkit-iodes-)
 + [Notice: Failed to install dependencies for collaboration support](#proxy-failed-dependencies)
++ [Error with `gdb` when debugging C\+\+ projects](#troubleshooting-debugger-cplusplus)
++ [Error running SAM applications locally in AWS Toolkit because the AWS Cloud9 environment doesn't have enough disk space](#troubleshooting-dockerimage-toolkit)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -566,5 +568,78 @@ export https_proxy=https://172.31.26.80:3129
 
 **Note**  
 If these environment variables are present in `/etc/profile` but not `~/.bashrc`, AWS Cloud9 cannot use them as `/etc/profile` is intended only for login shells\. Because `/etc/profile` also loads `~/.bashrc`, putting the configuration in `~/.bashrc` will ensure the environment variables are available to both login shells and AWS Cloud9\.
+
+\([back to top](#troubleshooting)\)
+
+## Error with `gdb` when debugging C\+\+ projects<a name="troubleshooting-debugger-cplusplus"></a>
+
+**Issue:** Error reported for `gdb` debugger when trying to debug C\+\+ project in the IDE\.
+
+**Possible causes:** If your AWS Cloud9 environment uses certain EC2 instance types \(such as `t3.small` or `m5.large`, for example\), a debug error may occur when you try to run and debug a C\+\+ project using the IDE's built\-in runner\. This error can happen because the version of the `gdb` \(the GNU Project Debugger\) that's pre\-installed for your environment doesn't work on certain processor platforms\. You may see the following error code:
+
+```
+GDB server terminated with code 1
+```
+
+**Recommended solutions:** The problem with `gdb` not supporting certain processor platforms was fixed from version *3\.0* onwards\. So uninstall the older version of the debugger and upgrade to a newer version of `gdb`: 
+
+1. Remove the existing version of the debugger by running the following command in the AWS Cloud9 terminal:
+
+   ```
+   sudo yum -y remove gdb
+   ```
+
+1. Retrieve the archive for `gdb`, unpack it, and then navigate to the directory that contains the extracted files by running the following commands:
+
+   ```
+   wget "http://ftp.gnu.org/gnu/gdb/gdb-8.3.tar.gz"
+   tar xzf gdb-8.3.tar.gz
+   cd gdb-8.3
+   ```
+
+1. Now build the debugger by running the following command \(paste the text below as a single block and press **Return** to run `make`\):
+
+   ```
+   ./configure --prefix=/usr \
+               --with-system-readline \
+               --with-python=/usr/bin/python3 &&
+   make
+   ```
+
+1. Now install the debugger:
+
+   ```
+   sudo make -C gdb install
+   ```
+
+1. Finally, confirm that the updated version of the debugger is installed:
+
+   ```
+    gdb --version
+   ```
+
+\([back to top](#troubleshooting)\)
+
+## Error running SAM applications locally in AWS Toolkit because the AWS Cloud9 environment doesn't have enough disk space<a name="troubleshooting-dockerimage-toolkit"></a>
+
+**Issue:** Error occurs when you use the AWS Toolkit to run AWS SAM CLI commands for applications defined by SAM templates\.
+
+**Possible causes:** When you run and debug serverless applications locally with the AWS Toolkit, AWS SAM uses Docker images that provide a runtime environment and build tools that emulate the Lambda environment that you're planning to deploy to\.
+
+But if your environment's lacks enough disk space, the Docker image providing these features can't build and your local SAM application fails to run\. If this occurs, you may receive an error in the **Output** tab similar to the following :
+
+```
+Error: Could not find amazon/aws-sam-cli-emulation-image-python3.7:rapid-1.18.1 image locally and failed to pull it from docker.
+```
+
+This error relates to a SAM application that's built using the Python runtime\. You may receive a slightly different message, depending on the runtime that you chose for your application\.
+
+**Recommended solutions:** Free up disk space in your environment so the Docker image can build\. Remove any unused Docker images by running the following command in the IDE's terminal:
+
+```
+docker image prune -a
+```
+
+If you're repeatedly having issues with SAM CLI commands because of disk\-space restrictions, consider switching to a development environment uses a different [instance type](create-environment-main.md#create-environment-console)\. 
 
 \([back to top](#troubleshooting)\)

@@ -7,13 +7,14 @@ Creating this sample might result in charges to your AWS account\. These include
 **Topics**
 + [Prerequisites](#sample-dotnetcore-prereqs)
 + [Step 1: Install required tools](#sample-dotnetcore-setup)
-+ [Step 2: Create a \.NET Core console application project](#sample-dotnetcore-app)
-+ [Step 3: Add code](#sample-dotnetcore-code)
-+ [Step 4: Build and run the code](#sample-dotnetcore-run)
-+ [Step 5: Create and set up a \.NET Core console application project that uses the AWS SDK for \.NET](#sample-dotnetcore-sdk)
-+ [Step 6: Add AWS SDK code](#sample-dotnetcore-sdk-code)
-+ [Step 7: Build and run the AWS SDK code](#sample-dotnetcore-sdk-run)
-+ [Step 8: Clean up](#sample-dotnetcore-clean-up)
++ [Step 2 \(Optional\): Install the \.NET CLI extension for Lambda functions](#sample-dotnetcore-lambda)
++ [Step 3: Create a \.NET Core console application project](#sample-dotnetcore-app)
++ [Step 4: Add code](#sample-dotnetcore-code)
++ [Step 5: Build and run the code](#sample-dotnetcore-run)
++ [Step 6: Create and set up a \.NET Core console application project that uses the AWS SDK for \.NET](#sample-dotnetcore-sdk)
++ [Step 7: Add AWS SDK code](#sample-dotnetcore-sdk-code)
++ [Step 8: Build and run the AWS SDK code](#sample-dotnetcore-sdk-run)
++ [Step 9: Clean up](#sample-dotnetcore-clean-up)
 
 ## Prerequisites<a name="sample-dotnetcore-prereqs"></a>
 
@@ -31,7 +32,7 @@ In this step, you install the \.NET Core SDK into your environment, which is req
    dotnet --version
    ```
 
-   If the \.NET Command Line Tools version is displayed, and the version is 2\.0 or greater, skip ahead to [Step 2: Create a \.NET Core console application project](#sample-dotnetcore-app)\. If the version is less than 2\.0, or if an error such as `bash: dotnet: command not found` is displayed, continue on to install the \.NET Core SDK\.
+   If the \.NET Command Line Tools version is displayed, and the version is 2\.0 or greater, skip ahead to [Step 3: Create a \.NET Core console application project](#sample-dotnetcore-app)\. If the version is less than 2\.0, or if an error such as `bash: dotnet: command not found` is displayed, continue on to install the \.NET Core SDK\.
 
 1. For Amazon Linux, in a terminal session in the AWS Cloud9 IDE, run the following commands to help ensure the latest security updates and bug fixes are installed, and to install a `libunwind` package that the \.NET Core SDK needs\. \(To start a new terminal session, on the menu bar, choose **Window, New Terminal**\.\)
 
@@ -114,28 +115,41 @@ In this step, you install the \.NET Core SDK into your environment, which is req
    rm dotnet-install.sh
    ```
 
-## Step 2: Create a \.NET Core console application project<a name="sample-dotnetcore-app"></a>
+## Step 2 \(Optional\): Install the \.NET CLI extension for Lambda functions<a name="sample-dotnetcore-lambda"></a>
+
+Although not required for this tutorial, you can deploy AWS Lambda functions and AWS Serverless Application Model applications using the dotnet CLI if you also install the `Amazon.Lambda.Tools` package\. 
+
+1. To install the package, run the following command:
+
+   ```
+   dotnet tool install -g Amazon.Lambda.Tools
+   ```
+
+1. Now set the `PATH` and `DOTNET_ROOT` environment variable to point to the installed Lambda tool\. In the `.bashrc` file, find the `export PATH` section and edit it so that it appears similar to the following \(see Step 1 for details on editing this file\):
+
+   ```
+   export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.dotnet:$HOME/.dotnet/tools
+   export DOTNET_ROOT=$HOME/.dotnet
+   ```
+
+## Step 3: Create a \.NET Core console application project<a name="sample-dotnetcore-app"></a>
 
 In this step, you use \.NET Core to create a project named `hello`\. This project contains all of the files that \.NET Core needs to run a simple application from the terminal in the IDE\. The application's code is written in C\#\.
 
-1. In the terminal, run the following commands to create a directory for the project, and then switch to that new directory\.
+Create a \.NET Core console application project\. To do this, run the \.NET Core CLI with the ** `new` ** command, specifying the console application project template type and the programming language to use \(in this sample, C\#\)\.
 
-   ```
-   mkdir hello
-   cd hello
-   ```
+ The `-n` option indicates that the project is outputted to a new directory, `hello`\. We then navigate to that directory\. 
 
-1. Create a \.NET Core console application project\. To do this, run the \.NET Core CLI with the ** `new` ** command, specifying the console application project template type and the programming language to use \(in this sample, C\#\)\.
+```
+dotnet new console -lang C# -n hello
+cd hello
+```
 
-   ```
-   dotnet new console -lang C#
-   ```
+The preceding command adds a subdirectory named `obj` with several files, and some additional standalone files, to the `hello` directory\. You should note the following two key files:
++ The `hello/hello.csproj` file contains information about the console application project\.
++ The `hello/Program.cs` file contains the application's code to run\.
 
-   The preceding command adds a subdirectory named `obj` with several files, and some additional standalone files, to the `hello` directory\. You should note the following two key files:
-   + The `hello/hello.csproj` file contains information about the console application project\.
-   + The `hello/Program.cs` file contains the application's code to run\.
-
-## Step 3: Add code<a name="sample-dotnetcore-code"></a>
+## Step 4: Add code<a name="sample-dotnetcore-code"></a>
 
 In this step, you add some code to the application\.
 
@@ -152,20 +166,26 @@ namespace hello
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("Hello, World!");
+     if (args.Length < 2) {
+       Console.WriteLine("Please provide 2 numbers");
+       return;
+     }
 
-      Console.WriteLine("The sum of 2 and 3 is 5.");
+     Console.WriteLine("Hello, World!");
 
-      int sum = Int32.Parse(args[0]) + Int32.Parse(args[1]);
+     Console.WriteLine("The sum of 2 and 3 is 5.");
 
-      Console.WriteLine("The sum of {0} and {1} is {2}.",
-        args[0], args[1], sum.ToString());
+     int sum = Int32.Parse(args[0]) + Int32.Parse(args[1]);
+
+     Console.WriteLine("The sum of {0} and {1} is {2}.",
+     args[0], args[1], sum);
+
     }
   }
 }
 ```
 
-## Step 4: Build and run the code<a name="sample-dotnetcore-run"></a>
+## Step 5: Build and run the code<a name="sample-dotnetcore-run"></a>
 
 In this step, you build the project and its dependencies into a set of binary files, including a runnable application file\. Then you run the application\.
 
@@ -241,7 +261,7 @@ The folder name, `netcoreapp3.1`, reflects the version of the \.NET Core SDK use
       The sum of 5 and 9 is 14.
       ```
 
-## Step 5: Create and set up a \.NET Core console application project that uses the AWS SDK for \.NET<a name="sample-dotnetcore-sdk"></a>
+## Step 6: Create and set up a \.NET Core console application project that uses the AWS SDK for \.NET<a name="sample-dotnetcore-sdk"></a>
 
 You can enhance this sample to use the AWS SDK for \.NET to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
@@ -249,18 +269,13 @@ In this new project, you add a reference to the AWS SDK for \.NET\. The AWS SDK 
 
 ### To create the project<a name="sample-dotnetcore-sdk-create"></a>
 
-1. In the terminal, run the following commands to change to the root directory of the environment, create a directory for a project named `s3`, and then switch to that new directory\.
+1. Create a \.NET Core console application project\. To do this, run the \.NET Core CLI with the ** `new` ** command, specifying the console application project template type and the programming language to use\. 
+
+   The `-n` option indicates that the project is outputted to a new directory, `s3`\. We then navigate to that directory\.
 
    ```
-   cd ..
-   mkdir s3
+   dotnet new console -lang C# -n s3
    cd s3
-   ```
-
-1. Create a \.NET Core console application project\. To do this, run the \.NET Core CLI with the ** `new` ** command, specifying the console application project template type and the programming language to use\.
-
-   ```
-   dotnet new console -lang C#
    ```
 
 1. Add a project reference to the Amazon S3 package in the AWS SDK for \.NET\. To do this, run the \.NET Core CLI with the ** `add package` ** command, specifying the name of the Amazon S3 package in NuGet\. \(NuGet defines how packages for \.NET are created, hosted, and consumed, and provides the tools for each of those roles\.\)
@@ -281,7 +296,7 @@ To store your credentials within the environment, follow the instructions in [Ca
 
 For additional information, see [Configuring AWS Credentials](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/net-dg-config-creds.html) in the *AWS SDK for \.NET Developer Guide*\.
 
-## Step 6: Add AWS SDK code<a name="sample-dotnetcore-sdk-code"></a>
+## Step 7: Add AWS SDK code<a name="sample-dotnetcore-sdk-code"></a>
 
 In this step, you add code to interact with Amazon S3 to create a bucket, delete the bucket you just created, and then list your available buckets\.
 
@@ -294,100 +309,88 @@ using Amazon.S3.Model;
 using Amazon.S3.Util;
 using System;
 using System.Threading.Tasks;
-
+     
 namespace s3
 {
   class Program
   {
-    private static RegionEndpoint bucketRegion;
-    private static IAmazonS3 s3Client;
-
-    static void Main(string[] args)
-    {
-      if (args.Length < 2) {
-        Console.Write("Usage: <the bucket name> <the AWS Region to use>\n" +
-          "Example: my-test-bucket us-east-2\n");
-        return;
-      }
-
-      if (args[1] == "us-east-2") {
-        bucketRegion = RegionEndpoint.USEast2;
-      } else {
-        Console.WriteLine("Cannot continue. The only supported AWS Region ID is " +
-          "'us-east-2'.");
-        return;
-      }
+   async static Task Main(string[] args)
+   {
+    if (args.Length < 2) {
+      Console.WriteLine("Usage: <the bucket name> <the AWS Region to use>");
+      Console.WriteLine("Example: my-test-bucket us-east-2");
+      return;
+    }
+     
+    if (args[1] != "us-east-2") {
+      Console.WriteLine("Cannot continue. The only supported AWS Region ID is " +
+      "'us-east-2'.");
+       return;
+     }
+         
+      var bucketRegion = RegionEndpoint.USEast2;
       // Note: You could add more valid AWS Regions above as needed.
-
-      s3Client = new AmazonS3Client(bucketRegion);
+     
+      using (var s3Client = new AmazonS3Client(bucketRegion)) {
       var bucketName = args[0];
-
+        
       // Create the bucket.
       try
       {
-        if (DoesBucketExist(bucketName))
-        {
-          Console.WriteLine("Cannot continue. Cannot create bucket. \n" +
-            "A bucket named '{0}' already exists.", bucketName);
-          return;
-        } else {
-          Console.WriteLine("\nCreating the bucket named '{0}'...", bucketName);
-          s3Client.PutBucketAsync(bucketName).Wait();
-        }
-      }
-      catch (AmazonS3Exception e)
-      {
+       if (await AmazonS3Util.DoesS3BucketExistV2Async(s3Client, bucketName))
+       {
+         Console.WriteLine("Cannot continue. Cannot create bucket. \n" +
+         "A bucket named '{0}' already exists.", bucketName);
+         return;
+       } else {
+         Console.WriteLine("\nCreating the bucket named '{0}'...", bucketName);
+         await s3Client.PutBucketAsync(bucketName);
+         }
+       }
+       catch (AmazonS3Exception e)
+       {
         Console.WriteLine("Cannot continue. {0}", e.Message);
-      }
-      catch (Exception e)
-      {
+       }
+       catch (Exception e)
+       {
         Console.WriteLine("Cannot continue. {0}", e.Message);
-      }
-
-      // Confirm that the bucket was created.
-      if (DoesBucketExist(bucketName))
-      {
-        Console.WriteLine("Created the bucket named '{0}'.", bucketName);
-      } else {
-        Console.WriteLine("Did not create the bucket named '{0}'.", bucketName);
-      }
-
-      // Delete the bucket.
-      Console.WriteLine("\nDeleting the bucket named '{0}'...", bucketName);
-      s3Client.DeleteBucketAsync(bucketName).Wait();
-
-      // Confirm that the bucket was deleted.
-      if (DoesBucketExist(bucketName))
-      {
-        Console.WriteLine("Did not delete the bucket named '{0}'.", bucketName);
-      } else {
-        Console.WriteLine("Deleted the bucket named '{0}'.", bucketName);
-      };
-
-      // List current buckets.
-      Console.WriteLine("\nMy buckets now are:");
-      var response = s3Client.ListBucketsAsync().Result;
-
-      foreach (var bucket in response.Buckets)
-      {
-        Console.WriteLine(bucket.BucketName);
-      }
-    }
-
-    static bool DoesBucketExist(string bucketName)
-    {
-      if ((AmazonS3Util.DoesS3BucketExistAsync(s3Client, bucketName).Result))
-      {
-        return true;
-      } else {
-        return false;
+       }
+        
+       // Confirm that the bucket was created.
+       if (await AmazonS3Util.DoesS3BucketExistV2Async(s3Client, bucketName))
+       {
+          Console.WriteLine("Created the bucket named '{0}'.", bucketName);
+       } else {
+         Console.WriteLine("Did not create the bucket named '{0}'.", bucketName);
+       }
+        
+       // Delete the bucket.
+       Console.WriteLine("\nDeleting the bucket named '{0}'...", bucketName);
+       await s3Client.DeleteBucketAsync(bucketName);
+        
+       // Confirm that the bucket was deleted.
+       if (await AmazonS3Util.DoesS3BucketExistV2Async(s3Client, bucketName))
+       {
+          Console.WriteLine("Did not delete the bucket named '{0}'.", bucketName);
+       } else {
+         Console.WriteLine("Deleted the bucket named '{0}'.", bucketName);
+       };
+        
+        // List current buckets.
+       Console.WriteLine("\nMy buckets now are:");
+       var response = await s3Client.ListBucketsAsync();
+        
+       foreach (var bucket in response.Buckets)
+       {
+       Console.WriteLine(bucket.BucketName);
+       }
       }
     }
   }
 }
 ```
 
-## Step 7: Build and run the AWS SDK code<a name="sample-dotnetcore-sdk-run"></a>
+## Step 8: Build and run the AWS SDK code<a name="sample-dotnetcore-sdk-run"></a>
 
 In this step, you build the project and its dependencies into a set of binary files, including a runnable application file\. Then you run the application\.
 
@@ -417,6 +420,6 @@ In this step, you build the project and its dependencies into a set of binary fi
       My buckets now are:
       ```
 
-## Step 8: Clean up<a name="sample-dotnetcore-clean-up"></a>
+## Step 9: Clean up<a name="sample-dotnetcore-clean-up"></a>
 
 To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

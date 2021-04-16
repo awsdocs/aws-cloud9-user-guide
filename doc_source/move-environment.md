@@ -25,6 +25,8 @@ Finally, you can encrypt Amazon EBS resources to ensure the security of both dat
 
 Before you start the move process, note the following conditions:
 + You can't move an environment to an Amazon EC2 instance of the same type\. When you move, you must choose a different Amazon EC2 instance type for the new instance\.
+**Important**  
+If you move your environment to another Amazon EC2 instance type, that instance type must also be supported by AWS Cloud9 in the current AWS Region\. To check the instance types that are available per Region, go to the **Configure settings** page that's displayed when [creating an EC2 environment with the console](create-environment-main.md#create-environment-console)\. Your choice in the **Instance type** section is determined by the AWS Region that's selected in the upper right of the console\. 
 + You must stop the Amazon EC2 instance that is associated with an environment before you can change the instance type\. While the instance is stopped, you and any members can't use the environment that is associated with the stopped instance\.
 + AWS moves the instance to new hardware, however, the instance's ID doesn't change\.
 + If the instance is running in an Amazon VPC and has a public IPv4 address, AWS releases the address and give it a new public IPv4 address\. The instance retains its private IPv4 addresses, any Elastic IP addresses, and any IPv6 addresses\.
@@ -32,7 +34,7 @@ Before you start the move process, note the following conditions:
 
 **To move an environment**
 
-1. \(Optional\) If the new instance type requires drivers thataren't installed on the existing instance, you must connect to your instance and install those drivers first\. For more information, see [Compatibility for resizing instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html#resize-limitations) in the *Amazon EC2 User Guide for Linux Instances*\.
+1. \(Optional\) If the new instance type requires drivers that aren't installed on the existing instance, you must connect to your instance and install those drivers first\. For more information, see [Compatibility for resizing instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html#resize-limitations) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Close all web browser tabs that are currently displaying the environment\.
 **Important**  

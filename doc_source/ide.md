@@ -17,7 +17,7 @@ Learn how to work with the AWS Cloud9 IDE by reading one or more of these topics
 + [Working with Language Projects](projects.md)
 + [Working with Custom Environment Variables](env-vars.md)
 + [Working with Project Settings](settings-project.md)
-+ [Working with User Settings](settings-user.md)
++ [Working with user settings](settings-user.md)
 + [Working with AWS Project and User Settings](settings-aws.md)
 + [Working with Keybindings](settings-keybindings.md)
 + [Working with themes](settings-theme.md)

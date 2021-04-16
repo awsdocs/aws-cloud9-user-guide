@@ -18,10 +18,10 @@ Before you use this tutorial, be sure to meet the following requirements\.
   When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
 ## Steps<a name="tutorial-ruby-steps"></a>
-+ [Step 1: Install Required Tools](tutorial-ruby-install.md)
-+ [Step 2: Add Code](tutorial-ruby-code.md)
-+ [Step 3: Run the Code](tutorial-ruby-run.md)
-+ [Step 4: Install and Configure the AWS SDK for Ruby](tutorial-ruby-sdk.md)
-+ [Step 5: Add AWS SDK Code](tutorial-ruby-sdk-code.md)
-+ [Step 6: Run the AWS SDK Code](tutorial-ruby-sdk-run.md)
-+ [Step 7: Clean Up](tutorial-ruby-clean-up.md)
++ [Step 1: Install required tools](tutorial-ruby-install.md)
++ [Step 2: Add code](tutorial-ruby-code.md)
++ [Step 3: Run the code](tutorial-ruby-run.md)
++ [Step 4: Install and configure the AWS SDK for Ruby](tutorial-ruby-sdk.md)
++ [Step 5: Add AWS SDK code](tutorial-ruby-sdk-code.md)
++ [Step 6: Run the AWS SDK code](tutorial-ruby-sdk-run.md)
++ [Step 7: Clean up](tutorial-ruby-clean-up.md)

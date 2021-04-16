@@ -96,7 +96,7 @@ For example, you might use the IDE to search for references and definitions from
 
 ### Create a TypeScript Language Project<a name="projects-create-typescript"></a>
 
-1. Ensure you have TypeScript installed in the environment\. For more information, see [Step 1: Install Required Tools](sample-typescript.md#sample-typescript-install) in the [TypeScript Sample for AWS Cloud9](sample-typescript.md)\.
+1. Ensure you have TypeScript installed in the environment\. For more information, see [Step 1: Install required tools](sample-typescript.md#sample-typescript-install) in the [TypeScript sample for AWS Cloud9](sample-typescript.md)\.
 
 1. From a terminal session in the IDE for the environment, switch to the directory where you want to create the project\. If the directory doesn't exist, create it and then switch to it\. For example, the following commands create a directory named `my-demo-project` at the root of the environment \(in `~/environment`\), and then switch to that directory\.
 

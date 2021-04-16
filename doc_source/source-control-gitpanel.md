@@ -11,7 +11,7 @@ Currently, Git panel is available by default only in new AWS Cloud9 environments
 
 To access and interact with the interface, choose **Window**, **Source Control**\. Alternatively, you can get to the Source Control by right\-clicking anywhere in the IDE's side panels and choosing **Source Control**\. Then, after this, choose the Git icon that's displayed in the IDE interface\.
 
-The key combination **Crl\-Shift\-G** can also be used to toggle the display of Git panel\.
+The key combination **Ctrl\-Shift\-G** can also be used to toggle the display of Git panel\.
 
 ![\[Displaying the Git panel interface\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/select-git-panel.png)
 

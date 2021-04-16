@@ -1,4 +1,4 @@
-# AWS CDK Sample for AWS Cloud9<a name="sample-cdk"></a>
+# AWS CDK sample for AWS Cloud9<a name="sample-cdk"></a>
 
 This sample shows you how to work with the AWS Cloud Development Kit \(AWS CDK\) in an AWS Cloud9 development environment\. The AWS CDK is a set of software tools and libraries that developers can use to model AWS infrastructure components as code\.
 
@@ -8,10 +8,10 @@ Creating this sample might result in charges to your AWS account\. These include
 
 **Topics**
 + [Prerequisites](#sample-cdk-prereqs)
-+ [Step 1: Install Required Tools](#sample-cdk-install)
-+ [Step 2: Add Code](#sample-cdk-code)
-+ [Step 3: Run the Code](#sample-cdk-run)
-+ [Step 4: Clean Up](#sample-cdk-clean-up)
++ [Step 1: Install required tools](#sample-cdk-install)
++ [Step 2: Add code](#sample-cdk-code)
++ [Step 3: Run the code](#sample-cdk-run)
++ [Step 4: Clean up](#sample-cdk-clean-up)
 
 ## Prerequisites<a name="sample-cdk-prereqs"></a>
 
@@ -19,7 +19,7 @@ Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
-## Step 1: Install Required Tools<a name="sample-cdk-install"></a>
+## Step 1: Install required tools<a name="sample-cdk-install"></a>
 
 In this step, you install all of the tools in your environment that the AWS CDK needs to run a sample that is written in the TypeScript programming language\.
 
@@ -127,7 +127,7 @@ The preceding command sets Node\.js 10\.3\.0 as the default version of Node\.js\
    cdk --version
    ```
 
-   If the AWS CDK is installed, the output contains the AWS CDK version and build numbers\. Skip ahead to [Step 2: Add Code](#sample-cdk-code)\.
+   If the AWS CDK is installed, the output contains the AWS CDK version and build numbers\. Skip ahead to [Step 2: Add code](#sample-cdk-code)\.
 
 1. Install the AWS CDK by running the ** `npm` ** command along with the `install` action, the name of the AWS CDK package to install, and the `-g` option to install the package globally in the environment\.
 
@@ -143,7 +143,7 @@ The preceding command sets Node\.js 10\.3\.0 as the default version of Node\.js\
 
    If successful, the AWS CDK version and build numbers are displayed\.
 
-## Step 2: Add Code<a name="sample-cdk-code"></a>
+## Step 2: Add code<a name="sample-cdk-code"></a>
 
 In this step, you create a sample TypeScript project that contains all of the source code you need for the AWS CDK to programmatically deploy an AWS CloudFormation stack\. This stack creates an Amazon SNS topic and an Amazon SQS queue in your AWS account and then subscribes the queue to the topic\.
 
@@ -219,7 +219,7 @@ In this step, you create a sample TypeScript project that contains all of the so
 
    The preceding command runs the TypeScript compiler, which adds supporting `bin/hello-cdk.d.ts` and `lib/hello-cdk-stack.d.ts` files\. The compiler also transpiles the `hello-cdk.ts` and `hello-cdk-stack.ts` files into `hello-cdk.js` and `hello-cdk-stack.js` files\.
 
-## Step 3: Run the Code<a name="sample-cdk-run"></a>
+## Step 3: Run the code<a name="sample-cdk-run"></a>
 
 In this step, you instruct the AWS CDK to create a AWS CloudFormation stack template based on the code in the `bin/hello-cdk.js` file\. You then instruct the AWS CDK to deploy the stack, which creates the Amazon SNS topic and Amazon SQS queue and then subscribes the queue to the topic\. You then confirm that the topic and queue were successfully deployed by sending a message from the topic to the queue\.
 
@@ -247,7 +247,7 @@ In this step, you instruct the AWS CDK to create a AWS CloudFormation stack temp
 **Note**  
 If the output displays a message that the stack does not define an environment and that AWS credentials could not be obtained from standard locations or no region was configured, make sure that your AWS credentials are set correctly in the IDE, and then run the ** `cdk deploy` ** command again\. For more information, see [Calling AWS services from an environment in AWS Cloud9](credentials.md)\.
 
-1. To confirm that the Amazon SNS topic and Amazon SQS queue were successfully deployed, send a message to the topic, and then check the queue for the received message\. To do this, you can use a tool such as the AWS Command Line Interface \(AWS CLI\) or the aws\-shell\. For more information about these tools, see the [AWS Command Line Interface and aws\-shell Sample for AWS Cloud9](sample-aws-cli.md)\.
+1. To confirm that the Amazon SNS topic and Amazon SQS queue were successfully deployed, send a message to the topic, and then check the queue for the received message\. To do this, you can use a tool such as the AWS Command Line Interface \(AWS CLI\) or the aws\-shell\. For more information about these tools, see the [AWS Command Line Interface and aws\-shell sample for AWS Cloud9](sample-aws-cli.md)\.
 
    For example, to send a message to the topic, with the terminal session still open in the IDE, use the AWS CLI to run the Amazon SNS** `publish` ** command, supplying the message's subject and body, the AWS Region for the topic, and the topic's Amazon Resource Name \(ARN\)\.
 
@@ -277,11 +277,11 @@ If the output displays a message that the stack does not define an environment a
 
    If successful, the output of the ** `receive-message` ** command displays information about the message that was received\.
 
-## Step 4: Clean Up<a name="sample-cdk-clean-up"></a>
+## Step 4: Clean up<a name="sample-cdk-clean-up"></a>
 
 To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the AWS CloudFormation stack\. This deletes the the Amazon SNS topic and Amazon SQS queue\. You should also delete the environment\.
 
-### Step 4\.1: Delete the Stack<a name="step-4-1-delete-the-stack"></a>
+### Step 4\.1: Delete the stack<a name="step-4-1-delete-the-stack"></a>
 
 With the terminal session still open in the IDE, from the project's root directory, run the ** `cdk` ** command with the ** `destroy` ** action and the stack's name\.
 
@@ -293,6 +293,6 @@ When prompted to delete the stack, type `y`, and then press `Enter`\.
 
 If successful, the output displays that the `HelloCdkStack` stack was deleted without errors\.
 
-### Step 4\.2: Delete the Environment<a name="step-4-2-delete-the-envtitle"></a>
+### Step 4\.2: Delete the environment<a name="step-4-2-delete-the-envtitle"></a>
 
 To delete the environment, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

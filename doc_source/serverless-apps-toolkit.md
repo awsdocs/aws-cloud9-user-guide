@@ -78,6 +78,9 @@ In this procedure, you'll use the example application that was created in [Creat
    For more information about these and other entries in the `launch.json` file, see [Configuration options for debugging serverless applications](sam-debug-config-ref.md)\.
 
 1. If you're satisfied with your debug configuration, save `launch.json`\. Then choose the green "play" button beside **RUN** to start debugging\.
+**Note**  
+If your SAM application fails to run, check the **Output** window to see if the error is caused by a Docker image not building\. You may need to free up disk space in your environment\.   
+For more information, see [Error running SAM applications locally in AWS Toolkit because the AWS Cloud9 environment doesn't have enough disk space](troubleshooting.md#troubleshooting-dockerimage-toolkit)\. 
 
    When the debugging sessions starts, the **DEBUG CONSOLE** panel shows debugging output and displays any values returned by the Lambda function\. \(When debugging SAM applications, the **AWS Toolkit** is selected as the **Output** channel in the **Output** panel\.\)<a name="docker-problem"></a>
 **Note**  
@@ -133,7 +136,7 @@ The Lambda handlers that are detected by context\-aware links depend on the lang
 **Note**  
 If you see Docker mentioned in error messages, see this [note](#docker-problem)\.
 
-### Running and debugging local Amazon API Gateway resources<a name="w37aac25c23b9c21"></a>
+### Running and debugging local Amazon API Gateway resources<a name="w37aac25c25b9c21"></a>
 
 You can run or debug AWS SAM API Gateway local resources, specified in `template.yaml`, by running an AWS Cloud9 launch configuration of `type=aws-sam` with the `invokeTarget.target=api`\.
 

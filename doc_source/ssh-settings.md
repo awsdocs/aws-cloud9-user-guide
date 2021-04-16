@@ -52,7 +52,7 @@ To connect to your own server to verify and meet requirements, you could search 
 AWS Cloud9 installation problems might occur when creating an SSH environment if you use a Node\.js version that's not supported by AWS Cloud9\.
 
   To check your version, from the terminal of the existing instance or your server, run the command ** `node --version` **\. To install Node\.js on the instance or server, see one of the following resources:
-  +  [Step 1: Install Required Tools](sample-nodejs.md#sample-nodejs-install) in the *Node\.js Sample*\.
+  +  [Step 1: Install required tools](sample-nodejs.md#sample-nodejs-install) in the *Node\.js Sample*\.
   +  [Installing Node\.js via package manager](https://nodejs.org/en/download/package-manager/) on the Node\.js website\.
   +  [Node Version Manager](http://nvm.sh) on GitHub\.
 + The path to the directory on the existing instance or server that you want AWS Cloud9 to start from after login must have its access permissions set to `rwxr-xr-x`\. This means that read\-write\-run permissions for the owner that corresponds to the login name that you specify in the [create environment wizard](create-environment-ssh.md) for **User** on the **Configure settings** page, read\-run permissions for the group that this owner belongs to, and read\-run permissions for others\.

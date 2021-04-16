@@ -1,9 +1,9 @@
-# Step 4: Install and Configure the AWS SDK for Ruby<a name="tutorial-ruby-sdk"></a>
+# Step 4: Install and configure the AWS SDK for Ruby<a name="tutorial-ruby-sdk"></a>
 
-\(Previous step: [Step 3: Run the Code](tutorial-ruby-run.md)\)
+\(Previous step: [Step 3: Run the code](tutorial-ruby-run.md)\)
 
 **Note**  
-If you don't want to perform these enhanced procedures, be sure to at least perform [Step 7: Clean Up](tutorial-ruby-clean-up.md)\.
+If you don't want to perform these enhanced procedures, be sure to at least perform [Step 7: Clean up](tutorial-ruby-clean-up.md)\.
 
 You can enhance this tutorial to use the AWS SDK for Ruby to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
@@ -66,4 +66,4 @@ For additional information, see [Configuring the AWS SDK for Ruby](https://docs.
 
 ## Next Step<a name="tutorial-ruby-sdk-next"></a>
 
-[Step 5: Add AWS SDK Code](tutorial-ruby-sdk-code.md)
+[Step 5: Add AWS SDK code](tutorial-ruby-sdk-code.md)

@@ -1,6 +1,6 @@
-# Step 2: Add Code<a name="tutorial-ruby-code"></a>
+# Step 2: Add code<a name="tutorial-ruby-code"></a>
 
-\(Previous step: [Step 1: Install Required Tools](tutorial-ruby-install.md)\)
+\(Previous step: [Step 1: Install required tools](tutorial-ruby-install.md)\)
 
 1. In the AWS Cloud9 IDE, create a new file \(**File**, **New File** on the menu bar\)\.
 
@@ -22,4 +22,4 @@
 
 ## Next Step<a name="tutorial-ruby-code-next"></a>
 
-[Step 3: Run the Code](tutorial-ruby-run.md)
+[Step 3: Run the code](tutorial-ruby-run.md)

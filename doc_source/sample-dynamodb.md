@@ -1,4 +1,4 @@
-# Amazon DynamoDB Sample for AWS Cloud9<a name="sample-dynamodb"></a>
+# Amazon DynamoDB sample for AWS Cloud9<a name="sample-dynamodb"></a>
 
 This sample enables you to set up an AWS Cloud9 development environment to work with Amazon DynamoDB\.
 
@@ -8,13 +8,13 @@ Creating this sample might result in charges to your AWS account\. These include
 
 For information about additional AWS database offerings, see [Amazon Relational Database Service \(RDS\)](https://aws.amazon.com/rds/), [Amazon ElastiCache](https://aws.amazon.com/elasticache/), and [Amazon Redshift](https://aws.amazon.com/redshift/) on the AWS website\. See also [AWS Database Migration Service](https://aws.amazon.com/dms/) on the AWS website\.
 +  [Prerequisites](#sample-dynamodb-prereqs) 
-+  [Step 1: Install and Configure the AWS CLI, the aws\-shell, or Both in Your Environment](#sample-dynamodb-cli-setup) 
-+  [Step 2: Create a Table](#sample-dynamodb-create-table) 
-+  [Step 3: Add an Item to the Table](#sample-dynamodb-add-item) 
-+  [Step 4: Add Multiple Items to the Table](#sample-dynamodb-add-items) 
-+  [Step 5: Create a Global Secondary Index](#sample-dynamodb-create-index) 
-+  [Step 6: Get Items from the Table](#sample-dynamodb-get-items) 
-+  [Step 7: Clean Up](#sample-dynamodb-clean-up) 
++  [Step 1: Install and configure the AWS CLI, the aws\-shell, or both in your environment](#sample-dynamodb-cli-setup) 
++  [Step 2: Create a table](#sample-dynamodb-create-table) 
++  [Step 3: Add an item to the table](#sample-dynamodb-add-item) 
++  [Step 4: Add multiple items to the table](#sample-dynamodb-add-items) 
++  [Step 5: Create a global secondary index](#sample-dynamodb-create-index) 
++  [Step 6: Get items from the table](#sample-dynamodb-get-items) 
++  [Step 7: Clean up](#sample-dynamodb-clean-up) 
 
 ## Prerequisites<a name="sample-dynamodb-prereqs"></a>
 
@@ -22,7 +22,7 @@ Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
-## Step 1: Install and Configure the AWS CLI, the aws\-shell, or Both in Your Environment<a name="sample-dynamodb-cli-setup"></a>
+## Step 1: Install and configure the AWS CLI, the aws\-shell, or both in your environment<a name="sample-dynamodb-cli-setup"></a>
 
 In this step, you use the AWS Cloud9 IDE to install and configure the AWS CLI, the aws\-shell, or both in your environment so you can run commands to interact with DynamoDB\. Then you use the AWS CLI to run a basic DynamoDB command to test your installation and configuration\.
 
@@ -47,7 +47,7 @@ Throughout this sample, if you're using the aws\-shell, omit `aws` from each com
 
    If you do have any DynamoDB tables, the `TableNames` array contains a list of the table names\.
 
-## Step 2: Create a Table<a name="sample-dynamodb-create-table"></a>
+## Step 2: Create a table<a name="sample-dynamodb-create-table"></a>
 
 In this step, you create a table in DynamoDB and specify the table's name, layout, simple primary key, and data throughput settings\.
 
@@ -90,7 +90,7 @@ aws dynamodb describe-table --table-name Weather
 
 When the table is successfully created, the `TableStatus` value changes from `CREATING` to `ACTIVE`\. Do not proceed past this step until the table is successfully created\.
 
-## Step 3: Add an Item to the Table<a name="sample-dynamodb-add-item"></a>
+## Step 3: Add an item to the table<a name="sample-dynamodb-add-item"></a>
 
 In this step, you add an item to the table you just created\.
 
@@ -131,7 +131,7 @@ In this step, you add an item to the table you just created\.
 
    If the command succeeds, summary information about the table and the item you just added is displayed\.
 
-## Step 4: Add Multiple Items to the Table<a name="sample-dynamodb-add-items"></a>
+## Step 4: Add multiple items to the table<a name="sample-dynamodb-add-items"></a>
 
 In this step, you add several more items to the `Customers` table\.
 
@@ -297,7 +297,7 @@ In this step, you add several more items to the `Customers` table\.
 
    If the command succeeds, 9 items are now displayed\.
 
-## Step 5: Create a Global Secondary Index<a name="sample-dynamodb-create-index"></a>
+## Step 5: Create a global secondary index<a name="sample-dynamodb-create-index"></a>
 
 Running the DynamoDB** `scan` ** command to get information about items can be slow, especially as a table grows in size or if the type of information you want to get is complex\. You can create one or more secondary indexes to speed things up and make getting information easier\. In this step, you learn about two types of secondary indexes that DynamoDB supports to do just that\. These are known as a *local secondary index* and a *global secondary index*\. Then you create a global secondary index\.
 
@@ -376,7 +376,7 @@ Creating secondary indexes might result in additional charges to your AWS accoun
 
    When the global secondary index is successfully created, the `TableStatus` value changes from `UPDATING` to `ACTIVE`, and the `IndexStatus` value changes from `CREATING` to `ACTIVE`\. Do not proceed past this step until the global secondary index is successfully created\. This can take several minutes\.
 
-## Step 6: Get Items from the Table<a name="sample-dynamodb-get-items"></a>
+## Step 6: Get items from the table<a name="sample-dynamodb-get-items"></a>
 
 There are many ways to get items from tables\. In this step, you get items by using the table's primary key, by using the table's other attributes, and by using the global secondary index\.
 
@@ -529,7 +529,7 @@ aws dynamodb query \
 --expression-attribute-names '{ "#S": "State", "#D": "Date" }'
 ```
 
-## Step 7: Clean Up<a name="sample-dynamodb-clean-up"></a>
+## Step 7: Clean up<a name="sample-dynamodb-clean-up"></a>
 
 To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the table\. Deleting the table deletes the global secondary index as well\. You should also delete your environment\.
 

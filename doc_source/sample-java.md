@@ -1,4 +1,4 @@
-# Java Sample for AWS Cloud9<a name="sample-java"></a>
+# Java sample for AWS Cloud9<a name="sample-java"></a>
 
 This sample enables you to run some Java code in an AWS Cloud9 development environment\.
 
@@ -6,14 +6,14 @@ Creating this sample might result in charges to your AWS account\. These include
 
 **Topics**
 + [Prerequisites](#sample-java-prerequisites)
-+ [Step 1: Install Required Tools](#sample-java-install)
-+ [Step 2: Add Code](#sample-java-code)
-+ [Step 3: Build and Run the Code](#sample-java-run)
-+ [Step 4: Set Up to Use the AWS SDK for Java](#sample-java-sdk)
-+ [Step 5: Set Up AWS Credentials Management in Your Environment](#sample-java-sdk-creds)
-+ [Step 6: Add AWS SDK Code](#sample-java-sdk-code)
-+ [Step 7: Build and Run the AWS SDK Code](#sample-java-sdk-run)
-+ [Step 8: Clean Up](#sample-java-clean-up)
++ [Step 1: Install required tools](#sample-java-install)
++ [Step 2: Add code](#sample-java-code)
++ [Step 3: Build and run the code](#sample-java-run)
++ [Step 4: Set up to use the AWS SDK for Java](#sample-java-sdk)
++ [Step 5: Set up AWS credentials management in your environment](#sample-java-sdk-creds)
++ [Step 6: Add AWS SDK code](#sample-java-sdk-code)
++ [Step 7: Build and run the AWS SDK code](#sample-java-sdk-run)
++ [Step 8: Clean up](#sample-java-clean-up)
 
 ## Prerequisites<a name="sample-java-prerequisites"></a>
 
@@ -21,9 +21,9 @@ Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
-## Step 1: Install Required Tools<a name="sample-java-install"></a>
+## Step 1: Install required tools<a name="sample-java-install"></a>
 
-In this step, you install a set of Java development tools in your AWS Cloud9 development environment\. If you already have a set of Java development tools such as the Oracle JDK or OpenJDK installed in your environment, you can skip ahead to [Step 2: Add Code](#sample-java-code)\. This sample was developed with OpenJDK 8, which you can install in your environment by completing the following procedure\.
+In this step, you install a set of Java development tools in your AWS Cloud9 development environment\. If you already have a set of Java development tools such as the Oracle JDK or OpenJDK installed in your environment, you can skip ahead to [Step 2: Add code](#sample-java-code)\. This sample was developed with OpenJDK 8, which you can install in your environment by completing the following procedure\.
 
 1. Confirm whether OpenJDK 8 is already installed\. To do this, in a terminal session in the AWS Cloud9 IDE, run the command line version of the Java runner with the ** `-version` ** option\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\)
 
@@ -34,7 +34,7 @@ In this step, you install a set of Java development tools in your AWS Cloud9 dev
    Based on the output of the preceding command, do one of the following:
    + If the output states that the `java` command isn't found, continue with step 2 in this procedure to install OpenJDK 8\.
    + If the output contains values starting with `Java(TM)`, `Java Runtime Environment`, `Java SE`, `J2SE`, or `Java2`, the OpenJDK isn't installed or isn't set as the default Java development toolset\. Continue with step 2 in this procedure to install OpenJDK 8, and then switch to using OpenJDK 8\.
-   + If the output contains values starting with `java version 1.8` and `OpenJDK`, skip ahead to [Step 2: Add Code](#sample-java-code)\. OpenJDK 8 is installed correctly for this sample\.
+   + If the output contains values starting with `java version 1.8` and `OpenJDK`, skip ahead to [Step 2: Add code](#sample-java-code)\. OpenJDK 8 is installed correctly for this sample\.
    + If the output contains a `java version` less than `1.8` and values starting with `OpenJDK`, continue with step 2 in this procedure to upgrade the installed OpenJDK version to OpenJDK 8\.
 
 1. Ensure the latest security updates and bug fixes are installed\. To do this, run the yum tool \(for Amazon Linux\) or the apt tool \(for Ubuntu Server\) with the ** `update` ** command\.
@@ -85,7 +85,7 @@ In this step, you install a set of Java development tools in your AWS Cloud9 dev
 
    If OpenJDK 8 is installed and set correctly, the Java runner version output contains a value starting with `openjdk version 1.8`, and the Java compiler version output starts with the value `javac 1.8`\.
 
-## Step 2: Add Code<a name="sample-java-code"></a>
+## Step 2: Add code<a name="sample-java-code"></a>
 
 In the AWS Cloud9 IDE, create a file with the following code, and save the file with the name `hello.java`\. \(To create a file, on the menu bar, choose **File**, **New File**\. To save the file, choose **File**, **Save**\.\)
 
@@ -105,7 +105,7 @@ public class hello {
 }
 ```
 
-## Step 3: Build and Run the Code<a name="sample-java-run"></a>
+## Step 3: Build and run the code<a name="sample-java-run"></a>
 
 1. Use the command line version of the Java compiler to compile the `hello.java` file into a `hello.class` file\. To do this, using the terminal in the AWS Cloud9 IDE, from the same directory as the `hello.java` file, run the Java compiler, specifying the `hello.java` file\.
 
@@ -127,17 +127,17 @@ public class hello {
    The sum of 5 and 9 is 14.
    ```
 
-## Step 4: Set Up to Use the AWS SDK for Java<a name="sample-java-sdk"></a>
+## Step 4: Set up to use the AWS SDK for Java<a name="sample-java-sdk"></a>
 
 You can enhance this sample to use the AWS SDK for Java to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
 
 In this step, you install [Apache Maven](https://maven.apache.org/) or [Gradle](https://gradle.org/) in your environment\. Maven and Gradle are common build automation systems that can be used with Java projects\. After you install Maven or Gradle, you use it to generate a new Java project\. In this new project, you add a reference to the AWS SDK for Java\. This AWS SDK for Java provides a convenient way to interact with AWS services such as Amazon S3, from your Java code\.
 
 **Topics**
-+ [Set Up With Maven](#sample-java-sdk-maven)
-+ [Set Up With Gradle](#sample-java-sdk-gradle)
++ [Set up with Maven](#sample-java-sdk-maven)
++ [Set up with Gradle](#sample-java-sdk-gradle)
 
-### Set Up With Maven<a name="sample-java-sdk-maven"></a>
+### Set up with Maven<a name="sample-java-sdk-maven"></a>
 
 1. Install Maven in your environment\. To see whether Maven is already installed, using the terminal in the AWS Cloud9 IDE, run Maven with the ** `-version` ** option\.
 
@@ -258,9 +258,9 @@ In this step, you install [Apache Maven](https://maven.apache.org/) or [Gradle](
    + The `plugin` section declares that a single JAR, which includes all dependencies, will be built\.
    + The `dependency` section with the `groupId` setting of `com.amazon.aws` and the `artifactId` setting of `aws-java-sdk` includes the AWS SDK for Java library files\. The AWS SDK for Java version to use is declared by the `version` setting\. To use a different version, replace this version number\.
 
-Skip ahead to [Step 5: Set Up AWS Credentials Management in Your Environment](#sample-java-sdk-creds)\.
+Skip ahead to [Step 5: Set up AWS credentials management in your environment](#sample-java-sdk-creds)\.
 
-### Set Up With Gradle<a name="sample-java-sdk-gradle"></a>
+### Set up with Gradle<a name="sample-java-sdk-gradle"></a>
 
 1. Install Gradle in your environment\. To see whether Gradle is already installed, using the terminal in the AWS Cloud9 IDE, run Gradle with the ** `-version` ** option\.
 
@@ -383,7 +383,7 @@ Skip ahead to [Step 5: Set Up AWS Credentials Management in Your Environment](#s
    + The `io.spring.dependency-management` plugin is used to import the AWS SDK for Java Maven Bill of Materials \(BOM\) to manage AWS SDK for Java dependencies for the project\. `classpath` declares the version to use\. To use a different version, replace this version number\.
    +  `com.amazonaws:aws-java-sdk-s3` includes the Amazon S3 portion of the AWS SDK for Java library files\. `mavenBom` declares the version to use\. If you want to use a different version, replace this version number\.
 
-## Step 5: Set Up AWS Credentials Management in Your Environment<a name="sample-java-sdk-creds"></a>
+## Step 5: Set up AWS credentials management in your environment<a name="sample-java-sdk-creds"></a>
 
 Each time you use the AWS SDK for Java to call an AWS service, you must provide a set of AWS credentials with the call\. These credentials determine whether the AWS SDK for Java has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
 
@@ -391,7 +391,7 @@ In this step, you store your credentials within the environment\. To do this, fo
 
 For additional information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.
 
-## Step 6: Add AWS SDK Code<a name="sample-java-sdk-code"></a>
+## Step 6: Add AWS SDK code<a name="sample-java-sdk-code"></a>
 
 In this step, you add code to interact with Amazon S3 to create a bucket, list your available buckets, and then delete the bucket you just created\.
 
@@ -473,7 +473,7 @@ public class App {
 }
 ```
 
-## Step 7: Build and Run the AWS SDK Code<a name="sample-java-sdk-run"></a>
+## Step 7: Build and run the AWS SDK code<a name="sample-java-sdk-run"></a>
 
 To run the code from the previous step, run the following commands from the terminal\. These commands use Maven or Gradle to create an executable JAR file for the project, and then use the Java runner to run the JAR\. The JAR runs with the name of the bucket to create in Amazon S3 \(for example, `my-test-bucket`\) and the ID of the AWS Region to create the bucket in as input \(for example, `us-east-2`\)\.
 
@@ -508,6 +508,6 @@ Deleting the bucket named 'my-test-bucket'...
 My buckets now are:
 ```
 
-## Step 8: Clean Up<a name="sample-java-clean-up"></a>
+## Step 8: Clean up<a name="sample-java-clean-up"></a>
 
 To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

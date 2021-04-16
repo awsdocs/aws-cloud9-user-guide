@@ -1,4 +1,4 @@
-# LAMP Sample for AWS Cloud9<a name="sample-lamp"></a>
+# LAMP sample for AWS Cloud9<a name="sample-lamp"></a>
 
 This sample enables you to set up and run LAMP \(Linux, Apache HTTP Server, MySQL, and PHP\) within an AWS Cloud9 development environment\.
 
@@ -6,10 +6,10 @@ Creating this sample might result in charges to your AWS account\. These include
 
 **Topics**
 + [Prerequisites](#sample-lamp-prereqs)
-+ [Step 1: Install the Tools](#sample-lamp-install-tools)
-+ [Step 2: Set Up MySQL](#sample-lamp-setup-mysql)
-+ [Step 3: Set Up a Website](#sample-lamp-apache)
-+ [Step 4: Clean Up](#sample-lamp-clean-up)
++ [Step 1: Install the tools](#sample-lamp-install-tools)
++ [Step 2: Set up MySQL](#sample-lamp-setup-mysql)
++ [Step 3: Set up a website](#sample-lamp-apache)
++ [Step 4: Clean up](#sample-lamp-clean-up)
 
 ## Prerequisites<a name="sample-lamp-prereqs"></a>
 
@@ -17,7 +17,7 @@ Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
-## Step 1: Install the Tools<a name="sample-lamp-install-tools"></a>
+## Step 1: Install the tools<a name="sample-lamp-install-tools"></a>
 
 In this step, you install the following tools:
 + Apache HTTP Server, a web server host\.
@@ -122,7 +122,7 @@ You then finish this step by starting Apache HTTP Server and then MySQL\.
    sudo service mysql start && sudo service mysql status
    ```
 
-## Step 2: Set Up MySQL<a name="sample-lamp-setup-mysql"></a>
+## Step 2: Set up MySQL<a name="sample-lamp-setup-mysql"></a>
 
 In this step, you set up MySQL to follow MySQL security best practices\. These security best practices include setting a password for root accounts, removing root accounts that are accessible from outside the local host, removing anonymous user accounts, removing the test database, and removing privileges that permit anyone to access databases with names that start with `test_`\. 
 
@@ -186,7 +186,7 @@ You then finish this step by practicing the starting and then exiting of the MyS
    exit;
    ```
 
-## Step 3: Set Up a Website<a name="sample-lamp-apache"></a>
+## Step 3: Set up a website<a name="sample-lamp-apache"></a>
 
 In this step, you set up the default website root for the Apache HTTP Server with recommended owners and access permissions\. You then create a PHP\-based webpage within that default website root\. 
 
@@ -285,7 +285,7 @@ The following fifth through eighth commands enable the network ACL to allow inco
    MY_PUBLIC_IP=$(curl http://169.254.169.254/latest/meta-data/public-ipv4) && echo http://$MY_PUBLIC_IP/index.php # Get the URL to the index.php file within the web server root.
    ```
 
-## Step 4: Clean Up<a name="sample-lamp-clean-up"></a>
+## Step 4: Clean up<a name="sample-lamp-clean-up"></a>
 
 If you want to keep using this environment but you want to disable incoming web traffic over port 80, then run the following eight commands, one at a time in the following order, to delete the corresponding incoming traffic rules that you set earlier in the security group and network ACL that are associated with the environment\. To understand what each command does, read the information after the `#` character for each command\.
 

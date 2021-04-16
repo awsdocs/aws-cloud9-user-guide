@@ -33,6 +33,46 @@ If the AWS Toolkit isn't available in your environment, you can enable it in the
 
 
 
+## Managing access credentials for AWS Toolkit<a name="credentials-for-toolkit"></a>
+
+AWS Toolkit allows you to interact with a wide range of AWS services, so you should ensure that the IAM entity that's used has the necessary permissions to interact with those services\. The easiest way to obtain permissions is to use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), which work whenever an EC2 environment accesses an AWS service on behalf of an AWS entity \(for example, an IAM user\)\.
+
+But if you've launched your development environment's EC2 instance into a **private subnet**, AWS managed temporary credentials aren't available\. As an alternative, you can allow AWS Toolkit to access your AWS services by manually creating your own set of credentials called a *profile*\. Profiles feature long\-term credentials called access keys, which you can obtain from the IAM console\.<a name="manual-credentials"></a>
+
+**Create a profile to provide access credential for AWS Toolkit**
+
+1. To get your access keys \(consisting of an *access key ID* and *secret access key*\), go to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+
+1. Choose **Users** from the navigation bar and then choose your AWS user name \(not the check box\)\.
+
+1. Choose the **Security credentials** tab, and then choose **Create access key**\.
+**Note**  
+If you already have an access key but you can't access your secret key, make the old key inactive and create a new one\.
+
+1. In the dialog box that shows your access key ID and secret access key, choose **Download \.csv file** to store this information in a secure location\.
+
+1. After you've downloaded your access keys, launch an AWS Cloud9 environment and start a terminal session by choosing **Window**, **New Terminal**\. 
+
+1. In the terminal window, run the following command:
+
+   ```
+   aws configure --profile toolkituser
+   ```
+
+   In this case, `toolkituser` is the profile name being used, but you can choose your own\.
+
+1. At the command line, enter the `AWS Access Key ID` and `AWS Secret Access Key` that you previously downloaded from the IAM console\.
+   + For `Default region name`, specify an AWS Region \(`us-east-1`, for example\)\. 
+   + For `Default output format`, specify a file format \(`json`, for example\)\. 
+**Note**  
+For more information on the options when configuring a profile, see [Configuration basics](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html) in the *AWS Command Line Interface User Guide*\.
+
+1. After you've successfully created your profile, launch the AWS Toolkit, go to the [**AWS Toolkit menu**](toolkit-navigation.md#toolkit-menu), and choose **Connect to AWS**\.
+
+1. For the **Select an AWS credential profile** field, choose the profile you've just created in the terminal \(`profile:toolkituser`, for example\)\.
+
+If the selected profile contains valid access credentials, the **AWS Explorer** pane refreshes to display the AWS services that you can now access\.
+
 ## Identifying AWS Toolkit components<a name="ui-components"></a>
 
 The screenshot below shows three key UI components of the AWS Toolkit:

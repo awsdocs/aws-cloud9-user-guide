@@ -1,4 +1,4 @@
-# Working with User Settings in the AWS Cloud9 IDE<a name="settings-user"></a>
+# Working with user settings in the AWS Cloud9 IDE<a name="settings-user"></a>
 
  *User settings* are settings that apply across each AWS Cloud9 development environment associated with your AWS Identity and Access Management \(IAM\) user\. They include the following kinds of settings:
 + General user interface behaviors, such as enabling animations and marking changed tabs
@@ -17,7 +17,7 @@ You can share your user settings with other users, as follows:
 +  [Share Your User Settings with Another User](#settings-user-share) 
 +  [User Setting Changes You Can Make](#settings-user-change) 
 
-## View or Change Your User Settings<a name="settings-user-view"></a>
+## View or change your user settings<a name="settings-user-view"></a>
 
 1. On the menu bar, choose **AWS Cloud9**, **Preferences**\.
 
@@ -29,7 +29,7 @@ You can share your user settings with other users, as follows:
 
 For more information, see [User Setting Changes You Can Make](#settings-user-change)\.
 
-## Share Your User Settings with Another User<a name="settings-user-share"></a>
+## Share your user settings with another user<a name="settings-user-share"></a>
 
 1. In both the source and target environment, on the menu bar of the AWS Cloud9 IDE, choose **AWS Cloud9, Open Your User Settings**\.
 
@@ -39,7 +39,7 @@ For more information, see [User Setting Changes You Can Make](#settings-user-cha
 
 1. In the target environment, save the **user\.settings** tab\.
 
-## User Setting Changes You Can Make<a name="settings-user-change"></a>
+## User setting changes you can make<a name="settings-user-change"></a>
 
 These sections describe the kinds of user settings you can change in the **User Settings** pane on the **Preferences** tab:
 +  [General](#settings-user-change-general) 
@@ -67,7 +67,7 @@ You can't undo this action\.
 ** **Warn Before Exiting** **  
 Whenever you attempt to close the IDE, AWS Cloud9 asks you to confirm that you want to exit\.
 
-### User Interface<a name="settings-user-change-user-interface"></a>
+### User interface<a name="settings-user-change-user-interface"></a>
 
 ** **Enable UI Animations** **  
 AWS Cloud9 uses animations in the IDE\.
@@ -98,7 +98,7 @@ When a read/write member is added to an environment, AWS Cloud9 does not display
 ** **Show Authorship Info** **  
 AWS Cloud9 underlines text entered by other environment members with related highlights in the gutter\.
 
-### Tree and Go Panel<a name="settings-user-change-tree-and-navigate"></a>
+### Tree and Go panel<a name="settings-user-change-tree-and-navigate"></a>
 
 ** **Scope Go to Anything to Favorites** **  
 **Go to File** in the **Go** window displays results scoped only to **Favorites** in the **Environment** window\.
@@ -120,7 +120,7 @@ The behavior for AWS Cloud9 to use when downloading files\.
 Valid values include:  
 +  **auto** – AWS Cloud9 downloads files without modification\.
 +  **tar\.gz** – AWS Cloud9 downloads files as compressed TAR files\.
-+  **auto** – AWS Cloud9 downloads files as \.zip files\.
++  **zip** – AWS Cloud9 downloads files as \.zip files\.
 
 ### Find in Files<a name="settings-user-change-find-in-files"></a>
 
@@ -293,7 +293,7 @@ AWS Cloud9 highlights all references in code to the selected variable\.
 ** **Use Cmd\-Click for Jump to Definition** **  
 AWS Cloud9 goes to any original definition for code that is clicked while pressing and holding **Command** for Mac or **Ctrl** for Windows\.
 
-### Hints & Warnings<a name="settings-user-change-hints-and-warnings"></a>
+### Hints and warnings<a name="settings-user-change-hints-and-warnings"></a>
 
 ** **Enable Hints and Warnings** **  
 AWS Cloud9 displays applicable hint and warning messages\.
@@ -301,7 +301,7 @@ AWS Cloud9 displays applicable hint and warning messages\.
 ** **Ignore Messages Matching Regex** **  
 AWS Cloud9 does not display any messages matching the specified regular expression\. For more information, see [Writing a regular expression pattern](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#Writing_a_regular_expression_pattern) in the *JavaScript Regular Expressions* topic on the Mozilla Developer Network\.
 
-### Run & Debug<a name="settings-user-change-run-and-debug"></a>
+### Run and debug<a name="settings-user-change-run-and-debug"></a>
 
 ** **Save All Unsaved Tabs Before Running** **  
 Before running the associated code, AWS Cloud9 attempts to save all unsaved files with open tabs\.

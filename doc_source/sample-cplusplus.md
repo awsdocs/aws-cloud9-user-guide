@@ -1,18 +1,17 @@
-# C\+\+ Sample for AWS Cloud9<a name="sample-cplusplus"></a>
+# C\+\+ sample for AWS Cloud9<a name="sample-cplusplus"></a>
 
-This sample enables you to run some C\+\+ code in an AWS Cloud9 development environment\.
+This sample allows you to run C\+\+ code in an AWS Cloud9 development environment\. The code also uses resources provided by the [AWS SDK for C\+\+](https://docs.aws.amazon.com/sdk-for-cpp/latest/developer-guide/), a modularized, cross\-platform, open\-source library you can use to connect to Amazon Web Services\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.
 
 **Topics**
 + [Prerequisites](#sample-cplusplus-prereqs)
-+ [Step 1: Install Required Tools](#sample-cplusplus-install)
-+ [Step 2: Add Code](#sample-cplusplus-code)
-+ [Step 3: Run the Code](#sample-cplusplus-run)
-+ [Step 4: Install and Configure the AWS SDK for C\+\+](#sample-cplusplus-sdk)
-+ [Step 5: Add AWS SDK Code](#sample-cplusplus-sdk-code)
-+ [Step 6: Build and Run the AWS SDK Code](#sample-cplusplus-sdk-run)
-+ [Step 7: Clean Up](#sample-cplusplus-clean-up)
++ [Step 1: Install g\+\+ and required dev packages](#sample-cplusplus-install)
++ [Step 2: Install CMake](#install-cmake)
++ [Step 3: Obtain and build the SDK for C\+\+](#install-cmake)
++ [Step 4: Create C\+\+ and CMakeLists files](#sample-cplusplus-sdk-code)
++ [Step 5: Build and run the C\+\+ code](#build-and-run-cpp)
++ [Step 6: Clean up](#sample-cplusplus-clean-up)
 
 ## Prerequisites<a name="sample-cplusplus-prereqs"></a>
 
@@ -20,222 +19,138 @@ Before you use this sample, be sure to meet the following requirements\.
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
-## Step 1: Install Required Tools<a name="sample-cplusplus-install"></a>
+## Step 1: Install g\+\+ and required dev packages<a name="sample-cplusplus-install"></a>
 
-In this step, you install and configure the [GNU Complier Collection \(GCC\)](https://gcc.gnu.org/), which is required to run this sample\.
+To build and run a C\+\+ application, you need a utility such as `g++`, which is a C\+\+ compiler provided by the [GNU Complier Collection \(GCC\)](https://gcc.gnu.org/)\.
 
-1. In a terminal session in the AWS Cloud9 IDE, confirm whether GCC is already installed by running the ** `g++ --version` ** command\. \(To start a new terminal session, on the menu bar, choose **Window**, **New Terminal**\.\) If successful, the output contains the GCC version number\. Otherwise, an error message should be output\. If GCC is installed, skip ahead to [Step 2: Add Code](#sample-cplusplus-code)\.
+You also need to add header files \(`-dev` packages\) for `libcurl`, `libopenssl`, `libuuid`, `zlib`, and, optionally, `libpulse` for Amazon Polly support\. 
 
-1. Run the ** `yum update` ** command \(on Amazon Linux\) or the ** `apt update` ** command \(on Ubuntu Server\) to help ensure the latest security updates and bug fixes are installed\.
+The process of installing development tools varies slightly depending on whether you're using an Amazon Linux/Amazon Linux 2 instance or an Ubuntu instance\.
 
-   For Amazon Linux:
+------
+#### [ Amazon Linux\-based systems ]
 
-   ```
-   sudo yum -y update
-   ```
-
-   For Ubuntu Server:
-
-   ```
-   sudo apt update
-   ```
-
-1. To install GCC, run the ** `yum install` ** command \(for Amazon Linux\) or the ** `apt install` ** command \(for Ubuntu Server\)\.
-
-   For Amazon Linux:
-
-   ```
-   sudo yum -y install gcc-c++
-   ```
-
-   For Ubuntu Server:
-
-   ```
-   sudo apt install -y g++
-   ```
-
-1. Confirm that GCC is now successfully installed by running the ** `g++ --version` ** command\. If successful, the output contains the GCC version number\.
-
-## Step 2: Add Code<a name="sample-cplusplus-code"></a>
-
-In the AWS Cloud9 IDE, create a file with this content, and save the file with the name `hello.cpp`\. \(To create a file, on the menu bar, choose **File**, **New File**\. To save the file, choose **File**, **Save**\.\)
+You can check if you already have `gcc` installed by running the following command in the AWS Cloud9 terminal:
 
 ```
-#include <iostream>
-#include <stdlib.h>
-
-int main( int argc, char *argv[] )
-{
-  std::cout << "Hello, World!\n";
-  std::cout << "The sum of 2 and 3 is 5.\n";
-
-  if (argc > 2) {
-    std::cout << "The sum of " << argv[1] << " and " << argv[2]
-      << " is " << atoi(argv[1]) + atoi(argv[2]) << ".\n";
-  }
-
-  return 0;
-}
+g++ --version
 ```
 
-## Step 3: Run the Code<a name="sample-cplusplus-run"></a>
-
-1. Compile the `hello.cpp` source code into an object module, and then link the object module into a program named `hello`\. Do this by choosing **Run**, **Build System**, **G\+\+** followed by **Run**, **Build** on the menu bar\.
-**Note**  
-If **G\+\+** is not available, you can create a custom builder for G\+\+\.  
-Choose **Run**, **Build System**, **New Build System** on the menu bar\.
-On the **My Builder\.build** tab, replace the tab's contents with this code\.  
-
-      ```
-      {
-        "cmd": [ "g++", "-o", "$file_base_name", "$file_name" ],
-        "info": "Compiling $file_name and linking to $file_base_name...",
-        "selector": "source.cpp"
-      }
-      ```
-Choose **File**, **Save As** on the menu bar, and then save the file as `G++.build` in the `/.c9/builders` folder\.
-Choose the **hello\.cpp** tab to make it active\.
-Choose **Run**, **Build System**, **G\+\+** followed by **Run**, **Build**\.
-
-1. In the AWS Cloud9 IDE, run the code by choosing **Run**, **Run Configurations**, **New Run Configuration** on the menu bar\.
-
-1. On the **\[New\] \- Idle** tab, choose **Runner: Auto**, and then choose **C\+\+**\.
-**Note**  
-If **C\+\+** isn't available, you can create a custom runner for C\+\+\.  
-On the **\[New\] \- Idle** tab, choose **Runner: Auto**, and then choose **New Runner**\.
-On the **My Runner\.run** tab, replace the tab's contents with this code\.  
-
-      ```
-      {
-        "cmd" : ["$file", "$args"],
-        "info" : "Running $project_path$file_name...",
-        "selector" : "source"
-      }
-      ```
-Choose **File**, **Save As** on the menu bar, and then save the file as `C++.run` in the `/.c9/runners` folder\.
-On the **\[New\] \- Idle** tab, choose **Runner: Auto**, and then choose **C\+\+**\.
-
-1. For **Command**, type `hello 5 9`\. In the code, `5` represents `argv[1]`, and `9` represents `argv[2]`\.
-
-1. Choose the **Run** button, and compare your output\.
-
-   ```
-   Hello, World!
-   The sum of 2 and 3 is 5.
-   The sum of 5 and 9 is 14.
-   ```
-
-## Step 4: Install and Configure the AWS SDK for C\+\+<a name="sample-cplusplus-sdk"></a>
-
-You can enhance this sample to use the AWS SDK for C\+\+ to create an Amazon S3 bucket, list your available buckets, and then delete the bucket you just created\.
-
-In this step, you install and configure the AWS SDK for C\+\+, which provides a convenient way to interact with AWS services, such as Amazon S3, from your C\+\+ code\. Before you install the AWS SDK for C\+\+, you must install some dependencies\. After you install the AWS SDK for C\+\+, you must set up credentials management in your environment\. The AWS SDK for C\+\+ needs these credentials to interact with AWS services\.
-
-**Note**  
-The following steps require your environment to be running on an Amazon EC2 instance or your own server that has at least 4 GB of RAM\.
-
-### To install AWS SDK for C\+\+ dependencies<a name="sample-cplusplus-sdk-install-deps"></a>
-
-From a terminal session in the AWS Cloud9 IDE, run the following command to install several packages that the AWS SDK for C\+\+ depends on to run correctly\.
-
-For Amazon Linux:
+If `g++` isn't installed, you can easily install it part of the package group called "Development Tools"\. These tools are added to an instance with the `yum groupinstall` command:
 
 ```
-sudo yum -y install libcurl-devel openssl-devel libuuid-devel cmake3
+sudo yum groupinstall "Development Tools"
 ```
 
-For Ubuntu Server:
+Run `g++ --version` again to confirm that the compiler has been installed\.
+
+Now install the packages for the required libraries using your system’s package manager: 
 
 ```
-sudo apt install -y libcurl4-openssl-dev libssl-dev uuid-dev zlib1g-dev libpulse-dev cmake
+sudo yum install libcurl-devel openssl-devel libuuid-devel pulseaudio-libs-devel
 ```
 
-### To download and extract the AWS SDK for C\+\+ source code<a name="sample-cplusplus-sdk-download"></a>
+------
+#### [ Ubuntu\-based systems ]
 
-1. Run the ** `wget` ** command, specifying the location of the AWS SDK for C\+\+ source\.
+You can check if you already have `gcc` installed by running the following command in the AWS Cloud9 terminal:
+
+```
+g++ --version
+```
+
+If gcc is not installed, you can install it on an Ubuntu\-based system by running the following commands:
+
+```
+sudo apt update
+sudo apt install build-essential
+sudo apt-get install manpages-dev
+```
+
+Run `g++ --version` again to confirm that the compiler has been installed\.
+
+Now install the packages for the required libraries using your system’s package manager: 
+
+```
+sudo apt-get install libcurl4-openssl-dev libssl-dev uuid-dev zlib1g-dev libpulse-dev
+```
+
+------
+
+## Step 2: Install CMake<a name="install-cmake"></a>
+
+ You need to install the `cmake` tool, which automates the process of building executable files from source code\. 
+
+1. In the IDE terminal window, run the following command to obtain the required archive:
 
    ```
-   wget https://github.com/aws/aws-sdk-cpp/archive/master.zip
+   wget https://cmake.org/files/v3.18/cmake-3.18.0.tar.gz
    ```
 
-1. Run the ** `unzip` ** command, specifying the name of the \.zip file you just downloaded\.
+1. Extract the files from the archive and navigate to the directory that contains the unpacked files:
 
    ```
-   unzip master.zip
+   tar xzf cmake-3.18.0.tar.gz
+   cd cmake-3.18.0
    ```
 
-1. Run the ** `rm` ** command to delete the \.zip file, as you no longer need it\.
+1. Next, run a bootstrap script and install `cmake` by running the following commands:
 
    ```
-   rm master.zip
+   ./bootstrap
+   make
+   sudo make install
    ```
 
-### To build the AWS SDK for C\+\+<a name="sample-cplusplus-sdk-build"></a>
-
-**Note**  
-This step could take up to one or more hours to complete, depending on the computing resources available to your Amazon EC2 instance or your own server and how much of the AWS SDK for C\+\+ you choose to build\.
-
-1. Create a folder to build the AWS SDK for C\+\+ into\.
+1. Confirm you've installed the tool by running the following command:
 
    ```
+   cmake --version
+   ```
+
+## Step 3: Obtain and build the SDK for C\+\+<a name="install-cmake"></a>
+
+To set up the AWS SDK for C\+\+, you can either build the SDK yourself directly from the source or download the libraries using a package manager\. You can find details on the available options in [Getting Started Using the AWS SDK for C\+\+](https://docs.aws.amazon.com/sdk-for-cpp/latest/developer-guide/getting-started.html) in the *AWS SDK for C\+\+ Developer Guide*\. 
+
+This sample demonstrating using `git` to clone the SDK source code and `cmake` to build the SDK for C\+\+\.
+
+1. Clone the git remote repository to your AWS Cloud9 environment by running the following command in the terminal:
+
+   ```
+   git clone https://github.com/aws/aws-sdk-cpp.git
+   ```
+
+1. Navigate to the new `aws-sdk-cpp` directory, create a sub\-directory to build the AWS SDK for C\+\+ into, and then navigate to that:
+
+   ```
+   cd aws-sdk-cpp
    mkdir sdk_build
-   ```
-
-1. Switch to the folder you just created\.
-
-   ```
    cd sdk_build
    ```
 
-1. Prepare to build the AWS SDK for C\+\+ into this folder\.
-
-   For Amazon Linux:
-
-   ```
-   cmake3 ../aws-sdk-cpp-master
-   ```
-
-   For Ubuntu Server:
-
-   ```
-   cmake ../aws-sdk-cpp-master
-   ```
+1. 
 **Note**  
-To build only the Amazon S3 portion of the AWS SDK for C\+\+ and its dependencies, run this command instead:  
-For Amazon Linux:  
+To save time, this step builds only the Amazon S3 portion of the AWS SDK for C\+\+\. If you want to build the complete SDK, omit the `-DBUILD_ONLY=s3` from the `cmake` command\.  
+Building the complete SDK for C\+\+ can take more than an hour to complete, depending on the computing resources available to your Amazon EC2 instance or your own server\.
+
+   Use `cmake` to build the Amazon S3 portion of the SDK for C\+\+ into the `sdk_build` directory by running the following command:
 
    ```
-   cmake3 ../aws-sdk-cpp-master -DBUILD_ONLY="s3"
-   ```
-For Ubuntu Server:  
-
-   ```
-   cmake ../aws-sdk-cpp-master -DBUILD_ONLY="s3"
+   cmake .. -DBUILD_ONLY=s3
    ```
 
-1. Build the AWS SDK for C\+\+ into this folder\.
+1. Now run the `make install` command so that the built SDK can be accessed:
 
    ```
-   make
-   ```
-
-1. After the AWS SDK for C\+\+ successfully builds, switch to the root of your environment\.
-
-   ```
+   sudo make install
    cd ..
    ```
 
-### To set up credentials management in your environment<a name="sample-cplusplus-sdk-creds"></a>
+## Step 4: Create C\+\+ and CMakeLists files<a name="sample-cplusplus-sdk-code"></a>
 
-Each time you use the AWS SDK for C\+\+ to call an AWS service, you must provide a set of credentials with the call\. These credentials determine whether the AWS SDK for C\+\+ has the appropriate permissions to make that call\. If the credentials don't cover the appropriate permissions, the call will fail\.
+In this step, you create a `C++` file that allows users of the project to interact with Amazon S3 buckets\.
 
-In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
-
-For additional information, see [Providing AWS Credentials](https://docs.aws.amazon.com/sdk-for-cpp/latest/developer-guide/credentials.html) in the *AWS SDK for C\+\+ Developer Guide*\.
-
-## Step 5: Add AWS SDK Code<a name="sample-cplusplus-sdk-code"></a>
-
-In this step, you add some more code, this time to interact with Amazon S3 to create a bucket, list your available buckets, and then delete the bucket you just created\. You will run this code later\.
+You also create a `CMakeLists.txt` file that provides instructions that are used by `cmake` to build your C\+\+ library\.
 
 1. In the AWS Cloud9 IDE, create a file with this content, and save the file with the name `s3-demo.cpp` at the root \(`/`\) of your environment\.
 
@@ -385,7 +300,7 @@ In this step, you add some more code, this time to interact with Amazon S3 to cr
    }
    ```
 
-1. Create a file with this content, and save the file with the name `CMakeLists.txt` at the root \(`/`\) of your environment\. This file enables you to build your code into an executable file\.
+1. Create a second file with this content, and save the file with the name `CMakeLists.txt` at the root \(`/`\) of your environment\. This file enables you to build your code into an executable file\.
 
    ```
    # A minimal CMakeLists.txt file for the AWS SDK for C++.
@@ -397,68 +312,56 @@ In this step, you add some more code, this time to interact with Amazon S3 to cr
    project(s3-demo)
    
    # Locate the AWS SDK for C++ package.
-   # Requires that you build with:
-   #   -Daws-sdk-cpp_DIR=/path/to/sdk_build
-   # or export/set:
-   #   CMAKE_PREFIX_PATH=/path/to/sdk_build
-   find_package(aws-sdk-cpp)
-   
-   # Link to the AWS SDK for C++ shared libraries.
-   add_definitions(-DUSE_IMPORT_EXPORT)
+   set(AWSSDK_ROOT_DIR, "/usr/local/")
+   set(BUILD_SHARED_LIBS ON)
+   find_package(AWSSDK REQUIRED COMPONENTS s3)
    
    # The executable name and its source files.
    add_executable(s3-demo s3-demo.cpp)
    
    # The libraries used by your executable.
-   target_link_libraries(s3-demo aws-cpp-sdk-s3)
+   target_link_libraries(s3-demo ${AWSSDK_LINK_LIBRARIES})
    ```
 
-## Step 6: Build and Run the AWS SDK Code<a name="sample-cplusplus-sdk-run"></a>
+## Step 5: Build and run the C\+\+ code<a name="build-and-run-cpp"></a>
 
-1. In the terminal, prepare to build your source code\.
-
-   For Amazon Linux:
+1. In the root directory of your environment in which you've saved the `s3-demo.cpp` and `CMakeLists.txt`, run `cmake` to build your project:
 
    ```
-   cmake3 -Daws-sdk-cpp_DIR=sdk_build .
-   ```
-
-   For Ubuntu Server:
-
-   ```
-   cmake -Daws-sdk-cpp_DIR=sdk_build .
-   ```
-
-1. Build your source code\.
-
-   ```
+   cmake . 
    make
    ```
 
-1. Run the code by choosing **Run**, **Run Configurations**, **New Run Configuration** on the menu bar\.
-
-1. On the **\[New\] \- Idle** tab, choose **Runner: Auto**, and then choose **C\+\+**\.
-
-1. For **Command**, type `s3-demo my-test-bucket us-east-2`, where `my-test-bucket` is the name of the bucket you want to create and then delete, and `us-east-2` is the ID of the AWS Region you want to create the bucket in\. For more IDs, see [Amazon Simple Storage Service \(Amazon S3\)](https://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region) in the *Amazon Web Services General Reference*\.
-**Note**  
-Amazon S3 bucket names must be unique across AWS—not just your AWS account\.
-
-1. Choose the **Run** button, and compare your output\.
+1. You can now run your program from the command line\. In the following command, replace `my-unique-bucket-name` with a unique name for the Amazon S3 bucket and, if necessary, replace `us-east-1` with the identifier of another AWS Region where you want to create a bucket\.
 
    ```
-   My buckets now are:
-   
-   Creating a new bucket named 'my-test-bucket'...
-   
-   My buckets now are:
-   
-   my-test-bucket
-   
-   Deleting the bucket named 'my-test-bucket'...
-   
-   My buckets now are:
+   ./s3-demo my-unique-bucket-name us-east-1
    ```
 
-## Step 7: Clean Up<a name="sample-cplusplus-clean-up"></a>
+   If the program runs successfully, output similar to the following is returned: 
 
-To prevent ongoing charges to your AWS account after you're done using this sample, you should delete the environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.
+   ```
+   Looking for a bucket named 'my-unique-bucket-name'...
+   
+   Could not find the bucket.
+   
+   Creating a bucket named 'my-unique-bucket-name'...
+   
+   Bucket created.
+   
+   Looking for a bucket named 'my-unique-bucket-name'...
+   
+   Found the bucket.
+   
+   Deleting the bucket named 'my-unique-bucket-name'...
+   
+   Bucket deleted.
+   
+   Looking for a bucket named 'my-unique-bucket-name'...
+   
+   Could not find the bucket.
+   ```
+
+## Step 6: Clean up<a name="sample-cplusplus-clean-up"></a>
+
+To prevent ongoing charges to your AWS account after you're finished with this sample, delete the environment\. For instructions, see [Deleting an environment in AWS Cloud9](delete-environment.md)\.

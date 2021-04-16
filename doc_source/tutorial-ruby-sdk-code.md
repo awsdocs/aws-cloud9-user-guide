@@ -1,6 +1,6 @@
-# Step 5: Add AWS SDK Code<a name="tutorial-ruby-sdk-code"></a>
+# Step 5: Add AWS SDK code<a name="tutorial-ruby-sdk-code"></a>
 
-\(Previous step: [Step 4: Install and Configure the AWS SDK for Ruby](tutorial-ruby-sdk.md)\)
+\(Previous step: [Step 4: Install and configure the AWS SDK for Ruby](tutorial-ruby-sdk.md)\)
 
 In this step, you provide code to interact with Amazon S3\. This code creates a bucket, lists your available buckets, and then deletes the bucket that was created\. \(You will run this code in the next step\.\)
 
@@ -61,4 +61,4 @@ list_my_buckets(s3)
 
 ## Next Step<a name="tutorial-ruby-sdk-code-next"></a>
 
-[Step 6: Run the AWS SDK Code](tutorial-ruby-sdk-run.md)
+[Step 6: Run the AWS SDK code](tutorial-ruby-sdk-run.md)

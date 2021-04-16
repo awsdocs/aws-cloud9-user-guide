@@ -1,6 +1,6 @@
-# Step 6: Run the AWS SDK Code<a name="tutorial-ruby-sdk-run"></a>
+# Step 6: Run the AWS SDK code<a name="tutorial-ruby-sdk-run"></a>
 
-\(Previous step: [Step 5: Add AWS SDK Code](tutorial-ruby-sdk-code.md)\)
+\(Previous step: [Step 5: Add AWS SDK code](tutorial-ruby-sdk-code.md)\)
 
 1. In the AWS Cloud9 IDE, on the menu bar, choose **Run**, **Run Configurations**, **New Run Configuration**\.
 
@@ -32,4 +32,4 @@
 
 ## Next Step<a name="tutorial-ruby-sdk-run-next"></a>
 
-[Step 7: Clean Up](tutorial-ruby-clean-up.md)
+[Step 7: Clean up](tutorial-ruby-clean-up.md)
