@@ -221,6 +221,74 @@ Add the following permissions to the policy for the IAM entity calling AWS Cloud
         }
 ```
 
+## Configuring VPC endpoints for Amazon S3 to download dependencies<a name="configure-s3-endpoint"></a>
+
+If your AWS Cloud9 environment’s EC2 instance doesn't have access to the internet \(no outbound traffic allowed\), you need to create a VPC endpoint for a specified Amazon S3 bucket\. This bucket contains the dependencies that are required to keep your IDE up\-to\-date\.
+
+Setting up a VPC endpoint for Amazon S3 also involves customizing the access policy to allow access to only the trusted bucket that contains the dependencies to be downloaded\.
+
+**Note**  
+You can create and configure VPC endpoints using the AWS Management Console, AWS CLI, or Amazon VPC API\. The procedure below explains how to create a VPC endpoint using the console interface\.<a name="create-s3-endpoint"></a>
+
+## Create and configure a VPC endpoint for Amazon S3<a name="create-s3-endpoint"></a>
+
+1. In the AWS Management Console, go to the console page for Amazon VPC\.
+
+1. Choose **Endpoints** in the navigation bar\.
+
+1. In the **Endpoints** page, choose **Create Endpoint**\.
+
+1. In the **Create Endpoint** page, enter "s3" in the search field and press **Return** to list available endpoints for Amazon S3 in the current AWS Region\.
+
+1. From the list of returned Amazon S3 endpoints, select the **Gateway** type\.
+
+1. Next, choose the VPC that contains your environment's EC2 instance\.
+
+1. Now choose the VPC's route table so that the associated subnets can access the endpoint\. \(Your environment's EC2 instance is in one of these subnets\)\. 
+
+1. In the **Policy** section, choose the **Custom** option, and replace the standard policy with the following:
+
+   ```
+   {
+     "Version": "2008-10-17",
+     "Statement": [
+         {
+             "Sid": "Access-to-C9-bucket-only",
+             "Effect": "Allow",
+             "Principal": "*",
+             "Action": "s3:GetObject",
+             "Resource": "arn:aws:s3:::{bucket_name}/content/dependencies/*"
+         }
+     ]
+   }
+   ```
+
+   For the `Resource` element, replace `{bucket_name}` with the actual name of the bucket that's available in your AWS Region\. For example, if you're using AWS Cloud9 in the Europe \(Ireland\) Region, you specify the following: `"Resource": "arn:aws:s3:::static-eu-west-1-prod-static-hld3vzaf7c4h/content/dependencies/`\.
+
+   The following table lists bucket names for AWS Regions where AWS Cloud9 is available:  
+**Amazon S3 buckets in AWS Cloud9 Regions**    
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html)
+
+1. Choose **Create Endpoint**\.
+
+   If you've provided the correct configuration information, a message displays the ID of the endpoint that's created\.
+
+1. To check that your IDE can access the Amazon S3 bucket, start a terminal session by choosing **Window**, **New Terminal** on the menu bar\. Then run the following command, replacing `{bucket_name}` with the actual name of the bucket for your Region:
+
+   ```
+   ping {bucket_name}.amazonaws.com.
+   ```
+
+   For example, if you created a endpoint for an Amazon S3 bucket in the US East \(N\. Virginia\) Region, run the following command:
+
+   ```
+   ping static-us-east-1-prod-static-mft1klnkc4hl.amazonaws.com
+   ```
+
+   If the ping gets a response, this confirms that your IDE can access the bucket and its dependencies\.
+
+For more information on this feature, see [Endpoints for Amazon S3](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-s3.html) in the *AWS PrivateLink Guide*\.
+
 ## Configuring VPC endpoints for private connectivity<a name="configure-no-egress"></a>
 
 When you launch an instance into a subnet with the **access via Systems Manager** option, its security group doesn't have an inbound rule to allow incoming network traffic\. The security group does, however, have an outbound rule that permits outbound traffic from the instance\. This is required to download packages and libraries required to keep the AWS Cloud9 IDE up to date\. 
@@ -228,5 +296,5 @@ When you launch an instance into a subnet with the **access via Systems Manager*
 To prevent outbound as well as inbound traffic for the instance, you need to create and configure Amazon VPC endpoints for Systems Manager\. An interface VPC endpoint \(interface endpoint\) enables you to connect to services powered by [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/userguide/endpoint-service.html), a technology that enables you to privately access Amazon EC2 and Systems Manager APIs by using private IP addresses\. To configure VPC endpoints to use Systems Manager, follow the instructions provided by this [Knowledge Center resource](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints/)\.
 
 **Warning**  
-If you configure a security group that doesn't permit inbound or outbound networking traffic, the EC2 instance that supports your AWS Cloud9 IDE doesn't have internet access by default\. So, you can't download and install the packages and libraries that ensure your development environment remains up to date\. Moreover, some AWS services, such as AWS Lambda functions, might not work as intended without internet access\.  
+If you configure a security group that doesn't permit inbound or outbound networking traffic, the EC2 instance that supports your AWS Cloud9 IDE doesn't have internet access by default\. So you need to create an [Amazon S3 endpoint for your VPC](#configure-s3-endpoint) to allow access to the dependencies contained in a trusted S3 bucket\. In addition, some AWS services, such as AWS Lambda functions, might not work as intended without internet access\.   
 With AWS PrivateLink there are data processing charges for each gigabyte processed through the VPC endpoint, regardless of the traffic’s source or destination\. For more information, see [AWS PrivateLink pricing](https://aws.amazon.com/privatelink/pricing/)\.

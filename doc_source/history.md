@@ -8,6 +8,7 @@ The following table describes important changes to the *AWS Cloud9 User Guide* a
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [VPC endpoints for Amazon S3](ec2-ssm.md#configure-s3-endpoint) | Added support for configuring VPC endpoints for Amazon S3 to allow dependencies to be downloaded\. | April 22, 2021 | 
 | [Visual source control available through Git panel](source-control-gitpanel.md) | As a developer, you can use Git panel to run Git commands in a user interface\. | February 1, 2021 | 
 | [Launch environment instances into private subnets](ec2-ssm.md#ssm-benefits) | Added support for EC2 instances accessed through Systems Manager to be launched into private subnets\. | January 21, 2021 | 
 | [Integration for AWS Toolkit](toolkit-welcome.md) | The AWS Toolkit now enables developers to navigate and interact with AWS services through the AWS Explorer window\. | December 11, 2020 | 

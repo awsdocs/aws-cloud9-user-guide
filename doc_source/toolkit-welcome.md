@@ -31,6 +31,11 @@ If the AWS Toolkit isn't available in your environment, you can enable it in the
 
    When you enable the AWS Toolkit, the IDE refreshes to show the updated **Enable AWS Toolkit** setting and the AWS Toolkit option at the side of the IDE below the **Environment** option\.
 
+**Important**  
+If your AWS Cloud9 environment's EC2 instance doesn't have access to the internet \(no outbound traffic allowed\), a message may display after you turn on AWS Toolkit and relaunch the IDE\. This message states that the dependencies required by AWS Toolkit couldn't be downloaded\. You're also unable to use the AWS Toolkit\.   
+To fix this issue, create a VPC endpoint for Amazon S3\. This allows access to an Amazon S3 bucket in your AWS Region that contains the dependencies required to keep your IDE up\-to\-date\.  
+For more information, see [Configuring VPC endpoints for Amazon S3 to download dependencies](ec2-ssm.md#configure-s3-endpoint)\.
+
 
 
 ## Managing access credentials for AWS Toolkit<a name="credentials-for-toolkit"></a>
