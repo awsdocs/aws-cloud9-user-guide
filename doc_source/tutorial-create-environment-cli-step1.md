@@ -8,10 +8,6 @@ In AWS Cloud9, a *development environment* \(or only an *environment*\) is a pla
 
 ## Create an EC2 environment with the AWS CLI<a name="tutorial-create-environment-cli"></a>
 
-**Important**  
-Currently, only environments connected to Amazon Linux can be created with the AWS CLI\. You can't use the AWS CLI to create an Amazon Linux 2\-based or an Ubuntu Server\-based environment\.   
-We're planning to support Amazon Linux 2 and are evaluating support for Ubuntu Server\. In the meantime, for EC2 environments backed by Amazon Linux 2 or Ubuntu Server, use the [console option](create-environment-main.md#create-environment-console)\.
-
 1. Install and configure the AWS CLI, if you have not done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
    +  [Quick configuration](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-quick-configuration) 
@@ -25,13 +21,16 @@ We're planning to support Amazon Linux 2 and are evaluating support for Ubuntu S
 1. In the following AWS Cloud9 command, provide a value for `--region` and `--subnet-id`\. Then run the command and make a note of the `"environmentId"` value for later cleanup\.
 
    ```
-   aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --region MY-REGION --connection-type CONNECT_SSM --subnet-id subnet-12a3456b
+   aws cloud9 create-environment-ec2 --name my-demo-environment --description "This environment is for the AWS Cloud9 tutorial." --instance-type t2.micro --image-id resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64 --region MY-REGION --connection-type CONNECT_SSM --subnet-id subnet-12a3456b
    ```
 
    In the preceding command:
    +  `--name` represents the name of the environment\. In this tutorial, we use the name `my-demo-environment`\.
    +  `--description` represents an optional description for the environment\.
    +  `--instance-type` represents the type of Amazon EC2 instance AWS Cloud9 will launch and connect to the new environment\. This example specifies `t2.micro`, which has relatively low RAM and vCPUs and is sufficient for this tutorial\. Specifying instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\. For a list of available instance types, see the create environment wizard in the AWS Cloud9 console\.
+   +  `--image-id` specifies the identifier for the Amazon Machine Image \(AMI\) that's used to create the EC2 instance\. To choose an AMI for the instance, you must specify a valid AMI alias or a valid AWS Systems Manager \(SSM\) path\. In the example above, an SSM path for an Amazon Linux 2 AMI is specified\.
+
+     For more information, see [create\-environment\-ec2](https://docs.aws.amazon.com/cli/latest/reference/cloud9/create-environment-ec2.html) in the *AWS CLI Command Reference*\.
    +  `--region` represents the ID of the AWS Region for AWS Cloud9 to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *Amazon Web Services General Reference*\.
    +  `--connection-type CONNECT_SSM` specifies that AWS Cloud9 connects to its Amazon EC2 instance through Systems Manager\. This option ensures no inbound traffic to the instance is allowed\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
    +  `--subnet-id` represents the subnet you want AWS Cloud9 to use\. Replace `subnet-12a3456b` with the ID of the subnet of an Amazon Virtual Private Cloud \(VPC\), which must be compatible with AWS Cloud9\. For more information, see [Create an Amazon VPC for AWS Cloud9](vpc-settings.md#vpc-settings-create-vpc) in *[VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)*\.

@@ -74,218 +74,280 @@ For details on what each of these API actions does, see the *AWS Cloud9 API Refe
 
 You cannot attach a resource\-based policy to an AWS Cloud9 resource directly\. Instead, AWS Cloud9 attaches the appropriate resource\-based policies to AWS Cloud9 resources as you add, modify, update, or delete environment members\.
 
-To grant a user permissions to perform actions on AWS Cloud9 resources, you attach a permissions policy to an IAM group that the user belongs to\. We recommend that you attach an AWS managed \(predefined\) policy for AWS Cloud9 whenever possible\. AWS managed policies are easier and faster to attach\. They also contain predefined sets of access permissions for common usage scenarios and user types, such as full administration of an environment, environment users, and users who have only read\-only access to an environment\. For a list of AWS managed policies for AWS Cloud9, see [AWS managed \(predefined\) policies for AWS Cloud9](#auth-and-access-control-managed-policies)\.
+To grant a user permissions to perform actions on AWS Cloud9 resources, you attach a permissions policy to an IAM group that the user belongs to\. We recommend that you attach an AWS managed \(predefined\) policy for AWS Cloud9 whenever possible\. AWS managed policies are easier and faster to attach\. They also contain predefined sets of access permissions for common usage scenarios and user types, such as full administration of an environment, environment users, and users who have only read\-only access to an environment\. For a list of AWS managed policies for AWS Cloud9, see [AWS managed policies for AWS Cloud9](#auth-and-access-control-managed-policies)\.
 
 For more detailed usage scenarios and unique user types, you can create and attach your own customer managed policies\. See [Additional Setup Options for AWS Cloud9 \(Team and Enterprise\)](setup-teams.md) and [Creating customer managed policies for AWS Cloud9](#auth-and-access-control-customer-policies)\.
 
 To attach an IAM policy \(AWS managed or customer managed\) to an IAM identity, see [Attaching IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#attach-managed-policy-console) in the *IAM User Guide*\.
 
-## AWS managed \(predefined\) policies for AWS Cloud9<a name="auth-and-access-control-managed-policies"></a>
+## Session permissions for API operations<a name="session-and-resource-permissions"></a>
 
-AWS addresses many common use cases by providing standalone IAM policies that AWS creates and administers\. These AWS managed policies grant necessary permissions for common use cases so you can avoid having to investigate what permissions are needed\. For example, you can use AWS managed policies for AWS Cloud9 to quickly and easily allow users to have full administration of an AWS Cloud9 development environment, act as an environment user, or use an environment they are added to\. For more information, see [AWS Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
+When using the AWS CLI or AWS API to programmatically create a temporary session for a role or federated user, you can pass session policies as a parameter to extend the scope of the role session\. This means that the effective permissions of the session are [the intersection of the role’s identity\-based policies and the session policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_session)\.
 
-To attach an AWS managed policy to an IAM identity, see [Attaching IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#attach-managed-policy-console) in the *IAM User Guide*\.
+When a request is made to access a resource during a session, if there's no applicable `Deny` statement but also no applicable `Allow` statement in the session policy, the result of the policy evaluation is an [ implicit denial](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#AccessPolicyLanguage_Interplay)\. \(For more information, see [Determining whether a request is allowed or denied within an account](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html#policy-eval-denyallow) in the *IAM User Guide*\.\)
 
-The following AWS managed policies, which you can attach to IAM identities in your account, are specific to AWS Cloud9:
-+  `AWSCloud9Administrator` – Provides the following permissions:
-  + Amazon EC2 – Get information about multiple Amazon VPC and subnet resources in their AWS account\.
-  + AWS Cloud9 – All AWS Cloud9 actions in their AWS account\.
-  + IAM – Get information about IAM users in their AWS account, and create the AWS Cloud9 service\-linked role in their AWS account as needed\.
-  + Systems Manager– Allow the user to call StartSession to initiate a connection to an instance for a Session Manager session\. This permission is required for users opening an environment that communicates with its EC2 instance through Systems Manager\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)
+But for AWS Cloud9 API operations that require a resource\-based policy \(see above\), permissions are granted to the IAM entity that's calling if it's specified as the `Principal` in the resource policy\. This explicit permission takes precedence over the implicit denial of the session policy, thereby allowing the session to call the AWS Cloud9 API operation successfully\.
 
-  The `AWSCloud9Administrator` managed policy contains the following permissions\.
+## AWS managed policies for AWS Cloud9<a name="auth-and-access-control-managed-policies"></a>
 
-  ```
-  {
+To add permissions to users, groups, and roles, it is easier to use AWS managed policies than to write policies yourself\. It takes time and expertise to [create IAM customer managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html) that provide your team with only the permissions they need\. To get started quickly, you can use our AWS managed policies\. These policies cover common use cases and are available in your AWS account\. For more information about AWS managed policies, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
+
+AWS services maintain and update AWS managed policies\. You can't change the permissions in AWS managed policies\. Services occasionally add additional permissions to an AWS managed policy to support new features\. This type of update affects all identities \(users, groups, and roles\) where the policy is attached\. Services are most likely to update an AWS managed policy when a new feature is launched or when new operations become available\. Services do not remove permissions from an AWS managed policy, so policy updates won't break your existing permissions\.
+
+Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the **ReadOnlyAccess** AWS managed policy provides read\-only access to all AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
+
+### AWS managed policy: AWSCloud9Administrator<a name="security-iam-awsmanpol-AWSCloud9Administrator"></a>
+
+You can attach the `AWSCloud9Administrator` policy to your IAM identities\.
+
+This policy grants *administrative* permissions that provide administrator access to AWS Cloud9\.
+
+**Permissions details**
+
+This policy includes the following permissions\.
++ AWS Cloud9 – All AWS Cloud9 actions in their AWS account\.
++ Amazon EC2 – Get information about multiple Amazon VPC and subnet resources in their AWS account\.
++ IAM – Get information about IAM users in their AWS account, and create the AWS Cloud9 service\-linked role in their AWS account as needed\.
++ Systems Manager– Allow the user to call StartSession to initiate a connection to an instance for a Session Manager session\. This permission is required for users opening an environment that communicates with its EC2 instance through Systems Manager\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)
+
+```
+{
     "Version": "2012-10-17",
     "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": [
-          "cloud9:*",
-          "ec2:DescribeSubnets",
-          "ec2:DescribeVpcs",
-          "iam:GetUser",
-          "iam:ListUsers"
-        ],
-        "Resource": "*"
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
-          "iam:CreateServiceLinkedRole"
-        ],
-        "Resource": "*",
-        "Condition": {
-          "StringLike": {
-            "iam:AWSServiceName": "cloud9.amazonaws.com"
-          }
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloud9:*",
+                "iam:GetUser",
+                "iam:ListUsers",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringLike": {
+                    "iam:AWSServiceName": "cloud9.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ssm:StartSession",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringLike": {
+                    "ssm:resourceTag/aws:cloud9:environment": "*"
+                },
+                "StringEquals": {
+                    "aws:CalledViaFirst": "cloud9.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": [
+                "arn:aws:ssm:*:*:document/*"
+            ]
         }
-      }
-      
-      {
-              "Effect": "Allow",
-              "Action": "ssm:StartSession",
-              "Resource": "arn:aws:ec2:*:*:instance/*",
-              "Condition": {
-                  "StringLike": {
-                      "ssm:resourceTag/aws:cloud9:environment": "*"
-                  },
-                  "StringEquals": {
-                      "aws:CalledViaFirst": "cloud9.amazonaws.com"
-                  }
-              }
-          },
-          {
-              "Effect": "Allow",
-              "Action": [
-                  "ssm:StartSession"
-              ],
-              "Resource": [
-                  "arn:aws:ssm:*:*:document/*"
-              ]
-          }       
-      
     ]
-  }
-  ```
-+  `AWSCloud9User` – Provides the following permissions:
-  + Amazon EC2 – Get information about multiple Amazon VPC and subnet resources in their AWS account\.
-  +  – Create and get information about their environments, and get and change user settings for their environments\.
-  + IAM – Get information about IAM users in their AWS account, and create the AWS Cloud9 service\-linked role in their AWS account as needed\.
-  + Systems Manager – Allow the user to call StartSession to initiate a connection to an instance for a Session Manager session\. This permission is required for users opening an environment that communicates with its EC2 instance through Systems Manager\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)
+}
+```
 
-  The `AWSCloud9User` managed policy contains the following permissions\.
+### AWS managed policy: AWSCloud9User<a name="security-iam-awsmanpol-AWSCloud9User"></a>
 
-  ```
-  {
+You can attach the `AWSCloud9User` policy to your IAM identities\.
+
+This policy grants *user* permissions to create AWS Cloud9 development environments and to manage owned environments\.
+
+**Permissions details**
+
+This policy includes the following permissions\.
++ AWS Cloud9 – Create and get information about their environments, and get and change user settings for their environments\. 
++ Amazon EC2 – Get information about multiple Amazon VPC and subnet resources in their AWS account\.
++ IAM – Get information about IAM users in their AWS account, and create the AWS Cloud9 service\-linked role in their AWS account as needed\.
++ Systems Manager– Allow the user to call StartSession to initiate a connection to an instance for a Session Manager session\. This permission is required for users opening an environment that communicates with its EC2 instance through Systems Manager\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)
+
+```
+{
     "Version": "2012-10-17",
     "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": [
-          "cloud9:CreateEnvironmentEC2",
-          "cloud9:CreateEnvironmentSSH",
-          "cloud9:GetUserPublicKey",
-          "cloud9:GetUserSettings",
-          "cloud9:UpdateUserSettings",
-          "cloud9:ValidateEnvironmentName",
-          "ec2:DescribeSubnets",
-          "ec2:DescribeVpcs",
-          "iam:GetUser",
-          "iam:ListUsers"
-        ],
-        "Resource": "*"
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
-          "cloud9:DescribeEnvironmentMemberships"
-        ],
-        "Resource": "*",
-        "Condition": {
-          "Null": {
-            "cloud9:UserArn": "true",
-            "cloud9:EnvironmentId": "true"
-          }
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloud9:ValidateEnvironmentName",
+                "cloud9:UpdateUserSettings",
+                "cloud9:GetUserSettings",
+                "iam:GetUser",
+                "iam:ListUsers",
+                "ec2:DescribeVpcs",
+                "ec2:DescribeSubnets"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloud9:CreateEnvironmentEC2",
+                "cloud9:CreateEnvironmentSSH"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "Null": {
+                    "cloud9:OwnerArn": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloud9:GetUserPublicKey"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "Null": {
+                    "cloud9:UserArn": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloud9:DescribeEnvironmentMemberships"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "Null": {
+                    "cloud9:UserArn": "true",
+                    "cloud9:EnvironmentId": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*",
+            "Condition": {
+                "StringLike": {
+                    "iam:AWSServiceName": "cloud9.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ssm:StartSession",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringLike": {
+                    "ssm:resourceTag/aws:cloud9:environment": "*"
+                },
+                "StringEquals": {
+                    "aws:CalledViaFirst": "cloud9.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": [
+                "arn:aws:ssm:*:*:document/*"
+            ]
         }
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
-          "iam:CreateServiceLinkedRole"
-        ],
-        "Resource": "*",
-        "Condition": {
-          "StringLike": {
-            "iam:AWSServiceName": "cloud9.amazonaws.com"
-          }
-        }
-      }
-      {
-              "Effect": "Allow",
-              "Action": "ssm:StartSession",
-              "Resource": "arn:aws:ec2:*:*:instance/*",
-              "Condition": {
-                  "StringLike": {
-                      "ssm:resourceTag/aws:cloud9:environment": "*"
-                  },
-                  "StringEquals": {
-                      "aws:CalledViaFirst": "cloud9.amazonaws.com"
-                  }
-              }
-          },
-          {
-              "Effect": "Allow",
-              "Action": [
-                  "ssm:StartSession"
-              ],
-              "Resource": [
-                  "arn:aws:ssm:*:*:document/*"
-              ]
-          }
     ]
-  }
-  ```
-+  `AWSCloud9EnvironmentMember` – Provides the following permissions:
-  + AWS Cloud9 – Get information about and user settings for environments they've been invited to\.
-  + IAM – Get information about IAM users in their AWS account\.
-  + Systems Manager – Allow the user to call StartSession to initiate a connection to an instance for a Session Manager session\. This permission is required for users opening an environment that communicates with its EC2 instance through Systems Manager\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)
+}
+```
 
-  The `AWSCloud9EnvironmentMember` managed policy contains the following permissions\.
+### AWS managed policy: AWSCloud9EnvironmentMember<a name="security-iam-awsmanpol-AWSCloud9EnvironmentMember"></a>
 
-  ```
-  {
+You can attach the `AWSCloud9EnvironmentMember` policy to your IAM identities\.
+
+This policy grants *membership* permissions that provide the ability to join an AWS Cloud9 shared environment\.
+
+**Permissions details**
+
+This policy includes the following permissions\.
++ AWS Cloud9 – Get information about their environments, and get and change user settings for their environments\. 
++ IAM – Get information about IAM users in their AWS account, and create the AWS Cloud9 service\-linked role in their AWS account as needed\.
++ Systems Manager– Allow the user to call StartSession to initiate a connection to an instance for a Session Manager session\. This permission is required for users opening an environment that communicates with its EC2 instance through Systems Manager\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)
+
+```
+{
     "Version": "2012-10-17",
     "Statement": [
-      {
-        "Effect": "Allow",
-        "Action": [
-          "cloud9:GetUserSettings",
-          "cloud9:UpdateUserSettings",
-          "iam:GetUser",
-          "iam:ListUsers"
-        ],
-        "Resource": "*"
-      },
-      {
-        "Effect": "Allow",
-        "Action": [
-          "cloud9:DescribeEnvironmentMemberships"
-        ],
-        "Resource": "*",
-        "Condition": {
-          "Null": {
-            "cloud9:UserArn": "true",
-            "cloud9:EnvironmentId": "true"
-          }
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloud9:GetUserSettings",
+                "cloud9:UpdateUserSettings",
+                "iam:GetUser",
+                "iam:ListUsers"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cloud9:DescribeEnvironmentMemberships"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "Null": {
+                    "cloud9:UserArn": "true",
+                    "cloud9:EnvironmentId": "true"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": "ssm:StartSession",
+            "Resource": "arn:aws:ec2:*:*:instance/*",
+            "Condition": {
+                "StringLike": {
+                    "ssm:resourceTag/aws:cloud9:environment": "*"
+                },
+                "StringEquals": {
+                    "aws:CalledViaFirst": "cloud9.amazonaws.com"
+                }
+            }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ssm:StartSession"
+            ],
+            "Resource": [
+                "arn:aws:ssm:*:*:document/*"
+            ]
         }
-      }
-      {
-              "Effect": "Allow",
-              "Action": "ssm:StartSession",
-              "Resource": "arn:aws:ec2:*:*:instance/*",
-              "Condition": {
-                  "StringLike": {
-                      "ssm:resourceTag/aws:cloud9:environment": "*"
-                  },
-                  "StringEquals": {
-                      "aws:CalledViaFirst": "cloud9.amazonaws.com"
-                  }
-              }
-          },
-          {
-              "Effect": "Allow",
-              "Action": [
-                  "ssm:StartSession"
-              ],
-              "Resource": [
-                  "arn:aws:ssm:*:*:document/*"
-              ]
-          }
     ]
-  }
-  ```
+}
+```
+
+### AWS Cloud9 updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
+
+View details about updates to AWS managed policies for AWS Cloud9 since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the AWS Cloud9 Document history page\.
+
+
+| Change | Description | Date | 
+| --- | --- | --- | 
+|  AWS Cloud9 started tracking changes  |  AWS Cloud9 started tracking changes for its AWS managed policies\.  | March 15, 2021 | 
 
 ## Creating customer managed policies for AWS Cloud9<a name="auth-and-access-control-customer-policies"></a>
 

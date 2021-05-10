@@ -1,18 +1,18 @@
-# Classroom Setup for AWS Cloud9<a name="setup-classroom"></a>
+# Classroom setup for AWS Cloud9<a name="setup-classroom"></a>
 
 This topic explains how an educator can set up for students to use AWS Cloud9 in a virtual classroom\. To set up to use AWS Cloud9 for any other usage pattern, see [Setting up AWS Cloud9](setting-up.md) for the correct instructions\. To learn about who qualifies as an educator, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
-+  [Step 1: Create an AWS Account and Apply for AWS Educate](#setup-classroom-create-account) 
-+  [Step 2: Set Up Your Virtual Classroom for AWS Cloud9](#setup-classroom-virtual) 
-+  [Step 3: Enter Your Virtual Classroom](#setup-classroom-sign-in-classroom) 
-+  [Next Steps](#setup-classroom-next-steps) 
++  [Step 1: Create an AWS account and apply for AWS Educate](#setup-classroom-create-account) 
++  [Step 2: Set up Your virtual classroom for AWS Cloud9](#setup-classroom-virtual) 
++  [Step 3: Enter your virtual classroom](#setup-classroom-sign-in-classroom) 
++  [Next steps](#setup-classroom-next-steps) 
 
-## Step 1: Create an AWS Account and Apply for AWS Educate<a name="setup-classroom-create-account"></a>
+## Step 1: Create an AWS account and apply for AWS Educate<a name="setup-classroom-create-account"></a>
 
 In this step, you create an AWS account\. Then you apply for AWS Educate\. During the application process, you provide AWS Educate with your AWS account ID\.
 
 If you already have an AWS account, skip ahead to step 5 of this procedure to apply for AWS Educate\. If you're not sure whether your department or institution already has an existing AWS account for you, or whether you should create a new one on your own, check with your department's or institution's AWS account administrator\.
 
-If you are already a member of AWS Educate, skip ahead to [Step 2: Set Up Your Virtual Classroom for AWS Cloud9](#setup-classroom-virtual)\.
+If you are already a member of AWS Educate, skip ahead to [Step 2: Set up your virtual classroom for AWS Cloud9](#setup-classroom-virtual)\.
 
 1. Go to [https://aws\.amazon\.com](https://aws.amazon.com)\.
 
@@ -68,7 +68,7 @@ Enter the password for your AWS account, not your password for your AWS Educate 
 **Note**  
 AWS Cloud9 isn't in this list of qualifying AWS services, because there is no additional charge for AWS Cloud9\. Instead, AWS automatically applies this credit toward qualifying AWS service usage, some of which can be used by or with AWS Cloud9\. For more information, see [AWS Cloud9 Pricing](https://aws.amazon.com/cloud9/pricing/)\.
 
-## Step 2: Set Up Your Virtual Classroom for AWS Cloud9<a name="setup-classroom-virtual"></a>
+## Step 2: Set up your virtual classroom for AWS Cloud9<a name="setup-classroom-virtual"></a>
 
 In this step, you use your AWS Educate Educator Collaboration Portal \(ECP\) to set up a virtual classroom for your students to use AWS Cloud9\.
 
@@ -94,14 +94,14 @@ To open or return to your AWS Educate ECP, go to the AWS Educate Site Login webs
 
    After AWS Educate approves your application, AWS will send you an email with the title **Your AWS Educate Classroom has been created**\. Note that the approval process might take a few days\. Do not go past this step in this procedure until you get this approval\. After you get the approval email, AWS Educate will start sending email invitations to each of the email addresses that you provided earlier in step 8 of this procedure\.
 
-## Step 3: Enter Your Virtual Classroom<a name="setup-classroom-sign-in-classroom"></a>
+## Step 3: Enter your virtual classroom<a name="setup-classroom-sign-in-classroom"></a>
 
 After you complete the previous steps in this topic, you and your students are ready to enter your virtual classroom and start using AWS Cloud9\.
-+  [Enter a Virtual Classroom as a Student](#setup-classroom-sign-in-classroom-student-first) 
-+  [Return to a Virtual Classroom as a Student](#setup-classroom-sign-in-classroom-student) 
-+  [Enter a Virtual Classroom as the Instructor](#setup-classroom-sign-in-classroom-instructor) 
++  [Enter a virtual classroom as a student](#setup-classroom-sign-in-classroom-student-first) 
++  [Return to a virtual classroom as a student](#setup-classroom-sign-in-classroom-student) 
++  [Enter a virtual classroom as the instructor](#setup-classroom-sign-in-classroom-instructor) 
 
-### Enter a Virtual Classroom as a Student<a name="setup-classroom-sign-in-classroom-student-first"></a>
+### Enter a virtual classroom as a student<a name="setup-classroom-sign-in-classroom-student-first"></a>
 
 1. AWS Educate will send you an email with the title **Your AWS Educate Application**\. In that email, choose the link to complete the AWS Educate application process and to accept your instructor's virtual classroom invitation\.
 
@@ -135,9 +135,9 @@ After you complete the previous steps in this topic, you and your students are r
    + In the **Find services** box, type **Cloud9**, and then press **Enter**\.
    + In the AWS navigation bar, choose **Services**, and then choose **Cloud9**\.
 
-You can now start using AWS Cloud9\. Skip ahead to [Next Steps](setup-student.md#setup-student-next-steps)\.
+You can now start using AWS Cloud9\. Skip ahead to [Next Steps](#setup-classroom-next-steps)\.
 
-### Return to a Virtual Classroom as a Student<a name="setup-classroom-sign-in-classroom-student"></a>
+### Return to a virtual classroom as a student<a name="setup-classroom-sign-in-classroom-student"></a>
 
 1. Go to the AWS Educate Site Login website, at [https://www\.awseducate\.com/signin/](https://www.awseducate.com/signin/)\.
 
@@ -159,7 +159,7 @@ You can now start using AWS Cloud9\. Skip ahead to [Next Steps](setup-student.md
 
 You can now continue using AWS Cloud9\. Skip ahead to [Next Steps](setup-student.md#setup-student-next-steps)\.
 
-### Enter a Virtual Classroom as the Instructor<a name="setup-classroom-sign-in-classroom-instructor"></a>
+### Enter a virtual classroom as the instructor<a name="setup-classroom-sign-in-classroom-instructor"></a>
 
 1. With your AWS Educate ECP already open, choose **Classrooms & Credits**\.
 **Note**  
@@ -203,5 +203,5 @@ To return to your AWS Educate ECP, go to the AWS Educate Site Login website, at 
 
 |  **More advanced task**  |  **See this topic**  | 
 | --- | --- | 
-|  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an Environment](create-environment.md)   | 
-|  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with Shared Environments](share-environment.md)   | 
+|  Create an AWS Cloud9 development environment, and then use the AWS Cloud9 IDE to work with code in your new environment\.  |   [Creating an environment](create-environment.md)   | 
+|  Invite others to use your new environment along with you, in real time and with text chat support\.  |   [Working with shared environments](share-environment.md)   | 

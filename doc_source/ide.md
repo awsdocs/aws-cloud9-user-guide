@@ -30,4 +30,4 @@ Learn how to work with the AWS Cloud9 IDE by reading one or more of these topics
 + [Windows / Linux Vim Keybindings Reference](keybindings-vim-windows-linux.md)
 + [Windows / Linux Emacs Keybindings Reference](keybindings-emacs-windows-linux.md)
 + [Windows / Linux Sublime Keybindings Reference](keybindings-sublime-windows-linux.md)
-+ [Commands Reference](commands.md)
++ [Commands reference](commands.md)

@@ -35,6 +35,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Notice: Failed to install dependencies for collaboration support](#proxy-failed-dependencies)
 + [Error with `gdb` when debugging C\+\+ projects](#troubleshooting-debugger-cplusplus)
 + [Error running SAM applications locally in AWS Toolkit because the AWS Cloud9 environment doesn't have enough disk space](#troubleshooting-dockerimage-toolkit)
++ [Unable to load IDE using older versions of Microsoft Edge browser](#forbidden-edge-ide)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -117,7 +118,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Recommended solutions:** 
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
   +  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
-  +  [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
+  +  [AWS managed policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
   +  [Customer managed policy examples for teams Using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
   +  [Customer managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
   +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
@@ -641,5 +642,15 @@ docker image prune -a
 ```
 
 If you're repeatedly having issues with SAM CLI commands because of disk\-space restrictions, consider switching to a development environment uses a different [instance type](create-environment-main.md#create-environment-console)\. 
+
+\([back to top](#troubleshooting)\)
+
+## Unable to load IDE using older versions of Microsoft Edge browser<a name="forbidden-edge-ide"></a>
+
+**Issue:** `HTTP403: FORBIDDEN` error is returned when trying to load AWS Cloud9 IDE using the Microsoft Edge web browser\.
+
+**Possible causes:** The AWS Cloud9 IDE doesn't support certain older versions of Microsoft Edge\.
+
+**Recommended solutions:** To update the browser, choose the ellipsis \(\.\.\.\) button in the Microsoft Edge toolbar\. From the menu, choose **Settings** and then choose **About Microsoft Edge**\. If an update is required, it's automatically downloaded and installed\.
 
 \([back to top](#troubleshooting)\)

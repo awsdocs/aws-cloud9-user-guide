@@ -36,7 +36,7 @@ The existing cloud compute instance or your own server must meet the following r
 + It must run Linux\. \(AWS Cloud9 doesn't support Windows\.\)
 + It must be reachable over the public internet by using SSH\. If it's reachable only through a virtual private cloud \(VPC\) or virtual private network \(VPN\), that VPC or VPN must have access to the public internet\.
 + If the host is an existing AWS Cloud compute instance that's part of an Amazon Virtual Private Cloud \(Amazon VPC\), there are additional requirements\. See [Amazon VPC Settings](vpc-settings.md)\.
-+ It must have Python installed, and the **version must be 2\.7**\. To check the version, from the terminal of an existing instance or your server, run the command ** `python --version` **\. To install Python 2\.7 on the instance or server, see one of the following resources:
++ It must have Python installed\. To check the version, from the terminal of an existing instance or your server, run the command ** `python3 --version` **\. To install Python3 on the instance or server, see one of the following resources:
   +  [Step 1: Install Required Tools](sample-python.md#sample-python-install) in the *Python Sample*\.
   +  [Download Python](https://www.python.org/downloads/) from the Python website and see [Installing Packages](https://packaging.python.org/installing/) in the *Python Packaging User Guide*\.
 **Note**  

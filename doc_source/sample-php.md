@@ -31,7 +31,7 @@ The following procedure installs PHP only\. To install related tools such as an 
 
 1. Run the ** `yum update` ** for \(Amazon Linux\) or ** `apt update` ** for \(Ubuntu Server\) command to help ensure the latest security updates and bug fixes are installed\.
 
-   For Amazon Linux:
+   For Amazon Linux 2 and Amazon Linux:
 
    ```
    sudo yum -y update
@@ -45,10 +45,22 @@ The following procedure installs PHP only\. To install related tools such as an 
 
 1. Install PHP by running the ** `install` ** command\.
 
+   For Amazon Linux 2:
+
+   ```
+   sudo amazon-linux-extras install -y php7.2
+   ```
+
    For Amazon Linux:
 
    ```
-   sudo yum -y install php56
+   sudo yum -y install php72
+   ```
+**Note**  
+You can view your version of Amazon Linux using the following command:   
+
+   ```
+   cat /etc/system-release
    ```
 
    For Ubuntu Server:

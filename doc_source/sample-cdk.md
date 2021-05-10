@@ -236,6 +236,12 @@ In this step, you instruct the AWS CDK to create a AWS CloudFormation stack temp
    ```
    cdk bootstrap
    ```
+**Note**  
+If you run `cdk bootstrap` without specifying any options, the default AWS account and AWS Region are used\. You can also bootstrap a specific environment by specifying a profile and account/Region combination\. For example:  
+
+   ```
+   cdk bootstrap --profile test 123456789012/us-east-1
+   ```
 
 1. Have the AWS CDK run the AWS CloudFormation stack template to deploy the stack\. To do this, from the project's root directory, run the ** `cdk` ** command with the ** `deploy` ** action and the name of the stack\.
 

@@ -47,9 +47,11 @@ When selecting a subnet for your instance in the **Network settings \(advanced\)
 
 **Private subnets**
 
-For a private subnet, the interface text reminds that you to add a network address translation \(NAT\) gateway to allow the instance to connect to AWS Cloud9 and the internet\.
+For a private subnet, you need to ensure that the instance can still connect to the SSM service\. This can be done by [setting up a NAT gateway in a public subnet](https://aws.amazon.com/premiumsupport/knowledge-center/nat-gateway-vpc-private-subnet) or [configuring a VPC endpoint for Systems Manager](https://aws.amazon.com/premiumsupport/knowledge-center/ec2-systems-manager-vpc-endpoints)\.
 
 The advantage of using the NAT gateway is that it prevents the internet from initiating a connection to the instance in the private subnet\. Because the instance for your environment is assigned a private IP address instead of a public one, the NAT gateway forwards traffic from the instance to the internet or other AWS services, and then sends the response back to the instance\.
+
+For the VPC option, you need to create at least three required *interface endpoints* for Systems Manager: *com\.amazonaws\.region\.ssm*, *com\.amazonaws\.region\.ec2messages*, and *com\.amazonaws\.region\.ssmmessages*\. For more information, see [ Creating VPC endpoints for Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-create-vpc.html#sysman-setting-up-vpc-create) in the *AWS Systems Manager User Guide*\.
 
 **Important**  
 Currently, if the EC2 instance for your environment is launched into a private subnet, you can't use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.
@@ -100,7 +102,7 @@ To open an AWS Cloud9 environment that's connected to an EC2 instance through Sy
 
 | Method | Description | 
 | --- | --- | 
-|  Use AWS Cloud9\-specific managed policy  |  We recommend using AWS managed policies to allow users to access EC2 instances managed by Systems Manager\. Managed policies provide a set of permissions for standard AWS Cloud9 use cases and can be easily attached to an IAM entity\. All the managed policies also include the permissions to run the `StartSession` API operation\. The following are managed policies specific to AWS Cloud9: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html) For more information, see [AWS managed \(predefined\) policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.  | 
+|  Use AWS Cloud9\-specific managed policy  |  We recommend using AWS managed policies to allow users to access EC2 instances managed by Systems Manager\. Managed policies provide a set of permissions for standard AWS Cloud9 use cases and can be easily attached to an IAM entity\. All the managed policies also include the permissions to run the `StartSession` API operation\. The following are managed policies specific to AWS Cloud9: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html) For more information, see [AWS managed policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.  | 
 |  Edit an IAM policy and add required policy statements  |  To edit an existing policy, you can add a permissions for the `StartSession` API\. To edit a policy using the AWS Management Console or AWS CLI, follow the instructions provided by [Editing IAM policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/#edit-managed-policy-console) in the *IAM User Guide*\. When editing the policy, add the [policy statement](#policy-statement) \(see the following\) that allows the `ssm:startSession` API operation to run\.  | 
 
 The following permissions enable you to run the `StartSession` API operation\. The `ssm:resourceTag` condition key specifies that a Session Manager session can be started for any instance \(`Resource: arn:aws:ec2:*:*:instance/*`\) on the condition that the instance is an AWS Cloud9 EC2 development environment \(`aws:cloud9:environment`\)\. 

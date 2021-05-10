@@ -12,7 +12,7 @@ Although project settings apply to only a single environment, you can apply the 
 +  [Apply the Current Project Settings for an Environment to Another Environment](#settings-project-apply) 
 +  [Project Setting Changes You Can Make](#settings-project-change) 
 
-## View or Change Project Settings<a name="settings-project-view"></a>
+## View or change Project Settings<a name="settings-project-view"></a>
 
 1. On the menu bar, choose **AWS Cloud9**, **Preferences**\.
 
@@ -22,7 +22,7 @@ Although project settings apply to only a single environment, you can apply the 
 
 See [Project Setting Changes You Can Make](#settings-project-change)\.
 
-## Apply the Current Project Settings for an Environment to Another Environment<a name="settings-project-apply"></a>
+## Apply the current Project Settings for an environment to another environment<a name="settings-project-apply"></a>
 
 1. In both the source and target environment, on the menu bar of the AWS Cloud9 IDE, choose **AWS Cloud9, Open Your Project Settings**\.
 
@@ -32,7 +32,7 @@ See [Project Setting Changes You Can Make](#settings-project-change)\.
 
 1. In the target environment, save the **project\.settings** tab\.
 
-## Project Setting Changes You Can Make<a name="settings-project-change"></a>
+## Project Settings you can change<a name="settings-project-change"></a>
 
 These sections describe the kinds of project settings that you can change on the **Preferences** tab's **Project Settings** pane\.
 +  [EC2 Instance](#settings-project-change-ec2-instance) 
@@ -52,7 +52,8 @@ These sections describe the kinds of project settings that you can change on the
 ### EC2 Instance<a name="settings-project-change-ec2-instance"></a>
 
 ** **Stop my environment** **  
-If the environment is an EC2 environment, after all web browser instances that are connected to the IDE for the environment are closed, the amount of time until AWS Cloud9 shuts down the Amazon EC2 instance for the environment\.
+Choose when to automatically stop your environment's Amazon EC2 instance \(if used\) after you close all web browser instances that are connected to the IDE for that environment\. You can choose a range of time periods from a week to 30 minutes\. You can also choose never to automatically stop the Amazon EC2 instance after exiting the AWS Cloud9 IDE\.  
+If you want to stop the instance even sooner than 30 minutes after finishing with the IDE, you can [stop it manually using the console interface](#stopping-instance-manually)\.
 
 ### Code Editor \(Ace\)<a name="settings-project-change-code-editor-ace"></a>
 
@@ -274,3 +275,23 @@ If enabled, AWS Cloud9 attempts to format Go code whenever Go files are saved\.
 
 ** **Custom Code Formatter** **  
 The path to any custom code formatting configuration for Go code\.
+
+## Manually stopping your environment's EC2 instance<a name="stopping-instance-manually"></a>
+
+The [EC2 Instance](#settings-project-change-ec2-instance) setting allows you to automatically stop your environment's Amazon EC2 instance as quickly as 30 minutes after you close all web browser instances that are connected to the IDE\.
+
+But you also can manually stop the instance immediately using the console\.
+
+## To manually stop an environment's EC2 instance
+
+1. After you've closed all web browser instances that are connected to the IDE, choose **Your environments** in the AWS Cloud9 console\.
+
+1. Choose the button in the top\-right of the pane that shows details of the environment that you were using, and choose **View details**\.
+
+1. In **Environment details**, under **EC2 Instance**, choose **Go To Instance**\.
+
+1. In the Amazon EC2 console, under **Instance state**, choose the check box to select your environment's instance \(the **Instance state** may indicate that the instance is still running\)\.
+
+1. Choose **Instance state** and select **Stop instance**\.
+
+1. When prompted for confirmation, choose **Stop**\. It can take a few minutes for the instance to stop\.

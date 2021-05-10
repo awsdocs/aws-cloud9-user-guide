@@ -14,7 +14,7 @@ In AWS Cloud9, a *development environment* \(or only an *environment*\) is a pla
 1. Sign in to the AWS Cloud9 console:
    + If you're the only one that using your AWS account or you're an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
    + If your organization uses AWS Single Sign\-On \(AWS SSO\), ask your AWS account administrator for sign\-in instructions\.
-   + If you're using an AWS Educate Starter Account, see [Step 2: Use an AWS Educate Starter Account to sign in to the AWS Cloud9 console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
+   + If you're using an AWS Educate Starter Account, see [Use an AWS Educate Starter Account to sign in to the AWS Cloud9 console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
    + If you're a student in a classroom, ask your instructor for sign\-in instructions\.
 
 1. After you sign in to the AWS Cloud9 console, in the top navigation bar, choose an AWS Region to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *AWS General Reference*\.  
@@ -45,7 +45,7 @@ Creating an EC2 instance for your environment might result in possible charges t
 **Warning**  
 Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\.
 
-1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux**, **Amazon Linux 2**, or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
+1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux 2**, **Amazon Linux**, or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
 **Important**  
 We recommend that you choose the **Amazon Linux 2** option for your EC2 environment\. As well as providing a secure, stable, and high\-performance runtime environment, Amazon Linux 2 AMI includes long\-term support through 2023\.  
 Standard support for the previous version of Amazon Linux AMI discontinued on December 31, 2020\. Now this version only receives maintenance support\. For more information, see the [Amazon Linux 2 page](https://aws.amazon.com/amazon-linux-2/)\.
