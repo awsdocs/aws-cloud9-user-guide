@@ -168,19 +168,17 @@ if (process.argv.length < 4) {
   );
   process.exit(1);
 }
-const {
-  S3Client,
+import {
   ListBucketsCommand,
   CreateBucketCommand,
-  DeleteBucketCommand
-} = require("@aws-sdk/client-s3");
+  DeleteBucketCommand}
+from "@aws-sdk/client-s3";
+import s3} from "./libs/s3Client" // Helper function that creates Amazon S3 service client module.
 
 const async = require("async"); // To call AWS operations asynchronously.
 
 const bucket_name = process.argv[2];
 const region = process.argv[3];
-
-const s3 = new S3Client({ region: REGION });
 
 const create_bucket_params = {
   Bucket: bucket_name,
@@ -196,6 +194,7 @@ const delete_bucket_params = { Bucket: bucket_name };
 const run = async () => {
   try {
     const data = await s3.send(new ListBucketsCommand({}));
+    return data;
     console.log("My buckets now are:\n");
 
     for (var i = 0; i < data.Buckets.length; i++) {
@@ -207,6 +206,7 @@ const run = async () => {
   try {
     console.log("\nCreating a bucket named " + bucket_name + "...\n");
     const data = await s3.send(new CreateBucketCommand(create_bucket_params));
+    return data;
     console.log("My buckets now are:\n");
 
     for (var i = 0; i < data.Buckets.length; i++) {
@@ -218,6 +218,7 @@ const run = async () => {
   try {
     console.log("\nDeleting the bucket named " + bucket_name + "...\n");
     const data = await s3.send(new DeleteBucketCommand(delete_bucket_params));
+    return data;
   } catch (err) {
     console.log(err.code + ": " + err.message);
   }

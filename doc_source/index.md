@@ -1,7 +1,7 @@
 # AWS Cloud9 User Guide
 
 -----
-*****Copyright &copy;  Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -121,7 +121,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Using the AWS Cloud9 Installer](installer.md)
    + [Inbound SSH IP address ranges for AWS Cloud9](ip-ranges.md)
    + [Amazon Machine Image (AMI) contents for an AWS Cloud9 EC2 Development Environment](ami-contents.md)
-   + [Using Service-Linked Roles for AWS Cloud9](using-service-linked-roles.md)
+   + [Using service-linked roles for AWS Cloud9](using-service-linked-roles.md)
    + [Logging AWS Cloud9 API Calls with AWS CloudTrail](cloudtrail.md)
    + [Tags](tags.md)
 + [Security for AWS Cloud9](security.md)

@@ -119,14 +119,14 @@ The Lambda handlers that are detected by context\-aware links depend on the lang
 1. Select the runtime in which your SAM application will run\.
 
 1. In the editor for the `launch.json` file, edit or confirm values for the following configuration properties:
-   + `"type"` – Enter a reader\-friendly name to appear in the **Configuration** drop\-down field in the **Run** view\. 
-   + `"name"` – Enter a reader\-friendly name to appear in the **Configuration** drop\-down field in the **Run** view\. 
-   + `"target"` – Ensure the value is `"code"` so that a Lambda handler is directly invoked\. 
-   + `"lambdaHandler"` – Enter the name of the method within your code that Lambda calls to invoke your function\. For example, for applications in JavaScript, the default is `app.lambdaHandler`\. 
+   + `"name"` – Enter a reader\-friendly name\.
+   + `"target"` – Ensure that the value is `"code"` so that a Lambda function handler is directly invoked\.
+   + `"lambdaHandler"` – Enter the name of the method within your code that Lambda calls to invoke your function\. For example, for applications in JavaScript, the default is `app.lambdaHandler`\.
    + `"projectRoot"` – Enter the path to the application file that contains the Lambda function\.
    + `"runtime"` – Enter or confirm a valid runtime for the Lambda execution environment, for example, `"nodejs.12x"`\.
-
-   For more information about these and other entries in the `launch.json` file, see [Configuration options for debugging serverless applications](sam-debug-config-ref.md)\.
+   + `"payload"` – Choose one of the following options to define the event payload that you want to provide to your Lambda function as input:
+     + `"json"`: JSON\-formatted key\-value pairs that define the event payload\.
+     + `"path"`: A path to the file that's used as the event payload\.
 
 1. 
 

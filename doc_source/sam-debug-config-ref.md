@@ -18,7 +18,7 @@ With inline actions, you can easily find and define properties for invoking Lamb
 |  Property | Description | 
 | --- | --- | 
 |  `environmentVariables`  |  Passes operational parameters to your function\. For example, if you're writing to an Amazon S3 bucket, instead of hard\-coding the bucket name you're writing to, configure the bucket name as an environment variable\.   | 
-| `payload` |  Describes in a JSON file format the event that triggers a Lambda function\. You can create an event payload by running the following command in the **Terminal** of the IDE: `sam local generate-event apigateway aws-proxy`  | 
+| `payload` |  Provides two options for the event payload that you provide to your Lambda function as input\.  [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/sam-debug-config-ref.html)  | 
 |  `memoryMB`  |  Specifies megabytes of memory provided for running an invoked Lambda function\.  | 
 | `runtime` |  Specifies the runtime used by the Lambda function\. For more information, see [AWS Lambda runtimes](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)\.  | 
 |  `timeoutSec`  |  Sets the time allowed, in seconds, before the debug session times out\.  | 
