@@ -14,7 +14,7 @@ If you already have an AWS account, skip ahead to step 5 of this procedure to ap
 
 If you are already a member of AWS Educate, skip ahead to [Step 2: Set up your virtual classroom for AWS Cloud9](#setup-classroom-virtual)\.
 
-1. Go to [https://aws\.amazon\.com](https://aws.amazon.com)\.
+1. Go to [https://aws\.amazon\.com/](https://aws.amazon.com/)\.
 
 1. Choose **Sign In to the Console**\.
 

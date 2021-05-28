@@ -86,7 +86,7 @@ Using the Git panel interface, you can add specific files or all untracked and m
 
 Files added to the repository's index are listed under **Staged Changes**\. Previously untracked files are labelled "A" to indicate that they've been staged\.
 
-![\[Untracked content in the git repo's workspace folder\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/staged-changes.png)
+![\[Staged content in the git repo's workspace folder\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/staged-changes.png)
 
 **Note**  
 You can also unstage specific changes or all changes\. For a single file, pause on the file and then choose **\-**\. Alternatively, right\-click it and choose **Unstage Changes**\. To unstage all changes, go to the **Git panel** menu and choose **Unstage All Changes**\.
@@ -112,7 +112,7 @@ You can compare versions of a file that's been modified after it was staged or c
 
 After you choose "M", an IDE window displays the differences between the two versions of the file\. One side shows the version that's tracked as current in the repository\. The other side shows the modified version that's not yet committed\.
 
-![\[Untracked content in the git repo's workspace folder\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/git-diff.png)
+![\[Diffing versioned content in the git repo\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/git-diff.png)
 
 ## Working with branches<a name="working-with-branches"></a>
 
@@ -123,7 +123,7 @@ Git greatly facilitates workflow management by allowing you to work on new featu
 Creating a branch involves naming the branch and selecting its starting point\. 
 
 1. In the **Git panel** menu, choose **Checkout to**\. Alternatively, you can choose the name of the current branch displayed at the bottom of the Git panel\.  
-![\[Interface options for initializing and cloning a Git repository\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/git-current-branch.png)
+![\[Selecting the current Git branch\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/git-current-branch.png)
 
 1. Choose an option for creating a new branch:
    + **Create new branch**: The new branch starts from the last commit of the current branch\.

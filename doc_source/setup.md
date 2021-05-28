@@ -6,7 +6,7 @@ These instructions assume that you have \(or will have\) administrative access t
 
 **Note**  
 You can use [AWS Single Sign\-On \(SSO\)](https://aws.amazon.com/single-sign-on/) instead of IAM to enable multiple users within a single AWS account to use AWS Cloud9\. In this usage pattern, the single AWS account serves as the master account for an organization in AWS Organizations, and that organization has no member accounts\. To use AWS SSO, skip this topic and follow the instructions in [Enterprise Setup](setup-enterprise.md) instead\. For related information, see the following resources:  
- [What Is AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) in the *AWS Organization User Guide* \(AWS SSO requires the use of AWS Organizations\)
+ [What Is AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) in the *AWS Organizations User Guide* \(AWS SSO requires the use of AWS Organizations\)
  [What Is AWS Single Sign\-On](https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html) in the *AWS Single Sign\-On User Guide* 
 The 4\-minute video [AWS Knowledge Center Videos: How do I get started with AWS Organizations](https://www.youtube.com/watch?v=mScBPL8VV48) on the YouTube website
 The 7\-minute video [Manage User Access to Multiple AWS Accounts Using AWS Single Sign\-on](https://www.youtube.com/watch?v=bXrsUEI1V38) on the YouTube website
@@ -32,7 +32,7 @@ To watch a 4\-minute video related to the following procedure, see [Creating an 
 
 **To create an AWS account**
 
-1. Go to [https://aws\.amazon\.com](https://aws.amazon.com)\.
+1. Go to [https://aws\.amazon\.com/](https://aws.amazon.com/)\.
 
 1. Choose **Sign In to the Console**\.
 
@@ -57,7 +57,7 @@ To watch a 9\-minute video related to the following console procedures, see [How
 
 ### Step 2\.1: Create an IAM group with the console<a name="setup-create-iam-resources-group-console"></a>
 
-1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com](https://console.aws.amazon.com)\.
+1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com/codecommit](https://console.aws.amazon.com/codecommit)\.
 **Note**  
 Although you can sign in to the AWS Management Console with the email address and password that was provided when the AWS account was created \(we call this an AWS account *root user*\), this isn't an AWS security best practice\. In the future, we recommend you sign in using credentials for an IAM administrator user in the AWS account\. An IAM administrator user has similar AWS access permissions to an AWS account root user and avoids some of the associated security risks\. If you cannot sign in as an IAM administrator user, check with your AWS account administrator\. For more information, see [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
 
@@ -185,7 +185,7 @@ You can complete this task using the [AWS Management Console](#setup-give-user-a
 
 ### Add AWS Cloud9 access permissions to the group with the console<a name="setup-give-user-access-console"></a>
 
-1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com/](https://console.aws.amazon.com/)\.
+1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com/codecommit](https://console.aws.amazon.com/)\.
 **Note**  
 Although you can sign in to the AWS Management Console with the email address and password that was provided when the AWS account was created \(we call this an AWS account *root user*\), this isn't an AWS security best practice\. In the future, we recommend you sign in using credentials for an IAM administrator user in the AWS account\. An IAM administrator user has similar AWS access permissions to an AWS account root user and avoids some of the associated security risks\. If you cannot sign in as an IAM administrator user, check with your AWS account administrator\. For more information, see [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
 

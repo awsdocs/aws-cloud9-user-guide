@@ -12,7 +12,7 @@ To watch a 4\-minute video related to the following procedure, see [Creating an 
 
 **To create an AWS account**
 
-1. Go to [https://aws\.amazon\.com](https://aws.amazon.com)\.
+1. Go to [https://aws\.amazon\.com/](https://aws.amazon.com/)\.
 
 1. Choose **Sign In to the Console**\.
 

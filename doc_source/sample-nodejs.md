@@ -102,7 +102,7 @@ You can enhance this sample to use the AWS SDK for JavaScript in Node\.js to cre
 
 In this step, you install and configure the Amazon S3 service client module of the AWS SDK for JavaScript in Node\.js, which provides a convenient way to interact with the Amazon S3 AWS service, from your JavaScript code\.
 
-If you want to use other AWS services, you need to install them separately\. For more information on installing AWS modules, see [in the *AWS Developer Guide \(V3\)*\.](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/getting-started-browser.html)
+If you want to use other AWS services, you need to install them separately\. For more information on installing AWS modules, see [in the *AWS Developer Guide \(V3\)*\.](docs.aws.amazon.comsdk-for-javascript/v3/developer-guide/getting-started-browser.html)
 
  After you install the AWS SDK for JavaScript in Node\.js, you must set up credentials management in your environment\. The AWS SDK for JavaScript in Node\.js needs these credentials to interact with AWS services\.
 
@@ -114,7 +114,7 @@ Use npm to run the **`install`** command\.
 npm install @aws-sdk/client-s3
 ```
 
-For more information, see [Installing the SDK for JavaScript](https://docs-aws.amazon.com/sdk-for-javascript/v3/developer-guide/installing-jssdk) in the *AWS SDK for JavaScript Developer Guide*\.
+For more information, see [Installing the SDK for JavaScript](docs.aws.amazon.comsdk-for-javascript/v3/developer-guide/installing-jssdk) in the *AWS SDK for JavaScript Developer Guide*\.
 
 **To set up credentials management in your environment**
 
@@ -173,7 +173,7 @@ import {
   CreateBucketCommand,
   DeleteBucketCommand}
 from "@aws-sdk/client-s3";
-import s3} from "./libs/s3Client" // Helper function that creates Amazon S3 service client module.
+import {s3Client} from "./libs/s3Client" // Helper function that creates Amazon S3 service client module.
 
 const async = require("async"); // To call AWS operations asynchronously.
 
@@ -193,8 +193,8 @@ const delete_bucket_params = { Bucket: bucket_name };
 
 const run = async () => {
   try {
-    const data = await s3.send(new ListBucketsCommand({}));
-    return data;
+    const data = await s3Client.send(new ListBucketsCommand({}));
+    return data; // For unit tests.
     console.log("My buckets now are:\n");
 
     for (var i = 0; i < data.Buckets.length; i++) {
@@ -205,8 +205,8 @@ const run = async () => {
   }
   try {
     console.log("\nCreating a bucket named " + bucket_name + "...\n");
-    const data = await s3.send(new CreateBucketCommand(create_bucket_params));
-    return data;
+    const data = await s3Client.send(new CreateBucketCommand(create_bucket_params));
+    return data; // For unit tests.
     console.log("My buckets now are:\n");
 
     for (var i = 0; i < data.Buckets.length; i++) {
@@ -217,8 +217,8 @@ const run = async () => {
   }
   try {
     console.log("\nDeleting the bucket named " + bucket_name + "...\n");
-    const data = await s3.send(new DeleteBucketCommand(delete_bucket_params));
-    return data;
+    const data = await s3Client.send(new DeleteBucketCommand(delete_bucket_params));
+    return data; // For unit tests.
   } catch (err) {
     console.log(err.code + ": " + err.message);
   }

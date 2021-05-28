@@ -487,7 +487,7 @@ If the environment owner and collaborator belong to the same AWS account, the co
 
 ## Error message reporting "Instance profile AWSCloud9SSMInstanceProfile does not exist in account" when creating EC2 environment using AWS CloudFormation<a name="cfn-no-instanceprofile"></a>
 
-**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create an EC2 environment, users receive an error message that Instance profile AWSCloud9SSMInstanceProfile does not exist in account\. 
+**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create an EC2 environment, users receive an error message that Instance profile AWSCloud9SSMInstanceProfile does not exist in account\. 
 
 **Cause:** When creating a no\-ingress EC2 environment, you must create the service role `AWSCloud9SSMAccessRole` and the instance profile `AWSCloud9SSMInstanceProfile`\. These IAM resources enable Systems Manager to manage the EC2 instance that backs your development environment\. 
 
@@ -497,7 +497,7 @@ If the environment owner and collaborator belong to the same AWS account, the co
 
 ## Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation<a name="cfn-no-ingress-failed"></a>
 
-**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](AWS CloudFormation User Guideaws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create an EC2 environment, users receive an `AccessDeniedException` and are informed that they're "not authorized to perform: ssm:StartSession on resource"\.
+**Issue:** When using the [ AWS::Cloud9::EnvironmentEC2](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cloud9-environmentec2.html) AWS CloudFormation resource to create an EC2 environment, users receive an `AccessDeniedException` and are informed that they're "not authorized to perform: ssm:StartSession on resource"\.
 
 **Cause:** The user lacks the permission to call the `StartSession` API that's required as part of the configuration for EC2 environments that use Systems Manager for no\-ingress instances\.
 

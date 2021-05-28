@@ -17,7 +17,7 @@ The necessary prerequisites for creating a serverless application include the **
 
 ### Create a serverless application with the AWS Toolkit<a name="create-serverless-app"></a>
 
-This example shows how to create a serverless application with the AWS Toolkit by using the [AWS Serverless Application Model \(AWS SAM\)](https://docs.aws.amazon.com/serverless-application-model/)\.
+This example shows how to create a serverless application with the AWS Toolkit by using the [AWS Serverless Application Model \(AWS SAM\)](docs.aws.amazon.comserverless-application-model/)\.
 
 1. Click the menu icon across from the **AWS: Explorer** heading, and choose **Create new SAM Application**\.
 
@@ -242,10 +242,10 @@ Optional map of name\-value pairs, which you use to specify HTTP headers to incl
 Optional string which sets the `querystring` of the request, for example, `"querystring": "abc=def&ghi=jkl"`\.
 
 **aws**  
-How AWS connection information is provided\. For more information, see the **AWS connection \("aws"\) properties** table in [Configuration options for debugging serverless applications](sam-debug-config-ref.md)\.
+How AWS connection information is provided\. For more information, see the **AWS connection \(`aws`\) properties** table in [Configuration options for debugging serverless applications](sam-debug-config-ref.md)\.
 
 **sam**  
-How the AWS SAM CLI builds the application\. For more information, see the **AWS SAM CLI \("sam"\) properties** in [Configuration options for debugging serverless applications](sam-debug-config-ref.md)\.
+How the AWS SAM CLI builds the application\. For more information, see the **AWS SAM CLI \("`sam`"\) properties** in [Configuration options for debugging serverless applications](sam-debug-config-ref.md)\.
 
 ## Deploying a serverless application<a name="deploy-serverless-app"></a>
 

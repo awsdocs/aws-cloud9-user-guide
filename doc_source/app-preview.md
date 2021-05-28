@@ -185,7 +185,7 @@ For an additional layer of security, you can also set up a network access contro
 
 1. If choosing **Manage EC2 Instance** or other steps in this procedure display errors, we recommend you sign in to the Amazon EC2 console using credentials for an IAM administrator user in your AWS account, and then complete the following instructions\. If you cannot do this, check with your AWS account administrator\.
 
-   1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com](https://console.aws.amazon.com)\.
+   1. Sign in to the AWS Management Console, if you are not already signed in, at [https://console\.aws\.amazon\.com/](https://console.aws.amazon.com/)\.
 
    1. Open the Amazon EC2 console\. To do this, in the AWS navigation bar, choose **Services**\. Then choose **EC2**\.
 

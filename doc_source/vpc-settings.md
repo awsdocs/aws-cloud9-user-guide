@@ -520,7 +520,7 @@ If your development environment is [using SSM to access an EC2 instance](ec2-ssm
 If you're creating a no\-ingress instance that's accessed through Systems Manager, you can launch it into a private subnet\. Because a private subnet doesn't have a public IP address, a NAT gateway is required to map the private IP address to a public address for requests, and then map the public IP address back to the private address for the response\.
 
 **Warning**  
-You're charged for creating and using a NAT gateway in your account\. NAT gateway hourly usage and data processing rates apply\. Amazon EC2 charges for data transfer also apply\. For more information, see [Amazon VPC Pricing](https://aws.amazon.com/vpc/pricing/https://aws.amazon.com/vpc/pricing/                   )\. 
+You're charged for creating and using a NAT gateway in your account\. NAT gateway hourly usage and data processing rates apply\. Amazon EC2 charges for data transfer also apply\. For more information, see [Amazon VPC Pricing](https://aws.amazon.com/vpc/pricing/)\. 
 
 Before creating and configuring the NAT gateway, you must do the following:
 + Create a public VPC subnet to host the NAT gateway\.

@@ -95,7 +95,7 @@ In this step, you use the AWS Cloud9 console and the instance's terminal to crea
 1. With the terminal session still open from the previous step, sign in to the AWS Cloud9 console, as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
    + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
-   + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
+   + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
    + If you're a student in a classroom, see your instructor for sign\-in instructions\.
 **Note**  
 For this step, you will work with two different AWS services at the same time\. If you signed in to the Lightsail console as an IAM administrator user, but you want a different entity to own the new SSH environment, we suggest opening a different web browser and signing in to the AWS Cloud9 console as that entity\.
@@ -165,7 +165,7 @@ Now that the IDE appears for the new environment, you can use the terminal sessi
 To learn how to use the IDE, see [Tour the AWS Cloud9 IDE](tour-ide.md)\.
 
 To learn how to change the code on your instance, we recommend the following resources\.
-+  **All** [Getting the application password for your 'powered by Bitnami' Lightsail image](https://lightsail.aws.amazon.com/ls/docs/how-to/article/log-in-to-your-bitnami-application-running-on-amazon-lightsail) on the Lightsail website
++  **All** [Getting the application password for your 'powered by Bitnami' Lightsail image](https://lightsail.aws.amazon.comls/docs/how-to/article/log-in-to-your-bitnami-application-running-on-amazon-lightsail) on the Lightsail website
 +  **Drupal**: [Bitnami Drupal For AWS Cloud](https://docs.bitnami.com/aws/apps/drupal/) on the Bitnami website, and [Tutorials and site recipes](https://www.drupal.org/node/627198) on the Drupal website
 +  **GitLab CE**: [Bitnami GitLab CE for AWS Cloud](https://docs.bitnami.com/aws/apps/gitlab/) on the Bitnami website, and [GitLab Documentation](https://docs.gitlab.com/ce/) on the GitLab website
 +  **Joomla**: [Bitnami Joomla\! For AWS Cloud](https://docs.bitnami.com/aws/apps/joomla/) on the Bitnami website, and [Getting Started with Joomla\!](https://www.joomla.org/about-joomla/getting-started.html) on the Joomla\! website
@@ -174,6 +174,6 @@ To learn how to change the code on your instance, we recommend the following res
 +  **MEAN**: [Bitnami MEAN For AWS Cloud](https://docs.bitnami.com/aws/infrastructure/mean/) on the Bitnami website
 +  **Nginx**: [Bitnami Nginx For AWS Cloud](https://docs.bitnami.com/aws/infrastructure/nginx/) on the Bitnami website, and the [NGINX Wiki](https://www.nginx.com/resources/wiki/) on the NGINX website
 +  **Node\.js**: [Bitnami Node\.Js For AWS Cloud](https://docs.bitnami.com/aws/infrastructure/nodejs/) on the Bitnami website, and the [Getting Started Guide](https://nodejs.org/en/docs/guides/getting-started-guide/) on the Node\.js website
-+  **Plesk Hosting Stack on Ubuntu**: [Set up and configure Plesk on Lightsail](https://lightsail.aws.amazon.com/ls/docs/how-to/article/set-up-and-configure-plesk-stack-on-lightsail) on the Lightsail website
++  **Plesk Hosting Stack on Ubuntu**: [Set up and configure Plesk on Lightsail](https://lightsail.aws.amazon.comls/docs/how-to/article/set-up-and-configure-plesk-stack-on-lightsail) on the Lightsail website
 +  **Redmine**: [Bitnami Redmine For AWS Cloud](https://docs.bitnami.com/aws/apps/redmine/) on the Bitnami website, and [Getting Started](http://www.redmine.org/projects/redmine/wiki/Getting_Started) on the Redmine website
-+  **WordPress**: [Getting started using WordPress from your Amazon Lightsail instance](https://lightsail.aws.amazon.com/ls/docs/getting-started/article/getting-started-with-wordpress-and-lightsail) on the Lightsail website, and [Bitnami WordPress For AWS Cloud](https://docs.bitnami.com/aws/apps/wordpress/) on the Bitnami website
++  **WordPress**: [Getting started using WordPress from your Amazon Lightsail instance](https://lightsail.aws.amazon.comls/docs/getting-started/article/getting-started-with-wordpress-and-lightsail) on the Lightsail website, and [Bitnami WordPress For AWS Cloud](https://docs.bitnami.com/aws/apps/wordpress/) on the Bitnami website

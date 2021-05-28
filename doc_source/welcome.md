@@ -14,7 +14,7 @@ The following diagram shows a high\-level overview of how AWS Cloud9 works\.
 
 From the diagram \(starting at the bottom\), you use the **AWS Cloud9 IDE**, running in a web browser on **your local computer**, to interact with your **AWS Cloud9 environment**\. A computing resource \(for example, an **Amazon EC2 instance** or **your own server**\) connects to that environment\. Finally, your work is stored in an **AWS CodeCommit repository** or **other type of remote repository**\.
 
-![\[Diagram that provides an overview of how AWS Cloud9 works\]](https://docs.aws.amazon.com/cloud9/latest/user-guide/images/arch.png)
+![\[Diagram that provides an overview of how AWS Cloud9 works\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)
 
 ### AWS Cloud9 environments<a name="w40aab7c13b9"></a>
 

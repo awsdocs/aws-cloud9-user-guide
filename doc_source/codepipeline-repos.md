@@ -6,7 +6,7 @@ CodePipeline is a continuous delivery service you can use to model, visualize, a
 
 **Note**  
 Completing these procedures might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2, CodePipeline, Amazon S3, and AWS services supported by CodePipeline\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/), [AWS CodePipeline Pricing](https://aws.amazon.com/codepipeline/pricing/), [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/), and [Cloud Services Pricing](https://aws.amazon.com/pricing/services/)\.  
-AWS CodeStar provides additional features along with pipelines, such as project templates, dashboards, and teams\. To use AWS CodeStar instead of CodePipeline, skip the rest of this topic, and see [Working with AWS CodeStar Projects](codestar-projects.md) instead\.
+AWS CodeStar provides additional features along with pipelines, such as project templates, dashboards, and teams\. To use AWS CodeStar instead of CodePipeline, skip the rest of this topic, and see [Working with AWS CodeCommit Projects](codestar-projects.md) instead\.
 +  [Step 1: Create or Identify Your Source Code Repository](#codepipeline-repos-create-source-code) 
 +  [Step 2: Create an AWS Cloud9 Development Environment, Connect It to the Code Repository, and Upload Your Code](#codepipeline-repos-connect-to-repo) 
 +  [Step 3: Prepare to Work with AWS CodePipeline](#codepipeline-repos-setup) 
@@ -52,7 +52,7 @@ In this step, you attach a specific AWS managed policy to the IAM group you crea
 
 If you have used CodePipeline before, skip ahead to [Step 4: Create a Pipeline in AWS CodePipeline](#codepipeline-repos-create-pipeline)\.
 
-For this step, follow these instructions in [Step 3: Use an IAM Managed Policy to Assign AWS CodePipeline Permissions to the IAM User](https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html#assign-permissions) in the *AWS CodePipeline User Guide*, and then return to this topic\.
+For this step, follow these instructions in [Step 3: Use an IAM Managed Policy to Assign AWS CodePipeline; Permissions to the IAM User](https://docs.aws.amazon.com/codepipeline/latest/userguide/getting-started-codepipeline.html#assign-permissions) in the *AWS CodePipeline User Guide*, and then return to this topic\.
 
 ## Step 4: Create a pipeline in AWS CodePipeline<a name="codepipeline-repos-create-pipeline"></a>
 

@@ -104,7 +104,7 @@ To show or hide the **Environment** window and the **Environment** button, choos
 
 To show or hide hidden files, in the **Environment** window, choose the gear icon, and then choose **Show Hidden Files**\.
 
-![\[Showing hidden files using the Environmentwindow\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-show-hidden-files.png)
+![\[Showing hidden files using the Environment window\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/ide-show-hidden-files.png)
 
 ## Step 4: Editor, tabs, and panes<a name="tour-ide-editor"></a>
 

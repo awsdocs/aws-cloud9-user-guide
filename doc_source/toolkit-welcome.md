@@ -46,7 +46,7 @@ But if you've launched your development environment's EC2 instance into a **priv
 
 **Create a profile to provide access credential for AWS Toolkit**
 
-1. To get your access keys \(consisting of an *access key ID* and *secret access key*\), go to the IAM console at [https://console\.aws\.amazon\.com/iam/](https://console.aws.amazon.com/iam/)\.
+1. To get your access keys \(consisting of an *access key ID* and *secret access key*\), go to the IAM console at [ https://console\.aws\.amazon\.com/iam](https://console.aws.amazon.com/iam)\.
 
 1. Choose **Users** from the navigation bar and then choose your AWS user name \(not the check box\)\.
 
