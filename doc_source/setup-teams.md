@@ -1,4 +1,4 @@
-# Additional Setup Options for AWS Cloud9 \(Team and Enterprise\)<a name="setup-teams"></a>
+# Additional setup options for AWS Cloud9 \(team and enterprise\)<a name="setup-teams"></a>
 
 This topic assumes you have already completed the setup steps in [Team Setup](setup.md) or [Enterprise Setup](setup-enterprise.md)\.
 
@@ -12,7 +12,7 @@ The following procedures cover attaching and detaching policies for AWS Cloud9 u
 +  [Step 2: Add customer managed Policies to a Group](#setup-teams-add-policy) 
 +  [Customer managed policy examples for teams using AWS Cloud9](#setup-teams-policy-examples) 
 
-## Step 1: Create a customer managed Policy<a name="setup-teams-create-policy"></a>
+## Step 1: Create a customer managed policy<a name="setup-teams-create-policy"></a>
 
 You can create a customer managed policy using the [AWS Management Console](#setup-teams-create-policy-console) or the [AWS Command Line Interface \(AWS CLI\)](#setup-teams-create-policy-cli)\.
 
@@ -63,14 +63,14 @@ You can also create your own customer managed policies\. For more information, s
 
 Skip ahead to [Add customer managed Policies to a Group Using the AWS CLI](#setup-teams-add-policy-cli)\.
 
-## Step 2: Add customer managed Policies to a Group<a name="setup-teams-add-policy"></a>
+## Step 2: Add customer managed policies to a group<a name="setup-teams-add-policy"></a>
 
 You can add customer managed policies to a group using the [AWS Management Console](#setup-teams-add-policy-console) or the [AWS Command Line Interface \(AWS CLI\)](#setup-teams-add-policy-cli)\.
 
 **Note**  
 This step covers adding customer managed policies to IAM groups only\. To add custom permission sets to groups in AWS Single Sign\-On \(SSO\), skip this step and follow the instructions in [Assign User Access](https://docs.aws.amazon.com/singlesignon/latest/userguide/useraccess.html#assignusers) in the *AWS Single Sign\-On User Guide* instead\.
 
-### Add customer managed Policies to a Group Using the Console<a name="setup-teams-add-policy-console"></a>
+### Add customer managed policies to a group using the console<a name="setup-teams-add-policy-console"></a>
 
 1. With the IAM console open from the previous procedure, in the service's navigation pane, choose **Groups**\.
 
@@ -82,7 +82,7 @@ This step covers adding customer managed policies to IAM groups only\. To add cu
 
 1. Choose **Attach Policy**\.
 
-### Add customer managed Policies to a Group Using the AWS CLI<a name="setup-teams-add-policy-cli"></a>
+### Add customer managed policies to a group using the AWS CLI<a name="setup-teams-add-policy-cli"></a>
 
 **Note**  
 If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
@@ -95,15 +95,15 @@ aws iam attach-group-policy --group-name MyGroup --policy-arn arn:aws:iam::12345
 
 In the preceding command, replace `MyGroup` with the name of the group\. Replace `123456789012` with the AWS account ID, and replace `MyPolicy` with the name of the customer managed policy\.
 
-## Customer managed policy examples for teams Using AWS Cloud9<a name="setup-teams-policy-examples"></a>
+## Customer managed policy examples for teams using AWS Cloud9<a name="setup-teams-policy-examples"></a>
 
 Following are some examples of policies you can use to restrict the kinds of environments that users in a group can create in an AWS account\.
-+  [Prevent Users in a Group from Creating Environments](#setup-teams-policy-examples-prevent-environments) 
-+  [Prevent Users in a Group from Creating EC2 Environments](#setup-teams-policy-examples-prevent-ec2-environments) 
-+  [Allow Users in a Group to Create EC2 Environments Only with Specific Amazon EC2 Instance Types](#setup-teams-policy-examples-specific-instance-types) 
-+  [Allow Users in a Group to Create Only a Single EC2 Environment Per AWS Region](#setup-teams-policy-examples-single-ec2-environment) 
++  [Prevent users in a group from creating environments](#setup-teams-policy-examples-prevent-environments) 
++  [Prevent users in a group from creating EC2 environments](#setup-teams-policy-examples-prevent-ec2-environments) 
++  [Allow users in a group to create EC2 environments only with specific Amazon EC2 instance types](#setup-teams-policy-examples-specific-instance-types) 
++  [Allow users in a group to create only a single EC2 environment per AWS Region](#setup-teams-policy-examples-single-ec2-environment) 
 
-### Prevent Users in a Group from Creating Environments<a name="setup-teams-policy-examples-prevent-environments"></a>
+### Prevent users in a group from creating environments<a name="setup-teams-policy-examples-prevent-environments"></a>
 
 The following customer managed policy, when attached to an AWS Cloud9 users group, prevents those users from creating environments in an AWS account\. This is useful if you want an IAM administrator user in your AWS account to manage creating environments instead of users in an AWS Cloud9 users group\.
 
@@ -125,7 +125,7 @@ The following customer managed policy, when attached to an AWS Cloud9 users grou
 
 Note that the preceding customer managed policy explicitly overrides `"Effect": "Allow"` for `"Action": "cloud9:CreateEnvironmentEC2"` and `"cloud9:CreateEnvironmentSSH"` on `"Resource": "*"` in the `AWSCloud9User` managed policy that is already attached to the AWS Cloud9 users group\.
 
-### Prevent Users in a Group from Creating EC2 Environments<a name="setup-teams-policy-examples-prevent-ec2-environments"></a>
+### Prevent users in a group from creating EC2 environments<a name="setup-teams-policy-examples-prevent-ec2-environments"></a>
 
 The following customer managed policy, when attached to an AWS Cloud9 users group, prevents those users from creating EC2 environments in an AWS account\. This is useful if you want an IAM administrator user in your AWS account to manage creating EC2 environments instead of users in an AWS Cloud9 users group\. This assumes you haven't also attached a policy that prevents users in that group from creating SSH environments\. Otherwise, those users won't be able to create environments at all\.
 
@@ -144,7 +144,7 @@ The following customer managed policy, when attached to an AWS Cloud9 users grou
 
 Note that the preceding customer managed policy explicitly overrides `"Effect": "Allow"` for `"Action": "cloud9:CreateEnvironmentEC2"` on `"Resource": "*"` in the `AWSCloud9User` managed policy that is already attached to the AWS Cloud9 users group\.
 
-### Allow Users in a Group to Create EC2 Environments Only with Specific Amazon EC2 Instance Types<a name="setup-teams-policy-examples-specific-instance-types"></a>
+### Allow users in a group to create EC2 environments only with specific Amazon EC2 instance types<a name="setup-teams-policy-examples-specific-instance-types"></a>
 
 The following customer managed policy, when attached to an AWS Cloud9 users group, allows those users to create EC2 environments that only use instance types starting with `t2` in an AWS account\. This policy assumes you haven't also attached a policy that prevents users in that group from creating EC2 environments\. Otherwise, those users won't be able to create EC2 environments at all\.
 
@@ -214,7 +214,7 @@ For an AWS Cloud9 users group, detach the `AWSCloud9User` managed policy from th
 
 Note that the preceding customer managed policy also allows those users to create SSH environments\. To prevent those users from creating SSH environments altogether, remove `"cloud9:CreateEnvironmentSSH",` from the preceding customer managed policy\.
 
-### Allow Users in a Group to Create Only a Single EC2 Environment Per AWS Region<a name="setup-teams-policy-examples-single-ec2-environment"></a>
+### Allow users in a group to create only a single EC2 environment per AWS Region<a name="setup-teams-policy-examples-single-ec2-environment"></a>
 
 The following customer managed policy, when attached to an AWS Cloud9 users group, allows each of those users to create a maximum of one EC2 environment per AWS Region that AWS Cloud9 is available in\. This is done by restricting the name of the environment to one specific name in that AWS Region \(in this example, `my-demo-environment`\)\.
 
@@ -289,7 +289,7 @@ Note that the preceding customer managed policy allows those users to create SSH
 
 For additional examples, see [Customer managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples)\.
 
-## Next Steps<a name="setup-teams-next-steps"></a>
+## Next steps<a name="setup-teams-next-steps"></a>
 
 
 ****  

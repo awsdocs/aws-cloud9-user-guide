@@ -76,7 +76,7 @@ You cannot attach a resource\-based policy to an AWS Cloud9 resource directly\. 
 
 To grant a user permissions to perform actions on AWS Cloud9 resources, you attach a permissions policy to an IAM group that the user belongs to\. We recommend that you attach an AWS managed \(predefined\) policy for AWS Cloud9 whenever possible\. AWS managed policies are easier and faster to attach\. They also contain predefined sets of access permissions for common usage scenarios and user types, such as full administration of an environment, environment users, and users who have only read\-only access to an environment\. For a list of AWS managed policies for AWS Cloud9, see [AWS managed policies for AWS Cloud9](#auth-and-access-control-managed-policies)\.
 
-For more detailed usage scenarios and unique user types, you can create and attach your own customer managed policies\. See [Additional Setup Options for AWS Cloud9 \(Team and Enterprise\)](setup-teams.md) and [Creating customer managed policies for AWS Cloud9](#auth-and-access-control-customer-policies)\.
+For more detailed usage scenarios and unique user types, you can create and attach your own customer managed policies\. See [Additional setup options for AWS Cloud9 \(team and enterprise\)](setup-teams.md) and [Creating customer managed policies for AWS Cloud9](#auth-and-access-control-customer-policies)\.
 
 To attach an IAM policy \(AWS managed or customer managed\) to an IAM identity, see [Attaching IAM Policies \(Console\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html#attach-managed-policy-console) in the *IAM User Guide*\.
 

@@ -168,11 +168,15 @@ You have two encryption options for Amazon EBS volumes that are used by AWS Clou
 + **Encryption by default** – You can configure your AWS account to enforce the encryption of the new EBS volumes and snapshot copies that you create\. Encryption by default is enabled at the level of an AWS Region, so you can't enable it for individual volumes or snapshots in that Region\. In addition, because Amazon EBS encrypts the volume that's created when you launch an instance, you must enable this setting before the creation of an EC2 environment\. For more information, see [ Encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) in the *Amazon EC2 User Guide for Linux Instances*\. 
 + **Encryption of an existing Amazon EBS volume used by an EC2 environment** – You can encrypt specific Amazon EBS volumes that are already created for EC2 instances\. This option involves using the AWS Key Management Service \(AWS KMS\) to manage access to the encrypted volumes\. For the relevant procedure, see [Encrypt an existing Amazon EBS volume used by AWS Cloud9](#encrypting-existing-volume)\.
 
+**Important**  
+If your AWS Cloud9 IDE uses Amazon EBS volumes that are encrypted by default, the AWS Identity and Access Management service\-linked role for AWS Cloud9 requires access to the AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) for these EBS volumes\. If access is not provided, the AWS Cloud9 IDE might fail to launch and debugging might be difficult\.  
+To provide access, add the service\-linked role for AWS Cloud9, `AWSServiceRoleForAWSCloud9`, to the CMK that's used by your Amazon EBS volumes\. For more information on this task, see [Create an AWS Cloud9 IDE that uses Amazon EBS volumes with default encryption](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/create-an-aws-cloud9-ide-that-uses-amazon-ebs-volumes-with-default-encryption.html) in *AWS Prescriptive Guidance Patterns*\.
+
 ### Encrypt an existing Amazon EBS volume used by AWS Cloud9<a name="encrypting-existing-volume"></a>
 
 Encrypting an existing Amazon EBS volume involves using AWS KMS to create a customer master key \(CMK\)\. After you create a snapshot of the volume to replace, you use the CMK to encrypt a copy of the snapshot\.
 
- Next, you create an encrypted volume with that snapshot\. Then you replace the unencrypted volume by detaching it from the EC2 instance and attaching the encrypted volume\. 
+Next, you create an encrypted volume with that snapshot\. Then you replace the unencrypted volume by detaching it from the EC2 instance and attaching the encrypted volume\. 
 
 Finally, you must update the key policy for the customer managed CMK to enable access for the AWS Cloud9 service role\. 
 

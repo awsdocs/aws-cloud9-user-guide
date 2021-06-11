@@ -34,6 +34,7 @@ Launching an Amazon EC2 instance might result in possible charges to your AWS ac
 
 The existing cloud compute instance or your own server must meet the following requirements for AWS Cloud9 to connect it to an SSH environment\.
 + It must run Linux\. \(AWS Cloud9 doesn't support Windows\.\)
++ It must NOT use an ARM\-based architecture\. \(Support for systems built around ARM processors is under review\.\)
 + It must be reachable over the public internet by using SSH\. If it's reachable only through a virtual private cloud \(VPC\) or virtual private network \(VPN\), that VPC or VPN must have access to the public internet\.
 + If the host is an existing AWS Cloud compute instance that's part of an Amazon Virtual Private Cloud \(Amazon VPC\), there are additional requirements\. See [Amazon VPC Settings](vpc-settings.md)\.
 + It must have Python installed\. To check the version, from the terminal of an existing instance or your server, run the command ** `python3 --version` **\. To install Python3 on the instance or server, see one of the following resources:

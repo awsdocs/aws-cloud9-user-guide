@@ -380,7 +380,7 @@ Creating secondary indexes might result in additional charges to your AWS accoun
 
 There are many ways to get items from tables\. In this step, you get items by using the table's primary key, by using the table's other attributes, and by using the global secondary index\.
 
-### To get a single item from a table based on the item's primary key value<a name="w40aac27c19c25b5"></a>
+### To get a single item from a table based on the item's primary key value<a name="w42aac27c19c25b5"></a>
 
 If you know an item's primary key value, you can get the matching item by running the DynamoDB command ** `get-item` **, ** `scan` **, or ** `query` **\. The following are the main differences in these commands:
 +  ** `get-item` ** returns a set of attributes for the item with the given primary key\.
@@ -450,7 +450,7 @@ In this sample, here's how to use each of these commands to get the item that co
 
    Notice that the ** `scan` ** command needed to scan all 9 items to get the result, while the ** `query` ** command only needed to scan for 1 item\.
 
-### To get multiple items from a table based on the items' primary key values<a name="w40aac27c19c25b7"></a>
+### To get multiple items from a table based on the items' primary key values<a name="w42aac27c19c25b7"></a>
 
 If you know the items' primary key values, you can get the matching items by running the DynamoDB** `batch-get-item` ** command\. In this sample, here's how to get the items that contain the `CityID` attribute value of `3` and `Date` attribute values of `2017-04-13` or `2017-04-14`\.
 
@@ -481,7 +481,7 @@ For this sample, the code in the `batch-get-item.json` file specifies to search 
 }
 ```
 
-### To get all matching items from a table<a name="w40aac27c19c25b9"></a>
+### To get all matching items from a table<a name="w42aac27c19c25b9"></a>
 
 If you know something about the attributes' values in the table, you can get matching items by running the DynamoDB** `scan` ** command\. In this sample, here's how to get the dates when the `Conditions` attribute value contains `Sunny` and the `HighF` attribute value \(part of `Temperatures`\) is greater than `53`\.
 
@@ -505,7 +505,7 @@ aws dynamodb scan \
 --expression-attribute-names '{ "#S": "State", "#D": "Date" }'
 ```
 
-### To get all matching items from a global secondary index<a name="w40aac27c19c25c11"></a>
+### To get all matching items from a global secondary index<a name="w42aac27c19c25c11"></a>
 
 To search using a global secondary index, use the DynamoDB** `query` ** command\. In this sample, here's how to use the `weather-global-index` secondary index to get the forecast conditions for cities named `Portland` for the dates of `2017-04-13` and `2017-04-14`\.
 

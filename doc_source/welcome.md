@@ -16,7 +16,7 @@ From the diagram \(starting at the bottom\), you use the **AWS Cloud9 IDE**, run
 
 ![\[Diagram that provides an overview of how AWS Cloud9 works\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)
 
-### AWS Cloud9 environments<a name="w40aab7c13b9"></a>
+### AWS Cloud9 environments<a name="w42aab7c13b9"></a>
 
 An *AWS Cloud9 environment* is a place where you store your project's files and where you run the tools to develop your applications\.
 
@@ -40,7 +40,7 @@ For more information about how AWS Cloud9 works, see these related [videos](addi
 ## What can I do with AWS Cloud9?<a name="what-can-i-do-summary"></a>
 
 With AWS Cloud9, you can code, build, run, test, debug, and release software in many exciting scenarios and variations\. These include \(but are not limited to\):
-+ Working with code in several programming languages and the AWS Cloud Development Kit \(AWS CDK\)\.
++ Working with code in several programming languages and the AWS Cloud Development Kit \(CDK\)\.
 + Working with code in a running Docker container\.
 + Using online code repositories\.
 + Collaborating with others in real time\.

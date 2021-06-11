@@ -36,6 +36,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Error with `gdb` when debugging C\+\+ projects](#troubleshooting-debugger-cplusplus)
 + [Error running SAM applications locally in AWS Toolkit because the AWS Cloud9 environment doesn't have enough disk space](#troubleshooting-dockerimage-toolkit)
 + [Unable to load IDE using older versions of Microsoft Edge browser](#forbidden-edge-ide)
++ [Failure to create environment when default encryption is applied to Amazon EBS volumes](#troubleshooting-policy-cmk)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -119,7 +120,7 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
   +  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
   +  [AWS managed policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
-  +  [Customer managed policy examples for teams Using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
+  +  [Customer managed policy examples for teams using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
   +  [Customer managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
   +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
   +  [Troubleshoot IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html) in the *IAM User Guide*
@@ -652,5 +653,17 @@ If you're repeatedly having issues with SAM CLI commands because of disk\-space 
 **Possible causes:** The AWS Cloud9 IDE doesn't support certain older versions of Microsoft Edge\.
 
 **Recommended solutions:** To update the browser, choose the ellipsis \(\.\.\.\) button in the Microsoft Edge toolbar\. From the menu, choose **Settings** and then choose **About Microsoft Edge**\. If an update is required, it's automatically downloaded and installed\.
+
+\([back to top](#troubleshooting)\)
+
+## Failure to create environment when default encryption is applied to Amazon EBS volumes<a name="troubleshooting-policy-cmk"></a>
+
+**Issue:** `Failed to create environments. The development environment '[environment-ID]' failed to create` error is returned when trying to create an Amazon EC2 environment\.
+
+**Possible causes:** If your AWS Cloud9 IDE uses Amazon EBS volumes that are encrypted by default, the AWS Identity and Access Management service\-linked role for AWS Cloud9 requires access to the AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) for these EBS volumes\. If access is not provided, the AWS Cloud9 IDE might fail to launch and debugging might be difficult\.
+
+**Recommended solutions**: To provide access, add the service\-linked role for AWS Cloud9, `AWSServiceRoleForAWSCloud9`, to the CMK that's used by your Amazon EBS volumes\.
+
+ For more information on this task, see [Create an AWS Cloud9 that uses Amazon EBS volumes with default encryption](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/create-an-aws-cloud9-ide-that-uses-amazon-ebs-volumes-with-default-encryption.html) in *AWS Prescriptive Guidance Patterns*\. 
 
 \([back to top](#troubleshooting)\)

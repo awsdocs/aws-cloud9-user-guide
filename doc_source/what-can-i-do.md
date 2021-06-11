@@ -26,7 +26,7 @@ Explore the following resources to learn about using AWS Cloud9 for some common 
 |  Work with code for Ruby and the AWS SDK for Ruby\.  |   [Tutorial: Ruby in AWS Cloud9](tutorial-ruby.md)   | 
 |  Work with code for Go and the AWS SDK for Go\.  |   [Go sample for AWS Cloud9](sample-go.md)   | 
 |  Work with code for TypeScript and the AWS SDK for JavaScript\.  |   [TypeScript sample for AWS Cloud9](sample-typescript.md)   | 
-|  Work with code for the AWS Cloud Development Kit \(AWS CDK\)\.  |   [AWS CDK sample for AWS Cloud9](sample-cdk.md)   | 
+|  Work with code for the AWS Cloud Development Kit \(CDK\)\.  |   [AWS CDK sample for AWS Cloud9](sample-cdk.md)   | 
 |  Work with code in a running Docker container\.  |   [Docker sample for AWS Cloud9](sample-docker.md)   | 
 |  Invite others to use an environment with you, in real time and with text chat support\.  |   [Working with shared environment in AWS Cloud9](share-environment.md)   | 
 |  Work with code for intelligent robotics applications in AWS RoboMaker\.  |   [Developing with AWS Cloud9](https://docs.aws.amazon.com/robomaker/latest/dg/cloud9.html) in the *AWS RoboMaker Developer Guide*   | 

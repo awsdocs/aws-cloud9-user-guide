@@ -21,7 +21,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Individual user setup for AWS Cloud9](setup-express.md)
    + [Team setup for AWS Cloud9](setup.md)
    + [Enterprise setup for AWS Cloud9](setup-enterprise.md)
-   + [Additional Setup Options for AWS Cloud9 (Team and Enterprise)](setup-teams.md)
+   + [Additional setup options for AWS Cloud9 (team and enterprise)](setup-teams.md)
    + [Using AWS Starter Account for AWS Cloud9](setup-student.md)
    + [Classroom setup for AWS Cloud9](setup-classroom.md)
 + [Getting started: basic tutorials for AWS Cloud9](tutorials-basic.md)

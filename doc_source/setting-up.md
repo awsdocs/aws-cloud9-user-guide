@@ -20,7 +20,7 @@ For general information about AWS Cloud9, see [What Is AWS Cloud9?](welcome.md)\
 **Topics**
 + [Individual user setup](setup-express.md)
 + [Team setup](setup.md)
-+ [Enterprise Setup](setup-enterprise.md)
-+ [Additional Setup Options \(Team and Enterprise\)](setup-teams.md)
++ [Enterprise setup](setup-enterprise.md)
++ [Additional setup options \(team and enterprise\)](setup-teams.md)
 + [Using AWS Educate Starter Account](setup-student.md)
 + [Classroom setup](setup-classroom.md)
