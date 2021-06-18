@@ -59,8 +59,9 @@ In the output, look for subnets that match the VPC ID\.
 
 ### Confirm whether a subnet is public<a name="vpc-settings-requirements-subnet-public"></a>
 
-**Note**  
-Even if you're launching the instance for your environment into a private subnet, your VPC still requires a configured public subnet where you can create the network address translation \(NAT\) gateway\. The NAT gateway allows instances in a private subnet to connect to the internet\.
+**Important**  
+If you're launching your environment's EC2 instance into a private subnet, make sure that outbound traffic is allowed for that instance so that it can connect to the SSM service\. For private subnets, outbound traffic is usually configured through a network address translation \(NAT\) gateway or VPC endpoints\. \(A NAT gateway requires a public subnet\)\.  
+If you choose VPC endpoints instead of a NAT gateway for accessing SSM, automatic updates and security patches for your instance may not work\.
 
 To use the Amazon VPC console, choose **Subnets** in the navigation pane\. Select the box next to the subnet you want AWS Cloud9 to use\. On the **Route Table** tab, if there's an entry in the **Target** column that starts with **igw\-**, the subnet is public\.
 

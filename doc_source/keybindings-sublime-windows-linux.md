@@ -124,7 +124,7 @@ See also [Working with Keybindings](settings-keybindings.md)\.
 | Description | Keybinding | Command | 
 | --- | --- | --- | 
 |  Show the **Go** window in **Go to Anything** mode  |   `Ctrl-E\|Ctrl-P`   |   `gotoanything`   | 
-|  Show the **Go** window in **Go to Command** mode  |   `Ctrl-.`   |   `gotocommand`   | 
+|  Show the **Go** window in **Go to Command** mode  |   `Ctrl-.\|F1`   |   `gotocommand`   | 
 |  Show the **Go** window in **Go to File** mode\.  |   `Ctrl-O`   |   `gotofile`   | 
 |  Show the **Go** window in **Go to Symbol** mode\.  |   `Ctrl-Shift-O`   |   `gotosymbol`   | 
 |  Show the **Outline** window  |   `Ctrl-R\|Ctrl-Shift-R`   |   `outline`   | 
