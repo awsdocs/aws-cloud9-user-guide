@@ -9,7 +9,11 @@ Objects are the fundamental entities stored in Amazon S3\. Objects consist of ob
 
 ## Uploading a file to an Amazon S3 bucket<a name="uploading-s3-object-to-bucket"></a>
 
-This procedure uploads a file from a user's environment and stores it as an S3 object in the AWS Cloud\. You can upload a file to a bucket or to a folder that organizes that bucket's contents\.
+You can use the Toolkit interface or a command to upload a file to a bucket 
+
+Both methods allow you to upload a file from a user's environment and store it as an S3 object in the AWS Cloud\. You can upload a file to a bucket or to a folder that organizes that bucket's contents\.
+
+## Upload a file to an S3 bucket using the interface
 
 1. In the **AWS Explorer**, choose the **S3** node to view the list of buckets\.
 
@@ -18,6 +22,20 @@ This procedure uploads a file from a user's environment and stores it as an S3 o
 If you open the context menu \(right\-click\) an S3 object, you can choose **Upload to Parent**\. This enables you to add a file to the folder or bucket that contains the selected file\.
 
 1. Using your environment's file manager, select a file, and then choose **Upload**\.
+
+   The selected file is uploaded as an S3 object to the bucket or folder\. Each object's entry describes the size of the stored object and how long ago it was uploaded\. You can pause over the object's listing to view the path, size, and time when it was last modified\.
+
+## Upload the current file to an S3 bucket using a command
+
+1. To select a file for upload, choose the file's tab\.
+
+1. Press **Ctrl\+P** to display the **Commands** pane\.
+
+1. For **Go To Anything**, start to enter the phrase `upload file` to display the `AWS: Upload File` command\. Choose the command when it appears\.
+
+1. For **Step 1: Select a file to upload**, you can choose the file you've selected or browse for another file\.
+
+1. For **Step 2: Select an S3 bucket to upload to**, choose a bucket from the list\.
 
    The selected file is uploaded as an S3 object to the bucket or folder\. Each object's entry describes the size of the stored object and how long ago it was uploaded\. You can pause over the object's listing to view the path, size, and time when it was last modified\.
 

@@ -16,7 +16,7 @@ Creating this sample might result in charges to your AWS account\. These include
 
 ## Prerequisites<a name="sample-nodejs-prereqs"></a>
 
-Before you use this sample, be sure to meet the following requirements\.
+Before you use this sample, make sure your setup meets the following requirements:
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
@@ -122,7 +122,7 @@ Each time you use the AWS SDK for JavaScript in Node\.js to call an AWS service,
 
 In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
+For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/latest/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
 
 ------
 #### [ AWS SDK for JavaScript \(V2\) ]
@@ -139,7 +139,7 @@ Use npm to run the **`install`** command\.
 npm install aws-sdk
 ```
 
-For more information, see [Installing the SDK for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/installing-jssdk.html) in the *AWS SDK for JavaScript Developer Guide*\.
+For more information, see [Installing the SDK for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/latest/developer-guide/installing-jssdk.html) in the *AWS SDK for JavaScript Developer Guide*\.
 
 **To set up credentials management in your environment**
 
@@ -147,7 +147,7 @@ Each time you use the AWS SDK for JavaScript in Node\.js to call an AWS service,
 
 In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
+For additional information, see [Setting Credentials in Node\.js](https://docs.aws.amazon.com/sdk-for-javascript/latest/developer-guide/setting-credentials-node.html) in the *AWS SDK for JavaScript Developer Guide*\.
 
 ------
 
@@ -187,11 +187,11 @@ const create_bucket_params = {
   },
 };
 
-const delete_bucket_params = { Bucket: bucket_name };
+export const delete_bucket_params = { Bucket: bucket_name };
 
 // List all of your available buckets in this AWS Region.
 
-const run = async () => {
+export const run = async () => {
   try {
     const data = await s3Client.send(new ListBucketsCommand({}));
     return data; // For unit tests.

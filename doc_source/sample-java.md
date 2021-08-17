@@ -17,7 +17,7 @@ Creating this sample might result in charges to your AWS account\. These include
 
 ## Prerequisites<a name="sample-java-prerequisites"></a>
 
-Before you use this sample, be sure to meet the following requirements\.
+Before you use this sample, make sure your setup meets the following requirements:
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
@@ -389,7 +389,7 @@ Each time you use the AWS SDK for Java to call an AWS service, you must provide 
 
 In this step, you store your credentials within the environment\. To do this, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/v1/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.
+For additional information, see [Set up AWS Credentials and Region for Development](https://docs.aws.amazon.com/sdk-for-java/latest/developer-guide/setup-credentials.html) in the *AWS SDK for Java Developer Guide*\.
 
 ## Step 6: Add AWS SDK code<a name="sample-java-sdk-code"></a>
 

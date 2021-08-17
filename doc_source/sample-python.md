@@ -120,7 +120,7 @@ sudo python36 -m pip install boto3  # Install boto3 for Python 3.6.
 python -m pip show boto3            # Verify boto3 is installed for the current version of Python.
 ```
 
-For more information, see the "Installation" section of [Quickstart](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html) in the AWS SDK for Python \(Boto3\)\.
+For more information, see the "Installation" section of [Quickstart](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html) in the AWS SDK for Python \(Boto3\)\.
 
 ### Set up credentials in your environment<a name="sample-python-sdk-credentials"></a>
 
@@ -128,7 +128,7 @@ Each time you use the AWS SDK for Python \(Boto3\) to call an AWS service, you m
 
 To store your credentials within the environment, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Credentials](http://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html) in the AWS SDK for Python \(Boto3\)\.
+For additional information, see [Credentials](https://boto3.amazonaws.com/v1/documentation/api/latest/guide/configuration.html) in the AWS SDK for Python \(Boto3\)\.
 
 ## Step 5: Add AWS SDK code<a name="sample-python-sdk-code"></a>
 

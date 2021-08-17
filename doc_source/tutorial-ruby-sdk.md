@@ -52,7 +52,7 @@ sudo gem install aws-sdk
 ```
 If this is the case, use standard Unix\-based practices\.
 
-For more information, see [Installing the AWS SDK for Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-install.html) in the *AWS SDK for Ruby Developer Guide*\.
+For more information, see [Installing the AWS SDK for Ruby](https://docs.aws.amazon.com/sdk-for-ruby/latest/developer-guide/setup-install.html) in the *AWS SDK for Ruby Developer Guide*\.
 
 ## 4\.3: Set up credentials management in your environment<a name="tutorial-ruby-sdk-creds"></a>
 
@@ -62,7 +62,7 @@ If you are following this tutorial strictly, you will have allowed AWS Cloud9 to
 
 If this is NOT the case for you, you need to store your credentials within the environment\. To do this, follow the instructions in [Calling AWS services from an environment in AWS Cloud9](credentials.md), and then return to this topic\.
 
-For additional information, see [Configuring the AWS SDK for Ruby](https://docs.aws.amazon.com/sdk-for-ruby/v3/developer-guide/setup-config.html) in the *AWS SDK for Ruby Developer Guide*\.
+For additional information, see [Configuring the AWS SDK for Ruby](https://docs.aws.amazon.com/sdk-for-ruby/latest/developer-guide/setup-config.html) in the *AWS SDK for Ruby Developer Guide*\.
 
 ## Next Step<a name="tutorial-ruby-sdk-next"></a>
 

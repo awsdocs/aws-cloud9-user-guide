@@ -16,10 +16,7 @@ You can use the AWS Cloud9 IDE to preview a running application from within the 
 Before you can preview your application from within the IDE, it must be running in the AWS Cloud9 development environment using HTTP over port `8080`, `8081`, or `8082` with the IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\.
 
 **Note**  
-You don't have to run using HTTP over port `8080`, `8081`, or `8082` with the IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. However, you won't be able to preview your running application from within the IDE\.  
-If you run with the IP of `0.0.0.0`, anyone can potentially access your running application\. For approaches to address this issue, see the following:  
- [Step 2: Set up the security group for the instance](#app-preview-share-security-group) in *Share a running application over the internet* 
- [Step 3: Set up the subnet for the instance](#app-preview-share-subnet) in *Share a running application over the internet* 
+You don't have to run using HTTP over port `8080`, `8081`, or `8082` with the IP of `127.0.0.1`, `localhost`, or `0.0.0.0`\. However, you won't be able to preview your running application from within the IDE\.
 
 To write the code to run your application on a specific port and IP, see your application's documentation\.
 
@@ -136,8 +133,7 @@ To do this, if an Amazon EC2 instance is connected to your environment, follow t
 + [Step 1: Get the ID and the IP address of the instance](#app-preview-share-get-metadata)
 + [Step 2: Set up the security group for the instance](#app-preview-share-security-group)
 + [Step 3: Set up the subnet for the instance](#app-preview-share-subnet)
-+ [Step 4: Change the running application IP](#app-preview-share-change-port)
-+ [Step 5: Share the running application URL](#app-preview-share-url)
++ [Step 4: Share the running application URL](#app-preview-share-url)
 
 ### Step 1: Get the ID and the IP address of the instance<a name="app-preview-share-get-metadata"></a>
 
@@ -239,7 +235,7 @@ This step describes how to set up a network ACL for a subnet in an Amazon VPC th
 
 1. In the list of network ACLs, select the network ACL\. \(There is only one network ACL\.\)
 
-1. Look on the **Inbound Rules** tab for the network ACL\. If a rule already exists where **Type** is set to **HTTP\* \(8080\)**, **HTTP\* \(8081\)**, or **HTTP\* \(8082\)**, skip ahead to [Step 4: Change the running application IP](#app-preview-share-change-port)\. Otherwise, choose **Edit**\.
+1. Look on the **Inbound Rules** tab for the network ACL\. If a rule already exists where **Type** is set to **HTTP\* \(8080\)**, **HTTP\* \(8081\)**, or **HTTP\* \(8082\)**, skip ahead to [Step 4: Share the running application URL](#app-preview-share-url)\. Otherwise, choose **Edit**\.
 
 1. Choose **Add another rule**\.
 
@@ -253,14 +249,7 @@ This step describes how to set up a network ACL for a subnet in an Amazon VPC th
 
 1. With **Allow / Deny** set to **ALLOW**, choose **Save**\.
 
-### Step 4: Change the running application IP<a name="app-preview-share-change-port"></a>
-
-In your code, switch from using IP `127.0.0.1`, `localhost`, or `0.0.0.0` to using the IP address or addresses you specified in the previous steps in this section\. To use these new IPs, stop the application if is already running, and then run the application again\.
-
-**Note**  
-You won't be able to preview your running application from within the IDE until you switch back to running using HTTP over one of the ports and IPs as described in [Preview a running application](#app-preview-preview-app)\.
-
-### Step 5: Share the running application URL<a name="app-preview-share-url"></a>
+### Step 4: Share the running application URL<a name="app-preview-share-url"></a>
 
 With the application running, give to others the public IP address you noted earlier\. Be sure to start the URL with the correct protocol, and add the port number if it is not the default for that protocol \(for example, `http://192.0.2.0:8080/index.html` using HTTP over port 8080\)\.
 

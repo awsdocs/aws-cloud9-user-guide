@@ -16,7 +16,7 @@ Explore the following resources to learn about using AWS Cloud9 for some common 
 |  Work with source code repositories in GitHub using the Git panel interface\.  |   [Visual source control with Git panel](source-control-gitpanel.md)   | 
 |  Work with NoSQL databases in Amazon DynamoDB\.  |   [Amazon DynamoDB sample for AWS Cloud9](sample-dynamodb.md)   | 
 |  Work with LAMP \(Linux, Apache HTTP Server, MySQL, and PHP\) stacks\.  |   [LAMP sample for AWS Cloud9](sample-lamp.md)   | 
-|  Work with WordPress websites\.  |   [WordPress sample for AWS Cloud9](sample-wordpress.md)   | 
+|  Work with WordPress websites\.  |   [Installing WordPress for AWS Cloud9](sample-wordpress.md)   | 
 |  Work with code for Java and the AWS SDK for Java\.  |   [Java sample for AWS Cloud9](sample-java.md)   | 
 |  Work with code for C\+\+ and the AWS SDK for C\+\+\.  |   [C\+\+ sample for AWS Cloud9](sample-cplusplus.md)   | 
 |  Work with code for Python and the AWS SDK for Python \(Boto\)\.  |   [Python tutorial for AWS Cloud9](sample-python.md)   | 

@@ -65,7 +65,7 @@ Choosing a longer time period might result in more charges to your AWS account\.
 If you selected **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**, you can launch your instance into a public or private subnet\.  
 **Public subnet**: Attach an internet gateway to it to allow the instance SSM agent to communicate with Systems Manager\.
 **Private subnet**: Create a NAT gateway to enable the instance to communicate with the internet and other AWS services\.
-You should also be aware that currently you can't use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.  
+You should also be aware that currently you can't use [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.  
  For more information on configuring subnets, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
@@ -101,11 +101,11 @@ To use code to create an EC2 environment in AWS Cloud9, call the AWS Cloud9 crea
 |  AWS CLI  |   [create\-environment\-ec2](https://docs.aws.amazon.com/cli/latest/reference/cloud9/create-environment-ec2.html)   | 
 |  AWS SDK for C\+\+  |   [CreateEnvironmentEC2Request](https://sdk.amazonaws.com/cpp/api/LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_e_c2_request.html), [CreateEnvironmentEC2Result](https://sdk.amazonaws.com/cpp/api/LATEST/class_aws_1_1_cloud9_1_1_model_1_1_create_environment_e_c2_result.html)   | 
 |  AWS SDK for Go  |   [CreateEnvironmentEC2](https://docs.aws.amazon.com/sdk-for-go/api/service/cloud9/#Cloud9.CreateEnvironmentEC2), [CreateEnvironmentEC2Request](https://docs.aws.amazon.com/sdk-for-go/api/service/cloud9/#Cloud9.CreateEnvironmentEC2Request), [CreateEnvironmentEC2WithContext](https://docs.aws.amazon.com/sdk-for-go/api/service/cloud9/#Cloud9.CreateEnvironmentEC2WithContext)   | 
-|  AWS SDK for Java  |   [CreateEnvironmentEC2Request](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/cloud9/model/CreateEnvironmentEC2Request.html), [CreateEnvironmentEC2Result](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/services/cloud9/model/CreateEnvironmentEC2Result.html)   | 
+|  AWS SDK for Java  |   [CreateEnvironmentEC2Request](https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/services/cloud9/model/CreateEnvironmentEC2Request.html), [CreateEnvironmentEC2Result](https://docs.aws.amazon.com/sdk-for-java/latest/reference/com/amazonaws/services/cloud9/model/CreateEnvironmentEC2Result.html)   | 
 |  AWS SDK for JavaScript  |   [createEnvironmentEC2](https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Cloud9.html#createEnvironmentEC2-property)   | 
 |  AWS SDK for \.NET  |   [CreateEnvironmentEC2Request](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/Cloud9/TCreateEnvironmentEC2Request.html), [CreateEnvironmentEC2Response](https://docs.aws.amazon.com/sdkfornet/v3/apidocs/items/Cloud9/TCreateEnvironmentEC2Response.html)   | 
 |  AWS SDK for PHP  |   [createEnvironmentEC2](https://docs.aws.amazon.com/aws-sdk-php/v3/api/api-cloud9-2017-09-23.html#createenvironmentec2)   | 
-|  AWS SDK for Python \(Boto\)  |   [create\_environment\_ec2](http://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloud9.html#Cloud9.Client.create_environment_ec2)   | 
+|  AWS SDK for Python \(Boto\)  |   [create\_environment\_ec2](https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/cloud9.html#Cloud9.Client.create_environment_ec2)   | 
 |  AWS SDK for Ruby  |   [create\_environment\_ec2](https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/Cloud9/Client.html#create_environment_ec2-instance_method)   | 
 |  AWS Tools for Windows PowerShell  |   [New\-C9EnvironmentEC2](https://docs.aws.amazon.com/powershell/latest/reference/items/New-C9EnvironmentEC2.html)   | 
 |  AWS Cloud9 API  |   [CreateEnvironmentEC2](https://docs.aws.amazon.com/cloud9/latest/APIReference/API_CreateEnvironmentEC2.html)   | 

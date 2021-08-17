@@ -70,7 +70,7 @@ A shared environment in AWS Cloud9 offers three environment member access roles:
 Before a user can become an environment owner or member, that user must meet one of the following criteria\.
 + The user is an **AWS account root user**\.
 + The user is an **IAM administrator user**\. For more information, see [Creating Your First IAM Admin User and Group](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started_create-admin-group.html) in the *IAM User Guide*\.
-+ The user is a **user who belongs to an IAM group**, a **user who assumes a role**, or a **federated user who assumes a role**, *and* that group or role has the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` \(or `AWSCloud9EnvironmentMember`, to be a member only\) attached\. For more information, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.
++ The user is a **user who belongs to an IAM group**, a **user who assumes a role**, or a **federated user who assumes a role**, *and* that group or role has the AWS managed policy `AWSCloud9Administrator` or `AWSCloud9User` \(or `AWSCloud9EnvironmentMember`, to be a member only\) attached\. For more information, see [AWS Managed \(Predefined\) Policies](security-iam.md#auth-and-access-control-managed-policies)\.
   + To attach one of the preceding managed policies to an IAM group, you can use the [AWS Management Console](#share-environment-member-roles-console) or the [AWS Command Line Interface \(AWS CLI\)](#share-environment-member-roles-cli) as described in the following procedures\.
   + To create a role in IAM with one of the preceding managed policies for a user or a federated user to assume, see [Creating Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html) in the *IAM User Guide*\. To have a user or a federated user assume the role, see coverage of assuming roles in [Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the *IAM User Guide*\.
 
@@ -99,7 +99,7 @@ Before a user can become an environment owner or member, that user must meet one
 ### Attach an AWS managed policy for AWS Cloud9 to a group using the AWS CLI<a name="share-environment-member-roles-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 Run the IAM `attach-group-policy` command to attach the AWS managed policy for AWS Cloud9 to the group, specifying the group name and the Amazon Resource Name \(ARN\) of the policy:
 
@@ -146,7 +146,7 @@ Removing your permanent AWS access credentials from your environment and using t
 ## Have an AWS Cloud9 administrator in the same account as the Environment invite themself or others<a name="share-environment-admin-user"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 The following types of users can invite themselves \(or other users in the same AWS account\) to any environment in the same account\.
 + The **AWS account root user**\.
@@ -375,6 +375,6 @@ To use code to remove a member from an environment, call the AWS Cloud9 delete e
 
 We recommend the following practices when sharing environments\.
 + Only invite read/write members you trust to your environments\.
-+ For EC2 environments, read/write members can use the environment owner's AWS access credentials, instead of their own credentials, to make calls from the environment to AWS services\. To prevent this, the environment owner can disable AWS managed temporary credentials for the environment\. However, this also prevents the environment owner from making calls\. For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
++ For EC2 environments, read/write members can use the environment owner's AWS access credentials, instead of their own credentials, to make calls from the environment to AWS services\. To prevent this, the environment owner can disable AWS managed temporary credentials for the environment\. However, this also prevents the environment owner from making calls\. For more information, see [AWS Managed Temporary Credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials)\.
 + Turn on AWS CloudTrail to track activity in your environments\. For more information, see the [AWS CloudTrail User Guide](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/)\.
 + Do not use your AWS account root user to create and share environments\. Use IAM users in the account instead\. For more information, see [First\-Time Access Only: Your Root User Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-first-time-access) and [IAM Users](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users) in the *IAM User Guide*\.

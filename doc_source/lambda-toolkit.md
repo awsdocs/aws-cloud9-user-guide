@@ -11,7 +11,7 @@ If you want to build a Lambda application that uses the resources provided by th
 
 **Topics**
 + [Invoking remote Lambda functions](#remote-lambda)
-+ [Importing, uploading, and deleting Lambda functions](#import-upload-delete-lambda)
++ [Downloading, uploading, and deleting Lambda functions](#import-upload-delete-lambda)
 
 ## Invoking remote Lambda functions<a name="remote-lambda"></a>
 
@@ -46,17 +46,17 @@ Choose **Invoke** to call the Lambda and pass in the payload\.
 
 You'll see the output of the Lambda function in the AWS Lambda tab\.
 
-## Importing, uploading, and deleting Lambda functions<a name="import-upload-delete-lambda"></a>
+## Downloading, uploading, and deleting Lambda functions<a name="import-upload-delete-lambda"></a>
 
 The AWS Toolkit replaces the Lambda Plugin, which previously provided the options for importing and uploading Lambda functions in AWS Cloud9 IDE\. To use the Lambda plugin, you must disable the AWS Toolkit\. For more information, see [Disabling AWS Toolkit](toolkit-welcome.md#disable-toolkit)\.
 
-### Importing a Lambda function<a name="w43aac25c21c15b5"></a>
+### Downloading a Lambda function<a name="w44aac25c23c15b5"></a>
 
-Importing a Lambda function allows you to import the project files that describe the function and work with them in the AWS Cloud9 IDE\.
+Downloading a Lambda function allows you to download the project files that describe the function from the AWS Cloud and work with them in the AWS Cloud9 IDE\.
 
-### To import a Lambda function
+### To download a Lambda function
 
-1. In the **AWS Explorer**, under the Lambda node, right\-click the function to import, and choose **Import**\.
+1. In the **AWS Explorer**, under the Lambda node, right\-click the function, and choose **Download**\.
 
 1. When asked to **Select a workspace folder for your new project**, you can do one of the following:
    + Choose the folder that's suggested to create a subfolder with the same name as your Lambda project 
@@ -64,7 +64,7 @@ Importing a Lambda function allows you to import the project files that describe
 
    The IDE opens a new editor window 
 
-### Uploading a Lambda function<a name="w43aac25c21c15b7"></a>
+### Uploading a Lambda function<a name="w44aac25c23c15b7"></a>
 
 You can update existing Lambda functions with local code\. Updating code in this way does not use the AWS Serverless Application Model CLI for deployment and does not create an AWS CloudFormation stack\. This functionality can upload a Lambda function with any runtime supported by Lambda\.
 

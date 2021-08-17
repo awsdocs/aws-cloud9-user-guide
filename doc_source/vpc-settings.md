@@ -531,6 +531,6 @@ Before creating and configuring the NAT gateway, you must do the following:
 For the steps in this task, see [Working with NAT gateways](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with) in the * Amazon VPC User Guide*\.
 
 **Important**  
-Currently, if your environment’s EC2 instance is launched into a private subnet, you can't use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.
+Currently, if your environment’s EC2 instance is launched into a private subnet, you can't use [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.
 
 ------

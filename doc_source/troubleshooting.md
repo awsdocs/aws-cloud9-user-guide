@@ -16,7 +16,6 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Application preview tab displays an error or is blank](#troubleshooting-app-preview)
 + [Cannot display your running application outside of the IDE](#troubleshooting-app-sharing)
 + [After reloading an environment, you must refresh application preview](#troubleshooting-app-preview-refresh)
-+ [Unable to preview application in the AWS Cloud9 IDE with HTTP](#troubleshooting-app-preview-http)
 + [Cannot run some commands or scripts in an EC2 environment](#troubleshooting-rhel-ubuntu)
 + [AWS CLI / aws\-shell error: "The security token included in the request is invalid" in an EC2 environment](#troubleshooting-cli-invalid-token)
 + [Amazon EC2 instances are not automatically updated](#troubleshooting-update-ami)
@@ -119,9 +118,9 @@ For more information, see [Using Service\-Linked Roles](https://docs.aws.amazon.
  **Recommended solutions:** 
 + Make sure the IAM user that is signed in to the AWS Cloud9 console has the required AWS access permissions to open the environment, and then try opening the environment again\. For more information see the following, or check with your AWS account administrator:
   +  [Step 3: Add AWS Cloud9 access permissions to the group](setup.md#setup-give-user-access) in *Team Setup* 
-  +  [AWS managed policies for AWS Cloud9](how-cloud9-with-iam.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
+  +  [AWS managed policies for AWS Cloud9](security-iam.md#auth-and-access-control-managed-policies) in *Authentication and Access Control* 
   +  [Customer managed policy examples for teams using AWS Cloud9](setup-teams.md#setup-teams-policy-examples) in *Advanced Team Setup* 
-  +  [Customer managed policy examples](how-cloud9-with-iam.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
+  +  [Customer managed policy examples](security-iam.md#auth-and-access-control-customer-policies-examples) in *Authentication and Access Control* 
   +  [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) in the *IAM User Guide*
   +  [Troubleshoot IAM Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_policies.html) in the *IAM User Guide*
 
@@ -253,10 +252,10 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
 + Ensure that the application is not running with an IP of `127.0.0.1` or `localhost`\. For some examples in Node\.js and Python, see [Run an application](app-preview.md#app-preview-run-app)\.
 + If the application is running on an AWS cloud compute instance \(for example an Amazon EC2 instance\), ensure all security groups that are associated with the corresponding instance allow inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 2: Set up the security group for the instance](app-preview.md#app-preview-share-security-group) in *Share a running application over the internet*\. See also [Security Groups for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html) in the *Amazon VPC User Guide*\.
 + If the application is running on an AWS cloud compute instance, and a network ACL exists for the subnet in the VPC that is associated with the corresponding instance, ensure that network ACL allows inbound traffic over the protocols, ports, and IP addresses that the application requires\. For instructions, see [Step 3: Set up the subnet for the instance](app-preview.md#app-preview-share-subnet) in *Share a running application over the internet*\. See also [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide*\.
-+ Ensure that the requesting URL, including the protocol \(and port, if it must be specified\), is correct\. For more information, see [Step 5: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a running application over the internet*\.
++ Ensure that the requesting URL, including the protocol \(and port, if it must be specified\), is correct\. For more information, see [Step 4: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a running application over the internet*\.
 + We do not recommend requesting a URL with the format `https://12a34567b8cd9012345ef67abcd890e1.vfs.cloud9.us-east-2.amazonaws.com/` \(where `12a34567b8cd9012345ef67abcd890e1` is the ID that AWS Cloud9 assigns to the environment, and `us-east-2` is the ID of the AWS Region for the environment\)\. This URL works only when the IDE for the environment is open and the application is running in the same web browser\.
 + If you are trying to go to an address that contains an IP of `127.0.0.1` or `localhost`, try going to the correct non\-local address for the running application instead\. For more information, see [Share a running application over the internet](app-preview.md#app-preview-share)\.
-+ If the application is running on an AWS cloud compute instance, determine whether the instance's public IP address has changed\. The instance's public IP address might change anytime the instance restarts\. To prevent this IP address from changing, you can allocate an Elastic IP address and assign it to the running instance\. For more information, see [Step 5: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a running application over the internet*\.
++ If the application is running on an AWS cloud compute instance, determine whether the instance's public IP address has changed\. The instance's public IP address might change anytime the instance restarts\. To prevent this IP address from changing, you can allocate an Elastic IP address and assign it to the running instance\. For more information, see [Step 4: Share the running application URL](app-preview.md#app-preview-share-url) in *Share a running application over the internet*\.
 + If the web request originates from a VPN, ensure that VPN allows traffic over the protocols, ports, and IP addresses that the application requires\. If you cannot make changes to your VPN, see your network administrator\. Or make the web request from a different network if possible\.
 + If the application is running in an SSH environment for your own server, ensure your server and the associated network allow traffic over the protocols, ports, and IP addresses that the application requires\. If you cannot make changes to your server or the associated network, see your server or network administrator\.
 + Try running the application from a terminal in the environment by running the `curl` command, followed by the URL\. If this command displays an error message, there might be some other issue that is not related to AWS Cloud9\.
@@ -270,16 +269,6 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
  **Cause:** Sometimes users write code that can run an infinite loop or that otherwise uses so much memory that the AWS Cloud9 IDE can pause or stop when the application preview is running\. To keep this from happening, AWS Cloud9 doesn't reload application preview tabs whenever an environment is reloaded\.
 
  **Solution:** After you reload an environment that displays an application preview tab, to display the application preview, choose the **Click to load the page** button on the tab\.
-
-\([back to top](#troubleshooting)\)
-
-## Unable to preview application in the AWS Cloud9 IDE with HTTP<a name="troubleshooting-app-preview-http"></a>
-
- **Issue:** In the address box of an application preview tab in the AWS Cloud9 IDE, the URL always starts with `https`\. If you try to change `https` in the box to `http` and then press `Enter`, the tab doesn't display the application preview\.
-
- **Cause:** To help improve code safety, in the address box of the application preview tab in the IDE, AWS Cloud9 always uses `https`\. This behavior cannot be changed\.
-
- **Solution:** To view an application preview with an address starting with `http` instead of `https`, change `https` in the address box of the tab to `http` and then press `Enter`\. Then choose the `Open your page in a new tab` button\. This displays the application preview in a separate web browser tab using HTTP\.
 
 \([back to top](#troubleshooting)\)
 
@@ -298,13 +287,13 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
  **Issue:** When you try to use the AWS Command Line Interface \(AWS CLI\) or the aws\-shell to run a command in the AWS Cloud9 IDE for an EC2 environment, an error displays: "The security token included in the request is invalid\."
 
  **Cause:** An invalid security token can result if you have AWS managed temporary credentials enabled and one of the following occurred: 
-+ You tried to run a command that's not allowed by AWS managed temporary credentials\. For a list of allowed commands, see [Actions supported by AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials-supported)\.
++ You tried to run a command that's not allowed by AWS managed temporary credentials\. For a list of allowed commands, see [Actions supported by AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials-supported)\.
 + The AWS managed temporary credentials automatically expired after 15 minutes\.
 + The AWS managed temporary credentials for a shared environment were deactivated because a new member was added by someone other than the environment owner\.
 
  **Recommended solutions:** 
 + Run only those commands that are allowed by AWS managed temporary credentials\. If you need to run a command that's not allowed by AWS managed temporary credentials, you can configure the AWS CLI or aws\-shell in the environment with a set of permanent credentials, which removes this limitation\. For instructions, see [Create and store permanent access credentials in an Environment](credentials.md#credentials-permanent-create)\.
-+ For deactivated or expired credentials, ensure the environment owner opens the environment so that AWS Cloud9 can refresh temporary credentials in the environment\. For more information, see [Controlling access to AWS managed temporary credentials](how-cloud9-with-iam.md#temporary-managed-credentials-control)\.
++ For deactivated or expired credentials, ensure the environment owner opens the environment so that AWS Cloud9 can refresh temporary credentials in the environment\. For more information, see [Controlling access to AWS managed temporary credentials](security-iam.md#temporary-managed-credentials-control)\.
 
 \([back to top](#troubleshooting)\)
 
@@ -477,7 +466,7 @@ You can confirm that the error is caused by the EC2 instance not being in the de
 
 **Issue:** If a new collaborator is added to an environment by someone who is not the environment owner, AWS managed temporary credentials are disabled\. The credentials are disabled by the deletion of the `~/.aws/credentials` file\. While the deletion of the `~/.aws/credentials` file is progressing, new collaborators can't access the AWS Cloud9 environment\.
 
-**Cause:** Preventing access to the environment during the deletion of AWS managed temporary credentials is a security measure\. It allows environment owners to confirm that only trusted collaborators have access to managed credentials\. If they're satisfied that the list of collaborators is valid, environment owners can re\-enable managed credentials so they can be shared\. For more information, see [Controlling access to AWS managed temporary credentials](how-cloud9-with-iam.md#temporary-managed-credentials-control)\.
+**Cause:** Preventing access to the environment during the deletion of AWS managed temporary credentials is a security measure\. It allows environment owners to confirm that only trusted collaborators have access to managed credentials\. If they're satisfied that the list of collaborators is valid, environment owners can re\-enable managed credentials so they can be shared\. For more information, see [Controlling access to AWS managed temporary credentials](security-iam.md#temporary-managed-credentials-control)\.
 
 **Recommended solutions:** You can wait for the deletion of the `~/.aws/credentials` file to complete before trying again to open the AWS Cloud9 environment\. The maximum waiting time for credentials expiry is 15 minutes\. Alternatively, ask the environment owner to re\-enable or disable the managed temporary credentials\. After the credentials are re\-enabled or disabled, collaborators can immediately access the environment\. \(By toggling the state of managed credentials to ENABLED or DISABLED, the environment owner ensures the credentials don't remain in an intermediate state that prevents collaborators from accessing the environment\.\)
 
@@ -512,7 +501,7 @@ If the environment owner and collaborator belong to the same AWS account, the co
 
 **Cause:** Docker uses a link layer device called a bridge network that enables containers connected to the same bridge network to communicate\. AWS Cloud9 creates containers that use a default bridge for container communication\. The default bridge typically uses the `172.17.0.0/16` subnet for container networking\.
 
-If the VPC subnet for your environment's instance uses the same address range that's already used by Docker, an IP address conflict can occur\. So when AWS Cloud9 tries to connect its instance, that connection is routed by the gateway route table to the Docker bridge instead of the EC2 instance\. This prevents AWS Cloud9 from connecting to the EC2 instance that backs the development environment\.
+If the VPC subnet for your environment's instance uses the same address range that's already used by Docker, an IP address conflict can occur\. So when AWS Cloud9 tries to connect to its instance, that connection is routed by the gateway route table to the Docker bridge instead of the EC2 instance\. This prevents AWS Cloud9 from connecting to the EC2 instance that backs the development environment\.
 
 **Recommended solution: ** To resolve an IP address conflict caused by Amazon VPC and Docker using the same IPv4 CIDR address block, configure a new VPC for the instance backing your EC2 environment\. For this new VPC, configure a CIDR block that's different from `172.17.0.0/16`\. \(You cannot change the IP address range of an existing VPC or subnet\.\) 
 

@@ -10,6 +10,7 @@ Support for the AWS Toolkit is provided as an integrated feature that's managed 
 At present, the following AWS services and resources can be accessed through the AWS Toolkit extension:
 + [API Gateway](api-gateway-toolkit.md)
 + [AWS CloudFormation stacks](cloudformation-toolkit.md)
++ [CloudWatch Logs](cloudwatch-logs-toolkit.md)
 + [AWS Lambda\*](lambda-toolkit.md)
 + [Amazon S3 buckets and objects](s3-toolkit.md)
 + [AWS Serverless Application Model applications](serverless-apps-toolkit.md)
@@ -40,7 +41,7 @@ For more information, see [Configuring VPC endpoints for Amazon S3 to download d
 
 ## Managing access credentials for AWS Toolkit<a name="credentials-for-toolkit"></a>
 
-AWS Toolkit allows you to interact with a wide range of AWS services, so you should ensure that the IAM entity that's used has the necessary permissions to interact with those services\. The easiest way to obtain permissions is to use [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), which work whenever an EC2 environment accesses an AWS service on behalf of an AWS entity \(for example, an IAM user\)\.
+AWS Toolkit allows you to interact with a wide range of AWS services, so you should ensure that the IAM entity that's used has the necessary permissions to interact with those services\. The easiest way to obtain permissions is to use [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials), which work whenever an EC2 environment accesses an AWS service on behalf of an AWS entity \(for example, an IAM user\)\.
 
 But if you've launched your development environment's EC2 instance into a **private subnet**, AWS managed temporary credentials aren't available\. As an alternative, you can allow AWS Toolkit to access your AWS services by manually creating your own set of credentials called a *profile*\. Profiles feature long\-term credentials called access keys, which you can obtain from the IAM console\.<a name="manual-credentials"></a>
 
@@ -77,6 +78,14 @@ For more information on the options when configuring a profile, see [Configurati
 1. For the **Select an AWS credential profile** field, choose the profile you've just created in the terminal \(`profile:toolkituser`, for example\)\.
 
 If the selected profile contains valid access credentials, the **AWS Explorer** pane refreshes to display the AWS services that you can now access\.
+
+### Using IAM roles to grant permissions to applications on EC2 instances<a name="ec2-instance-credentials"></a>
+
+You can also use an IAM role to manage temporary credentials for applications that run on an EC2 instance\. The role supplies temporary permissions that applications can use when they make calls to other AWS resources\. When you launch an EC2 instance, you specify an IAM role to associate with the instance\. Applications that run on the instance can then use the role\-supplied temporary credentials when making API requests against AWS services\.
+
+After you've created the role, you need to assign this role and its associated permission to the an instance by creating an *instance profile*\. The instance profile is attached to the instance and can provide the role's temporary credentials to an application that runs on the instance\.
+
+For more information, see [Using an IAM role to grant permissions to applications running on Amazon EC2 instances](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html#roles-usingrole-ec2instance-get-started) in the *IAM User Guide*\.
 
 ## Identifying AWS Toolkit components<a name="ui-components"></a>
 

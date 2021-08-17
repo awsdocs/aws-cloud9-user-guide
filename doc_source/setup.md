@@ -82,7 +82,7 @@ Skip ahead to [Step 2\.2: Create an IAM user and add the user to the group with 
 ### Step 2\.1: Create an IAM group with the AWS CLI<a name="setup-create-iam-resources-group-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
@@ -140,7 +140,7 @@ If you do not choose **Download \.csv**, this is the only time you can view the 
 ### Step 2\.2: Create an IAM User and add the user to the group with the AWS CLI<a name="setup-create-iam-resources-user-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Run the IAM `create-user` command to create the user, specifying the new user's name \(for example, `MyCloud9User`\)\.
 
@@ -218,7 +218,7 @@ We recommend that you add only a limited number of users to the AWS Cloud9 admin
 **Note**  
 If you have more than one group you want to add AWS Cloud9 access permissions to, repeat this procedure for each of those groups\.
 
-To see the list of access permissions that these AWS managed policies give to a group, see [AWS managed \(predefined\) policies](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.
+To see the list of access permissions that these AWS managed policies give to a group, see [AWS managed \(predefined\) policies](security-iam.md#auth-and-access-control-managed-policies)\.
 
 To learn about AWS access permissions that you can add to a group in addition to access permissions that are required by AWS Cloud9, see [Managed policies and inline policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) and [Understanding permissions granted by a policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_understand.html) in the *IAM User Guide*\.
 
@@ -227,7 +227,7 @@ Skip ahead to [Step 4: Sign in to the AWS Cloud9 console](#setup-sign-in-ide)\.
 ### Add AWS Cloud9 access permissions to the group with the AWS CLI<a name="setup-give-user-access-cli"></a>
 
 **Note**  
-If you're using [AWS managed temporary credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
+If you're using [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials), you can't use a terminal session in the AWS Cloud9 IDE to run some or all of the commands in this section\. To address AWS security best practices, AWS managed temporary credentials don’t allow some commands to be run\. Instead, you can run those commands from a separate installation of the AWS Command Line Interface \(AWS CLI\)\.
 
 1. Install and configure the AWS CLI on your computer, if you haven't done so already\. To do this, see the following in the *AWS Command Line Interface User Guide*:
    +  [Installing the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) 
@@ -266,7 +266,7 @@ We recommend that you add only a limited number of users to the AWS Cloud9 admin
 **Note**  
 If you have more than one group you want to add AWS Cloud9 access permissions to, repeat this procedure for each of those groups\.
 
-To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](how-cloud9-with-iam.md#auth-and-access-control-managed-policies)\.
+To see the list of access permissions that these AWS managed policies give to a group, see [AWS Managed \(Predefined\) Policies](security-iam.md#auth-and-access-control-managed-policies)\.
 
 To learn about AWS access permissions that you can add to a group in addition to access permissions that are required by AWS Cloud9, see [Managed Policies and Inline Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) and [Understanding Permissions Granted by a Policy](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_understand.html) in the *IAM User Guide*\.
 

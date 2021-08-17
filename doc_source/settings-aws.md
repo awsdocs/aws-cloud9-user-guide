@@ -17,7 +17,7 @@ In the following lists, project\-level settings apply only to the current AWS Cl
 Which AWS Region to use for the **Lambda** section of the **AWS Resources** window\.
 
 ** **AWS managed temporary credentials** **  
-If turned on, uses AWS managed temporary credentials when calling AWS services from the AWS CLI, the aws\-shell, or AWS SDK code from an environment\. For more information, see [AWS Managed Temporary Credentials](how-cloud9-with-iam.md#auth-and-access-control-temporary-managed-credentials)\.
+If turned on, uses AWS managed temporary credentials when calling AWS services from the AWS CLI, the aws\-shell, or AWS SDK code from an environment\. For more information, see [AWS Managed Temporary Credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials)\.
 
 ## User\-Level Settings<a name="settings-aws-user"></a>
 

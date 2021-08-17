@@ -15,7 +15,7 @@ Creating this sample might result in charges to your AWS account\. These include
 
 ## Prerequisites<a name="sample-cplusplus-prereqs"></a>
 
-Before you use this sample, be sure to meet the following requirements\.
+Before you use this sample, make sure your setup meets the following requirements:
 +  **You must have an existing AWS Cloud9 EC2 development environment\.** This sample assumes you already have an EC2 environment that is connected to an Amazon EC2 instance running Amazon Linux or Ubuntu Server\. If you have a different type of environment or operating system, you might need to adapt this sample's instructions to set up related tools\. See [Creating an environment in AWS Cloud9](create-environment.md) for details\.
 +  **You have the AWS Cloud9 IDE for the existing environment already open\.** When you open an environment, AWS Cloud9 opens the IDE for that environment in your web browser\. See [Opening an environment in AWS Cloud9](open-environment.md) for details\.
 
@@ -114,10 +114,10 @@ To set up the AWS SDK for C\+\+, you can either build the SDK yourself directly 
 
 This sample demonstrating using `git` to clone the SDK source code and `cmake` to build the SDK for C\+\+\.
 
-1. Clone the git remote repository to your AWS Cloud9 environment by running the following command in the terminal:
+1. Clone the remote repository and get all git submodules recursively for your AWS Cloud9 environment by running the following command in the terminal:
 
    ```
-   git clone https://github.com/aws/aws-sdk-cpp.git
+   git clone --recurse-submodules https://github.com/aws/aws-sdk-cpp
    ```
 
 1. Navigate to the new `aws-sdk-cpp` directory, create a sub\-directory to build the AWS SDK for C\+\+ into, and then navigate to that:
