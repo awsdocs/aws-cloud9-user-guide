@@ -44,7 +44,7 @@ Encryption protocols are implemented by default in AWS Cloud9\. Customers cannot
 
 ## Key management<a name="key-management"></a>
 
-AWS Key Management Service \(AWS KMS\) is a managed service for creating and controlling customer master keys \(CMKs\), the encryption keys used to encrypt the customer's data\. AWS Cloud9 generates and manages cryptographic keys for encrypting data on behalf of customers\. 
+AWS Key Management Service \(AWS KMS\) is a managed service for creating and controlling AWS KMS keys, the encryption keys used to encrypt the customer's data\. AWS Cloud9 generates and manages cryptographic keys for encrypting data on behalf of customers\. 
 
 ## Internetwork traffic privacy<a name="internetwork-privacy"></a>
 

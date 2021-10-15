@@ -8,6 +8,7 @@ The AWS Toolkit is an extension for the AWS Cloud9 integrated development enviro
 Support for the AWS Toolkit is provided as an integrated feature that's managed by AWS Cloud9\. Currently, customers cannot customize the AWS Cloud9 IDE by installing third\-party extensions\.
 
 At present, the following AWS services and resources can be accessed through the AWS Toolkit extension:
++ [AWS App Runner](using-apprunner.md)
 + [API Gateway](api-gateway-toolkit.md)
 + [AWS CloudFormation stacks](cloudformation-toolkit.md)
 + [CloudWatch Logs](cloudwatch-logs-toolkit.md)
@@ -117,6 +118,7 @@ You can disable the AWS Toolkit in the **Preferences** tab\.<a name="disabling-t
 
 ## AWS Toolkit topics<a name="toolkit-resources-info"></a>
 + [Navigating and configuring the AWS Toolkit](toolkit-navigation.md)
++ [Using AWS App Runner with AWS Toolkit](using-apprunner.md)
 + [Working with API Gateway using the AWS Toolkit](api-gateway-toolkit.md)
 + [Working with AWS CloudFormation stacks using AWS Toolkit](cloudformation-toolkit.md)
 + [Working with AWS Lambda functions using the AWS Toolkit](lambda-toolkit.md)

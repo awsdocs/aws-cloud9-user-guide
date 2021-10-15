@@ -17,7 +17,7 @@ Every object you store in Amazon S3 resides in a bucket\. You can use buckets to
    The new bucket is displayed under the **S3** node\.
 **Note**  
 Because Amazon S3 allows your bucket to be used as a URL that can be accessed publicly, the bucket name that you choose must be globally unique\. If some other account has already created a bucket with the name that you chose, you must use another name\.  
-You can check the **AWS Toolkit Logs** in the **Output** tab if you can't create a bucket\. For example, a `BucketAlreadyExists` error occurs if you use a bucket name already in use\. For more information, see [Bucket restrictions and limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service Developer Guide*\.
+You can check the **AWS Toolkit Logs** in the **Output** tab if you can't create a bucket\. For example, a `BucketAlreadyExists` error occurs if you use a bucket name already in use\. For more information, see [Bucket restrictions and limitations](https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html) in the *Amazon Simple Storage Service User Guide*\.
 
    After a bucket is created, you can copy its name and Amazon Resource Name \(ARN\) to the clipboard\. Open the context menu \(right\-click\) for the bucket entry and select the relevant option from the menu\.
 

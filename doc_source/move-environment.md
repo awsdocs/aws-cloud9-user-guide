@@ -89,12 +89,14 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    
    # Get the ID of the environment host Amazon EC2 instance.
    INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
+   REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')
    
    # Get the ID of the Amazon EBS volume associated with the instance.
    VOLUMEID=$(aws ec2 describe-instances \
      --instance-id $INSTANCEID \
      --query "Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId" \
-     --output text)
+     --output text \
+     --region $REGION)
    
    # Resize the EBS volume.
    aws ec2 modify-volume --volume-id $VOLUMEID --size $SIZE
@@ -110,13 +112,13 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    done
    
    #Check if we're on an NVMe filesystem
-   if [ $(readlink -f /dev/xvda) = "/dev/xvda" ]
+   if [[ -e "/dev/xvda" && $(readlink -f /dev/xvda) = "/dev/xvda" ]]
    then
      # Rewrite the partition table so that the partition takes up all the space that it can.
      sudo growpart /dev/xvda 1
    
      # Expand the size of the file system.
-     # Check if we are on AL2
+     # Check if we're on AL2
      STR=$(cat /etc/os-release)
      SUB="VERSION_ID=\"2\""
      if [[ "$STR" == *"$SUB"* ]]
@@ -169,23 +171,23 @@ You have two encryption options for Amazon EBS volumes that are used by AWS Clou
 + **Encryption of an existing Amazon EBS volume used by an EC2 environment** – You can encrypt specific Amazon EBS volumes that are already created for EC2 instances\. This option involves using the AWS Key Management Service \(AWS KMS\) to manage access to the encrypted volumes\. For the relevant procedure, see [Encrypt an existing Amazon EBS volume used by AWS Cloud9](#encrypting-existing-volume)\.
 
 **Important**  
-If your AWS Cloud9 IDE uses Amazon EBS volumes that are encrypted by default, the AWS Identity and Access Management service\-linked role for AWS Cloud9 requires access to the AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) for these EBS volumes\. If access is not provided, the AWS Cloud9 IDE might fail to launch and debugging might be difficult\.  
-To provide access, add the service\-linked role for AWS Cloud9, `AWSServiceRoleForAWSCloud9`, to the CMK that's used by your Amazon EBS volumes\. For more information on this task, see [Create an AWS Cloud9 IDE that uses Amazon EBS volumes with default encryption](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/create-an-aws-cloud9-ide-that-uses-amazon-ebs-volumes-with-default-encryption.html) in *AWS Prescriptive Guidance Patterns*\.
+If your AWS Cloud9 IDE uses Amazon EBS volumes that are encrypted by default, the AWS Identity and Access Management service\-linked role for AWS Cloud9 requires access to the AWS KMS key for these EBS volumes\. If access is not provided, the AWS Cloud9 IDE might fail to launch and debugging might be difficult\.  
+To provide access, add the service\-linked role for AWS Cloud9, `AWSServiceRoleForAWSCloud9`, to the KMS key that's used by your Amazon EBS volumes\. For more information on this task, see [Create an AWS Cloud9 IDE that uses Amazon EBS volumes with default encryption](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/create-an-aws-cloud9-ide-that-uses-amazon-ebs-volumes-with-default-encryption.html) in *AWS Prescriptive Guidance Patterns*\.
 
 ### Encrypt an existing Amazon EBS volume used by AWS Cloud9<a name="encrypting-existing-volume"></a>
 
-Encrypting an existing Amazon EBS volume involves using AWS KMS to create a customer master key \(CMK\)\. After you create a snapshot of the volume to replace, you use the CMK to encrypt a copy of the snapshot\.
+Encrypting an existing Amazon EBS volume involves using AWS KMS to create a KMS key\. After you create a snapshot of the volume to replace, you use the KMS key to encrypt a copy of the snapshot\.
 
 Next, you create an encrypted volume with that snapshot\. Then you replace the unencrypted volume by detaching it from the EC2 instance and attaching the encrypted volume\. 
 
-Finally, you must update the key policy for the customer managed CMK to enable access for the AWS Cloud9 service role\. 
+Finally, you must update the key policy for the customer managed key to enable access for the AWS Cloud9 service role\. 
 
 **Note**  
- The following procedure focuses on using a customer managed CMK to encrypt a volume\. You can also use an [AWS managed CMK](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) for an AWS service in your account \(the alias for Amazon EBS is `aws/ebs`\)\. If you choose this default option for encryption, skip step 1 where you create a customer managed CMK\. Also skip step 8 where you update the key policy \(you can't change the key policy for an AWS managed CMK\)\.<a name="creating-encrypted-volume"></a>
+The following procedure focuses on using a customer managed key to encrypt a volume\. You can also use an AWS managed key for an AWS service in your account \(the alias for Amazon EBS is `aws/ebs`\)\. If you choose this default option for encryption, skip step 1 where you create a customer managed key\. Also skip step 8 where you update the key policy \(you can't change the key policy for an AWS managed key\)\.<a name="creating-encrypted-volume"></a>
 
 **To encrypt an existing Amazon EBS volume**
 
-1. In the AWS KMS console, create a symmetric CMK\. For more information, see [Creating symmetric CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *AWS Key Management Service Developer Guide*\.
+1. In the AWS KMS console, create a symmetric KMS key\. For more information, see [Creating symmetric KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html#create-symmetric-cmk) in the *AWS Key Management Service Developer Guide*\.
 
 1. In the Amazon EC2 console, stop the Amazon EBS\-backed instance used by the environment\. You can [stop the instance using the console or the command line](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html)\.
 
@@ -193,7 +195,7 @@ Finally, you must update the key policy for the customer managed CMK to enable a
 
 1. In the navigation pane of the Amazon EC2 console, choose **Snapshots** [to copy the snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html)\. In the **Copy snapshot** dialog box, do the following to enable encryption:
    + Choose **Encrypt this snapshot**\. 
-   + For **Master Key**, select the CMK you created earlier\. \(If you're using an AWS managed CMK, keep the **\(default\) aws/ebs** setting\.\)
+   + For **Master Key**, select the KMS key you created earlier\. \(If you're using an AWS managed key, keep the **\(default\) aws/ebs** setting\.\)
 
 1. [Create a new volume from the encrypted snapshot](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-creating-volume.html#ebs-create-volume-from-snapshot)\. 
 **Note**  
@@ -203,9 +205,9 @@ New Amazon EBS volumes that are created from encrypted snapshots are automatical
 
 1. [Attach the new encrypted volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-attaching-volume.html) to the Amazon EC2 instance\.
 
-1. Update the key policy for the CMK [using the AWS Management Console default view, AWS Management Console policy view, or AWS KMS API](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to)\. Add the following key policy statements to allow the AWS Cloud9 service, `AWSServiceRoleForAWSCloud9`, to access the CMK\.
+1. Update the key policy for the KMS key [using the AWS Management Console default view, AWS Management Console policy view, or AWS KMS API](https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying.html#key-policy-modifying-how-to)\. Add the following key policy statements to allow the AWS Cloud9 service, `AWSServiceRoleForAWSCloud9`, to access the KMS key\.
 **Note**  
-If you're using an AWS managed CMK, skip this step\.
+If you're using an AWS managed key, skip this step\.
 
    ```
    {

@@ -50,7 +50,7 @@ You'll see the output of the Lambda function in the AWS Lambda tab\.
 
 The AWS Toolkit replaces the Lambda Plugin, which previously provided the options for importing and uploading Lambda functions in AWS Cloud9 IDE\. To use the Lambda plugin, you must disable the AWS Toolkit\. For more information, see [Disabling AWS Toolkit](toolkit-welcome.md#disable-toolkit)\.
 
-### Downloading a Lambda function<a name="w44aac25c23c15b5"></a>
+### Downloading a Lambda function<a name="w49aac25c25c15b5"></a>
 
 Downloading a Lambda function allows you to download the project files that describe the function from the AWS Cloud and work with them in the AWS Cloud9 IDE\.
 
@@ -64,7 +64,7 @@ Downloading a Lambda function allows you to download the project files that desc
 
    The IDE opens a new editor window 
 
-### Uploading a Lambda function<a name="w44aac25c23c15b7"></a>
+### Uploading a Lambda function<a name="w49aac25c25c15b7"></a>
 
 You can update existing Lambda functions with local code\. Updating code in this way does not use the AWS Serverless Application Model CLI for deployment and does not create an AWS CloudFormation stack\. This functionality can upload a Lambda function with any runtime supported by Lambda\.
 

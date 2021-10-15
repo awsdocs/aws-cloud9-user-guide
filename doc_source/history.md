@@ -8,6 +8,8 @@ The following table describes important changes to the *AWS Cloud9 User Guide* a
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [App Runner support](using-apprunner.md) | Added support for AWS App Runner to AWS Toolkit\. | September 30, 2021 | 
+| [AWS Cloud9 also available in Africa \(Cape Town\) and Asia Pacific \(Osaka\) Regions](#history) | AWS Cloud9 is now also available in the following Regions: Africa \(Cape Town\) and Asia Pacific \(Osaka\)\. For more information about service endpoints and service quotas associated with these and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | September 1, 2021 | 
 | [CloudWatch Logs and Amazon S3 in AWS Toolkit](cloudwatch-logs-toolkit.md) | Added support for CloudWatch Logs to AWS Toolkit for AWS Cloud9\. New feature to allow upload of current files to Amazon S3 buckets\. | July 16, 2021 | 
 | [VPC endpoints for Amazon S3](ec2-ssm.md#configure-s3-endpoint) | Added support for configuring VPC endpoints for Amazon S3 to allow dependencies to be downloaded\. | April 22, 2021 | 
 | [Visual source control available through Git panel](source-control-gitpanel.md) | As a developer, you can use Git panel to run Git commands in a user interface\. | February 1, 2021 | 

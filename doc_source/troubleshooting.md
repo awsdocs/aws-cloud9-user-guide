@@ -36,6 +36,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Error running SAM applications locally in AWS Toolkit because the AWS Cloud9 environment doesn't have enough disk space](#troubleshooting-dockerimage-toolkit)
 + [Unable to load IDE using older versions of Microsoft Edge browser](#forbidden-edge-ide)
 + [Failure to create environment when default encryption is applied to Amazon EBS volumes](#troubleshooting-policy-cmk)
++ [Unable to preview web content in the IDE because the connection to the site isn't secure](#troubleshooting-blocked-mixed-content)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -185,8 +186,10 @@ To enable third\-party cookies only for AWS Cloud9 \(if your web browser allows 
 | US East \(Ohio\) |   `*.vfs.cloud9.us-east-2.amazonaws.com`   `vfs.cloud9.us-east-2.amazonaws.com`   | 
 | US West \(N\. California\) |   `*.vfs.cloud9.us-west-1.amazonaws.com`   `vfs.cloud9.us-west-1.amazonaws.com`   | 
 | US West \(Oregon\) |   `*.vfs.cloud9.us-west-2.amazonaws.com`   `vfs.cloud9.us-west-2.amazonaws.com`   | 
+| Africa \(Cape Town\) |   `*.vfs.cloud9.af-south-1.amazonaws.com`   `vfs.cloud9.af-south-1.amazonaws.com`   | 
 |  Asia Pacific \(Hong Kong\)  |   `*.vfs.cloud9.ap-east-1.amazonaws.com`   `vfs.cloud9.ap-east-1.amazonaws.com`   | 
 |  Asia Pacific \(Mumbai\)  |   `*.vfs.cloud9.ap-south-1.amazonaws.com`   `vfs.cloud9.ap-south-1.amazonaws.com`   | 
+|  Asia Pacific \(Osaka\)  |   `*.vfs.cloud9.ap-northeast-3.amazonaws.com`   `vfs.cloud9.ap-northeast-3.amazonaws.com`   | 
 |  Asia Pacific \(Seoul\)  |   `*.vfs.cloud9.ap-northeast-2.amazonaws.com`   `vfs.cloud9.ap-northeast-2.amazonaws.com`   | 
 |  Asia Pacific \(Singapore\)  |   `*.vfs.cloud9.ap-southeast-1.amazonaws.com`   `vfs.cloud9.ap-southeast-1.amazonaws.com`   | 
 |  Asia Pacific \(Sydney\)  |   `*.vfs.cloud9.ap-southeast-2.amazonaws.com`   `vfs.cloud9.ap-southeast-2.amazonaws.com`   | 
@@ -649,10 +652,20 @@ If you're repeatedly having issues with SAM CLI commands because of disk\-space 
 
 **Issue:** `Failed to create environments. The development environment '[environment-ID]' failed to create` error is returned when trying to create an Amazon EC2 environment\.
 
-**Possible causes:** If your AWS Cloud9 IDE uses Amazon EBS volumes that are encrypted by default, the AWS Identity and Access Management service\-linked role for AWS Cloud9 requires access to the AWS Key Management Service \(AWS KMS\) customer master key \(CMK\) for these EBS volumes\. If access is not provided, the AWS Cloud9 IDE might fail to launch and debugging might be difficult\.
+**Possible causes:** If your AWS Cloud9 IDE uses Amazon EBS volumes that are encrypted by default, the AWS Identity and Access Management service\-linked role for AWS Cloud9 requires access to the AWS KMS keys for these EBS volumes\. If access is not provided, the AWS Cloud9 IDE might fail to launch and debugging might be difficult\.
 
-**Recommended solutions**: To provide access, add the service\-linked role for AWS Cloud9, `AWSServiceRoleForAWSCloud9`, to the CMK that's used by your Amazon EBS volumes\.
+**Recommended solutions**: To provide access, add the service\-linked role for AWS Cloud9, `AWSServiceRoleForAWSCloud9`, to the customer managed key that's used by your Amazon EBS volumes\.
 
  For more information on this task, see [Create an AWS Cloud9 that uses Amazon EBS volumes with default encryption](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/create-an-aws-cloud9-ide-that-uses-amazon-ebs-volumes-with-default-encryption.html) in *AWS Prescriptive Guidance Patterns*\. 
+
+\([back to top](#troubleshooting)\)
+
+## Unable to preview web content in the IDE because the connection to the site isn't secure<a name="troubleshooting-blocked-mixed-content"></a>
+
+**Issue:** When you try to access web content \(a WordPress site, for example\) that's hosted in an AWS Cloud9 EC2 environment, the IDE preview window can't display it\. 
+
+**Possible causes:** By default, all web pages that you access in the application preview tab of the AWS Cloud9 IDE automatically use the HTTPS protocol\. If a page's URI features the insecure `http` protocol, it's automatically replaced by `https`\. And you can't access the insecure content by manually changing `https` back to `http`\. 
+
+**Recommended solutions**: Remove the insecure HTTP scripts or content from the web site that you're trying to preview in the IDE\. Follow instructions for your web server or content management system for guidance on implementing HTTPS\.
 
 \([back to top](#troubleshooting)\)
