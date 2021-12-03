@@ -1,6 +1,6 @@
-# Step 3: Clean Up<a name="tutorial-clean-up-cli-step3"></a>
+# Step 3: Clean up<a name="tutorial-clean-up-cli-step3"></a>
 
-\(Previous step: [Step 2: Basic Tour of the IDE](tutorial-tour-ide-cli-step2.md)\)
+\(Previous step: [Step 2: Basic tour of the IDE](tutorial-tour-ide-cli-step2.md)\)
 
 To prevent ongoing charges to your AWS account related to this tutorial, you should delete the environment\.
 

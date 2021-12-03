@@ -29,6 +29,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Unable to open AWS Cloud9 environment: "This environment cannot be currently accessed by collaborators\. Please wait until the removal of managed temporary credentials is complete, or contact the owner of this environment\."](#collaborator-access-credentials)
 + [Error message reporting "Instance profile AWSCloud9SSMInstanceProfile does not exist in account" when creating EC2 environment using AWS CloudFormation](#cfn-no-instanceprofile)
 + [Error message reporting "not authorized to perform: ssm:StartSession on resource" when creating EC2 environment using AWS CloudFormation](#cfn-no-ingress-failed)
++ [Error message reporting no authorization "to perform: `iam:GetInstanceProfile` on resource: instance profile `AWSCloud9SSMInstanceProfile`" when creating EC2 environment using AWS CLI](#cli-no-ingress-failed)
 + [Unable to connect to EC2 environment because VPC's IP addresses are used by Docker](#docker-bridge)
 + [Error when running AWS Toolkit: "Your environment is running out of inodes, please increase 'fs\.inotify\.max\_user\_watches' limit\."](#toolkit-iodes-)
 + [Notice: Failed to install dependencies for collaboration support](#proxy-failed-dependencies)
@@ -37,6 +38,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Unable to load IDE using older versions of Microsoft Edge browser](#forbidden-edge-ide)
 + [Failure to create environment when default encryption is applied to Amazon EBS volumes](#troubleshooting-policy-cmk)
 + [Unable to preview web content in the IDE because the connection to the site isn't secure](#troubleshooting-blocked-mixed-content)
++ [Unable to launch AWS Cloud9 from console when an AWS License Manager license configuration is associated with Amazon EC2 instances](#license-config-deny)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -498,6 +500,16 @@ If the environment owner and collaborator belong to the same AWS account, the co
 
 \([back to top](#troubleshooting)\)
 
+## Error message reporting no authorization "to perform: `iam:GetInstanceProfile` on resource: instance profile `AWSCloud9SSMInstanceProfile`" when creating EC2 environment using AWS CLI<a name="cli-no-ingress-failed"></a>
+
+**Issue:** When using the [AWS CLI](tutorial-create-environment-cli-step1.md#tutorial-create-environment-cli) to create an EC2 environment, users receive an `AccessDeniedException` and are informed that their AWS Cloud9 environment isn't authorized "to perform iam:GetInstanceProfile on resource: instance profile `AWSCloud9SSMInstanceProfile`"\.
+
+**Cause:** AWS Cloud9 lacks the permission to call the `StartSession` API that's required as part of the configuration for EC2 environments that use Systems Manager for no\-ingress instances\.
+
+**Recommended solution: ** For information on adding the required `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile` to your AWS Cloud9 environment, see [Managing instance profiles for Systems Manager with the AWS CLI](ec2-ssm.md#aws-cli-instance-profiles)\.
+
+\([back to top](#troubleshooting)\)
+
 ## Unable to connect to EC2 environment because VPC's IP addresses are used by Docker<a name="docker-bridge"></a>
 
 **Issue:** For an EC2 environment, if you launch the EC2 instance into an Amazon VPC \(virtual private cloud\) that uses the IPv4 Classless Inter\-Domain Routing \(CIDR\) block `172.17.0.0/16`, the connection may stall when you try to open that environment\.
@@ -667,5 +679,17 @@ If you're repeatedly having issues with SAM CLI commands because of disk\-space 
 **Possible causes:** By default, all web pages that you access in the application preview tab of the AWS Cloud9 IDE automatically use the HTTPS protocol\. If a page's URI features the insecure `http` protocol, it's automatically replaced by `https`\. And you can't access the insecure content by manually changing `https` back to `http`\. 
 
 **Recommended solutions**: Remove the insecure HTTP scripts or content from the web site that you're trying to preview in the IDE\. Follow instructions for your web server or content management system for guidance on implementing HTTPS\.
+
+\([back to top](#troubleshooting)\)
+
+## Unable to launch AWS Cloud9 from console when an AWS License Manager license configuration is associated with Amazon EC2 instances<a name="license-config-deny"></a>
+
+**Issue:** When you try to launch an AWS Cloud9 EC2 environment from the console, an `unable to access your environment` error is returned\. 
+
+**Possible causes:** AWS License Manager streamlines the management of software vendor licenses across the AWS Cloud\. When setting up License Manager, you create license configurations, which are sets of licensing rules based on the terms of your enterprise agreements\. These license configurations can be attached to a mechanism, such as an Amazon Machine Image \(AMI\) or AWS CloudFormation, that you use to launch EC2 instances\.
+
+If a license configuration is associated with an EC2 instance that backs an AWS Cloud9 environment, the **AWSCloud9ServiceRolePolicy** service\-linked role \(SLR\) must include the `license-configuration` resource condition to allow AWS Cloud9 to start and stop its instance\. If the SLR doesn't include `license-configuration`, AWS Cloud9 is denied access to its Amazon EC2 instance and an error is returned\.
+
+**Recommended solutions**: If you're unable to access an existing AWS Cloud9 environment and you're using License Manager, delete the old **AWSCloud9ServiceRolePolicy** service\-linked role\. \(For more information, see [Deleting a service\-linked role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_manage_delete.html#id_roles_manage_delete_slr) in the *IAM User Guide*\.\) The next time you launch your environment, a new [version of the SLR](using-service-linked-roles.md#service-linked-role-permissions) for AWS Cloud9 is automatically created for you\. This new version explicitly allows EC2 actions when a `license-configuration` applies to the instance\.
 
 \([back to top](#troubleshooting)\)

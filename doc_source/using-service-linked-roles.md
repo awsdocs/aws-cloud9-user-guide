@@ -107,7 +107,17 @@ The permissions policy for this service\-linked role is named **AWSCloud9Service
                     "iam:PassedToService": "ec2.amazonaws.com"
                 }
             }
-        }
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:StartInstances",
+                "ec2:StopInstances"
+            ],
+            "Resource": [
+                "arn:aws:license-manager:*:*:license-configuration:*"
+            ]
+         }
     ]
 }
 ```

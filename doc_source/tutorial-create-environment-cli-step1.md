@@ -33,6 +33,8 @@ In AWS Cloud9, a *development environment* \(or only an *environment*\) is a pla
      For more information, see [create\-environment\-ec2](https://docs.aws.amazon.com/cli/latest/reference/cloud9/create-environment-ec2.html) in the *AWS CLI Command Reference*\.
    +  `--region` represents the ID of the AWS Region for AWS Cloud9 to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *Amazon Web Services General Reference*\.
    +  `--connection-type CONNECT_SSM` specifies that AWS Cloud9 connects to its Amazon EC2 instance through Systems Manager\. This option ensures no inbound traffic to the instance is allowed\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
+**Note**  
+When using this option, you need to create the `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile` if they aren't already created\. For more information, see [Managing instance profiles for Systems Manager with the AWS CLI](ec2-ssm.md#aws-cli-instance-profiles)\.
    +  `--subnet-id` represents the subnet you want AWS Cloud9 to use\. Replace `subnet-12a3456b` with the ID of the subnet of an Amazon Virtual Private Cloud \(VPC\), which must be compatible with AWS Cloud9\. For more information, see [Create an Amazon VPC for AWS Cloud9](vpc-settings.md#vpc-settings-create-vpc) in *[VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)*\.
    + By default, AWS Cloud9 shuts down the Amazon EC2 instance for the environment 30 minutes after all web browser instances that are connected to the IDE for the environment have been closed\. To change this, add `--automatic-stop-time-minutes` and the number of minutes\. A shorter time period might result in fewer charges to your AWS account\. Likewise, a longer time might result in more charges\.
    + By default, the entity that calls this command owns the environment\. To change this, add `--owner-id` and the Amazon Resource Name \(ARN\) of the owning entity\.
@@ -43,4 +45,4 @@ In AWS Cloud9, a *development environment* \(or only an *environment*\) is a pla
 
 ## Next Step<a name="tutorial-create-environment-cli-step1-next"></a>
 
-[Step 2: Basic Tour of the IDE](tutorial-tour-ide-cli-step2.md)
+[Step 2: Basic tour of the IDE](tutorial-tour-ide-cli-step2.md)

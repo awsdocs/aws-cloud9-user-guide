@@ -8,6 +8,7 @@ The following table describes important changes to the *AWS Cloud9 User Guide* a
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for AWS resources](more-resources.md) | Added support for accessing resource types along with interface options to view resources and associated documentation\. | November 5, 2021 | 
 | [App Runner support](using-apprunner.md) | Added support for AWS App Runner to AWS Toolkit\. | September 30, 2021 | 
 | [AWS Cloud9 also available in Africa \(Cape Town\) and Asia Pacific \(Osaka\) Regions](#history) | AWS Cloud9 is now also available in the following Regions: Africa \(Cape Town\) and Asia Pacific \(Osaka\)\. For more information about service endpoints and service quotas associated with these and other AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/cloud9.html) in the *Amazon Web Services General Reference*\. | September 1, 2021 | 
 | [CloudWatch Logs and Amazon S3 in AWS Toolkit](cloudwatch-logs-toolkit.md) | Added support for CloudWatch Logs to AWS Toolkit for AWS Cloud9\. New feature to allow upload of current files to Amazon S3 buckets\. | July 16, 2021 | 

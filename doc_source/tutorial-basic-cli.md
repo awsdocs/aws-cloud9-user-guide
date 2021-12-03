@@ -15,6 +15,6 @@ To successfully complete this tutorial, you must first complete the steps in [Se
 
 ## Steps<a name="tutorial-basic-cli-steps"></a>
 + [Step 1: Create an environment](tutorial-create-environment-cli-step1.md)
-+ [Step 2: Basic Tour of the IDE](tutorial-tour-ide-cli-step2.md)
-+ [Step 3: Clean Up](tutorial-clean-up-cli-step3.md)
++ [Step 2: Basic tour of the IDE](tutorial-tour-ide-cli-step2.md)
++ [Step 3: Clean up](tutorial-clean-up-cli-step3.md)
 + [Related Information](tutorial-final-info-cli.md)

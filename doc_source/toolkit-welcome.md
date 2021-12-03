@@ -13,6 +13,7 @@ At present, the following AWS services and resources can be accessed through the
 + [AWS CloudFormation stacks](cloudformation-toolkit.md)
 + [CloudWatch Logs](cloudwatch-logs-toolkit.md)
 + [AWS Lambda\*](lambda-toolkit.md)
++ [Resources](more-resources.md)
 + [Amazon S3 buckets and objects](s3-toolkit.md)
 + [AWS Serverless Application Model applications](serverless-apps-toolkit.md)
 
@@ -122,5 +123,6 @@ You can disable the AWS Toolkit in the **Preferences** tab\.<a name="disabling-t
 + [Working with API Gateway using the AWS Toolkit](api-gateway-toolkit.md)
 + [Working with AWS CloudFormation stacks using AWS Toolkit](cloudformation-toolkit.md)
 + [Working with AWS Lambda functions using the AWS Toolkit](lambda-toolkit.md)
++ [Working with resources](more-resources.md)
 + [Working with Amazon S3 using AWS Toolkit](s3-toolkit.md)
 + [Working with AWS serverless applications using the AWS Toolkit](serverless-apps-toolkit.md)

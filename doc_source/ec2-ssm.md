@@ -278,13 +278,13 @@ You can create and configure VPC endpoints using the AWS Management Console, AWS
 1. To check that your IDE can access the Amazon S3 bucket, start a terminal session by choosing **Window**, **New Terminal** on the menu bar\. Then run the following command, replacing `{bucket_name}` with the actual name of the bucket for your Region:
 
    ```
-   ping {bucket_name}.amazonaws.com.
+   ping {bucket_name}.s3.{region}.amazonaws.com.
    ```
 
    For example, if you created a endpoint for an Amazon S3 bucket in the US East \(N\. Virginia\) Region, run the following command:
 
    ```
-   ping static-us-east-1-prod-static-mft1klnkc4hl.amazonaws.com
+   ping static-us-east-1-prod-static-mft1klnkc4hl.s3.us-east-1.amazonaws.com
    ```
 
    If the ping gets a response, this confirms that your IDE can access the bucket and its dependencies\.
