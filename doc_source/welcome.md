@@ -16,7 +16,7 @@ From the diagram \(starting at the bottom\), you use the **AWS Cloud9 IDE**, run
 
 ![\[Diagram that provides an overview of how AWS Cloud9 works\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)
 
-### AWS Cloud9 environments<a name="w52aab7c13b9"></a>
+### AWS Cloud9 environments<a name="w66aab7c13b9"></a>
 
 An *AWS Cloud9 environment* is a place where you store your project's files and where you run the tools to develop your applications\.
 

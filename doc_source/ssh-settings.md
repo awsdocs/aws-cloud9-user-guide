@@ -9,6 +9,7 @@ When you create an EC2 environment, AWS Cloud9 creates a new environment, reques
 +  **AWS managed temporary credentials\.** For an EC2 environment, you can easily turn on or off all AWS actions for all AWS resources in the caller's AWS account \(with some restrictions\)\. You can don't need to configure instance profiles for your environment's Amazon EC2 instance or store permanent AWS access credentials of an AWS entity \(for example, an IAM user\)\.
 
   For more information, see [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials)\.
++  **AWS Toolkit and Git panel\.** These tools for interacting with AWS services and using visual source control are available only in AWS Cloud9 environments that are created with an Amazon EC2 instance\.
 
 If you want to create an EC2 environment instead, see [Creating an EC2 Environment](create-environment-main.md)\. Otherwise, continue reading for information about creating SSH environments\.
 

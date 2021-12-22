@@ -7,7 +7,8 @@ Using options from the Git panel interface, you can manage the complete source c
 Core collaboration and project\-management features of Git, such as creating and merging branches, can quickly be implemented with a few clicks in the Git panel interface\. Moreover, merge conflicts can be identified and resolved using the IDE's editor windows\.
 
 **Important**  
-Currently, Git panel is available by default only in new AWS Cloud9 environments that are created after December 11, 2020\. We're working on enabling Git panel for development environments that were created before this date\.
+Git panel is available only in AWS Cloud9 environments that are created with Amazon EC2 instances\. This feature isn't accessible if you're using an [SSH development environment](ssh-settings.md) instead of an EC2 environment\.  
+In addition, Git panel is available by default only in new AWS Cloud9 environments that are created after December 11, 2020\. We're working on enabling Git panel for development environments that were created before this date\.
 
 To access and interact with the interface, choose **Window**, **Source Control**\. Alternatively, you can get to the Source Control by right\-clicking anywhere in the IDE's side panels and choosing **Source Control**\. Then, after this, choose the Git icon that's displayed in the IDE interface\.
 

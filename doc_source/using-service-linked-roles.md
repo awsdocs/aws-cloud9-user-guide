@@ -19,6 +19,10 @@ AWS Cloud9 uses the service\-linked role named AWSServiceRoleForAWSCloud9\. This
 
 The permissions policy for this service\-linked role is named **AWSCloud9ServiceRolePolicy**, and it allows AWS Cloud9 to complete the following actions on the specified resources\.
 
+**Warning**  
+AWS License Manager license configurations aren't compatible with the way AWSServiceRoleForAWSCloud9 grants AWS Cloud9 permissions to access its Amazon EC2 instances\. This is because the **AWSCloud9ServiceRolePolicy** doesn't include a `license-configuration` resource condition to allow AWS Cloud9 to start and stop its instance\.   
+If you're using License Manager and you receive an `unable to access your environment` error, [deactivate the licence configuration](https://docs.aws.amazon.com/license-manager/latest/userguide/deactivate-license-configuration.html) for the EC2 instances that are used by AWS Cloud9\.
+
 ```
 {
     "Version": "2012-10-17",
@@ -107,17 +111,7 @@ The permissions policy for this service\-linked role is named **AWSCloud9Service
                     "iam:PassedToService": "ec2.amazonaws.com"
                 }
             }
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:StartInstances",
-                "ec2:StopInstances"
-            ],
-            "Resource": [
-                "arn:aws:license-manager:*:*:license-configuration:*"
-            ]
-         }
+        },        
     ]
 }
 ```

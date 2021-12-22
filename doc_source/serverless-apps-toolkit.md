@@ -17,7 +17,7 @@ The necessary prerequisites for creating a serverless application include the **
 
 ### Create a serverless application with the AWS Toolkit<a name="create-serverless-app"></a>
 
-This example shows how to create a serverless application with the AWS Toolkit by using the [AWS Serverless Application Model \(AWS SAM\)](docs.aws.amazon.comserverless-application-model/)\.
+This example shows how to create a serverless application with the AWS Toolkit by using the [AWS Serverless Application Model \(AWS SAM\)](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html)\.
 
 1. In the **AWS Explorer**, right\-click the **Lambda** node, and then choose **Create Lambda SAM Application**\. 
 **Note**  
@@ -138,7 +138,7 @@ The Lambda handlers that are detected by context\-aware links depend on the lang
 **Note**  
 If you see Docker mentioned in error messages, see this [note](#docker-problem)\.
 
-### Running and debugging local Amazon API Gateway resources<a name="w52aac25c31b9c21"></a>
+### Running and debugging local Amazon API Gateway resources<a name="w66aac25c31b9c21"></a>
 
 You can run or debug AWS SAM API Gateway local resources, specified in `template.yaml`, by running an AWS Cloud9 launch configuration of `type=aws-sam` with the `invokeTarget.target=api`\.
 

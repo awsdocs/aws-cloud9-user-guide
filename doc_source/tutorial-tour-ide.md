@@ -10,13 +10,13 @@ This part of the tutorial introduces some of the ways that you can use the AWS C
 Perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and samples](tutorials.md) for other programming languages\.
 
 **Topics**
-+ [Get your environment ready](#w52aac11c13c25b5b9)
-+ [Write code](#w52aac11c13c25b5c11)
-+ [Run your code](#w52aac11c13c25b5c13)
-+ [Debug your code](#w52aac11c13c25b5c15)
++ [Get your environment ready](#w66aac11c13c25b5b9)
++ [Write code](#w66aac11c13c25b5c11)
++ [Run your code](#w66aac11c13c25b5c13)
++ [Debug your code](#w66aac11c13c25b5c15)
 + [Next step](#tutorial-tour-ide-next)
 
-## Get your environment ready<a name="w52aac11c13c25b5b9"></a>
+## Get your environment ready<a name="w66aac11c13c25b5b9"></a>
 
 Most of the tools you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
 
@@ -36,7 +36,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    found 0 vulnerabilities
    ```
 
-## Write code<a name="w52aac11c13c25b5c11"></a>
+## Write code<a name="w66aac11c13c25b5c11"></a>
 
 Begin by writing some code\.
 
@@ -68,7 +68,7 @@ Begin by writing some code\.
 
 1. Choose **File**, **Save**, and then save the file as `hello-cloud9.js`\.
 
-## Run your code<a name="w52aac11c13c25b5c13"></a>
+## Run your code<a name="w66aac11c13c25b5c13"></a>
 
 Next, you can run your code\.
 
@@ -100,7 +100,7 @@ Depending on the programming language that you're using, there might be multiple
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-terminal.png)
 
-## Debug your code<a name="w52aac11c13c25b5c15"></a>
+## Debug your code<a name="w66aac11c13c25b5c15"></a>
 
 Finally, you can debug your code by using the **Debugger** window\.
 
