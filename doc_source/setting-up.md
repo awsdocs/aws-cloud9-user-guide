@@ -13,7 +13,7 @@ To start using AWS Cloud9, follow one of these sets of procedures, depending on 
 |  I am a **student**1, and I am the only individual using my account with AWS\.  |   [Individual Student Setup](setup-student.md)   | 
 |  I am an **educator**1, and I want my students to work together in a virtual classroom\.  |   [Classroom Setup](setup-classroom.md)   | 
 
-1 To learn about who qualifies as a student or educator, see [Who can join AWS Educate](https://www.awseducate.com/faqs#fa0Po00000043dVcEAI) on the *AWS Educate Frequently Asked Questions* website\.
+1 To learn about who qualifies as a student or educator, see [Who can join AWS Educate](https://aws.amazon.com/education/awseducate/aws-educate-faqs/) on the *AWS Educate Frequently Asked Questions* website\.
 
 For general information about AWS Cloud9, see [What Is AWS Cloud9?](welcome.md)\.
 
