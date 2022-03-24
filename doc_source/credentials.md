@@ -131,11 +131,11 @@ Skip ahead to [Create an Instance Profile with the AWS CLI](#credentials-tempora
 
 1. In the list of instances, choose the instance with the **Name** that includes your environment name\. For example, if your environment name is `my-demo-environment`, choose the instance with the **Name** that includes **my\-demo\-environment**\.
 
-1. Choose **Actions**, **Instance Settings**, **Attach/Replace IAM Role**\.
+1. Choose **Actions**, **Security**, **Modify IAM Role**\.
 **Note**  
 Although you are attaching a role to the instance, the role contains an instance profile\.
 
-1. On the **Attach/Replace IAM Role** page, for **IAM role**, choose the name of the role you identified or that you created in the previous procedure, and then choose **Apply**\.
+1. On the **Modify IAM Role** page, for **IAM role**, choose the name of the role you identified or that you created in the previous procedure, and then choose **Save**\.
 
 1. Back in the environment, use the AWS CLI to run the `aws configure` command or the aws\-shell to run the `configure` command\. Do not specify any values for **AWS Access Key ID** or **AWS Secret Access Key** \(press `Enter` after each of these prompts\)\. For **Default region name**, specify the AWS Region closest to you or the Region where your AWS resources are located\. For example, `us-east-2` for the US East \(Ohio\) Region\. For a list of Regions, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *Amazon Web Services General Reference*\. Optionally, specify a value for **Default output format** \(for example, `json`\)\.
 
