@@ -278,7 +278,7 @@ When you delete all chat messages, they are deleted from the environment for all
 1. In the **Collaborate** window, expand **Environment Members**, if the list of members isn't visible\.
 
 1. Do one of the following actions:
-   + Next to the member name whose access role you want to change, choose **R** or **RW** to make this member owner or read/write, respectively\.
+   + Next to the member name whose access role you want to change, choose **R** or **RW** to make this member read-only or read/write, respectively\.
    + To change a read/write member to read\-only, right\-click the member name, and then choose **Revoke Write Access**\.
    + To change a read\-only member to read/write, right\-click the member name, and then choose **Grant Read\+Write Access**\.
 **Note**  
