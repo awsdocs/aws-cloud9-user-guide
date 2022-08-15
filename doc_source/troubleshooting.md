@@ -39,6 +39,7 @@ If your issue is not listed, or if you need additional help, see the [AWS Cloud9
 + [Failure to create environment when default encryption is applied to Amazon EBS volumes](#troubleshooting-policy-cmk)
 + [Unable to preview web content in the IDE because the connection to the site isn't secure](#troubleshooting-blocked-mixed-content)
 + [Unable to launch AWS Cloud9 from console when an AWS License Manager license configuration is associated with Amazon EC2 instances](#license-config-deny)
++ [Unable to interact with the terminal window in AWS Cloud9 because of tmux session errors](#tmux-terminal-error)
 
 ## Environment creation error: "We are unable to create EC2 instances \.\.\."<a name="troubleshooting-account-verification"></a>
 
@@ -688,8 +689,55 @@ If you're repeatedly having issues with SAM CLI commands because of disk\-space 
 
 **Possible causes:** AWS License Manager streamlines the management of software vendor licenses across the AWS Cloud\. When setting up License Manager, you create license configurations, which are sets of licensing rules based on the terms of your enterprise agreements\. These license configurations can be attached to a mechanism, such as an Amazon Machine Image \(AMI\) or AWS CloudFormation, that you use to launch EC2 instances\.
 
-Because the **AWSCloud9ServiceRolePolicy** for the AWSServiceRoleForAWSCloud9 service\-linked role \(SLR\) currently doesn't include the `license-configuration` resource condition, AWS Cloud9 isn't allowed to start and stop its instance\. So AWS Cloud9 is denied access to its Amazon EC2 instance and an error is returned\.
+Because older versions of **AWSCloud9ServiceRolePolicy** for the AWSServiceRoleForAWSCloud9 service\-linked role \(SLR\) currently don't include the `license-configuration` resource condition, AWS Cloud9 isn't allowed to start and stop its instance\. So AWS Cloud9 is denied access to its Amazon EC2 instance and an error is returned\.
 
-**Recommended solutions**: At present, the **AWSCloud9ServiceRolePolicy** isn't compatible with License Manager\. If you're using License Manager and you receive an `unable to access your environment` error, [deactivate the licence configuration](https://docs.aws.amazon.com/license-manager/latest/userguide/deactivate-license-configuration.html) for the EC2 instances that are used by AWS Cloud9\.
+**Recommended solutions**: If you're unable to access an existing AWS Cloud9 environment and you're using License Manager, replace the old **AWSCloud9ServiceRolePolicy** service\-linked role with the [version of the SLR](using-service-linked-roles.md#service-linked-role-permissions) that explicitly allows EC2 actions when a `license-configuration` applies to the instance\. You can replace the old role simply by deleting it\. The updated role is then created automatically\.
+
+\([back to top](#troubleshooting)\)
+
+## Unable to interact with the terminal window in AWS Cloud9 because of tmux session errors<a name="tmux-terminal-error"></a>
+
+**Issue:** When you try launch a new terminal window in AWS Cloud9, the expected command line interface isn't available\. There's no command prompt and you're unable to enter text\. 
+
+**Possible causes:** An unresponsive terminal may be caused by a tmux error\. AWS Cloud9 uses the [tmux](https://en.wikipedia.org/wiki/Tmux) utility so that information that's displayed in the terminal is persisted even when the page reloads or you reconnect to your development environment\.
+
+In a tmux session, what's displayed in the terminal window is handled by a client, which communicates to a server that can manage multiple sessions\. The server and client communicate through a socket located in the `tmp` folder\. If the `tmp` folder is missing from your development environment or overly restrictive permissions are applied to it, tmux sessions can't run\. If this occurs, the terminal window in the IDE becomes unresponsive\.
+
+**Recommended solutions**: If tmux errors are preventing you from interacting with the terminal window, you need to use an alternative way to create a `tmp` folder with the right permissions so tmux sessions can run\. The most straightforward approach is to use AWS Systems Manager to set up a host management configuration, which allows access to the relevant instance through the Amazon EC2 console:
+
+**Setting up host management**
+
+1. First, in the AWS Cloud9 console, find the name of your environment's instance by choosing the relevant panel in the **Your environments** page and choosing **View details**\. In the **Environment details** page, choose **Go to Instance**\. In the Amazon EC2 console, confirm the name of the instance you need to access\.
+
+1. Now go to the AWS Systems Manager console, and in the navigation pane, choose **Quick Setup**\.
+
+1. In the **Quick Setup** page, choose **Create**\.
+
+1. For **Configuration types**, go to **Host Management** and choose **Create**\.
+
+1. For **Customize Host Management configuration options**, in the **Targets** section, choose **Manual**\. 
+
+1. Select the EC2 instance that you want to access and then choose **Create**\.
+
+**Connecting to the instance and running commands**
+
+**Note**  
+The steps below are for the new EC2 console\.
+
+1. In the Amazon EC2 console, in the navigation pane, choose **Instances** and select the instance that you want to connect to\.
+
+1. Choose **Connect**\.
+
+   If **Connect** isn't activated, you may need to start the instance first\.
+
+1. In the **Connect to your instance** pane, for **Connection method**, choose **Session Manager** and then **Connect**\.
+
+1. In the terminal session window that displays, enter the following commands to create the `tmp` folder with the right permissions so that the tmux socket will be available:
+
+   ```
+   sudo mkdir /tmp
+   sudo chmod 777 /tmp
+   sudo rmdir /tmp/tmux-*
+   ```
 
 \([back to top](#troubleshooting)\)

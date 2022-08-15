@@ -5,8 +5,7 @@
 The AWS Toolkit is an extension for the AWS Cloud9 integrated development environment \(IDE\)\. This extension makes it easier for developers to access and work with a wide range of AWS services\.
 
 **Important**  
-The AWS Toolkit is available only in AWS Cloud9 environments that are created with Amazon EC2 instances\. This feature isn't accessible if you're using an [SSH development environment](ssh-settings.md) instead of an EC2 environment\.  
-In addition, support for the AWS Toolkit is provided as an integrated feature that's managed by AWS Cloud9\. Currently, customers can't customize the AWS Cloud9 IDE by installing third\-party extensions\.
+Support for the AWS Toolkit is provided as an integrated feature that's managed by AWS Cloud9\. Currently, customers can't customize the AWS Cloud9 IDE by installing third\-party extensions\.
 
 At present, the following AWS services and resources can be accessed through the AWS Toolkit extension:
 + [AWS App Runner](using-apprunner.md)
@@ -21,7 +20,7 @@ At present, the following AWS services and resources can be accessed through the
 + [Systems Manager automation documents](systems-manager-automation-docs.md)
 
 **Important**  
-\*The features provided by the AWS Toolkit for working with AWS Lambda functions and serverless applications replace the support previously provided in the **Lambda** section of the **AWS Resources** window\. When it's enabled, the AWS Toolkit is your primary tool for working with Lambda functions, and the **AWS Resources** window isn't available\.
+\*The features provided by the AWS Toolkit for working with AWS Lambda functions and serverless applications replace the support previously provided in the **Lambda** section of the **AWS Resources** window\. 
 
 ## Enabling AWS Toolkit<a name="access-toolkit"></a>
 

@@ -1,12 +1,12 @@
-# Working with Language Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)<a name="projects"></a>
+# Enhanced TypeScript support with with language projects<a name="projects"></a>
 
-The AWS Cloud9 IDE provides project productivity features for some languages in addition to those languages listed in [Language Support in the AWS Cloud9 Integrated Development Environment \(IDE\)](language-support.md)\. To use these features, you use the IDE to create or identify a *language project* \(or *project*\) based on that language\. A project is a collection of related files, folders, and settings in the IDE for an AWS Cloud9 development environment\.
+The AWS Cloud9 IDE allows you to use *language projects* to access enhanced productivity features for TypeScript\. A language project is a collection of related files, folders, and settings in the IDE for an AWS Cloud9 development environment\.
 
 To use the IDE to create a language project in your environment, see [Create a Language Project](#projects-create)\.
 
-## Available Project Productivity Features<a name="projects-features"></a>
+## Available project productivity features<a name="projects-features"></a>
 
-The AWS Cloud9 IDE provides the following project productivity features by programming language\.
+The AWS Cloud9 IDE provides the following project productivity features for TypeScript\.
 
 
 ****  

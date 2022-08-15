@@ -259,7 +259,7 @@ You also create a `CMakeLists.txt` file that provides instructions that are used
        if (argc < 3) {
            std::cout << "Usage: s3-demo <bucket name> <AWS Region>" << std::endl
                << "Example: s3-demo my-bucket us-east-1" << std::endl;
-           return false;
+           return 1;
        }
    
        Aws::SDKOptions options;

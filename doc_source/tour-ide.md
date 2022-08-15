@@ -225,7 +225,7 @@ With the **Go** window open, you can:
 File search is scoped only to non\-hidden files and non\-hidden folders in the **Environment** window\.
 + Type an at symbol \(`@`\) followed by the name of a symbol\. In the list of matching symbols that displays, choose a symbol to go to it in the editor\. For example, with the `hello.rb` file open and active in the editor, type `@hello` to list `say_hello(i)`, or type `@say` to list both `say_hello(i)` and `say_goodbye(i)`\.
 **Note**  
-If the active file in the editor is part of a supported language project, symbol search is scoped to the current project\. Otherwise, symbol search is scoped only to the active file in the editor\. For more information, see [Working with Language Projects in the AWS Cloud9 Integrated Development Environment \(IDE\)](projects.md)\.
+If the active file in the editor is part of a supported language project, symbol search is scoped to the current project\. Otherwise, symbol search is scoped only to the active file in the editor\. For more information, see [Enhanced TypeScript support with with language projects](projects.md)\.
 + Type a dot \(`.`\) followed by the name of a command\. In the list of commands that displays, choose a command to run it\. For example, typing `.closetab` and then pressing `Enter` closes the current tab in the editor\. For a list of available commands, see the [Commands reference for the AWS Cloud9 Integrated Development Environment \(IDE\)](commands.md)\.
 + Type a colon \(`:`\) followed by a number to go to that line number in the active file in the editor\. For example, with the `hello.rb` file open and active in the editor, type `:11` to go to line 11 in that file\.
 

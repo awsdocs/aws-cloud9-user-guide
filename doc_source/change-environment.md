@@ -22,9 +22,7 @@ For more information, see [Project Setting Changes You Can Make](settings-projec
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
-   + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
-   + If you're using an AWS Educate Starter Account, see [Step 2: Sign in to the AWS Cloud9 Console](setup-student.md#setup-student-sign-in-ide) in *Individual Student Signup*\.
-   + If you're a student in a classroom, see your instructor for sign\-in instructions\.
+   + If your organization uses AWS IAM Identity Center \(successor to AWS Single Sign\-On\), see your AWS account administrator for sign\-in instructions\.
 
 1. In the top navigation bar, choose the AWS Region where the environment is located\.  
 ![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)

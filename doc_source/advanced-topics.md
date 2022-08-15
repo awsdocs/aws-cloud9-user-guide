@@ -2,7 +2,7 @@
 
 **These topics contain the following information:**
 + Information that's used for advanced configuration and decision making\.
-+ Information that's related to a particular task and can provide you with a better understanding of AWS Cloud9 but isn't critical to accomplishing that task\.
++ Information that's related to a particular task and can provide you with a better understanding of AWS Cloud9 but isn't critical to completing that task\.
 
 **Topics**
 + [EC2 Environments compared with SSH environments](ec2-env-versus-ssh-env.md)

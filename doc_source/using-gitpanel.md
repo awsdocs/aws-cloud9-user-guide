@@ -16,7 +16,7 @@ And you can view the actual Git commands that are run when you interact with the
 
 ## Initialize or clone a Git repository<a name="init-clone-repo"></a>
 
-A Git repository \("repo"\) contains the complete history of a project from its beginning\. A repository consists of all the snapshots of project content that were captured each timeyou committed staged files to that repo\.
+A Git repository \("repo"\) contains the complete history of a project from its beginning\. A repository consists of all the snapshots of project content that were captured each time you committed staged files to that repo\.
 
 Git panel supports both ways of obtaining a Git repository:
 + Initialize an existing directory as a Git repository\.

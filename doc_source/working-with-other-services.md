@@ -8,4 +8,5 @@ The AWS Toolkit feature provides a convenient visual interface for working with 
 **Topics**
 + [Working with Amazon Lightsail instances](lightsail-instances.md)
 + [Working with AWS CodeStar Projects](codestar-projects.md)
++ [Working with CodeWhisperer](codewhisperer.md)
 + [Working with AWS CodePipeline](codepipeline-repos.md)

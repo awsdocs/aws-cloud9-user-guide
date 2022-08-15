@@ -1,5 +1,9 @@
 # Java sample for AWS Cloud9<a name="sample-java"></a>
 
+**Important**  
+If you're using an AWS Cloud9 development environment that's backed by an EC2 instance with 2 GiB or more of memory, we recommend that you activate enhanced Java support\. This provides access to productivity features such as code completion, linting for errors, context\-specific actions, and debugging options such as breakpoints and stepping\.  
+For more information, see [Enhanced support for Java development](enhanced-java.md)\.
+
 This sample enables you to run some Java code in an AWS Cloud9 development environment\.
 
 Creating this sample might result in charges to your AWS account\. These include possible charges for services such as Amazon EC2 and Amazon S3\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/) and [Amazon S3 Pricing](https://aws.amazon.com/s3/pricing/)\.

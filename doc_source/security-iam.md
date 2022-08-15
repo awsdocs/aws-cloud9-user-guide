@@ -18,7 +18,7 @@ How you use AWS Identity and Access Management \(IAM\) differs, depending on the
 
 **Service administrator** \- If you're in charge of AWS Cloud9 resources at your company, you probably have full access to AWS Cloud9\. It's your job to determine which AWS Cloud9 features and resources your employees should access\. You must then submit requests to your IAM administrator to change the permissions of your service users\. Review the information on this page to understand the basic concepts of IAM\. To learn more about how your company can use IAM with AWS Cloud9, see [How AWS Cloud9 works with IAM](#how-cloud9-with-iam)\.
 
-**IAM administrator** \- If you use the AWS Cloud9 service to do your job, then your administrator provides you with the credentials and permissions that you need\. As you use more AWS Cloud9 features to do your work, you might need additional permissions\. Understanding how access is managed can help you request the right permissions from your administrator\. If you cannot access a feature in AWS Cloud9, see [Troubleshooting AWS Cloud9](troubleshooting.md)\.
+**IAM administrator** \- If you’re an IAM administrator, you might want to learn details about how you can write policies to manage access to AWS Cloud9\. To view examples of AWS Cloud9 identity\-based policies that you can use in IAM, see [Creating customer managed policies for AWS Cloud9](#auth-and-access-control-customer-policies)\.
 
 ## Authenticating with identities<a name="auth-identities"></a>
 
@@ -160,7 +160,7 @@ To add permissions to users, groups, and roles, it is easier to use AWS managed 
 
 AWS services maintain and update AWS managed policies\. You can't change the permissions in AWS managed policies\. Services occasionally add additional permissions to an AWS managed policy to support new features\. This type of update affects all identities \(users, groups, and roles\) where the policy is attached\. Services are most likely to update an AWS managed policy when a new feature is launched or when new operations become available\. Services do not remove permissions from an AWS managed policy, so policy updates won't break your existing permissions\.
 
-Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the **ViewOnlyAccess** AWS managed policy provides read\-only access to many AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
+Additionally, AWS supports managed policies for job functions that span multiple services\. For example, the `ViewOnlyAccess` AWS managed policy provides read\-only access to many AWS services and resources\. When a service launches a new feature, AWS adds read\-only permissions for new operations and resources\. For a list and descriptions of job function policies, see [AWS managed policies for job functions](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_job-functions.html) in the *IAM User Guide*\.
 
 ### AWS managed policy: AWSCloud9Administrator<a name="security-iam-awsmanpol-AWSCloud9Administrator"></a>
 
@@ -406,6 +406,121 @@ This policy includes the following permissions\.
 }
 ```
 
+### AWS managed policy: AWSCloud9ServiceRolePolicy<a name="security-iam-awsmanpol-AWSCloud9SLR"></a>
+
+The service\-linked role **AWSServiceRoleForAWSCloud9** uses this policy to allow the AWS Cloud9 environment interact with Amazon EC2 and AWS CloudFormation resources\. 
+
+**Permissions details**
+
+The **AWSCloud9ServiceRolePolicy** grants the AWSServiceRoleForAWSCloud9 the necessary permissions to allow AWS Cloud9 to interact with the AWS services \(Amazon EC2 and AWS CloudFormation\) required for the creation and running of development environments\.
+
+AWS Cloud9 defines the permissions of its service\-linked roles, and only AWS Cloud9 can assume its roles\. The defined permissions include the trust policy and the permissions policy, and that permissions policy cannot be attached to any other IAM entity\.
+
+For more information on how AWS Cloud9 uses service\-linked roles, see [Using service\-linked roles for AWS Cloud9](using-service-linked-roles.md)\.
+
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:RunInstances",
+				"ec2:CreateSecurityGroup",
+				"ec2:DescribeVpcs",
+				"ec2:DescribeSubnets",
+				"ec2:DescribeSecurityGroups",
+				"ec2:DescribeInstances",
+				"ec2:DescribeInstanceStatus",
+				"cloudformation:CreateStack",
+				"cloudformation:DescribeStacks",
+				"cloudformation:DescribeStackEvents",
+				"cloudformation:DescribeStackResources"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:TerminateInstances",
+				"ec2:DeleteSecurityGroup",
+				"ec2:AuthorizeSecurityGroupIngress"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"cloudformation:DeleteStack"
+			],
+			"Resource": "arn:aws:cloudformation:*:*:stack/aws-cloud9-*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:CreateTags"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:instance/*",
+				"arn:aws:ec2:*:*:security-group/*"
+			],
+			"Condition": {
+				"StringLike": {
+					"aws:RequestTag/Name": "aws-cloud9-*"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:StartInstances",
+				"ec2:StopInstances"
+			],
+			"Resource": "*",
+			"Condition": {
+				"StringLike": {
+					"ec2:ResourceTag/aws:cloudformation:stack-name": "aws-cloud9-*"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:StartInstances",
+				"ec2:StopInstances"
+			],
+			"Resource": [
+				"arn:aws:license-manager:*:*:license-configuration:*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"iam:ListInstanceProfiles",
+				"iam:GetInstanceProfile"
+			],
+			"Resource": [
+				"arn:aws:iam::*:instance-profile/cloud9/*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"iam:PassRole"
+			],
+			"Resource": [
+				"arn:aws:iam::*:role/service-role/AWSCloud9SSMAccessRole"
+			],
+			"Condition": {
+				"StringLike": {
+					"iam:PassedToService": "ec2.amazonaws.com"
+				}
+			}
+		}
+	]
+}
+```
+
 ### AWS Cloud9 updates to AWS managed policies<a name="security-iam-awsmanpol-updates"></a>
 
 View details about updates to AWS managed policies for AWS Cloud9 since this service began tracking these changes\. For automatic alerts about changes to this page, subscribe to the RSS feed on the AWS Cloud9 Document history page\.
@@ -413,6 +528,7 @@ View details about updates to AWS managed policies for AWS Cloud9 since this ser
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+|  Update to [** AWSCloud9ServiceRolePolicy**](#security-iam-awsmanpol-AWSCloud9SLR)  |  [** AWSCloud9ServiceRolePolicy**](#security-iam-awsmanpol-AWSCloud9SLR) was updated to allow AWS Cloud9 to start and stop Amazon EC2 instances that are managed by License Manager license configurations\.  | January 12, 2022 | 
 |  AWS Cloud9 started tracking changes  |  AWS Cloud9 started tracking changes for its AWS managed policies\.  | March 15, 2021 | 
 
 ## Creating customer managed policies for AWS Cloud9<a name="auth-and-access-control-customer-policies"></a>

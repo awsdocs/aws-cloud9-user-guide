@@ -2,19 +2,26 @@
 
 An *integrated development environment \(IDE\)* provides a set of coding productivity tools such as a source code editor, a debugger, and build tools\.
 
+**Important**  
+We recommend the following best practices for using your AWS Cloud9:   
+Use **source control and backup** your environment frequently\. AWS Cloud9 does not perform automatic backups\. 
+Perform regular **updates of software** on your environment\. AWS Cloud9 does not perform automatic software updates\. 
+ **Turn on AWS CloudTrail** in your AWS account to track activity in your environment\. For more information, see [Logging AWS Cloud9 API Calls with AWS CloudTrail](cloudtrail.md) 
+Only share your environments with **trusted users**\. Sharing your environment may put your AWS access credentials at risk\. For more information, see [Working with shared environment in AWS Cloud9](share-environment.md) 
+
 Learn how to work with the AWS Cloud9 IDE by reading one or more of these topics\.
 
 **Topics**
 + [Tour the IDE](tour-ide.md)
-+ [Language Support](language-support.md)
-+ [Menu Commands Reference](menu-commands.md)
++ [Language support](language-support.md)
++ [Enhanced language support](enhanced-lang-support.md)
++ [Menu commands reference](menu-commands.md)
 + [Finding and Replacing Text](find-replace-text.md)
 + [Previewing files](file-preview.md)
 + [Previewing running applications](app-preview.md)
 + [Working with File Revisions](file-revisions.md)
 + [Working with Image Files](images.md)
 + [Working with Builders, Runners, and Debuggers](build-run-debug.md)
-+ [Working with Language Projects](projects.md)
 + [Working with Custom Environment Variables](env-vars.md)
 + [Working with Project Settings](settings-project.md)
 + [Working with user settings](settings-user.md)

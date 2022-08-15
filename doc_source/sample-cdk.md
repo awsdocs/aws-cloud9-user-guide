@@ -1,6 +1,6 @@
-# AWS CDK sample for AWS Cloud9<a name="sample-cdk"></a>
+# AWS CDKsample for AWS Cloud9<a name="sample-cdk"></a>
 
-This sample shows you how to work with the AWS Cloud Development Kit \(CDK\) in an AWS Cloud9 development environment\. The AWS CDK is a set of software tools and libraries that developers can use to model AWS infrastructure components as code\.
+This sample shows you how to work with the AWS Cloud Development Kit \(AWS CDK\) in an AWS Cloud9 development environment\. The AWS CDK is a set of software tools and libraries that developers can use to model AWS infrastructure components as code\.
 
 The AWS CDK includes the AWS Construct Library that you can use to quickly resolve many tasks on AWS\. For example, you can use the `Fleet` construct to fully and securely deploy code to a fleet of hosts\. You can create your own constructs to model various elements of your architectures, share them with others, or publish them to the community\. For more information, see the [AWS Cloud Development Kit Developer Guide](https://docs.aws.amazon.com/cdk/latest/guide/)\.
 

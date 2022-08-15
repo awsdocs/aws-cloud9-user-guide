@@ -17,7 +17,7 @@ The following procedures cover attaching and detaching policies for AWS Cloud9 u
 You can create a customer managed policy using the [AWS Management Console](#setup-teams-create-policy-console) or the [AWS Command Line Interface \(AWS CLI\)](#setup-teams-create-policy-cli)\.
 
 **Note**  
-This step covers creating a customer managed policy for IAM groups only\. To create a custom permission set for groups in AWS Single Sign\-On \(SSO\), skip this step and follow the instructions in [Create Permission Set](https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsets.html#howtocreatepermissionset) in the *AWS Single Sign\-On User Guide* instead\. In this topic, follow the instructions to create a custom permission set\. For related custom permissions policies, see [Customer managed policy examples for teams using AWS Cloud9](#setup-teams-policy-examples) later in this topic\.
+This step covers creating a customer managed policy for IAM groups only\. To create a custom permission set for groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\), skip this step and follow the instructions in [Create Permission Set](https://docs.aws.amazon.com/singlesignon/latest/userguide/permissionsets.html#howtocreatepermissionset) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide* instead\. In this topic, follow the instructions to create a custom permission set\. For related custom permissions policies, see [Customer managed policy examples for teams using AWS Cloud9](#setup-teams-policy-examples) later in this topic\.
 
 ### Create a customer managed policy using the console<a name="setup-teams-create-policy-console"></a>
 
@@ -68,7 +68,7 @@ Skip ahead to [Add customer managed Policies to a Group Using the AWS CLI](#setu
 You can add customer managed policies to a group using the [AWS Management Console](#setup-teams-add-policy-console) or the [AWS Command Line Interface \(AWS CLI\)](#setup-teams-add-policy-cli)\.
 
 **Note**  
-This step covers adding customer managed policies to IAM groups only\. To add custom permission sets to groups in AWS Single Sign\-On \(SSO\), skip this step and follow the instructions in [Assign User Access](https://docs.aws.amazon.com/singlesignon/latest/userguide/useraccess.html#assignusers) in the *AWS Single Sign\-On User Guide* instead\.
+This step covers adding customer managed policies to IAM groups only\. To add custom permission sets to groups in AWS IAM Identity Center \(successor to AWS Single Sign\-On\), skip this step and follow the instructions in [Assign User Access](https://docs.aws.amazon.com/singlesignon/latest/userguide/useraccess.html#assignusers) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide* instead\.
 
 ### Add customer managed policies to a group using the console<a name="setup-teams-add-policy-console"></a>
 

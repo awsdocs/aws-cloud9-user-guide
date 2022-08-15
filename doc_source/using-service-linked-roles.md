@@ -17,102 +17,111 @@ For information about other services that support service\-linked roles, see [AW
 
 AWS Cloud9 uses the service\-linked role named AWSServiceRoleForAWSCloud9\. This service\-linked role trusts the service `cloud9.amazonaws.com` to assume the role\.
 
-The permissions policy for this service\-linked role is named **AWSCloud9ServiceRolePolicy**, and it allows AWS Cloud9 to complete the following actions on the specified resources\.
+The permissions policy for this service\-linked role is named **AWSCloud9ServiceRolePolicy**, and it allows AWS Cloud9 to complete the actions listed in the policy on the specified resources\.
 
-**Warning**  
-AWS License Manager license configurations aren't compatible with the way AWSServiceRoleForAWSCloud9 grants AWS Cloud9 permissions to access its Amazon EC2 instances\. This is because the **AWSCloud9ServiceRolePolicy** doesn't include a `license-configuration` resource condition to allow AWS Cloud9 to start and stop its instance\.   
-If you're using License Manager and you receive an `unable to access your environment` error, [deactivate the licence configuration](https://docs.aws.amazon.com/license-manager/latest/userguide/deactivate-license-configuration.html) for the EC2 instances that are used by AWS Cloud9\.
+**Important**  
+ If you're using License Manager and you receive an `unable to access your environment` error, you need to replace the old service\-linked role with the version that does support License Manager\. You can replace the old role simply by deleting it\. The updated role is then created automatically\.
 
 ```
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:RunInstances",
-                "ec2:CreateSecurityGroup",
-                "ec2:DescribeVpcs",
-                "ec2:DescribeSubnets",
-                "ec2:DescribeSecurityGroups",
-                "ec2:DescribeInstances",
-                "ec2:DescribeInstanceStatus",
-                "cloudformation:CreateStack",
-                "cloudformation:DescribeStacks",
-                "cloudformation:DescribeStackEvents",
-                "cloudformation:DescribeStackResources"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:TerminateInstances",
-                "ec2:DeleteSecurityGroup",
-                "ec2:AuthorizeSecurityGroupIngress"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "cloudformation:DeleteStack"
-            ],
-            "Resource": "arn:aws:cloudformation:*:*:stack/aws-cloud9-*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:CreateTags"
-            ],
-            "Resource": [
-                "arn:aws:ec2:*:*:instance/*",
-                "arn:aws:ec2:*:*:security-group/*"
-            ],
-            "Condition": {
-                "StringLike": {
-                    "aws:RequestTag/Name": "aws-cloud9-*"
-                }
-            }
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "ec2:StartInstances",
-                "ec2:StopInstances"
-            ],
-            "Resource": "*",
-            "Condition": {
-                "StringLike": {
-                    "ec2:ResourceTag/aws:cloudformation:stack-name": "aws-cloud9-*"
-                }
-            }
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "iam:ListInstanceProfiles",
-                "iam:GetInstanceProfile"
-            ],
-            "Resource": [
-                "arn:aws:iam::*:instance-profile/cloud9/*"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "iam:PassRole"
-            ],
-            "Resource": [
-                "arn:aws:iam::*:role/service-role/AWSCloud9SSMAccessRole"
-            ],
-            "Condition": {
-                "StringLike": {
-                    "iam:PassedToService": "ec2.amazonaws.com"
-                }
-            }
-        },        
-    ]
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:RunInstances",
+				"ec2:CreateSecurityGroup",
+				"ec2:DescribeVpcs",
+				"ec2:DescribeSubnets",
+				"ec2:DescribeSecurityGroups",
+				"ec2:DescribeInstances",
+				"ec2:DescribeInstanceStatus",
+				"cloudformation:CreateStack",
+				"cloudformation:DescribeStacks",
+				"cloudformation:DescribeStackEvents",
+				"cloudformation:DescribeStackResources"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:TerminateInstances",
+				"ec2:DeleteSecurityGroup",
+				"ec2:AuthorizeSecurityGroupIngress"
+			],
+			"Resource": "*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"cloudformation:DeleteStack"
+			],
+			"Resource": "arn:aws:cloudformation:*:*:stack/aws-cloud9-*"
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:CreateTags"
+			],
+			"Resource": [
+				"arn:aws:ec2:*:*:instance/*",
+				"arn:aws:ec2:*:*:security-group/*"
+			],
+			"Condition": {
+				"StringLike": {
+					"aws:RequestTag/Name": "aws-cloud9-*"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:StartInstances",
+				"ec2:StopInstances"
+			],
+			"Resource": "*",
+			"Condition": {
+				"StringLike": {
+					"ec2:ResourceTag/aws:cloudformation:stack-name": "aws-cloud9-*"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"ec2:StartInstances",
+				"ec2:StopInstances"
+			],
+			"Resource": [
+				"arn:aws:license-manager:*:*:license-configuration:*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"iam:ListInstanceProfiles",
+				"iam:GetInstanceProfile"
+			],
+			"Resource": [
+				"arn:aws:iam::*:instance-profile/cloud9/*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"iam:PassRole"
+			],
+			"Resource": [
+				"arn:aws:iam::*:role/service-role/AWSCloud9SSMAccessRole"
+			],
+			"Condition": {
+				"StringLike": {
+					"iam:PassedToService": "ec2.amazonaws.com"
+				}
+			}
+		}
+	]
 }
 ```
 

@@ -6,6 +6,7 @@ The AWS Toolkit provides support for [serverless applications](https://aws.amazo
 + [Creating a serverless application](#sam-create)
 + [Running and debugging serverless applications](#sam-run-debug)
 + [Deploying a serverless application](#deploy-serverless-app)
++ [Enabling AWS Toolkit code lenses](#enable-code-lenses)
 + [Deleting a serverless application from the AWS Cloud](#delete-serverless-app)
 + [Configuration options for debugging serverless applications](sam-debug-config-ref.md)
 
@@ -71,7 +72,7 @@ In this procedure, you'll use the example application that was created in [Creat
 
    A new editor displays the `launch.json` file that provides a debugging configuration with default attributes\.
 
-1. Edit or confirm values for the following configuration properties:
+1. <a name="properties"></a>Edit or confirm values for the following configuration properties:
    + `"name"` – Enter a reader\-friendly name to appear in the **Configuration** drop\-down field in the **Run** view\.
    + `"target"` – Ensure the value is `"template"` so that the SAM template is the entry point for the debug session\. 
    + `"templatePath"` – Enter a relative or absolute path for the `template.yaml` file\.
@@ -115,7 +116,7 @@ The Lambda handlers that are detected by context\-aware links depend on the lang
 
 1. From the application folder \(*my\-sample\-app*, for example\), expand the function folder \(*hello\-world*, in this case\) and open the `app.js` file\.
 
-1. In the inline action that identifies an eligible Lambda handler function, choose `Add Debug Configuration`\.   
+1. In the inline action that identifies an eligible Lambda handler function, choose `Add Debug Configuration`\. If the add debug configuration option does not appear, you must enable code lenses\. To enable code lenses, see [Enabling AWS Toolkit code lenses ](#enable-code-lenses)\.  
 ![\[Access the Add Debug Configuration option in the inline action for a Lambda function handler.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)
 
 1. Select the runtime in which your SAM application will run\.
@@ -148,7 +149,7 @@ API Gateway supports two types of APIs, REST and HTTP\. However, the API Gateway
 **To run and debug local API Gateway resources**
 
 1. Choose one of the following approaches to create a launch config for an AWS SAM API Gateway resource:
-   + **Option 1**: Visit the handler source code \(\.js, \.cs, or \.py file\) in your AWS SAM project, hover over the Lambda handler, and choose **Add Debug Configuration**\. Then, in the menu, choose the item marked API Event\.
+   + **Option 1**: Visit the handler source code \(\.js, \.cs, or \.py file\) in your AWS SAM project, hover over the Lambda handler, and choose **Add Debug Configuration** \(If the add debug configuration option does not appear, you must enable code lenses\. To enable code lenses, see [Enabling AWS Toolkit code lenses ](#enable-code-lenses)\.\)\. Then, in the menu, choose the item marked API Event\.
    + **Option 2** Edit `launch.json` and create a new launch configuration using the following syntax\.
 
      ```
@@ -290,6 +291,14 @@ The Amazon S3 bucket name must be globally unique across all existing bucket nam
    In this example, the error occurred because the Amazon S3 bucket did not exist\.
 
 When the deployment is complete, you'll see your application listed in the **AWS Explorer**\. To learn how to invoke the Lambda function that was created as part of the application, see [Invoking remote Lambda functions](lambda-toolkit.md#remote-lambda)\.
+
+## Enabling AWS Toolkit code lenses<a name="enable-code-lenses"></a>
+
+1. On the menu bar, choose **AWS Cloud9**, and then **Preferences**\.
+
+1. On the **Preferences** tab, in the sidebar, choose **AWS Toolkit**\.
+
+1. To enable code lenses, choose **Enable Code Lenses**\.
 
 ## Deleting a serverless application from the AWS Cloud<a name="delete-serverless-app"></a>
 

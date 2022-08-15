@@ -103,7 +103,7 @@ For more information, see [AWS Systems Manager documents](https://docs.aws.amazo
 
 1. In the AWS Explorer, for **Systems Manager**, choose the category of SSM document you want to download: **Owned by Amazon**, **Owned by me**, or **Shared with me**\.
 
-1. For a specific document, open the context \(right\-click\) menu and choose **Download as YAML** or **Download as YAML**\.
+1. For a specific document, open the context \(right\-click\) menu and choose **Download as YAML** or **Download as JSON**\.
 
    The formatted SSM document displays in a new editor tab\.
 

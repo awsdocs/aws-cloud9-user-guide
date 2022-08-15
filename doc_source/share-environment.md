@@ -183,7 +183,7 @@ To open a shared environment, you use your AWS Cloud9 dashboard\. You then use t
 
 1. Sign in to the AWS Cloud9 console as follows:
    + If you're the only individual using your AWS account or you are an IAM user in a single AWS account, go to [https://console\.aws\.amazon\.com/cloud9/](https://console.aws.amazon.com/cloud9/)\.
-   + If your organization uses AWS Single Sign\-On \(SSO\), see your AWS account administrator for sign\-in instructions\.
+   + If your organization uses IAM Identity Center, see your AWS account administrator for sign\-in instructions\.
    + If you're a student in a classroom, see your instructor for sign\-in instructions\.
 
 1. Open the shared environment from your AWS Cloud9 dashboard\. For more information, see [Opening an Environment in AWS Cloud9](open-environment.md)\.

@@ -1,20 +1,20 @@
-# Menu Bar Commands Reference for the AWS Cloud9 Integrated Development Environment \(IDE\)<a name="menu-commands"></a>
+# Menu bar commands reference for the AWS Cloud9 Integrated Development Environment \(IDE\)<a name="menu-commands"></a>
 
 The following lists describe the default menu bar commands in the AWS Cloud9 IDE\. If the menu bar isn't visible, choose the thin bar along the top edge of the IDE to show it\.
-+  [AWS Cloud9 Menu](#menu-commands-cloud9) 
-+  [File Menu](#menu-commands-file) 
-+  [Edit Menu](#menu-commands-edit) 
-+  [Find Menu](#menu-commands-find) 
-+  [View Menu](#menu-commands-view) 
-+  [Go Menu](#menu-commands-goto) 
-+  [Run Menu](#menu-commands-run) 
-+  [Tools Menu](#menu-commands-tools) 
-+  [Window Menu](#menu-commands-window) 
-+  [Support Menu](#menu-commands-support) 
-+  [Preview Menu](#menu-commands-preview) 
-+  [Other Menu Bar Commands](#menu-commands-other) 
++  [AWS Cloud9 menu](#menu-commands-cloud9) 
++  [File menu](#menu-commands-file) 
++  [Edit menu](#menu-commands-edit) 
++  [Find menu](#menu-commands-find) 
++  [View menu](#menu-commands-view) 
++  [Go menu](#menu-commands-goto) 
++  [Run menu](#menu-commands-run) 
++  [Tools menu](#menu-commands-tools) 
++  [Window menu](#menu-commands-window) 
++  [Support menu](#menu-commands-support) 
++  [Preview menu](#menu-commands-preview) 
++  [Other menu bar commands](#menu-commands-other) 
 
-## AWS Cloud9 Menu<a name="menu-commands-cloud9"></a>
+## AWS Cloud9 menu<a name="menu-commands-cloud9"></a>
 
 
 ****  
@@ -30,7 +30,7 @@ The following lists describe the default menu bar commands in the AWS Cloud9 IDE
 |   **Open Your Init Script**   |  Open the `init.js` file for the current user\. See [Working with Initialization Scripts](settings-init-script.md)\.  | 
 |   **Open Your Stylesheet**   |  Open the `styles.css` file for the current user\. See [Working with Themes](settings-theme.md)\.  | 
 
-## File Menu<a name="menu-commands-file"></a>
+## File menu<a name="menu-commands-file"></a>
 
 
 ****  
@@ -53,7 +53,7 @@ The following lists describe the default menu bar commands in the AWS Cloud9 IDE
 |   **Close File**   |  Close the current file\.  | 
 |   **Close All Files**   |  Close all open files\.  | 
 
-## Edit Menu<a name="menu-commands-edit"></a>
+## Edit menu<a name="menu-commands-edit"></a>
 
 
 ****  
@@ -107,7 +107,7 @@ The following lists describe the default menu bar commands in the AWS Cloud9 IDE
 |   **Code Formatting, Apply Code Formatting**   |  Reformat the selected JavaScript code\.  | 
 |   **Code Formatting, Open Language & Formatting Preferences**   |  Open the **Project Settings** section of the **Preferences** tab to programming language settings\.  | 
 
-## Find Menu<a name="menu-commands-find"></a>
+## Find menu<a name="menu-commands-find"></a>
 
 For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 
@@ -125,7 +125,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Replace All**   |  Replace all matches for **Find** with **Replace With** in the find and replace bar for the current document\.  | 
 |   **Find in Files**   |  Show the find and replace bar for multiple files\.  | 
 
-## View Menu<a name="menu-commands-view"></a>
+## View menu<a name="menu-commands-view"></a>
 
 
 ****  
@@ -152,7 +152,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Wrap Lines**   |  Wrap words to the edge of the current pane, or stop wrapping words if they are already wrapping\.  | 
 |   **Wrap To Print Margin**   |  Wrap words to the edge of the current print margin, or stop wrapping words if they are already wrapping\.  | 
 
-## Go Menu<a name="menu-commands-goto"></a>
+## Go menu<a name="menu-commands-goto"></a>
 
 
 ****  
@@ -174,7 +174,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Jump to Matching Brace**   |  Go to the matching symbol in the current scope\.  | 
 |   **Scroll to Selection**   |  Scroll the selection into better view\.  | 
 
-## Run Menu<a name="menu-commands-run"></a>
+## Run menu<a name="menu-commands-run"></a>
 
 
 ****  
@@ -194,7 +194,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Automatically Build Supported Files**   |  Automatically build supported files\.  | 
 |   **Save All on Build**   |  When building, save all related unsaved files\.  | 
 
-## Tools Menu<a name="menu-commands-tools"></a>
+## Tools menu<a name="menu-commands-tools"></a>
 
 
 ****  
@@ -212,7 +212,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Toggle Macro Recording**   |  Start keystroke recording, of stop if it is already recording\.  | 
 |   **Play Macro**   |  Play previously recorded keystrokes\.  | 
 
-## Window Menu<a name="menu-commands-window"></a>
+## Window menu<a name="menu-commands-window"></a>
 
 
 ****  
@@ -256,7 +256,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Presets, Minimal Editor**   |  Switch to minimal editor mode\.  | 
 |   **Presets, Sublime Mode**   |  Switch to Sublime mode\.  | 
 
-## Support Menu<a name="menu-commands-support"></a>
+## Support menu<a name="menu-commands-support"></a>
 
 
 ****  
@@ -267,7 +267,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Get Help \(Community\)**   |  Opens the AWS Cloud9 online community website in a separate web browser tab\.  | 
 |   **Read Documentation**   |  Opens the *AWS Cloud9 User Guide* in a separate web browser tab\.  | 
 
-## Preview Menu<a name="menu-commands-preview"></a>
+## Preview menu<a name="menu-commands-preview"></a>
 
 
 ****  
@@ -279,7 +279,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 |   **Configure Preview URL**   |  Open the **Project Settings** section of the **Preferences** tab to the **Run & Debug, Preview URL** box\.  | 
 |   **Show Active Servers**   |  Show a list of available active server addresses in the **Process List** dialog box\.  | 
 
-## Other Menu Bar Commands<a name="menu-commands-other"></a>
+## Other menu bar commands<a name="menu-commands-other"></a>
 
 
 ****  
