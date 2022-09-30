@@ -191,9 +191,9 @@ For an additional layer of security, you can also set up a network access contro
 
    1. In the list of instances, select the instance where the **Instance ID** matches the instance ID you noted earlier\.
 
-1. In the **Description** tab for the instance, choose the security group link next to **Security groups**\.
+1. Select **Security** tab for the instance, click on the security group link under **Security groups**\.
 
-1. With the security group displayed, look on the **Inbound** tab\. If a rule already exists where **Type** is set to **Custom TCP Rule** and **Port Range** is set to **8080**, **8081**, or **8082**, choose **Cancel**, and skip ahead to [Step 3: Set up the subnet for the instance](#app-preview-share-subnet)\. Otherwise, choose **Edit**\.
+1. With the security group displayed, look on the **Inbound rules** tab\. If a rule already exists where **Type** is set to **Custom TCP Rule** and **Port Range** is set to **8080**, **8081**, or **8082**, choose **Cancel**, and skip ahead to [Step 3: Set up the subnet for the instance](#app-preview-share-subnet)\. Otherwise, choose **Edit inbound rules**\.
 
 1. In the **Edit inbound rules** dialog box, choose **Add Rule**\.
 
@@ -205,7 +205,7 @@ For an additional layer of security, you can also set up a network access contro
 **Note**  
 Choosing **Anywhere** for **Source** allows incoming requests from any IP address\. To restrict this to specific IP addresses, choose **Custom** and then type the IP address range, or choose **My IP** to restrict this to requests from your IP address only\.
 
-1. Choose **Save**\.
+1. Choose **Save rules**\.
 
 ### Step 3: Set up the subnet for the instance<a name="app-preview-share-subnet"></a>
 
@@ -221,7 +221,7 @@ This step describes how to set up a network ACL for a subnet in an Amazon VPC th
 
 1. In the list of instances, select the instance where the **Instance ID** matches the instance ID you noted earlier\.
 
-1. In the **Description** tab for the instance, note the value of **Subnet ID**\. It should look similar to this: `subnet-1fab8aEX`\.
+1. In the **Details** tab for the instance, note the value of **Subnet ID**\. It should look similar to this: `subnet-1fab8aEX`\.
 
 1. Open the Amazon VPC console\. To do this, in the AWS navigation bar, choose **Services**\. Then choose **VPC**\.
 
@@ -231,7 +231,7 @@ This step describes how to set up a network ACL for a subnet in an Amazon VPC th
 
 1. In the list of subnets, select the subnet where the **Subnet ID** value matches the one you noted earlier\.
 
-1. On the **Summary** tab, choose the network ACL link next to **Network ACL**\.
+1. On the **Details** tab, choose the network ACL link next to **Network ACL**\.
 
 1. In the list of network ACLs, select the network ACL\. \(There is only one network ACL\.\)
 
