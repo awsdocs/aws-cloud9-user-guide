@@ -42,12 +42,7 @@ To connect to your own server, you could search the internet using a phrase such
 
 1. Choose **Next step**
 
-1. On the **Configure settings** page, for **Environment type**, choose one of the following options to create an Amazon EC2 backed environment:
-   + **Create a new EC2 instance for environment \(direct access\)** – Launches an Amazon EC2 instance that AWS Cloud9 can connect to directly over SSH\.
-   + ** Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\) ** – Launches an Amazon EC2 instance that doesn't require any open inbound ports\. AWS Cloud9 connects to the instance through [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
-     + If you select the **access via Systems Manager** option, a service role and an IAM instance profile are automatically created to allow Systems Manager to interact with the EC2 instance on your behalf\. You can view the names of both in the **Service role and instance profile for Systems Manager access** section further down the interface\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
-**Warning**  
-Creating an EC2 instance for your environment might result in possible charges to your AWS account for Amazon EC2\. There is no additional cost to use Systems Manager to manage connections to your EC2 instance\.
+1. On the **Configure settings** page, for **Environment type**, choose the option to create and run in remote server (SSH connection)\.
 
 1. For **User**, type the login name you used to connect to the instance or server earlier in this procedure\. For example, for an AWS cloud compute instance, it might be `ec2-user`, `ubuntu`, or `root`\.
 **Note**  
