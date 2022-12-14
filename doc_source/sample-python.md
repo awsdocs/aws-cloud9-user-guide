@@ -104,7 +104,7 @@ To install `pip`, run the following commands\. Because sudo is in a different en
 
 ```
 curl -O https://bootstrap.pypa.io/get-pip.py # Get the install script.
-sudo python36 get-pip.py                     # Install pip for Python 3.6.
+sudo python3 get-pip.py                     # Install pip for Python 3.
 python -m pip --version                      # Verify pip is installed.
 rm get-pip.py                                # Delete the install script.
 ```
@@ -116,7 +116,7 @@ For more information, see [Installation](https://pip.pypa.io/en/stable/installin
 After you install `pip`, install the AWS SDK for Python \(Boto3\) by running the ** `pip install` ** command\.
 
 ```
-sudo python36 -m pip install boto3  # Install boto3 for Python 3.6.
+sudo python3 -m pip install boto3  # Install boto3 for Python 3.
 python -m pip show boto3            # Verify boto3 is installed for the current version of Python.
 ```
 

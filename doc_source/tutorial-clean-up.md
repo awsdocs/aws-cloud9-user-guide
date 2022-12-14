@@ -2,10 +2,10 @@
 
 \(Previous step: [Step 2: Basic tour of the IDE](tutorial-tour-ide.md)\)
 
-To prevent ongoing charges to your AWS account related to this tutorial, you should delete the environment\.
+To prevent ongoing charges to your AWS account that are related to this tutorial, delete the environment\.
 
 **Warning**  
-Deleting an environment cannot be undone\.
+You cannot restore your environment after you delete it\.
 
 ## Delete the Environment by using the AWS Cloud9 console<a name="tutorial-clean-up-console"></a>
 
@@ -21,7 +21,7 @@ Deleting an environment cannot be undone\.
 
 **Note**  
 If you followed this tutorial exactly, then the environment was an EC2 environment and AWS Cloud9 also terminates the Amazon EC2 instance that was connected to that environment\.  
-However, if you used an SSH environment instead of following the tutorial, and that environment was connected to an Amazon EC2 instance, AWS Cloud9 doesn't terminate that instance\. If you don't terminate that instance later, your AWS account might continue to have ongoing charges for Amazon EC2 related to that instance\.
+However, if you used an SSH environment instead of following the tutorial, and that environment was connected to an Amazon EC2 instance, AWS Cloud9 doesn't terminate that instance\. If you don't terminate that instance later, your AWS account might continue to have ongoing charges for Amazon EC2 that are related to that instance\.
 
 ## Next step<a name="tutorial-clean-up-next"></a>
 

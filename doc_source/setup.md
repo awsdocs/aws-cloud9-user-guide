@@ -8,7 +8,7 @@ These instructions assume that you have \(or will have\) administrative access t
 You can use [IAM Identity Center](https://aws.amazon.com/single-sign-on/) instead of IAM to enable multiple users within a single AWS account to use AWS Cloud9\. In this usage pattern, the single AWS account serves as the management account for an organization in AWS Organizations, and that organization has no member accounts\. To use IAM Identity Center, skip this topic and follow the instructions in [Enterprise Setup](setup-enterprise.md) instead\. For related information, see the following resources:  
  [What is AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) in the *AWS Organizations User Guide* \(IAM Identity Center requires the use of AWS Organizations\)
  [What is AWS IAM Identity Center \(successor to AWS Single Sign\-On\)](https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide* 
-The 4\-minute video [AWS Knowledge Center Videos: How do I get started with AWS Organizations](https://www.youtube.com/watch?v=mScBPL8VV48) on the YouTube website
+The 4\-minute video [AWS Knowledge Center Videos: How do I get started with AWS Organizations](https://www.youtube.com/watch?v=8VKMrkKXu2w) on the YouTube website
 The 7\-minute video [Manage user access to multiple AWS accounts using IAM Identity Center](https://www.youtube.com/watch?v=bXrsUEI1V38) on the YouTube website
 The 9\-minute video [How to set up IAM Identity Center for your on\-premise Active Directory users](https://www.youtube.com/watch?v=nuPjljOVZmU) on the YouTube website
 

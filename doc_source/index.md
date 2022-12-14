@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -80,6 +80,19 @@ Amazon's trademarks and trade dress may not be used in
       + [Setting up CodeWhisperer with AWS Cloud9](codewhisperer-setup.md)
       + [Overview of the CodeWhisperer for AWS Cloud9](codewhisperer-overview.md)
    + [Working with AWS CodePipeline in the AWS Cloud9 Integrated Development Environment (IDE)](codepipeline-repos.md)
+   + [Working with Amazon CodeCatalyst](ide-toolkits-cloud9.md)
+      + [Getting started](ide-toolkits-cloud9-getstarted.title.md)
+      + [Dev Environments in Amazon CodeCatalyst](devenvironment-cloud9.title.md)
+         + [Creating a Dev Environment](ide-toolkits-create-cloud9.md)
+         + [Stopping a Dev Environment](ide-toolkits-stop-cloud9.md)
+         + [Opening Dev Environment settings](ide-toolkits-settings-cloud9.md)
+         + [Resuming a Dev Environment](ide-toolkits-resume-cloud9.md)
+         + [Deleting a Dev Environment](ide-toolkits-delete-cloud9.md)
+         + [Editing the repository devfile for a Dev Environment](ide-toolkits-edit-devfile-cloud9.md)
+         + [Cloning a repository](ide-toolkits-clone-cloud9.md)
+         + [Troubleshooting a Dev Environment](cloud9-devenvironment-troubleshoot.md)
+   + [Working with the AWS CDK in the AWS Cloud9 integrated development environment (IDE)](cdk-explorer.md)
+      + [Working with AWS CDK applications](aws-cdk-apps.md)
 + [Visual source control with Git panel](source-control-gitpanel.md)
    + [Managing source control with Git panel](using-gitpanel.md)
    + [Reference: Git commands available in Git panel](gitpanel-reference.md)
@@ -103,6 +116,11 @@ Amazon's trademarks and trade dress may not be used in
    + [Working with AWS Step Functions using the AWS Toolkit](bulding-stepfunctions.md)
    + [Working with Systems Manager automation documents](systems-manager-automation-docs.md)
       + [Troubleshooting Systems Manager automation documents in AWS Toolkit](systems-manager-troubleshoot.md)
+   + [Working with Amazon ECR in AWS Cloud9 IDE](ecr.md)
+      + [Working with the Amazon Elastic Container Registry service in AWS Cloud9](ecr-working.md)
+   + [Working with AWS IoT in AWS Cloud9 IDE](iot-start.md)
+   + [Working with Amazon Elastic Container Service](ecs.md)
+      + [Amazon Elastic Container Service Exec in AWS Toolkit for AWS Cloud9](ecs-cloud9-exec.md)
 + [Tutorials and samples for AWS Cloud9](tutorials.md)
    + [AWS Command Line Interface and aws-shell sample for AWS Cloud9](sample-aws-cli.md)
    + [AWS CodeCommit sample for AWS Cloud9](sample-codecommit.md)

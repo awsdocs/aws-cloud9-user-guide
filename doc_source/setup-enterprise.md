@@ -5,10 +5,12 @@ This topic explains how to use [AWS IAM Identity Center \(successor to AWS Singl
 These instructions assume that you have \(or will have\) administrative access to the organization in AWS Organizations\. If you don't already have administrative access to the organization in AWS Organizations, see your AWS account administrator\. For more information, see the following resources:
 +  [Managing access permissions for your AWS Organization](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_permissions_overview.html) in the *AWS Organizations User Guide* \(IAM Identity Center requires the use of AWS Organizations\)
 +  [Overview of managing access permissions to your IAM Identity Center Resources](https://docs.aws.amazon.com/singlesignon/latest/userguide/iam-auth-access-overview.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide* 
++  [Using AWS Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/what-is-control-tower.html)\. which is a service that enables you to set up and govern an AWS multi\-account environment\. AWS Control Tower engages the capabilities of other AWS services, including AWS Organizations, AWS Service Catalog and AWS IAM Identity Center \(successor to AWS Single Sign\-On\), to build a landing zone in less than an hour\. 
 
 For introductory information related to this topic, see the following resources:
 +  [What is AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html) in the *AWS Organization User Guide* \(IAM Identity Center requires the use of AWS Organizations\)
 +  [What is AWS IAM Identity Center \(successor to AWS Single Sign\-On\)](https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html) in the *AWS IAM Identity Center \(successor to AWS Single Sign\-On\) User Guide* 
++  [Getting started with AWS Control Tower](https://docs.aws.amazon.com/controltower/latest/userguide/getting-started-with-control-tower.html) in the *AWS Control Tower User Guide* 
 + The 4\-minute video [AWS Knowledge Center Videos: How do I get started with AWS Organizations](https://www.youtube.com/watch?v=mScBPL8VV48) on the YouTube website
 + The 7\-minute video [Manage user access to multiple AWS accounts using AWS IAM Identity Center \(successor to AWS Single Sign\-On\)](https://www.youtube.com/watch?v=bXrsUEI1V38) on the YouTube website
 + The 9\-minute video [How to set up AWS Single Sign On for your on\-premise Active Directory users](https://www.youtube.com/watch?v=nuPjljOVZmU) on the YouTube website

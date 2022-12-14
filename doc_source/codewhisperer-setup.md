@@ -2,8 +2,7 @@
 
 **Topics**
 + [Enabling IAM permissions for CodeWhisperer](#codewhisperer-IAM-policies)
-+ [Activate CodeWhisperer](#codewhisperer-setup-activate)
-+ [Activating auto\-suggestions](#codewhisperer-setup-activate-suggestion)
++ [Activating CodeWhisperer within the AWS Cloud9 IDE](#codewhisperer-activation)
 
 ## AWS Identity and Access Management permissions for AWS Cloud9<a name="codewhisperer-IAM-policies"></a>
 
@@ -12,7 +11,7 @@
 ```
 {
   "Version": "2012-10-17",
-  "Statement": [{
+  "Statement": [
     {
       "Sid": "CodeWhispererPermissions",
       "Effect": "Allow",
@@ -25,32 +24,18 @@
 
 It is best practice to use IAM policies to grant restrictive permissions to IAM principals\. For details about working with IAM for AWS Cloud9, see [Identity and access management in AWS Cloud9](security-iam.md#security-iam.title)\.
 
-## Activating the CodeWhisperer experimental feature<a name="codewhisperer-setup-activate"></a>
+**Topics**
++ [Enabling IAM permissions for CodeWhisperer](#codewhisperer-IAM-policies)
++ [Activating CodeWhisperer within the AWS Cloud9 IDE](#codewhisperer-activation)
 
-To activate CodeWhisperer, complete the following procedure\.
+## Activating CodeWhisperer within the AWS Cloud9 IDE<a name="codewhisperer-activation"></a>
 
-1. In AWS Cloud9, choose the AWS Toolkit icon from the left nav\.
+Once you have accessed the AWS Cloud9 IDE you need to activate CodeWhisperer\.
 
-1. Under **Developer Tools**, choose **CodeWhisperer** \-> **Request access**\.
+1. From the AWS Cloud9 IDE, choose **aws\-explorer **from the AWS Cloud9 IDE sidebar\.
 
-1. Check back regularly, reloading your browser each time\. When you have been given access, this option will change from **Request access** to **Enable CodeWhisperer**\.
+1. From the **Developer Tools **navigation pane, choose **CodeWhisperer \(Preview\)**\.
 
-1. Choose **Enable CodeWhisperer**\.
+1. Choose** Enable CodeWhisperer **to accept the Terms of Service and activate CodeWhisperer within AWS Cloud9 IDE\.
 
-1. A tab will open, displaying the terms of service for the Amazon CodeWhisperer preview\.
-
-   Review the terms, and then choose **Accept and Enable CodeWhisperer**\.
-
-## Activating auto\-suggestions for the AWS Cloud9<a name="codewhisperer-setup-activate-suggestion"></a>
-
-For CodeWhisperer to run in AWS Cloud9, the auto\-suggestions feature must be active in AWS Cloud9\. To activate auto\-suggestions, complete these steps\.
-
-1. In AWS Cloud9, choose the AWS Toolkit icon from the left navigation panel\.
-
-1. Choose **CodeWhisperer** \-> **Activate auto\-suggestions**\.
-
-1. A window will open containing the CodeWhisperer terms of service\. Read them, and if you accept the terms, choose **Accept**\.
-
-1. Under **Developer Tools**, under **CodeWhisperer \(Preview\)**, choose **Enable CodeWhisperer**\.
-
-1. Read the CodeWhisperer terms of service and choose **Accept**\.
+![\[Selecting the CodeWhisperer option from AWS Cloud9 IDE\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/codewhisperer-activate.png)

@@ -1019,6 +1019,9 @@ For an AWS Cloud9 EC2 development environment, AWS Cloud9 makes temporary AWS ac
 Currently, if your environment’s EC2 instance is launched into a **private subnet**, you can't use AWS managed temporary credentials to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.  
 For more information about when you can launch an EC2 instance into a private subnet, see [Create a subnet for AWS Cloud9](vpc-settings.md#vpc-settings-create-subnet)\.
 
+**Note**  
+It is recommended to use a AWS managed policy instead of an inline policy when you are using AWS managed temporary credentials\.
+
 Here's how AWS managed temporary credentials work whenever an EC2 environment tries to access an AWS service on behalf of an AWS entity \(for example, an IAM user\):
 
 1. AWS Cloud9 checks to see if the calling AWS entity \(for example, the IAM user\) has permissions to take the requested action for the requested resource in AWS\. If the permission doesn't exist or is explicitly denied, the request fails\.

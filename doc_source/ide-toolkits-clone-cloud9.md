@@ -1,0 +1,5 @@
+# Cloning a repository<a name="ide-toolkits-clone-cloud9"></a>
+
+To work effectively with multiple files branches, and commits in source repositories, you can clone the source repository to your local computer and use a Git client or an IDE to make changes\. from CodeCatalyst using the AWS Cloud9 IDE git extension, in the same way as any other git host provider and also by using the command line\. To learn how to clone a third\-party repository, see [Initialize or clone a Git repository](https://docs.aws.amazon.com/cloud9/latest/user-guide/using-gitpanel.html)\.
+
+For more information on creating a Dev Environment from a source repository and cloning it with CodeCatalyst, see [Source repository concepts](https://docs.aws.amazon.com/codecatalyst/latest/userguide/source-concepts-clone.html) in the *Amazon CodeCatalyst guide*\.

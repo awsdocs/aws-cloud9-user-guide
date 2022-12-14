@@ -87,13 +87,13 @@ Installing WordPress on your environment's EC2 instance involves the following s
    tar xvf latest.tar.gz
    ```
 
-1. Run the `touch` command to create a file called `wp-config.php` in the `environment/wordpress` directory:
+1. Run the `touch` command to create a file called `wp-config-sample.php` in the `environment/wordpress` directory:
 
    ```
-   touch wordpress/wp-config.php
+   touch wordpress/wp-config-sample.php
    ```
 
-1. Use the IDE editor or vim to update `wp-config.php` with your WordPress website's base configuration details: 
+1. Use the IDE editor or vim to update `wp-config-sample.php` to `wp-config.php` then replace the sample data with your setup: 
 
    ```
    // ** MySQL settings - You can get this info from your web host ** //

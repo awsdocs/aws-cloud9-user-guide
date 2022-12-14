@@ -55,7 +55,7 @@ In this step, you install Node\.js, which is required to run this sample\.
 1. Run this command to install the latest version of Node\.js\.
 
    ```
-   nvm install node
+   nvm install --lts
    ```
 
 ## Step 2: Add code<a name="sample-nodejs-code"></a>
@@ -102,7 +102,7 @@ You can enhance this sample to use the AWS SDK for JavaScript in Node\.js to cre
 
 In this step, you install and configure the Amazon S3 service client module of the AWS SDK for JavaScript in Node\.js, which provides a convenient way to interact with the Amazon S3 AWS service, from your JavaScript code\.
 
-If you want to use other AWS services, you need to install them separately\. For more information on installing AWS modules, see [in the *AWS Developer Guide \(V3\)*\.](docs.aws.amazon.comsdk-for-javascript/v3/developer-guide/getting-started-browser.html)
+If you want to use other AWS services, you need to install them separately\. For more information on installing AWS modules, see [in the *AWS Developer Guide \(V3\)*\.](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/working-with-services)
 
  After you install the AWS SDK for JavaScript in Node\.js, you must set up credentials management in your environment\. The AWS SDK for JavaScript in Node\.js needs these credentials to interact with AWS services\.
 
@@ -114,7 +114,7 @@ Use npm to run the **`install`** command\.
 npm install @aws-sdk/client-s3
 ```
 
-For more information, see [Installing the SDK for JavaScript](docs.aws.amazon.comsdk-for-javascript/v3/developer-guide/installing-jssdk) in the *AWS SDK for JavaScript Developer Guide*\.
+For more information, see [Installing the SDK for JavaScript](https://docs.aws.amazon.com/sdk-for-javascript/v3/developer-guide/installing-jssdk) in the *AWS SDK for JavaScript Developer Guide*\.
 
 **To set up credentials management in your environment**
 

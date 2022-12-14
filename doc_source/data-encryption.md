@@ -26,7 +26,7 @@ AWS Cloud9 also transmits some of your content and data through its data plane s
 
 Encryption at rest refers to protecting your data from unauthorized access by encrypting data while stored\. Any customer data stored in an AWS Cloud9 environment such as code files, packages, or dependencies is always stored in the customer's resources\. If the customer uses an Amazon EC2 environment, the data is stored in the associated Amazon Elastic Block Store \(Amazon EBS\) volume that exists in their AWS account\. If the customer uses an SSH environment, the data is stored in local storage on their Linux server\. 
 
-When Amazon EC2 instances are created for an AWS Cloud9 development environment, an unencrypted Amazon EBS volume is created and attached to that instance\. Customers who want to encrypt their data need to create an encrypted EBS volume and attach it to the EC2 instance\. 
+When Amazon EC2 instances are created for an AWS Cloud9 development environment, an unencrypted Amazon EBS volume is created and attached to that instance\. Customers who want to encrypt their data need to create an encrypted EBS volume and attach it to the EC2 instance\. AWS Cloud9 and attached Amazon EBS volumes support Amazon EBS default encryption, which is a Region\-specific setting by default\. For more information, see [Encryption by default](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default) in the *AWS Elastic Compute Cloud User Guide*\.
 
 Metadata about the AWS Cloud9 development environments, such as environment names, members of the environments, and IDE settings, is stored by AWS, not in customer resources\. Customer\-specific information, such as environment descriptions and IDE settings, is encrypted\.
 

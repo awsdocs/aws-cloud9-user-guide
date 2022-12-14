@@ -3,7 +3,7 @@
 You can restrict incoming traffic to only the IP address ranges that AWS Cloud9 uses to connect over SSH to AWS cloud compute instances \(for example Amazon EC2 instances\) in an Amazon VPC or your own servers in your network\.
 
 **Note**  
-For an EC2 environment created on or after July 31 2018, you can skip this topic\. This is because AWS Cloud9 automatically restricts inbound SSH traffic for that environment to only those IP addresses that are described later in this topic\. AWS Cloud9 does this by automatically adding a rule to the security group that's associated with the Amazon EC2 instance for the environment\. This rule restricts inbound SSH traffic over port 22 to only those IP addresses for the associated AWS Region\.
+You can restrict incoming traffic to only the IP address ranges that AWS Cloud9 uses to connect over SSH\. For an EC2 environment created on or after July 31 2018, you can skip this topic\. This is because AWS Cloud9 automatically restricts inbound SSH traffic for that environment to only those IP addresses that are described later in this topic\. AWS Cloud9 does this by automatically adding a rule to the security group that's associated with the Amazon EC2 instance for the environment\. This rule restricts inbound SSH traffic over port 22 to only those IP addresses for the associated AWS Region\. For your own servers in your network you still have to follow the steps described later in this topic\.
 
 IP address ranges for most AWS Regions are in the `ip-ranges.json` file, as described in [AWS IP Address Ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) in the *AWS General Reference*\.
 

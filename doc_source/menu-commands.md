@@ -134,6 +134,7 @@ For more information, see [Finding and Replacing Text](find-replace-text.md)\.
 | --- | --- | 
 |   **Editors**   |  Show the chosen editor\.  | 
 |   **Open Files**   |  Show the **Open Files** list in the **Environment** window, or hide if shown\.  | 
+|   **Problems**   |  Show any problems in the Java projects for the environment in the **Problems** panel in the terminal\. You can select the problem to open the target file\.  | 
 |   **Menu Bar**   |  Show the menu bar, or hide if shown\.  | 
 |   **Tab Buttons**   |  Show tabs, or hide if shown\.  | 
 |   **Gutter**   |  Show the gutter, or hide if shown\.  | 

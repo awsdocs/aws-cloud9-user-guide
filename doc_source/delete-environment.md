@@ -14,7 +14,7 @@ When you delete an environment, AWS Cloud9 deletes the environment permanently\.
    + If your organization uses AWS IAM Identity Center \(successor to AWS Single Sign\-On\), ask your AWS account administrator for sign\-in instructions\.
 
 1. In the top navigation bar, choose the AWS Region where the environment is located\.  
-![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
+![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/consolas_region_new_UX.png)
 
 1. In the list of environments, for the environment you want to delete, do one of the following actions\.
    + Choose the title of the card for the environment\. Then choose **Delete** on the next page\.  
@@ -35,16 +35,12 @@ If account deletion fails, a banner is displayed at the top of the console webpa
 1. If the environment was an SSH environment, AWS Cloud9 leaves behind a hidden subdirectory on the cloud compute instance or your own server that was connected to that environment\. You can now safely delete that subdirectory if you want to delete it\. The subdirectory is named `.c9`\. It's located in the **Environment path** directory that you specified when you created the environment\.
 
    If your environment isn't displayed in the console, try doing one or more of the following actions to have it be displayed\.
-   + In the side navigation bar, choose one or more of the following\.
-     + Choose **Your environments** to display all environments that your AWS entity owns within the selected AWS Region and AWS account\.
-     + Choose **Shared with you** to display all environments your AWS entity has been invited to within the selected AWS Region and AWS account\.
-     + Choose **Account environments** to display all environments within the selected AWS Region and AWS account that your AWS entity has permissions to display\.  
-![\[Environment list scope in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-env-list.png)
-   + Choose the previous arrow, next arrow, or page number button to display more environments in the current scope\.  
-![\[Environment list page control in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-find-env.png)
+   + In the drop\-down menu bar on the **Environments** page, choose one or more of the following\.
+     + Choose **My environments** to display all environments that your AWS entity owns within the selected AWS Region and AWS account\.
+     + Choose **Shared with me** to display all environments your AWS entity has been invited to within the selected AWS Region and AWS account\.
+     + Choose **All account environments** to display all environments within the selected AWS Region and AWS account that your AWS entity has permissions to display\.
    + If you think you should be a member of an environment, but the environment isn't displayed in the **Shared with you** list, check with the environment owner\.
-   + In the top navigation bar, choose a different AWS Region\.  
-![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
+   + In the top navigation bar, choose a different AWS Region\.
 
 ## Deleting an Environment with Code<a name="delete-environment-code"></a>
 

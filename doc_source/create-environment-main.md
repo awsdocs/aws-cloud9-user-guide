@@ -1,11 +1,11 @@
 # Creating an EC2 Environment<a name="create-environment-main"></a>
 
 **Note**  
-Completing this procedure might result in charges to your AWS account\. These include possible charges for Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
+Completing this procedure might result in charges to your AWS account\. This includes possible charges for Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
-In this procedure, AWS Cloud9 creates an EC2 environment, creates a new Amazon EC2 instance, and then connects the environment to this newly created instance\. AWS Cloud9 manages the lifecycle of this instance, including starting, stopping, and restarting the instance as needed\. If you ever delete this environment, AWS Cloud9 automatically terminates this instance\.
+In this procedure, AWS Cloud9 creates an EC2 environment and a new Amazon EC2 instance, and connects the environment to this instance\. AWS Cloud9 manages the lifecycle of this instance, including starting, stopping, and restarting the instance as needed\. If you ever delete this environment, AWS Cloud9 automatically terminates this instance\.
 
-You can create an AWS Cloud9 EC2 development environment with the [AWS Cloud9 console](#create-environment-console) or with [code](#create-environment-code)\.
+You can create an AWS Cloud9 EC2 development environment in the [AWS Cloud9 console](#create-environment-console) or with [code](#create-environment-code)\.
 
 ## Prerequisites<a name="create-env-ec2-prereq"></a>
 
@@ -18,71 +18,68 @@ Complete the steps in [Setting up AWS Cloud9](setting-up.md) so that you can sig
    + If your organization uses AWS IAM Identity Center \(successor to AWS Single Sign\-On\), ask your AWS account administrator for sign\-in instructions\.
    + If you're a student in a classroom, ask your instructor for sign\-in instructions\.
 
-1. After you sign in to the AWS Cloud9 console, in the top navigation bar, choose an AWS Region to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *AWS General Reference*\.  
+1. After you sign in to the AWS Cloud9 console, in the top navigation bar choose an AWS Region to create the environment in\. For a list of available AWS Regions, see [AWS Cloud9](https://docs.aws.amazon.com/general/latest/gr/rande.html#cloud9_region) in the *AWS General Reference*\.  
 ![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/consolas_region_new_UX.png)
 
 1. Choose the large **Create environment** button in one of the locations shown\.
 
-   If you have no AWS Cloud9 environments yet, the button is shown on a welcome page\.  
-![\[Welcome page in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-welcome-new-env.png)
+   If you don't already have AWS Cloud9 environments, the button is shown on a welcome page\.  
+![\[Welcome page in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/create_welcome_env_new_UX.png)
 
    If you already have AWS Cloud9 environments, the button is shown as follows\.  
-![\[Create environment button in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-new-env.png)
+![\[Create environment button in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console_create_env_new_UX.png)
 
-1. On the **Configure environment** page, for **Name**, enter a name for your environment\.
+1. On the **Create environment** page, for **Name**, enter a name for your environment\.
 
-1. To add a description to your environment, enter it in **Description**\.
+1. To add a description to your environment, enter it in the **Description** field\.
 
-1. On the **Configure settings** page, for **Environment type**, choose one of the following options to create an Amazon EC2 backed environment:
-   + **Create a new EC2 instance for environment \(direct access\)** – Launches an Amazon EC2 instance that AWS Cloud9 can connect to directly over SSH\.
-   + ** Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\) ** – Launches an Amazon EC2 instance that doesn't require any open inbound ports\. AWS Cloud9 connects to the instance through [AWS Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager.html)\.
-     + If you select the **access via Systems Manager** option, a service role and an IAM instance profile are automatically created to allow Systems Manager to interact with the EC2 instance on your behalf\. You can view the names of both in the **Service role and instance profile for Systems Manager access** section further down the interface\. For more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
+1. For **Environment type**, choose **New EC2 instance** to create an Amazon EC2 environment:
+   + **New EC2 instance** – Launches a new Amazon EC2 instance that AWS Cloud9 can connect to directly over SSH\. You can use the Systems Manager to interact with new Amazon EC2 instances, for more information, see [Accessing no\-ingress EC2 instances with AWS Systems Manager](ec2-ssm.md)\. 
+   + ** Existing compute ** – Launches an existing Amazon EC2 instance that requires SSH login details for which the Amazon EC2 instance must have an inbound security group rule\.
+     + If you select the **Existing compute** option, a service role is automatically created\.  You can view the name of the service role in a note at the bottom of the setup screen\. 
 **Warning**  
-Creating an EC2 instance for your environment might result in possible charges to your AWS account for Amazon EC2\. There is no additional cost to use Systems Manager to manage connections to your EC2 instance\.
+Creating an EC2 instance for your environment might result in possible charges to your AWS account for Amazon EC2\. There's no additional cost to use Systems Manager to manage connections to your EC2 instance\.
 
-1. For **Instance type**, choose an instance type with the amount of RAM and vCPUs you think you need for the kinds of tasks you want to do\.
+1. For **Instance type**, choose an instance type with the amount of RAM and vCPUs that you think you need for the kinds of tasks that you want to do\.
 **Warning**  
 Choosing instance types with more RAM and vCPUs might result in additional charges to your AWS account for Amazon EC2\.
 
 1. For **Platform**, choose the type of Amazon EC2 instance that you want: **Amazon Linux 2**, **Amazon Linux**, or **Ubuntu**\. AWS Cloud9 creates the instance and then connects the environment to it\.
 **Important**  
-We recommend that you choose the **Amazon Linux 2** option for your EC2 environment\. As well as providing a secure, stable, and high\-performance runtime environment, Amazon Linux 2 AMI includes long\-term support through 2023\.  
+We recommend that you choose the **Amazon Linux 2** option for your EC2 environment\. In addition to providing a secure, stable, and high\-performance runtime environment, Amazon Linux 2 AMI includes long\-term support through 2023\.  
 Standard support for the previous version of Amazon Linux AMI discontinued on December 31, 2020\. Now this version only receives maintenance support\.  
- For more information, see the [Amazon Linux 2 page](https://aws.amazon.com/amazon-linux-2/)\.
+For more information, see the [Amazon Linux 2 page](https://aws.amazon.com/amazon-linux-2/)\.
 
-1. Choose a value for **Cost\-saving setting**\. When all web browser instances that are connected to the IDE for the environment are closed, AWS Cloud9 waits the amount of time specified and then shuts down the Amazon EC2 instance for the environment\. 
+1. Choose a time period for **Timeout**\. This option determines how long AWS Cloud9 is inactive before auto\-hibernating\. When all web browser instances that are connected to the IDE for the environment are closed, AWS Cloud9 waits the amount of time specified and then shuts down the Amazon EC2 instance for the environment\. 
 **Warning**  
 Choosing a longer time period might result in more charges to your AWS account\.
 
-1. Expand **Network settings \(advanced\)**\.
+1. On the **Network settings** panel, choose how your environment is accessed from the two following options:
+   + **AWS Systems Manager \(SSM\)** – This method accesses the environment using SSM without opening inbound ports\.
+   + **Secure Shell \(SSH\)** – This method accesses the environment using SSH and requires open inbound ports\.
 
-1. <a name="create-environment-vpc-step"></a>AWS Cloud9 uses Amazon Virtual Private Cloud \(Amazon VPC\) to communicate with the newly created Amazon EC2 instance\. Depending on how Amazon VPC is set up, follow one of the following set of instructions\.  
+1. <a name="create-environment-vpc-step"></a>Choose **VPC Settings** to display the Amazon Virtual Private Cloud and Subnet for your environment\. AWS Cloud9 uses Amazon Virtual Private Cloud \(Amazon VPC\) to communicate with the newly created Amazon EC2 instance\. For this tutorial, we recommend that you don't change the preselected default settings\. With the default settings, AWS Cloud9 attempts to use the default VPC with its single subnet in the same AWS account and Region as the new environment\. Depending on how Amazon VPC is set up, follow one of the following set of instructions\.  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
 **Important**  
-If you selected **Create a new no\-ingress EC2 instance for environment \(access via Systems Manager\)**, you can launch your instance into a public or private subnet\.  
-**Public subnet**: Attach an internet gateway to it to allow the instance SSM agent to communicate with Systems Manager\.
+If you selected **Existing compute** as your environment type, you can launch your instance into a public or private subnet\.  
+**Public subnet**: Attach an internet gateway to the subnet to allow the instance SSM agent to communicate with Systems Manager\.
 **Private subnet**: Create a NAT gateway to enable the instance to communicate with the internet and other AWS services\.
-You should also be aware that currently you can't use [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity \(an IAM user, for example\)\.  
- For more information on configuring subnets, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.  
+Currently, you can't use [AWS managed temporary credentials](security-iam.md#auth-and-access-control-temporary-managed-credentials) to allow the EC2 environment to access an AWS service on behalf of an AWS entity, such as an IAM user\.  
+ For more information about configuring subnets, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.  
 ****    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/create-environment-main.html)
 
    For more information about these choices, see [VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)\.
 
-1. Add up to 50 tags by supplying a **Key** and a **Value** for each tag\. The tags are attached to the AWS Cloud9 environment as resource tags, and are propagated to the following underlying resources: the AWS CloudFormation stack, the Amazon EC2 instance, and Amazon EC2 security groups\. You can find information about tags in [Control Access Using AWS Resource Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *[IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)*\. Also see the [advanced information](tags.md) about tags\.
+1. Add up to 50 tags by supplying a **Key** and **Value** for each tag\. Do so by selecting **Add new tag**\. The tags are attached to the AWS Cloud9 environment as resource tags, and are propagated to the following underlying resources: the AWS CloudFormation stack, the Amazon EC2 instance, and Amazon EC2 security groups\. To learn more about tags, see [Control Access Using AWS Resource Tags](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html) in the *[IAM User Guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/)* and [advanced information](tags.md) in this guide\.
 **Warning**  
-If you update these tags after you create them, the changes are not automatically propagated to the underlying resources\. For more information, see [Propagating tag updates to underlying resources](tags.md#tags-propagate) in the advanced information about [tags](tags.md)\.
+If you update these tags after you create them, the changes aren't propagated to the underlying resources\. For more information, see [Propagating tag updates to underlying resources](tags.md#tags-propagate) in the advanced information about [tags](tags.md)\.
 
-1. Choose **Next**\.
+1. Choose **Create** to create your environment, and then you're redirected to the home page\. If the account is successfully created, a green flash bar appears at the top of the AWS Cloud9 console\. You can select the new environment and choose **Open in Cloud9** to launch the IDE\.  
+![\[AWS Cloud9 IDE selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/cloud9-ide-open.png)
 
-1. On the **Review** page, choose **Create environment**\. Wait while AWS Cloud9 creates your environment\. This can take several minutes\.
-**Note**  
-If account creation fails, a banner is displayed at the top of the console page\. Additionally, the card for the environment, if it exists, indicates that environment creation failed\.
-
-After AWS Cloud9 creates your environment, it displays the AWS Cloud9 IDE for the environment\.
-
-If AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated virtual private cloud \(VPC\)\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading) in *Troubleshooting*\.
+   If the account fails to create, a red flash bar appears at the top of the AWS Cloud9 console\. Your account might fail to create because of a problem with your web browser, your AWS access permissions, the instance, or the associated network\. You can find information about possible fixes in the [AWS Cloud9 Troubleshooting section\.](troubleshooting.md#troubleshooting-env-loading)
 
 **Note**  
 If your environment is using a proxy to access the internet, you must provide proxy details to AWS Cloud9 so it can install dependencies\. For more information, see [Notice: Failed to install dependencies for collaboration support](troubleshooting.md#proxy-failed-dependencies)\.

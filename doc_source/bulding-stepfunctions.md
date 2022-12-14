@@ -36,7 +36,7 @@ For information on editing the ASL file to customize your workflow, see [State M
 1. In the ASL file, choose **Publish to Step Functions** to add your state machine to the AWS Cloud\. 
 **Note**  
 You can also choose **Render graph** in the ASL file to display a visual representation of the state machine's workflow\.  
-![\[File option to publish your state machine to the AWS Cloud.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)![\[File option to publish your state machine to the AWS Cloud.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)![\[File option to publish your state machine to the AWS Cloud.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/)
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/publish-stepfunction.png)
 
 1. In the command panel, choose an AWS Region to host your step function\.
 

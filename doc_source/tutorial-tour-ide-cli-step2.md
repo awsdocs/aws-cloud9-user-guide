@@ -7,28 +7,28 @@ This part of the tutorial introduces some of the ways that you can use the AWS C
 + You can use a **terminal** window or a **Run Configuration** window to run your code without debugging it\.
 + You can use the **Debugger** window to debug your code\.
 
-Perform these three tasks using JavaScript and the Node\.js engine\. See [Tutorials and samples](tutorials.md) for other programming languages\.
+Perform these three tasks using JavaScript and the Node\.js engine\. For instructions on using other programming languages, see [Tutorials and samples](tutorials.md)\.
 
 **Topics**
-+ [Get your environment ready](#w66aac11c15c25b5b9)
-+ [Write code](#w66aac11c15c25b5c11)
-+ [Run your code](#w66aac11c15c25b5c13)
-+ [Debug your code](#w66aac11c15c25b5c15)
++ [Get your environment ready](#w94aac11c16c25b5b9)
++ [Write code](#w94aac11c16c25b5c11)
++ [Run your code](#w94aac11c16c25b5c13)
++ [Debug your code](#w94aac11c16c25b5c15)
 + [Next Step](#tutorial-tour-ide-cli-step2-next)
 
-## Get your environment ready<a name="w66aac11c15c25b5b9"></a>
+## Get your environment ready<a name="w94aac11c16c25b5b9"></a>
 
-Most of the tools you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
+Most of the tools that you need to run and debug JavaScript code are already installed for you\. However, you need one additional Node\.js package for this tutorial\. Install it as follows\.
 
-1. On the menu bar \(at the top of the AWS Cloud9 IDE\), choose **Window**, **New Terminal** \(or use an existing terminal window\)\.
+1. On the menu bar at the top of the AWS Cloud9 IDE, choose **Window**, **New Terminal** or use an existing terminal window\.
 
-1. In the terminal window \(one of the tabs in the bottom portion of the IDE\), enter the following\.
+1. In the terminal window, which is one of the tabs in the bottom portion of the IDE, enter the following\.
 
    ```
    npm install readline-sync
    ```
 
-   Verify that the result is similar to the following \(If `npm WARN` messages are also displayed, you can ignore them\)\.
+   Verify that the result is similar to the following\. If `npm WARN` messages are also displayed, you can ignore them\.
 
    ```
    + readline-sync@1.4.10
@@ -36,7 +36,7 @@ Most of the tools you need to run and debug JavaScript code are already installe
    found 0 vulnerabilities
    ```
 
-## Write code<a name="w66aac11c15c25b5c11"></a>
+## Write code<a name="w94aac11c16c25b5c11"></a>
 
 Begin by writing some code\.
 
@@ -68,11 +68,11 @@ Begin by writing some code\.
 
 1. Choose **File**, **Save**, and then save the file as `hello-cloud9.js`\.
 
-## Run your code<a name="w66aac11c15c25b5c13"></a>
+## Run your code<a name="w94aac11c16c25b5c13"></a>
 
 Next, you can run your code\.
 
-Depending on the programming language that you're using, there might be multiple ways in which you can run code\. This tutorial uses JavaScript, which you can run using a terminal window or a **Run Configuration** window\.
+Depending on the programming language that you're using, there might be multiple ways that you can run code\. This tutorial uses JavaScript, which you can run using a terminal window or a **Run Configuration** window\.
 
 **To run the code using a Run Configuration window**
 
@@ -80,9 +80,9 @@ Depending on the programming language that you're using, there might be multiple
 
 1. In the new **Run Configuration** window \(one of the tabs in the bottom portion of the IDE\), enter `hello-cloud9.js` in the **Command** field, and then choose **Run**\.
 
-1. Be sure that the **Run Configuration** prompt is active, and then interact with the application by entering a number at the prompt\.
+1. Make sure that the **Run Configuration** prompt is active, and then interact with the application by entering a number at the prompt\.
 
-1. View the output from your code in the **Run Configuration** window\. It should be similar to the following\.
+1. View the output from your code in the **Run Configuration** window\. It is similar to the following\.
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-run-config.png)
 
@@ -96,11 +96,11 @@ Depending on the programming language that you're using, there might be multiple
 
 1. Interact with the application by entering a number at the prompt\.
 
-1. View the output from your code in the terminal window\. It should be similar to the following\.
+1. View the output from your code in the terminal window\. It is similar to the following\.
 
 ![\[Run code in a Run Configuration.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-run-terminal.png)
 
-## Debug your code<a name="w66aac11c15c25b5c15"></a>
+## Debug your code<a name="w94aac11c16c25b5c15"></a>
 
 Finally, you can debug your code by using the **Debugger** window\.
 
@@ -114,12 +114,12 @@ Finally, you can debug your code by using the **Debugger** window\.
 
 1. Go to the **Run Configuration** window that you used earlier to run the code\. Choose **Run**\.
 
-   Alternately, you can open a new **Run Configuration** window and start running the code by choosing **Run**, **Run With**, **Node\.js**, from the menu bar\.
+   Alternately, you can open a new **Run Configuration** window and start running the code\. Do so by choosing **Run**, **Run With**, **Node\.js** from the menu bar\.
 
-1. Enter a number at the **Run Configuration** prompt and see that the code pauses at line 10\. The **Debugger** window shows the value you entered in **Watch Expressions**\.  
+1. Enter a number at the **Run Configuration** prompt and see that the code pauses at line 10\. The **Debugger** window shows the value that you entered in **Watch Expressions**\.  
 ![\[Program stops at breakpoint\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-debug-break.png)
 
-1. In the **Debugger** window, choose **Resume**, which is the blue arrow icon that is highlighted in the previous screenshot\.
+1. In the **Debugger** window, choose **Resume**\. This is the blue arrow icon that's highlighted in the previous screenshot\.
 
 1. Select **Stop** in the **Run Configuration** window to stop the debugger\.  
 ![\[Stop debugger.\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/basic-ide-debug-stop.png)

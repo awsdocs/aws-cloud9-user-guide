@@ -10,3 +10,5 @@ The AWS Toolkit feature provides a convenient visual interface for working with 
 + [Working with AWS CodeStar Projects](codestar-projects.md)
 + [Working with CodeWhisperer](codewhisperer.md)
 + [Working with AWS CodePipeline](codepipeline-repos.md)
++ [Working with CodeCatalyst](ide-toolkits-cloud9.md)
++ [Working with AWS CDK](cdk-explorer.md)

@@ -25,13 +25,11 @@ For more information, see [Project Setting Changes You Can Make](settings-projec
    + If your organization uses AWS IAM Identity Center \(successor to AWS Single Sign\-On\), see your AWS account administrator for sign\-in instructions\.
 
 1. In the top navigation bar, choose the AWS Region where the environment is located\.  
-![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
+![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/consolas_region_new_UX.png)
 
 1. In the list of environments, for the environment whose settings you want to change, do one of the following\.
-   + Choose the title of the card for the environment\. Then choose **Edit** on the next page\.  
-![\[Editing environment settings in the environment details page\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-edit-env.png)
-   + Select the card for the environment, and then choose the **Edit** button\.  
-![\[Editing environment settings in the environments list\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-edit-env-card.png)
+   + Choose the title of the card for the environment\. Then choose **View details** on the next page\.
+   + Select the card for the environment, and then choose the **View details** button\.
 
 1. Make your changes, and then choose **Save changes**\.
 
@@ -49,16 +47,12 @@ For more information, see [Project Setting Changes You Can Make](settings-projec
      + For **Permissions** or **Number of members**, see [Change the Access Role of an Environment Member](share-environment.md#share-environment-change-access), [Remove Your User](share-environment.md#share-environment-change-access), [Invite an IAM User](share-environment.md#share-environment-invite-user), and [Remove Another Environment Member](share-environment.md#share-environment-delete-member)\.
 
 If your environment isn't displayed in the console, try doing one or more of the following actions to have it be displayed\.
-+ In the side navigation bar, choose one or more of the following\.
-  + Choose **Your environments** to display all environments that your AWS entity owns within the selected AWS Region and AWS account\.
-  + Choose **Shared with you** to display all environments your AWS entity has been invited to within the selected AWS Region and AWS account\.
-  + Choose **Account environments** to display all environments within the selected AWS Region and AWS account that your AWS entity has permissions to display\.  
-![\[Environment list scope in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-env-list.png)
-+ Choose the previous arrow, next arrow, or page number button to display more environments in the current scope\.  
-![\[Environment list page control in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-find-env.png)
++ In the drop\-down menu bar on the **Environments** page, choose one or more of the following\.
+  + Choose **My environments** to display all environments that your AWS entity owns within the selected AWS Region and AWS account\.
+  + Choose **Shared with me** to display all environments your AWS entity has been invited to within the selected AWS Region and AWS account\.
+  + Choose **All account environments** to display all environments within the selected AWS Region and AWS account that your AWS entity has permissions to display\.
 + If you think you should be a member of an environment, but the environment isn't displayed in the **Shared with you** list, check with the environment owner\.
-+ In the top navigation bar, choose a different AWS Region\.  
-![\[AWS Region selector in the AWS Cloud9 console\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/console-region.png)
++ In the top navigation bar, choose a different AWS Region\.
 
 ## Change environment settings with code<a name="change-environment-description-code"></a>
 

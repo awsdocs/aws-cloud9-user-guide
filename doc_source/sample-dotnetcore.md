@@ -228,7 +228,7 @@ The folder name, `netcoreapp3.1`, reflects the version of the \.NET Core SDK use
       ```
       {
         "cmd" : ["dotnet", "run", "$args"],
-        "working_dir": "$file",
+        "working_dir": "$file_path",
         "info" : "Running..."
       }
       ```

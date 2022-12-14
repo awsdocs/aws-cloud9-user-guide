@@ -15,7 +15,7 @@ When you're coding in AWS Cloud9, these user actions are associated with the Cod
 | --- | --- | 
 |  Manually trigger CodeWhisperer  |  MacOS: Option \+ C Windows: Alt \+ C Linux: Alt \+ C  | 
 |  Accept a recommendation  |  Tab, enter, or click\.  | 
-|  Reject a recommendation  |  ESC, backspace, or keep typing and the recommendation will disapperar as soon as there is a character mismatch\.  | 
+|  Reject a recommendation  |  ESC, backspace, or keep typing and the recommendation will disappear as soon as there is a character mismatch\.  | 
 
 ## Use cases<a name="codewhisperer-user-cases"></a>
 
@@ -69,7 +69,7 @@ In the example below, in Java, the user enters a docstring\. CodeWhisperer sugge
 
 ### Code reference tracking<a name="codewhisperer-origin-tracker"></a>
 
-In the event that the code generation is sufficiently similar to an example in the training data, CodeWhisperer can provide a reference to that code, so that you can more easily find and review the similar code, decide whether to use the code in your project, and attribute and license the code as you see fit\.
+CodeWhisperer learns, in part, from open\-source projects\. Sometimes, a suggestion it's giving you may be similar to a specific piece of training data\. Keeping this box checked allows CodeWhisperer to offer suggestions in such cases\. CodeWhisperer will also provide references, so that you can learn more about where the training data comes from\. Unchecking this box will cause CodeWhisperer to hide recommendations that have references associated with them\.
 
 ### Supported programming languages<a name="codewhisperer-supported-languages"></a>
 
@@ -77,3 +77,5 @@ CodeWhisperer supports the following languages:
 + Python
 + Java
 + JavaScript
++ C\#
++ TypeScript

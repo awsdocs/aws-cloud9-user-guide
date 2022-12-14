@@ -1,13 +1,13 @@
 # Tutorial: Hello AWS Cloud9 \(console\)<a name="tutorial"></a>
 
-This tutorial provides a first look at AWS Cloud9\. It uses the AWS Cloud9 console, which enables you to perform the steps of the tutorial in a graphical user interface instead of [a command line tool](tutorial-basic-cli.md)\.
+This tutorial provides a first look at AWS Cloud9\. It covers how to use and navigate the AWS Cloud9 console\.
 
 In this tutorial, you set up an AWS Cloud9 development environment and then use the AWS Cloud9 IDE to code, run, and debug your first application\.
 
-This tutorial should take approximately an hour\.
+This tutorial takes approximately one hour to complete\.
 
 **Warning**  
-Completing this tutorial might result in charges to your AWS account\. These include possible charges for Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
+Completing this tutorial might result in charges to your AWS Region\. These include possible charges for Amazon EC2\. For more information, see [Amazon EC2 Pricing](https://aws.amazon.com/ec2/pricing/)\.
 
 ## Prerequisites<a name="tutorial-prereqs"></a>
 

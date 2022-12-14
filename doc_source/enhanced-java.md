@@ -96,4 +96,12 @@ The extensions that provide enhanced Java support include features that allow yo
 + **Gradle**: [Getting started guide](https://docs.gradle.org/current/userguide/getting_started.html)
 + **Maven**: [Maven in 5 minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
 
+## Problems tab for Java extension<a name="problems-panel"></a>
+
+You can view and troubleshoot issues with your java project within your AWS Cloud9 environment in the Problems tab of the AWS Cloud9 IDE\. To display the Problems tab from the AWS Cloud9 IDE, select **View** and choose **Problems** from the menu bar\.
+
+![\[Opening the problems tab\]](http://docs.aws.amazon.com/cloud9/latest/user-guide/images/problems-panel.png)
+
+You can also open the Problems tab by selecting the **\+** icon within the console and choosing **Open Problems**\. When you select a problem from the tab, it opens the affected file and displays the issue details\.
+
 ## <a name="java-projects"></a>

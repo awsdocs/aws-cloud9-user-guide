@@ -78,7 +78,7 @@ For more information about the preceding procedure, see [Changing the instance t
 
 1. In the AWS Cloud9 IDE for the environment, create a file with the following contents, and then save the file with the extension `.sh` \(for example, `resize.sh`\)\.
 **Note**  
-This script works for Amazon EBS volumes connected to EC2 instances running Amazon Linux 2, Amazon Linux, or Ubuntu Server\.  
+This script works for Amazon EBS volumes connected to EC2 instances running Amazon Linux 2, Amazon Linux, or Ubuntu Server and is configured to use IMDSv1\.  
  The script also resizes Amazon EBS volumes exposed as NVMe block devices on Nitro\-based instances\. For a list of instances based on the Nitro system, see [Nitro\-based instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances) in the *Amazon EC2 User Guide for Linux Instances*\.
 
    ```
@@ -89,7 +89,7 @@ This script works for Amazon EBS volumes connected to EC2 instances running Amaz
    
    # Get the ID of the environment host Amazon EC2 instance.
    INSTANCEID=$(curl http://169.254.169.254/latest/meta-data/instance-id)
-   REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed 's/\(.*\)[a-z]/\1/')
+   REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/region)
    
    # Get the ID of the Amazon EBS volume associated with the instance.
    VOLUMEID=$(aws ec2 describe-instances \

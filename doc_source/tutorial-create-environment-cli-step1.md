@@ -4,7 +4,7 @@
 
 In this step, you use the AWS CLI to create an AWS Cloud9 development environment\.
 
-In AWS Cloud9, a *development environment* \(or only an *environment*\) is a place where you store your development project's files and where you run the tools to develop your applications\. In this tutorial, you create a special kind of environment called an *EC2 environment*, and then work with the files and tools in that environment\.
+In AWS Cloud9, a *development environment*, or *environment*, is somewhere where you store your development project's files and run the tools to develop your applications\. In this tutorial, you create an *EC2 environment*, and work with the files and tools in that environment\.
 
 ## Create an EC2 environment with the AWS CLI<a name="tutorial-create-environment-cli"></a>
 
@@ -36,12 +36,12 @@ In AWS Cloud9, a *development environment* \(or only an *environment*\) is a pla
 **Note**  
 When using this option, you need to create the `AWSCloud9SSMAccessRole` service role and `AWSCloud9SSMInstanceProfile` if they aren't already created\. For more information, see [Managing instance profiles for Systems Manager with the AWS CLI](ec2-ssm.md#aws-cli-instance-profiles)\.
    +  `--subnet-id` represents the subnet you want AWS Cloud9 to use\. Replace `subnet-12a3456b` with the ID of the subnet of an Amazon Virtual Private Cloud \(VPC\), which must be compatible with AWS Cloud9\. For more information, see [Create an Amazon VPC for AWS Cloud9](vpc-settings.md#vpc-settings-create-vpc) in *[VPC settings for AWS Cloud9 Development Environments](vpc-settings.md)*\.
-   + By default, AWS Cloud9 shuts down the Amazon EC2 instance for the environment 30 minutes after all web browser instances that are connected to the IDE for the environment have been closed\. To change this, add `--automatic-stop-time-minutes` and the number of minutes\. A shorter time period might result in fewer charges to your AWS account\. Likewise, a longer time might result in more charges\.
+   + AWS Cloud9 shuts down the Amazon EC2 instance for the environment after all web browser instances that are connected to the IDE for the environment have been closed\. To configure this time period, add `--automatic-stop-time-minutes` and the number of minutes\. A shorter time period might result in fewer charges to your AWS account\. Likewise, a longer time might result in more charges\.
    + By default, the entity that calls this command owns the environment\. To change this, add `--owner-id` and the Amazon Resource Name \(ARN\) of the owning entity\.
 
 1. After you successfully run this command, open the AWS Cloud9 IDE for the newly created environment\. To do this, see [Opening an environment in AWS Cloud9](open-environment.md)\. Then return to this topic and continue with [Step 2: Basic tour of the IDE](tutorial-tour-ide.md) to learn how to use the AWS Cloud9 IDE to work with your new environment\.
 
-   If you try to open the environment, but AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated VPC\. For possible fixes, see [Cannot open an environment](troubleshooting.md#troubleshooting-env-loading)\.
+   If you try to open the environment, but AWS Cloud9 doesn't display the IDE after at least five minutes, there might be a problem with your web browser, your AWS access permissions, the instance, or the associated VPC\. For possible fixes, see [Can't open an environment](troubleshooting.md#troubleshooting-env-loading)\.
 
 ## Next Step<a name="tutorial-create-environment-cli-step1-next"></a>
 
