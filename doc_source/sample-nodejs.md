@@ -173,12 +173,14 @@ import {
   CreateBucketCommand,
   DeleteBucketCommand}
 from "@aws-sdk/client-s3";
-import {s3Client} from "./libs/s3Client" // Helper function that creates an Amazon S3 service client module.
+import {S3Client} from "@aws-sdk/client-s3" // Helper function that creates an Amazon S3 service client module.
 
 const async = require("async"); // To call AWS operations asynchronously.
 
 const bucket_name = process.argv[2];
 const region = process.argv[3];
+//create S3 Client instance
+const s3Client = new S3Client({ region: region });
 
 const create_bucket_params = {
   Bucket: bucket_name,
